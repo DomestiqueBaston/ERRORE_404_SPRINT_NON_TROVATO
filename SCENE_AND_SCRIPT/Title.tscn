@@ -1,0 +1,255 @@
+[gd_scene load_steps=18 format=3 uid="uid://cjgaaqpwcx0r3"]
+
+[ext_resource type="Shader" uid="uid://c3gkqv33yx8x5" path="res://SHADER/Outline_Glitch_And_Alpha.gdshader" id="1_n8ll0"]
+[ext_resource type="Texture2D" uid="uid://dccbhfnescixw" path="res://IMAGE/MISC/Title.png" id="2_hvxmu"]
+[ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="3_aa5oj"]
+[ext_resource type="AudioStream" uid="uid://cou5e3uqnnvdj" path="res://SOUND/FX/Crackling_Noise_A.ogg" id="4_ykdlm"]
+[ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="5_heyj7"]
+[ext_resource type="AudioStream" uid="uid://dsr0lb7uc7k7s" path="res://SOUND/FX/Crackling_Noise_C.ogg" id="6_twbue"]
+[ext_resource type="AudioStream" uid="uid://c0wgwx2yy2orr" path="res://SOUND/FX/Crackling_Noise_G.ogg" id="7_h1kb4"]
+[ext_resource type="AudioStream" uid="uid://yh4m1uglx4qt" path="res://SOUND/FX/Crackling_Noise_H.ogg" id="8_bmird"]
+[ext_resource type="AudioStream" uid="uid://bu5o3jhmjfi0f" path="res://SOUND/FX/Crackling_Noise_J.ogg" id="9_ft6fv"]
+[ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="10_pj754"]
+[ext_resource type="AudioStream" uid="uid://bmg2lx0qadmkd" path="res://SOUND/FX/Crackling_Noise_B.ogg" id="11_tdcc2"]
+[ext_resource type="AudioStream" uid="uid://y4doxkf0qxtd" path="res://SOUND/FX/Crackling_Noise_F.ogg" id="12_w75sy"]
+[ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="13_63rpd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dkqb4"]
+shader = ExtResource("1_n8ll0")
+shader_parameter/shake_enabled = false
+shader_parameter/shake_power = 0.00999999977648
+shader_parameter/shake_speed = 50.0
+shader_parameter/shake_block_size = 75.0
+shader_parameter/shake_color_rate = 0.0050000002375
+shader_parameter/outline_thickness = 0.0
+shader_parameter/outline_color = Color(0, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_vknab"]
+resource_name = "Glitch"
+length = 4.6666703
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Image:material:shader_parameter/shake_enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.16666667, 0.23333333, 0.40000004, 0.5, 0.5666667, 0.6666667, 0.8, 0.93333334, 1.4, 1.4666668, 1.5333334, 1.6666669, 2.1000001, 2.1666667, 2.4, 2.7333336, 2.8000002, 2.9333334, 3.4, 3.7, 3.7666667, 4.233333, 4.366667, 4.4666667, 4.6666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Image:material:shader_parameter/shake_block_size")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.3, 0.36666667, 0.53333336, 0.73333335, 1.0333333, 1.2666667, 1.4666667, 1.8000001, 1.9000001, 2, 2.3, 2.7333333, 3.0666668, 3.266667, 4.566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [7.5, 5.0, 10.0, 2.5, 1.5, 5.0, 1.5, 15.0, 8.5, 2.5, 12.5, 3.3, 1.5, 3.3, 6.6, 10.0, 3.3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Image:material:shader_parameter/outline_thickness")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Image:material:shader_parameter/outline_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Glitch_Sound")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_aa5oj")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_ykdlm")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_heyj7")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_twbue")
+}, {
+"end_offset": 0.010881676,
+"start_offset": 0.0,
+"stream": ExtResource("7_h1kb4")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_bmird")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_ft6fv")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_h1kb4")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_heyj7")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_pj754")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_tdcc2")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_w75sy")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_twbue")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_63rpd")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_aa5oj")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_ft6fv")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_h1kb4")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_bmird")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_ykdlm")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_w75sy")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_heyj7")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_aa5oj")
+}],
+"times": PackedFloat32Array(0.033333335, 0.099999994, 0.23333333, 0.3, 0.5, 0.6666667, 0.93333334, 1.0666667, 1.2666667, 1.4666667, 1.6666666, 2, 2.1666667, 2.3, 2.7333333, 2.9333334, 3.0666666, 3.2666667, 3.7, 4.233333, 4.4666667, 4.5666666)
+}
+tracks/4/use_blend = true
+
+[sub_resource type="Animation" id="Animation_6848n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Image:material:shader_parameter/shake_enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Image:material:shader_parameter/shake_block_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [75.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Image:material:shader_parameter/outline_thickness")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Image:material:shader_parameter/outline_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_adcti"]
+_data = {
+&"Glitch": SubResource("Animation_vknab"),
+&"RESET": SubResource("Animation_6848n")
+}
+
+[node name="Title" type="Node2D"]
+
+[node name="White" type="ColorRect" parent="."]
+offset_right = 960.0
+offset_bottom = 540.0
+
+[node name="Image" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_dkqb4")
+texture = ExtResource("2_hvxmu")
+centered = false
+
+[node name="Animation_Glitch" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_adcti")
+}
+autoplay = "Glitch"
+
+[node name="Glitch_Sound" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0
+bus = &"FX_DRY"
