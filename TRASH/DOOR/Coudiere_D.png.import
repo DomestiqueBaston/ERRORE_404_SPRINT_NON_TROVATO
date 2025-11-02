@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7op6sn68k7c4"
-path="res://.godot/imported/Aisselle_G.png-30b2e8e74d5efe773e0584b8c9f89a7f.ctex"
+uid="uid://7pnubh1rd8b5"
+path="res://.godot/imported/Coudiere_D.png-92c3480daaebf589880201c2e5ecf898.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/ENVIRONMENT/DOOR/Aisselle_G.png"
-dest_files=["res://.godot/imported/Aisselle_G.png-30b2e8e74d5efe773e0584b8c9f89a7f.ctex"]
+source_file="res://TRASH/DOOR/Coudiere_D.png"
+dest_files=["res://.godot/imported/Coudiere_D.png-92c3480daaebf589880201c2e5ecf898.ctex"]
 
 [params]
 

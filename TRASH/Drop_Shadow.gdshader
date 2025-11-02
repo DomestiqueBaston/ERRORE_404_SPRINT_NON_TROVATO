@@ -2,7 +2,7 @@ shader_type canvas_item;
 uniform vec4 drop_shadow_color : source_color = vec4(0.01, 0.01, 0.5, 0.15);
 uniform vec2 shadow_offset = vec2(float(0), float(0.05));
 uniform bool shadow_enabled = true;
-uniform float shadow_blur : hint_range(0.0, 10.0) = 3.0;
+uniform float shadow_blur : hint_range(0.0, 10.0) = 5.0;
 
 // Fonction pour échantillonner la texture en évitant les artefacts
 vec4 sample_texture(sampler2D texture, vec2 uv) {

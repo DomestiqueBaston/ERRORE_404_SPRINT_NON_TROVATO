@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clpd1lnwc1pw3"
-path="res://.godot/imported/Coudiere_G.png-cd93df6ebe1f828063363dc0bd88127c.ctex"
+uid="uid://c7ee22rkppja8"
+path="res://.godot/imported/Door_Back_Sprite_Sheet.png-9f5df05646a7b79b67becf9267d4c98a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/ENVIRONMENT/DOOR/Coudiere_G.png"
-dest_files=["res://.godot/imported/Coudiere_G.png-cd93df6ebe1f828063363dc0bd88127c.ctex"]
+source_file="res://IMAGE/ENVIRONMENT/DOOR/Door_Back_Sprite_Sheet.png"
+dest_files=["res://.godot/imported/Door_Back_Sprite_Sheet.png-9f5df05646a7b79b67becf9267d4c98a.ctex"]
 
 [params]
 

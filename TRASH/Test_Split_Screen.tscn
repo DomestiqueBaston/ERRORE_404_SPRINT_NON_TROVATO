@@ -1,6 +1,6 @@
 [gd_scene load_steps=52 format=3 uid="uid://b4tyo3c6o6kyu"]
 
-[ext_resource type="Script" uid="uid://jda3iip3f7fn" path="res://SCENE_AND_SCRIPT/Test_Split_Screen.gd" id="1_dfnej"]
+[ext_resource type="Script" uid="uid://jda3iip3f7fn" path="res://TRASH/Test_Split_Screen.gd" id="1_dfnej"]
 [ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="2_bawwu"]
 [ext_resource type="Texture2D" uid="uid://cfkh7vgw68beq" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Haut.png" id="3_lqdwh"]
 [ext_resource type="Texture2D" uid="uid://sqb0kt3xek0l" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Haut_Gauche_2.png" id="4_njsvd"]

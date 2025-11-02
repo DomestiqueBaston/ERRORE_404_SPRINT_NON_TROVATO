@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p78oohj7ht8a"
-path="res://.godot/imported/Av_Bras_D.png-abc22a14f47921421e0b70624aecb571.ctex"
+uid="uid://ub27wge0sfms"
+path="res://.godot/imported/Door_Front_Sprite_Sheet.png-00ccc13358553e37ea1628561e00ff65.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/ENVIRONMENT/DOOR/Av_Bras_D.png"
-dest_files=["res://.godot/imported/Av_Bras_D.png-abc22a14f47921421e0b70624aecb571.ctex"]
+source_file="res://IMAGE/ENVIRONMENT/DOOR/Door_Front_Sprite_Sheet.png"
+dest_files=["res://.godot/imported/Door_Front_Sprite_Sheet.png-00ccc13358553e37ea1628561e00ff65.ctex"]
 
 [params]
 

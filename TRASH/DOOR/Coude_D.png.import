@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://culur3kwelh22"
-path="res://.godot/imported/Epaules.png-ae6a449dc99c68c8644c5e35b6b67a9e.ctex"
+uid="uid://cxkihubsyb1qj"
+path="res://.godot/imported/Coude_D.png-752c84125d91812e4f80906354dc14b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/ENVIRONMENT/DOOR/Epaules.png"
-dest_files=["res://.godot/imported/Epaules.png-ae6a449dc99c68c8644c5e35b6b67a9e.ctex"]
+source_file="res://TRASH/DOOR/Coude_D.png"
+dest_files=["res://.godot/imported/Coude_D.png-752c84125d91812e4f80906354dc14b2.ctex"]
 
 [params]
 

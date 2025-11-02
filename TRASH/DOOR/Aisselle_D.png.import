@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkxjju7u3143j"
-path="res://.godot/imported/Bras_G.png-1db3c2eb11dd55cf96e44df2d18e6741.ctex"
+uid="uid://b1r5ww6p6h556"
+path="res://.godot/imported/Aisselle_D.png-0cb680f8b553fa2989f3f2151b4dc483.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/ENVIRONMENT/DOOR/Bras_G.png"
-dest_files=["res://.godot/imported/Bras_G.png-1db3c2eb11dd55cf96e44df2d18e6741.ctex"]
+source_file="res://TRASH/DOOR/Aisselle_D.png"
+dest_files=["res://.godot/imported/Aisselle_D.png-0cb680f8b553fa2989f3f2151b4dc483.ctex"]
 
 [params]
 

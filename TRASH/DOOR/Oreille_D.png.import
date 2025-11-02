@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3yqxdycu43g2"
-path="res://.godot/imported/Bras_D.png-9b6daabbe8167d9bfe0ca1b101171060.ctex"
+uid="uid://jbpxsiqvcv8g"
+path="res://.godot/imported/Oreille_D.png-717d1b03b2b87d32e68501b464ac879d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/ENVIRONMENT/DOOR/Bras_D.png"
-dest_files=["res://.godot/imported/Bras_D.png-9b6daabbe8167d9bfe0ca1b101171060.ctex"]
+source_file="res://TRASH/DOOR/Oreille_D.png"
+dest_files=["res://.godot/imported/Oreille_D.png-717d1b03b2b87d32e68501b464ac879d.ctex"]
 
 [params]
 

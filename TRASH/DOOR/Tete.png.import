@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dayivgvr1y5c3"
-path="res://.godot/imported/Coude_G.png-5bc2e8d1c8f3a074253c3d816fa4f6ca.ctex"
+uid="uid://c8iuafa4b8q0u"
+path="res://.godot/imported/Tete.png-833be83cfb110a99b24748be6029f806.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/ENVIRONMENT/DOOR/Coude_G.png"
-dest_files=["res://.godot/imported/Coude_G.png-5bc2e8d1c8f3a074253c3d816fa4f6ca.ctex"]
+source_file="res://TRASH/DOOR/Tete.png"
+dest_files=["res://.godot/imported/Tete.png-833be83cfb110a99b24748be6029f806.ctex"]
 
 [params]
 

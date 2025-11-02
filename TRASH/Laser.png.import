@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jbpxsiqvcv8g"
-path="res://.godot/imported/Oreille_D.png-e9fbdf2cbc27ffc28e216d16893d677f.ctex"
+uid="uid://crtsob6lk2834"
+path="res://.godot/imported/Laser.png-2234057fa8a26ff1f187ce6cd0f6ae0e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/ENVIRONMENT/DOOR/Oreille_D.png"
-dest_files=["res://.godot/imported/Oreille_D.png-e9fbdf2cbc27ffc28e216d16893d677f.ctex"]
+source_file="res://TRASH/Laser.png"
+dest_files=["res://.godot/imported/Laser.png-2234057fa8a26ff1f187ce6cd0f6ae0e.ctex"]
 
 [params]
 

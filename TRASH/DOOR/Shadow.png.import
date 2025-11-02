@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crtsob6lk2834"
-path="res://.godot/imported/Laser.png-67f74982b385bd95379675f4bb951c1a.ctex"
+uid="uid://djms2o2evhel4"
+path="res://.godot/imported/Shadow.png-3d0502f2f6321d3f07592cdde959ac69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/FX/Laser.png"
-dest_files=["res://.godot/imported/Laser.png-67f74982b385bd95379675f4bb951c1a.ctex"]
+source_file="res://TRASH/DOOR/Shadow.png"
+dest_files=["res://.godot/imported/Shadow.png-3d0502f2f6321d3f07592cdde959ac69.ctex"]
 
 [params]
 

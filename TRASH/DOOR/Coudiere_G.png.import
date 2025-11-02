@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5xjljtsegesb"
-path="res://.godot/imported/Oreille_G.png-1f1e2fad3fe64878f8004561a10e288c.ctex"
+uid="uid://clpd1lnwc1pw3"
+path="res://.godot/imported/Coudiere_G.png-06cd2139ae69d4f6deea52b2ddf879bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/ENVIRONMENT/DOOR/Oreille_G.png"
-dest_files=["res://.godot/imported/Oreille_G.png-1f1e2fad3fe64878f8004561a10e288c.ctex"]
+source_file="res://TRASH/DOOR/Coudiere_G.png"
+dest_files=["res://.godot/imported/Coudiere_G.png-06cd2139ae69d4f6deea52b2ddf879bb.ctex"]
 
 [params]
 

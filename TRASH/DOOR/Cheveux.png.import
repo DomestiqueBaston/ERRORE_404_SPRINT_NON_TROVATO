@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxkihubsyb1qj"
-path="res://.godot/imported/Coude_D.png-0ecf53f566a59eaf4e72645e43f434d6.ctex"
+uid="uid://dkvkffsj28ae7"
+path="res://.godot/imported/Cheveux.png-5a07581b37cc37a94040c1a64064d316.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/ENVIRONMENT/DOOR/Coude_D.png"
-dest_files=["res://.godot/imported/Coude_D.png-0ecf53f566a59eaf4e72645e43f434d6.ctex"]
+source_file="res://TRASH/DOOR/Cheveux.png"
+dest_files=["res://.godot/imported/Cheveux.png-5a07581b37cc37a94040c1a64064d316.ctex"]
 
 [params]
 
