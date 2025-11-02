@@ -19,6 +19,7 @@ config/icon="uid://54k11ge564p0"
 window/size/viewport_width=960
 window/size/viewport_height=540
 window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [file_customization]
 

@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://jeuanuva1v8o"]
+[gd_scene load_steps=22 format=3 uid="uid://jeuanuva1v8o"]
 
+[ext_resource type="Script" uid="uid://b3ee2ad2rdstv" path="res://SCENE_AND_SCRIPT/Door.gd" id="1_ecpiw"]
 [ext_resource type="Shader" uid="uid://c3gkqv33yx8x5" path="res://SHADER/Outline_Glitch_And_Alpha.gdshader" id="1_gjufk"]
 [ext_resource type="Texture2D" uid="uid://bgq4edmw16b8" path="res://IMAGE/ENVIRONMENT/DOOR/Door_Shadow.png" id="1_w6txa"]
 [ext_resource type="Texture2D" uid="uid://c7ee22rkppja8" path="res://IMAGE/ENVIRONMENT/DOOR/Door_Back_Sprite_Sheet.png" id="2_w6txa"]
@@ -16,6 +17,18 @@ shader_parameter/shake_block_size = 25.0
 shader_parameter/shake_color_rate = 0.00059999998482
 shader_parameter/outline_thickness = 1.0
 shader_parameter/outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_ecpiw"]
+offsets = PackedFloat32Array(0, 0.16571428, 0.42857143, 0.6571429, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.72097147, 0.72097147, 0.72097147, 1, 0.4645669, 0.4645669, 0.4645669, 1, 0.19999999, 0.19999999, 0.19999999, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t7lr0"]
+gradient = SubResource("Gradient_ecpiw")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ecpiw"]
 shader = ExtResource("1_gjufk")
@@ -152,18 +165,21 @@ tracks/2/keys = {
 "update": 1,
 "values": [false, true, false, true, false, true, false, true, false, true]
 }
-tracks/3/type = "value"
+tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Door_Appearing:playing")
+tracks/3/path = NodePath("Door_Appearing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_ecpiw")
+}],
+"times": PackedFloat32Array(0)
 }
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_pl358"]
 length = 0.001
@@ -203,18 +219,6 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Door_Appearing:playing")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jbtw0"]
 _data = {
@@ -222,7 +226,76 @@ _data = {
 &"RESET": SubResource("Animation_pl358")
 }
 
+[sub_resource type="Animation" id="Animation_mhnl0"]
+resource_name = "Light_On"
+length = 0.16667001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door_Light:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_3dh1m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door_Light:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Door_Light:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-14, -78)]
+}
+
+[sub_resource type="Animation" id="Animation_vs4ot"]
+resource_name = "Floating_Light"
+length = 2.66667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door_Light:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6666667, 1.3333334, 2, 2.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-12, -78), Vector2(-6, -85), Vector2(0, -78), Vector2(-6, -71), Vector2(-12, -78)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wpkfy"]
+_data = {
+&"Floating_Light": SubResource("Animation_vs4ot"),
+&"Light_On": SubResource("Animation_mhnl0"),
+&"RESET": SubResource("Animation_3dh1m")
+}
+
 [node name="Door" type="Node2D"]
+position = Vector2(461, 302)
+script = ExtResource("1_ecpiw")
 
 [node name="Door_Shadow" type="Sprite2D" parent="."]
 visible = false
@@ -233,12 +306,20 @@ metadata/_edit_lock_ = true
 
 [node name="Door_Back" type="Sprite2D" parent="."]
 visible = false
+light_mask = 3
 material = SubResource("ShaderMaterial_jbtw0")
 texture = ExtResource("2_w6txa")
 offset = Vector2(0, -71)
 hframes = 25
 vframes = 4
 metadata/_edit_lock_ = true
+
+[node name="Door_Light" type="PointLight2D" parent="."]
+position = Vector2(-14, -78)
+color = Color(0.29000002, 0.33733332, 1, 1)
+energy = 1.3
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_t7lr0")
 
 [node name="Door_Front" type="Sprite2D" parent="."]
 visible = false
@@ -262,13 +343,18 @@ libraries = {
 }
 autoplay = "Appearing"
 
+[node name="Animation_Light" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wpkfy")
+}
+
 [node name="Door_Hum" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_jbtw0")
 volume_db = 5.0
 autoplay = true
 bus = &"FX_WET"
+parameters/looping = true
 
 [node name="Door_Appearing" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_ecpiw")
 volume_db = -5.0
 bus = &"FX_WET"
