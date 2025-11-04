@@ -11,7 +11,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jbtw0"]
 shader = ExtResource("1_gjufk")
 shader_parameter/shake_enabled = false
-shader_parameter/shake_power = 0.00029999999240999995
+shader_parameter/shake_power = 0.00029999999240999
 shader_parameter/shake_speed = 100.0
 shader_parameter/shake_block_size = 25.0
 shader_parameter/shake_color_rate = 0.00059999998482
@@ -33,7 +33,7 @@ fill_to = Vector2(1, 0.5)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ecpiw"]
 shader = ExtResource("1_gjufk")
 shader_parameter/shake_enabled = false
-shader_parameter/shake_power = 0.00029999999240999995
+shader_parameter/shake_power = 0.00029999999240999
 shader_parameter/shake_speed = 100.0
 shader_parameter/shake_block_size = 25.0
 shader_parameter/shake_color_rate = 0.00059999998482
@@ -226,6 +226,23 @@ _data = {
 &"RESET": SubResource("Animation_pl358")
 }
 
+[sub_resource type="Animation" id="Animation_vs4ot"]
+resource_name = "Floating_Light"
+length = 2.66667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door_Light:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6666667, 1.3333334, 2, 2.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-12, -78), Vector2(-6, -85), Vector2(0, -78), Vector2(-6, -71), Vector2(-12, -78)]
+}
+
 [sub_resource type="Animation" id="Animation_mhnl0"]
 resource_name = "Light_On"
 length = 0.16667001
@@ -269,23 +286,6 @@ tracks/1/keys = {
 "values": [Vector2(-14, -78)]
 }
 
-[sub_resource type="Animation" id="Animation_vs4ot"]
-resource_name = "Floating_Light"
-length = 2.66667
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Door_Light:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6666667, 1.3333334, 2, 2.6666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-12, -78), Vector2(-6, -85), Vector2(0, -78), Vector2(-6, -71), Vector2(-12, -78)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wpkfy"]
 _data = {
 &"Floating_Light": SubResource("Animation_vs4ot"),
@@ -294,7 +294,6 @@ _data = {
 }
 
 [node name="Door" type="Node2D"]
-position = Vector2(461, 302)
 script = ExtResource("1_ecpiw")
 
 [node name="Door_Shadow" type="Sprite2D" parent="."]
