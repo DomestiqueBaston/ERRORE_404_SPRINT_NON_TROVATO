@@ -18,8 +18,12 @@ config/icon="uid://54k11ge564p0"
 
 window/size/viewport_width=960
 window/size/viewport_height=540
+window/size/always_on_top=true
 window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
+
+[editor]
+
+movie_writer/movie_file="D:/GRAPHISME/PIXEL/PIXEL ART V/VIDEO.ogv"
 
 [file_customization]
 

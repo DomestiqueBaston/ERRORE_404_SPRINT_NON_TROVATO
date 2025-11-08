@@ -1499,7 +1499,7 @@ libraries = {
 }
 
 [node name="Foot Step" type="AudioStreamPlayer" parent="."]
-volume_db = 2.5
+volume_db = 7.5
 pitch_scale = 0.5
 bus = &"FX_WET"
 
@@ -1515,5 +1515,5 @@ volume_db = -7.5
 bus = &"FX_WET"
 
 [node name="Running" type="AudioStreamPlayer" parent="."]
-volume_db = -10.0
+volume_db = -5.0
 bus = &"FX_WET"

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2bmboi1vexix"]
+
+[ext_resource type="PackedScene" uid="uid://cucs0i7d1er7d" path="res://SCENE_AND_SCRIPT/Cell.tscn" id="1_nq3ii"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Cell01" parent="." instance=ExtResource("1_nq3ii")]
+
+[node name="Cell02" parent="." instance=ExtResource("1_nq3ii")]
+position = Vector2(-118, 59)
+
+[node name="Cell03" parent="." instance=ExtResource("1_nq3ii")]
+position = Vector2(118, 59)
+
+[node name="Cell04" parent="." instance=ExtResource("1_nq3ii")]
+position = Vector2(0, 118)

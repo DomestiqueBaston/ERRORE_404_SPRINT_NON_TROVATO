@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cucs0i7d1er7d"]
+[gd_scene load_steps=23 format=3 uid="uid://cucs0i7d1er7d"]
 
 [ext_resource type="Texture2D" uid="uid://dsrmr325mtsek" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_01.png" id="1_ypd1c"]
 [ext_resource type="Texture2D" uid="uid://d0s3llyava71h" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_02.png" id="2_0chrw"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dksuojrmaxd27" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Bas_Gauche_1.png" id="9_kr3tr"]
 [ext_resource type="Texture2D" uid="uid://kq6b20r03w14" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Bas_Gauche_2.png" id="10_oaevg"]
 [ext_resource type="Texture2D" uid="uid://dudxbf70jeovx" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Droit.png" id="11_tggmm"]
+[ext_resource type="Texture2D" uid="uid://ccg6f438xg40j" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Bas_Gauche_3.png" id="12_mwy7o"]
 [ext_resource type="Texture2D" uid="uid://dpvpusddhl2a7" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Gauche.png" id="12_tvhyd"]
 [ext_resource type="Texture2D" uid="uid://cfkh7vgw68beq" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Haut.png" id="13_b7xif"]
 [ext_resource type="Texture2D" uid="uid://c4uopojxa8oel" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Haut_Droit_1.png" id="14_mi1bg"]
@@ -19,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dawdegsbrladg" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Haut_Gauche_1.png" id="16_6elyb"]
 [ext_resource type="Texture2D" uid="uid://sqb0kt3xek0l" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Haut_Gauche_2.png" id="17_h1n4v"]
 [ext_resource type="Texture2D" uid="uid://de5qq3notn7hs" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Centre.png" id="18_ik60n"]
+[ext_resource type="Texture2D" uid="uid://cugkt51fbb3p3" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Haut_Gauche_3.png" id="20_ao42k"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mwy7o"]
 vertices = PackedVector2Array(95.78125, 0.3515625, 0.0078125, 47.828125, -96.64844, -0.5, -0.0625, -48.789063)
@@ -58,6 +60,7 @@ color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_01" type="Sprite2D" parent="Column/Images"]
+visible = false
 texture = ExtResource("1_ypd1c")
 centered = false
 offset = Vector2(-118, -60)
@@ -112,7 +115,7 @@ centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Bord_Ba_sDroit_2" type="Sprite2D" parent="Column/Images"]
+[node name="Cellule_De_Terrain_Bord_Bas_Droit_2" type="Sprite2D" parent="Column/Images"]
 visible = false
 texture = ExtResource("8_kkq45")
 centered = false
@@ -129,6 +132,13 @@ metadata/_edit_lock_ = true
 [node name="Cellule_De_Terrain_Bord_Bas_Gauche_2" type="Sprite2D" parent="Column/Images"]
 visible = false
 texture = ExtResource("10_oaevg")
+centered = false
+offset = Vector2(-118, -60)
+metadata/_edit_lock_ = true
+
+[node name="Cellule_De_Terrain_Bord_Bas_Gauche_3" type="Sprite2D" parent="Column/Images"]
+visible = false
+texture = ExtResource("12_mwy7o")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
@@ -178,6 +188,13 @@ metadata/_edit_lock_ = true
 [node name="Cellule_De_Terrain_Bord_Haut_Gauche_2" type="Sprite2D" parent="Column/Images"]
 visible = false
 texture = ExtResource("17_h1n4v")
+centered = false
+offset = Vector2(-118, -60)
+metadata/_edit_lock_ = true
+
+[node name="Cellule_De_Terrain_Bord_Haut_Gauche_3" type="Sprite2D" parent="Column/Images"]
+visible = false
+texture = ExtResource("20_ao42k")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
