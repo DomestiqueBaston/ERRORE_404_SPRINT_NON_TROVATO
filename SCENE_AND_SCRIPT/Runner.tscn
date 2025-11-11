@@ -675,7 +675,7 @@ tracks/6/keys = {
 }
 tracks/7/type = "audio"
 tracks/7/imported = false
-tracks/7/enabled = false
+tracks/7/enabled = true
 tracks/7/path = NodePath("../Running")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
@@ -1499,9 +1499,8 @@ libraries = {
 }
 
 [node name="Foot Step" type="AudioStreamPlayer" parent="."]
-volume_db = 7.5
 pitch_scale = 0.5
-bus = &"FX_WET"
+bus = &"FX_DRY"
 
 [node name="Glitch_Sound" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0
@@ -1511,9 +1510,8 @@ bus = &"FX_DRY"
 bus = &"FX_DRY"
 
 [node name="Falling" type="AudioStreamPlayer" parent="."]
-volume_db = -7.5
-bus = &"FX_WET"
+bus = &"FX_DRY"
 
 [node name="Running" type="AudioStreamPlayer" parent="."]
-volume_db = -5.0
-bus = &"FX_WET"
+volume_db = -2.5
+bus = &"FX_DRY"

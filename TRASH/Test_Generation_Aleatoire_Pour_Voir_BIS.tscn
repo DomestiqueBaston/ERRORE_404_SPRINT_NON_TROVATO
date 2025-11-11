@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2a2vkvk88415"]
+[gd_scene load_steps=6 format=3 uid="uid://b2a2vkvk88415"]
 
 [ext_resource type="Script" uid="uid://cqj1vvbsaikwr" path="res://TRASH/test_generation_aleatoire_pour_voir_bis.gd" id="1_sjb8x"]
 [ext_resource type="PackedScene" uid="uid://cucs0i7d1er7d" path="res://SCENE_AND_SCRIPT/Cell.tscn" id="2_okjc4"]
 [ext_resource type="PackedScene" uid="uid://brsvllplyc7ih" path="res://SCENE_AND_SCRIPT/Runner.tscn" id="3_okjc4"]
+[ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="4_5rr24"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pb06r"]
+gradient = ExtResource("4_5rr24")
+width = 480
+height = 270
+use_hdr = true
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
 
 [node name="PAPA_TEST" type="Node2D"]
 
@@ -14,3 +23,22 @@ grid_size = 9
 
 [node name="Runner" parent="." instance=ExtResource("3_okjc4")]
 position = Vector2(480, 200)
+
+[node name="Scene_BG" type="TextureRect" parent="Runner"]
+z_index = -10
+offset_left = -2400.0
+offset_top = -1350.0
+offset_right = 2400.0
+offset_bottom = 1350.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_pb06r")
+stretch_mode = 4
+
+[node name="ATTENTION" type="Label" parent="Runner/Scene_BG"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+text = "Ce fond doit faire la taille de la zone de jeu plus les marges.
+Il est quasiment certain que cette solution n'est pas la bonne car la taille de la zone de course va changer avec les glissements de colonnes et lignes."

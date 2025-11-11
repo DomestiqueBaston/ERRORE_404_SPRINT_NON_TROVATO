@@ -319,6 +319,7 @@ color = Color(0.29000002, 0.33733332, 1, 1)
 energy = 1.3
 range_item_cull_mask = 2
 texture = SubResource("GradientTexture2D_t7lr0")
+metadata/_edit_lock_ = true
 
 [node name="Door_Front" type="Sprite2D" parent="."]
 visible = false

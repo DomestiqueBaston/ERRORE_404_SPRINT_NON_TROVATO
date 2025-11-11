@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cucs0i7d1er7d"]
+[gd_scene load_steps=39 format=3 uid="uid://cucs0i7d1er7d"]
 
 [ext_resource type="Texture2D" uid="uid://dsrmr325mtsek" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_01.png" id="1_ypd1c"]
 [ext_resource type="Texture2D" uid="uid://d0s3llyava71h" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_02.png" id="2_0chrw"]
@@ -7,10 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://ljkkd8ehropx" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_05.png" id="5_vo76y"]
 [ext_resource type="Texture2D" uid="uid://d3ygrd0g71jq0" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Bas.png" id="6_m6nb2"]
 [ext_resource type="Texture2D" uid="uid://byw1um2e3de36" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_06.png" id="6_wjuty"]
+[ext_resource type="Texture2D" uid="uid://0o0f04wo8okd" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_07.png" id="7_8vle5"]
 [ext_resource type="Texture2D" uid="uid://bbsit53yv7e6k" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Bas_Droit_1.png" id="7_x7s2x"]
+[ext_resource type="Texture2D" uid="uid://dhex10d0gw5x4" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_08.png" id="8_ej7e8"]
 [ext_resource type="Texture2D" uid="uid://82hfddd4cxs" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Bas_Droit_2.png" id="8_kkq45"]
 [ext_resource type="Texture2D" uid="uid://dksuojrmaxd27" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Bas_Gauche_1.png" id="9_kr3tr"]
 [ext_resource type="Texture2D" uid="uid://kq6b20r03w14" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Bas_Gauche_2.png" id="10_oaevg"]
+[ext_resource type="Texture2D" uid="uid://0xt8cwfp6wvj" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Bas_Droit_3.png" id="10_usf32"]
 [ext_resource type="Texture2D" uid="uid://dudxbf70jeovx" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Droit.png" id="11_tggmm"]
 [ext_resource type="Texture2D" uid="uid://ccg6f438xg40j" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Bas_Gauche_3.png" id="12_mwy7o"]
 [ext_resource type="Texture2D" uid="uid://dpvpusddhl2a7" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Gauche.png" id="12_tvhyd"]
@@ -19,13 +22,206 @@
 [ext_resource type="Texture2D" uid="uid://b6r7sa6rbgpde" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Haut_Droit_2.png" id="15_bx3ju"]
 [ext_resource type="Texture2D" uid="uid://dawdegsbrladg" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Haut_Gauche_1.png" id="16_6elyb"]
 [ext_resource type="Texture2D" uid="uid://sqb0kt3xek0l" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Haut_Gauche_2.png" id="17_h1n4v"]
+[ext_resource type="Texture2D" uid="uid://cb5pq11kumjn2" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Haut_Droit_3.png" id="18_8qjf4"]
 [ext_resource type="Texture2D" uid="uid://de5qq3notn7hs" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Centre.png" id="18_ik60n"]
 [ext_resource type="Texture2D" uid="uid://cugkt51fbb3p3" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Haut_Gauche_3.png" id="20_ao42k"]
+[ext_resource type="Texture2D" uid="uid://w0y6jf5wx4px" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de pylone.png" id="25_6vv1n"]
+[ext_resource type="Texture2D" uid="uid://br32hmm1061" path="res://IMAGE/ENVIRONMENT/CELL/Extension de pylone.png" id="26_ej7e8"]
+[ext_resource type="AudioStream" uid="uid://mkvmu7rmdx3t" path="res://SOUND/FX/Clang_Start_Cell_01.ogg" id="27_e50o2"]
+[ext_resource type="AudioStream" uid="uid://ccoauvddaj8m" path="res://SOUND/FX/Up_Down_Cell_01.ogg" id="28_7mpjj"]
+[ext_resource type="AudioStream" uid="uid://bvr7mwob6g81h" path="res://SOUND/FX/Vanishing_Cell_01.ogg" id="29_vso1q"]
+[ext_resource type="AudioStream" uid="uid://qnjr5b74yyt8" path="res://SOUND/FX/Door_Appearing.ogg" id="30_b78o7"]
+[ext_resource type="AudioStream" uid="uid://lyfwlkv3kxlk" path="res://SOUND/FX/Pylon_Crashing_Down.ogg" id="31_n3k4r"]
+[ext_resource type="AudioStream" uid="uid://b5iy8wel0isvy" path="res://SOUND/FX/Pylon_Starting_To_Fall_Down.ogg" id="32_qjqwi"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mwy7o"]
 vertices = PackedVector2Array(95.78125, 0.3515625, 0.0078125, 47.828125, -96.64844, -0.5, -0.0625, -48.789063)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-118, -1, 0, -60, 118, -1, 118, 0, 0, 59, -118, 0)])
+
+[sub_resource type="Animation" id="Animation_6o5ds"]
+resource_name = "Going_Down"
+length = 0.7000034
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Images:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6666667, 0.7),
+"transitions": PackedFloat32Array(3.5, 1, 1),
+"update": 0,
+"values": [Vector2(0, -120), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Images:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666666, 0.099999905, 0.1333332, 0.16666651, 0.20000005, 0.23333335, 0.26666668, 0.29999998, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Pylon_Sound/Appearing_Pylon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("30_b78o7")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Pylon_Sound/Pylon_Boom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("31_n3k4r")
+}],
+"times": PackedFloat32Array(0.6666667)
+}
+tracks/3/use_blend = true
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Pylon_Sound/Starting_To_Fall_Down")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("32_qjqwi")
+}],
+"times": PackedFloat32Array(0.06666667)
+}
+tracks/4/use_blend = true
+
+[sub_resource type="Animation" id="Animation_5memm"]
+resource_name = "Going_Up"
+length = 5.000004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Images:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 1, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -3), Vector2(0, -3), Vector2(0, -120)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Images:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.766667, 4.8, 4.8333335, 4.866667, 4.9, 4.9333334, 4.966667, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Pylon_Sound/Clang_Start")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("27_e50o2")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Pylon_Sound/Up_Pylon")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("28_7mpjj")
+}, {
+"end_offset": 0.670998,
+"start_offset": 0.0,
+"stream": ExtResource("28_7mpjj")
+}],
+"times": PackedFloat32Array(1, 3.3333333)
+}
+tracks/3/use_blend = true
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Pylon_Sound/Vanishing_Pylon")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("29_vso1q")
+}],
+"times": PackedFloat32Array(4.5)
+}
+tracks/4/use_blend = true
+
+[sub_resource type="Animation" id="Animation_iotr2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Images:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -120)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Images:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u038b"]
+_data = {
+&"Going_Down": SubResource("Animation_6o5ds"),
+&"Going_Up": SubResource("Animation_5memm"),
+&"RESET": SubResource("Animation_iotr2")
+}
 
 [node name="Cell" type="Node2D"]
 metadata/_edit_lock_ = true
@@ -101,6 +297,19 @@ centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
+[node name="Cellule_De_Terrain_07" type="Sprite2D" parent="Column/Images"]
+visible = false
+texture = ExtResource("7_8vle5")
+centered = false
+offset = Vector2(-118, -60)
+metadata/_edit_lock_ = true
+
+[node name="Cellule_De_Terrain_08" type="Sprite2D" parent="Column/Images"]
+texture = ExtResource("8_ej7e8")
+centered = false
+offset = Vector2(-118, -60)
+metadata/_edit_lock_ = true
+
 [node name="Cellule_De_Terrain_Bord_Bas" type="Sprite2D" parent="Column/Images"]
 visible = false
 texture = ExtResource("6_m6nb2")
@@ -118,6 +327,13 @@ metadata/_edit_lock_ = true
 [node name="Cellule_De_Terrain_Bord_Bas_Droit_2" type="Sprite2D" parent="Column/Images"]
 visible = false
 texture = ExtResource("8_kkq45")
+centered = false
+offset = Vector2(-118, -60)
+metadata/_edit_lock_ = true
+
+[node name="Cellule_De_Terrain_Bord_Bas_Droit_3" type="Sprite2D" parent="Column/Images"]
+visible = false
+texture = ExtResource("10_usf32")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
@@ -174,6 +390,13 @@ metadata/_edit_lock_ = true
 [node name="Cellule_De_Terrain_Bord_Haut_Droit_2" type="Sprite2D" parent="Column/Images"]
 visible = false
 texture = ExtResource("15_bx3ju")
+centered = false
+offset = Vector2(-118, -60)
+metadata/_edit_lock_ = true
+
+[node name="Cellule_De_Terrain_Bord_Haut_Droit_3" type="Sprite2D" parent="Column/Images"]
+visible = false
+texture = ExtResource("18_8qjf4")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
@@ -255,21 +478,66 @@ visible = false
 navigation_polygon = SubResource("NavigationPolygon_mwy7o")
 metadata/_edit_lock_ = true
 
-[node name="Sound" type="Node2D" parent="."]
+[node name="Pylon" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="Moving_Cell" type="AudioStreamPlayer" parent="Sound"]
+[node name="Images" type="Node2D" parent="Pylon"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -120)
+metadata/_edit_lock_ = true
+
+[node name="Cellule_De_Pylone" type="Sprite2D" parent="Pylon/Images"]
+texture = ExtResource("25_6vv1n")
+offset = Vector2(0, -202.5)
+metadata/_edit_lock_ = true
+
+[node name="Extension_De_Pylone" type="Sprite2D" parent="Pylon/Images"]
+texture = ExtResource("26_ej7e8")
+offset = Vector2(0, -1215)
+metadata/_edit_lock_ = true
+
+[node name="Animation_Pylon" type="AnimationPlayer" parent="Pylon"]
+libraries = {
+&"": SubResource("AnimationLibrary_u038b")
+}
+
+[node name="Cellule_Sound" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Moving_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
 bus = &"FX_WET"
 
-[node name="Start_Cell" type="AudioStreamPlayer" parent="Sound"]
+[node name="Start_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
 bus = &"FX_WET"
 
-[node name="Stop_Cell" type="AudioStreamPlayer" parent="Sound"]
+[node name="Stop_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
 volume_db = -5.0
 bus = &"FX_WET"
 
-[node name="Up_Down_Cell" type="AudioStreamPlayer" parent="Sound"]
+[node name="Up_Down_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
 bus = &"FX_WET"
 
-[node name="Vanishing_Cell" type="AudioStreamPlayer" parent="Sound"]
+[node name="Vanishing_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
+bus = &"FX_WET"
+
+[node name="Pylon_Sound" type="Node2D" parent="."]
+
+[node name="Up_Pylon" type="AudioStreamPlayer" parent="Pylon_Sound"]
+bus = &"FX_WET"
+
+[node name="Clang_Start" type="AudioStreamPlayer" parent="Pylon_Sound"]
+bus = &"FX_WET"
+
+[node name="Vanishing_Pylon" type="AudioStreamPlayer" parent="Pylon_Sound"]
+bus = &"FX_WET"
+
+[node name="Appearing_Pylon" type="AudioStreamPlayer" parent="Pylon_Sound"]
+bus = &"FX_WET"
+
+[node name="Pylon_Boom" type="AudioStreamPlayer" parent="Pylon_Sound"]
+volume_db = 10.0
+bus = &"FX_WET"
+
+[node name="Starting_To_Fall_Down" type="AudioStreamPlayer" parent="Pylon_Sound"]
+volume_db = -5.0
 bus = &"FX_WET"
