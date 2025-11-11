@@ -32,59 +32,41 @@ var corner_sprites := {
 	"bas":    "Cellule_De_Terrain_Bord_Bas"
 }
 
-# BORDS (2+ variantes aléatoires par côté)
+# BORDS (3 variantes par côté) — CORRIGÉ
 var edge_variants := {
-	"bord_haut_gauche":    ["Cellule_De_Terrain_Bord_Haut_Gauche_1", "Cellule_De_Terrain_Bord_Haut_Gauche_2", "Cellule_De_Terrain_Bord_Haut_Gauche_3"],
-	"bord_bas_gauche":     ["Cellule_De_Terrain_Bord_Bas_Gauche_1", "Cellule_De_Terrain_Bord_Bas_Gauche_2", "Cellule_De_Terrain_Bord_Bas_Gauche_3"],
-	"bord_haut_droit":     ["Cellule_De_Terrain_Bord_Haut_Droit_1", "Cellule_De_Terrain_Bord_Haut_Droit_2", "Cellule_De_Terrain_Bord_Haut_Droit_3"],
-	"bord_bas_droit":      ["Cellule_De_Terrain_Bord_Bas_Droit_1", "Cellule_De_Terrain_Bord_Bas_Droit_2", "Cellule_De_Terrain_Bord_Bas_Droit_3"]
+	"bord_haut_gauche": ["Cellule_De_Terrain_Bord_Haut_Gauche_1", "Cellule_De_Terrain_Bord_Haut_Gauche_2", "Cellule_De_Terrain_Bord_Haut_Gauche_3"],
+	"bord_bas_gauche":  ["Cellule_De_Terrain_Bord_Bas_Gauche_1",  "Cellule_De_Terrain_Bord_Bas_Gauche_2",  "Cellule_De_Terrain_Bord_Bas_Gauche_3"],
+	"bord_haut_droit":  ["Cellule_De_Terrain_Bord_Haut_Droit_1",  "Cellule_De_Terrain_Bord_Haut_Droit_2",  "Cellule_De_Terrain_Bord_Haut_Droit_3"],
+	"bord_bas_droit":   ["Cellule_De_Terrain_Bord_Bas_Droit_1",   "Cellule_De_Terrain_Bord_Bas_Droit_2",   "Cellule_De_Terrain_Bord_Bas_Droit_3"]
 }
 
-# ------------------------------------------------------------------
-# Grille de suivi des sprites choisis (pour éviter doublons orthogonaux)
+# Grille de suivi
 var chosen_sprites: Array = []
 
 # ------------------------------------------------------------------
-# Fonction pour choisir un sprite valide parmi les candidats
+# Vérifie si un sprite est valide (pas de doublon orthogonal)
+func is_sprite_valid(row: int, col: int, sprite_name: String) -> bool:
+	if row > 0 and chosen_sprites[row - 1][col] == sprite_name:
+		return false
+	if row < grid_size - 1 and chosen_sprites[row + 1][col] != "" and chosen_sprites[row + 1][col] == sprite_name:
+		return false
+	if col > 0 and chosen_sprites[row][col - 1] == sprite_name:
+		return false
+	if col < grid_size - 1 and chosen_sprites[row][col + 1] != "" and chosen_sprites[row][col + 1] == sprite_name:
+		return false
+	return true
+
+# ------------------------------------------------------------------
+# Choisit un sprite valide parmi les candidats
 func choose_valid_sprite(row: int, col: int, candidates: Array) -> String:
 	var shuffled := candidates.duplicate()
 	shuffled.shuffle()
-	
 	for sprite_name in shuffled:
-		var valid := true
-		
-		# Voisin HAUT
-		if row > 0 and chosen_sprites[row - 1][col] == sprite_name:
-			valid = false
-		# Voisin BAS (si déjà placé)
-		if row < grid_size - 1 and chosen_sprites[row + 1][col] != "" and chosen_sprites[row + 1][col] == sprite_name:
-			valid = false
-		# Voisin GAUCHE
-		if col > 0 and chosen_sprites[row][col - 1] == sprite_name:
-			valid = false
-		# Voisin DROIT (si déjà placé)
-		if col < grid_size - 1 and chosen_sprites[row][col + 1] != "" and chosen_sprites[row][col + 1] == sprite_name:
-			valid = false
-		
-		if valid:
+		if is_sprite_valid(row, col, sprite_name):
 			return sprite_name
-	
-	# Fallback : si bloqué, on force un sprite différent des voisins
 	for sprite_name in candidates:
-		var forced_valid := true
-		if row > 0 and chosen_sprites[row - 1][col] == sprite_name:
-			forced_valid = false
-		if row < grid_size - 1 and chosen_sprites[row + 1][col] != "" and chosen_sprites[row + 1][col] == sprite_name:
-			forced_valid = false
-		if col > 0 and chosen_sprites[row][col - 1] == sprite_name:
-			forced_valid = false
-		if col < grid_size - 1 and chosen_sprites[row][col + 1] != "" and chosen_sprites[row][col + 1] == sprite_name:
-			forced_valid = false
-		
-		if forced_valid:
+		if is_sprite_valid(row, col, sprite_name):
 			return sprite_name
-	
-	# Ultime fallback (impossible normalement)
 	return candidates[0]
 
 # ------------------------------------------------------------------
@@ -104,7 +86,36 @@ func _ready() -> void:
 		for c in range(grid_size):
 			chosen_sprites[r].append("")
 	
-	# Parcours de la grille
+	# === PRÉ-CALCUL ÉQUILIBRÉ DES SPRITES INTÉRIEURS ===
+	var interior_positions := []
+	var interior_sprite_pool := []
+	
+	for row in range(grid_size):
+		for col in range(grid_size):
+			if not (row == center and col == center) \
+			   and not (row == 0 or row == grid_size - 1 or col == 0 or col == grid_size - 1):
+				interior_positions.append(Vector2i(row, col))
+	
+	var num_interior = interior_positions.size()
+	var base_count = int(num_interior / float(interior_sprites.size()))
+	var extra = num_interior % interior_sprites.size()
+	
+	for i in range(interior_sprites.size()):
+		var sprite_name = interior_sprites[i]
+		var count = base_count + (1 if i < extra else 0)
+		for _j in range(count):
+			interior_sprite_pool.append(sprite_name)
+	
+	interior_sprite_pool.shuffle()
+	
+	var interior_assignment := {}
+	var pool_idx := 0
+	for pos in interior_positions:
+		interior_assignment[pos] = interior_sprite_pool[pool_idx]
+		pool_idx += 1
+	# ==================================================================
+	
+	# === GÉNÉRATION DE LA GRILLE ===
 	for row in range(grid_size):
 		for col in range(grid_size):
 			var cell_instance = cell_scene.instantiate()
@@ -116,13 +127,12 @@ func _ready() -> void:
 					child.visible = false
 			
 			var sprite_name: String = ""
-			var candidates: Array = []
 			
 			# === 1. CENTRE ===
 			if row == center and col == center:
 				sprite_name = "Cellule_De_Terrain_Centre"
 			
-			# === 2. COINS (fixes) ===
+			# === 2. COINS ===
 			elif row == 0 and col == 0:
 				sprite_name = corner_sprites.haut
 			elif row == 0 and col == grid_size - 1:
@@ -134,24 +144,24 @@ func _ready() -> void:
 			
 			# === 3. BORDS (aléatoire + contrainte) ===
 			elif row == 0:  # Haut
-				candidates = edge_variants.bord_haut_droit.duplicate()
-				sprite_name = choose_valid_sprite(row, col, candidates)
+				sprite_name = choose_valid_sprite(row, col, edge_variants.bord_haut_droit.duplicate())
 			elif row == grid_size - 1:  # Bas
-				candidates = edge_variants.bord_bas_gauche.duplicate()
-				sprite_name = choose_valid_sprite(row, col, candidates)
+				sprite_name = choose_valid_sprite(row, col, edge_variants.bord_bas_gauche.duplicate())
 			elif col == 0:  # Gauche
-				candidates = edge_variants.bord_haut_gauche.duplicate()
-				sprite_name = choose_valid_sprite(row, col, candidates)
+				sprite_name = choose_valid_sprite(row, col, edge_variants.bord_haut_gauche.duplicate())
 			elif col == grid_size - 1:  # Droit
-				candidates = edge_variants.bord_bas_droit.duplicate()
-				sprite_name = choose_valid_sprite(row, col, candidates)
+				sprite_name = choose_valid_sprite(row, col, edge_variants.bord_bas_droit.duplicate())
 			
-			# === 4. INTÉRIEUR (aléatoire + contrainte) ===
+			# === 4. INTÉRIEUR : pré-attribué + fallback si conflit ===
 			else:
-				candidates = interior_sprites.duplicate()
-				sprite_name = choose_valid_sprite(row, col, candidates)
+				var pos = Vector2i(row, col)
+				var preassigned = interior_assignment.get(pos, "")
+				if preassigned and is_sprite_valid(row, col, preassigned):
+					sprite_name = preassigned
+				else:
+					sprite_name = choose_valid_sprite(row, col, interior_sprites.duplicate())
 			
-			# Sauvegarde du choix
+			# Sauvegarde
 			chosen_sprites[row][col] = sprite_name
 			
 			# Affichage
@@ -161,9 +171,21 @@ func _ready() -> void:
 			else:
 				push_error("SPRITE MANQUANT dans Cell.tscn : '%s' (row=%d, col=%d)" % [sprite_name, row, col])
 			
-			# === CORRECTION ICI : "row" au lieu de "scpp row" ===
+			# Position isométrique
 			var x_pos = (col - row) * iso_offset.x
 			var y_pos = (col + row) * iso_offset.y
 			cell_instance.position = Vector2(x_pos, y_pos) + center_offset
 			
 			add_child(cell_instance)
+	
+	# === DEBUG : Répartition finale ===
+	var counts := {}
+	for row in chosen_sprites:
+		for sprite in row:
+			if sprite in interior_sprites:
+				counts[sprite] = counts.get(sprite, 0) + 1
+	
+	print("=== RÉPARTITION DES SPRITES INTÉRIEURS ===")
+	for sprite in interior_sprites:
+		var count = counts.get(sprite, 0)
+		print("%s : %d" % [sprite, count])

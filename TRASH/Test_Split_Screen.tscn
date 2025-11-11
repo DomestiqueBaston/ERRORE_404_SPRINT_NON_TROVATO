@@ -45,7 +45,6 @@ glow_strength = 1.25
 glow_hdr_threshold = 1.1
 glow_hdr_scale = 0.0
 glow_hdr_luminance_cap = 0.1
-adjustment_enabled = true
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_up2n3"]
 gradient = ExtResource("2_bawwu")
