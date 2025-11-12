@@ -119,7 +119,7 @@ func _ready() -> void:
 	for row in range(grid_size):
 		for col in range(grid_size):
 			var cell_instance = cell_scene.instantiate()
-			var images_node = cell_instance.get_node("Column/Images")
+			var images_node = cell_instance.get_node("Column/Cell_Tops/Images")
 			
 			# Cacher tous les sprites
 			for child in images_node.get_children():

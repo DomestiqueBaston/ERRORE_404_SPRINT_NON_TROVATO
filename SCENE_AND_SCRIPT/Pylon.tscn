@@ -1,0 +1,257 @@
+[gd_scene load_steps=13 format=3 uid="uid://dedxcbs4bf5ld"]
+
+[ext_resource type="Texture2D" uid="uid://w0y6jf5wx4px" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de pylone.png" id="27_i1aus"]
+[ext_resource type="Texture2D" uid="uid://br32hmm1061" path="res://IMAGE/ENVIRONMENT/CELL/Extension de pylone.png" id="28_cedp7"]
+[ext_resource type="AudioStream" uid="uid://qnjr5b74yyt8" path="res://SOUND/FX/Door_Appearing.ogg" id="29_4avwy"]
+[ext_resource type="AudioStream" uid="uid://lyfwlkv3kxlk" path="res://SOUND/FX/Pylon_Crashing_Down.ogg" id="30_1s2ej"]
+[ext_resource type="AudioStream" uid="uid://b5iy8wel0isvy" path="res://SOUND/FX/Pylon_Starting_To_Fall_Down.ogg" id="31_ds2hg"]
+[ext_resource type="AudioStream" uid="uid://mkvmu7rmdx3t" path="res://SOUND/FX/Clang_Start_Cell.ogg" id="32_qfph7"]
+[ext_resource type="AudioStream" uid="uid://ccoauvddaj8m" path="res://SOUND/FX/Up_Down_Cell.ogg" id="33_lcffa"]
+[ext_resource type="AudioStream" uid="uid://bvr7mwob6g81h" path="res://SOUND/FX/Disappearing_Cell.ogg" id="34_jpdus"]
+
+[sub_resource type="Animation" id="Animation_6o5ds"]
+resource_name = "Going_Down"
+length = 0.7000034
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pylon_Walls:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6666667, 0.7),
+"transitions": PackedFloat32Array(4, 1, 1),
+"update": 0,
+"values": [Vector2(0, -120), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pylon_Walls:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666666, 0.099999905, 0.1333332, 0.16666651, 0.20000005, 0.23333335, 0.26666668, 0.29999998, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Pylon_Sound/Appearing_Pylon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("29_4avwy")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Pylon_Sound/Pylon_Boom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("30_1s2ej")
+}],
+"times": PackedFloat32Array(0.6666667)
+}
+tracks/3/use_blend = true
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Pylon_Sound/Starting_To_Fall_Down")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("31_ds2hg")
+}],
+"times": PackedFloat32Array(0.06666667)
+}
+tracks/4/use_blend = true
+
+[sub_resource type="Animation" id="Animation_5memm"]
+resource_name = "Going_Up"
+length = 5.000004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pylon_Walls:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 1, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -3), Vector2(0, -3), Vector2(0, -120)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pylon_Walls:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.766667, 4.8, 4.8333335, 4.866667, 4.9, 4.9333334, 4.966667, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Pylon_Sound/Clang_Start")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("32_qfph7")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Pylon_Sound/Up_Pylon")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 2.2382352,
+"start_offset": 0.0,
+"stream": ExtResource("33_lcffa")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("33_lcffa")
+}, {
+"end_offset": 0.670998,
+"start_offset": 0.0,
+"stream": ExtResource("33_lcffa")
+}],
+"times": PackedFloat32Array(0, 1, 3.3333333)
+}
+tracks/3/use_blend = true
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Pylon_Sound/Vanishing_Pylon")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("34_jpdus")
+}],
+"times": PackedFloat32Array(4.5)
+}
+tracks/4/use_blend = true
+
+[sub_resource type="Animation" id="Animation_iotr2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pylon_Walls:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -120)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pylon_Walls:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u038b"]
+_data = {
+&"Going_Down": SubResource("Animation_6o5ds"),
+&"Going_Up": SubResource("Animation_5memm"),
+&"RESET": SubResource("Animation_iotr2")
+}
+
+[node name="Cell" type="Node2D"]
+metadata/_edit_lock_ = true
+
+[node name="Pylon" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Pylon_Walls" type="Node2D" parent="Pylon"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -120)
+metadata/_edit_lock_ = true
+
+[node name="Collider_Impactor" type="Area2D" parent="Pylon/Pylon_Walls"]
+metadata/_edit_lock_ = true
+
+[node name="Collider" type="CollisionPolygon2D" parent="Pylon/Pylon_Walls/Collider_Impactor"]
+polygon = PackedVector2Array(-118, -1, 0, -60, 118, -1, 118, 0, 0, 59, -118, 0)
+metadata/_edit_lock_ = true
+
+[node name="Images" type="Node2D" parent="Pylon/Pylon_Walls"]
+metadata/_edit_lock_ = true
+
+[node name="Extension_De_Pylone" type="Sprite2D" parent="Pylon/Pylon_Walls/Images"]
+texture = ExtResource("28_cedp7")
+offset = Vector2(0, -1215)
+metadata/_edit_lock_ = true
+
+[node name="Cellule_De_Pylone" type="Sprite2D" parent="Pylon/Pylon_Walls/Images"]
+texture = ExtResource("27_i1aus")
+offset = Vector2(0, -202.5)
+metadata/_edit_lock_ = true
+
+[node name="Pylon_Sound" type="Node2D" parent="."]
+
+[node name="Up_Pylon" type="AudioStreamPlayer" parent="Pylon_Sound"]
+bus = &"FX_WET"
+
+[node name="Clang_Start" type="AudioStreamPlayer" parent="Pylon_Sound"]
+bus = &"FX_WET"
+
+[node name="Vanishing_Pylon" type="AudioStreamPlayer" parent="Pylon_Sound"]
+bus = &"FX_WET"
+
+[node name="Appearing_Pylon" type="AudioStreamPlayer" parent="Pylon_Sound"]
+bus = &"FX_WET"
+
+[node name="Pylon_Boom" type="AudioStreamPlayer" parent="Pylon_Sound"]
+volume_db = 10.0
+bus = &"FX_WET"
+
+[node name="Starting_To_Fall_Down" type="AudioStreamPlayer" parent="Pylon_Sound"]
+volume_db = -5.0
+bus = &"FX_WET"
+
+[node name="Animation_Pylon" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Pylon")
+libraries = {
+&"": SubResource("AnimationLibrary_u038b")
+}
