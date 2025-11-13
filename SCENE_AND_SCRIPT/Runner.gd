@@ -14,6 +14,8 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		last_direction = Vector2.ZERO
 	
+	## Je ne suis absolument pas certain que 18.4 et -18.4 soient les valeurs parfaites (à l'oeil on dirait).##
+	## Il faudra vérifier sur de grandes distances, il est possible qu'il y ait un décalage par rapport au sol.##
 	if Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_down"):
 		input_direction = Vector2(1, 1).rotated(deg_to_rad(-18.4))
 	elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_down"):

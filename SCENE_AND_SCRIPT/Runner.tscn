@@ -1446,7 +1446,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.23529412, 0, 1, 0.19607843)]
+"values": [Color(0.23333359, 0, 1, 0.09803922)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w02lc"]
@@ -1471,7 +1471,7 @@ frame = 36
 [node name="Papa_Shadow" type="Node2D" parent="Character/Runner_Sprite"]
 
 [node name="Shadow" type="Sprite2D" parent="Character/Runner_Sprite/Papa_Shadow"]
-self_modulate = Color(0.23529412, 0, 1, 0.19607843)
+self_modulate = Color(0.23333359, 0, 1, 0.09803922)
 show_behind_parent = true
 material = SubResource("ShaderMaterial_lts44")
 position = Vector2(-7, 1)
@@ -1537,11 +1537,12 @@ libraries = {
 }
 
 [node name="Foot Step" type="AudioStreamPlayer" parent="."]
+volume_db = -2.5
 pitch_scale = 0.5
 bus = &"FX_DRY"
 
 [node name="Glitch_Sound" type="AudioStreamPlayer" parent="."]
-volume_db = -10.0
+volume_db = -15.0
 bus = &"FX_DRY"
 
 [node name="Disappearing" type="AudioStreamPlayer" parent="."]

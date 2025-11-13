@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2a2vkvk88415"]
+[gd_scene load_steps=9 format=3 uid="uid://b2a2vkvk88415"]
 
 [ext_resource type="Script" uid="uid://cqj1vvbsaikwr" path="res://TRASH/test_generation_aleatoire_pour_voir_bis.gd" id="1_sjb8x"]
 [ext_resource type="PackedScene" uid="uid://cucs0i7d1er7d" path="res://SCENE_AND_SCRIPT/Cell.tscn" id="2_okjc4"]
 [ext_resource type="PackedScene" uid="uid://brsvllplyc7ih" path="res://SCENE_AND_SCRIPT/Runner.tscn" id="3_okjc4"]
+[ext_resource type="PackedScene" uid="uid://c3up1u8ajktas" path="res://SCENE_AND_SCRIPT/Cube.tscn" id="3_u5bti"]
 [ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="4_5rr24"]
+[ext_resource type="PackedScene" uid="uid://jeuanuva1v8o" path="res://SCENE_AND_SCRIPT/Door.tscn" id="4_swsra"]
 
 [sub_resource type="Environment" id="Environment_5rr24"]
 background_mode = 3
@@ -38,8 +40,17 @@ script = ExtResource("1_sjb8x")
 cell_scene = ExtResource("2_okjc4")
 grid_size = 7
 
+[node name="Cube" parent="." instance=ExtResource("3_u5bti")]
+position = Vector2(296, 253)
+metadata/_edit_lock_ = true
+
+[node name="Door" parent="." instance=ExtResource("4_swsra")]
+position = Vector2(697, 167)
+metadata/_edit_lock_ = true
+
 [node name="Runner" parent="." instance=ExtResource("3_okjc4")]
 position = Vector2(480, 200)
+metadata/_edit_lock_ = true
 
 [node name="Scene_BG" type="TextureRect" parent="Runner/Character" index="2"]
 z_index = -10

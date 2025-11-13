@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://c3up1u8ajktas"]
 
-[ext_resource type="Script" uid="uid://b3ee2ad2rdstv" path="res://SCENE_AND_SCRIPT/Door.gd" id="1_mfqlr"]
+[ext_resource type="Script" uid="uid://h5jc5pkbwwnw" path="res://SCENE_AND_SCRIPT/Cube.gd" id="1_mfqlr"]
 [ext_resource type="Texture2D" uid="uid://c5i7h02ps03t3" path="res://IMAGE/ENVIRONMENT/CUBE/Shadow.png" id="2_yd2d6"]
 [ext_resource type="Shader" uid="uid://c3gkqv33yx8x5" path="res://SHADER/Outline_Glitch_And_Alpha.gdshader" id="3_oh6sb"]
 [ext_resource type="Texture2D" uid="uid://b4k5fxx2uem7o" path="res://IMAGE/ENVIRONMENT/CUBE/Cube_Sprite_Sheet.png" id="4_mfqlr"]
@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://0gevs5b21y8i" path="res://SOUND/FX/Appearing.ogg" id="5_mfqlr"]
 [ext_resource type="AudioStream" uid="uid://bom677o0xms5i" path="res://SOUND/FX/Disappearing.ogg" id="6_i7obx"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ecpiw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5c5qk"]
 shader = ExtResource("3_oh6sb")
 shader_parameter/shake_enabled = false
 shader_parameter/shake_power = 0.00029999999240999
@@ -18,7 +18,51 @@ shader_parameter/shake_color_rate = 0.00059999998482
 shader_parameter/outline_thickness = 1.0
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_oyod2"]
+[sub_resource type="Animation" id="Animation_i7obx"]
+resource_name = "Alive"
+length = 4.0000033
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.40000004, 0.43333337, 0.4666667, 0.5, 0.53333336, 0.5666667, 0.6, 0.6333334, 0.6666667, 0.70000005, 0.73333335, 0.7666667, 0.8000001, 0.8333334, 0.86666673, 0.90000004, 0.9333334, 0.9666667, 1, 1.0333334, 1.0666667, 1.1, 1.1333334, 1.1666667, 1.2, 1.2333333, 1.2666668, 1.3000001, 1.3333334, 1.3666668, 1.4000001, 1.4333334, 1.4666667, 1.5000001, 1.5333334, 1.5666667, 1.6000001, 1.6333334, 1.6666667, 1.7, 1.7333335, 1.7666668, 1.8000001, 1.8333334, 1.8666668, 1.9000001, 1.9333334, 1.9666668, 2, 2.0333335, 2.0666668, 2.1000001, 2.1333334, 2.1666667, 2.2, 2.2333333, 2.266667, 2.3000002, 2.3333335, 2.3666668, 2.4, 2.4333334, 2.4666667, 2.5000002, 2.5333335, 2.5666668, 2.6000001, 2.6333334, 2.6666667, 2.7, 2.7333336, 2.766667, 2.8000002, 2.8333335, 2.8666668, 2.9, 2.9333334, 2.966667, 3.0000002, 3.0333335, 3.0666668, 3.1000001, 3.1333334, 3.1666667, 3.2000003, 3.2333336, 3.266667, 3.3000002, 3.3333335, 3.3666668, 3.4, 3.4333334, 3.466667, 3.5000002, 3.5333335, 3.5666668, 3.6000001, 3.6333334, 3.6666667, 3.7000003, 3.7333336, 3.766667, 3.8000002, 3.8333335, 3.8666668, 3.9, 3.9333336, 3.966667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube_Shadow:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4.0000033),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(1, 1)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cube_Hum")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_i7obx")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_7gfof"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -45,57 +89,13 @@ tracks/1/keys = {
 "values": [Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_i7obx"]
-resource_name = "Alive"
-length = 4.0000033
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cube:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.40000004, 0.43333337, 0.4666667, 0.5, 0.53333336, 0.5666667, 0.6, 0.6333334, 0.6666667, 0.70000005, 0.73333335, 0.7666667, 0.8000001, 0.8333334, 0.86666673, 0.90000004, 0.9333334, 0.9666667, 1, 1.0333334, 1.0666667, 1.1, 1.1333334, 1.1666667, 1.2, 1.2333333, 1.2666668, 1.3000001, 1.3333334, 1.3666668, 1.4000001, 1.4333334, 1.4666667, 1.5000001, 1.5333334, 1.5666667, 1.6000001, 1.6333334, 1.6666667, 1.7, 1.7333335, 1.7666668, 1.8000001, 1.8333334, 1.8666668, 1.9000001, 1.9333334, 1.9666668, 2, 2.0333335, 2.0666668, 2.1000001, 2.1333334, 2.1666667, 2.2, 2.2333333, 2.266667, 2.3000002, 2.3333335, 2.3666668, 2.4, 2.4333334, 2.4666667, 2.5000002, 2.5333335, 2.5666668, 2.6000001, 2.6333334, 2.6666667, 2.7, 2.7333336, 2.766667, 2.8000002, 2.8333335, 2.8666668, 2.9, 2.9333334, 2.966667, 3.0000002, 3.0333335, 3.0666668, 3.1000001, 3.1333334, 3.1666667, 3.2000003, 3.2333336, 3.266667, 3.3000002, 3.3333335, 3.3666668, 3.4, 3.4333334, 3.466667, 3.5000002, 3.5333335, 3.5666668, 3.6000001, 3.6333334, 3.6666667, 3.7000003, 3.7333336, 3.766667, 3.8000002, 3.8333335, 3.8666668, 3.9, 3.9333336, 3.966667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Cube_Shadow:scale")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(2, 4.0000033),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2, 2), Vector2(1, 1)]
-}
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Cube_Hum")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("5_i7obx")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/2/use_blend = true
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_yp78x"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uma14"]
 _data = {
 &"Alive": SubResource("Animation_i7obx"),
-&"RESET": SubResource("Animation_oyod2")
+&"RESET": SubResource("Animation_7gfof")
 }
 
-[sub_resource type="Animation" id="Animation_w6txa"]
+[sub_resource type="Animation" id="Animation_f37ux"]
 resource_name = "Appearing"
 length = 0.36667
 tracks/0/type = "value"
@@ -137,33 +137,6 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/2/use_blend = true
-
-[sub_resource type="Animation" id="Animation_pl358"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cube_Shadow:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Cube:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_oh6sb"]
 resource_name = "Disappearing"
@@ -208,11 +181,38 @@ tracks/2/keys = {
 }
 tracks/2/use_blend = true
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jbtw0"]
+[sub_resource type="Animation" id="Animation_1evg1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube_Shadow:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1e78n"]
 _data = {
-&"Appearing": SubResource("Animation_w6txa"),
+&"Appearing": SubResource("Animation_f37ux"),
 &"Disappearing": SubResource("Animation_oh6sb"),
-&"RESET": SubResource("Animation_pl358")
+&"RESET": SubResource("Animation_1evg1")
 }
 
 [node name="Cube" type="Node2D"]
@@ -221,6 +221,7 @@ script = ExtResource("1_mfqlr")
 [node name="Cube_Shadow" type="Sprite2D" parent="."]
 visible = false
 self_modulate = Color(1, 1, 1, 0.19607843)
+position = Vector2(0, -7)
 texture = ExtResource("2_yd2d6")
 offset = Vector2(0, 6)
 metadata/_edit_lock_ = true
@@ -229,7 +230,7 @@ metadata/_edit_lock_ = true
 visible = false
 light_mask = 5
 z_index = 1
-material = SubResource("ShaderMaterial_ecpiw")
+material = SubResource("ShaderMaterial_5c5qk")
 texture = ExtResource("4_mfqlr")
 offset = Vector2(0, -71)
 hframes = 30
@@ -238,13 +239,13 @@ metadata/_edit_lock_ = true
 
 [node name="Animation_Cube" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_yp78x")
+&"": SubResource("AnimationLibrary_uma14")
 }
 autoplay = "Alive"
 
 [node name="Animation_Cube_On_Off" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_jbtw0")
+&"": SubResource("AnimationLibrary_1e78n")
 }
 autoplay = "Appearing"
 
