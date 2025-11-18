@@ -393,14 +393,14 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Runner_Sprite/Papa_Shadow:modulate")
+tracks/6/path = NodePath("Runner_Sprite/Papa_Shadow/Shadow:self_modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.1, 0.13333333, 0.3, 0.33333334, 0.36666667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.3, 0.36666667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.50000006), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.5), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0.12941177), Color(1, 1, 1, 0.12941177), Color(0.23529412, 0, 1, 0), Color(0.23529412, 0, 1, 0), Color(1, 1, 1, 0.12941177), Color(1, 1, 1, 0.12941177)]
 }
 
 [sub_resource type="Animation" id="Animation_ahumo"]
@@ -481,14 +481,14 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Runner_Sprite/Papa_Shadow:modulate")
+tracks/6/path = NodePath("Runner_Sprite/Papa_Shadow/Shadow:self_modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.10000001, 0.13333334, 0.3, 0.33333334, 0.36666667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.3, 0.36666667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.5019608), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.5019608), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0.12941177), Color(1, 1, 1, 0.12941177), Color(0.23529412, 0, 1, 0), Color(0.23529412, 0, 1, 0), Color(1, 1, 1, 0.12941177), Color(1, 1, 1, 0.12941177)]
 }
 
 [sub_resource type="Animation" id="Animation_p514w"]
@@ -592,26 +592,14 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Runner_Sprite/Papa_Shadow/Shadow:offset")
+tracks/8/path = NodePath("Runner_Sprite/Papa_Shadow/Shadow:self_modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(7, 0)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Runner_Sprite/Papa_Shadow:modulate")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0.12941177)]
 }
 
 [sub_resource type="Animation" id="Animation_w5jul"]
@@ -923,18 +911,6 @@ tracks/4/keys = {
 "update": 1,
 "values": [true, true]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Runner_Sprite/Papa_Shadow/Shadow:offset")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.53333336),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(7, 0), Vector2(7, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_kxl5h"]
 resource_name = "Sliding_180"
@@ -998,18 +974,6 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Runner_Sprite/Papa_Shadow/Shadow:offset")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.53333336),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(7, 0), Vector2(7, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_t3hkb"]
@@ -1364,14 +1328,14 @@ tracks/5/use_blend = true
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Runner_Sprite/Papa_Shadow/Shadow:self_modulate")
+tracks/6/path = NodePath("Runner_Sprite/Papa_Shadow:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.033333335, 0.16666667, 0.23333333, 0.4, 0.5, 0.56666666, 0.6666667, 0.8, 1.0333333, 1.1333333, 1.4666667, 1.5333333, 1.6666666, 2.1, 2.1666667, 2.4, 2.7333333, 2.8, 2.9333334, 3.0666666, 3.2666667, 3.4, 3.7, 3.7666667, 4.233333, 4.366667, 4.4666667, 4.6666665),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Color(0.23333359, 0, 1, 0.09803922), Color(0.23333359, 0, 1, 0), Color(0.23333359, 0, 1, 0.09803922), Color(0.23333359, 0, 1, 0), Color(0.23333359, 0, 1, 0.09803922), Color(0.23333359, 0, 1, 0), Color(0.23333359, 0, 1, 0.09803922), Color(0.23333359, 0, 1, 0), Color(0.23333359, 0, 1, 0.09803922), Color(0.23333359, 0, 1, 0), Color(0.23333359, 0, 1, 0.09803922), Color(0.23333359, 0, 1, 0), Color(0.23333359, 0, 1, 0.09803922), Color(0.23333359, 0, 1, 0), Color(0.23333359, 0, 1, 0.09803922), Color(0.23333359, 0, 1, 0), Color(0.23333359, 0, 1, 0.09803922), Color(0.23333359, 0, 1, 0), Color(0.23333359, 0, 1, 0.09803922), Color(0.23333359, 0, 1, 0), Color(0.23333359, 0, 1, 0.09803922), Color(0.23333359, 0, 1, 0), Color(0.23333359, 0, 1, 0.09803922), Color(0.23333359, 0, 1, 0), Color(0.23333359, 0, 1, 0.09803922), Color(0.23333359, 0, 1, 0), Color(0.23333359, 0, 1, 0.09803922), Color(0.23333359, 0, 1, 0), Color(0.23333359, 0, 1, 0.09803922)]
+"values": [Color(1, 1, 1, 1), Color(0.23333359, 0, 1, 0), Color(1, 1, 1, 1), Color(0.23333359, 0, 1, 0), Color(1, 1, 1, 1), Color(0.23333359, 0, 1, 0), Color(1, 1, 1, 1), Color(0.23333359, 0, 1, 0), Color(1, 1, 1, 1), Color(0.23333359, 0, 1, 0), Color(1, 1, 1, 1), Color(0.23333359, 0, 1, 0), Color(1, 1, 1, 1), Color(0.23333359, 0, 1, 0), Color(1, 1, 1, 1), Color(0.23333359, 0, 1, 0), Color(1, 1, 1, 1), Color(0.23333359, 0, 1, 0), Color(1, 1, 1, 1), Color(0.23333359, 0, 1, 0), Color(1, 1, 1, 1), Color(0.23333359, 0, 1, 0), Color(1, 1, 1, 1), Color(0.23333359, 0, 1, 0), Color(1, 1, 1, 1), Color(0.23333359, 0, 1, 0), Color(1, 1, 1, 1), Color(0.23333359, 0, 1, 0), Color(0.23333359, 0, 1, 0.09803922)]
 }
 
 [sub_resource type="Animation" id="Animation_hq7h1"]
@@ -1439,14 +1403,14 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Runner_Sprite/Papa_Shadow/Shadow:self_modulate")
+tracks/5/path = NodePath("Runner_Sprite/Papa_Shadow:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.23333359, 0, 1, 0.09803922)]
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w02lc"]
@@ -1469,10 +1433,10 @@ vframes = 10
 frame = 36
 
 [node name="Papa_Shadow" type="Node2D" parent="Character/Runner_Sprite"]
+show_behind_parent = true
 
 [node name="Shadow" type="Sprite2D" parent="Character/Runner_Sprite/Papa_Shadow"]
-self_modulate = Color(0.23333359, 0, 1, 0.09803922)
-show_behind_parent = true
+self_modulate = Color(1, 1, 1, 0.12941177)
 material = SubResource("ShaderMaterial_lts44")
 position = Vector2(-7, 1)
 rotation = 0.17453292

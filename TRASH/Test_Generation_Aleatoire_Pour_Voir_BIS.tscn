@@ -52,6 +52,9 @@ metadata/_edit_lock_ = true
 position = Vector2(480, 200)
 metadata/_edit_lock_ = true
 
+[node name="Character" parent="Runner" index="0"]
+move_speed = 425.0
+
 [node name="Scene_BG" type="TextureRect" parent="Runner/Character" index="2"]
 z_index = -10
 anchors_preset = 8
@@ -75,7 +78,6 @@ visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-text = "Ce fond doit faire la taille de la zone de jeu plus les marges.
-Il est quasiment certain que cette solution n'est pas la bonne car la taille de la zone de course va changer avec les glissements de colonnes et lignes."
+text = "Il est quasiment certain que cette solution n'est pas la bonne car la taille de la zone de course va changer avec les glissements de colonnes et lignes."
 
 [editable path="Runner"]

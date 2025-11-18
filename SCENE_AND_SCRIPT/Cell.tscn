@@ -664,10 +664,11 @@ metadata/_edit_lock_ = true
 bus = &"FX_WET"
 
 [node name="Start_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
+volume_db = 5.0
 bus = &"FX_WET"
 
 [node name="Stop_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
-volume_db = -5.0
+volume_db = 2.5
 bus = &"FX_WET"
 
 [node name="Up_Down_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
