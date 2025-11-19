@@ -3,9 +3,9 @@ extends Node2D
 @onready var sprite: Sprite2D = $Runner_Sprite
 @onready var animation_player: AnimationPlayer = $"../Animation_Runner"
 
-@export var move_speed: float = 425.0 # 350 pour ne pas patiner mais c'est un peu lent !
+@export var move_speed: float = 400.0 # 350 pour ne pas patiner mais c'est un peu lent !
 @export var jump_speed: float = 350.0
-@export var slide_speed: float = 250.0
+@export var slide_speed: float = 300.0
 
 var direction: Vector2 = Vector2.ZERO
 var last_direction: Vector2 = Vector2.ZERO
@@ -30,9 +30,22 @@ func _process(delta: float) -> void:
 	# Reset total avec Échap
 	if Input.is_action_just_pressed("ui_cancel"):
 		last_direction = Vector2.ZERO
-		last_non_zero_direction = Vector2.ZERO
+		# last_non_zero_direction = Vector2.ZERO   # ← SUPPRIMÉ → c'était le bug !
 		jump_direction = Vector2.ZERO
 		slide_direction = Vector2.ZERO
+		direction = Vector2.ZERO
+
+		# On force immédiatement l'animation idle orientée correcte
+		if last_non_zero_direction == Vector2.ZERO:
+			animation_player.play("Intro")
+		elif last_non_zero_direction.y < 0:
+			animation_player.play("Start_000")
+			sprite.scale.x = 1.0 if last_non_zero_direction.x < 0 else -1.0
+		else:
+			animation_player.play("Start_180")
+			sprite.scale.x = -1.0 if last_non_zero_direction.x < 0 else 1.0
+
+		return  # on sort du _process pour ce frame (évite les conflits)
 
 	# SAUT (A)
 	if Input.is_action_just_pressed("ui_a_button") and not is_jumping and not is_sliding:
@@ -63,22 +76,28 @@ func _process(delta: float) -> void:
 
 	if is_jumping:
 		direction = jump_direction
-		current_speed = jump_speed
-
 	elif is_sliding:
 		direction = slide_direction
-		# Ralentissement progressif pendant toute l’animation Sliding
-		var anim = animation_player.current_animation
-		if anim.begins_with("Sliding_"):
-			var progress = animation_player.current_animation_position / animation_player.current_animation_length
-			# Lerp de move_speed → slide_speed
-			current_speed = lerp(move_speed, slide_speed, progress)
-		else:
-			current_speed = slide_speed  # sécurité
-
 	else:
 		direction = last_direction
-		current_speed = move_speed
+
+	# Gestion du lerp de vitesse (une seule fois, proprement)
+	var anim := animation_player.current_animation
+	if anim.begins_with("Jump_"):
+		var progress := animation_player.current_animation_position / animation_player.current_animation_length
+		current_speed = lerp(move_speed, jump_speed, progress)
+	elif anim.begins_with("Sliding_"):
+		# Ralentissement progressif pendant toute l'animation Sliding
+		var progress := animation_player.current_animation_position / animation_player.current_animation_length
+		# Lerp de move_speed → slide_speed
+		current_speed = lerp(move_speed, slide_speed, progress)
+	else:
+		# Quand on n'est plus dans une animation spéciale → vitesse cible finale
+		if is_jumping:
+			current_speed = jump_speed
+		elif is_sliding:
+			current_speed = slide_speed
+		# sinon c'est déjà move_speed
 
 	position += direction * current_speed * delta
 

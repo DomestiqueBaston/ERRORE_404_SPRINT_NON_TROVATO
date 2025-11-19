@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bgq4edmw16b8" path="res://IMAGE/ENVIRONMENT/DOOR/Door_Shadow.png" id="1_w6txa"]
 [ext_resource type="Texture2D" uid="uid://c7ee22rkppja8" path="res://IMAGE/ENVIRONMENT/DOOR/Door_Back_Sprite_Sheet.png" id="2_w6txa"]
 [ext_resource type="Texture2D" uid="uid://ub27wge0sfms" path="res://IMAGE/ENVIRONMENT/DOOR/Door_Front_Sprite_Sheet.png" id="3_pl358"]
-[ext_resource type="AudioStream" uid="uid://gxci2v55iim1" path="res://SOUND/FX/Door_Hum.ogg" id="5_jbtw0"]
+[ext_resource type="AudioStream" uid="uid://18acv14t18jm" path="res://SOUND/FX/Door_Hum.ogg" id="5_jbtw0"]
 [ext_resource type="AudioStream" uid="uid://qnjr5b74yyt8" path="res://SOUND/FX/Door_Appearing.ogg" id="6_ecpiw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jbtw0"]
@@ -371,6 +371,7 @@ vframes = 4
 metadata/_edit_lock_ = true
 
 [node name="Runner_Light" type="PointLight2D" parent="Door_Front"]
+visible = false
 position = Vector2(2, -170)
 color = Color(0, 1, 1, 1)
 energy = 0.75
@@ -383,13 +384,11 @@ metadata/_edit_lock_ = true
 libraries = {
 &"": SubResource("AnimationLibrary_yp78x")
 }
-autoplay = "Alive"
 
 [node name="Animation_Door_On" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_jbtw0")
 }
-autoplay = "Appearing"
 
 [node name="Animation_Door_Light" type="AnimationPlayer" parent="."]
 libraries = {
@@ -405,10 +404,10 @@ autoplay = "Floating_Light"
 
 [node name="Door_Hum" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_jbtw0")
-volume_db = 2.5
-bus = &"FX_WET"
+volume_db = -5.0
+bus = &"FX_DRY"
 parameters/looping = true
 
 [node name="Door_On" type="AudioStreamPlayer" parent="."]
-volume_db = -5.0
+volume_db = -10.0
 bus = &"FX_WET"
