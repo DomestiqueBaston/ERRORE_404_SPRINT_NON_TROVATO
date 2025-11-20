@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://brsvllplyc7ih"]
+[gd_scene load_steps=51 format=3 uid="uid://brsvllplyc7ih"]
 
 [ext_resource type="Script" uid="uid://7rcfji6ehwky" path="res://SCENE_AND_SCRIPT/Runner.gd" id="1_bpqq7"]
 [ext_resource type="Shader" uid="uid://c3gkqv33yx8x5" path="res://SHADER/Outline_Glitch_And_Alpha.gdshader" id="2_axddh"]
@@ -13,12 +13,14 @@
 [ext_resource type="AudioStream" uid="uid://06kaf7akc8r3" path="res://SOUND/FX/Foot_Step_01.ogg" id="10_na0iv"]
 [ext_resource type="AudioStream" uid="uid://cns80ks0bg3jv" path="res://SOUND/FX/Foot_Step_02.ogg" id="11_jhbvx"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="12_sl3f3"]
+[ext_resource type="AudioStream" uid="uid://wm0mpe0ypbad" path="res://SOUND/FX/Woman_Pushing.ogg" id="13_8ivi5"]
 [ext_resource type="AudioStream" uid="uid://cou5e3uqnnvdj" path="res://SOUND/FX/Crackling_Noise_A.ogg" id="13_167d6"]
 [ext_resource type="AudioStream" uid="uid://b0focmedmn3xq" path="res://SOUND/FX/Woman_Running.ogg" id="13_gjkpv"]
 [ext_resource type="AudioStream" uid="uid://ccc3vfmvpg54n" path="res://SOUND/FX/Bump_Wall.ogg" id="14_67rfa"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="14_uvnw3"]
 [ext_resource type="AudioStream" uid="uid://cijoxlwmmsm7v" path="res://SOUND/FX/Fall_Death.ogg" id="15_adu3p"]
 [ext_resource type="AudioStream" uid="uid://dsr0lb7uc7k7s" path="res://SOUND/FX/Crackling_Noise_C.ogg" id="15_cu6j0"]
+[ext_resource type="AudioStream" uid="uid://b2a03ph6qsmpd" path="res://SOUND/FX/Sliding_Woman.ogg" id="15_rjpof"]
 [ext_resource type="AudioStream" uid="uid://c0wgwx2yy2orr" path="res://SOUND/FX/Crackling_Noise_G.ogg" id="16_2v6ey"]
 [ext_resource type="AudioStream" uid="uid://nr37tg36a6ub" path="res://SOUND/FX/Feet_Falling.ogg" id="16_8ivi5"]
 [ext_resource type="AudioStream" uid="uid://b3b1gr4l221h6" path="res://SOUND/FX/Female_Ouch.ogg" id="17_adu3p"]
@@ -406,6 +408,40 @@ tracks/6/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0.12941177), Color(1, 1, 1, 0.12941177), Color(0.23529412, 0, 1, 0), Color(0.23529412, 0, 1, 0), Color(1, 1, 1, 0.12941177), Color(1, 1, 1, 0.12941177)]
 }
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Foot_Step")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_na0iv")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_jhbvx")
+}],
+"times": PackedFloat32Array(0.36666667, 0.4)
+}
+tracks/7/use_blend = true
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Pushing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_8ivi5")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/8/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ahumo"]
 resource_name = "Jump_180"
@@ -494,6 +530,40 @@ tracks/6/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0.12941177), Color(1, 1, 1, 0.12941177), Color(0.23529412, 0, 1, 0), Color(0.23529412, 0, 1, 0), Color(1, 1, 1, 0.12941177), Color(1, 1, 1, 0.12941177)]
 }
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Foot_Step")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_na0iv")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_jhbvx")
+}],
+"times": PackedFloat32Array(0.36666667, 0.4)
+}
+tracks/7/use_blend = true
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Pushing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_8ivi5")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/8/use_blend = true
 
 [sub_resource type="Animation" id="Animation_p514w"]
 length = 0.001
@@ -703,7 +773,7 @@ tracks/6/keys = {
 }
 tracks/7/type = "audio"
 tracks/7/imported = false
-tracks/7/enabled = false
+tracks/7/enabled = true
 tracks/7/path = NodePath("../Running")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
@@ -826,7 +896,7 @@ tracks/6/keys = {
 }
 tracks/7/type = "audio"
 tracks/7/imported = false
-tracks/7/enabled = false
+tracks/7/enabled = true
 tracks/7/path = NodePath("../Running")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
@@ -915,6 +985,21 @@ tracks/4/keys = {
 "update": 1,
 "values": [true, true]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Sliding")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("15_rjpof")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_kxl5h"]
 resource_name = "Sliding_180"
@@ -979,6 +1064,21 @@ tracks/4/keys = {
 "update": 1,
 "values": [true, true]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Sliding")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("15_rjpof")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_t3hkb"]
 resource_name = "Start_000"
@@ -1247,7 +1347,7 @@ tracks/5/use_blend = true
 tracks/6/type = "audio"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Female_Ouch")
+tracks/6/path = NodePath("../Ouch")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1349,7 +1449,7 @@ tracks/5/use_blend = true
 tracks/6/type = "audio"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Female_Ouch")
+tracks/6/path = NodePath("../Ouch")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1720,6 +1820,7 @@ volume_db = -15.0
 bus = &"FX_DRY"
 
 [node name="Disappearing" type="AudioStreamPlayer" parent="."]
+volume_db = -2.5
 bus = &"FX_DRY"
 
 [node name="Falling" type="AudioStreamPlayer" parent="."]
@@ -1733,6 +1834,14 @@ bus = &"FX_DRY"
 volume_db = -10.0
 bus = &"FX_DRY"
 
-[node name="Female_Ouch" type="AudioStreamPlayer" parent="."]
+[node name="Ouch" type="AudioStreamPlayer" parent="."]
+volume_db = -12.5
+bus = &"FX_DRY"
+
+[node name="Pushing" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+bus = &"FX_DRY"
+
+[node name="Sliding" type="AudioStreamPlayer" parent="."]
 volume_db = -12.5
 bus = &"FX_DRY"
