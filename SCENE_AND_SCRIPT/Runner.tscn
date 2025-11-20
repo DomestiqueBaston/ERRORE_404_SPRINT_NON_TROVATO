@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://brsvllplyc7ih"]
+[gd_scene load_steps=49 format=3 uid="uid://brsvllplyc7ih"]
 
 [ext_resource type="Script" uid="uid://7rcfji6ehwky" path="res://SCENE_AND_SCRIPT/Runner.gd" id="1_bpqq7"]
 [ext_resource type="Shader" uid="uid://c3gkqv33yx8x5" path="res://SHADER/Outline_Glitch_And_Alpha.gdshader" id="2_axddh"]
@@ -15,9 +15,13 @@
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="12_sl3f3"]
 [ext_resource type="AudioStream" uid="uid://cou5e3uqnnvdj" path="res://SOUND/FX/Crackling_Noise_A.ogg" id="13_167d6"]
 [ext_resource type="AudioStream" uid="uid://b0focmedmn3xq" path="res://SOUND/FX/Woman_Running.ogg" id="13_gjkpv"]
+[ext_resource type="AudioStream" uid="uid://ccc3vfmvpg54n" path="res://SOUND/FX/Bump_Wall.ogg" id="14_67rfa"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="14_uvnw3"]
+[ext_resource type="AudioStream" uid="uid://cijoxlwmmsm7v" path="res://SOUND/FX/Fall_Death.ogg" id="15_adu3p"]
 [ext_resource type="AudioStream" uid="uid://dsr0lb7uc7k7s" path="res://SOUND/FX/Crackling_Noise_C.ogg" id="15_cu6j0"]
 [ext_resource type="AudioStream" uid="uid://c0wgwx2yy2orr" path="res://SOUND/FX/Crackling_Noise_G.ogg" id="16_2v6ey"]
+[ext_resource type="AudioStream" uid="uid://nr37tg36a6ub" path="res://SOUND/FX/Feet_Falling.ogg" id="16_8ivi5"]
+[ext_resource type="AudioStream" uid="uid://b3b1gr4l221h6" path="res://SOUND/FX/Female_Ouch.ogg" id="17_adu3p"]
 [ext_resource type="AudioStream" uid="uid://yh4m1uglx4qt" path="res://SOUND/FX/Crackling_Noise_H.ogg" id="17_gxawd"]
 [ext_resource type="AudioStream" uid="uid://bu5o3jhmjfi0f" path="res://SOUND/FX/Crackling_Noise_J.ogg" id="18_1u8je"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="19_4ufwj"]
@@ -645,7 +649,7 @@ tracks/2/keys = {
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Foot Step")
+tracks/3/path = NodePath("../Foot_Step")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -768,7 +772,7 @@ tracks/2/keys = {
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Foot Step")
+tracks/3/path = NodePath("../Foot_Step")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1177,9 +1181,9 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.033333335, 0.5666667, 1.4333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"transitions": PackedFloat32Array(1, 0.75, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(80, 40), Vector2(80, 40)]
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(120, 60), Vector2(120, 60)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1217,6 +1221,44 @@ tracks/4/keys = {
 "update": 0,
 "values": [0.17453292, 0.17453292, 0.17453292, 0.30543262, 0.2617994, 0.3926991, 0.3926991, 0.3926991, 0.3926991]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Fall_Death")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("14_67rfa")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("15_adu3p")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("16_8ivi5")
+}],
+"times": PackedFloat32Array(0, 0.46666667, 0.96666664)
+}
+tracks/5/use_blend = true
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Female_Ouch")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("17_adu3p")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/6/use_blend = true
 
 [sub_resource type="Animation" id="Animation_6u6kr"]
 resource_name = "Death_180"
@@ -1241,9 +1283,9 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.033333335, 0.5666667, 1.4333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"transitions": PackedFloat32Array(1, 0.75, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(-80, -40), Vector2(-80, -40)]
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(-120, -60), Vector2(-120, -60)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1281,6 +1323,44 @@ tracks/4/keys = {
 "update": 0,
 "values": [0.17453292, 0.17453292, 0.17453292, 0.30543262, 0.2617994, 0.3926991, 0.3926991, 0.3926991, 0.3926991]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Fall_Death")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("14_67rfa")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("15_adu3p")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("16_8ivi5")
+}],
+"times": PackedFloat32Array(0, 0.46666667, 0.96666664)
+}
+tracks/5/use_blend = true
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Female_Ouch")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("17_adu3p")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/6/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8jbc5"]
 _data = {
@@ -1630,7 +1710,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_w02lc")
 }
 
-[node name="Foot Step" type="AudioStreamPlayer" parent="."]
+[node name="Foot_Step" type="AudioStreamPlayer" parent="."]
 volume_db = -2.5
 pitch_scale = 0.5
 bus = &"FX_DRY"
@@ -1647,4 +1727,12 @@ bus = &"FX_DRY"
 
 [node name="Running" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0
+bus = &"FX_DRY"
+
+[node name="Fall_Death" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+bus = &"FX_DRY"
+
+[node name="Female_Ouch" type="AudioStreamPlayer" parent="."]
+volume_db = -12.5
 bus = &"FX_DRY"
