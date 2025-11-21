@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5grfiugqisi8"
-path="res://.godot/imported/Woman_Sprite_Sheet.png-9e9d250e3ad269de26a71a7609c09d16.ctex"
+uid="uid://c0j5tm6urboxp"
+path="res://.godot/imported/Appearing_Light_Wall_Mask.png-da4bcd5e99c6141bcacb5af002dad11a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/RUNNER/Woman_Sprite_Sheet.png"
-dest_files=["res://.godot/imported/Woman_Sprite_Sheet.png-9e9d250e3ad269de26a71a7609c09d16.ctex"]
+source_file="res://TRASH/Appearing_Light_Wall_Mask.png"
+dest_files=["res://.godot/imported/Appearing_Light_Wall_Mask.png-da4bcd5e99c6141bcacb5af002dad11a.ctex"]
 
 [params]
 

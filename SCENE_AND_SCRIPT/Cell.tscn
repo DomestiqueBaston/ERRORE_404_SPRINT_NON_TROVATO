@@ -657,6 +657,11 @@ rotation = 0.7853982
 pivot_offset = Vector2(118, 118)
 metadata/_edit_lock_ = true
 
+[node name="Animation_Cell" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ej7e8")
+}
+
 [node name="Cellule_Sound" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
@@ -683,8 +688,3 @@ bus = &"FX_WET"
 
 [node name="Appearing_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
 bus = &"FX_WET"
-
-[node name="Animation_Cell" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ej7e8")
-}

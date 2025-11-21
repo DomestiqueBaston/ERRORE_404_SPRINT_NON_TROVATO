@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cqj1vvbsaikwr" path="res://TRASH/test_generation_aleatoire_pour_voir_bis.gd" id="1_sjb8x"]
 [ext_resource type="PackedScene" uid="uid://cucs0i7d1er7d" path="res://SCENE_AND_SCRIPT/Cell.tscn" id="2_okjc4"]
-[ext_resource type="PackedScene" uid="uid://brsvllplyc7ih" path="res://SCENE_AND_SCRIPT/Runner.tscn" id="3_okjc4"]
+[ext_resource type="PackedScene" uid="uid://brsvllplyc7ih" path="res://SCENE_AND_SCRIPT/Woman.tscn" id="3_okjc4"]
 [ext_resource type="PackedScene" uid="uid://c3up1u8ajktas" path="res://SCENE_AND_SCRIPT/Cube.tscn" id="3_u5bti"]
 [ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="4_5rr24"]
 [ext_resource type="PackedScene" uid="uid://jeuanuva1v8o" path="res://SCENE_AND_SCRIPT/Door.tscn" id="4_swsra"]
@@ -49,11 +49,11 @@ metadata/_edit_lock_ = true
 position = Vector2(697, 167)
 metadata/_edit_lock_ = true
 
-[node name="Runner" parent="." instance=ExtResource("3_okjc4")]
+[node name="Woman" parent="." instance=ExtResource("3_okjc4")]
 position = Vector2(480, 200)
 metadata/_edit_lock_ = true
 
-[node name="Scene_BG" type="TextureRect" parent="Runner/Character" index="2"]
+[node name="Scene_BG" type="TextureRect" parent="Woman/Character" index="2"]
 z_index = -10
 anchors_preset = 8
 anchor_left = 0.5
@@ -71,12 +71,15 @@ size_flags_vertical = 4
 texture = SubResource("GradientTexture2D_pb06r")
 stretch_mode = 4
 
-[node name="ATTENTION" type="Label" parent="Runner/Character/Scene_BG"]
-visible = false
+[node name="ATTENTION" type="Label" parent="Woman/Character/Scene_BG"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-text = "Il est quasiment certain que cette solution n'est pas la bonne car la taille de la zone de course va changer avec les glissements de colonnes et lignes."
+offset_top = -25.0
+offset_right = 1139.0
+offset_bottom = -2.0
+text = "Il est quasiment certain que cette solution de fond n'est pas la bonne car la taille de la zone de course va changer avec les glissements de colonnes et lignes."
+
+[node name="Woman_Sound" parent="Woman" index="3"]
+visible = true
 
 [node name="Global_Hum" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_swsra")
@@ -84,4 +87,4 @@ volume_db = -5.0
 autoplay = true
 bus = &"FX_WET"
 
-[editable path="Runner"]
+[editable path="Woman"]

@@ -33,27 +33,27 @@ Le but du jeu est ici de tenir le plus longtemps possible et être le dernier su
 
 
 Un runner bugué :
-    1. Freeze (les 5 à 10 dernières images du jeu (en fonction du fps 5 à 30fps et 10 à 60fps) et le son qui va avec qui bouclent pendant 1 seconde)
-    2. Téléportation
-    3. Joueur « hors phase » (shader) ✔ 
-    4. Décors ou cellules de décor « hors phase » (shader) ✔ (bonus/malus?)
-    5. Plus aucune musique/bug de la musique
-    6. Plus aucun bruitages/bug des bruitages
-    7. Son chiant permanent
-    8. Le jeu prend le contrôle du joueur et donne le sien au joueur
-    9. Des éléments de décor disparaissent/apparaissent
-    10. Inversion des commandes
+	1. Freeze (les 5 à 10 dernières images du jeu (en fonction du fps 5 à 30fps et 10 à 60fps) et le son qui va avec qui bouclent pendant 1 seconde)
+	2. Téléportation
+	3. Joueur « hors phase » (shader) ✔ 
+	4. Décors ou cellules de décor « hors phase » (shader) ✔ (bonus/malus?)
+	5. Plus aucune musique/bug de la musique
+	6. Plus aucun bruitages/bug des bruitages
+	7. Son chiant permanent
+	8. Le jeu prend le contrôle du joueur et donne le sien au joueur
+	9. Des éléments de décor disparaissent/apparaissent
+	10. Inversion des commandes
 
 Des bugs (graphiques) qui font vraiment bug et pas « le jeu essaye de géner le joueur » :
-    11. Les sprites se mélangent (?) (changer des frames d’animation à la volée dans les cycles de course)
-    12. Les textures de sol clignotent/changent
-    13. La palette de couleurs change ✔ 
-    14. Des artefacts graphiques (oui, et ?)
-    15. Des glitches sonores (oui, et ?)
-    16. L’image globale se décale dans la vue du joueur (la caméra se décentre du joueur)
-    17. La caméra vibre ✔
-    18. Des éléments de décors changent de position /?\ 
-    19. Des messages d’erreur ou des barres de chargement (ou autres) apparaissent masquant une partie de l'écran
+	11. Les sprites se mélangent (?) (changer des frames d’animation à la volée dans les cycles de course)
+	12. Les textures de sol clignotent/changent
+	13. La palette de couleurs change ✔ 
+	14. Des artefacts graphiques (oui, et ?)
+	15. Des glitches sonores (oui, et ?)
+	16. L’image globale se décale dans la vue du joueur (la caméra se décentre du joueur)
+	17. La caméra vibre ✔
+	18. Des éléments de décors changent de position /?\ 
+	19. Des messages d’erreur ou des barres de chargement (ou autres) apparaissent masquant une partie de l'écran
     20. L’écran clignote /?\ 
     21. « BSOD » d’1/2 seconde ✔ 
     22. Couleurs inversées ✔ 
@@ -117,8 +117,8 @@ Comportements face aux obstacles :
 
 Comportements face aux Bonus/malus – Part 1 :
 
-    1. Agressif : Fonce sur les bonus. S’il est "mineur", il s'en débarrasse immédiatement, sinon il le garde pour plus tard ou pour empêcher un autre joueur de le prendre.
-    2. Aléatoire : Utilise n'importe quand ses bonus/malus sans logique.
+	1. Agressif : Fonce sur les bonus. S’il est "mineur", il s'en débarrasse immédiatement, sinon il le garde pour plus tard ou pour empêcher un autre joueur de le prendre.
+	2. Aléatoire : Utilise n'importe quand ses bonus/malus sans logique.
     3. Prudent : Évite les bonus/malus autant que possible car il a peur des malus.
 Comportements face aux Bonus/Malus – Part 2 :
 

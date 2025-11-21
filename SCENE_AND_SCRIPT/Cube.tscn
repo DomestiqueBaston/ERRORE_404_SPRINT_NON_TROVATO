@@ -55,7 +55,7 @@ tracks/1/keys = {
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Cube_Hum")
+tracks/2/path = NodePath("Cube_Sound/Cube_Hum")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -143,7 +143,7 @@ tracks/1/keys = {
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Cube_On_Off")
+tracks/2/path = NodePath("Cube_Sound/Cube_On_Off")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -186,7 +186,7 @@ tracks/1/keys = {
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Cube_On_Off")
+tracks/2/path = NodePath("Cube_Sound/Cube_On_Off")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -276,11 +276,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_1e78n")
 }
 
-[node name="Cube_Hum" type="AudioStreamPlayer" parent="."]
+[node name="Cube_Sound" type="Node2D" parent="."]
+
+[node name="Cube_Hum" type="AudioStreamPlayer" parent="Cube_Sound"]
 volume_db = -15.0
 autoplay = true
 bus = &"FX_WET"
 
-[node name="Cube_On_Off" type="AudioStreamPlayer" parent="."]
+[node name="Cube_On_Off" type="AudioStreamPlayer" parent="Cube_Sound"]
 volume_db = -7.5
 bus = &"FX_WET"

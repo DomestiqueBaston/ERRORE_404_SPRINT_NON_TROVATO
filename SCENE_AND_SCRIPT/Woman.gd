@@ -1,9 +1,9 @@
 extends Node2D
 
-@onready var sprite: Sprite2D = $Runner_Sprite
+@onready var sprite: Node2D = $Papa_Sprite
 @onready var animation_player: AnimationPlayer = $"../Animation_Runner"
 
-@export var move_speed: float = 400.0 # 350 pour ne pas patiner mais c'est un peu lent !
+@export var move_speed: float = 400.0
 @export var jump_speed: float = 350.0
 @export var slide_speed: float = 300.0
 
@@ -14,28 +14,39 @@ var last_non_zero_direction: Vector2 = Vector2.ZERO
 # États
 var is_jumping: bool = false
 var is_sliding: bool = false
+var is_dead: bool = false
+var is_falling: bool = false
 
 # Directions figées
 var jump_direction: Vector2 = Vector2.ZERO
 var slide_direction: Vector2 = Vector2.ZERO
 
-
 func _ready() -> void:
 	animation_player.animation_finished.connect(_on_animation_finished)
 
-
 func _process(delta: float) -> void:
+	# États bloquants : plus rien à faire
+	if is_dead or is_falling:
+		return
+
 	var input_direction := Vector2.ZERO
+
+	# ── MORT AVEC X ──
+	if Input.is_action_just_pressed("ui_x_button"):
+		die()
+		return
+
+	# ── CHUTE AVEC Y ──
+	if Input.is_action_just_pressed("ui_y_button"):
+		start_falling()
+		return
 
 	# Reset total avec Échap
 	if Input.is_action_just_pressed("ui_cancel"):
 		last_direction = Vector2.ZERO
-		# last_non_zero_direction = Vector2.ZERO   # ← SUPPRIMÉ → c'était le bug !
 		jump_direction = Vector2.ZERO
 		slide_direction = Vector2.ZERO
 		direction = Vector2.ZERO
-
-		# On force immédiatement l'animation idle orientée correcte
 		if last_non_zero_direction == Vector2.ZERO:
 			animation_player.play("Intro")
 		elif last_non_zero_direction.y < 0:
@@ -44,8 +55,7 @@ func _process(delta: float) -> void:
 		else:
 			animation_player.play("Start_180")
 			sprite.scale.x = -1.0 if last_non_zero_direction.x < 0 else 1.0
-
-		return  # on sort du _process pour ce frame (évite les conflits)
+		return
 
 	# SAUT (A)
 	if Input.is_action_just_pressed("ui_a_button") and not is_jumping and not is_sliding:
@@ -55,7 +65,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_b_button") and not is_jumping and not is_sliding:
 		_play_slide_animation()
 
-	# === Entrées de déplacement (seulement hors saut/slide) ===
+	# === Entrées de déplacement ===
 	if not is_jumping and not is_sliding:
 		if Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_down"):
 			input_direction = Vector2(1, 1).rotated(deg_to_rad(-18.4))
@@ -71,9 +81,7 @@ func _process(delta: float) -> void:
 				last_direction = input_direction.normalized()
 				last_non_zero_direction = last_direction
 
-	# === Calcul du mouvement avec vitesse dynamique ===
-	var current_speed: float = move_speed
-
+	# === Direction actuelle ===
 	if is_jumping:
 		direction = jump_direction
 	elif is_sliding:
@@ -81,31 +89,24 @@ func _process(delta: float) -> void:
 	else:
 		direction = last_direction
 
-	# Gestion du lerp de vitesse (une seule fois, proprement)
+	# === Vitesse dynamique ===
+	var current_speed: float = move_speed
 	var anim := animation_player.current_animation
 	if anim.begins_with("Jump_"):
 		var progress := animation_player.current_animation_position / animation_player.current_animation_length
 		current_speed = lerp(move_speed, jump_speed, progress)
 	elif anim.begins_with("Sliding_"):
-		# Ralentissement progressif pendant toute l'animation Sliding
 		var progress := animation_player.current_animation_position / animation_player.current_animation_length
-		# Lerp de move_speed → slide_speed
 		current_speed = lerp(move_speed, slide_speed, progress)
-	else:
-		# Quand on n'est plus dans une animation spéciale → vitesse cible finale
-		if is_jumping:
-			current_speed = jump_speed
-		elif is_sliding:
-			current_speed = slide_speed
-		# sinon c'est déjà move_speed
 
-	position += direction * current_speed * delta
+	# === Mouvement (bloqué si mort ou en chute) ===
+	if not is_dead and not is_falling:
+		position += direction * current_speed * delta
 
-	# === Gestion des animations ===
+	# === Animations normales (seulement si pas en action spéciale) ===
 	if is_jumping or is_sliding:
 		return
 
-	# Idle ou course normale
 	if direction == Vector2.ZERO:
 		if last_non_zero_direction == Vector2.ZERO:
 			animation_player.play("Intro")
@@ -125,9 +126,9 @@ func _process(delta: float) -> void:
 			sprite.scale.x = -1.0 if direction.x < 0 else 1.0
 
 
+# ── FONCTIONS ──
 func _play_jump_animation() -> void:
-	if last_non_zero_direction == Vector2.ZERO:
-		return
+	if last_non_zero_direction == Vector2.ZERO or is_dead or is_falling: return
 	is_jumping = true
 	jump_direction = last_non_zero_direction
 	if last_non_zero_direction.y < 0:
@@ -137,10 +138,8 @@ func _play_jump_animation() -> void:
 		animation_player.play("Jump_180")
 		sprite.scale.x = -1.0 if last_non_zero_direction.x < 0 else 1.0
 
-
 func _play_slide_animation() -> void:
-	if last_non_zero_direction == Vector2.ZERO:
-		return
+	if last_non_zero_direction == Vector2.ZERO or is_dead or is_falling: return
 	is_sliding = true
 	slide_direction = last_non_zero_direction
 	if last_non_zero_direction.y < 0:
@@ -151,6 +150,52 @@ func _play_slide_animation() -> void:
 		sprite.scale.x = -1.0 if last_non_zero_direction.x < 0 else 1.0
 
 
+# ── MORT ──
+func die() -> void:
+	if is_dead: return
+	is_dead = true
+	direction = Vector2.ZERO
+	jump_direction = Vector2.ZERO
+	slide_direction = Vector2.ZERO
+	is_jumping = false
+	is_sliding = false
+	is_falling = false
+	
+	if last_non_zero_direction == Vector2.ZERO:
+		animation_player.play("Death_180")
+	else:
+		if last_non_zero_direction.y < 0:
+			animation_player.play("Death_000")
+			sprite.scale.x = 1.0 if last_non_zero_direction.x < 0 else -1.0
+		else:
+			animation_player.play("Death_180")
+			sprite.scale.x = -1.0 if last_non_zero_direction.x < 0 else 1.0
+
+
+# ── CHUTE (nouvelle fonction) ──
+func start_falling() -> void:
+	if is_falling or is_dead: return
+	is_falling = true
+	
+	# Stoppe net tout mouvement
+	direction = Vector2.ZERO
+	jump_direction = Vector2.ZERO
+	slide_direction = Vector2.ZERO
+	is_jumping = false
+	is_sliding = false
+	
+	# Animation de chute avec la bonne orientation
+	if last_non_zero_direction == Vector2.ZERO:
+		animation_player.play("Falling_180")
+	else:
+		if last_non_zero_direction.y < 0:
+			animation_player.play("Falling_000")
+			sprite.scale.x = 1.0 if last_non_zero_direction.x < 0 else -1.0
+		else:
+			animation_player.play("Falling_180")
+			sprite.scale.x = -1.0 if last_non_zero_direction.x < 0 else 1.0
+
+
 func _on_animation_finished(anim_name: String) -> void:
 	if anim_name.begins_with("Jump_"):
 		is_jumping = false
@@ -159,7 +204,10 @@ func _on_animation_finished(anim_name: String) -> void:
 		is_sliding = false
 		slide_direction = Vector2.ZERO
 
-	# Retour à course/idle
+	# Rien à faire si mort ou en chute (on reste sur l’animation)
+	if is_dead or is_falling:
+		return
+
 	if direction != Vector2.ZERO:
 		if direction.y < 0:
 			animation_player.play("Run_000")

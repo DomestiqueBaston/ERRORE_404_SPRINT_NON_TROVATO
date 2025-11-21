@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0j5tm6urboxp"
-path="res://.godot/imported/Appearing_Light_Wall_Mask.png-3c964a92afef654ae4e6146882a15860.ctex"
+uid="uid://cucfneqnudwln"
+path="res://.godot/imported/Light_Wall.png-54e0efb515369dc1c8efec0efa9616ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/FX/Appearing_Light_Wall_Mask.png"
-dest_files=["res://.godot/imported/Appearing_Light_Wall_Mask.png-3c964a92afef654ae4e6146882a15860.ctex"]
+source_file="res://TRASH/Light_Wall.png"
+dest_files=["res://.godot/imported/Light_Wall.png-54e0efb515369dc1c8efec0efa9616ea.ctex"]
 
 [params]
 

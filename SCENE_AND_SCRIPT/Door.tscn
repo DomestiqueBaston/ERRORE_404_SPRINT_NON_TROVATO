@@ -168,7 +168,7 @@ tracks/2/keys = {
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Door_On")
+tracks/3/path = NodePath("Door_Sound/Door_On")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -402,12 +402,14 @@ libraries = {
 }
 autoplay = "Floating_Light"
 
-[node name="Door_Hum" type="AudioStreamPlayer" parent="."]
+[node name="Door_Sound" type="Node2D" parent="."]
+
+[node name="Door_Hum" type="AudioStreamPlayer" parent="Door_Sound"]
 stream = ExtResource("5_jbtw0")
 volume_db = -5.0
 bus = &"FX_DRY"
 parameters/looping = true
 
-[node name="Door_On" type="AudioStreamPlayer" parent="."]
+[node name="Door_On" type="AudioStreamPlayer" parent="Door_Sound"]
 volume_db = -10.0
 bus = &"FX_WET"
