@@ -178,14 +178,22 @@ func _ready() -> void:
 			
 			add_child(cell_instance)
 	
-	# === DEBUG : Répartition finale ===
-	var counts := {}
-	for row in chosen_sprites:
-		for sprite in row:
-			if sprite in interior_sprites:
-				counts[sprite] = counts.get(sprite, 0) + 1
-	
-	print("=== RÉPARTITION DES SPRITES INTÉRIEURS ===")
-	for sprite in interior_sprites:
-		var count = counts.get(sprite, 0)
-		print("%s : %d" % [sprite, count])
+	# === DEBUG : Répartition finale de TOUS les sprites utilisés ===
+	var global_counts := {}
+
+	for row in range(grid_size):
+		for col in range(grid_size):
+			var sprite = chosen_sprites[row][col]
+			if sprite != "":  # sécurité
+				global_counts[sprite] = global_counts.get(sprite, 0) + 1
+
+	print("=== RÉPARTITION COMPLÈTE DE TOUS LES SPRITES UTILISÉS (grid_size = %d) ===" % grid_size)
+	print("Total cellules : %d\n" % (grid_size * grid_size))
+
+	# Trie par ordre alphabétique pour plus de lisibilité
+	var sorted_keys = global_counts.keys()
+	sorted_keys.sort()
+
+	for sprite_name in sorted_keys:
+		var count = global_counts[sprite_name]
+		print("%s : %d" % [sprite_name, count])

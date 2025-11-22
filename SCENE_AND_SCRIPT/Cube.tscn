@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c3up1u8ajktas"]
+[gd_scene load_steps=19 format=3 uid="uid://c3up1u8ajktas"]
 
 [ext_resource type="Script" uid="uid://h5jc5pkbwwnw" path="res://SCENE_AND_SCRIPT/Cube.gd" id="1_mfqlr"]
 [ext_resource type="Texture2D" uid="uid://c5i7h02ps03t3" path="res://IMAGE/ENVIRONMENT/CUBE/Shadow.png" id="2_yd2d6"]
@@ -8,6 +8,10 @@
 [ext_resource type="AudioStream" uid="uid://0gevs5b21y8i" path="res://SOUND/FX/Appearing.ogg" id="5_mfqlr"]
 [ext_resource type="Shader" uid="uid://clh2c1m8vtm11" path="res://SHADER/Color_Multiply.gdshader" id="5_oh6sb"]
 [ext_resource type="AudioStream" uid="uid://bom677o0xms5i" path="res://SOUND/FX/Disappearing.ogg" id="6_i7obx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i7obx"]
+radius = 7.008006
+height = 15.765341
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5c5qk"]
 shader = ExtResource("3_oh6sb")
@@ -22,7 +26,7 @@ shader_parameter/outline_color = Color(0, 0, 0, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hprws"]
 shader = ExtResource("5_oh6sb")
 shader_parameter/intensity = 1.0
-shader_parameter/tint_color = Color(1, 0.4, 0.4, 1)
+shader_parameter/tint_color = Color(0.46666658, 0.36, 1, 1)
 
 [sub_resource type="Animation" id="Animation_i7obx"]
 resource_name = "Alive"
@@ -155,6 +159,18 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Collider_Cube:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
 
 [sub_resource type="Animation" id="Animation_oh6sb"]
 resource_name = "Disappearing"
@@ -198,6 +214,18 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Collider_Cube:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
 
 [sub_resource type="Animation" id="Animation_1evg1"]
 length = 0.001
@@ -225,6 +253,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Collider_Cube:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1e78n"]
 _data = {
@@ -235,6 +275,16 @@ _data = {
 
 [node name="Cube" type="Node2D"]
 script = ExtResource("1_mfqlr")
+
+[node name="Collider_Cube" type="Area2D" parent="."]
+visible = false
+metadata/_edit_lock_ = true
+
+[node name="Collider" type="CollisionShape2D" parent="Collider_Cube"]
+rotation = -0.3211406
+skew = -0.7644542
+shape = SubResource("CapsuleShape2D_i7obx")
+metadata/_edit_lock_ = true
 
 [node name="Cube_Shadow" type="Sprite2D" parent="."]
 visible = false
@@ -256,6 +306,7 @@ vframes = 4
 metadata/_edit_lock_ = true
 
 [node name="Cube_Color" type="Sprite2D" parent="Cube"]
+visible = false
 light_mask = 5
 z_index = 1
 material = SubResource("ShaderMaterial_hprws")
@@ -263,7 +314,6 @@ texture = ExtResource("4_mfqlr")
 offset = Vector2(0.5, -30)
 hframes = 30
 vframes = 4
-frame = 32
 metadata/_edit_lock_ = true
 
 [node name="Animation_Cube" type="AnimationPlayer" parent="."]
@@ -279,7 +329,7 @@ libraries = {
 [node name="Cube_Sound" type="Node2D" parent="."]
 
 [node name="Cube_Hum" type="AudioStreamPlayer" parent="Cube_Sound"]
-volume_db = -15.0
+volume_db = -12.5
 autoplay = true
 bus = &"FX_WET"
 

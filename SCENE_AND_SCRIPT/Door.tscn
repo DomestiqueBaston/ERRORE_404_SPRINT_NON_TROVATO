@@ -8,6 +8,15 @@
 [ext_resource type="AudioStream" uid="uid://18acv14t18jm" path="res://SOUND/FX/Door_Hum.ogg" id="5_jbtw0"]
 [ext_resource type="AudioStream" uid="uid://qnjr5b74yyt8" path="res://SOUND/FX/Door_Appearing.ogg" id="6_ecpiw"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ecpiw"]
+size = Vector2(73.47995, 62.269737)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7lr0"]
+size = Vector2(22.54161, 62.341305)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mhnl0"]
+size = Vector2(22.464415, 62.547802)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jbtw0"]
 shader = ExtResource("1_gjufk")
 shader_parameter/shake_enabled = false
@@ -180,6 +189,18 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Collider_Door:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
 
 [sub_resource type="Animation" id="Animation_pl358"]
 length = 0.001
@@ -214,6 +235,18 @@ tracks/2/path = NodePath("Door_Front:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Collider_Door:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -293,46 +326,33 @@ _data = {
 &"RESET": SubResource("Animation_3dh1m")
 }
 
-[sub_resource type="Animation" id="Animation_ecpiw"]
-resource_name = "Floating_Light"
-length = 2.0000033
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Door_Front/Runner_Light:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(2, -165), Vector2(2, -175), Vector2(2, -165)]
-}
-
-[sub_resource type="Animation" id="Animation_t7lr0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Door_Front/Runner_Light:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2, -170)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_mhnl0"]
-_data = {
-&"Floating_Light": SubResource("Animation_ecpiw"),
-&"RESET": SubResource("Animation_t7lr0")
-}
-
 [node name="Door" type="Node2D"]
 script = ExtResource("1_ecpiw")
+
+[node name="Collider_Door" type="Area2D" parent="."]
+visible = false
+metadata/_edit_lock_ = true
+
+[node name="Passage" type="CollisionShape2D" parent="Collider_Door"]
+position = Vector2(2.6447163, -1.0161018)
+rotation = 0.42760566
+skew = 0.6283184
+shape = SubResource("RectangleShape2D_ecpiw")
+metadata/_edit_lock_ = true
+
+[node name="Leg_D" type="CollisionShape2D" parent="Collider_Door"]
+position = Vector2(46.444004, 18.699099)
+rotation = 0.42760566
+skew = 0.6283184
+shape = SubResource("RectangleShape2D_t7lr0")
+metadata/_edit_lock_ = true
+
+[node name="Leg_G" type="CollisionShape2D" parent="Collider_Door"]
+position = Vector2(-41.000004, -21.000004)
+rotation = 0.42760566
+skew = 0.6283184
+shape = SubResource("RectangleShape2D_mhnl0")
+metadata/_edit_lock_ = true
 
 [node name="Door_Shadow" type="Sprite2D" parent="."]
 visible = false
@@ -370,16 +390,6 @@ hframes = 25
 vframes = 4
 metadata/_edit_lock_ = true
 
-[node name="Runner_Light" type="PointLight2D" parent="Door_Front"]
-visible = false
-position = Vector2(2, -170)
-color = Color(0, 1, 1, 1)
-energy = 0.75
-blend_mode = 1
-range_item_cull_mask = 4
-texture = SubResource("GradientTexture2D_t7lr0")
-metadata/_edit_lock_ = true
-
 [node name="Animation_Door" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_yp78x")
@@ -393,12 +403,6 @@ libraries = {
 [node name="Animation_Door_Light" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_wpkfy")
-}
-autoplay = "Floating_Light"
-
-[node name="Animation_Runner_Light" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_mhnl0")
 }
 autoplay = "Floating_Light"
 

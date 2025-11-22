@@ -33,27 +33,27 @@ Le but du jeu est ici de tenir le plus longtemps possible et être le dernier su
 
 
 Un runner bugué :
-	1. Freeze (les 5 à 10 dernières images du jeu (en fonction du fps 5 à 30fps et 10 à 60fps) et le son qui va avec qui bouclent pendant 1 seconde)
-	2. Téléportation
-	3. Joueur « hors phase » (shader) ✔ 
-	4. Décors ou cellules de décor « hors phase » (shader) ✔ (bonus/malus?)
-	5. Plus aucune musique/bug de la musique
-	6. Plus aucun bruitages/bug des bruitages
-	7. Son chiant permanent
-	8. Le jeu prend le contrôle du joueur et donne le sien au joueur
-	9. Des éléments de décor disparaissent/apparaissent
-	10. Inversion des commandes
+    1. Freeze (les 5 à 10 dernières images du jeu (en fonction du fps 5 à 30fps et 10 à 60fps) et le son qui va avec qui bouclent pendant 1 seconde)
+    2. Téléportation
+    3. Joueur « hors phase » (shader) ✔ 
+    4. Décors ou cellules de décor « hors phase » (shader) ✔ (bonus/malus?)
+    5. Plus aucune musique/bug de la musique
+    6. Plus aucun bruitages/bug des bruitages
+    7. Son chiant permanent
+    8. Le jeu prend le contrôle du joueur et donne le sien au joueur
+    9. Des éléments de décor disparaissent/apparaissent
+    10. Inversion des commandes
 
 Des bugs (graphiques) qui font vraiment bug et pas « le jeu essaye de géner le joueur » :
-	11. Les sprites se mélangent (?) (changer des frames d’animation à la volée dans les cycles de course)
-	12. Les textures de sol clignotent/changent
-	13. La palette de couleurs change ✔ 
-	14. Des artefacts graphiques (oui, et ?)
-	15. Des glitches sonores (oui, et ?)
-	16. L’image globale se décale dans la vue du joueur (la caméra se décentre du joueur)
-	17. La caméra vibre ✔
-	18. Des éléments de décors changent de position /?\ 
-	19. Des messages d’erreur ou des barres de chargement (ou autres) apparaissent masquant une partie de l'écran
+    11. Les sprites se mélangent (?) (changer des frames d’animation à la volée dans les cycles de course)
+    12. Les textures de sol clignotent/changent
+    13. La palette de couleurs change ✔ 
+    14. Des artefacts graphiques (oui, et ?)
+    15. Des glitches sonores (oui, et ?)
+    16. L’image globale se décale dans la vue du joueur (la caméra se décentre du joueur)
+    17. La caméra vibre ✔
+    18. Des éléments de décors changent de position /?\ 
+    19. Des messages d’erreur ou des barres de chargement (ou autres) apparaissent masquant une partie de l'écran
     20. L’écran clignote /?\ 
     21. « BSOD » d’1/2 seconde ✔ 
     22. Couleurs inversées ✔ 
@@ -81,15 +81,13 @@ Les bonus en jeu (passif par défaut) :
 
 
 Les obstacles :
-    1. Trappes
-    2. Vrais murs
-    3. Murs des coureurs
-    4. Cellule à sens unique
-    5. Colonnes tombantes
-    6. La porte finale (par les côtés)
-    7. Blocs (mouvants ou non)
-    8. Dalles disparaissant (éventuellement après être passé dessus).
-    9. Dalles de téléportation
+    1. Vrais murs → Cellules qui montent ✔
+    2. Murs des coureurs → ✔ (?)
+    3. Cellule à sens unique
+    4. Colonnes tombantes → ✔
+    5. La porte finale (par les côtés) → ✔
+    6. Blocs (mouvants ou non)
+    7. Dalles disparaissant → Cellules qui disparaissent ✔
 
 Liste des animations du joueur :
     1. Courir
@@ -100,7 +98,7 @@ Liste des animations du joueur :
     6. Tomber dans le vide → Mort !
     7. Bim ! Dans un mur → Mort !
 
-- Woman animations done!
+
 
 
 
@@ -117,8 +115,8 @@ Comportements face aux obstacles :
 
 Comportements face aux Bonus/malus – Part 1 :
 
-	1. Agressif : Fonce sur les bonus. S’il est "mineur", il s'en débarrasse immédiatement, sinon il le garde pour plus tard ou pour empêcher un autre joueur de le prendre.
-	2. Aléatoire : Utilise n'importe quand ses bonus/malus sans logique.
+    1. Agressif : Fonce sur les bonus. S’il est "mineur", il s'en débarrasse immédiatement, sinon il le garde pour plus tard ou pour empêcher un autre joueur de le prendre.
+    2. Aléatoire : Utilise n'importe quand ses bonus/malus sans logique.
     3. Prudent : Évite les bonus/malus autant que possible car il a peur des malus.
 Comportements face aux Bonus/Malus – Part 2 :
 
@@ -135,4 +133,4 @@ Comportements face aux bugs du jeu (continuer tout droit, tourner ou utiliser u
 
 Notes de fabrication :
 
-Les Bonus/Malus présents en course sont indiqués par une cellule dont la couleur change (en fonction du Bonus/Malus ou du type de Bonus/Malus ?) ou d’une autre manière ? ← D’UNE AUTRE MANIÈRE !
+- Lorsqu’un coureur traverse une case (donc en traçant son mur) et que la case bouge, alors le coureur se décale AVEC la case. Et le mur qu’il trace également. Il faudra donc « tronçonner » les murs à chaque fois qu’un coureur sort d’une case afin que le morceau de mur puisse éventuellement se déplacer avec la case ultérieurement.

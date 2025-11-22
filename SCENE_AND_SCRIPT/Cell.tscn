@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cucs0i7d1er7d"]
+[gd_scene load_steps=50 format=3 uid="uid://cucs0i7d1er7d"]
 
 [ext_resource type="Texture2D" uid="uid://bsel0k65v13mi" path="res://IMAGE/ENVIRONMENT/CELL/Extension de terrain.png" id="1_e50o2"]
 [ext_resource type="Texture2D" uid="uid://dsrmr325mtsek" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_01.png" id="1_ypd1c"]
@@ -31,22 +31,35 @@
 [ext_resource type="AudioStream" uid="uid://mkvmu7rmdx3t" path="res://SOUND/FX/Clang_Start_Cell.ogg" id="27_e50o2"]
 [ext_resource type="AudioStream" uid="uid://4a1byy4t0n2y" path="res://SOUND/FX/Appearing_Cell.ogg" id="28_6vv1n"]
 [ext_resource type="AudioStream" uid="uid://ccoauvddaj8m" path="res://SOUND/FX/Up_Down_Cell.ogg" id="28_7mpjj"]
+[ext_resource type="Script" uid="uid://dypor8l34m51n" path="res://SCENE_AND_SCRIPT/Top_Cell_FX.gd" id="28_n3k4r"]
 [ext_resource type="Shader" uid="uid://blic88jwr7a1e" path="res://SHADER/Glitch_Only.gdshader" id="28_vso1q"]
+[ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="29_7mpjj"]
 [ext_resource type="AudioStream" uid="uid://dek1co7fuef8g" path="res://SOUND/FX/Clang_Stop_Cell.ogg" id="29_8ohl3"]
 [ext_resource type="AudioStream" uid="uid://bvr7mwob6g81h" path="res://SOUND/FX/Disappearing_Cell.ogg" id="31_mye8y"]
+[ext_resource type="AudioStream" uid="uid://bm1v8dymi3n0a" path="res://SOUND/FX/Digital_Glitch_B.ogg" id="37_qjqwi"]
+[ext_resource type="AudioStream" uid="uid://bxr32qgishsy8" path="res://SOUND/FX/Digital_Glitch_D.ogg" id="38_5memm"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mwy7o"]
 vertices = PackedVector2Array(95.78125, 0.3515625, 0.0078125, 47.828125, -96.64844, -0.5, -0.0625, -48.789063)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-118, -1, 0, -60, 118, -1, 118, 0, 0, 59, -118, 0)])
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b78o7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vso1q"]
+shader = ExtResource("29_7mpjj")
+shader_parameter/same_width_lines_count = 21.726000984485
+shader_parameter/same_width_change_per_sec = 7.665000360827619
+shader_parameter/glitch_change_per_sec = 1.0
+shader_parameter/threshold = 0.3499999921768
+shader_parameter/strength = 0.0790000037525
+shader_parameter/glitch_blend = 0.8499999810008
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n3k4r"]
 shader = ExtResource("28_vso1q")
-shader_parameter/shake_power = 0.025
-shader_parameter/shake_rate = 0.3330000158175
+shader_parameter/shake_power = 0.004
+shader_parameter/shake_rate = 1.0
 shader_parameter/shake_speed = 5.0
-shader_parameter/shake_block_size = 50.0
-shader_parameter/shake_color_rate = 0.002000000095
+shader_parameter/shake_block_size = 123.0
+shader_parameter/shake_color_rate = 0.0010000000475
 
 [sub_resource type="Animation" id="Animation_vso1q"]
 resource_name = "Appearing"
@@ -78,6 +91,18 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Column/Cell_Tops/Collider_Ground:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.40000004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
 
 [sub_resource type="Animation" id="Animation_7mpjj"]
 resource_name = "Disappearing"
@@ -109,6 +134,18 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Column/Cell_Tops/Collider_Ground:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
 
 [sub_resource type="Animation" id="Animation_5dg73"]
 resource_name = "Going_Down"
@@ -178,6 +215,18 @@ tracks/3/keys = {
 "times": PackedFloat32Array(7.3333335)
 }
 tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Column/Cell_Tops/Collider_Ground:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_6vv1n"]
 resource_name = "Going_Up"
@@ -247,6 +296,18 @@ tracks/3/keys = {
 "times": PackedFloat32Array(7.3333335)
 }
 tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Column/Cell_Tops/Collider_Ground:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_mye8y"]
 length = 0.001
@@ -273,6 +334,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Column/Cell_Tops/Collider_Ground:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_e50o2"]
@@ -335,6 +408,18 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0.6333333)
 }
 tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Column/Cell_Tops/Collider_Ground:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ej7e8"]
 resource_name = "Sliding_End"
@@ -396,6 +481,18 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0.93333334)
 }
 tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Column/Cell_Tops/Collider_Ground:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ej7e8"]
 _data = {
@@ -449,13 +546,13 @@ metadata/_edit_lock_ = true
 polygon = PackedVector2Array(-118, -1, 0, -60, 118, -1, 118, 0, 0, 59, -118, 0)
 metadata/_edit_lock_ = true
 
-[node name="Images" type="Node2D" parent="Column/Cell_Tops"]
-metadata/_edit_lock_ = true
-
-[node name="Extension_De_Terrain" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cell_!extension" type="Sprite2D" parent="Column/Cell_Tops"]
 position = Vector2(0, -81)
 texture = ExtResource("1_e50o2")
 offset = Vector2(0, 1250)
+metadata/_edit_lock_ = true
+
+[node name="Images" type="Node2D" parent="Column/Cell_Tops"]
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_01" type="Sprite2D" parent="Column/Cell_Tops/Images"]
@@ -632,29 +729,32 @@ centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Papa_Top_Cell_Mask_For_Glitch" type="Node2D" parent="Column/Cell_Tops/Images"]
-visible = false
-metadata/_edit_lock_ = true
-
-[node name="Top_Cell_Mask" type="Sprite2D" parent="Column/Cell_Tops/Images/Papa_Top_Cell_Mask_For_Glitch"]
+[node name="Top_Cell_FX_Mask" type="Sprite2D" parent="Column/Cell_Tops"]
 clip_children = 1
 texture = ExtResource("27_7mpjj")
 centered = false
 offset = Vector2(-118, -60)
+script = ExtResource("28_n3k4r")
 metadata/_edit_lock_ = true
 
-[node name="Papa_Glitch" type="Node2D" parent="Column/Cell_Tops/Images/Papa_Top_Cell_Mask_For_Glitch/Top_Cell_Mask"]
-scale = Vector2(1, 0.5)
-metadata/_edit_lock_ = true
-
-[node name="Glitch" type="ColorRect" parent="Column/Cell_Tops/Images/Papa_Top_Cell_Mask_For_Glitch/Top_Cell_Mask/Papa_Glitch"]
-material = SubResource("ShaderMaterial_b78o7")
+[node name="Screen_Glitch" type="ColorRect" parent="Column/Cell_Tops/Top_Cell_FX_Mask"]
+visible = false
+material = SubResource("ShaderMaterial_vso1q")
 offset_left = -118.0
-offset_top = -75.393906
-offset_right = 55.69275
-offset_bottom = 98.29884
-rotation = 0.7853982
-pivot_offset = Vector2(118, 118)
+offset_top = -60.0
+offset_right = 118.0
+offset_bottom = 59.0
+color = Color(1, 1, 1, 0.5254902)
+metadata/_edit_lock_ = true
+
+[node name="Glitch_Only" type="ColorRect" parent="Column/Cell_Tops/Top_Cell_FX_Mask"]
+visible = false
+material = SubResource("ShaderMaterial_n3k4r")
+offset_left = -118.0
+offset_top = -60.0
+offset_right = 118.0
+offset_bottom = 59.0
+color = Color(1, 1, 1, 0.5254902)
 metadata/_edit_lock_ = true
 
 [node name="Animation_Cell" type="AnimationPlayer" parent="."]
@@ -687,4 +787,14 @@ stream = ExtResource("27_5dg73")
 bus = &"FX_WET"
 
 [node name="Appearing_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
+bus = &"FX_WET"
+
+[node name="Glitch_For_Screen_Glitch" type="AudioStreamPlayer" parent="Cellule_Sound"]
+stream = ExtResource("37_qjqwi")
+volume_db = -5.0
+bus = &"FX_DRY"
+
+[node name="Glitch_For_Glitch_Only" type="AudioStreamPlayer" parent="Cellule_Sound"]
+stream = ExtResource("38_5memm")
+volume_db = -22.5
 bus = &"FX_WET"
