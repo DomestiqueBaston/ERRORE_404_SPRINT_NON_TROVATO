@@ -2,7 +2,7 @@ PIXEL ART V
 
 Errore 404: Sprint Non Trovato!
 
-Un jeu basé sur les bugs (se souvenir de e13.com)
+Un jeu basé sur les bugs (se souvenir du site e13.com)
 Pour le moment, on part pour de la 2D !
 
 Un runner à pied (étonnant !)
@@ -83,7 +83,7 @@ Les bonus en jeu (passif par défaut) :
 Les obstacles :
     1. Vrais murs → Cellules qui montent ✔
     2. Murs des coureurs → ✔ (?)
-    3. Cellule à sens unique
+    3. Cellule à sens unique → ✔
     4. Colonnes tombantes → ✔
     5. La porte finale (par les côtés) → ✔
     6. Blocs (mouvants ou non)
@@ -129,6 +129,46 @@ Comportements face aux bugs du jeu (continuer tout droit, tourner ou utiliser u
     1. Prudent : réfléchit plus tôt (si possible) face aux obstacles et réagit plus tôt.
     2. Inconscient : réagit avec les mêmes délais impliquant qu’1 fois sur 3 il fera un choix différent de celui qu’il aurait fait sans bug.
     3. Suicidaire (tricheur) : face à un obstacle fera un choix aléatoire ! 1 fois sur 3, si cela le condamne à mourir, alors il ne mourra pas en évitant l’obstacle ou utilisant un bonus « inventé » qu’il n’avait pas.
+
+
+
+
+Une autre vue de la chose décomposée plus simplement ou à ajouter… :
+
+Tout d’abord, chaque bot doit avoir pour priorité d'éviter la mort sur la prochaine case. Cela signifie :
+	• Si une case est un adversaire, un mur, un obstacle ou un vide → éviter (changement de direction, ou d’action comme glisser ou sauter).
+	1. Casse-coup : +50% chance de foncer sur un bonus/malus
+	2. Prudent : tend à garder les bonus > 8 sec avant usage
+	3. Saboteur : priorise les cibles adverses avec les bonus/malus actifs
+	4. Couard : fuit si ≥2 joueurs ou ≥2 murs adverses dans rayon de 2 cases 
+	5. Bloqueur : essaie de croiser la trajectoire d’un humain quand il est devant 
+	6. Cupide : dévie de ≥2 cases pour ramasser un bonus connu positif 
+	7. Nettoyeur : utilise immédiatement Débogueur dès qu’un bug actif le gêne (s’il a le bonus)
+	8. Flambeur : 33% chance d’utiliser un bonus/malus aléatoire toutes les 5 sec (s’il a un bonus/malus)
+	9. Trouillard : préfère la direction qui a le moins de murs adversaires restants 
+	10. Crétin : 20% chance de ne pas éviter un danger
+	11. Anticipateur : anticipe 1 case plus loin pour tourner
+	12. Survireur : change de direction toutes les 4-8 sec même si chemin libre 
+	13. Appel des bords : préfère longer les murs/rebords plutôt que centre 
+	14. Fonceur : utilise Dash ou Slide en priorité s’il le peut, au lieu de tourner 
+	15. Troll : 25% chance de garder un malus visible juste pour bloquer les autres
+	16. Chasseur : si un humain est à ≤3 cases devant, le suit (ignore un peu les bonus)
+	17. Lâche : si sa vie/visibilité est menacée par un bug visuel, tourne immédiatement à 90° quel que soit le chemin 
+	18. Lâche : si sa vie/visibilité est menacée par un bug visuel, tourne immédiatement à 90° quel que soit le chemin 
+	19. Lâche : si sa vie/visibilité est menacée par un bug visuel, tourne immédiatement à 90° quel que soit le chemin
+	20. Frimeur : utilise un bonus actif dès qu’un humain le regarde (est dans rayon 4 cases) 
+	21. Kamikaze : si coincé (aucun move safe), 50% chance d’utiliser un Dash/Saut/Teleport même si ça le tue probablement 
+	22. Suicidaire passif : 10% chance par seconde de ne RIEN faire (continue tout droit même si danger imminent) 
+	23. Économe : n’utilise jamais un bonus actif s’il a une piste sûre devant 
+	24. Vengeur : si un adversaire vient de lui envoyer un malus, priorise immédiatement un retour à l’envoyeur (Virus/Sabotage) 
+	25. Glouton : ramasse TOUT ce qui est sur sa case actuelle, même si c’est un malus évident 
+	26. Danseur : toutes les 6-10 sec, fait volontairement une glissade ou un saut décoratif même si inutile
+	27. Radar : augmente de +1 case son anticipation quand un humain est dans un rayon de 5 cases
+	28. Peur du vide : refuse toute direction où la case suivante est un trou (même si c’était safe avant)
+	29. Aimant à bugs : +30 % chance de déclencher un bug global quand il ramasse un item
+	30. Psychopathe : si un humain est exactement aligné (même ligne/colonne), fonce tout droit dessus
+	31. Parano : change de direction dès qu’un autre coureur entre dans un rayon de 3 cases
+	32. Sprinter tardif : n’utilise Dash/Slide que quand il reste <3 cases safe devant lui
 
 
 Notes de fabrication :
