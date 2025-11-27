@@ -25,11 +25,11 @@
 [ext_resource type="AudioStream" uid="uid://bifaoucknr7f5" path="res://SOUND/FX/Sliding_Cell.ogg" id="23_f4wwy"]
 [ext_resource type="AudioStream" uid="uid://vldsf8ak3y4t" path="res://SOUND/FX/Alarm.ogg" id="24_063y0"]
 [ext_resource type="PackedScene" uid="uid://brsvllplyc7ih" path="res://SCENE_AND_SCRIPT/Woman.tscn" id="25_163b2"]
-[ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="26_gckxn"]
 [ext_resource type="Shader" uid="uid://djvm4hdir6bn0" path="res://SHADER/Invert_Colors.gdshader" id="27_pav36"]
 [ext_resource type="Shader" uid="uid://cw8pro7ug7hfy" path="res://SHADER/Shake.gdshader" id="28_m6txe"]
-[ext_resource type="Shader" uid="uid://bv87k71v3fnfn" path="res://TRASH/test_split_screen_pour_shader.gdshader" id="29_gckxn"]
 [ext_resource type="Texture2D" uid="uid://bg8x247cwwks8" path="res://IMAGE/MISC/BSOD.png" id="30_8eerl"]
+[ext_resource type="Shader" uid="uid://bw1rtxnpr4o0b" path="res://SHADER/Pixelisation.gdshader" id="30_vvr5n"]
+[ext_resource type="Shader" uid="uid://btajsboyumguy" path="res://SHADER/Slice_Screen.gdshader" id="31_gckxn"]
 [ext_resource type="Shader" uid="uid://b1v2s56rmwn5o" path="res://SHADER/CRT.gdshader" id="31_m3ab0"]
 
 [sub_resource type="Environment" id="Environment_w5jul"]
@@ -386,29 +386,6 @@ _data = {
 &"RESET": SubResource("Animation_u1gry")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nboss"]
-shader = ExtResource("26_gckxn")
-shader_parameter/same_width_lines_count = 17.2370007712575
-shader_parameter/same_width_change_per_sec = 7.665000360827619
-shader_parameter/glitch_change_per_sec = 2.0000000475
-shader_parameter/threshold = 0.3999999910592
-shader_parameter/strength = 0.0790000037525
-shader_parameter/glitch_blend = 0.8499999810008
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1gyup"]
-shader = ExtResource("27_pav36")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2l4bx"]
-shader = ExtResource("28_m6txe")
-shader_parameter/hit_effect = 1.0
-shader_parameter/shake_intensity = 7.5
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qp1y0"]
-shader = ExtResource("29_gckxn")
-shader_parameter/speed = 10.0
-shader_parameter/amplitude = 0.2
-shader_parameter/power = 8.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c1vkc"]
 shader = ExtResource("31_m3ab0")
 shader_parameter/resolution = Vector2(480, 270)
@@ -417,6 +394,25 @@ shader_parameter/grille_amount = 0.1
 shader_parameter/grille_size = 1.0
 shader_parameter/scan_line_strength = -8.0
 shader_parameter/pixel_strength = -2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1gyup"]
+shader = ExtResource("27_pav36")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nboss"]
+shader = ExtResource("30_vvr5n")
+shader_parameter/pixelation = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2l4bx"]
+shader = ExtResource("28_m6txe")
+shader_parameter/hit_effect = 1.0
+shader_parameter/shake_intensity = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvr5n"]
+shader = ExtResource("31_gckxn")
+shader_parameter/same_width_lines_count = 1.010000000475
+shader_parameter/glitch_change_per_sec = 5.00000023680148
+shader_parameter/threshold = 0.33999999240032
+shader_parameter/strength = 0.0410000019475
 
 [node name="Test_Split_Screen" type="Node2D"]
 script = ExtResource("1_gckxn")
@@ -668,90 +664,6 @@ offset_right = 480.0
 offset_bottom = 270.0
 metadata/_edit_lock_ = true
 
-[node name="Pixelate" type="ColorRect" parent="Frames/Bugs_01"]
-visible = false
-material = SubResource("ShaderMaterial_nboss")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Glitch" type="ColorRect" parent="Frames/Bugs_01"]
-visible = false
-material = SubResource("ShaderMaterial_nboss")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Invert_Colors" type="ColorRect" parent="Frames/Bugs_01"]
-visible = false
-material = SubResource("ShaderMaterial_1gyup")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Shake" type="ColorRect" parent="Frames/Bugs_01"]
-visible = false
-material = SubResource("ShaderMaterial_2l4bx")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Change_Colors" type="ColorRect" parent="Frames/Bugs_01"]
-visible = false
-material = SubResource("ShaderMaterial_qp1y0")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Weird_Pixelate" type="ColorRect" parent="Frames/Bugs_01"]
-visible = false
-material = SubResource("ShaderMaterial_qp1y0")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="BSOD" type="TextureRect" parent="Frames/Bugs_01"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("30_8eerl")
-metadata/_edit_lock_ = true
-
-[node name="Shader" type="ColorRect" parent="Frames/Bugs_01/BSOD"]
-material = SubResource("ShaderMaterial_c1vkc")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
 [node name="Bugs_02" type="Control" parent="Frames"]
 custom_minimum_size = Vector2(480, 270)
 layout_mode = 3
@@ -761,90 +673,6 @@ offset_right = 960.0
 offset_bottom = 270.0
 metadata/_edit_lock_ = true
 
-[node name="Pixelate" type="ColorRect" parent="Frames/Bugs_02"]
-visible = false
-material = SubResource("ShaderMaterial_nboss")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Glitch" type="ColorRect" parent="Frames/Bugs_02"]
-visible = false
-material = SubResource("ShaderMaterial_nboss")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Invert_Colors" type="ColorRect" parent="Frames/Bugs_02"]
-visible = false
-material = SubResource("ShaderMaterial_1gyup")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Shake" type="ColorRect" parent="Frames/Bugs_02"]
-visible = false
-material = SubResource("ShaderMaterial_2l4bx")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Change_Colors" type="ColorRect" parent="Frames/Bugs_02"]
-visible = false
-material = SubResource("ShaderMaterial_qp1y0")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Weird_Pixelate" type="ColorRect" parent="Frames/Bugs_02"]
-visible = false
-material = SubResource("ShaderMaterial_qp1y0")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="BSOD" type="TextureRect" parent="Frames/Bugs_02"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("30_8eerl")
-metadata/_edit_lock_ = true
-
-[node name="Shader" type="ColorRect" parent="Frames/Bugs_02/BSOD"]
-material = SubResource("ShaderMaterial_c1vkc")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
 [node name="Bugs_03" type="Control" parent="Frames"]
 custom_minimum_size = Vector2(480, 270)
 layout_mode = 3
@@ -852,90 +680,6 @@ anchors_preset = 0
 offset_top = 270.0
 offset_right = 480.0
 offset_bottom = 540.0
-metadata/_edit_lock_ = true
-
-[node name="Pixelate" type="ColorRect" parent="Frames/Bugs_03"]
-visible = false
-material = SubResource("ShaderMaterial_nboss")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Glitch" type="ColorRect" parent="Frames/Bugs_03"]
-visible = false
-material = SubResource("ShaderMaterial_nboss")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Invert_Colors" type="ColorRect" parent="Frames/Bugs_03"]
-visible = false
-material = SubResource("ShaderMaterial_1gyup")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Shake" type="ColorRect" parent="Frames/Bugs_03"]
-visible = false
-material = SubResource("ShaderMaterial_2l4bx")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Change_Colors" type="ColorRect" parent="Frames/Bugs_03"]
-visible = false
-material = SubResource("ShaderMaterial_qp1y0")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Weird_Pixelate" type="ColorRect" parent="Frames/Bugs_03"]
-visible = false
-material = SubResource("ShaderMaterial_qp1y0")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="BSOD" type="TextureRect" parent="Frames/Bugs_03"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("30_8eerl")
-metadata/_edit_lock_ = true
-
-[node name="Shader" type="ColorRect" parent="Frames/Bugs_03/BSOD"]
-material = SubResource("ShaderMaterial_c1vkc")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [node name="Bugs_04" type="Control" parent="Frames"]
@@ -948,20 +692,17 @@ offset_right = 960.0
 offset_bottom = 540.0
 metadata/_edit_lock_ = true
 
-[node name="Pixelate" type="ColorRect" parent="Frames/Bugs_04"]
+[node name="BSOD" type="TextureRect" parent="Frames/Bugs_04"]
 visible = false
-material = SubResource("ShaderMaterial_nboss")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+self_modulate = Color(1, 1, 1, 0.5882353)
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+texture = ExtResource("30_8eerl")
 metadata/_edit_lock_ = true
 
-[node name="Glitch" type="ColorRect" parent="Frames/Bugs_04"]
-visible = false
-material = SubResource("ShaderMaterial_nboss")
+[node name="Shader" type="ColorRect" parent="Frames/Bugs_04/BSOD"]
+material = SubResource("ShaderMaterial_c1vkc")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -981,6 +722,17 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
+[node name="Pixelate" type="ColorRect" parent="Frames/Bugs_04"]
+visible = false
+material = SubResource("ShaderMaterial_nboss")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
 [node name="Shake" type="ColorRect" parent="Frames/Bugs_04"]
 visible = false
 material = SubResource("ShaderMaterial_2l4bx")
@@ -992,44 +744,11 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="Change_Colors" type="ColorRect" parent="Frames/Bugs_04"]
-visible = false
-material = SubResource("ShaderMaterial_qp1y0")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Weird_Pixelate" type="ColorRect" parent="Frames/Bugs_04"]
-visible = false
-material = SubResource("ShaderMaterial_qp1y0")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="BSOD" type="TextureRect" parent="Frames/Bugs_04"]
-visible = false
+[node name="Slice_Screen" type="ColorRect" parent="Frames/Bugs_04"]
+material = SubResource("ShaderMaterial_vvr5n")
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("30_8eerl")
-metadata/_edit_lock_ = true
-
-[node name="Shader" type="ColorRect" parent="Frames/Bugs_04/BSOD"]
-material = SubResource("ShaderMaterial_c1vkc")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 480.0
+offset_bottom = 270.0
 metadata/_edit_lock_ = true
 
 [node name="Horizontal" type="Line2D" parent="Frames"]

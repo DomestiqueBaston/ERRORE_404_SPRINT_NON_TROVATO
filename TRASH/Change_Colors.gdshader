@@ -7,7 +7,7 @@ uniform float hue_shift_deg : hint_range(-360.0, 360.0) = 0.0;
 uniform float saturation : hint_range(0.0, 2.0) = 1.0;
 uniform float value : hint_range(0.0, 2.0) = 1.0;
 uniform float alpha : hint_range(0.0, 1.0) = 1.0;
-uniform float hue_speed : hint_range(0.0, 10.0) = 1.0; // Contrôle de la vitesse du changement de teinte
+uniform float hue_speed : hint_range(0.0, 10.0) = 1.0;
 
 vec3 rgb2hsv(vec3 c) {
     vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
@@ -34,8 +34,7 @@ vec3 hsv2rgb(vec3 c) {
 }
 
 void fragment() {
-    // Utilisation de la texture de l'écran sous le ColorRect
-    vec4 col = texture(SCREEN_TEXTURE, SCREEN_UV);  // L'écran en dessous du ColorRect
+    vec4 col = texture(SCREEN_TEXTURE, SCREEN_UV);
     vec3 hsv = rgb2hsv(col.rgb);
 
     // Calcul du décalage de teinte basé sur le temps
