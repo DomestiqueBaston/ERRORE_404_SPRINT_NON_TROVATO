@@ -694,7 +694,7 @@ metadata/_edit_lock_ = true
 
 [node name="BSOD" type="TextureRect" parent="Frames/Bugs_04"]
 visible = false
-self_modulate = Color(1, 1, 1, 0.5882353)
+self_modulate = Color(1, 1, 1, 0.6509804)
 layout_mode = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -745,6 +745,7 @@ grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [node name="Slice_Screen" type="ColorRect" parent="Frames/Bugs_04"]
+visible = false
 material = SubResource("ShaderMaterial_vvr5n")
 layout_mode = 0
 offset_right = 480.0
