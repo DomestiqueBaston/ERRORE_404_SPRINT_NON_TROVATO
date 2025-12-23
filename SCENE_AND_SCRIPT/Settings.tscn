@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://blsopsfjc5gfa"]
+
+[ext_resource type="Texture2D" uid="uid://bd6y4vtfwje86" path="res://IMAGE/MISC/Settings.png" id="2_2k1s1"]
+[ext_resource type="Texture2D" uid="uid://onl3w5l15sxn" path="res://IMAGE/MISC/Settings_Cursor.png" id="2_83noa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aygwu"]
+
+[node name="Settings" type="Node2D"]
+
+[node name="Image" type="Sprite2D" parent="."]
+texture = ExtResource("2_2k1s1")
+centered = false
+
+[node name="HSlider" type="HSlider" parent="."]
+offset_left = 169.0
+offset_top = 397.0
+offset_right = 770.0
+offset_bottom = 513.0
+theme_override_icons/grabber = ExtResource("2_83noa")
+theme_override_icons/grabber_highlight = ExtResource("2_83noa")
+theme_override_icons/grabber_disabled = ExtResource("2_83noa")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_aygwu")
+min_value = 9.0
+max_value = 19.0
+step = 2.0
+value = 13.0
