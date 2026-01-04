@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bt3vbtk36eban"
-path="res://.godot/imported/Univox.otf-5425d4b86e2fef2f202bd95b1498037d.fontdata"
+path="res://.godot/imported/Univox.otf-f1dd69bd1a4aef793b187f6fdf7ba3f9.fontdata"
 
 [deps]
 
-source_file="res://RESOURCE/Univox.otf"
-dest_files=["res://.godot/imported/Univox.otf-5425d4b86e2fef2f202bd95b1498037d.fontdata"]
+source_file="res://TRASH/Univox.otf"
+dest_files=["res://.godot/imported/Univox.otf-f1dd69bd1a4aef793b187f6fdf7ba3f9.fontdata"]
 
 [params]
 
