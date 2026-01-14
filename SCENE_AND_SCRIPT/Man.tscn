@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://nr37tg36a6ub" path="res://SOUND/FX/RUNNER/Both_Feet_Falling.ogg" id="8_3m3ft"]
 [ext_resource type="AudioStream" uid="uid://b3b1gr4l221h6" path="res://SOUND/FX/RUNNER/Woman_Ouch.ogg" id="9_60cqj"]
 [ext_resource type="AudioStream" uid="uid://bom677o0xms5i" path="res://SOUND/FX/Disappearing.ogg" id="10_2ei40"]
-[ext_resource type="AudioStream" uid="uid://cw1ssokaxtru1" path="res://SOUND/FX/RUNNER/Woman_Falling.ogg" id="11_qdi7g"]
+[ext_resource type="AudioStream" uid="uid://ck08fhxboj0hd" path="res://SOUND/FX/RUNNER/Man_Falling.ogg" id="11_whayo"]
 [ext_resource type="AudioStream" uid="uid://06kaf7akc8r3" path="res://SOUND/FX/RUNNER/Foot_Step_01.ogg" id="12_dj5oa"]
 [ext_resource type="AudioStream" uid="uid://cns80ks0bg3jv" path="res://SOUND/FX/RUNNER/Foot_Step_02.ogg" id="13_rhtc6"]
 [ext_resource type="AudioStream" uid="uid://wm0mpe0ypbad" path="res://SOUND/FX/RUNNER/Woman_Pushing.ogg" id="14_m7u3m"]
@@ -111,7 +111,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Woman_Sound/Fall_Death")
+tracks/5/path = NodePath("../Man_Sound/Fall_Death")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -134,7 +134,7 @@ tracks/5/use_blend = true
 tracks/6/type = "audio"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Woman_Sound/Ouch")
+tracks/6/path = NodePath("../Man_Sound/Ouch")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -273,7 +273,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Woman_Sound/Fall_Death")
+tracks/5/path = NodePath("../Man_Sound/Fall_Death")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -296,7 +296,7 @@ tracks/5/use_blend = true
 tracks/6/type = "audio"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Woman_Sound/Ouch")
+tracks/6/path = NodePath("../Man_Sound/Ouch")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -379,10 +379,10 @@ tracks/0/path = NodePath("Papa_Sprite/Runner_Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.40000004, 0.43333337, 0.4666667, 0.5, 0.53333336, 0.5666667, 0.6, 0.6333334, 0.6666667, 0.70000005),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.40000004, 0.43333337, 0.4666667, 0.5, 0.53333336, 0.5666667, 0.6, 0.6333334, 0.6666667, 0.70000005, 0.73333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200]
+"values": [186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -394,7 +394,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.36666667, 0.5, 0.73333335),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-32, 0), Vector2(-54, 0), Vector2(-69, 10), Vector2(-90, 60), Vector2(-112, 150)]
+"values": [Vector2(0, 0), Vector2(-32, 0), Vector2(-54, 4), Vector2(-69, 10), Vector2(-90, 60), Vector2(-112, 160)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -411,7 +411,7 @@ tracks/2/keys = {
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Woman_Sound/Disappearing")
+tracks/3/path = NodePath("../Man_Sound/Disappearing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -438,14 +438,14 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Woman_Sound/Falling")
+tracks/5/path = NodePath("../Man_Sound/Falling")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("11_qdi7g")
+"stream": ExtResource("11_whayo")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -525,7 +525,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("../Woman_Sound/Falling:volume_db")
+tracks/12/path = NodePath("../Man_Sound/Falling:volume_db")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -545,10 +545,10 @@ tracks/0/path = NodePath("Papa_Sprite/Runner_Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.40000004, 0.43333337, 0.4666667, 0.5, 0.53333336, 0.5666667, 0.6, 0.6333334, 0.6666667, 0.70000005),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.40000004, 0.43333337, 0.4666667, 0.5, 0.53333336, 0.5666667, 0.6, 0.6333334, 0.6666667, 0.70000005, 0.73333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222]
+"values": [209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -560,7 +560,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.36666667, 0.5, 0.73333335),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(32, 0), Vector2(54, 0), Vector2(69, 10), Vector2(90, 60), Vector2(112, 150)]
+"values": [Vector2(0, 0), Vector2(32, 0), Vector2(54, 4), Vector2(69, 10), Vector2(90, 60), Vector2(112, 160)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -577,7 +577,7 @@ tracks/2/keys = {
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Woman_Sound/Disappearing")
+tracks/3/path = NodePath("../Man_Sound/Disappearing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -604,14 +604,14 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Woman_Sound/Falling")
+tracks/5/path = NodePath("../Man_Sound/Falling")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("11_qdi7g")
+"stream": ExtResource("11_whayo")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -691,7 +691,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("../Woman_Sound/Falling:volume_db")
+tracks/12/path = NodePath("../Man_Sound/Falling:volume_db")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -892,7 +892,7 @@ tracks/6/keys = {
 tracks/7/type = "audio"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../Woman_Sound/Foot_Step")
+tracks/7/path = NodePath("../Man_Sound/Foot_Step")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -911,7 +911,7 @@ tracks/7/use_blend = true
 tracks/8/type = "audio"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../Woman_Sound/Pushing")
+tracks/8/path = NodePath("../Man_Sound/Pushing")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -1074,7 +1074,7 @@ tracks/6/keys = {
 tracks/7/type = "audio"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../Woman_Sound/Foot_Step")
+tracks/7/path = NodePath("../Man_Sound/Foot_Step")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1093,7 +1093,7 @@ tracks/7/use_blend = true
 tracks/8/type = "audio"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../Woman_Sound/Pushing")
+tracks/8/path = NodePath("../Man_Sound/Pushing")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -1339,7 +1339,7 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("../Woman_Sound/Falling:volume_db")
+tracks/14/path = NodePath("../Man_Sound/Falling:volume_db")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -1392,7 +1392,7 @@ tracks/2/keys = {
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Woman_Sound/Foot_Step")
+tracks/3/path = NodePath("../Man_Sound/Foot_Step")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1447,7 +1447,7 @@ tracks/6/keys = {
 tracks/7/type = "audio"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../Woman_Sound/Running")
+tracks/7/path = NodePath("../Man_Sound/Running")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1575,7 +1575,7 @@ tracks/2/keys = {
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Woman_Sound/Foot_Step")
+tracks/3/path = NodePath("../Man_Sound/Foot_Step")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1630,7 +1630,7 @@ tracks/6/keys = {
 tracks/7/type = "audio"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../Woman_Sound/Running")
+tracks/7/path = NodePath("../Man_Sound/Running")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1781,7 +1781,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Woman_Sound/Sliding")
+tracks/5/path = NodePath("../Man_Sound/Sliding")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1920,7 +1920,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Woman_Sound/Sliding")
+tracks/5/path = NodePath("../Man_Sound/Sliding")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -2376,7 +2376,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Woman_Sound/Glitch_Sound")
+tracks/5/path = NodePath("../Man_Sound/Glitch_Sound")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -2558,7 +2558,7 @@ _data = {
 &"RESET": SubResource("Animation_hq7h1")
 }
 
-[node name="Woman" type="Node2D"]
+[node name="Man" type="Node2D"]
 
 [node name="Character" type="Node2D" parent="."]
 script = ExtResource("1_whayo")
@@ -2570,7 +2570,7 @@ material = SubResource("ShaderMaterial_gcyqs")
 texture = ExtResource("3_whayo")
 offset = Vector2(-5, -44)
 hframes = 36
-vframes = 6
+vframes = 7
 frame = 36
 
 [node name="Papa_Shadow" type="Node2D" parent="Character/Papa_Sprite/Runner_Sprite"]
@@ -2610,42 +2610,42 @@ libraries = {
 &"": SubResource("AnimationLibrary_w02lc")
 }
 
-[node name="Woman_Sound" type="Node2D" parent="."]
+[node name="Man_Sound" type="Node2D" parent="."]
 visible = false
 
-[node name="Foot_Step" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Foot_Step" type="AudioStreamPlayer" parent="Man_Sound"]
 volume_db = -2.5
 pitch_scale = 0.5
 bus = &"FX_DRY"
 
-[node name="Glitch_Sound" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Glitch_Sound" type="AudioStreamPlayer" parent="Man_Sound"]
 volume_db = -15.0
 bus = &"FX_DRY"
 
-[node name="Disappearing" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Disappearing" type="AudioStreamPlayer" parent="Man_Sound"]
 volume_db = -2.5
 bus = &"FX_DRY"
 
-[node name="Falling" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Falling" type="AudioStreamPlayer" parent="Man_Sound"]
 volume_db = -5.0
 bus = &"FX_DRY"
 
-[node name="Running" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Running" type="AudioStreamPlayer" parent="Man_Sound"]
 volume_db = -10.0
 bus = &"FX_DRY"
 
-[node name="Fall_Death" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Fall_Death" type="AudioStreamPlayer" parent="Man_Sound"]
 volume_db = -10.0
 bus = &"FX_DRY"
 
-[node name="Ouch" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Ouch" type="AudioStreamPlayer" parent="Man_Sound"]
 volume_db = -12.5
 bus = &"FX_DRY"
 
-[node name="Pushing" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Pushing" type="AudioStreamPlayer" parent="Man_Sound"]
 volume_db = -5.0
 bus = &"FX_DRY"
 
-[node name="Sliding" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Sliding" type="AudioStreamPlayer" parent="Man_Sound"]
 volume_db = -12.5
 bus = &"FX_DRY"
