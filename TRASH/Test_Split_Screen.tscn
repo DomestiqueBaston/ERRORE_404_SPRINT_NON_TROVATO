@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://b4tyo3c6o6kyu"]
+[gd_scene load_steps=53 format=3 uid="uid://b4tyo3c6o6kyu"]
 
 [ext_resource type="Script" uid="uid://jda3iip3f7fn" path="res://TRASH/Test_Split_Screen.gd" id="1_dfnej"]
 [ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="2_bawwu"]
@@ -31,6 +31,7 @@
 [ext_resource type="Shader" uid="uid://dlwdh275codsc" path="res://TRASH/Change_Colors.gdshader" id="28_myj71"]
 [ext_resource type="Shader" uid="uid://b1v2s56rmwn5o" path="res://SHADER/CRT.gdshader" id="29_c1vkc"]
 [ext_resource type="Texture2D" uid="uid://bg8x247cwwks8" path="res://IMAGE/MISC/BSOD.png" id="30_1gyup"]
+[ext_resource type="PackedScene" uid="uid://b8w781xxm53mf" path="res://SCENE_AND_SCRIPT/Info_Overlay.tscn" id="32_nkbw3"]
 
 [sub_resource type="Environment" id="Environment_w5jul"]
 background_mode = 3
@@ -955,7 +956,16 @@ width = 2.0
 default_color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
+[node name="Info_Overlay" parent="Frames" instance=ExtResource("32_nkbw3")]
+
+[node name="Info_Replay_Game" parent="Frames/Info_Overlay" index="0"]
+visible = true
+
+[node name="Info_Player_Number" parent="Frames/Info_Overlay" index="1"]
+visible = false
+
 [editable path="Runners/Top_Runners/Left_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Top_Runners/Right_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport/Runner"]
+[editable path="Frames/Info_Overlay"]
