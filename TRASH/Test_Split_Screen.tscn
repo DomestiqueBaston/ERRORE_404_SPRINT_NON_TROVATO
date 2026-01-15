@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://b4tyo3c6o6kyu"]
+[gd_scene load_steps=58 format=3 uid="uid://b4tyo3c6o6kyu"]
 
 [ext_resource type="Script" uid="uid://jda3iip3f7fn" path="res://TRASH/Test_Split_Screen.gd" id="1_dfnej"]
 [ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="2_bawwu"]
@@ -31,6 +31,7 @@
 [ext_resource type="Shader" uid="uid://dlwdh275codsc" path="res://TRASH/Change_Colors.gdshader" id="28_myj71"]
 [ext_resource type="Shader" uid="uid://b1v2s56rmwn5o" path="res://SHADER/CRT.gdshader" id="29_c1vkc"]
 [ext_resource type="Texture2D" uid="uid://bg8x247cwwks8" path="res://IMAGE/MISC/BSOD.png" id="30_1gyup"]
+[ext_resource type="Shader" uid="uid://b16r7qsrxeft" path="res://SHADER/White_Rectangles.gdshader" id="32_eou1j"]
 [ext_resource type="PackedScene" uid="uid://b8w781xxm53mf" path="res://SCENE_AND_SCRIPT/Info_Overlay.tscn" id="32_nkbw3"]
 
 [sub_resource type="Environment" id="Environment_w5jul"]
@@ -416,6 +417,42 @@ shader_parameter/grille_size = 1.0
 shader_parameter/scan_line_strength = -8.0
 shader_parameter/pixel_strength = -2.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eou1j"]
+shader = ExtResource("32_eou1j")
+shader_parameter/density = 1.0
+shader_parameter/min_size = 0.01
+shader_parameter/max_size = 0.5
+shader_parameter/min_life = 1.0
+shader_parameter/max_life = 3.0
+shader_parameter/rectangle_count = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lx2en"]
+shader = ExtResource("32_eou1j")
+shader_parameter/density = 1.0
+shader_parameter/min_size = 0.01
+shader_parameter/max_size = 0.5
+shader_parameter/min_life = 1.0
+shader_parameter/max_life = 3.0
+shader_parameter/rectangle_count = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tsfvn"]
+shader = ExtResource("32_eou1j")
+shader_parameter/density = 1.0
+shader_parameter/min_size = 0.01
+shader_parameter/max_size = 0.5
+shader_parameter/min_life = 1.0
+shader_parameter/max_life = 3.0
+shader_parameter/rectangle_count = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ilduf"]
+shader = ExtResource("32_eou1j")
+shader_parameter/density = 1.0
+shader_parameter/min_size = 0.01
+shader_parameter/max_size = 0.5
+shader_parameter/min_life = 1.0
+shader_parameter/max_life = 3.0
+shader_parameter/rectangle_count = 5.0
+
 [node name="Test_Split_Screen" type="Node2D"]
 script = ExtResource("1_dfnej")
 metadata/_edit_lock_ = true
@@ -728,6 +765,13 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
+[node name="White_Glitches" type="ColorRect" parent="Frames/Bugs_01"]
+material = SubResource("ShaderMaterial_eou1j")
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_lock_ = true
+
 [node name="Bugs_02" type="Control" parent="Frames"]
 custom_minimum_size = Vector2(480, 270)
 layout_mode = 3
@@ -799,6 +843,13 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
+[node name="White_Glitches" type="ColorRect" parent="Frames/Bugs_02"]
+material = SubResource("ShaderMaterial_lx2en")
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_lock_ = true
+
 [node name="Bugs_03" type="Control" parent="Frames"]
 custom_minimum_size = Vector2(480, 270)
 layout_mode = 3
@@ -868,6 +919,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="White_Glitches" type="ColorRect" parent="Frames/Bugs_03"]
+material = SubResource("ShaderMaterial_tsfvn")
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
 metadata/_edit_lock_ = true
 
 [node name="Bugs_04" type="Control" parent="Frames"]
@@ -942,6 +1000,13 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
+[node name="White_Glitches" type="ColorRect" parent="Frames/Bugs_04"]
+material = SubResource("ShaderMaterial_ilduf")
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_lock_ = true
+
 [node name="Horizontal" type="Line2D" parent="Frames"]
 position = Vector2(0, 270)
 points = PackedVector2Array(0, 0, 960, 0)
@@ -957,12 +1022,6 @@ default_color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="Info_Overlay" parent="Frames" instance=ExtResource("32_nkbw3")]
-
-[node name="Info_Replay_Game" parent="Frames/Info_Overlay" index="0"]
-visible = true
-
-[node name="Info_Player_Number" parent="Frames/Info_Overlay" index="1"]
-visible = false
 
 [editable path="Runners/Top_Runners/Left_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Top_Runners/Right_Runner/Runner_SubViewport/Runner"]

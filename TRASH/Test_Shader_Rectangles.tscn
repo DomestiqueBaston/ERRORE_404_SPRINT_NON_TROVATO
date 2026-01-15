@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://xi26qdm8cnga"]
+
+[ext_resource type="Texture2D" uid="uid://brl52e8ox1ue8" path="res://IMAGE/RUNNER/Shadow.png" id="1_1k2qr"]
+[ext_resource type="Shader" uid="uid://b16r7qsrxeft" path="res://SHADER/White_Rectangles.gdshader" id="2_5v32w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5v32w"]
+shader = ExtResource("2_5v32w")
+shader_parameter/density = 1.0
+shader_parameter/min_size = 0.035000000963979996
+shader_parameter/max_size = 0.92000004044012
+shader_parameter/min_life = 0.10000000149012
+shader_parameter/max_life = 2.0
+shader_parameter/rectangle_count = 5.00000019
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(473.49994, 254)
+scale = Vector2(35.074997, 32.5)
+texture = ExtResource("1_1k2qr")
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_5v32w")
+offset_right = 960.0
+offset_bottom = 540.0
+metadata/_edit_lock_ = true
