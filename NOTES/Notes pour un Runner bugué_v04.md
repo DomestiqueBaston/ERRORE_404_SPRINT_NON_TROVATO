@@ -29,25 +29,25 @@ Ils tracent un mur temporaire derrière eux (s’efface au fur et à mesure apr�
 Le but du jeu est ici de tenir le plus longtemps possible et être le dernier survivant ou éventuellement être le premier à atteindre la sortie qui se manifestera aléatoirement au bout d’un certain temps.
 
 Un runner bugué :
-	1. Téléportation
-	2. Joueur « hors phase » (shader) ✔ 
-	3. Décors ou cellules de décor « hors phase » (shader) ✔ (bonus/malus?)
-	4. Plus aucune musique/bug de la musique
-	5. Plus aucun bruitages/bug des bruitages
-	6. Son chiant permanent /?\ 
-	7. Le jeu prend le contrôle du joueur et donne le sien au joueur
-	8. Des éléments de décor disparaissent/apparaissent
+    1. Téléportation
+    2. Joueur « hors phase » (shader) ✔ 
+    3. Décors ou cellules de décor « hors phase » (shader) ✔ (bonus/malus?)
+    4. Plus aucune musique/bug de la musique
+    5. Plus aucun bruitages/bug des bruitages
+    6. Son chiant permanent /?\ 
+    7. Le jeu prend le contrôle du joueur et donne le sien au joueur
+    8. Des éléments de décor disparaissent/apparaissent
 
 Des bugs (graphiques) qui font vraiment bug et pas « le jeu essaye de gêner le joueur » :
-	9. Les sprites se mélangent (?) (changer des frames d’animation à la volée dans les cycles de course)
-	10. Les textures de sol clignotent/changent
-	11. La palette de couleurs change ✔ 
-	12. Des artefacts graphiques (oui, et ?)
-	13. Des glitches sonores (oui, et ?)
-	14. L’image globale se décale dans la vue du joueur (la caméra se décentre du joueur)
-	15. La caméra vibre ✔
-	16. Des éléments de décors changent de position /?\ 
-	17. Des messages d’erreur ou des barres de chargement (ou autres) apparaissent masquant une partie de l'écran
+    9. Les sprites se mélangent (?) (changer des frames d’animation à la volée dans les cycles de course)
+    10. Les textures de sol clignotent/changent
+    11. La palette de couleurs change ✔ 
+    12. Des artefacts graphiques (oui, et ?)
+    13. Des glitches sonores (oui, et ?)
+    14. L’image globale se décale dans la vue du joueur (la caméra se décentre du joueur)
+    15. La caméra vibre ✔
+    16. Des éléments de décors changent de position /?\ 
+    17. Des messages d’erreur ou des barres de chargement (ou autres) apparaissent masquant une partie de l'écran
     18. L’écran clignote /?\ 
     19. « BSOD » d’1/2 seconde ✔ 
     20. Couleurs inversées ✔ 
@@ -107,8 +107,8 @@ Comportements face aux obstacles :
 
 Comportements face aux Bonus/malus – Part 1 :
 
-	1. Agressif : Fonce sur les bonus. S’il est "mineur", il s'en débarrasse immédiatement, sinon il le garde pour plus tard ou pour empêcher un autre joueur de le prendre.
-	2. Aléatoire : Utilise n'importe quand ses bonus/malus sans logique.
+    1. Agressif : Fonce sur les bonus. S’il est "mineur", il s'en débarrasse immédiatement, sinon il le garde pour plus tard ou pour empêcher un autre joueur de le prendre.
+    2. Aléatoire : Utilise n'importe quand ses bonus/malus sans logique.
     3. Prudent : Évite les bonus/malus autant que possible car il a peur des malus.
 Comportements face aux Bonus/Malus – Part 2 :
 
@@ -125,39 +125,39 @@ Comportements face aux bugs du jeu (continuer tout droit, tourner ou utiliser u
 Une autre vue de la chose décomposée plus simplement ou à ajouter… :
 
 Tout d’abord, chaque bot doit avoir pour priorité d'éviter la mort sur la prochaine case. Cela signifie :
-	• Si une case est un adversaire, un mur, un obstacle ou un vide → éviter (changement de direction, ou d’action comme glisser ou sauter).
-	1. Casse-coup : +50% chance de foncer sur un bonus/malus
-	2. Prudent : tend à garder les bonus > 8 sec avant usage
-	3. Saboteur : priorise les cibles adverses avec les bonus/malus actifs
-	4. Couard : fuit si ≥2 joueurs ou ≥2 murs adverses dans rayon de 2 cases 
-	5. Bloqueur : essaie de croiser la trajectoire d’un humain quand il est devant 
-	6. Cupide : dévie de ≥2 cases pour ramasser un bonus connu positif 
-	7. Nettoyeur : utilise immédiatement Débogueur dès qu’un bug actif le gêne (s’il a le bonus)
-	8. Flambeur : 33% chance d’utiliser un bonus/malus aléatoire toutes les 5 sec (s’il a un bonus/malus)
-	9. Trouillard : préfère la direction qui a le moins de murs adversaires restants 
-	10. Crétin : 20% chance de ne pas éviter un danger
-	11. Anticipateur : anticipe 1 case plus loin pour tourner
-	12. Survireur : change de direction toutes les 4-8 sec même si chemin libre 
-	13. Appel des bords : préfère longer les murs/rebords plutôt que centre 
-	14. Fonceur : utilise Dash ou Slide en priorité s’il le peut, au lieu de tourner 
-	15. Troll : 25% chance de garder un malus visible juste pour bloquer les autres
-	16. Chasseur : si un humain est à ≤3 cases devant, le suit (ignore un peu les bonus)
-	17. Lâche : si sa vie/visibilité est menacée par un bug visuel, tourne immédiatement à 90° quel que soit le chemin 
-	18. Lâche : si sa vie/visibilité est menacée par un bug visuel, tourne immédiatement à 90° quel que soit le chemin 
-	19. Lâche : si sa vie/visibilité est menacée par un bug visuel, tourne immédiatement à 90° quel que soit le chemin
-	20. Frimeur : utilise un bonus actif dès qu’un humain le regarde (est dans rayon 4 cases) 
-	21. Kamikaze : si coincé (aucun move safe), 50% chance d’utiliser un Dash/Saut/Teleport même si ça le tue probablement 
-	22. Suicidaire passif : 10% chance par seconde de ne RIEN faire (continue tout droit même si danger imminent) 
-	23. Économe : n’utilise jamais un bonus actif s’il a une piste sûre devant 
-	24. Vengeur : si un adversaire vient de lui envoyer un malus, priorise immédiatement un retour à l’envoyeur (Virus/Sabotage) 
-	25. Glouton : ramasse TOUT ce qui est sur sa case actuelle, même si c’est un malus évident 
-	26. Danseur : toutes les 6-10 sec, fait volontairement une glissade ou un saut décoratif même si inutile
-	27. Radar : augmente de +1 case son anticipation quand un humain est dans un rayon de 5 cases
-	28. Peur du vide : refuse toute direction où la case suivante est un trou (même si c’était safe avant)
-	29. Aimant à bugs : +30 % chance de déclencher un bug global quand il ramasse un item
-	30. Psychopathe : si un humain est exactement aligné (même ligne/colonne), fonce tout droit dessus
-	31. Parano : change de direction dès qu’un autre coureur entre dans un rayon de 3 cases
-	32. Sprinter tardif : n’utilise Dash/Slide que quand il reste <3 cases safe devant lui
+    • Si une case est un adversaire, un mur, un obstacle ou un vide → éviter (changement de direction, ou d’action comme glisser ou sauter).
+    1. Casse-coup : +50% chance de foncer sur un bonus/malus
+    2. Prudent : tend à garder les bonus > 8 sec avant usage
+    3. Saboteur : priorise les cibles adverses avec les bonus/malus actifs
+    4. Couard : fuit si ≥2 joueurs ou ≥2 murs adverses dans rayon de 2 cases 
+    5. Bloqueur : essaie de croiser la trajectoire d’un humain quand il est devant 
+    6. Cupide : dévie de ≥2 cases pour ramasser un bonus connu positif 
+    7. Nettoyeur : utilise immédiatement Débogueur dès qu’un bug actif le gêne (s’il a le bonus)
+    8. Flambeur : 33% chance d’utiliser un bonus/malus aléatoire toutes les 5 sec (s’il a un bonus/malus)
+    9. Trouillard : préfère la direction qui a le moins de murs adversaires restants 
+    10. Crétin : 20% chance de ne pas éviter un danger
+    11. Anticipateur : anticipe 1 case plus loin pour tourner
+    12. Survireur : change de direction toutes les 4-8 sec même si chemin libre 
+    13. Appel des bords : préfère longer les murs/rebords plutôt que centre 
+    14. Fonceur : utilise Dash ou Slide en priorité s’il le peut, au lieu de tourner 
+    15. Troll : 25% chance de garder un malus visible juste pour bloquer les autres
+    16. Chasseur : si un humain est à ≤3 cases devant, le suit (ignore un peu les bonus)
+    17. Lâche : si sa vie/visibilité est menacée par un bug visuel, tourne immédiatement à 90° quel que soit le chemin 
+    18. Lâche : si sa vie/visibilité est menacée par un bug visuel, tourne immédiatement à 90° quel que soit le chemin 
+    19. Lâche : si sa vie/visibilité est menacée par un bug visuel, tourne immédiatement à 90° quel que soit le chemin
+    20. Frimeur : utilise un bonus actif dès qu’un humain le regarde (est dans rayon 4 cases) 
+    21. Kamikaze : si coincé (aucun move safe), 50% chance d’utiliser un Dash/Saut/Teleport même si ça le tue probablement 
+    22. Suicidaire passif : 10% chance par seconde de ne RIEN faire (continue tout droit même si danger imminent) 
+    23. Économe : n’utilise jamais un bonus actif s’il a une piste sûre devant 
+    24. Vengeur : si un adversaire vient de lui envoyer un malus, priorise immédiatement un retour à l’envoyeur (Virus/Sabotage) 
+    25. Glouton : ramasse TOUT ce qui est sur sa case actuelle, même si c’est un malus évident 
+    26. Danseur : toutes les 6-10 sec, fait volontairement une glissade ou un saut décoratif même si inutile
+    27. Radar : augmente de +1 case son anticipation quand un humain est dans un rayon de 5 cases
+    28. Peur du vide : refuse toute direction où la case suivante est un trou (même si c’était safe avant)
+    29. Aimant à bugs : +30 % chance de déclencher un bug global quand il ramasse un item
+    30. Psychopathe : si un humain est exactement aligné (même ligne/colonne), fonce tout droit dessus
+    31. Parano : change de direction dès qu’un autre coureur entre dans un rayon de 3 cases
+    32. Sprinter tardif : n’utilise Dash/Slide que quand il reste <3 cases safe devant lui
 
 Notes de fabrication :
 

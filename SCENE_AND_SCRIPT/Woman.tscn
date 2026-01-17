@@ -2585,6 +2585,7 @@ texture = ExtResource("5_1s22q")
 offset = Vector2(7, 0)
 
 [node name="Collider_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite"]
+visible = false
 
 [node name="Collider" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Collider_Area"]
 rotation = -1.0471976

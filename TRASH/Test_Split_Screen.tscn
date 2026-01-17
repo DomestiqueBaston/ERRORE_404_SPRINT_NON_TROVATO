@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://b4tyo3c6o6kyu"]
+[gd_scene load_steps=59 format=3 uid="uid://b4tyo3c6o6kyu"]
 
 [ext_resource type="Script" uid="uid://jda3iip3f7fn" path="res://TRASH/Test_Split_Screen.gd" id="1_dfnej"]
 [ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="2_bawwu"]
@@ -29,9 +29,9 @@
 [ext_resource type="Shader" uid="uid://cw8pro7ug7hfy" path="res://SHADER/Shake.gdshader" id="27_5t0h1"]
 [ext_resource type="Shader" uid="uid://djvm4hdir6bn0" path="res://SHADER/Invert_Colors.gdshader" id="27_myj71"]
 [ext_resource type="Shader" uid="uid://dlwdh275codsc" path="res://TRASH/Change_Colors.gdshader" id="28_myj71"]
-[ext_resource type="Shader" uid="uid://b1v2s56rmwn5o" path="res://SHADER/CRT.gdshader" id="29_c1vkc"]
-[ext_resource type="Texture2D" uid="uid://bg8x247cwwks8" path="res://IMAGE/MISC/BSOD.png" id="30_1gyup"]
-[ext_resource type="PackedScene" uid="uid://b8w781xxm53mf" path="res://SCENE_AND_SCRIPT/Info_Overlay.tscn" id="32_nkbw3"]
+[ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="31_nkbw3"]
+[ext_resource type="Shader" uid="uid://b16r7qsrxeft" path="res://SHADER/White_Rectangles.gdshader" id="32_eou1j"]
+[ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep.ogg" id="32_lx2en"]
 
 [sub_resource type="Environment" id="Environment_w5jul"]
 background_mode = 3
@@ -407,382 +407,90 @@ shader_parameter/value = 1.0000000475
 shader_parameter/alpha = 1.0
 shader_parameter/hue_speed = 5.0000002375
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c1vkc"]
-shader = ExtResource("29_c1vkc")
-shader_parameter/resolution = Vector2(480, 270)
-shader_parameter/scan_line_amount = 1.0
-shader_parameter/grille_amount = 0.1
-shader_parameter/grille_size = 1.0
-shader_parameter/scan_line_strength = -8.0
-shader_parameter/pixel_strength = -2.0
-
-[sub_resource type="Shader" id="Shader_nkbw3"]
-code = "shader_type canvas_item;
-
-// Paramètres ajustables
-uniform float density : hint_range(0.1, 1.0) = 1.0;  // Opacité globale
-uniform float min_size : hint_range(0.01, 0.05) = 0.01;  // Taille minimale
-uniform float max_size : hint_range(0.1, 2.0) = 0.5;  // Taille maximale
-uniform float min_life : hint_range(0.1, 4.0) = 1.0;  // Durée de vie minimale (secondes)
-uniform float max_life : hint_range(0.5, 10.0) = 3.0;  // Durée de vie maximale (secondes)
-uniform float rectangle_count : hint_range(1.0, 50.0) = 5.0;  // Nombre de rectangles
-
-// Fonction de hash pour l'aléatoire
-float hash(vec2 p) {
-    return fract(1e4 * sin(17.0 * p.x + p.y * 0.1) * (0.1 + abs(sin(p.y * 13.0 + p.x))));
-}
-
-// Calcul de la luminance d'une couleur RGB
-float luminance(vec3 color) {
-    return 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
-}
-
-void fragment() {
-    vec2 uv = UV;
-    float time = TIME;
-    vec3 final_color = vec3(0.0);
-    float final_alpha = 0.0;
-
-    // Pour chaque rectangle, on le dessine de manière aléatoire
-    for (float i = 0.0; i < rectangle_count; i++) {
-        // Calculer un identifiant unique pour chaque rectangle
-        vec2 id = vec2(i, time);  // Utilisation de 'i' et 'time' pour obtenir une valeur différente par rectangle
-
-        // Position aléatoire pour chaque rectangle
-        vec2 pos = vec2(hash(id + 1.0), hash(id + 2.0));  // Position aléatoire en UV
-        
-        // Taille aléatoire pour chaque rectangle
-        float size = mix(min_size, max_size, hash(id + 3.0));  // Taille aléatoire entre min_size et max_size
-
-        // Dessine le rectangle (bords nets)
-        bool inside_x = (uv.x >= pos.x) && (uv.x < pos.x + size);
-        bool inside_y = (uv.y >= pos.y) && (uv.y < pos.y + size);
-        float rect = inside_x && inside_y ? 1.0 : 0.0;
-
-        // Durée de vie aléatoire entre min_life et max_life
-        float life_start = hash(id + 4.0) * 100.0;
-        float life_duration = mix(min_life, max_life, hash(id + 5.0));
-        float life_time = time - life_start;
-        float is_visible = step(0.0, life_time) * step(life_time, life_duration);
-
-        // Calcul de l'Overlay
-        vec3 background = texture(TEXTURE, uv).rgb;  // Récupère la couleur de l'arrière-plan
-        vec3 overlay_color = vec3(1.0);  // La couleur du rectangle est toujours blanche
-
-        // Calcul de la luminance de l'arrière-plan
-        float bg_luminance = luminance(background);
-
-        // Applique la logique Overlay
-        vec3 blended_color;
-        if (bg_luminance < 0.5) {
-            // Si l'arrière-plan est sombre, on éclaircit
-            blended_color = 2.0 * overlay_color * background;
-        } else {
-            // Si l'arrière-plan est clair, on assombrit
-            blended_color = 1.0 - 2.0 * (1.0 - background) * (1.0 - overlay_color);
-        }
-
-        // Applique la couleur du rectangle en mode Overlay
-        float alpha = rect * is_visible;
-        
-        // On additionne l'alpha et la couleur du rectangle pour tous les rectangles
-        if (alpha > 0.0) {
-            final_color += blended_color * alpha;  // Ajoute la couleur du rectangle à la couleur finale
-            final_alpha += alpha;  // Ajoute l'alpha à l'alpha total
-        }
-    }
-
-    // Normalise l'alpha pour éviter des valeurs trop fortes
-    final_alpha = min(final_alpha, 1.0);
-    COLOR.rgb = final_color;
-    COLOR.a = final_alpha * density;
-}
-"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eou1j"]
-shader = SubResource("Shader_nkbw3")
-shader_parameter/density = 1.0
-shader_parameter/min_size = 0.01
-shader_parameter/max_size = 0.5
-shader_parameter/min_life = 1.0
-shader_parameter/max_life = 3.0
-shader_parameter/rectangle_count = 5.0
-
-[sub_resource type="Shader" id="Shader_eou1j"]
-code = "shader_type canvas_item;
-
-// Paramètres ajustables
-uniform float density : hint_range(0.1, 1.0) = 1.0;  // Opacité globale
-uniform float min_size : hint_range(0.01, 0.05) = 0.01;  // Taille minimale
-uniform float max_size : hint_range(0.1, 2.0) = 0.5;  // Taille maximale
-uniform float min_life : hint_range(0.1, 4.0) = 1.0;  // Durée de vie minimale (secondes)
-uniform float max_life : hint_range(0.5, 10.0) = 3.0;  // Durée de vie maximale (secondes)
-uniform float rectangle_count : hint_range(1.0, 50.0) = 5.0;  // Nombre de rectangles
-
-// Fonction de hash pour l'aléatoire
-float hash(vec2 p) {
-    return fract(1e4 * sin(17.0 * p.x + p.y * 0.1) * (0.1 + abs(sin(p.y * 13.0 + p.x))));
-}
-
-// Calcul de la luminance d'une couleur RGB
-float luminance(vec3 color) {
-    return 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
-}
-
-void fragment() {
-    vec2 uv = UV;
-    float time = TIME;
-    vec3 final_color = vec3(0.0);
-    float final_alpha = 0.0;
-
-    // Pour chaque rectangle, on le dessine de manière aléatoire
-    for (float i = 0.0; i < rectangle_count; i++) {
-        // Calculer un identifiant unique pour chaque rectangle
-        vec2 id = vec2(i, time);  // Utilisation de 'i' et 'time' pour obtenir une valeur différente par rectangle
-
-        // Position aléatoire pour chaque rectangle
-        vec2 pos = vec2(hash(id + 1.0), hash(id + 2.0));  // Position aléatoire en UV
-        
-        // Taille aléatoire pour chaque rectangle
-        float size = mix(min_size, max_size, hash(id + 3.0));  // Taille aléatoire entre min_size et max_size
-
-        // Dessine le rectangle (bords nets)
-        bool inside_x = (uv.x >= pos.x) && (uv.x < pos.x + size);
-        bool inside_y = (uv.y >= pos.y) && (uv.y < pos.y + size);
-        float rect = inside_x && inside_y ? 1.0 : 0.0;
-
-        // Durée de vie aléatoire entre min_life et max_life
-        float life_start = hash(id + 4.0) * 100.0;
-        float life_duration = mix(min_life, max_life, hash(id + 5.0));
-        float life_time = time - life_start;
-        float is_visible = step(0.0, life_time) * step(life_time, life_duration);
-
-        // Calcul de l'Overlay
-        vec3 background = texture(TEXTURE, uv).rgb;  // Récupère la couleur de l'arrière-plan
-        vec3 overlay_color = vec3(1.0);  // La couleur du rectangle est toujours blanche
-
-        // Calcul de la luminance de l'arrière-plan
-        float bg_luminance = luminance(background);
-
-        // Applique la logique Overlay
-        vec3 blended_color;
-        if (bg_luminance < 0.5) {
-            // Si l'arrière-plan est sombre, on éclaircit
-            blended_color = 2.0 * overlay_color * background;
-        } else {
-            // Si l'arrière-plan est clair, on assombrit
-            blended_color = 1.0 - 2.0 * (1.0 - background) * (1.0 - overlay_color);
-        }
-
-        // Applique la couleur du rectangle en mode Overlay
-        float alpha = rect * is_visible;
-        
-        // On additionne l'alpha et la couleur du rectangle pour tous les rectangles
-        if (alpha > 0.0) {
-            final_color += blended_color * alpha;  // Ajoute la couleur du rectangle à la couleur finale
-            final_alpha += alpha;  // Ajoute l'alpha à l'alpha total
-        }
-    }
-
-    // Normalise l'alpha pour éviter des valeurs trop fortes
-    final_alpha = min(final_alpha, 1.0);
-    COLOR.rgb = final_color;
-    COLOR.a = final_alpha * density;
-}
-"
+shader = ExtResource("32_eou1j")
+shader_parameter/rect_count = 25
+shader_parameter/min_size = 50.0
+shader_parameter/max_size = 200.0
+shader_parameter/lifetime = 0.9
+shader_parameter/instance_offset = 4431.818210511355
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lx2en"]
-shader = SubResource("Shader_eou1j")
-shader_parameter/density = 1.0
-shader_parameter/min_size = 0.01
-shader_parameter/max_size = 0.5
-shader_parameter/min_life = 1.0
-shader_parameter/max_life = 3.0
-shader_parameter/rectangle_count = 5.0
-
-[sub_resource type="Shader" id="Shader_lx2en"]
-code = "shader_type canvas_item;
-
-// Paramètres ajustables
-uniform float density : hint_range(0.1, 1.0) = 1.0;  // Opacité globale
-uniform float min_size : hint_range(0.01, 0.05) = 0.01;  // Taille minimale
-uniform float max_size : hint_range(0.1, 2.0) = 0.5;  // Taille maximale
-uniform float min_life : hint_range(0.1, 4.0) = 1.0;  // Durée de vie minimale (secondes)
-uniform float max_life : hint_range(0.5, 10.0) = 3.0;  // Durée de vie maximale (secondes)
-uniform float rectangle_count : hint_range(1.0, 50.0) = 5.0;  // Nombre de rectangles
-
-// Fonction de hash pour l'aléatoire
-float hash(vec2 p) {
-    return fract(1e4 * sin(17.0 * p.x + p.y * 0.1) * (0.1 + abs(sin(p.y * 13.0 + p.x))));
-}
-
-// Calcul de la luminance d'une couleur RGB
-float luminance(vec3 color) {
-    return 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
-}
-
-void fragment() {
-    vec2 uv = UV;
-    float time = TIME;
-    vec3 final_color = vec3(0.0);
-    float final_alpha = 0.0;
-
-    // Pour chaque rectangle, on le dessine de manière aléatoire
-    for (float i = 0.0; i < rectangle_count; i++) {
-        // Calculer un identifiant unique pour chaque rectangle
-        vec2 id = vec2(i, time);  // Utilisation de 'i' et 'time' pour obtenir une valeur différente par rectangle
-
-        // Position aléatoire pour chaque rectangle
-        vec2 pos = vec2(hash(id + 1.0), hash(id + 2.0));  // Position aléatoire en UV
-        
-        // Taille aléatoire pour chaque rectangle
-        float size = mix(min_size, max_size, hash(id + 3.0));  // Taille aléatoire entre min_size et max_size
-
-        // Dessine le rectangle (bords nets)
-        bool inside_x = (uv.x >= pos.x) && (uv.x < pos.x + size);
-        bool inside_y = (uv.y >= pos.y) && (uv.y < pos.y + size);
-        float rect = inside_x && inside_y ? 1.0 : 0.0;
-
-        // Durée de vie aléatoire entre min_life et max_life
-        float life_start = hash(id + 4.0) * 100.0;
-        float life_duration = mix(min_life, max_life, hash(id + 5.0));
-        float life_time = time - life_start;
-        float is_visible = step(0.0, life_time) * step(life_time, life_duration);
-
-        // Calcul de l'Overlay
-        vec3 background = texture(TEXTURE, uv).rgb;  // Récupère la couleur de l'arrière-plan
-        vec3 overlay_color = vec3(1.0);  // La couleur du rectangle est toujours blanche
-
-        // Calcul de la luminance de l'arrière-plan
-        float bg_luminance = luminance(background);
-
-        // Applique la logique Overlay
-        vec3 blended_color;
-        if (bg_luminance < 0.5) {
-            // Si l'arrière-plan est sombre, on éclaircit
-            blended_color = 2.0 * overlay_color * background;
-        } else {
-            // Si l'arrière-plan est clair, on assombrit
-            blended_color = 1.0 - 2.0 * (1.0 - background) * (1.0 - overlay_color);
-        }
-
-        // Applique la couleur du rectangle en mode Overlay
-        float alpha = rect * is_visible;
-        
-        // On additionne l'alpha et la couleur du rectangle pour tous les rectangles
-        if (alpha > 0.0) {
-            final_color += blended_color * alpha;  // Ajoute la couleur du rectangle à la couleur finale
-            final_alpha += alpha;  // Ajoute l'alpha à l'alpha total
-        }
-    }
-
-    // Normalise l'alpha pour éviter des valeurs trop fortes
-    final_alpha = min(final_alpha, 1.0);
-    COLOR.rgb = final_color;
-    COLOR.a = final_alpha * density;
-}
-"
+shader = ExtResource("32_eou1j")
+shader_parameter/rect_count = 25
+shader_parameter/min_size = 50.0
+shader_parameter/max_size = 200.0
+shader_parameter/lifetime = 1.1
+shader_parameter/instance_offset = 4545.454215909065
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tsfvn"]
-shader = SubResource("Shader_lx2en")
-shader_parameter/density = 1.0
-shader_parameter/min_size = 0.01
-shader_parameter/max_size = 0.5
-shader_parameter/min_life = 1.0
-shader_parameter/max_life = 3.0
-shader_parameter/rectangle_count = 5.0
-
-[sub_resource type="Shader" id="Shader_tsfvn"]
-code = "shader_type canvas_item;
-
-// Paramètres ajustables
-uniform float density : hint_range(0.1, 1.0) = 1.0;  // Opacité globale
-uniform float min_size : hint_range(0.01, 0.05) = 0.01;  // Taille minimale
-uniform float max_size : hint_range(0.1, 2.0) = 0.5;  // Taille maximale
-uniform float min_life : hint_range(0.1, 4.0) = 1.0;  // Durée de vie minimale (secondes)
-uniform float max_life : hint_range(0.5, 10.0) = 3.0;  // Durée de vie maximale (secondes)
-uniform float rectangle_count : hint_range(1.0, 50.0) = 5.0;  // Nombre de rectangles
-
-// Fonction de hash pour l'aléatoire
-float hash(vec2 p) {
-    return fract(1e4 * sin(17.0 * p.x + p.y * 0.1) * (0.1 + abs(sin(p.y * 13.0 + p.x))));
-}
-
-// Calcul de la luminance d'une couleur RGB
-float luminance(vec3 color) {
-    return 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
-}
-
-void fragment() {
-    vec2 uv = UV;
-    float time = TIME;
-    vec3 final_color = vec3(0.0);
-    float final_alpha = 0.0;
-
-    // Pour chaque rectangle, on le dessine de manière aléatoire
-    for (float i = 0.0; i < rectangle_count; i++) {
-        // Calculer un identifiant unique pour chaque rectangle
-        vec2 id = vec2(i, time);  // Utilisation de 'i' et 'time' pour obtenir une valeur différente par rectangle
-
-        // Position aléatoire pour chaque rectangle
-        vec2 pos = vec2(hash(id + 1.0), hash(id + 2.0));  // Position aléatoire en UV
-        
-        // Taille aléatoire pour chaque rectangle
-        float size = mix(min_size, max_size, hash(id + 3.0));  // Taille aléatoire entre min_size et max_size
-
-        // Dessine le rectangle (bords nets)
-        bool inside_x = (uv.x >= pos.x) && (uv.x < pos.x + size);
-        bool inside_y = (uv.y >= pos.y) && (uv.y < pos.y + size);
-        float rect = inside_x && inside_y ? 1.0 : 0.0;
-
-        // Durée de vie aléatoire entre min_life et max_life
-        float life_start = hash(id + 4.0) * 100.0;
-        float life_duration = mix(min_life, max_life, hash(id + 5.0));
-        float life_time = time - life_start;
-        float is_visible = step(0.0, life_time) * step(life_time, life_duration);
-
-        // Calcul de l'Overlay
-        vec3 background = texture(TEXTURE, uv).rgb;  // Récupère la couleur de l'arrière-plan
-        vec3 overlay_color = vec3(1.0);  // La couleur du rectangle est toujours blanche
-
-        // Calcul de la luminance de l'arrière-plan
-        float bg_luminance = luminance(background);
-
-        // Applique la logique Overlay
-        vec3 blended_color;
-        if (bg_luminance < 0.5) {
-            // Si l'arrière-plan est sombre, on éclaircit
-            blended_color = 2.0 * overlay_color * background;
-        } else {
-            // Si l'arrière-plan est clair, on assombrit
-            blended_color = 1.0 - 2.0 * (1.0 - background) * (1.0 - overlay_color);
-        }
-
-        // Applique la couleur du rectangle en mode Overlay
-        float alpha = rect * is_visible;
-        
-        // On additionne l'alpha et la couleur du rectangle pour tous les rectangles
-        if (alpha > 0.0) {
-            final_color += blended_color * alpha;  // Ajoute la couleur du rectangle à la couleur finale
-            final_alpha += alpha;  // Ajoute l'alpha à l'alpha total
-        }
-    }
-
-    // Normalise l'alpha pour éviter des valeurs trop fortes
-    final_alpha = min(final_alpha, 1.0);
-    COLOR.rgb = final_color;
-    COLOR.a = final_alpha * density;
-}
-"
+shader = ExtResource("32_eou1j")
+shader_parameter/rect_count = 25
+shader_parameter/min_size = 50.0
+shader_parameter/max_size = 200.0
+shader_parameter/lifetime = 1.05
+shader_parameter/instance_offset = 1022.7270485795324
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ilduf"]
-shader = SubResource("Shader_tsfvn")
-shader_parameter/density = 1.0
-shader_parameter/min_size = 0.01
-shader_parameter/max_size = 0.5
-shader_parameter/min_life = 1.0
-shader_parameter/max_life = 3.0
-shader_parameter/rectangle_count = 5.0
+shader = ExtResource("32_eou1j")
+shader_parameter/rect_count = 25
+shader_parameter/min_size = 50.0
+shader_parameter/max_size = 200.0
+shader_parameter/lifetime = 1.0
+shader_parameter/instance_offset = 7613.63636164771
+
+[sub_resource type="Animation" id="Animation_rbpew"]
+resource_name = "Blink"
+length = 1.0000033
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.8333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Alarm")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("32_lx2en")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_qq84j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xweb4"]
+_data = {
+&"Blink": SubResource("Animation_rbpew"),
+&"RESET": SubResource("Animation_qq84j")
+}
 
 [node name="Test_Split_Screen" type="Node2D"]
 script = ExtResource("1_dfnej")
@@ -1078,25 +786,8 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="BSOD" type="TextureRect" parent="Frames/Bugs_01"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("30_1gyup")
-metadata/_edit_lock_ = true
-
-[node name="Shader" type="ColorRect" parent="Frames/Bugs_01/BSOD"]
-material = SubResource("ShaderMaterial_c1vkc")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
 [node name="White_Glitches" type="ColorRect" parent="Frames/Bugs_01"]
+visible = false
 material = SubResource("ShaderMaterial_eou1j")
 layout_mode = 0
 offset_right = 480.0
@@ -1157,25 +848,8 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="BSOD" type="TextureRect" parent="Frames/Bugs_02"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("30_1gyup")
-metadata/_edit_lock_ = true
-
-[node name="Shader" type="ColorRect" parent="Frames/Bugs_02/BSOD"]
-material = SubResource("ShaderMaterial_c1vkc")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
 [node name="White_Glitches" type="ColorRect" parent="Frames/Bugs_02"]
+visible = false
 material = SubResource("ShaderMaterial_lx2en")
 layout_mode = 0
 offset_right = 480.0
@@ -1236,25 +910,8 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="BSOD" type="TextureRect" parent="Frames/Bugs_03"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("30_1gyup")
-metadata/_edit_lock_ = true
-
-[node name="Shader" type="ColorRect" parent="Frames/Bugs_03/BSOD"]
-material = SubResource("ShaderMaterial_c1vkc")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
 [node name="White_Glitches" type="ColorRect" parent="Frames/Bugs_03"]
+visible = false
 material = SubResource("ShaderMaterial_tsfvn")
 layout_mode = 0
 offset_right = 480.0
@@ -1316,25 +973,8 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="BSOD" type="TextureRect" parent="Frames/Bugs_04"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("30_1gyup")
-metadata/_edit_lock_ = true
-
-[node name="Shader" type="ColorRect" parent="Frames/Bugs_04/BSOD"]
-material = SubResource("ShaderMaterial_c1vkc")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
 [node name="White_Glitches" type="ColorRect" parent="Frames/Bugs_04"]
+visible = false
 material = SubResource("ShaderMaterial_ilduf")
 layout_mode = 0
 offset_right = 480.0
@@ -1356,10 +996,76 @@ width = 2.0
 default_color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="Info_Overlay" parent="Frames" instance=ExtResource("32_nkbw3")]
+[node name="Info_Overlay" type="Control" parent="Frames"]
+layout_mode = 3
+anchors_preset = 0
+metadata/_edit_lock_ = true
+
+[node name="Info_Replay_Game" type="RichTextLabel" parent="Frames/Info_Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_outline_size = 18
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("31_nkbw3")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[color=#70cb10]A[/color] per [color=#70cb10]rigiocare[/color]
+-
+[color=#cb5030]B[/color] per tornare al [color=#cb5030]menu principale[/color]"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Info_Player_Number" type="RichTextLabel" parent="Frames/Info_Overlay"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_outline_size = 18
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("31_nkbw3")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Premi [color=#70cb10]A[/color] su ogni [color=#cb5030]controller[/color]
+
+per aggiungere [color=#cb5030]un giocatore[/color]."
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Animation_Overlay" type="AnimationPlayer" parent="Frames/Info_Overlay"]
+libraries = {
+&"": SubResource("AnimationLibrary_xweb4")
+}
+autoplay = "Blink"
+
+[node name="Alarm" type="AudioStreamPlayer" parent="Frames/Info_Overlay"]
+volume_db = -10.0
+autoplay = true
+bus = &"FX_WET"
 
 [editable path="Runners/Top_Runners/Left_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Top_Runners/Right_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport/Runner"]
-[editable path="Frames/Info_Overlay"]

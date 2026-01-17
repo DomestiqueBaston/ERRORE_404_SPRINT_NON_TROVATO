@@ -1,9 +1,9 @@
 [gd_scene load_steps=25 format=3 uid="uid://jeuanuva1v8o"]
 
 [ext_resource type="Script" uid="uid://b3ee2ad2rdstv" path="res://SCENE_AND_SCRIPT/Door.gd" id="1_ecpiw"]
-[ext_resource type="Shader" uid="uid://c3gkqv33yx8x5" path="res://SHADER/Outline_Glitch_And_Alpha.gdshader" id="1_gjufk"]
 [ext_resource type="Texture2D" uid="uid://bgq4edmw16b8" path="res://IMAGE/ENVIRONMENT/DOOR/Door_Shadow.png" id="1_w6txa"]
 [ext_resource type="Texture2D" uid="uid://c7ee22rkppja8" path="res://IMAGE/ENVIRONMENT/DOOR/Door_Back_Sprite_Sheet.png" id="2_w6txa"]
+[ext_resource type="Shader" uid="uid://68aobjd54xxo" path="res://SHADER/Outline_And_Color.gdshader" id="3_ecpiw"]
 [ext_resource type="Texture2D" uid="uid://ub27wge0sfms" path="res://IMAGE/ENVIRONMENT/DOOR/Door_Front_Sprite_Sheet.png" id="3_pl358"]
 [ext_resource type="AudioStream" uid="uid://18acv14t18jm" path="res://SOUND/FX/Door_Hum.ogg" id="5_jbtw0"]
 [ext_resource type="AudioStream" uid="uid://qnjr5b74yyt8" path="res://SOUND/FX/Door_Appearing.ogg" id="6_ecpiw"]
@@ -18,14 +18,10 @@ size = Vector2(22.54161, 62.341305)
 size = Vector2(22.464415, 62.547802)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jbtw0"]
-shader = ExtResource("1_gjufk")
-shader_parameter/shake_enabled = false
-shader_parameter/shake_power = 0.00029999999240999
-shader_parameter/shake_speed = 100.0
-shader_parameter/shake_block_size = 25.0
-shader_parameter/shake_color_rate = 0.00059999998482
+shader = ExtResource("3_ecpiw")
 shader_parameter/outline_thickness = 1.0
 shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/sprite_color = Color(1, 1, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_ecpiw"]
 offsets = PackedFloat32Array(0, 0.16571428, 0.42857143, 0.6571429, 1)
@@ -40,14 +36,10 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ecpiw"]
-shader = ExtResource("1_gjufk")
-shader_parameter/shake_enabled = false
-shader_parameter/shake_power = 0.00029999999240999
-shader_parameter/shake_speed = 100.0
-shader_parameter/shake_block_size = 25.0
-shader_parameter/shake_color_rate = 0.00059999998482
+shader = ExtResource("3_ecpiw")
 shader_parameter/outline_thickness = 1.0
 shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/sprite_color = Color(1, 1, 1, 1)
 
 [sub_resource type="Animation" id="Animation_vso1q"]
 resource_name = "Alive"

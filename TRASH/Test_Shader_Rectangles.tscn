@@ -6,11 +6,12 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5v32w"]
 shader = ExtResource("2_5v32w")
 shader_parameter/density = 1.0
-shader_parameter/min_size = 0.035000000963979996
+shader_parameter/min_size = 0.03500000096397999
 shader_parameter/max_size = 0.92000004044012
 shader_parameter/min_life = 0.10000000149012
 shader_parameter/max_life = 2.0
 shader_parameter/rectangle_count = 5.00000019
+shader_parameter/instance_id = 0.0
 
 [node name="Node2D" type="Node2D"]
 
