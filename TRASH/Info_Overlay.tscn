@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b8w781xxm53mf"]
 
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="1_obst4"]
-[ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep.ogg" id="2_imv27"]
+[ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="2_imv27"]
 
 [sub_resource type="Animation" id="Animation_rbpew"]
 resource_name = "Blink"

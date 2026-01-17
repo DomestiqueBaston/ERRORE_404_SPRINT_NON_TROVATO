@@ -31,7 +31,7 @@
 [ext_resource type="Shader" uid="uid://dlwdh275codsc" path="res://TRASH/Change_Colors.gdshader" id="28_myj71"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="31_nkbw3"]
 [ext_resource type="Shader" uid="uid://b16r7qsrxeft" path="res://SHADER/White_Rectangles.gdshader" id="32_eou1j"]
-[ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep.ogg" id="32_lx2en"]
+[ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="32_lx2en"]
 
 [sub_resource type="Environment" id="Environment_w5jul"]
 background_mode = 3
