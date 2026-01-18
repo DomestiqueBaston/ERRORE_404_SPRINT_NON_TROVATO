@@ -12,35 +12,42 @@
 
 [node name="Glitchy_Sound_A" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_vplxx")
-volume_db = -7.5
+volume_db = -12.5
 bus = &"FX_WET"
+parameters/looping = true
 
 [node name="Glitchy_Sound_B" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_htnts")
 volume_db = -7.5
 bus = &"FX_WET"
+parameters/looping = true
 
 [node name="Glitchy_Sound_C" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_7oxky")
-volume_db = -5.0
+volume_db = -7.5
 bus = &"FX_WET"
+parameters/looping = true
 
 [node name="Glitchy_Sound_D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_to7gu")
 volume_db = -2.5
 bus = &"FX_WET"
+parameters/looping = true
 
 [node name="Glitchy_Sound_E" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_ns4qs")
-volume_db = -5.0
+volume_db = -2.5
 bus = &"FX_WET"
+parameters/looping = true
 
 [node name="Glitchy_Sound_F" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_8feb6")
-volume_db = -10.0
+volume_db = -12.5
 bus = &"FX_WET"
+parameters/looping = true
 
 [node name="Glitchy_Sound_G" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_jea5g")
 volume_db = -5.0
 bus = &"FX_WET"
+parameters/looping = true

@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://c3up1u8ajktas"]
+[gd_scene load_steps=19 format=3 uid="uid://c3up1u8ajktas"]
 
 [ext_resource type="Script" uid="uid://h5jc5pkbwwnw" path="res://SCENE_AND_SCRIPT/Cube.gd" id="1_mfqlr"]
+[ext_resource type="Shader" uid="uid://3f2wtq4pn17q" path="res://SHADER/Shadow_Compositing.gdshader" id="2_i7obx"]
 [ext_resource type="Texture2D" uid="uid://c5i7h02ps03t3" path="res://IMAGE/ENVIRONMENT/CUBE/Shadow.png" id="2_yd2d6"]
 [ext_resource type="Shader" uid="uid://68aobjd54xxo" path="res://SHADER/Outline_And_Color.gdshader" id="3_mfqlr"]
 [ext_resource type="Texture2D" uid="uid://daxlt5o4goj2w" path="res://IMAGE/ENVIRONMENT/CUBE/Cube_Sprite_Sheet_v2.png" id="4_mfqlr"]
@@ -9,8 +10,11 @@
 [ext_resource type="AudioStream" uid="uid://bom677o0xms5i" path="res://SOUND/FX/Disappearing.ogg" id="6_i7obx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i7obx"]
-radius = 7.008006
-height = 15.765341
+radius = 15.241224
+height = 30.482449
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oh6sb"]
+shader = ExtResource("2_i7obx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5c5qk"]
 shader = ExtResource("3_mfqlr")
@@ -267,6 +271,7 @@ metadata/_edit_lock_ = true
 [node name="Cube_Shadow" type="Sprite2D" parent="."]
 visible = false
 self_modulate = Color(1, 1, 1, 0.12941177)
+material = SubResource("ShaderMaterial_oh6sb")
 position = Vector2(0, -3)
 texture = ExtResource("2_yd2d6")
 offset = Vector2(0, 6)

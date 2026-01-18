@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://cucs0i7d1er7d"]
+[gd_scene load_steps=68 format=3 uid="uid://cucs0i7d1er7d"]
 
 [ext_resource type="Texture2D" uid="uid://bsel0k65v13mi" path="res://IMAGE/ENVIRONMENT/CELL/Extension de terrain.png" id="1_e50o2"]
 [ext_resource type="Texture2D" uid="uid://dsrmr325mtsek" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_01.png" id="1_ypd1c"]
@@ -69,7 +69,7 @@ shader_parameter/shake_block_size = 123.0
 shader_parameter/shake_color_rate = 0.0010000000475
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qkut6"]
-size = Vector2(125, 15)
+size = Vector2(124.56604, 47.564228)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6o5ds"]
 shader = ExtResource("29_7mpjj")
@@ -312,6 +312,152 @@ tracks/2/keys = {
 "values": [true, true, false]
 }
 
+[sub_resource type="Animation" id="Animation_e50o2"]
+resource_name = "Down_Sliding_Beginning"
+length = 0.66667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Column/Cell_Tops:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.36666667, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 250), Vector2(0, 250), Vector2(0, 246), Vector2(0, 246)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cellule_Sound/Start_Cell")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("27_e50o2")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cellule_Sound/Up_Down_Cell")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 2.0713782,
+"start_offset": 0.0,
+"stream": ExtResource("28_7mpjj")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cellule_Sound/Stop_Cell")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("29_8ohl3")
+}],
+"times": PackedFloat32Array(0.6333333)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Column/Cell_Tops/Collider_Ground:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ej7e8"]
+resource_name = "Down_Sliding_End"
+length = 0.96667004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Column/Cell_Tops:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6666667, 0.96666664),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 246), Vector2(0, 246), Vector2(0, 250), Vector2(0, 250)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cellule_Sound/Start_Cell")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("27_e50o2")
+}],
+"times": PackedFloat32Array(0.29999998)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cellule_Sound/Up_Down_Cell")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 2.0713782,
+"start_offset": 0.0,
+"stream": ExtResource("28_7mpjj")
+}],
+"times": PackedFloat32Array(0.4)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cellule_Sound/Stop_Cell")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("29_8ohl3")
+}],
+"times": PackedFloat32Array(0.93333334)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Column/Cell_Tops/Collider_Ground:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_5dg73"]
 resource_name = "Going_Down"
 length = 7.3666706
@@ -513,8 +659,8 @@ tracks/2/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_e50o2"]
-resource_name = "Sliding_Beginning"
+[sub_resource type="Animation" id="Animation_qkut6"]
+resource_name = "Up_Sliding_Beginning"
 length = 0.66667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -526,7 +672,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.10000001, 0.36666667, 0.6666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 250), Vector2(0, 250), Vector2(0, 246), Vector2(0, 246)]
+"values": [Vector2(0, 4), Vector2(0, 4), Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/1/type = "audio"
 tracks/1/imported = false
@@ -586,8 +732,8 @@ tracks/4/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_ej7e8"]
-resource_name = "Sliding_End"
+[sub_resource type="Animation" id="Animation_psu53"]
+resource_name = "Up_Sliding_End"
 length = 0.96667004
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -599,7 +745,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4, 0.6666667, 0.96666664),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 246), Vector2(0, 246), Vector2(0, 250), Vector2(0, 250)]
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 4), Vector2(0, 4)]
 }
 tracks/1/type = "audio"
 tracks/1/imported = false
@@ -663,11 +809,13 @@ tracks/4/keys = {
 _data = {
 &"Appearing": SubResource("Animation_vso1q"),
 &"Disappearing": SubResource("Animation_7mpjj"),
+&"Down_Sliding_Beginning": SubResource("Animation_e50o2"),
+&"Down_Sliding_End": SubResource("Animation_ej7e8"),
 &"Going_Down": SubResource("Animation_5dg73"),
 &"Going_Up": SubResource("Animation_6vv1n"),
 &"RESET": SubResource("Animation_mye8y"),
-&"Sliding_Beginning": SubResource("Animation_e50o2"),
-&"Sliding_End": SubResource("Animation_ej7e8")
+&"Up_Sliding_Beginning": SubResource("Animation_qkut6"),
+&"Up_Sliding_End": SubResource("Animation_psu53")
 }
 
 [node name="Cell" type="Node2D"]
@@ -692,6 +840,13 @@ puis on finit en jouant l'animation Sliding_End.
 Tout cela ne vaut que pour les glissements."
 metadata/_edit_lock_ = true
 
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -153.0
+offset_top = -128.0
+offset_right = 317.0
+offset_bottom = 290.0
+
 [node name="Column" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
@@ -710,7 +865,7 @@ metadata/_edit_lock_ = true
 polygon = PackedVector2Array(-118, -1, 0, -60, 118, -1, 118, 0, 0, 59, -118, 0)
 metadata/_edit_lock_ = true
 
-[node name="Cell_!extension" type="Sprite2D" parent="Column/Cell_Tops"]
+[node name="Cell_Extension" type="Sprite2D" parent="Column/Cell_Tops"]
 position = Vector2(0, -81)
 texture = ExtResource("1_e50o2")
 offset = Vector2(0, 1250)
@@ -909,6 +1064,7 @@ offset_top = -60.0
 offset_right = 118.0
 offset_bottom = 59.0
 color = Color(1, 1, 1, 0.5254902)
+metadata/_edit_lock_ = true
 
 [node name="Glitch_Only" type="ColorRect" parent="Column/Cell_Tops/Top_Cell_FX_Mask"]
 visible = false
@@ -932,11 +1088,10 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionShape2D" parent="Column/Cell_Tops/One_Way_Direction/Shadow_Orientation/Direction_Collider"]
-position = Vector2(-1, 0)
-rotation = 0.46425757
-skew = 0.6597344
+position = Vector2(-0.7547445, -0.37794787)
+rotation = 0.46425754
+skew = 0.65973437
 shape = SubResource("RectangleShape2D_qkut6")
-metadata/_edit_lock_ = true
 
 [node name="Shadow" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Shadow_Orientation"]
 self_modulate = Color(1, 1, 1, 0.12941177)
@@ -996,6 +1151,7 @@ bus = &"FX_DRY"
 libraries = {
 &"": SubResource("AnimationLibrary_ej7e8")
 }
+autoplay = "RESET"
 
 [node name="Cellule_Sound" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
