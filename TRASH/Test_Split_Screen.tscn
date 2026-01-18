@@ -809,7 +809,6 @@ color = Color(0.3882353, 0.1882353, 0.64705884, 1)
 metadata/_edit_lock_ = true
 
 [node name="Messages" type="Control" parent="Frames/Bugs_01"]
-visible = false
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -1302,7 +1301,7 @@ libraries = {
 autoplay = "Blink"
 
 [node name="Alarm" type="AudioStreamPlayer" parent="Frames/Info_Overlay"]
-volume_db = -10.0
+volume_db = -15.0
 autoplay = true
 bus = &"FX_WET"
 
