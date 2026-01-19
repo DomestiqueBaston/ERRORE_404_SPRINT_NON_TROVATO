@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://p751chhvtga6"]
+[gd_scene load_steps=50 format=3 uid="uid://p751chhvtga6"]
 
 [ext_resource type="Script" uid="uid://7rcfji6ehwky" path="res://SCENE_AND_SCRIPT/Woman.gd" id="1_whayo"]
 [ext_resource type="Shader" uid="uid://c3gkqv33yx8x5" path="res://SHADER/Outline_Glitch_And_Alpha.gdshader" id="2_5mfc4"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://cns80ks0bg3jv" path="res://SOUND/FX/RUNNER/Foot_Step_02.ogg" id="13_rhtc6"]
 [ext_resource type="AudioStream" uid="uid://wm0mpe0ypbad" path="res://SOUND/FX/RUNNER/Woman_Pushing.ogg" id="14_m7u3m"]
 [ext_resource type="AudioStream" uid="uid://cm86n3hliidko" path="res://SOUND/FX/RUNNER/Man_Running.ogg" id="15_whayo"]
+[ext_resource type="AudioStream" uid="uid://be7egi1g7yovq" path="res://SOUND/FX/RUNNER/Man_Bim.ogg" id="16_5mfc4"]
 [ext_resource type="AudioStream" uid="uid://b2a03ph6qsmpd" path="res://SOUND/FX/RUNNER/Sliding.ogg" id="16_ak6il"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="17_3lkun"]
 [ext_resource type="AudioStream" uid="uid://cou5e3uqnnvdj" path="res://SOUND/FX/Crackling_Noise_A.ogg" id="18_ajgrw"]
@@ -1728,7 +1729,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.40000004, 0.43333337, 0.4666667, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238]
+"values": [232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1737,10 +1738,10 @@ tracks/1/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:position"
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.33333334, 0.53333336),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.16666667, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-19, -7.000001), Vector2(-18.000002, -6.0000005), Vector2(-17, -5), Vector2(-17, -5)]
+"values": [Vector2(-15, -5), Vector2(-15.000001, -2.9999998), Vector2(-15, -5)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1761,10 +1762,10 @@ tracks/3/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.33333334, 0.53333336),
+"times": PackedFloat32Array(0, 0.16666667, 0.36666667, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(2, 1), Vector2(2.5, 1), Vector2(2.7, 1), Vector2(2.7, 1)]
+"values": [Vector2(2, 1), Vector2(2.5, 1.666), Vector2(2.4, 1), Vector2(2.4, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1853,6 +1854,29 @@ tracks/10/keys = {
 "update": 0,
 "values": [-0.7853982, -0.7853982]
 }
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Man_Sound/Bim")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("16_5mfc4")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("16_5mfc4")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("16_5mfc4")
+}],
+"times": PackedFloat32Array(0.1, 0.2, 0.254239)
+}
+tracks/11/use_blend = true
 
 [sub_resource type="Animation" id="Animation_kxl5h"]
 resource_name = "Sliding_180"
@@ -1867,7 +1891,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.40000004, 0.43333337, 0.4666667, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254]
+"values": [248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1876,10 +1900,10 @@ tracks/1/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:position"
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.33333334, 0.53333336),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.16666667, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-15, -5), Vector2(-14, -2), Vector2(-13, -3), Vector2(-13, -3)]
+"values": [Vector2(-15, -5), Vector2(-25, -6.9999995), Vector2(-25, -6.9999995)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1900,10 +1924,10 @@ tracks/3/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.33333334, 0.53333336),
+"times": PackedFloat32Array(0, 0.16666667, 0.36666667, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(2, 1), Vector2(2.5, 1), Vector2(2.7, 1), Vector2(2.7, 1)]
+"values": [Vector2(2, 1), Vector2(2.5, 1.666), Vector2(2.4, 1), Vector2(2.4, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1992,6 +2016,29 @@ tracks/10/keys = {
 "update": 0,
 "values": [-0.7853982, -0.7853982]
 }
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Man_Sound/Bim")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("16_5mfc4")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("16_5mfc4")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("16_5mfc4")
+}],
+"times": PackedFloat32Array(0.1, 0.2, 0.25235415)
+}
+tracks/11/use_blend = true
 
 [sub_resource type="Animation" id="Animation_t3hkb"]
 resource_name = "Start_000"
@@ -2570,7 +2617,7 @@ material = SubResource("ShaderMaterial_gcyqs")
 texture = ExtResource("3_whayo")
 offset = Vector2(-5, -44)
 hframes = 36
-vframes = 7
+vframes = 8
 frame = 36
 
 [node name="Papa_Shadow" type="Node2D" parent="Character/Papa_Sprite/Runner_Sprite"]
@@ -2648,4 +2695,8 @@ bus = &"FX_DRY"
 
 [node name="Sliding" type="AudioStreamPlayer" parent="Man_Sound"]
 volume_db = -12.5
+bus = &"FX_DRY"
+
+[node name="Bim" type="AudioStreamPlayer" parent="Man_Sound"]
+volume_db = -7.5
 bus = &"FX_DRY"
