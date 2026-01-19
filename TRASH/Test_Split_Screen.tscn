@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://b4tyo3c6o6kyu"]
+[gd_scene load_steps=59 format=3 uid="uid://b4tyo3c6o6kyu"]
 
 [ext_resource type="Script" uid="uid://jda3iip3f7fn" path="res://TRASH/Test_Split_Screen.gd" id="1_dfnej"]
 [ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="2_bawwu"]
@@ -452,9 +452,8 @@ shader_parameter/max_size = 200.0
 shader_parameter/lifetime = 1.0
 shader_parameter/instance_offset = 7613.63636164771
 
-[sub_resource type="Animation" id="Animation_rbpew"]
+[sub_resource type="Animation" id="Animation_nkbw3"]
 resource_name = "Blink"
-length = 1.0000033
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -471,7 +470,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Alarm")
+tracks/1/path = NodePath("../../Alarm")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -483,26 +482,58 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/1/use_blend = true
-
-[sub_resource type="Animation" id="Animation_qq84j"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Bugs_02/Death:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.8333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../Bugs_03/Death:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.8333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../Bugs_04/Death:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.8333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../Info_Overlay:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.8333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xweb4"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eou1j"]
 _data = {
-&"Blink": SubResource("Animation_rbpew"),
-&"RESET": SubResource("Animation_qq84j")
+&"Blink": SubResource("Animation_nkbw3")
 }
 
 [node name="Test_Split_Screen" type="Node2D"]
@@ -808,13 +839,14 @@ offset_bottom = 270.0
 color = Color(0.3882353, 0.1882353, 0.64705884, 1)
 metadata/_edit_lock_ = true
 
-[node name="Messages" type="Control" parent="Frames/Bugs_01"]
+[node name="Annoying_Messages" type="Control" parent="Frames/Bugs_01"]
+visible = false
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
 metadata/_edit_lock_ = true
 
-[node name="Message_1" type="RichTextLabel" parent="Frames/Bugs_01/Messages"]
+[node name="Message_1" type="RichTextLabel" parent="Frames/Bugs_01/Annoying_Messages"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -839,7 +871,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Message_2" type="RichTextLabel" parent="Frames/Bugs_01/Messages"]
+[node name="Message_2" type="RichTextLabel" parent="Frames/Bugs_01/Annoying_Messages"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -860,6 +892,36 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
 bbcode_enabled = true
 text = "[color=#92dc32]Algoritmo quantistico rilevato.
 Si prega di posizionare il computer in un luogo fresco per permettere l'esecuzione.[/color]"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Death" type="Control" parent="Frames/Bugs_01"]
+visible = false
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_lock_ = true
+
+[node name="Message" type="RichTextLabel" parent="Frames/Bugs_01/Death"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.0
+offset_top = -15.0
+offset_right = 204.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("31_nkbw3")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
+bbcode_enabled = true
+text = "[color=#a4a2df]Correzione applicata[/color]: [color=#ed7252]utente eliminato![/color]"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
@@ -926,14 +988,14 @@ offset_bottom = 270.0
 color = Color(0.7529412, 0.50980395, 0.078431375, 1)
 metadata/_edit_lock_ = true
 
-[node name="Messages" type="Control" parent="Frames/Bugs_02"]
+[node name="Annoying_Messages" type="Control" parent="Frames/Bugs_02"]
 visible = false
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
 metadata/_edit_lock_ = true
 
-[node name="Message_1" type="RichTextLabel" parent="Frames/Bugs_02/Messages"]
+[node name="Message_1" type="RichTextLabel" parent="Frames/Bugs_02/Annoying_Messages"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -958,7 +1020,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Message_2" type="RichTextLabel" parent="Frames/Bugs_02/Messages"]
+[node name="Message_2" type="RichTextLabel" parent="Frames/Bugs_02/Annoying_Messages"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -979,6 +1041,36 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
 bbcode_enabled = true
 text = "[color=#92dc32]Algoritmo quantistico rilevato.
 Si prega di posizionare il computer in un luogo fresco per permettere l'esecuzione.[/color]"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Death" type="Control" parent="Frames/Bugs_02"]
+visible = false
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_lock_ = true
+
+[node name="Message" type="RichTextLabel" parent="Frames/Bugs_02/Death"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.0
+offset_top = -15.0
+offset_right = 204.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("31_nkbw3")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
+bbcode_enabled = true
+text = "[color=#a4a2df]Correzione applicata[/color]: [color=#ed7252]utente eliminato![/color]"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
@@ -1045,14 +1137,14 @@ offset_bottom = 270.0
 color = Color(0.16470589, 0.5529412, 0.8352941, 1)
 metadata/_edit_lock_ = true
 
-[node name="Messages" type="Control" parent="Frames/Bugs_03"]
+[node name="Annoying_Messages" type="Control" parent="Frames/Bugs_03"]
 visible = false
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
 metadata/_edit_lock_ = true
 
-[node name="Message_1" type="RichTextLabel" parent="Frames/Bugs_03/Messages"]
+[node name="Message_1" type="RichTextLabel" parent="Frames/Bugs_03/Annoying_Messages"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -1077,7 +1169,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Message_2" type="RichTextLabel" parent="Frames/Bugs_03/Messages"]
+[node name="Message_2" type="RichTextLabel" parent="Frames/Bugs_03/Annoying_Messages"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -1098,6 +1190,36 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
 bbcode_enabled = true
 text = "[color=#92dc32]Algoritmo quantistico rilevato.
 Si prega di posizionare il computer in un luogo fresco per permettere l'esecuzione.[/color]"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Death" type="Control" parent="Frames/Bugs_03"]
+visible = false
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_lock_ = true
+
+[node name="Message" type="RichTextLabel" parent="Frames/Bugs_03/Death"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.0
+offset_top = -15.0
+offset_right = 204.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("31_nkbw3")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
+bbcode_enabled = true
+text = "[color=#a4a2df]Correzione applicata[/color]: [color=#ed7252]utente eliminato![/color]"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
@@ -1165,15 +1287,14 @@ offset_bottom = 270.0
 color = Color(0.49019608, 0.74509805, 0.27058825, 1)
 metadata/_edit_lock_ = true
 
-[node name="Messages" type="Control" parent="Frames/Bugs_04"]
+[node name="Annoying_Messages" type="Control" parent="Frames/Bugs_04"]
 visible = false
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
 metadata/_edit_lock_ = true
 
-[node name="Message_1" type="RichTextLabel" parent="Frames/Bugs_04/Messages"]
-visible = false
+[node name="Message_1" type="RichTextLabel" parent="Frames/Bugs_04/Annoying_Messages"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1197,7 +1318,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Message_2" type="RichTextLabel" parent="Frames/Bugs_04/Messages"]
+[node name="Message_2" type="RichTextLabel" parent="Frames/Bugs_04/Annoying_Messages"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -1222,6 +1343,36 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
+[node name="Death" type="Control" parent="Frames/Bugs_04"]
+visible = false
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_lock_ = true
+
+[node name="Message" type="RichTextLabel" parent="Frames/Bugs_04/Death"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.0
+offset_top = -15.0
+offset_right = 204.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("31_nkbw3")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
+bbcode_enabled = true
+text = "[color=#a4a2df]Correzione applicata[/color]: [color=#ed7252]utente eliminato![/color]"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
 [node name="Horizontal" type="Line2D" parent="Frames"]
 position = Vector2(0, 270)
 points = PackedVector2Array(0, 0, 960, 0)
@@ -1237,6 +1388,7 @@ default_color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="Info_Overlay" type="Control" parent="Frames"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 metadata/_edit_lock_ = true
@@ -1269,6 +1421,7 @@ vertical_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Info_Player_Number" type="RichTextLabel" parent="Frames/Info_Overlay"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1294,13 +1447,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Animation_Overlay" type="AnimationPlayer" parent="Frames/Info_Overlay"]
+[node name="Animation_Overlays" type="AnimationPlayer" parent="Frames"]
+root_node = NodePath("../Bugs_01/Death")
 libraries = {
-&"": SubResource("AnimationLibrary_xweb4")
+&"": SubResource("AnimationLibrary_eou1j")
 }
-autoplay = "Blink"
 
-[node name="Alarm" type="AudioStreamPlayer" parent="Frames/Info_Overlay"]
+[node name="Alarm" type="AudioStreamPlayer" parent="Frames"]
 volume_db = -15.0
 autoplay = true
 bus = &"FX_WET"

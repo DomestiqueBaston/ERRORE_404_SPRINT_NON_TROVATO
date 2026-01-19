@@ -347,6 +347,7 @@ volume_db = -20.0
 bus = &"FX_DRY"
 
 [node name="Info_Overlay" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
