@@ -1,0 +1,338 @@
+[gd_scene load_steps=12 format=3 uid="uid://bok32wo8n7l8k"]
+
+[ext_resource type="Shader" uid="uid://bw1rtxnpr4o0b" path="res://SHADER/Pixelisation.gdshader" id="1_y85h4"]
+[ext_resource type="Shader" uid="uid://djvm4hdir6bn0" path="res://SHADER/Invert_Colors.gdshader" id="2_rwo5u"]
+[ext_resource type="Shader" uid="uid://cw8pro7ug7hfy" path="res://SHADER/Shake.gdshader" id="3_jn4lx"]
+[ext_resource type="Shader" uid="uid://dlwdh275codsc" path="res://TRASH/Change_Colors.gdshader" id="4_apv2n"]
+[ext_resource type="Texture2D" uid="uid://bg8x247cwwks8" path="res://TRASH/BSOD.png" id="5_dumil"]
+[ext_resource type="Shader" uid="uid://b1v2s56rmwn5o" path="res://SHADER/CRT.gdshader" id="6_v4n18"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nboss"]
+shader = ExtResource("1_y85h4")
+shader_parameter/pixelation = 0.010000000475
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1gyup"]
+shader = ExtResource("2_rwo5u")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2l4bx"]
+shader = ExtResource("3_jn4lx")
+shader_parameter/hit_effect = 1.0
+shader_parameter/shake_intensity = 7.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qp1y0"]
+shader = ExtResource("4_apv2n")
+shader_parameter/hue_shift_deg = 360.0
+shader_parameter/saturation = 2.0
+shader_parameter/value = 1.0000000475
+shader_parameter/alpha = 1.0
+shader_parameter/hue_speed = 5.0000002375
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c1vkc"]
+shader = ExtResource("6_v4n18")
+shader_parameter/resolution = Vector2(480, 270)
+shader_parameter/scan_line_amount = 1.0
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
+
+[node name="Frames" type="CanvasLayer"]
+metadata/_edit_lock_ = true
+
+[node name="Bugs_01" type="Control" parent="."]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_lock_ = true
+
+[node name="Pixelate" type="ColorRect" parent="Bugs_01"]
+visible = false
+material = SubResource("ShaderMaterial_nboss")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Invert_Colors" type="ColorRect" parent="Bugs_01"]
+visible = false
+material = SubResource("ShaderMaterial_1gyup")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Shake" type="ColorRect" parent="Bugs_01"]
+visible = false
+material = SubResource("ShaderMaterial_2l4bx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Change_Colors" type="ColorRect" parent="Bugs_01"]
+visible = false
+material = SubResource("ShaderMaterial_qp1y0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="BSOD" type="TextureRect" parent="Bugs_01"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_dumil")
+metadata/_edit_lock_ = true
+
+[node name="Shader" type="ColorRect" parent="Bugs_01/BSOD"]
+material = SubResource("ShaderMaterial_c1vkc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Bugs_02" type="Control" parent="."]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 480.0
+offset_right = 960.0
+offset_bottom = 270.0
+metadata/_edit_lock_ = true
+
+[node name="Pixelate" type="ColorRect" parent="Bugs_02"]
+visible = false
+material = SubResource("ShaderMaterial_nboss")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Invert_Colors" type="ColorRect" parent="Bugs_02"]
+visible = false
+material = SubResource("ShaderMaterial_1gyup")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Shake" type="ColorRect" parent="Bugs_02"]
+visible = false
+material = SubResource("ShaderMaterial_2l4bx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Change_Colors" type="ColorRect" parent="Bugs_02"]
+visible = false
+material = SubResource("ShaderMaterial_qp1y0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="BSOD" type="TextureRect" parent="Bugs_02"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_dumil")
+metadata/_edit_lock_ = true
+
+[node name="Shader" type="ColorRect" parent="Bugs_02/BSOD"]
+material = SubResource("ShaderMaterial_c1vkc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Bugs_03" type="Control" parent="."]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 270.0
+offset_right = 480.0
+offset_bottom = 540.0
+metadata/_edit_lock_ = true
+
+[node name="Pixelate" type="ColorRect" parent="Bugs_03"]
+visible = false
+material = SubResource("ShaderMaterial_nboss")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Invert_Colors" type="ColorRect" parent="Bugs_03"]
+visible = false
+material = SubResource("ShaderMaterial_1gyup")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Shake" type="ColorRect" parent="Bugs_03"]
+visible = false
+material = SubResource("ShaderMaterial_2l4bx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Change_Colors" type="ColorRect" parent="Bugs_03"]
+visible = false
+material = SubResource("ShaderMaterial_qp1y0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="BSOD" type="TextureRect" parent="Bugs_03"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_dumil")
+metadata/_edit_lock_ = true
+
+[node name="Shader" type="ColorRect" parent="Bugs_03/BSOD"]
+material = SubResource("ShaderMaterial_c1vkc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Bugs_04" type="Control" parent="."]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 480.0
+offset_top = 270.0
+offset_right = 960.0
+offset_bottom = 540.0
+metadata/_edit_lock_ = true
+
+[node name="Pixelate" type="ColorRect" parent="Bugs_04"]
+visible = false
+material = SubResource("ShaderMaterial_nboss")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Invert_Colors" type="ColorRect" parent="Bugs_04"]
+visible = false
+material = SubResource("ShaderMaterial_1gyup")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Shake" type="ColorRect" parent="Bugs_04"]
+visible = false
+material = SubResource("ShaderMaterial_2l4bx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Change_Colors" type="ColorRect" parent="Bugs_04"]
+visible = false
+material = SubResource("ShaderMaterial_qp1y0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="BSOD" type="TextureRect" parent="Bugs_04"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_dumil")
+metadata/_edit_lock_ = true
+
+[node name="Shader" type="ColorRect" parent="Bugs_04/BSOD"]
+material = SubResource("ShaderMaterial_c1vkc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Horizontal" type="Line2D" parent="."]
+position = Vector2(0, 270)
+points = PackedVector2Array(0, 0, 960, 0)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Vertical" type="Line2D" parent="."]
+position = Vector2(480, 0)
+points = PackedVector2Array(0, 0, 0, 540)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true

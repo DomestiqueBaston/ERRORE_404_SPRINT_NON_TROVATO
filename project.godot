@@ -28,7 +28,8 @@ movie_writer/movie_file="D:/GRAPHISME/PIXEL/PIXEL ART V/VIDEO.ogv"
 [file_customization]
 
 folder_colors={
-"res://TMP/": "red"
+"res://SCENE_AND_SCRIPT/TMP/": "purple",
+"res://TRASH/": "red"
 }
 
 [input]
