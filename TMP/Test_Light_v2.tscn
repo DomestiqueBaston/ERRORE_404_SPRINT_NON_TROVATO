@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxhwv17jogtia"]
+
+[ext_resource type="Texture2D" uid="uid://culur3kwelh22" path="res://TMP/DOOR/Epaules.png" id="1_rtbxg"]
+[ext_resource type="Texture2D" uid="uid://c8iuafa4b8q0u" path="res://TMP/DOOR/Tete.png" id="2_27kea"]
+[ext_resource type="Texture2D" uid="uid://dkvkffsj28ae7" path="res://TMP/DOOR/Cheveux.png" id="3_1e2fo"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3hlua"]
+closed = false
+polygon = PackedVector2Array(-86, -91, 38, -29, 90, -55)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7131j"]
+closed = false
+polygon = PackedVector2Array(-44, -73, -34, -83, -11, -72, -1, -54, 50, -79)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dbahy"]
+closed = false
+polygon = PackedVector2Array(-32, -90, -14, -81, 38, -107)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Epaules" type="Sprite2D" parent="."]
+position = Vector2(430, 315)
+texture = ExtResource("1_rtbxg")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Epaules"]
+self_modulate = Color(1, 1, 1, 0)
+occluder = SubResource("OccluderPolygon2D_3hlua")
+metadata/_edit_lock_ = true
+
+[node name="Tete" type="Sprite2D" parent="."]
+position = Vector2(428, 311)
+texture = ExtResource("2_27kea")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Tete"]
+self_modulate = Color(1, 1, 1, 0)
+occluder = SubResource("OccluderPolygon2D_7131j")
+metadata/_edit_lock_ = true
+
+[node name="Cheveux" type="Sprite2D" parent="."]
+position = Vector2(429, 300)
+texture = ExtResource("3_1e2fo")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Cheveux"]
+self_modulate = Color(1, 1, 1, 0)
+occluder = SubResource("OccluderPolygon2D_dbahy")
+metadata/_edit_lock_ = true
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+blend_mode = 2
+shadow_enabled = true
+shadow_color = Color(0.5235195, 0.54583806, 1.1930753, 0.21960784)

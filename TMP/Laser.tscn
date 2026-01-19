@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://cocqyhfytuhop"]
+
+[ext_resource type="Texture2D" uid="uid://crtsob6lk2834" path="res://TMP/Laser.png" id="1_kbp5c"]
+
+[sub_resource type="Animation" id="Animation_y3ayh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [8.0]
+}
+
+[sub_resource type="Animation" id="Animation_c4r1g"]
+resource_name = "Radiation"
+length = 0.60000336
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light:width")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [11.0, 12.0, 11.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tgwgk"]
+_data = {
+&"RESET": SubResource("Animation_y3ayh"),
+&"Radiation": SubResource("Animation_c4r1g")
+}
+
+[node name="Laser" type="Node2D"]
+visible = false
+
+[node name="Light" type="Line2D" parent="."]
+points = PackedVector2Array(-59, -30, 59, 29)
+width = 8.0
+texture = ExtResource("1_kbp5c")
+texture_mode = 1
+antialiased = true
+
+[node name="Animation_Laser" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tgwgk")
+}
+autoplay = "Radiation"
