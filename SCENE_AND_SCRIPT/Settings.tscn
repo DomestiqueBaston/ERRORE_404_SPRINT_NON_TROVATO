@@ -1,14 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://blsopsfjc5gfa"]
+[gd_scene load_steps=15 format=3 uid="uid://blsopsfjc5gfa"]
 
-[ext_resource type="Texture2D" uid="uid://bd6y4vtfwje86" path="res://IMAGE/MISC/Settings.png" id="2_2k1s1"]
-[ext_resource type="Texture2D" uid="uid://onl3w5l15sxn" path="res://IMAGE/MISC/Settings_Cursor.png" id="2_83noa"]
+[ext_resource type="Texture2D" uid="uid://cdxwexyvht0dp" path="res://IMAGE/MISC/Settings_Cursor.png" id="2_07jpc"]
+[ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="2_shryd"]
 [ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="3_cgbcj"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="3_sobyg"]
+[ext_resource type="Script" uid="uid://clccpnapl4u45" path="res://SCENE_AND_SCRIPT/Settings_Glitches.gd" id="4_07jpc"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="5_a50p4"]
+[ext_resource type="Shader" uid="uid://rfstm5ejtwi3" path="res://SHADER/Reflection.gdshader" id="8_shryd"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="10_0rcrj"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="13_1skkq"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aygwu"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_picqc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mfq6d"]
 shader = ExtResource("3_cgbcj")
@@ -26,7 +28,7 @@ loop_mode = 1
 tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Glitch_Sound")
+tracks/0/path = NodePath("Glitches/Glitch_Sound")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -104,42 +106,223 @@ _data = {
 &"Glitchy_Sound": SubResource("Animation_chp44")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pepy6"]
+shader = ExtResource("8_shryd")
+shader_parameter/scale_y = 1000.0
+shader_parameter/y_zoom = 1.25
+shader_parameter/opacity = 0.150000007125
+
 [node name="Settings" type="Node2D"]
 metadata/_edit_lock_ = true
 
-[node name="Image" type="Sprite2D" parent="."]
-texture = ExtResource("2_2k1s1")
-centered = false
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 540.0
 metadata/_edit_lock_ = true
 
-[node name="HSlider" type="HSlider" parent="."]
-offset_left = 169.0
-offset_top = 397.0
-offset_right = 770.0
-offset_bottom = 513.0
-theme_override_icons/grabber = ExtResource("2_83noa")
-theme_override_icons/grabber_highlight = ExtResource("2_83noa")
-theme_override_icons/grabber_disabled = ExtResource("2_83noa")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_aygwu")
+[node name="BG" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Title" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -197.5
+offset_top = 24.0
+offset_right = 197.5
+offset_bottom = 83.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("2_shryd")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "Impostazioni"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Mappa" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -376.0
+offset_top = 144.0
+offset_right = 376.0
+offset_bottom = 183.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("2_shryd")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Dimensione della mappa:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="9_19" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -435.5
+offset_top = 205.0
+offset_right = 433.5
+offset_bottom = 244.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("2_shryd")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "9                                                                         19"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Line_Map" type="Line2D" parent="Control"]
+position = Vector2(96, 224)
+points = PackedVector2Array(0, 0, 760, 0)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="HSlider_Map" type="HSlider" parent="Control"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 211.0
+offset_right = 860.0
+offset_bottom = 238.0
+theme_override_icons/grabber = ExtResource("2_07jpc")
+theme_override_icons/grabber_highlight = ExtResource("2_07jpc")
+theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
 min_value = 9.0
 max_value = 19.0
 step = 2.0
-value = 13.0
+value = 15.0
 metadata/_edit_lock_ = true
 
-[node name="Shader" type="ColorRect" parent="."]
+[node name="Audio" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -376.0
+offset_top = 280.0
+offset_right = 376.0
+offset_bottom = 319.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("2_shryd")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Livello audio:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Line_Audio" type="Line2D" parent="Control"]
+position = Vector2(78, 360)
+points = PackedVector2Array(0, 0, 760, 0)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="0_100" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -449.5
+offset_top = 341.0
+offset_right = 451.5
+offset_bottom = 380.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("2_shryd")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "0                                                                         100"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="HSlider_Audio" type="HSlider" parent="Control"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 347.0
+offset_right = 842.0
+offset_bottom = 374.0
+theme_override_icons/grabber = ExtResource("2_07jpc")
+theme_override_icons/grabber_highlight = ExtResource("2_07jpc")
+theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
+value = 100.0
+metadata/_edit_lock_ = true
+
+[node name="Glitches" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 540.0
+script = ExtResource("4_07jpc")
+metadata/_edit_lock_ = true
+
+[node name="Shader" type="ColorRect" parent="Glitches"]
 material = SubResource("ShaderMaterial_mfq6d")
+layout_mode = 0
 offset_right = 960.0
 offset_bottom = 540.0
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="Glitch_Sound" type="AudioStreamPlayer" parent="."]
+[node name="Glitch_Sound" type="AudioStreamPlayer" parent="Glitches"]
 volume_db = -20.0
 bus = &"FX_DRY"
 
-[node name="Sound_Animation" type="AnimationPlayer" parent="."]
+[node name="Sound_Animation" type="AnimationPlayer" parent="Glitches"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_shryd")
 }
 autoplay = "Glitchy_Sound"
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+rect = Rect2(0, 0, 960, 540)
+metadata/_edit_lock_ = true
+
+[node name="Reflection" type="ColorRect" parent="BackBufferCopy"]
+material = SubResource("ShaderMaterial_pepy6")
+offset_top = 374.0
+offset_right = 960.0
+offset_bottom = 914.0
+metadata/_edit_lock_ = true
