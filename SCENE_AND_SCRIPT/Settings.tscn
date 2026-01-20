@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://blsopsfjc5gfa"]
+[gd_scene load_steps=17 format=3 uid="uid://blsopsfjc5gfa"]
 
+[ext_resource type="Texture2D" uid="uid://b8x0ihnlq10s2" path="res://IMAGE/MISC/Large_Shadow.png" id="1_pepy6"]
 [ext_resource type="Texture2D" uid="uid://cdxwexyvht0dp" path="res://IMAGE/MISC/Settings_Cursor.png" id="2_07jpc"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="2_shryd"]
 [ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="3_cgbcj"]
@@ -17,14 +18,14 @@
 shader = ExtResource("3_cgbcj")
 shader_parameter/same_width_lines_count = 17.237
 shader_parameter/same_width_change_per_sec = 0.40000001574012
-shader_parameter/glitch_change_per_sec = 5.00000019
+shader_parameter/glitch_change_per_sec = 7.50000030875
 shader_parameter/threshold = 0.499999988824
 shader_parameter/strength = 0.30000001192093
 shader_parameter/glitch_blend = 0.8499999810008
 
 [sub_resource type="Animation" id="Animation_chp44"]
 resource_name = "Glitchy_Sound"
-length = 5.000004
+length = 8.333337
 loop_mode = 1
 tracks/0/type = "audio"
 tracks/0/imported = false
@@ -97,8 +98,52 @@ tracks/0/keys = {
 "end_offset": 0.0,
 "start_offset": 0.0,
 "stream": ExtResource("3_sobyg")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_a50p4")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_0rcrj")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_sobyg")
+}, {
+"end_offset": 0.003817588,
+"start_offset": 0.0,
+"stream": ExtResource("3_sobyg")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_0rcrj")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_1skkq")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_0rcrj")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_sobyg")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_sobyg")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_a50p4")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_0rcrj")
 }],
-"times": PackedFloat32Array(0, 0.23333333, 0.3, 0.96666664, 1.1, 1.2666667, 1.7, 1.8, 2.3333333, 2.4666667, 2.8666666, 3.2333333, 3.6666667, 3.8, 4.4666667, 4.866667)
+"times": PackedFloat32Array(0, 0.23333333, 0.3, 0.96666664, 1.1, 1.2666667, 1.7, 1.8, 2.3333333, 2.4666667, 2.8666666, 3.2333333, 3.6666667, 3.8, 4.4666667, 4.866667, 5.033334, 5.566667, 5.700001, 5.830103, 5.8967695, 6.4666667, 6.6967697, 6.863436, 7.066667, 7.133333, 7.7666674)
 }
 tracks/0/use_blend = true
 
@@ -132,22 +177,33 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
+[node name="Large_Shadow" type="Sprite2D" parent="Impostazioni"]
+self_modulate = Color(0.6507289, 0.6507289, 0.6507289, 0.25)
+position = Vector2(480.00003, 375)
+scale = Vector2(1.8, 0.1)
+texture = ExtResource("1_pepy6")
+metadata/_edit_lock_ = true
+
 [node name="Title" type="RichTextLabel" parent="Impostazioni"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -197.5
+offset_left = -480.0
 offset_top = 24.0
-offset_right = 197.5
+offset_right = 480.0
 offset_bottom = 83.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 24
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 12
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "Impostazioni"
+text = "Protocolli di calibrazione"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -159,13 +215,17 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -376.0
+offset_left = -480.0
 offset_top = 144.0
-offset_right = 376.0
+offset_right = 480.0
 offset_bottom = 183.0
 grow_horizontal = 2
 pivot_offset = Vector2(527, 222)
 theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
@@ -182,13 +242,17 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -435.5
+offset_left = -480.0
 offset_top = 205.0
-offset_right = 433.5
+offset_right = 480.0
 offset_bottom = 244.0
 grow_horizontal = 2
 pivot_offset = Vector2(527, 222)
 theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
@@ -200,25 +264,22 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Line_Map" type="Line2D" parent="Impostazioni"]
-position = Vector2(96, 224)
-points = PackedVector2Array(0, 0, 760, 0)
-width = 3.0
-default_color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
 [node name="Audio" type="RichTextLabel" parent="Impostazioni"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -376.0
+offset_left = -480.0
 offset_top = 280.0
-offset_right = 376.0
+offset_right = 480.0
 offset_bottom = 319.0
 grow_horizontal = 2
 pivot_offset = Vector2(527, 222)
 theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
@@ -235,13 +296,17 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -449.5
+offset_left = -480.0
 offset_top = 341.0
-offset_right = 451.5
+offset_right = 480.0
 offset_bottom = 380.0
 grow_horizontal = 2
 pivot_offset = Vector2(527, 222)
 theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
@@ -253,8 +318,15 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
+[node name="Line_Map" type="Line2D" parent="Impostazioni"]
+position = Vector2(94, 224)
+points = PackedVector2Array(0, 0, 760, 0)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
 [node name="Line_Audio" type="Line2D" parent="Impostazioni"]
-position = Vector2(78, 360)
+position = Vector2(79, 360)
 points = PackedVector2Array(0, 0, 760, 0)
 width = 3.0
 default_color = Color(0, 0, 0, 1)
@@ -262,9 +334,9 @@ metadata/_edit_lock_ = true
 
 [node name="HSlider_Map" type="HSlider" parent="Impostazioni"]
 layout_mode = 0
-offset_left = 92.0
+offset_left = 90.0
 offset_top = 211.0
-offset_right = 860.0
+offset_right = 858.0
 offset_bottom = 238.0
 theme_override_icons/grabber = ExtResource("2_07jpc")
 theme_override_icons/grabber_highlight = ExtResource("2_07jpc")
@@ -278,9 +350,9 @@ metadata/_edit_lock_ = true
 
 [node name="HSlider_Audio" type="HSlider" parent="Impostazioni"]
 layout_mode = 0
-offset_left = 74.0
+offset_left = 75.0
 offset_top = 347.0
-offset_right = 842.0
+offset_right = 843.0
 offset_bottom = 374.0
 theme_override_icons/grabber = ExtResource("2_07jpc")
 theme_override_icons/grabber_highlight = ExtResource("2_07jpc")
@@ -302,9 +374,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -197.5
+offset_left = -198.5
 offset_top = 24.0
-offset_right = 197.5
+offset_right = 196.5
 offset_bottom = 83.0
 grow_horizontal = 2
 mouse_filter = 2
@@ -312,7 +384,7 @@ theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "Impostazioni"
+text = "Protocolli di calibrazione"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -322,10 +394,10 @@ metadata/_edit_lock_ = true
 [node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Title"]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
 layout_mode = 0
-offset_left = -282.5
+offset_left = -100.0
 offset_top = -24.0
-offset_right = -282.5
-offset_bottom = -24.0
+offset_right = 860.0
+offset_bottom = 516.0
 mouse_filter = 2
 texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
@@ -359,8 +431,8 @@ self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
 layout_mode = 0
 offset_left = -104.0
 offset_top = -144.0
-offset_right = -104.0
-offset_bottom = -144.0
+offset_right = 856.0
+offset_bottom = 396.0
 mouse_filter = 2
 texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
@@ -441,9 +513,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -449.5
+offset_left = -451.5
 offset_top = 341.0
-offset_right = 451.5
+offset_right = 449.5
 offset_bottom = 380.0
 grow_horizontal = 2
 pivot_offset = Vector2(527, 222)
@@ -471,6 +543,7 @@ texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
 
 [node name="Glitches" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
@@ -504,8 +577,7 @@ metadata/_edit_lock_ = true
 
 [node name="Reflection" type="ColorRect" parent="BackBufferCopy_Reflection"]
 material = SubResource("ShaderMaterial_pepy6")
-offset_top = 374.0
+offset_top = 375.0
 offset_right = 960.0
-offset_bottom = 914.0
+offset_bottom = 915.0
 mouse_filter = 1
-metadata/_edit_lock_ = true
