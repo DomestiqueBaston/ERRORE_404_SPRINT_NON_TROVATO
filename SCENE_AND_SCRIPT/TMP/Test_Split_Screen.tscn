@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://b4tyo3c6o6kyu"]
+[gd_scene load_steps=60 format=3 uid="uid://b4tyo3c6o6kyu"]
 
 [ext_resource type="Script" uid="uid://jda3iip3f7fn" path="res://SCENE_AND_SCRIPT/TMP/Test_Split_Screen.gd" id="1_dfnej"]
 [ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="2_bawwu"]
@@ -32,6 +32,7 @@
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="31_nkbw3"]
 [ext_resource type="Shader" uid="uid://b16r7qsrxeft" path="res://SHADER/White_Rectangles.gdshader" id="32_eou1j"]
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="32_lx2en"]
+[ext_resource type="PackedScene" uid="uid://em4id2fwd18h" path="res://SCENE_AND_SCRIPT/UI_Sounds.tscn" id="33_5ttrv"]
 
 [sub_resource type="Environment" id="Environment_w5jul"]
 background_mode = 3
@@ -678,6 +679,7 @@ bus = &"FX_WET"
 
 [node name="Alarm" type="AudioStreamPlayer" parent="BG_SubViewport"]
 stream = ExtResource("24_tfq6m")
+volume_db = -3.5
 autoplay = true
 bus = &"FX_WET"
 
@@ -899,6 +901,7 @@ vertical_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_01"]
+visible = false
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -1393,11 +1396,13 @@ default_color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="Info_Overlay" type="Control" parent="Frames"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 metadata/_edit_lock_ = true
 
 [node name="Info_Replay_Game" type="RichTextLabel" parent="Frames/Info_Overlay"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1460,6 +1465,8 @@ libraries = {
 volume_db = -15.0
 autoplay = true
 bus = &"FX_WET"
+
+[node name="UI_Sounds" parent="." instance=ExtResource("33_5ttrv")]
 
 [editable path="Runners/Top_Runners/Left_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Top_Runners/Right_Runner/Runner_SubViewport/Runner"]

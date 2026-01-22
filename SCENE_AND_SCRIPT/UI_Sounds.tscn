@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://em4id2fwd18h"]
+[gd_scene load_steps=4 format=3 uid="uid://em4id2fwd18h"]
 
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="1_p0pgo"]
 [ext_resource type="AudioStream" uid="uid://ddouskyxl7bw7" path="res://SOUND/FX/Short_Beep_Low.ogg" id="2_kco3e"]
+[ext_resource type="AudioStream" uid="uid://t4l7fveb311p" path="res://SOUND/MUSIC/Music_v03.ogg" id="3_kco3e"]
 
 [node name="UI_Sounds" type="Node2D"]
 
@@ -13,3 +14,10 @@ bus = &"FX_DRY"
 stream = ExtResource("2_kco3e")
 volume_db = -8.5
 bus = &"FX_DRY"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kco3e")
+volume_db = -5.0
+autoplay = true
+bus = &"MUSIC"
+parameters/looping = true

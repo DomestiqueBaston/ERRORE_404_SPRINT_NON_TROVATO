@@ -3,7 +3,7 @@ extends Node2D
 @onready var sprite: Node2D = $Papa_Sprite
 @onready var animation_player: AnimationPlayer = $"../Animation_Runner"
 
-@export var move_speed: float = 400.0
+@export var move_speed: float = 375.0
 @export var jump_speed: float = 350.0
 @export var slide_speed: float = 300.0
 

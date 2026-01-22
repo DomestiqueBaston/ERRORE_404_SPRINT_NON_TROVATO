@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2a2vkvk88415"]
+[gd_scene load_steps=11 format=3 uid="uid://b2a2vkvk88415"]
 
 [ext_resource type="Script" uid="uid://cqj1vvbsaikwr" path="res://SCENE_AND_SCRIPT/TMP/test_generation_aleatoire_pour_voir_bis.gd" id="1_sjb8x"]
 [ext_resource type="PackedScene" uid="uid://cucs0i7d1er7d" path="res://SCENE_AND_SCRIPT/Cell.tscn" id="2_okjc4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="4_5rr24"]
 [ext_resource type="PackedScene" uid="uid://jeuanuva1v8o" path="res://SCENE_AND_SCRIPT/Door.tscn" id="4_swsra"]
 [ext_resource type="AudioStream" uid="uid://gxci2v55iim1" path="res://SOUND/FX/Global_Hum.ogg" id="7_swsra"]
+[ext_resource type="PackedScene" uid="uid://em4id2fwd18h" path="res://SCENE_AND_SCRIPT/UI_Sounds.tscn" id="8_ntkwp"]
 
 [sub_resource type="Environment" id="Environment_5rr24"]
 background_mode = 3
@@ -91,4 +92,11 @@ volume_db = -5.0
 autoplay = true
 bus = &"FX_WET"
 
+[node name="UI_Sounds" parent="." instance=ExtResource("8_ntkwp")]
+
+[node name="Music" parent="UI_Sounds" index="2"]
+volume_db = -7.5
+autoplay = true
+
 [editable path="Woman"]
+[editable path="UI_Sounds"]
