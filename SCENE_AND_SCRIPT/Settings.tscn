@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://blsopsfjc5gfa"]
+[gd_scene load_steps=18 format=3 uid="uid://blsopsfjc5gfa"]
 
 [ext_resource type="Texture2D" uid="uid://b8x0ihnlq10s2" path="res://IMAGE/MISC/Large_Shadow.png" id="1_pepy6"]
 [ext_resource type="Texture2D" uid="uid://cdxwexyvht0dp" path="res://IMAGE/MISC/Settings_Cursor.png" id="2_07jpc"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="3_cgbcj"]
 [ext_resource type="Texture2D" uid="uid://csnhbg2y348b7" path="res://IMAGE/MISC/Settings_Gradients.png" id="3_picqc"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="3_sobyg"]
+[ext_resource type="Texture2D" uid="uid://pypr1mgwq0et" path="res://IMAGE/MISC/Settings_Cursor_Light.png" id="4_2k1s1"]
 [ext_resource type="Script" uid="uid://clccpnapl4u45" path="res://SCENE_AND_SCRIPT/Settings_Glitches.gd" id="4_07jpc"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="5_a50p4"]
 [ext_resource type="Shader" uid="uid://rfstm5ejtwi3" path="res://SHADER/Reflection.gdshader" id="8_shryd"]
@@ -159,6 +160,14 @@ shader_parameter/y_zoom = 1.25
 shader_parameter/opacity = 0.150000007125
 
 [node name="Settings" type="Node2D"]
+metadata/_edit_lock_ = true
+
+[node name="ATTENTION" type="Label" parent="."]
+offset_top = -66.0
+offset_right = 921.0
+offset_bottom = -17.0
+text = "Il faudra penser à connecter les curseurs aussi aux manettes. Haut et bas pour passer d'un curseur à l'autre et droite et
+gauche pour changer les valeurs."
 metadata/_edit_lock_ = true
 
 [node name="Impostazioni" type="Control" parent="."]
@@ -334,12 +343,12 @@ metadata/_edit_lock_ = true
 
 [node name="HSlider_Map" type="HSlider" parent="Impostazioni"]
 layout_mode = 0
-offset_left = 90.0
+offset_left = 89.0
 offset_top = 211.0
-offset_right = 858.0
+offset_right = 859.0
 offset_bottom = 238.0
 theme_override_icons/grabber = ExtResource("2_07jpc")
-theme_override_icons/grabber_highlight = ExtResource("2_07jpc")
+theme_override_icons/grabber_highlight = ExtResource("4_2k1s1")
 theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
 min_value = 9.0
@@ -350,12 +359,12 @@ metadata/_edit_lock_ = true
 
 [node name="HSlider_Audio" type="HSlider" parent="Impostazioni"]
 layout_mode = 0
-offset_left = 75.0
+offset_left = 74.0
 offset_top = 347.0
-offset_right = 843.0
+offset_right = 844.0
 offset_bottom = 374.0
 theme_override_icons/grabber = ExtResource("2_07jpc")
-theme_override_icons/grabber_highlight = ExtResource("2_07jpc")
+theme_override_icons/grabber_highlight = ExtResource("4_2k1s1")
 theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
 value = 100.0
