@@ -17,6 +17,6 @@ bus = &"FX_DRY"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_kco3e")
-volume_db = -5.0
+autoplay = true
 bus = &"MUSIC"
 parameters/looping = true
