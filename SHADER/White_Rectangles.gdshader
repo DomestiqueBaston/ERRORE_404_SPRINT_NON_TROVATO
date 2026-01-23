@@ -1,9 +1,9 @@
 shader_type canvas_item;
 
 uniform int rect_count : hint_range(1, 50) = 25;
-uniform float min_size = 50.0;
-uniform float max_size = 200.0;
-uniform float lifetime = 1.0; // durée moyenne d’un rectangle
+uniform float min_size = 75.0;
+uniform float max_size = 275.0;
+uniform float lifetime = 1.05; // durée moyenne d’un rectangle
 uniform float instance_offset : hint_range(0.0, 10000.0); // Valeur unique par instance pour la variation
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
