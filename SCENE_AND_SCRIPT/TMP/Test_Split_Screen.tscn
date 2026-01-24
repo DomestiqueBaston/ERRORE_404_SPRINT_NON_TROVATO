@@ -963,6 +963,7 @@ grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [node name="Shake" type="ColorRect" parent="Frames/Bugs_02"]
+visible = false
 material = SubResource("ShaderMaterial_2l4bx")
 layout_mode = 1
 anchors_preset = 15
@@ -1134,6 +1135,7 @@ grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [node name="White_Glitches" type="ColorRect" parent="Frames/Bugs_03"]
+visible = false
 material = SubResource("ShaderMaterial_tsfvn")
 layout_mode = 0
 offset_right = 480.0
@@ -1240,6 +1242,7 @@ offset_bottom = 540.0
 metadata/_edit_lock_ = true
 
 [node name="Pixelate" type="ColorRect" parent="Frames/Bugs_04"]
+visible = false
 material = SubResource("ShaderMaterial_nboss")
 layout_mode = 1
 anchors_preset = 15

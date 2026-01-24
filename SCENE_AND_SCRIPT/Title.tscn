@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cjgaaqpwcx0r3"]
+[gd_scene load_steps=21 format=3 uid="uid://cjgaaqpwcx0r3"]
 
 [ext_resource type="Texture2D" uid="uid://b8x0ihnlq10s2" path="res://IMAGE/MISC/Large_Shadow.png" id="1_bnvrm"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="3_aa5oj"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="6_ugatv"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="10_pj754"]
 [ext_resource type="Shader" uid="uid://rfstm5ejtwi3" path="res://SHADER/Reflection.gdshader" id="11_bnvrm"]
+[ext_resource type="PackedScene" uid="uid://em4id2fwd18h" path="res://SCENE_AND_SCRIPT/UI_Sounds.tscn" id="12_jqsr3"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="13_63rpd"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="14_aa5oj"]
 [ext_resource type="Script" uid="uid://dd6brr6ksot15" path="res://SCENE_AND_SCRIPT/Title_Alert.gd" id="14_ykdlm"]
@@ -339,7 +340,7 @@ libraries = {
 }
 
 [node name="Alarm" type="AudioStreamPlayer" parent="Info_Overlay"]
-volume_db = -15.0
+volume_db = -17.5
 autoplay = true
 bus = &"FX_WET"
 
@@ -360,7 +361,7 @@ mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="Glitch_Sound" type="AudioStreamPlayer" parent="Glitches"]
-volume_db = -20.0
+volume_db = -15.0
 bus = &"FX_DRY"
 
 [node name="Sound_Animation" type="AnimationPlayer" parent="Glitches"]
@@ -380,3 +381,5 @@ offset_top = 415.0
 offset_right = 960.0
 offset_bottom = 955.0
 metadata/_edit_lock_ = true
+
+[node name="UI_Sounds" parent="." instance=ExtResource("12_jqsr3")]
