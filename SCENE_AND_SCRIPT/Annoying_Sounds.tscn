@@ -1,38 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cp2hksxfplvk0"]
+[gd_scene load_steps=4 format=3 uid="uid://cp2hksxfplvk0"]
 
-[ext_resource type="AudioStream" uid="uid://b6ijgf7grh6oy" path="res://SOUND/FX/Glitchy_Sound_A.ogg" id="1_vplxx"]
-[ext_resource type="AudioStream" uid="uid://dctwnpk20ew6d" path="res://SOUND/FX/Glitchy_Sound_B.ogg" id="2_htnts"]
-[ext_resource type="AudioStream" uid="uid://djloilaytymi8" path="res://SOUND/FX/Glitchy_Sound_C.ogg" id="3_7oxky"]
-[ext_resource type="AudioStream" uid="uid://k8hyf5t6sryn" path="res://SOUND/FX/Glitchy_Sound_D.ogg" id="4_to7gu"]
 [ext_resource type="AudioStream" uid="uid://o0i0pyhy8xon" path="res://SOUND/FX/Glitchy_Sound_E.ogg" id="5_ns4qs"]
 [ext_resource type="AudioStream" uid="uid://1u5cnl60ptxf" path="res://SOUND/FX/Glitchy_Sound_F.ogg" id="6_8feb6"]
 [ext_resource type="AudioStream" uid="uid://bg1810o3k0s8b" path="res://SOUND/FX/Glitchy_Sound_G.ogg" id="7_jea5g"]
 
 [node name="Annoying_Sounds" type="Node2D"]
-
-[node name="Glitchy_Sound_A" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_vplxx")
-volume_db = -12.5
-bus = &"FX_WET"
-parameters/looping = true
-
-[node name="Glitchy_Sound_B" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_htnts")
-volume_db = -7.5
-bus = &"FX_WET"
-parameters/looping = true
-
-[node name="Glitchy_Sound_C" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_7oxky")
-volume_db = -7.5
-bus = &"FX_WET"
-parameters/looping = true
-
-[node name="Glitchy_Sound_D" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_to7gu")
-volume_db = -2.5
-bus = &"FX_WET"
-parameters/looping = true
 
 [node name="Glitchy_Sound_E" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_ns4qs")
@@ -42,12 +14,12 @@ parameters/looping = true
 
 [node name="Glitchy_Sound_F" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_8feb6")
-volume_db = -12.5
+volume_db = -5.0
 bus = &"FX_WET"
 parameters/looping = true
 
 [node name="Glitchy_Sound_G" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_jea5g")
-volume_db = -5.0
+volume_db = -12.5
 bus = &"FX_WET"
 parameters/looping = true

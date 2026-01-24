@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://blsopsfjc5gfa"]
+[gd_scene load_steps=18 format=3 uid="uid://blsopsfjc5gfa"]
 
 [ext_resource type="Texture2D" uid="uid://b8x0ihnlq10s2" path="res://IMAGE/MISC/Large_Shadow.png" id="1_pepy6"]
 [ext_resource type="Texture2D" uid="uid://cdxwexyvht0dp" path="res://IMAGE/MISC/Settings_Cursor.png" id="2_07jpc"]
@@ -12,7 +12,6 @@
 [ext_resource type="Shader" uid="uid://rfstm5ejtwi3" path="res://SHADER/Reflection.gdshader" id="8_shryd"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="10_0rcrj"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="13_1skkq"]
-[ext_resource type="PackedScene" uid="uid://em4id2fwd18h" path="res://SCENE_AND_SCRIPT/UI_Sounds.tscn" id="13_2k1s1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_picqc"]
 
@@ -591,5 +590,3 @@ offset_top = 375.0
 offset_right = 960.0
 offset_bottom = 915.0
 mouse_filter = 1
-
-[node name="UI_Sounds" parent="." instance=ExtResource("13_2k1s1")]
