@@ -63,14 +63,14 @@ Les bonus en jeu (passif par défaut) :
     4. Super saut - Actif
     5. Freeze adversaire
     6. Bouclier (contre quoi ?)
-    7. Sabotage (renvoie un malus/bug à un adversaire) - Actif
-    8. Super slide - Actif
-    9. Dash (accélération qui permet de traverser 2 case le temps d’1) - Actif
-    10. Passe-muraille (permet de traverser uniquement les murs) - Actif
+    7. Sabotage (renvoie un malus/bug à un adversaire)
+    8. Super slide
+    9. Dash (accélération qui permet de traverser 2 case le temps d’1)
+    10. Passe-muraille (permet de traverser uniquement les murs des coureurs)
     11. Réflexe (fait tourner le joueur au lieu de tomber dans le vide)
-    12. Virus (envoie un malus récolté à un adversaire aléatoire) - Actif
-    13. Téléportation - Actif
-    14. Débogueur (vire un bug actif) - Actif
+    12. Virus (envoie un malus récolté à un adversaire aléatoire)
+    13. Téléportation
+    14. Débogueur (vire un bug actif)
 
 Les obstacles :
     1. Vrais murs → Cellules qui montent ✔
@@ -81,29 +81,33 @@ Les obstacles :
     6. Blocs (mouvants ou non)
     7. Dalles disparaissant → Cellules qui disparaissent ✔
 
-Liste des animations du joueur :
+Liste des animations des personnages :
     1. Courir ✔ ✔
-    2. Sauter ✔
-    3. Glissade ✔
+    2. Sauter ✔ ✔
+    3. Glissade ✔ ✔
     4. Pose de départ ✔ ✔
     5. Intro ✔ ✔
     6. Tomber dans le vide → Mort ! ✔ ✔
-    7. Bim ! Dans un mur → Mort ! ✔
+    7. Bim ! Dans un mur → Mort ! ✔ ✔
 
 
 Notes de fabrication :
 
 - Lorsqu’un coureur traverse une case (donc en traçant son mur) et que la case bouge, alors le coureur se décale AVEC la case. Et le mur qu’il trace également. Il faudra donc « tronçonner » les murs à chaque fois qu’un coureur sort d’une case afin que le morceau de mur puisse éventuellement se déplacer avec la case si celle-ci est amenée à se déplacer de nouveau.
-- Il faut voir la question des colonnes qui posent le problème de la colision avec les coureur quand la colonne n’est pas haute ! Pour le moment, je ne vois qu’afficher un halo de lumière au dessus de la case avant qu’elle ne bouge ou ne soit trop haute pour passer.
+- Il faut voir la question des colonnes qui posent le problème de la collision avec les coureurs quand la colonne n’est pas haute ! Pour le moment, je ne vois qu’afficher un halo de lumière au dessus de la case avant qu’elle ne bouge ou ne soit trop haute pour passer.
+- Pareil aussi pour passer sous deux colonnes (ou plus)… Si on fait un slide (dessous)…
+
 
 Options à proposer au joueur dans Settings:
 
 - Taille de la map ✔
 - Volume sonore général ✔
 - Volume de la musique ✔
-- Difficulté (délai entre les transformation de l’aire de jeu + temps avant apparition de la sortie) ✔
-	- plus c’est difficile et plus les transformations se suivent vite et la sortie prend du temps à arriver (pas encore défini, ça)...
+- Difficulté ✔ :
+    • Temps avant l’apparition de la porte de sortie : (Taille de la map / 2) ± 10 % minutes
+    • Délai entre les transformations de l’aire de course : 12 - (Difficulté × 2) secondes
 
+	
 Les personnalités des « IA »/Bots :
 
 Comportements face aux obstacles :

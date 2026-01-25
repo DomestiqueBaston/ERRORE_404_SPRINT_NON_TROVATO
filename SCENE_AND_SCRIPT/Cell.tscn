@@ -589,7 +589,7 @@ tracks/2/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("28_7mpjj")
 }],
-"times": PackedFloat32Array(0.93333334, 3.2712526, 5.602539)
+"times": PackedFloat32Array(0.93333334, 3.2712915, 5.6026297)
 }
 tracks/2/use_blend = true
 tracks/3/type = "audio"
@@ -1160,17 +1160,19 @@ metadata/_edit_lock_ = true
 bus = &"FX_WET"
 
 [node name="Start_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
-volume_db = 5.0
-bus = &"FX_WET"
-
-[node name="Stop_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
 volume_db = 2.5
 bus = &"FX_WET"
 
+[node name="Stop_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
+volume_db = 5.0
+bus = &"FX_WET"
+
 [node name="Up_Down_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
+volume_db = 5.0
 bus = &"FX_WET"
 
 [node name="Disappearing_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
+volume_db = 5.0
 bus = &"FX_WET"
 
 [node name="Sliding_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
@@ -1178,6 +1180,7 @@ stream = ExtResource("27_5dg73")
 bus = &"FX_WET"
 
 [node name="Appearing_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
+volume_db = 5.0
 bus = &"FX_WET"
 
 [node name="Glitch_For_Screen_Glitch" type="AudioStreamPlayer" parent="Cellule_Sound"]

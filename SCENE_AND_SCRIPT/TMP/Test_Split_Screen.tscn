@@ -1468,7 +1468,11 @@ bus = &"FX_WET"
 
 [node name="UI_Sounds" parent="." instance=ExtResource("33_5ttrv")]
 
+[node name="Music" parent="UI_Sounds" index="3"]
+autoplay = true
+
 [editable path="Runners/Top_Runners/Left_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Top_Runners/Right_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport/Runner"]
+[editable path="UI_Sounds"]
