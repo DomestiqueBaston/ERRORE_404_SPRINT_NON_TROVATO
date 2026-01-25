@@ -41,7 +41,7 @@ environment = SubResource("Environment_5rr24")
 position = Vector2(480, 0)
 script = ExtResource("1_sjb8x")
 cell_scene = ExtResource("2_okjc4")
-grid_size = 21
+grid_size = 9
 metadata/_edit_lock_ = true
 
 [node name="Cube" parent="." instance=ExtResource("3_u5bti")]
@@ -94,8 +94,7 @@ bus = &"FX_WET"
 
 [node name="UI_Sounds" parent="." instance=ExtResource("8_ntkwp")]
 
-[node name="Music" parent="UI_Sounds" index="2"]
-volume_db = -7.5
+[node name="Music" parent="UI_Sounds" index="3"]
 autoplay = true
 
 [editable path="Woman"]

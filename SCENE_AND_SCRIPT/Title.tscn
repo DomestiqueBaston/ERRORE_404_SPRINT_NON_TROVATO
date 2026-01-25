@@ -158,9 +158,9 @@ shader_parameter/y_zoom = 1.25
 shader_parameter/opacity = 0.10000000475
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aa5oj"]
-content_margin_left = 5.0
-content_margin_top = 4.0
-content_margin_right = 4.0
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
 content_margin_bottom = 5.0
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 2
@@ -236,7 +236,7 @@ metadata/_edit_lock_ = true
 
 [node name="Large_Shadow" type="Sprite2D" parent="."]
 self_modulate = Color(0.6507289, 0.6507289, 0.6507289, 0.25)
-position = Vector2(480.00003, 415)
+position = Vector2(480, 417)
 scale = Vector2(1.05, 0.1)
 texture = ExtResource("1_bnvrm")
 metadata/_edit_lock_ = true
@@ -335,7 +335,6 @@ offset_bottom = 955.0
 metadata/_edit_lock_ = true
 
 [node name="Info_Overlay" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
@@ -350,10 +349,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -159.75
-offset_top = -65.0
-offset_right = 159.75
-offset_bottom = -36.0
+offset_left = -197.0
+offset_top = -66.0
+offset_right = 197.0
+offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/default_color = Color(0.92156863, 0.4392157, 0.3137255, 1)
@@ -365,7 +364,7 @@ theme_override_fonts/normal_font = ExtResource("14_aa5oj")
 theme_override_font_sizes/normal_font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_aa5oj")
 bbcode_enabled = true
-text = "Dai, premi qualcosa, per Zeus!"
+text = "Dai, premi qualcosa, in nome del PCP!"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1

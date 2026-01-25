@@ -93,6 +93,7 @@ Liste des animations des personnages :
 
 Notes de fabrication :
 
+- Au lancement du jeu, la musique qui joue en boucle en permanence, c’est Intro. Jusqu’au moment où le Départ est donné. À cet instant précis, on passe à Music (en boucle). Music ne s’arrête qu’en finissant la partie (soit en relançant une nouvelle partie directement soit en retournant à l’écran de Titre (ou de Settings, je ne sais pas encore présentement). Au moment de lancer à nouveau Intro, il faudra jouer une fois démarrant en même temps qu’Intro le song Bang.
 - Lorsqu’un coureur traverse une case (donc en traçant son mur) et que la case bouge, alors le coureur se décale AVEC la case. Et le mur qu’il trace également. Il faudra donc « tronçonner » les murs à chaque fois qu’un coureur sort d’une case afin que le morceau de mur puisse éventuellement se déplacer avec la case si celle-ci est amenée à se déplacer de nouveau.
 - Il faut voir la question des colonnes qui posent le problème de la collision avec les coureurs quand la colonne n’est pas haute ! Pour le moment, je ne vois qu’afficher un halo de lumière au dessus de la case avant qu’elle ne bouge ou ne soit trop haute pour passer.
 - Pareil aussi pour passer sous deux colonnes (ou plus)… Si on fait un slide (dessous)…

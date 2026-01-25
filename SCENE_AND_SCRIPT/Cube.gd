@@ -6,9 +6,10 @@ extends Node2D
 ## Couleurs aléatoires pour les bonus (voir sprite_color sur Cube) :
 ## Rouge : Color(1.523, 1.044, 1.044)
 ## Vert : Color(0.953, 1.164, 0.695)
-## Bleu : par défaut
+## Bleu : Color(0.939, 1.013, 1.382)
 ## Violet : Color(1.116, 0.88, 1.523)
 ## Jaune : Color(1.231, 1.269, 0.698)
+## Blanc : par défaut
 
 var timer: Timer
 

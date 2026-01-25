@@ -402,6 +402,7 @@ autoplay = "Floating_Light"
 
 [node name="Door_Hum" type="AudioStreamPlayer" parent="Door_Sound"]
 stream = ExtResource("5_jbtw0")
+volume_db = -7.5
 bus = &"FX_DRY"
 parameters/looping = true
 
