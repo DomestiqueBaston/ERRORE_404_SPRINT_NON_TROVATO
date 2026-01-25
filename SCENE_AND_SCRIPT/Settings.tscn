@@ -13,10 +13,10 @@
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="10_0rcrj"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="13_1skkq"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_picqc"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0iask"]
 content_margin_top = 2.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_picqc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mfq6d"]
 shader = ExtResource("3_cgbcj")
@@ -194,6 +194,7 @@ self_modulate = Color(0.6507289, 0.6507289, 0.6507289, 0.25)
 position = Vector2(480.00003, 412)
 scale = Vector2(1.8, 0.1)
 texture = ExtResource("1_pepy6")
+metadata/_edit_lock_ = true
 
 [node name="Title" type="RichTextLabel" parent="Impostazioni"]
 layout_mode = 1
@@ -219,6 +220,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Map" type="RichTextLabel" parent="Impostazioni"]
 layout_mode = 1
@@ -245,6 +247,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Map_9_21" type="RichTextLabel" parent="Impostazioni"]
 layout_mode = 1
@@ -271,6 +274,40 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Line_Map" type="Line2D" parent="Impostazioni"]
+position = Vector2(94, 155)
+points = PackedVector2Array(0, 0, 760, 0)
+width = 8.0
+default_color = Color(0.7764706, 0.84313726, 0.9843137, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Line_Black" type="Line2D" parent="Impostazioni/Line_Map"]
+points = PackedVector2Array(0, 0, 760, 0)
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="HSlider_Map" type="HSlider" parent="Impostazioni"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 142.0
+offset_right = 861.0
+offset_bottom = 169.0
+theme_override_icons/grabber = ExtResource("2_07jpc")
+theme_override_icons/grabber_highlight = ExtResource("4_2k1s1")
+theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
+min_value = 9.0
+max_value = 21.0
+step = 2.0
+value = 15.0
+metadata/_edit_lock_ = true
 
 [node name="Difficulty" type="RichTextLabel" parent="Impostazioni"]
 layout_mode = 1
@@ -298,6 +335,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Difficulty_1_3" type="RichTextLabel" parent="Impostazioni"]
 layout_mode = 1
@@ -324,23 +362,6 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-
-[node name="Line_Map" type="Line2D" parent="Impostazioni"]
-position = Vector2(94, 155)
-points = PackedVector2Array(0, 0, 760, 0)
-width = 8.0
-default_color = Color(0.7764706, 0.84313726, 0.9843137, 1)
-begin_cap_mode = 2
-end_cap_mode = 2
-antialiased = true
-
-[node name="Line_Black" type="Line2D" parent="Impostazioni/Line_Map"]
-points = PackedVector2Array(0, 0, 760, 0)
-width = 4.0
-default_color = Color(0, 0, 0, 1)
-begin_cap_mode = 2
-end_cap_mode = 2
-antialiased = true
 metadata/_edit_lock_ = true
 
 [node name="Line_Difficulty" type="Line2D" parent="Impostazioni"]
@@ -350,7 +371,7 @@ width = 8.0
 default_color = Color(0.7764706, 0.84313726, 0.9843137, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
-antialiased = true
+metadata/_edit_lock_ = true
 
 [node name="Line_Black" type="Line2D" parent="Impostazioni/Line_Difficulty"]
 points = PackedVector2Array(0, 0, 760, 0)
@@ -358,23 +379,7 @@ width = 4.0
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
-antialiased = true
 metadata/_edit_lock_ = true
-
-[node name="HSlider_Map" type="HSlider" parent="Impostazioni"]
-layout_mode = 0
-offset_left = 87.0
-offset_top = 142.0
-offset_right = 861.0
-offset_bottom = 169.0
-theme_override_icons/grabber = ExtResource("2_07jpc")
-theme_override_icons/grabber_highlight = ExtResource("4_2k1s1")
-theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
-min_value = 9.0
-max_value = 21.0
-step = 2.0
-value = 15.0
 
 [node name="HSlider_Difficulty" type="HSlider" parent="Impostazioni"]
 layout_mode = 0
@@ -389,6 +394,7 @@ theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
 min_value = 1.0
 max_value = 5.0
 value = 3.0
+metadata/_edit_lock_ = true
 
 [node name="Audio" type="RichTextLabel" parent="Impostazioni"]
 layout_mode = 1
@@ -415,6 +421,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Audio_0_100" type="RichTextLabel" parent="Impostazioni"]
 layout_mode = 1
@@ -441,6 +448,37 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Line_Audio" type="Line2D" parent="Impostazioni"]
+position = Vector2(79, 315)
+points = PackedVector2Array(0, 0, 760, 0)
+width = 8.0
+default_color = Color(0.7764706, 0.84313726, 0.9843137, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Line_Black" type="Line2D" parent="Impostazioni/Line_Audio"]
+points = PackedVector2Array(0, 0, 760, 0)
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="HSlider_Audio" type="HSlider" parent="Impostazioni"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 302.0
+offset_right = 846.0
+offset_bottom = 329.0
+theme_override_icons/grabber = ExtResource("2_07jpc")
+theme_override_icons/grabber_highlight = ExtResource("4_2k1s1")
+theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
+value = 100.0
+metadata/_edit_lock_ = true
 
 [node name="Music" type="RichTextLabel" parent="Impostazioni"]
 layout_mode = 1
@@ -467,6 +505,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Music_0_100" type="RichTextLabel" parent="Impostazioni"]
 layout_mode = 1
@@ -493,21 +532,6 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-
-[node name="Line_Audio" type="Line2D" parent="Impostazioni"]
-position = Vector2(79, 315)
-points = PackedVector2Array(0, 0, 760, 0)
-width = 8.0
-default_color = Color(0.7764706, 0.84313726, 0.9843137, 1)
-begin_cap_mode = 2
-end_cap_mode = 2
-
-[node name="Line_Black" type="Line2D" parent="Impostazioni/Line_Audio"]
-points = PackedVector2Array(0, 0, 760, 0)
-width = 4.0
-default_color = Color(0, 0, 0, 1)
-begin_cap_mode = 2
-end_cap_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Line_Music" type="Line2D" parent="Impostazioni"]
@@ -517,6 +541,7 @@ width = 8.0
 default_color = Color(0.7764706, 0.84313726, 0.9843137, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="Line_Black" type="Line2D" parent="Impostazioni/Line_Music"]
 points = PackedVector2Array(0, 0, 760, 0)
@@ -525,18 +550,6 @@ default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
-
-[node name="HSlider_Audio" type="HSlider" parent="Impostazioni"]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 302.0
-offset_right = 846.0
-offset_bottom = 329.0
-theme_override_icons/grabber = ExtResource("2_07jpc")
-theme_override_icons/grabber_highlight = ExtResource("4_2k1s1")
-theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
-value = 100.0
 
 [node name="HSlider_Music" type="HSlider" parent="Impostazioni"]
 layout_mode = 0
@@ -549,6 +562,7 @@ theme_override_icons/grabber_highlight = ExtResource("4_2k1s1")
 theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
 value = 100.0
+metadata/_edit_lock_ = true
 
 [node name="Masks" type="Control" parent="Impostazioni"]
 anchors_preset = 0
@@ -578,6 +592,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Title"]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
@@ -612,6 +627,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Map"]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
@@ -646,6 +662,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Map_0_100"]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
@@ -680,6 +697,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Difficulty"]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
@@ -714,6 +732,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Difficulty_1_5"]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
@@ -748,6 +767,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Audio"]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
@@ -782,6 +802,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Audio_0_100"]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
@@ -816,6 +837,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Music"]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
@@ -850,6 +872,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Music_0_100"]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
