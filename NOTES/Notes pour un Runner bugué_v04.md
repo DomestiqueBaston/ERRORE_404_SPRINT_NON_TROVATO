@@ -90,17 +90,14 @@ Liste des animations des personnages :
     6. Tomber dans le vide → Mort ! ✔ ✔
     7. Bim ! Dans un mur → Mort ! ✔ ✔
 
-
 Notes de fabrication :
-
+SON :
 - Au lancement du jeu, la musique qui joue en boucle en permanence, c’est Intro. Jusqu’au moment où le Départ est donné. À cet instant précis, on passe à Music (en boucle). Music ne s’arrête qu’en finissant la partie (soit en relançant une nouvelle partie directement soit en retournant à l’écran de Titre (ou de Settings, je ne sais pas encore présentement). Au moment de lancer à nouveau Intro, il faudra jouer une fois démarrant en même temps qu’Intro le song Bang.
+JEU :
 - Lorsqu’un coureur traverse une case (donc en traçant son mur) et que la case bouge, alors le coureur se décale AVEC la case. Et le mur qu’il trace également. Il faudra donc « tronçonner » les murs à chaque fois qu’un coureur sort d’une case afin que le morceau de mur puisse éventuellement se déplacer avec la case si celle-ci est amenée à se déplacer de nouveau.
-- Il faut voir la question des colonnes qui posent le problème de la collision avec les coureurs quand la colonne n’est pas haute ! Pour le moment, je ne vois qu’afficher un halo de lumière au dessus de la case avant qu’elle ne bouge ou ne soit trop haute pour passer.
-- Pareil aussi pour passer sous deux colonnes (ou plus)… Si on fait un slide (dessous)…
-
+- Cas particuliers de mort : il existe un AnimationPlayer avec une animation « toute bête » pour ces cas-là (Animation_Disappearing_Death). Si par exemple se présent un cas avec deux colonnes baissées et que le joueur veut passer dessous à vitesse normale, il ne pourra pas et mourra donc et on utilisera cette animation. Écrasé par une colonne, pareil ! Etc.
 
 Options à proposer au joueur dans Settings:
-
 - Taille de la map ✔
 - Volume sonore général ✔
 - Volume de la musique ✔

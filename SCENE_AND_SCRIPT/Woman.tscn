@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://brsvllplyc7ih"]
+[gd_scene load_steps=53 format=3 uid="uid://brsvllplyc7ih"]
 
 [ext_resource type="Script" uid="uid://7rcfji6ehwky" path="res://SCENE_AND_SCRIPT/Woman.gd" id="1_bpqq7"]
 [ext_resource type="Shader" uid="uid://c3gkqv33yx8x5" path="res://SHADER/Outline_Glitch_And_Alpha.gdshader" id="2_axddh"]
@@ -27,6 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://bmg2lx0qadmkd" path="res://SOUND/FX/Crackling_Noise_B.ogg" id="20_1we7y"]
 [ext_resource type="AudioStream" uid="uid://y4doxkf0qxtd" path="res://SOUND/FX/Crackling_Noise_F.ogg" id="21_0thg2"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="22_1yje6"]
+[ext_resource type="AudioStream" uid="uid://dn68ist7fukqi" path="res://SOUND/FX/RUNNER/Disappearing_Death.ogg" id="28_ge0qs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gcyqs"]
 shader = ExtResource("2_axddh")
@@ -2558,6 +2559,82 @@ _data = {
 &"RESET": SubResource("Animation_hq7h1")
 }
 
+[sub_resource type="Animation" id="Animation_y5a35"]
+resource_name = "Disappearing"
+length = 0.23333667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character/Papa_Sprite/Runner_Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.13333334, 0.19999999, 0.23333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Character/Papa_Sprite/Runner_Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.13333334, 0.19999999, 0.23333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Man_Sound/Disappearing_Death")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("28_ge0qs")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_h0yk5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character/Papa_Sprite/Runner_Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Character/Papa_Sprite/Runner_Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_td8gx"]
+_data = {
+&"Disappearing": SubResource("Animation_y5a35"),
+&"RESET": SubResource("Animation_h0yk5")
+}
+
 [node name="Woman" type="Node2D"]
 
 [node name="Character" type="Node2D" parent="."]
@@ -2610,6 +2687,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_w02lc")
 }
 
+[node name="Animation_Disappearing_Death" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_td8gx")
+}
+
 [node name="Woman_Sound" type="Node2D" parent="."]
 visible = false
 
@@ -2648,4 +2730,7 @@ bus = &"FX_DRY"
 
 [node name="Sliding" type="AudioStreamPlayer" parent="Woman_Sound"]
 volume_db = -12.5
+bus = &"FX_DRY"
+
+[node name="Disappearing_Death" type="AudioStreamPlayer" parent="Woman_Sound"]
 bus = &"FX_DRY"

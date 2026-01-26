@@ -1,5 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dedxcbs4bf5ld"]
+[gd_scene load_steps=19 format=3 uid="uid://dedxcbs4bf5ld"]
 
+[ext_resource type="Texture2D" uid="uid://dmedkgtjj7r3t" path="res://IMAGE/ENVIRONMENT/CELL/Pylone_Shadow.png" id="1_4ropo"]
+[ext_resource type="Texture2D" uid="uid://dsrmr325mtsek" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_01.png" id="1_yrggj"]
+[ext_resource type="Shader" uid="uid://cv2sbt316r24a" path="res://Pylone_Shadow_Compositing.gdshader" id="2_llfy2"]
 [ext_resource type="Texture2D" uid="uid://w0y6jf5wx4px" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de pylone.png" id="27_i1aus"]
 [ext_resource type="Texture2D" uid="uid://br32hmm1061" path="res://IMAGE/ENVIRONMENT/CELL/Extension de pylone.png" id="28_cedp7"]
 [ext_resource type="AudioStream" uid="uid://qnjr5b74yyt8" path="res://SOUND/FX/Door_Appearing.ogg" id="29_4avwy"]
@@ -8,6 +11,10 @@
 [ext_resource type="AudioStream" uid="uid://mkvmu7rmdx3t" path="res://SOUND/FX/Clang_Start_Cell.ogg" id="32_qfph7"]
 [ext_resource type="AudioStream" uid="uid://ccoauvddaj8m" path="res://SOUND/FX/Up_Down_Cell.ogg" id="33_lcffa"]
 [ext_resource type="AudioStream" uid="uid://bvr7mwob6g81h" path="res://SOUND/FX/Disappearing_Cell.ogg" id="34_jpdus"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i673b"]
+shader = ExtResource("2_llfy2")
+shader_parameter/intensity = 0.0
 
 [sub_resource type="Animation" id="Animation_mf5kn"]
 resource_name = "Going_Down"
@@ -86,6 +93,30 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 1.7, 2.3333335),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.2333333, 2.3333335),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.1250000059375]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Shadow/Pylone_Shadow:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.2333333, 2.3333335),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, true]
@@ -186,6 +217,30 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Shadow/Pylone_Shadow:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.70000005),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.70000005),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.250000011875]
 }
 
 [sub_resource type="Animation" id="Animation_4ropo"]
@@ -292,6 +347,30 @@ tracks/6/keys = {
 "update": 1,
 "values": [true, false, false]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Shadow/Pylone_Shadow:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1, 2.8333333, 5.0000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1, 2.8333333, 5.0000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.1250000059375, 0.1250000059375, 0.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_5memm"]
 resource_name = "Going_Up_Falling"
@@ -397,6 +476,42 @@ tracks/6/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Shadow:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 1, 4.766667, 5.0000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.90000004), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Shadow/Pylone_Shadow:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1, 4.8, 5.0000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1, 4.8, 5.0000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.250000011875, 0.250000011875, 0.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_iotr2"]
 length = 0.001
@@ -448,6 +563,42 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Shadow:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Shadow/Pylone_Shadow:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u038b"]
 _data = {
@@ -461,14 +612,28 @@ _data = {
 [node name="Cell" type="Node2D"]
 metadata/_edit_lock_ = true
 
+[node name="CelluleDeTerrain01" type="Sprite2D" parent="."]
+position = Vector2(0, 179.5)
+texture = ExtResource("1_yrggj")
+
 [node name="Collider_Obstacle" type="Area2D" parent="."]
 visible = false
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionPolygon2D" parent="Collider_Obstacle"]
+visible = false
 position = Vector2(0, -40)
 polygon = PackedVector2Array(0, -20, 118, 39, 118, 40, 0, 99, -118, 40, -118, 39)
 metadata/_edit_lock_ = true
+
+[node name="Shadow" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Pylone_Shadow" type="Sprite2D" parent="Shadow"]
+visible = false
+material = SubResource("ShaderMaterial_i673b")
+position = Vector2(0, -0.5)
+texture = ExtResource("1_4ropo")
 
 [node name="Pylon" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
