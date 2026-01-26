@@ -3,9 +3,9 @@
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_g28q7"]
 resource_name = "Reverb"
 damping = 0.33
-hipass = 0.05
-dry = 0.3
-wet = 0.7
+hipass = 0.15
+dry = 0.4
+wet = 0.6
 
 [sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_n8wo2"]
 resource_name = "Limiter"
@@ -18,9 +18,9 @@ soft_clip_ratio = 4.0
 resource_name = "Reverb"
 room_size = 0.6
 damping = 0.33
-hipass = 0.05
-dry = 0.7
-wet = 0.3
+hipass = 0.15
+dry = 0.6
+wet = 0.4
 
 [sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_g28q7"]
 resource_name = "Limiter"
@@ -32,16 +32,15 @@ soft_clip_ratio = 4.0
 [sub_resource type="AudioEffectEQ10" id="AudioEffectEQ10_j3pel"]
 resource_name = "EQ10"
 band_db/31_hz = -60.0
-band_db/62_hz = -15.0
+band_db/62_hz = -20.0
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
 resource_name = "Reverb"
 room_size = 0.7
 damping = 0.4
-spread = 0.7
-hipass = 0.12
-dry = 0.85
-wet = 0.15
+hipass = 0.15
+dry = 0.75
+wet = 0.25
 
 [sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_j3pel"]
 resource_name = "Limiter"
@@ -51,35 +50,41 @@ soft_clip_db = 4.0
 soft_clip_ratio = 4.0
 
 [resource]
-bus/1/name = &"FX_WET"
+bus/1/name = &"GLOBAL_FX"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = -5.0
+bus/1/volume_db = 0.0
 bus/1/send = &"Master"
-bus/1/effect/0/effect = SubResource("AudioEffectReverb_g28q7")
-bus/1/effect/0/enabled = true
-bus/1/effect/1/effect = SubResource("AudioEffectLimiter_n8wo2")
-bus/1/effect/1/enabled = true
-bus/2/name = &"FX_DRY"
+bus/2/name = &"FX_WET"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = -5.0
-bus/2/send = &"Master"
-bus/2/effect/0/effect = SubResource("AudioEffectReverb_n8wo2")
+bus/2/send = &"GLOBAL_FX"
+bus/2/effect/0/effect = SubResource("AudioEffectReverb_g28q7")
 bus/2/effect/0/enabled = true
-bus/2/effect/1/effect = SubResource("AudioEffectLimiter_g28q7")
+bus/2/effect/1/effect = SubResource("AudioEffectLimiter_n8wo2")
 bus/2/effect/1/enabled = true
-bus/3/name = &"MUSIC"
+bus/3/name = &"FX_DRY"
 bus/3/solo = false
 bus/3/mute = false
 bus/3/bypass_fx = false
-bus/3/volume_db = -5.625
-bus/3/send = &"Master"
-bus/3/effect/0/effect = SubResource("AudioEffectEQ10_j3pel")
+bus/3/volume_db = -5.0
+bus/3/send = &"GLOBAL_FX"
+bus/3/effect/0/effect = SubResource("AudioEffectReverb_n8wo2")
 bus/3/effect/0/enabled = true
-bus/3/effect/1/effect = SubResource("AudioEffectReverb_j3pel")
+bus/3/effect/1/effect = SubResource("AudioEffectLimiter_g28q7")
 bus/3/effect/1/enabled = true
-bus/3/effect/2/effect = SubResource("AudioEffectLimiter_j3pel")
-bus/3/effect/2/enabled = true
+bus/4/name = &"MUSIC"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = -7.5
+bus/4/send = &"Master"
+bus/4/effect/0/effect = SubResource("AudioEffectEQ10_j3pel")
+bus/4/effect/0/enabled = true
+bus/4/effect/1/effect = SubResource("AudioEffectReverb_j3pel")
+bus/4/effect/1/enabled = true
+bus/4/effect/2/effect = SubResource("AudioEffectLimiter_j3pel")
+bus/4/effect/2/enabled = true

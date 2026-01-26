@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://cucs0i7d1er7d"]
+[gd_scene load_steps=69 format=3 uid="uid://cucs0i7d1er7d"]
 
 [ext_resource type="Texture2D" uid="uid://bsel0k65v13mi" path="res://IMAGE/ENVIRONMENT/CELL/Extension de terrain.png" id="1_e50o2"]
 [ext_resource type="Texture2D" uid="uid://dsrmr325mtsek" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_01.png" id="1_ypd1c"]
@@ -45,6 +45,7 @@
 [ext_resource type="AudioStream" uid="uid://ec0m1xfy6c32" path="res://SOUND/FX/Digital_Glitch_C.ogg" id="36_pnhl5"]
 [ext_resource type="AudioStream" uid="uid://bm1v8dymi3n0a" path="res://SOUND/FX/Digital_Glitch_B.ogg" id="37_qjqwi"]
 [ext_resource type="AudioStream" uid="uid://bxr32qgishsy8" path="res://SOUND/FX/Digital_Glitch_D.ogg" id="38_5memm"]
+[ext_resource type="AudioStream" uid="uid://vldsf8ak3y4t" path="res://SOUND/FX/Alarm.ogg" id="46_psu53"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mwy7o"]
 vertices = PackedVector2Array(95.78125, 0.3515625, 0.0078125, 47.828125, -96.64844, -0.5, -0.0625, -48.789063)
@@ -1172,7 +1173,7 @@ volume_db = 5.0
 bus = &"FX_WET"
 
 [node name="Disappearing_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
-volume_db = 5.0
+volume_db = 1.5
 bus = &"FX_WET"
 
 [node name="Sliding_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
@@ -1180,7 +1181,6 @@ stream = ExtResource("27_5dg73")
 bus = &"FX_WET"
 
 [node name="Appearing_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
-volume_db = 5.0
 bus = &"FX_WET"
 
 [node name="Glitch_For_Screen_Glitch" type="AudioStreamPlayer" parent="Cellule_Sound"]
@@ -1192,3 +1192,8 @@ bus = &"FX_DRY"
 stream = ExtResource("38_5memm")
 volume_db = -22.5
 bus = &"FX_WET"
+
+[node name="Alarm_Before_Movement" type="AudioStreamPlayer" parent="Cellule_Sound"]
+stream = ExtResource("46_psu53")
+bus = &"FX_WET"
+parameters/looping = true
