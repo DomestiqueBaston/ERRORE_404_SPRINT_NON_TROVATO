@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cjgaaqpwcx0r3"]
+[gd_scene format=3 uid="uid://cjgaaqpwcx0r3"]
 
 [ext_resource type="Texture2D" uid="uid://b8x0ihnlq10s2" path="res://IMAGE/MISC/Large_Shadow.png" id="1_bnvrm"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="3_aa5oj"]
@@ -226,29 +226,29 @@ _data = {
 &"RESET": SubResource("Animation_qq84j")
 }
 
-[node name="Title" type="Node2D"]
+[node name="Title" type="Node2D" unique_id=582724467]
 metadata/_edit_lock_ = true
 
-[node name="White" type="ColorRect" parent="."]
+[node name="White" type="ColorRect" parent="." unique_id=806878626]
 offset_right = 960.0
 offset_bottom = 540.0
 metadata/_edit_lock_ = true
 
-[node name="Large_Shadow" type="Sprite2D" parent="."]
+[node name="Large_Shadow" type="Sprite2D" parent="." unique_id=951900221]
 self_modulate = Color(0.6507289, 0.6507289, 0.6507289, 0.25)
 position = Vector2(480, 417)
 scale = Vector2(1.05, 0.1)
 texture = ExtResource("1_bnvrm")
 metadata/_edit_lock_ = true
 
-[node name="Control" type="Control" parent="."]
+[node name="Game_Name" type="Control" parent="." unique_id=592577149]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
 offset_bottom = 540.0
 metadata/_edit_lock_ = true
 
-[node name="Title" type="Label" parent="Control"]
+[node name="Title" type="Label" parent="Game_Name" unique_id=521001925]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -272,7 +272,7 @@ trovato!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Cache" type="Label" parent="Control"]
+[node name="Cache" type="Label" parent="Game_Name" unique_id=1192637321]
 clip_children = 2
 layout_mode = 1
 anchors_preset = 15
@@ -292,19 +292,19 @@ trovato!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Title_Gradients" type="Sprite2D" parent="Control/Cache"]
+[node name="Title_Gradients" type="Sprite2D" parent="Game_Name/Cache" unique_id=1732612865]
 self_modulate = Color(0.969, 1.215, 1.892, 0.863)
 position = Vector2(480, 270)
 texture = ExtResource("4_jqsr3")
 
-[node name="Glitches" type="Control" parent="."]
+[node name="Glitches" type="Control" parent="." unique_id=642320963]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
 offset_bottom = 540.0
 metadata/_edit_lock_ = true
 
-[node name="Shader" type="ColorRect" parent="Glitches"]
+[node name="Shader" type="ColorRect" parent="Glitches" unique_id=1085162898]
 material = SubResource("ShaderMaterial_bnvrm")
 layout_mode = 0
 offset_right = 960.0
@@ -312,29 +312,27 @@ offset_bottom = 418.0
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="Glitch_Sound" type="AudioStreamPlayer" parent="Glitches"]
+[node name="Glitch_Sound" type="AudioStreamPlayer" parent="Glitches" unique_id=223658147]
 volume_db = -15.0
 bus = &"FX_DRY"
 
-[node name="Sound_Animation" type="AnimationPlayer" parent="Glitches"]
+[node name="Sound_Animation" type="AnimationPlayer" parent="Glitches" unique_id=407437228]
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_shryd")
-}
-autoplay = "Glitchy_Sound"
+libraries/ = SubResource("AnimationLibrary_shryd")
+autoplay = &"Glitchy_Sound"
 
-[node name="BackBufferCopy_Reflection" type="BackBufferCopy" parent="."]
+[node name="BackBufferCopy_Reflection" type="BackBufferCopy" parent="." unique_id=1372622882]
 rect = Rect2(0, 0, 960, 540)
 metadata/_edit_lock_ = true
 
-[node name="Reflection" type="ColorRect" parent="BackBufferCopy_Reflection"]
+[node name="Reflection" type="ColorRect" parent="BackBufferCopy_Reflection" unique_id=1413763717]
 material = SubResource("ShaderMaterial_jqsr3")
 offset_top = 418.0
 offset_right = 960.0
 offset_bottom = 955.0
 metadata/_edit_lock_ = true
 
-[node name="Info_Overlay" type="Control" parent="."]
+[node name="Info_Overlay" type="Control" parent="." unique_id=1869904629]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
@@ -342,7 +340,7 @@ offset_bottom = 540.0
 script = ExtResource("14_ykdlm")
 metadata/_edit_lock_ = true
 
-[node name="Info_Start" type="RichTextLabel" parent="Info_Overlay"]
+[node name="Info_Start" type="RichTextLabel" parent="Info_Overlay" unique_id=1381950875]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -370,16 +368,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Animation_Overlay" type="AnimationPlayer" parent="Info_Overlay"]
-libraries = {
-&"": SubResource("AnimationLibrary_xweb4")
-}
+[node name="Animation_Overlay" type="AnimationPlayer" parent="Info_Overlay" unique_id=122317364]
+libraries/ = SubResource("AnimationLibrary_xweb4")
 
-[node name="Alarm" type="AudioStreamPlayer" parent="Info_Overlay"]
+[node name="Alarm" type="AudioStreamPlayer" parent="Info_Overlay" unique_id=1037405880]
 volume_db = -17.5
 autoplay = true
 bus = &"FX_WET"
 
-[node name="UI_Sounds" parent="." instance=ExtResource("12_jqsr3")]
+[node name="UI_Sounds" parent="." unique_id=1152138802 instance=ExtResource("12_jqsr3")]
 
 [editable path="UI_Sounds"]

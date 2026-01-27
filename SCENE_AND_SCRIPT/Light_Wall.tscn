@@ -1,27 +1,86 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3eab2wqm5wmp"]
+[gd_scene format=3 uid="uid://d3eab2wqm5wmp"]
 
-[ext_resource type="Gradient" uid="uid://dci31rm8nm77h" path="res://RESOURCE/Runner_Wall_Start_Gradient.tres" id="1_bjou7"]
+[ext_resource type="Shader" uid="uid://1uirkyntqux" path="res://SHADER/Light_Wall_Glitch.gdshader" id="1_bjou7"]
 [ext_resource type="Gradient" uid="uid://d2yj5gmwpcn0g" path="res://RESOURCE/Runner_Wall_Main_Gradient.tres" id="1_cwxye"]
-[ext_resource type="Gradient" uid="uid://dfarusgsca243" path="res://RESOURCE/Runner_Wall_End_Gradient.tres" id="3_i5m2m"]
+[ext_resource type="AudioStream" uid="uid://dhqe43polir8c" path="res://SOUND/FX/Appearing_Light_Wall.ogg" id="3_jdkuv"]
 [ext_resource type="AudioStream" uid="uid://3b3j7ke38t82" path="res://SOUND/FX/Disappearing_Light_Wall.ogg" id="4_i5m2m"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8ivi5"]
-gradient = ExtResource("1_bjou7")
-use_hdr = true
-fill = 1
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tnv1"]
+size = Vector2(44.719193, 7.0045767)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i5m2m"]
+shader = ExtResource("1_bjou7")
+shader_parameter/glitch_chance = 0.0
+shader_parameter/glitch_speed = 7.0
+shader_parameter/slice_density = 6.0
+shader_parameter/slice_strength = 0.3
+shader_parameter/shake_strength = 1.5
+shader_parameter/chroma_offset = 1.0
+shader_parameter/noise_strength = 0.5
+shader_parameter/color_flash_strength = 0.25
+shader_parameter/scanline_strength = 0.18
+shader_parameter/local_warp_strength = 1.0
+shader_parameter/flip_chance = 0.0
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_cwxye"]
 gradient = ExtResource("1_cwxye")
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rjpof"]
-gradient = ExtResource("3_i5m2m")
-use_hdr = true
-fill = 1
-fill_from = Vector2(1, 1)
+[sub_resource type="Animation" id="Animation_et0x4"]
+resource_name = "Appearing"
+length = 0.23333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall_Main:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333333, 0.06666667, 0.10000002, 0.16666669, 0.20000002),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sound/Appearing_Disappearing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_jdkuv")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Wall_Main:material:shader_parameter/glitch_chance")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.23333335),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Wall_Main:material:shader_parameter/shake_strength")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.23333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.5, 0.19999999999999996, 1.5]
+}
 
 [sub_resource type="Animation" id="Animation_bjou7"]
 resource_name = "Disappearing"
@@ -29,7 +88,7 @@ length = 0.36667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Wall_Start:visible")
+tracks/0/path = NodePath("Wall_Main:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -38,37 +97,13 @@ tracks/0/keys = {
 "update": 1,
 "values": [true, false, true, false, true, false, true, false, true, false]
 }
-tracks/1/type = "value"
+tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Wall_Main:visible")
+tracks/1/path = NodePath("Sound/Appearing_Disappearing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.06666666, 0.1, 0.16666667, 0.2, 0.23333333, 0.26666668, 0.3, 0.33333334, 0.36666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [true, false, true, false, true, false, true, false, true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Wall_End:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.06666666, 0.1, 0.16666667, 0.2, 0.23333333, 0.26666668, 0.3, 0.33333334, 0.36666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [true, false, true, false, true, false, true, false, true, false]
-}
-tracks/3/type = "audio"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Disappearing_Wall")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -76,14 +111,38 @@ tracks/3/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/3/use_blend = true
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Wall_Main:material:shader_parameter/glitch_chance")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1.0, 1.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Wall_Main:material:shader_parameter/shake_strength")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.2, 0.9, 1.5]
+}
 
 [sub_resource type="Animation" id="Animation_i5m2m"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Wall_Start:visible")
+tracks/0/path = NodePath("Wall_Main:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -95,47 +154,51 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Wall_Main:visible")
+tracks/1/path = NodePath("Wall_Main:material:shader_parameter/glitch_chance")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Wall_End:visible")
+tracks/2/path = NodePath("Wall_Main:material:shader_parameter/shake_strength")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [1.5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jdkuv"]
 _data = {
+&"Appearing": SubResource("Animation_et0x4"),
 &"Disappearing": SubResource("Animation_bjou7"),
 &"RESET": SubResource("Animation_i5m2m")
 }
 
-[node name="Light_Wall" type="Node2D"]
+[node name="Light_Wall" type="Node2D" unique_id=2109438449]
 
-[node name="Wall_Start" type="Polygon2D" parent="."]
-position = Vector2(-50, -25)
-offset = Vector2(-40, -80)
-antialiased = true
-texture = SubResource("GradientTexture2D_8ivi5")
-polygon = PackedVector2Array(40, 80, 60, 90, 60, 10, 40, 0)
-uv = PackedVector2Array(0.019904375, 64.02229, 63.98355, 64.00014, 64.002686, 0.0072500706, -0.008017302, -0.008937389)
+[node name="Light_Wall_Collider" type="Area2D" parent="." unique_id=1434049907]
+visible = false
 metadata/_edit_lock_ = true
 
-[node name="Wall_Main" type="Polygon2D" parent="."]
-position = Vector2(-50, -25)
+[node name="Collider" type="CollisionShape2D" parent="Light_Wall_Collider" unique_id=1818071791]
+position = Vector2(-56.029694, -28.014868)
+rotation = 0.46425754
+skew = 0.6422812
+shape = SubResource("RectangleShape2D_5tnv1")
+metadata/_edit_lock_ = true
+
+[node name="Wall_Main" type="Polygon2D" parent="." unique_id=596188624]
+material = SubResource("ShaderMaterial_i5m2m")
+position = Vector2(-36, -18)
 offset = Vector2(-40, -80)
 antialiased = true
 texture = SubResource("GradientTexture2D_cwxye")
@@ -143,20 +206,11 @@ polygon = PackedVector2Array(0, 60, 40, 80, 40, 0, 0, -20)
 uv = PackedVector2Array(-0.024783134, 64.03354, 63.99833, 64.017, 64.01071, 0.0029670596, -0.017838173, 0.0069375634)
 metadata/_edit_lock_ = true
 
-[node name="Wall_End" type="Polygon2D" parent="."]
-position = Vector2(-50, -25)
-offset = Vector2(-40, -80)
-antialiased = true
-texture = SubResource("GradientTexture2D_rjpof")
-polygon = PackedVector2Array(-20, 50, 0, 60, 0, -20, -20, -30)
-uv = PackedVector2Array(-0.015312433, 63.98985, 64.0186, 64.020615, 64.01276, 0.012954593, 0.011847019, 0.021749973)
-metadata/_edit_lock_ = true
+[node name="Light_Wall_Animation" type="AnimationPlayer" parent="." unique_id=594533283]
+libraries/ = SubResource("AnimationLibrary_jdkuv")
 
-[node name="Light_Wall_Animation" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_jdkuv")
-}
+[node name="Sound" type="Node2D" parent="." unique_id=1803890025]
 
-[node name="Disappearing_Wall" type="AudioStreamPlayer" parent="."]
-volume_db = -2.5
+[node name="Appearing_Disappearing" type="AudioStreamPlayer" parent="Sound" unique_id=449367181]
+volume_db = -5.0
 bus = &"FX_DRY"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://brsvllplyc7ih"]
+[gd_scene format=3 uid="uid://brsvllplyc7ih"]
 
 [ext_resource type="Script" uid="uid://7rcfji6ehwky" path="res://SCENE_AND_SCRIPT/Woman.gd" id="1_bpqq7"]
 [ext_resource type="Shader" uid="uid://c3gkqv33yx8x5" path="res://SHADER/Outline_Glitch_And_Alpha.gdshader" id="2_axddh"]
@@ -2589,7 +2589,7 @@ tracks/1/keys = {
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Man_Sound/Disappearing_Death")
+tracks/2/path = NodePath("Woman_Sound/Disappearing_Death")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -2635,14 +2635,14 @@ _data = {
 &"RESET": SubResource("Animation_h0yk5")
 }
 
-[node name="Woman" type="Node2D"]
+[node name="Woman" type="Node2D" unique_id=1635856392]
 
-[node name="Character" type="Node2D" parent="."]
+[node name="Character" type="Node2D" parent="." unique_id=1360061723]
 script = ExtResource("1_bpqq7")
 
-[node name="Papa_Sprite" type="Node2D" parent="Character"]
+[node name="Papa_Sprite" type="Node2D" parent="Character" unique_id=963002785]
 
-[node name="Runner_Sprite" type="Sprite2D" parent="Character/Papa_Sprite"]
+[node name="Runner_Sprite" type="Sprite2D" parent="Character/Papa_Sprite" unique_id=1169504972]
 material = SubResource("ShaderMaterial_gcyqs")
 texture = ExtResource("3_gjkpv")
 offset = Vector2(-5, -44)
@@ -2650,10 +2650,10 @@ hframes = 36
 vframes = 11
 frame = 36
 
-[node name="Papa_Shadow" type="Node2D" parent="Character/Papa_Sprite/Runner_Sprite"]
+[node name="Papa_Shadow" type="Node2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=1235909948]
 show_behind_parent = true
 
-[node name="Shadow" type="Sprite2D" parent="Character/Papa_Sprite/Runner_Sprite/Papa_Shadow"]
+[node name="Shadow" type="Sprite2D" parent="Character/Papa_Sprite/Runner_Sprite/Papa_Shadow" unique_id=795088438]
 self_modulate = Color(1, 1, 1, 0.12941177)
 material = SubResource("ShaderMaterial_lts44")
 position = Vector2(-7, 1)
@@ -2661,76 +2661,70 @@ rotation = 0.17453292
 texture = ExtResource("5_1s22q")
 offset = Vector2(7, 0)
 
-[node name="Collider_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite"]
+[node name="Collider_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=2058946939]
 visible = false
 
-[node name="Collider" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Collider_Area"]
+[node name="Collider" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Collider_Area" unique_id=825152419]
 rotation = -1.0471976
 shape = SubResource("CapsuleShape2D_rjpof")
 disabled = true
 
-[node name="Cam" type="Camera2D" parent="Character"]
+[node name="Cam" type="Camera2D" parent="Character" unique_id=1828297682]
 position = Vector2(-480, -270)
 offset = Vector2(480, 235)
 metadata/_edit_lock_ = true
 
-[node name="Animation_Runner" type="AnimationPlayer" parent="."]
+[node name="Animation_Runner" type="AnimationPlayer" parent="." unique_id=1090802675]
 root_node = NodePath("../Character")
-libraries = {
-&"": SubResource("AnimationLibrary_8jbc5")
-}
-autoplay = "Intro"
+libraries/ = SubResource("AnimationLibrary_8jbc5")
+autoplay = &"Intro"
 
-[node name="Animation_Glitch" type="AnimationPlayer" parent="."]
+[node name="Animation_Glitch" type="AnimationPlayer" parent="." unique_id=591582504]
 root_node = NodePath("../Character")
-libraries = {
-&"": SubResource("AnimationLibrary_w02lc")
-}
+libraries/ = SubResource("AnimationLibrary_w02lc")
 
-[node name="Animation_Disappearing_Death" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_td8gx")
-}
+[node name="Animation_Disappearing_Death" type="AnimationPlayer" parent="." unique_id=1890520424]
+libraries/ = SubResource("AnimationLibrary_td8gx")
 
-[node name="Woman_Sound" type="Node2D" parent="."]
+[node name="Woman_Sound" type="Node2D" parent="." unique_id=2112401329]
 visible = false
 
-[node name="Foot_Step" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Foot_Step" type="AudioStreamPlayer" parent="Woman_Sound" unique_id=1328140485]
 volume_db = -2.5
 pitch_scale = 0.5
 bus = &"FX_DRY"
 
-[node name="Glitch_Sound" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Glitch_Sound" type="AudioStreamPlayer" parent="Woman_Sound" unique_id=1963298143]
 volume_db = -15.0
 bus = &"FX_DRY"
 
-[node name="Disappearing" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Disappearing" type="AudioStreamPlayer" parent="Woman_Sound" unique_id=748581328]
 volume_db = -2.5
 bus = &"FX_DRY"
 
-[node name="Falling" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Falling" type="AudioStreamPlayer" parent="Woman_Sound" unique_id=953067423]
 volume_db = -5.0
 bus = &"FX_DRY"
 
-[node name="Running" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Running" type="AudioStreamPlayer" parent="Woman_Sound" unique_id=1886074975]
 volume_db = -12.5
 bus = &"FX_DRY"
 
-[node name="Fall_Death" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Fall_Death" type="AudioStreamPlayer" parent="Woman_Sound" unique_id=203481195]
 volume_db = -10.0
 bus = &"FX_DRY"
 
-[node name="Ouch" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Ouch" type="AudioStreamPlayer" parent="Woman_Sound" unique_id=1772537407]
 volume_db = -12.5
 bus = &"FX_DRY"
 
-[node name="Pushing" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Pushing" type="AudioStreamPlayer" parent="Woman_Sound" unique_id=2103180944]
 volume_db = -5.0
 bus = &"FX_DRY"
 
-[node name="Sliding" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Sliding" type="AudioStreamPlayer" parent="Woman_Sound" unique_id=2082912143]
 volume_db = -12.5
 bus = &"FX_DRY"
 
-[node name="Disappearing_Death" type="AudioStreamPlayer" parent="Woman_Sound"]
+[node name="Disappearing_Death" type="AudioStreamPlayer" parent="Woman_Sound" unique_id=122269528]
 bus = &"FX_DRY"
