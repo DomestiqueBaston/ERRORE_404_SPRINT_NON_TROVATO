@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://brsvllplyc7ih"]
 
-[ext_resource type="Script" uid="uid://7rcfji6ehwky" path="res://SCENE_AND_SCRIPT/Woman.gd" id="1_bpqq7"]
+[ext_resource type="Script" uid="uid://7rcfji6ehwky" path="res://SCENE_AND_SCRIPT/Runner.gd" id="1_bpqq7"]
 [ext_resource type="Shader" uid="uid://c3gkqv33yx8x5" path="res://SHADER/Outline_Glitch_And_Alpha.gdshader" id="2_axddh"]
 [ext_resource type="Texture2D" uid="uid://5grfiugqisi8" path="res://IMAGE/RUNNER/WOMAN/Woman_Sprite_Sheet.png" id="3_gjkpv"]
 [ext_resource type="Shader" uid="uid://3f2wtq4pn17q" path="res://SHADER/Shadow_Compositing.gdshader" id="4_kxl5h"]
@@ -58,6 +58,10 @@ shader = ExtResource("4_kxl5h")
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rjpof"]
 radius = 8.925275
 height = 35.99242
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sidcg"]
+radius = 193.19096
+height = 769.4171
 
 [sub_resource type="Animation" id="Animation_jp0wo"]
 resource_name = "Death_000"
@@ -2660,12 +2664,19 @@ texture = ExtResource("5_1s22q")
 offset = Vector2(7, 0)
 
 [node name="Collider_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=2058946939]
-visible = false
 
 [node name="Collider" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Collider_Area" unique_id=825152419]
 rotation = -1.0471976
 shape = SubResource("CapsuleShape2D_rjpof")
 disabled = true
+
+[node name="Vision_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=929364484]
+
+[node name="Vision" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Vision_Area" unique_id=1285441499]
+position = Vector2(135, 66)
+rotation = -0.5637413
+skew = -0.55152404
+shape = SubResource("CapsuleShape2D_sidcg")
 
 [node name="Cam" type="Camera2D" parent="Character" unique_id=1828297682]
 position = Vector2(-480, -270)

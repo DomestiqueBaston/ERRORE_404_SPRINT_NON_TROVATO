@@ -991,63 +991,6 @@ offset_bottom = 270.0
 color = Color(0.3882353, 0.1882353, 0.64705884, 1)
 metadata/_edit_lock_ = true
 
-[node name="Annoying_Messages" type="Control" parent="Frames/Bugs_01" unique_id=671111973]
-visible = false
-anchors_preset = 0
-offset_right = 480.0
-offset_bottom = 270.0
-metadata/_edit_lock_ = true
-
-[node name="Message_1" type="RichTextLabel" parent="Frames/Bugs_01/Annoying_Messages" unique_id=1930465071]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -194.0
-offset_top = -22.0
-offset_right = 194.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/outline_size = 6
-theme_override_fonts/normal_font = ExtResource("31_nkbw3")
-theme_override_font_sizes/normal_font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
-bbcode_enabled = true
-text = "[color=#ed7252]È stata rilevata un’azione.
-Riavviare l’ordinatore per applicare le modifiche.[/color]"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="Message_2" type="RichTextLabel" parent="Frames/Bugs_01/Annoying_Messages" unique_id=973413253]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -194.0
-offset_top = -28.5
-offset_right = 194.0
-offset_bottom = 28.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/outline_size = 6
-theme_override_fonts/normal_font = ExtResource("31_nkbw3")
-theme_override_font_sizes/normal_font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
-bbcode_enabled = true
-text = "[color=#92dc32]Algoritmo quantistico rilevato.
-Si prega di posizionare il computer in un luogo fresco per permettere l'esecuzione.[/color]"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
 [node name="Death" type="Control" parent="Frames/Bugs_01" unique_id=869063107]
 visible = false
 anchors_preset = 0
@@ -1139,63 +1082,6 @@ layout_mode = 0
 offset_right = 480.0
 offset_bottom = 270.0
 color = Color(0.7529412, 0.50980395, 0.078431375, 1)
-metadata/_edit_lock_ = true
-
-[node name="Annoying_Messages" type="Control" parent="Frames/Bugs_02" unique_id=449573572]
-visible = false
-anchors_preset = 0
-offset_right = 480.0
-offset_bottom = 270.0
-metadata/_edit_lock_ = true
-
-[node name="Message_1" type="RichTextLabel" parent="Frames/Bugs_02/Annoying_Messages" unique_id=2031782436]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -194.0
-offset_top = -22.0
-offset_right = 194.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/outline_size = 6
-theme_override_fonts/normal_font = ExtResource("31_nkbw3")
-theme_override_font_sizes/normal_font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
-bbcode_enabled = true
-text = "[color=#ed7252]È stata rilevata un’azione.
-Riavviare l’ordinatore per applicare le modifiche.[/color]"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="Message_2" type="RichTextLabel" parent="Frames/Bugs_02/Annoying_Messages" unique_id=2003754031]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -194.0
-offset_top = -28.5
-offset_right = 194.0
-offset_bottom = 28.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/outline_size = 6
-theme_override_fonts/normal_font = ExtResource("31_nkbw3")
-theme_override_font_sizes/normal_font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
-bbcode_enabled = true
-text = "[color=#92dc32]Algoritmo quantistico rilevato.
-Si prega di posizionare il computer in un luogo fresco per permettere l'esecuzione.[/color]"
-horizontal_alignment = 1
-vertical_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_02" unique_id=692485606]
@@ -1291,63 +1177,6 @@ offset_bottom = 270.0
 color = Color(0.16470589, 0.5529412, 0.8352941, 1)
 metadata/_edit_lock_ = true
 
-[node name="Annoying_Messages" type="Control" parent="Frames/Bugs_03" unique_id=646753481]
-visible = false
-anchors_preset = 0
-offset_right = 480.0
-offset_bottom = 270.0
-metadata/_edit_lock_ = true
-
-[node name="Message_1" type="RichTextLabel" parent="Frames/Bugs_03/Annoying_Messages" unique_id=1165195651]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -194.0
-offset_top = -22.0
-offset_right = 194.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/outline_size = 6
-theme_override_fonts/normal_font = ExtResource("31_nkbw3")
-theme_override_font_sizes/normal_font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
-bbcode_enabled = true
-text = "[color=#ed7252]È stata rilevata un’azione.
-Riavviare l’ordinatore per applicare le modifiche.[/color]"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="Message_2" type="RichTextLabel" parent="Frames/Bugs_03/Annoying_Messages" unique_id=721240938]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -194.0
-offset_top = -28.5
-offset_right = 194.0
-offset_bottom = 28.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/outline_size = 6
-theme_override_fonts/normal_font = ExtResource("31_nkbw3")
-theme_override_font_sizes/normal_font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
-bbcode_enabled = true
-text = "[color=#92dc32]Algoritmo quantistico rilevato.
-Si prega di posizionare il computer in un luogo fresco per permettere l'esecuzione.[/color]"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
 [node name="Death" type="Control" parent="Frames/Bugs_03" unique_id=1435042299]
 visible = false
 anchors_preset = 0
@@ -1440,62 +1269,6 @@ layout_mode = 0
 offset_right = 480.0
 offset_bottom = 270.0
 color = Color(0.49019608, 0.74509805, 0.27058825, 1)
-metadata/_edit_lock_ = true
-
-[node name="Annoying_Messages" type="Control" parent="Frames/Bugs_04" unique_id=192170680]
-visible = false
-anchors_preset = 0
-offset_right = 480.0
-offset_bottom = 270.0
-metadata/_edit_lock_ = true
-
-[node name="Message_1" type="RichTextLabel" parent="Frames/Bugs_04/Annoying_Messages" unique_id=375051531]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -194.0
-offset_top = -22.0
-offset_right = 194.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/outline_size = 6
-theme_override_fonts/normal_font = ExtResource("31_nkbw3")
-theme_override_font_sizes/normal_font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
-bbcode_enabled = true
-text = "[color=#ed7252]È stata rilevata un’azione.
-Riavviare l’ordinatore per applicare le modifiche.[/color]"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="Message_2" type="RichTextLabel" parent="Frames/Bugs_04/Annoying_Messages" unique_id=2095848099]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -194.0
-offset_top = -28.5
-offset_right = 194.0
-offset_bottom = 28.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/outline_size = 6
-theme_override_fonts/normal_font = ExtResource("31_nkbw3")
-theme_override_font_sizes/normal_font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
-bbcode_enabled = true
-text = "[color=#92dc32]Algoritmo quantistico rilevato.
-Si prega di posizionare il computer in un luogo fresco per permettere l'esecuzione.[/color]"
-horizontal_alignment = 1
-vertical_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_04" unique_id=917885689]

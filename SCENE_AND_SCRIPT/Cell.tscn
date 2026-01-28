@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://cucs0i7d1er7d"]
+[gd_scene format=3 uid="uid://cucs0i7d1er7d"]
 
 [ext_resource type="Texture2D" uid="uid://bsel0k65v13mi" path="res://IMAGE/ENVIRONMENT/CELL/Extension de terrain.png" id="1_e50o2"]
 [ext_resource type="Texture2D" uid="uid://dsrmr325mtsek" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_01.png" id="1_ypd1c"]
@@ -819,9 +819,9 @@ _data = {
 &"Up_Sliding_End": SubResource("Animation_psu53")
 }
 
-[node name="Cell" type="Node2D"]
+[node name="Cell" type="Node2D" unique_id=2120336095]
 
-[node name="ATTENTION" type="Label" parent="."]
+[node name="ATTENTION" type="Label" parent="." unique_id=1347624169]
 visible = false
 offset_left = 124.0
 offset_top = 132.0
@@ -841,215 +841,216 @@ puis on finit en jouant l'animation Sliding_End.
 Tout cela ne vaut que pour les glissements."
 metadata/_edit_lock_ = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=187786599]
 visible = false
 offset_left = -153.0
 offset_top = -128.0
 offset_right = 317.0
 offset_bottom = 290.0
 
-[node name="Column" type="Node2D" parent="."]
+[node name="Column" type="Node2D" parent="." unique_id=294314283]
 metadata/_edit_lock_ = true
 
-[node name="Navigation_Tile" type="NavigationRegion2D" parent="Column"]
+[node name="Navigation_Tile" type="NavigationRegion2D" parent="Column" unique_id=2074369045]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_mwy7o")
 metadata/_edit_lock_ = true
 
-[node name="Cell_Tops" type="Node2D" parent="Column"]
+[node name="Cell_Tops" type="Node2D" parent="Column" unique_id=390785631]
 metadata/_edit_lock_ = true
 
-[node name="Collider_Ground" type="Area2D" parent="Column/Cell_Tops"]
+[node name="Collider_Ground" type="Area2D" parent="Column/Cell_Tops" unique_id=290484024]
 metadata/_edit_lock_ = true
 
-[node name="Collider" type="CollisionPolygon2D" parent="Column/Cell_Tops/Collider_Ground"]
+[node name="Collider" type="CollisionPolygon2D" parent="Column/Cell_Tops/Collider_Ground" unique_id=2120679339]
 polygon = PackedVector2Array(-118, -1, 0, -60, 118, -1, 118, 0, 0, 59, -118, 0)
 metadata/_edit_lock_ = true
 
-[node name="Cell_Extension" type="Sprite2D" parent="Column/Cell_Tops"]
+[node name="Cell_Extension" type="Sprite2D" parent="Column/Cell_Tops" unique_id=982586807]
 position = Vector2(0, -81)
 texture = ExtResource("1_e50o2")
 offset = Vector2(0, 1250)
 metadata/_edit_lock_ = true
 
-[node name="Images" type="Node2D" parent="Column/Cell_Tops"]
+[node name="Images" type="Node2D" parent="Column/Cell_Tops" unique_id=1669817094]
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_01" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_01" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=772253429]
 texture = ExtResource("1_ypd1c")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_02" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_02" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=33830416]
 visible = false
 texture = ExtResource("2_0chrw")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_03" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_03" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=1958794780]
 visible = false
 texture = ExtResource("3_wjuty")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_04" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_04" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=1157317517]
 visible = false
 texture = ExtResource("4_7188o")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_05" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_05" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=754917339]
 visible = false
 texture = ExtResource("5_vo76y")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_06" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_06" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=394130346]
 visible = false
 texture = ExtResource("6_wjuty")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_07" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_07" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=1082498549]
 visible = false
 texture = ExtResource("7_8vle5")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_08" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_08" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=1096034811]
 visible = false
 texture = ExtResource("8_ej7e8")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Bord_Bas" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_Bord_Bas" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=1524729564]
 visible = false
 texture = ExtResource("6_m6nb2")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Bord_Bas_Droit_1" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_Bord_Bas_Droit_1" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=1384151948]
 visible = false
 texture = ExtResource("7_x7s2x")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Bord_Bas_Droit_2" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_Bord_Bas_Droit_2" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=1069514871]
 visible = false
 texture = ExtResource("8_kkq45")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Bord_Bas_Droit_3" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_Bord_Bas_Droit_3" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=512829205]
 visible = false
 texture = ExtResource("10_usf32")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Bord_Bas_Gauche_1" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_Bord_Bas_Gauche_1" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=1902751516]
 visible = false
 texture = ExtResource("9_kr3tr")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Bord_Bas_Gauche_2" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_Bord_Bas_Gauche_2" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=1922215369]
 visible = false
 texture = ExtResource("10_oaevg")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Bord_Bas_Gauche_3" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_Bord_Bas_Gauche_3" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=661070950]
 visible = false
 texture = ExtResource("12_mwy7o")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Bord_Droit" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_Bord_Droit" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=1191560288]
 visible = false
 texture = ExtResource("11_tggmm")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Bord_Gauche" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_Bord_Gauche" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=1303682818]
 visible = false
 texture = ExtResource("12_tvhyd")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Bord_Haut" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_Bord_Haut" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=1498649925]
 visible = false
 texture = ExtResource("13_b7xif")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Bord_Haut_Droit_1" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_Bord_Haut_Droit_1" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=2085578862]
 visible = false
 texture = ExtResource("14_mi1bg")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Bord_Haut_Droit_2" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_Bord_Haut_Droit_2" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=834696535]
 visible = false
 texture = ExtResource("15_bx3ju")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Bord_Haut_Droit_3" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_Bord_Haut_Droit_3" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=638853595]
 visible = false
 texture = ExtResource("18_8qjf4")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Bord_Haut_Gauche_1" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_Bord_Haut_Gauche_1" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=311507263]
 visible = false
 texture = ExtResource("16_6elyb")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Bord_Haut_Gauche_2" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_Bord_Haut_Gauche_2" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=1980497471]
 visible = false
 texture = ExtResource("17_h1n4v")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Bord_Haut_Gauche_3" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_Bord_Haut_Gauche_3" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=1827877745]
 visible = false
 texture = ExtResource("20_ao42k")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Terrain_Centre" type="Sprite2D" parent="Column/Cell_Tops/Images"]
+[node name="Cellule_De_Terrain_Centre" type="Sprite2D" parent="Column/Cell_Tops/Images" unique_id=249001988]
 visible = false
 texture = ExtResource("18_ik60n")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
-[node name="Top_Cell_FX_Mask" type="Sprite2D" parent="Column/Cell_Tops"]
+[node name="Top_Cell_FX_Mask" type="Sprite2D" parent="Column/Cell_Tops" unique_id=1142209556]
+visible = false
 clip_children = 1
 texture = ExtResource("27_7mpjj")
 centered = false
@@ -1057,7 +1058,7 @@ offset = Vector2(-118, -60)
 script = ExtResource("28_n3k4r")
 metadata/_edit_lock_ = true
 
-[node name="Screen_Glitch" type="ColorRect" parent="Column/Cell_Tops/Top_Cell_FX_Mask"]
+[node name="Screen_Glitch" type="ColorRect" parent="Column/Cell_Tops/Top_Cell_FX_Mask" unique_id=1391064787]
 visible = false
 material = SubResource("ShaderMaterial_vso1q")
 offset_left = -118.0
@@ -1067,7 +1068,7 @@ offset_bottom = 59.0
 color = Color(1, 1, 1, 0.5254902)
 metadata/_edit_lock_ = true
 
-[node name="Glitch_Only" type="ColorRect" parent="Column/Cell_Tops/Top_Cell_FX_Mask"]
+[node name="Glitch_Only" type="ColorRect" parent="Column/Cell_Tops/Top_Cell_FX_Mask" unique_id=1514546767]
 visible = false
 material = SubResource("ShaderMaterial_n3k4r")
 offset_left = -118.0
@@ -1077,24 +1078,24 @@ offset_bottom = 59.0
 color = Color(1, 1, 1, 0.5254902)
 metadata/_edit_lock_ = true
 
-[node name="One_Way_Direction" type="Node2D" parent="Column/Cell_Tops"]
+[node name="One_Way_Direction" type="Node2D" parent="Column/Cell_Tops" unique_id=880013981]
 visible = false
 script = ExtResource("31_qkut6")
 metadata/_edit_lock_ = true
 
-[node name="Shadow_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Direction"]
+[node name="Shadow_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Direction" unique_id=162548240]
 metadata/_edit_lock_ = true
 
-[node name="Direction_Collider" type="Area2D" parent="Column/Cell_Tops/One_Way_Direction/Shadow_Orientation"]
+[node name="Direction_Collider" type="Area2D" parent="Column/Cell_Tops/One_Way_Direction/Shadow_Orientation" unique_id=968516240]
 metadata/_edit_lock_ = true
 
-[node name="Collider" type="CollisionShape2D" parent="Column/Cell_Tops/One_Way_Direction/Shadow_Orientation/Direction_Collider"]
+[node name="Collider" type="CollisionShape2D" parent="Column/Cell_Tops/One_Way_Direction/Shadow_Orientation/Direction_Collider" unique_id=636798695]
 position = Vector2(-0.7547445, -0.37794787)
 rotation = 0.46425754
 skew = 0.65973437
 shape = SubResource("RectangleShape2D_qkut6")
 
-[node name="Shadow" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Shadow_Orientation"]
+[node name="Shadow" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Shadow_Orientation" unique_id=1270092676]
 self_modulate = Color(1, 1, 1, 0.12941177)
 rotation = 0.4799655
 scale = Vector2(3.22, 0.646)
@@ -1102,98 +1103,92 @@ skew = 0.61959183
 texture = ExtResource("31_fki3o")
 metadata/_edit_lock_ = true
 
-[node name="Direction_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Direction"]
+[node name="Direction_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Direction" unique_id=256302916]
 position = Vector2(11, -45)
 metadata/_edit_lock_ = true
 
-[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation"]
+[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation" unique_id=1800194083]
 self_modulate = Color(1, 1, 1, 0.39215687)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
 
-[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation"]
+[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation" unique_id=751098843]
 clip_children = 2
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
 
-[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation/Direction_Back_Mask"]
+[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation/Direction_Back_Mask" unique_id=865244848]
 self_modulate = Color(1, 1, 1, 0.49803922)
 material = SubResource("ShaderMaterial_6o5ds")
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
 
-[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation"]
+[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation" unique_id=1447955888]
 position = Vector2(11.5, 4.5)
 texture = ExtResource("32_iotr2")
 metadata/_edit_lock_ = true
 
-[node name="Direction_Animation" type="AnimationPlayer" parent="Column/Cell_Tops/One_Way_Direction"]
-libraries = {
-&"": SubResource("AnimationLibrary_vwuvy")
-}
+[node name="Direction_Animation" type="AnimationPlayer" parent="Column/Cell_Tops/One_Way_Direction" unique_id=998299477]
+libraries/ = SubResource("AnimationLibrary_vwuvy")
 
-[node name="Direction_Floating" type="AnimationPlayer" parent="Column/Cell_Tops/One_Way_Direction"]
-libraries = {
-&"": SubResource("AnimationLibrary_oyod2")
-}
-autoplay = "Floating"
+[node name="Direction_Floating" type="AnimationPlayer" parent="Column/Cell_Tops/One_Way_Direction" unique_id=74783843]
+libraries/ = SubResource("AnimationLibrary_oyod2")
+autoplay = &"Floating"
 
-[node name="Appearing_Disappearing" type="AudioStreamPlayer" parent="Column/Cell_Tops/One_Way_Direction"]
+[node name="Appearing_Disappearing" type="AudioStreamPlayer" parent="Column/Cell_Tops/One_Way_Direction" unique_id=1759639142]
 bus = &"FX_WET"
 
-[node name="Glitch" type="AudioStreamPlayer" parent="Column/Cell_Tops/One_Way_Direction"]
+[node name="Glitch" type="AudioStreamPlayer" parent="Column/Cell_Tops/One_Way_Direction" unique_id=61025417]
 stream = ExtResource("36_pnhl5")
-volume_db = -10.0
+volume_db = -5.0
 bus = &"FX_DRY"
 
-[node name="Animation_Cell" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ej7e8")
-}
-autoplay = "RESET"
+[node name="Animation_Cell" type="AnimationPlayer" parent="." unique_id=1288134592]
+libraries/ = SubResource("AnimationLibrary_ej7e8")
+autoplay = &"RESET"
 
-[node name="Cellule_Sound" type="Node2D" parent="."]
+[node name="Cellule_Sound" type="Node2D" parent="." unique_id=589879206]
 metadata/_edit_lock_ = true
 
-[node name="Moving_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
+[node name="Moving_Cell" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=2131109079]
 bus = &"FX_WET"
 
-[node name="Start_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
+[node name="Start_Cell" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=1720354538]
 volume_db = 2.5
 bus = &"FX_WET"
 
-[node name="Stop_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
+[node name="Stop_Cell" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=1776672692]
 volume_db = 5.0
 bus = &"FX_WET"
 
-[node name="Up_Down_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
+[node name="Up_Down_Cell" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=2081589942]
 volume_db = 5.0
 bus = &"FX_WET"
 
-[node name="Disappearing_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
+[node name="Disappearing_Cell" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=295905289]
 volume_db = 1.5
 bus = &"FX_WET"
 
-[node name="Sliding_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
+[node name="Sliding_Cell" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=479006352]
 stream = ExtResource("27_5dg73")
 bus = &"FX_WET"
 
-[node name="Appearing_Cell" type="AudioStreamPlayer" parent="Cellule_Sound"]
+[node name="Appearing_Cell" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=228232776]
 bus = &"FX_WET"
 
-[node name="Glitch_For_Screen_Glitch" type="AudioStreamPlayer" parent="Cellule_Sound"]
+[node name="Glitch_For_Screen_Glitch" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=1685933352]
 stream = ExtResource("37_qjqwi")
 volume_db = -5.0
 bus = &"FX_DRY"
 
-[node name="Glitch_For_Glitch_Only" type="AudioStreamPlayer" parent="Cellule_Sound"]
+[node name="Glitch_For_Glitch_Only" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=2124933242]
 stream = ExtResource("38_5memm")
 volume_db = -22.5
 bus = &"FX_WET"
 
-[node name="Alarm_Before_Movement" type="AudioStreamPlayer" parent="Cellule_Sound"]
+[node name="Alarm_Before_Movement" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=657381530]
 stream = ExtResource("46_psu53")
 bus = &"FX_WET"
 parameters/looping = true

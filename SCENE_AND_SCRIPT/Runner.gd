@@ -1,5 +1,8 @@
 extends Node2D
 
+## La Vision_Area n'est pas gérée par ce script vu que là,
+## c'est juste de la démo...
+
 @onready var sprite: Node2D = $Papa_Sprite
 @onready var animation_player: AnimationPlayer = $"../Animation_Runner"
 
