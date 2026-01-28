@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://p751chhvtga6"]
+[gd_scene format=3 uid="uid://p751chhvtga6"]
 
 [ext_resource type="Script" uid="uid://7rcfji6ehwky" path="res://SCENE_AND_SCRIPT/Woman.gd" id="1_whayo"]
 [ext_resource type="Shader" uid="uid://c3gkqv33yx8x5" path="res://SHADER/Outline_Glitch_And_Alpha.gdshader" id="2_5mfc4"]
@@ -29,6 +29,20 @@
 [ext_resource type="AudioStream" uid="uid://y4doxkf0qxtd" path="res://SOUND/FX/Crackling_Noise_F.ogg" id="26_6fyo1"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="27_0yqqm"]
 [ext_resource type="AudioStream" uid="uid://dn68ist7fukqi" path="res://SOUND/FX/RUNNER/Disappearing_Death.ogg" id="29_4qbnf"]
+[ext_resource type="AudioStream" uid="uid://boubqyiskws1h" path="res://SOUND/FX/RUNNER/Dash.ogg" id="30_3m3ft"]
+[ext_resource type="AudioStream" uid="uid://c0isopdpo0qnl" path="res://SOUND/FX/RUNNER/Through.ogg" id="31_60cqj"]
+[ext_resource type="AudioStream" uid="uid://dv6h02qyq3s4y" path="res://SOUND/FX/RUNNER/Virus.ogg" id="32_2ei40"]
+[ext_resource type="AudioStream" uid="uid://bwkr0tdf7e1fn" path="res://SOUND/FX/RUNNER/Teleport.ogg" id="33_qdi7g"]
+[ext_resource type="AudioStream" uid="uid://cbwrcysacpwex" path="res://SOUND/FX/RUNNER/Debug.ogg" id="34_dj5oa"]
+[ext_resource type="AudioStream" uid="uid://c3a5gs8xn7mi1" path="res://SOUND/FX/RUNNER/Last_Longer.ogg" id="35_3lkun"]
+[ext_resource type="AudioStream" uid="uid://3yg8o12ftglw" path="res://SOUND/FX/RUNNER/Invincible.ogg" id="36_ajgrw"]
+[ext_resource type="AudioStream" uid="uid://bw6mdsblb8ewg" path="res://SOUND/FX/RUNNER/Invert.ogg" id="37_2yfnd"]
+[ext_resource type="AudioStream" uid="uid://p755bthurb04" path="res://SOUND/FX/RUNNER/Slow.ogg" id="38_oxxmx"]
+[ext_resource type="AudioStream" uid="uid://b6ww4shdn6nj3" path="res://SOUND/FX/RUNNER/Last_Shorter.ogg" id="39_pqtcy"]
+[ext_resource type="AudioStream" uid="uid://c6wdc8jhhc7m0" path="res://SOUND/FX/RUNNER/Anti_Dash.ogg" id="40_dgnxe"]
+[ext_resource type="AudioStream" uid="uid://brb24ixtrvqg3" path="res://SOUND/FX/RUNNER/Empty.ogg" id="41_xybtp"]
+[ext_resource type="AudioStream" uid="uid://5w55chwkxbr5" path="res://SOUND/FX/RUNNER/Anti_Virus.ogg" id="42_jql6m"]
+[ext_resource type="AudioStream" uid="uid://b262xncyf383x" path="res://SOUND/FX/RUNNER/Anti_Teleport.ogg" id="43_q8h50"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gcyqs"]
 shader = ExtResource("2_5mfc4")
@@ -1354,7 +1368,6 @@ tracks/14/keys = {
 [sub_resource type="Animation" id="Animation_w5jul"]
 resource_name = "Run_000"
 length = 0.60000336
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -2682,14 +2695,75 @@ _data = {
 &"RESET": SubResource("Animation_h0yk5")
 }
 
-[node name="Man" type="Node2D"]
+[sub_resource type="Animation" id="Animation_3lkun"]
+resource_name = "Bonus_Malus"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character/Papa_Sprite/Runner_Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1, 0.13333334, 0.1666667, 0.20000002),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Character/Papa_Sprite/Runner_Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1, 0.13333334, 0.1666667, 0.20000002),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
-[node name="Character" type="Node2D" parent="."]
+[sub_resource type="Animation" id="Animation_ajgrw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character/Papa_Sprite/Runner_Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Character/Papa_Sprite/Runner_Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2yfnd"]
+_data = {
+&"Bonus_Malus": SubResource("Animation_3lkun"),
+&"RESET": SubResource("Animation_ajgrw")
+}
+
+[node name="Man" type="Node2D" unique_id=1403848273]
+
+[node name="Character" type="Node2D" parent="." unique_id=1563263395]
 script = ExtResource("1_whayo")
 
-[node name="Papa_Sprite" type="Node2D" parent="Character"]
+[node name="Papa_Sprite" type="Node2D" parent="Character" unique_id=369956299]
 
-[node name="Runner_Sprite" type="Sprite2D" parent="Character/Papa_Sprite"]
+[node name="Runner_Sprite" type="Sprite2D" parent="Character/Papa_Sprite" unique_id=143163856]
 material = SubResource("ShaderMaterial_gcyqs")
 texture = ExtResource("3_whayo")
 offset = Vector2(-5, -44)
@@ -2697,10 +2771,10 @@ hframes = 36
 vframes = 11
 frame = 36
 
-[node name="Papa_Shadow" type="Node2D" parent="Character/Papa_Sprite/Runner_Sprite"]
+[node name="Papa_Shadow" type="Node2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=1688076351]
 show_behind_parent = true
 
-[node name="Shadow" type="Sprite2D" parent="Character/Papa_Sprite/Runner_Sprite/Papa_Shadow"]
+[node name="Shadow" type="Sprite2D" parent="Character/Papa_Sprite/Runner_Sprite/Papa_Shadow" unique_id=1674881042]
 self_modulate = Color(1, 1, 1, 0.12941177)
 material = SubResource("ShaderMaterial_lts44")
 position = Vector2(-7, 1)
@@ -2708,80 +2782,144 @@ rotation = 0.17453292
 texture = ExtResource("5_h0yk5")
 offset = Vector2(7, 0)
 
-[node name="Collider_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite"]
+[node name="Collider_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=1579218920]
 visible = false
 
-[node name="Collider" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Collider_Area"]
+[node name="Collider" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Collider_Area" unique_id=50269794]
 rotation = -1.0471976
 shape = SubResource("CapsuleShape2D_rjpof")
 disabled = true
 
-[node name="Cam" type="Camera2D" parent="Character"]
+[node name="Cam" type="Camera2D" parent="Character" unique_id=1782995018]
 position = Vector2(-480, -270)
 offset = Vector2(480, 235)
 metadata/_edit_lock_ = true
 
-[node name="Animation_Runner" type="AnimationPlayer" parent="."]
+[node name="Animation_Runner" type="AnimationPlayer" parent="." unique_id=1015872210]
 root_node = NodePath("../Character")
-libraries = {
-&"": SubResource("AnimationLibrary_8jbc5")
-}
-autoplay = "Intro"
+libraries/ = SubResource("AnimationLibrary_8jbc5")
+autoplay = &"Intro"
 
-[node name="Animation_Glitch" type="AnimationPlayer" parent="."]
+[node name="Animation_Glitch" type="AnimationPlayer" parent="." unique_id=1918896994]
 root_node = NodePath("../Character")
-libraries = {
-&"": SubResource("AnimationLibrary_w02lc")
-}
+libraries/ = SubResource("AnimationLibrary_w02lc")
 
-[node name="Animation_Disappearing_Death" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_td8gx")
-}
+[node name="Animation_Disappearing_Death" type="AnimationPlayer" parent="." unique_id=821748682]
+libraries/ = SubResource("AnimationLibrary_td8gx")
 
-[node name="Man_Sound" type="Node2D" parent="."]
+[node name="Animation_Bonus_Malus" type="AnimationPlayer" parent="." unique_id=1415136860]
+libraries/ = SubResource("AnimationLibrary_2yfnd")
+
+[node name="Man_Sound" type="Node2D" parent="." unique_id=1016992791]
 visible = false
 
-[node name="Foot_Step" type="AudioStreamPlayer" parent="Man_Sound"]
+[node name="Foot_Step" type="AudioStreamPlayer" parent="Man_Sound" unique_id=374701022]
 volume_db = -2.5
 pitch_scale = 0.5
 bus = &"FX_DRY"
 
-[node name="Glitch_Sound" type="AudioStreamPlayer" parent="Man_Sound"]
+[node name="Glitch_Sound" type="AudioStreamPlayer" parent="Man_Sound" unique_id=1006391615]
 volume_db = -15.0
 bus = &"FX_DRY"
 
-[node name="Disappearing" type="AudioStreamPlayer" parent="Man_Sound"]
+[node name="Disappearing" type="AudioStreamPlayer" parent="Man_Sound" unique_id=40752013]
 volume_db = -2.5
 bus = &"FX_DRY"
 
-[node name="Falling" type="AudioStreamPlayer" parent="Man_Sound"]
+[node name="Falling" type="AudioStreamPlayer" parent="Man_Sound" unique_id=916835663]
 volume_db = -5.0
 bus = &"FX_DRY"
 
-[node name="Running" type="AudioStreamPlayer" parent="Man_Sound"]
+[node name="Running" type="AudioStreamPlayer" parent="Man_Sound" unique_id=1371606945]
 volume_db = -10.0
 bus = &"FX_DRY"
 
-[node name="Fall_Death" type="AudioStreamPlayer" parent="Man_Sound"]
+[node name="Fall_Death" type="AudioStreamPlayer" parent="Man_Sound" unique_id=1910313179]
 volume_db = -10.0
 bus = &"FX_DRY"
 
-[node name="Ouch" type="AudioStreamPlayer" parent="Man_Sound"]
+[node name="Ouch" type="AudioStreamPlayer" parent="Man_Sound" unique_id=2090339564]
 volume_db = -2.5
 bus = &"FX_DRY"
 
-[node name="Pushing" type="AudioStreamPlayer" parent="Man_Sound"]
+[node name="Pushing" type="AudioStreamPlayer" parent="Man_Sound" unique_id=918143632]
 volume_db = -12.5
 bus = &"FX_DRY"
 
-[node name="Sliding" type="AudioStreamPlayer" parent="Man_Sound"]
+[node name="Sliding" type="AudioStreamPlayer" parent="Man_Sound" unique_id=2142143059]
 volume_db = -12.5
 bus = &"FX_DRY"
 
-[node name="Bim" type="AudioStreamPlayer" parent="Man_Sound"]
+[node name="Bim" type="AudioStreamPlayer" parent="Man_Sound" unique_id=1901487774]
 volume_db = -7.5
 bus = &"FX_DRY"
 
-[node name="Disappearing_Death" type="AudioStreamPlayer" parent="Man_Sound"]
+[node name="Disappearing_Death" type="AudioStreamPlayer" parent="Man_Sound" unique_id=1732010629]
+bus = &"FX_DRY"
+
+[node name="Bonus_Malus" type="Node2D" parent="Man_Sound" unique_id=1636344193]
+visible = false
+
+[node name="Dash" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=347522302]
+stream = ExtResource("30_3m3ft")
+bus = &"FX_DRY"
+
+[node name="Through" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1428876517]
+stream = ExtResource("31_60cqj")
+volume_db = -1.5
+bus = &"FX_DRY"
+
+[node name="Virus" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=787587184]
+stream = ExtResource("32_2ei40")
+volume_db = -2.5
+bus = &"FX_DRY"
+
+[node name="Teleport" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=556419031]
+stream = ExtResource("33_qdi7g")
+bus = &"FX_DRY"
+
+[node name="Debug" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1988301064]
+stream = ExtResource("34_dj5oa")
+volume_db = 2.5
+bus = &"FX_DRY"
+
+[node name="Last_Longer" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=696299228]
+stream = ExtResource("35_3lkun")
+bus = &"FX_DRY"
+
+[node name="Invincible" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=2046569927]
+stream = ExtResource("36_ajgrw")
+volume_db = -1.5
+bus = &"FX_DRY"
+
+[node name="Invert" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1065463390]
+stream = ExtResource("37_2yfnd")
+volume_db = -2.5
+bus = &"FX_DRY"
+
+[node name="Slow" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1881074534]
+stream = ExtResource("38_oxxmx")
+volume_db = 2.5
+bus = &"FX_DRY"
+
+[node name="Last_Shorter" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=25389255]
+stream = ExtResource("39_pqtcy")
+bus = &"FX_DRY"
+
+[node name="Anti_Dash" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1725499644]
+stream = ExtResource("40_dgnxe")
+bus = &"FX_DRY"
+
+[node name="Empty" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1586039620]
+stream = ExtResource("41_xybtp")
+volume_db = 2.5
+bus = &"FX_DRY"
+
+[node name="Anti_Virus" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=285590685]
+stream = ExtResource("42_jql6m")
+volume_db = -2.5
+bus = &"FX_DRY"
+
+[node name="Anti_Teleport" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=2101665834]
+stream = ExtResource("43_q8h50")
 bus = &"FX_DRY"

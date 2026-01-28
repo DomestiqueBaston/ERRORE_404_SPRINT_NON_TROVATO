@@ -14,9 +14,8 @@ Le champs de course se structurera sous forme de grille dont les lignes et colon
 Des cases s’élèveront ou se baisseront également.
 L’aire de course sera composée de base de 9x9 à 21x21 (uniquement impaires) cellules de terrain (ou plus ?). Impaires pour avoir la case 404 au centre.
 Au départ, les joueurs auront la possibilité de choisir la taille de l’aire dans laquelle ils veulent courir.
-Plus le temps passe et plus les modifications de l’environnement se font fréquemment.
 À chaque fois que le jeu va bouger une ligne/colonne (complète, donc!), une alarme se fera entendre.
-Sur le terrain, au centre, une case est levée (colonne verticale, cette fois). C’est sur cette case, une fois la colonne redescendue qu’apparaîtra la porte de sortie de la zone.
+Sur le terrain, au centre, une case est levée (colonne verticale, cette fois). C’est sur cette case, une fois la colonne redescendue qu’apparaîtra la porte de sortie de la zone au bout de 14 secondes + Difficulté (de 1 à 5).
 Un jeu pour 1 à 4. Il y aura toujours 4 concurrents en piste. Quel que soit le nombres de joueurs humains, les concurrents manquants seront pris en charge par l’IA (Bots).
 Pour les coureurs, 4 directions de mouvement (les diagonales).
 Les joueurs ne peuvent pas faire directement demi-tour (à cause du mur qu’ils tracent).
@@ -39,45 +38,52 @@ Un runner bugué :
     8. Des éléments de décor disparaissent/apparaissent ✔
 
 Des bugs (graphiques) qui font vraiment bug :
-    9. Les sprites se mélangent (?) (changer des frames à la volée dans les cycles de course) → Ça se fait : ✔
-    10. Les textures de sol changent → Ça se fait (tween?) : ✔
-    11. La palette de couleurs change ✔ /?\ 
-    12. Des artefacts graphiques : des carrés blancs sur les cellules dans le plan de la caméra → Ça se fait : ✔
-    13. Des glitches sonores ✔
-    14. L’image globale se décale dans la vue du joueur (la caméra se décentre du joueur) → Ça se fait : ✔
-    15. La caméra vibre ✔
-    16. Des éléments de décors changent de position /?\ 
-    17. Des messages d’erreur apparaissent masquant une partie de l'écran : ✔
-    18. L’écran clignote /?\ 
-    19. « BSOD » d’1/2 seconde ✔ 
-    20. Couleurs inversées ✔ 
-    21. Sur-pixelisation ✔ 
+    1. Les sprites se mélangent (?) (changer des frames à la volée dans les cycles de course) → Ça se fait : ✔
+    2. Les textures de sol changent → Ça se fait (tween?) : ✔
+    3. La palette de couleurs change ✔ 
+    4. Des artefacts graphiques : des carrés blancs sur les cellules dans le plan de la caméra → Ça se fait : ✔
+    5. Des glitches sonores ✔
+    6. L’image globale se décale dans la vue du joueur (la caméra se décentre du joueur) → Ça se fait : ✔
+    7. La caméra vibre ✔
+    8. Des messages d’erreur apparaissent masquant une partie de l'écran : ✔
+    9. Couleurs inversées ✔ 
+    10. Sur-pixelisation ✔ 
 
-Les bonus en jeu (passif par défaut) :
-	- Il n’y a qu’1 à 3 exemplaires de chaque Bonus/Malus (en fonction de la puissance du bonus/malus que l’on peut ramasser). Si un joueur en possède un ou est en jeu mais n’a pas été ramassé, il ne peut pas apparaître ailleurs (uniquement au delà de la limite du nombre max de ce bonus/malus).
-	- Peut-être y a-t-il un moyen de créer des synergies en accumulant certains bonus ?
+Les bonus et malus en jeu :
+- Il n’y a que 2 exemplaires de chaque Bonus/Malus (y compris en possession d’un joueur).
+- Les Bonus/Malus apparaissent en jeu toutes les 10 secondes.
+- Il ne peut pas y avoir plus de 5 Bonus/Malus simultanément à ramasser → le 6ème supprime d’abord automatiquement le plus ancien restant et apparaît 1’’ après.
+- Ils ont une couleur aléatoire en jeu (voir Cube.gd). Avec la couleur par défaut, ce sera toujours un Bonus.
+- Au ramassage d’un Bonus/Malus, on joue le son correspondant et on joue le clignotement du coureur (Animation_Bonus_Malus).
+- À l’activation (automatique ou au déclenchement du joueur) on joue également le son correspondant et on joue le clignotement du coureur.
+- Si le ramassage et l’activation se font en même temps, on ne joue qu’une fois le son correspondant et le clignotement du coureur.
 
-    1. Échange de personnage
-    2. Récupère de la vie
-    3. Invulnérabilité (à quoi?)
-    4. Super saut - Actif
-    5. Freeze adversaire (sauf que s’arrêter → mort !)
-    6. Bouclier (contre quoi ?)
-    7. Sabotage (renvoie un malus/bug à un adversaire)
-    8. Super slide
-    9. Dash (accélération qui permet de traverser 2 case le temps d’1)
-    10. Passe-muraille (permet de traverser uniquement les murs des coureurs)
-    11. Réflexe (fait tourner le joueur au lieu de tomber dans le vide)
-    12. Virus (envoie un malus récolté à un adversaire aléatoire)
-    13. Téléportation
-    14. Débogueur (vire un bug actif)
+Les bonus :
+    1. Invulnérabilité (à quoi?) → ✔ Invincible
+    2. Freeze adversaire aléatoire (exceptionnellement ≠ mort !)
+    3. Dash (permet de parcourir 2 cases dans le temps d’1) : 4% plus rapide. → ✔ Dash
+    4. Passe-muraille (uniquement les murs des coureurs) → ✔ Through
+    5. Virus (envoie automatiquement le prochain malus récolté à un adversaire aléatoire) → ✔ Virus
+    6. Téléportation (destination aléatoire)→ ✔ Teleport
+    7. Débogueur (vire un bug actif)→ ✔ Debug
+    8. Les murs tracés par le joueur durent 1.5 fois plus longtemps.→ ✔ Last_Longer
+
+Les malus :
+    1. Inversion de commandes (droite/gauche) → ✔ Invert
+    2. Lenteur de réaction (on ajoute un délai d’1/10’’ (à préciser) dans les commandes des joueurs) → ✔ Slow
+    3. Les murs tracés par le joueur durent 2 fois moins longtemps → ✔ Last_Shorter
+    4. Course, saut et glissade : 4% plus lent → ✔ Anti_Dash
+    5. Rien ! → ✔ Empty
+    6. Virus (envoie automatiquement le prochain Bonus récolté à un adversaire aléatoire) → ✔ Anti_Virus
+    7. Téléportation (le joueur ne choisit pas le moment de l’activation et destination aléatoire)
 
 Les obstacles :
-    1. Vrais murs → Cellules qui montent ✔
-    2. Murs des coureurs → ✔ (voir avec Geoff comment faire)
-    3. Cellule à sens unique → ✔
-    4. Colonnes tombantes → ✔
-    5. La porte finale (par les côtés) → ✔
+Toutes les X secondes (voir Options à proposer au joueur dans Settings) un des obstacles est déclenché. 1 sur 4 est un glissement de Ligne/Colonne.
+    1. Ligne/Colonne (de cellules) qui glisse d’1 à 2 cases → ✔
+    2. Trous (cellules qui descendent) → ✔
+    3. Murs des coureurs → ✔ (voir avec Geoff comment faire)
+    4. Cellule à sens unique → ✔
+    5. Colonnes tombantes → ✔
     6. Dalles disparaissant → Cellules qui disparaissent ✔
 
 Liste des animations des personnages :
@@ -102,7 +108,9 @@ Options à proposer au joueur dans Settings:
 - Volume de la musique ✔
 - Difficulté ✔ :
     • Temps avant l’apparition de la porte de sortie : (Taille de la map + (3 × Difficulté)) / 4 en minutes
-    • Délai entre les transformations de l’aire de course : 12 - (Difficulté × 2) en secondes
+    • Délai entre les déclenchements d’obstacles : 5.5’’ - (0.5 × Difficulté)  en secondes
+
+
 
 	
 Les personnalités des « IA »/Bots :

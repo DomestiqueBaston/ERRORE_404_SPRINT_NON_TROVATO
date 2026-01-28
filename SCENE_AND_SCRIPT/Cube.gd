@@ -9,7 +9,7 @@ extends Node2D
 ## Bleu : Color(0.939, 1.013, 1.382)
 ## Violet : Color(1.116, 0.88, 1.523)
 ## Jaune : Color(1.231, 1.269, 0.698)
-## Blanc : par défaut
+## Blanc : par défaut (TOUJOURS UN BONUS !)
 
 var timer: Timer
 

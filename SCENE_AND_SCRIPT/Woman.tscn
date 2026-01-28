@@ -27,7 +27,20 @@
 [ext_resource type="AudioStream" uid="uid://bmg2lx0qadmkd" path="res://SOUND/FX/Crackling_Noise_B.ogg" id="20_1we7y"]
 [ext_resource type="AudioStream" uid="uid://y4doxkf0qxtd" path="res://SOUND/FX/Crackling_Noise_F.ogg" id="21_0thg2"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="22_1yje6"]
-[ext_resource type="AudioStream" uid="uid://dn68ist7fukqi" path="res://SOUND/FX/RUNNER/Disappearing_Death.ogg" id="28_ge0qs"]
+[ext_resource type="AudioStream" uid="uid://boubqyiskws1h" path="res://SOUND/FX/RUNNER/Dash.ogg" id="29_eam2g"]
+[ext_resource type="AudioStream" uid="uid://c0isopdpo0qnl" path="res://SOUND/FX/RUNNER/Through.ogg" id="30_uy4o6"]
+[ext_resource type="AudioStream" uid="uid://dv6h02qyq3s4y" path="res://SOUND/FX/RUNNER/Virus.ogg" id="31_q7cjs"]
+[ext_resource type="AudioStream" uid="uid://bwkr0tdf7e1fn" path="res://SOUND/FX/RUNNER/Teleport.ogg" id="32_3qpsb"]
+[ext_resource type="AudioStream" uid="uid://cbwrcysacpwex" path="res://SOUND/FX/RUNNER/Debug.ogg" id="33_6jsrj"]
+[ext_resource type="AudioStream" uid="uid://c3a5gs8xn7mi1" path="res://SOUND/FX/RUNNER/Last_Longer.ogg" id="34_yqu5g"]
+[ext_resource type="AudioStream" uid="uid://3yg8o12ftglw" path="res://SOUND/FX/RUNNER/Invincible.ogg" id="35_17u0r"]
+[ext_resource type="AudioStream" uid="uid://bw6mdsblb8ewg" path="res://SOUND/FX/RUNNER/Invert.ogg" id="36_omy5j"]
+[ext_resource type="AudioStream" uid="uid://p755bthurb04" path="res://SOUND/FX/RUNNER/Slow.ogg" id="37_uhvve"]
+[ext_resource type="AudioStream" uid="uid://b6ww4shdn6nj3" path="res://SOUND/FX/RUNNER/Last_Shorter.ogg" id="38_enqo3"]
+[ext_resource type="AudioStream" uid="uid://c6wdc8jhhc7m0" path="res://SOUND/FX/RUNNER/Anti_Dash.ogg" id="39_3rb6g"]
+[ext_resource type="AudioStream" uid="uid://brb24ixtrvqg3" path="res://SOUND/FX/RUNNER/Empty.ogg" id="40_tht04"]
+[ext_resource type="AudioStream" uid="uid://5w55chwkxbr5" path="res://SOUND/FX/RUNNER/Anti_Virus.ogg" id="41_l57rk"]
+[ext_resource type="AudioStream" uid="uid://b262xncyf383x" path="res://SOUND/FX/RUNNER/Anti_Teleport.ogg" id="42_jhlxb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gcyqs"]
 shader = ExtResource("2_axddh")
@@ -2559,9 +2572,9 @@ _data = {
 &"RESET": SubResource("Animation_hq7h1")
 }
 
-[sub_resource type="Animation" id="Animation_y5a35"]
-resource_name = "Disappearing"
-length = 0.23333667
+[sub_resource type="Animation" id="Animation_3lkun"]
+resource_name = "Bonus_Malus"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -2569,10 +2582,10 @@ tracks/0/path = NodePath("Character/Papa_Sprite/Runner_Sprite:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.13333334, 0.19999999, 0.23333335),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1, 0.13333334, 0.1666667, 0.20000002),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [true, false, true, false, true, false]
+"values": [true, false, true, false, true, false, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -2581,28 +2594,13 @@ tracks/1/path = NodePath("Character/Papa_Sprite/Runner_Sprite:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.13333334, 0.19999999, 0.23333335),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1, 0.13333334, 0.1666667, 0.20000002),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Woman_Sound/Disappearing_Death")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("28_ge0qs")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/2/use_blend = true
 
-[sub_resource type="Animation" id="Animation_h0yk5"]
+[sub_resource type="Animation" id="Animation_ajgrw"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -2631,8 +2629,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_td8gx"]
 _data = {
-&"Disappearing": SubResource("Animation_y5a35"),
-&"RESET": SubResource("Animation_h0yk5")
+&"Bonus_Malus": SubResource("Animation_3lkun"),
+&"RESET": SubResource("Animation_ajgrw")
 }
 
 [node name="Woman" type="Node2D" unique_id=1635856392]
@@ -2686,6 +2684,9 @@ libraries/ = SubResource("AnimationLibrary_w02lc")
 [node name="Animation_Disappearing_Death" type="AnimationPlayer" parent="." unique_id=1890520424]
 libraries/ = SubResource("AnimationLibrary_td8gx")
 
+[node name="Animation_Bonus_Malus" type="AnimationPlayer" parent="." unique_id=142180349]
+libraries/ = SubResource("AnimationLibrary_td8gx")
+
 [node name="Woman_Sound" type="Node2D" parent="." unique_id=2112401329]
 visible = false
 
@@ -2727,4 +2728,71 @@ volume_db = -12.5
 bus = &"FX_DRY"
 
 [node name="Disappearing_Death" type="AudioStreamPlayer" parent="Woman_Sound" unique_id=122269528]
+bus = &"FX_DRY"
+
+[node name="Bonus_Malus" type="Node2D" parent="Woman_Sound" unique_id=666166875]
+visible = false
+
+[node name="Dash" type="AudioStreamPlayer" parent="Woman_Sound/Bonus_Malus" unique_id=73071796]
+stream = ExtResource("29_eam2g")
+bus = &"FX_DRY"
+
+[node name="Through" type="AudioStreamPlayer" parent="Woman_Sound/Bonus_Malus" unique_id=1223350761]
+stream = ExtResource("30_uy4o6")
+volume_db = -1.5
+bus = &"FX_DRY"
+
+[node name="Virus" type="AudioStreamPlayer" parent="Woman_Sound/Bonus_Malus" unique_id=1210360327]
+stream = ExtResource("31_q7cjs")
+volume_db = -2.5
+bus = &"FX_DRY"
+
+[node name="Teleport" type="AudioStreamPlayer" parent="Woman_Sound/Bonus_Malus" unique_id=557198775]
+stream = ExtResource("32_3qpsb")
+bus = &"FX_DRY"
+
+[node name="Debug" type="AudioStreamPlayer" parent="Woman_Sound/Bonus_Malus" unique_id=1546342177]
+stream = ExtResource("33_6jsrj")
+volume_db = 2.5
+bus = &"FX_DRY"
+
+[node name="Last_Longer" type="AudioStreamPlayer" parent="Woman_Sound/Bonus_Malus" unique_id=930834947]
+stream = ExtResource("34_yqu5g")
+bus = &"FX_DRY"
+
+[node name="Invincible" type="AudioStreamPlayer" parent="Woman_Sound/Bonus_Malus" unique_id=766227303]
+stream = ExtResource("35_17u0r")
+volume_db = -1.5
+bus = &"FX_DRY"
+
+[node name="Invert" type="AudioStreamPlayer" parent="Woman_Sound/Bonus_Malus" unique_id=2145704177]
+stream = ExtResource("36_omy5j")
+volume_db = -2.5
+bus = &"FX_DRY"
+
+[node name="Slow" type="AudioStreamPlayer" parent="Woman_Sound/Bonus_Malus" unique_id=1509545821]
+stream = ExtResource("37_uhvve")
+volume_db = 2.5
+bus = &"FX_DRY"
+
+[node name="Last_Shorter" type="AudioStreamPlayer" parent="Woman_Sound/Bonus_Malus" unique_id=966521952]
+stream = ExtResource("38_enqo3")
+bus = &"FX_DRY"
+
+[node name="Anti_Dash" type="AudioStreamPlayer" parent="Woman_Sound/Bonus_Malus" unique_id=248441186]
+stream = ExtResource("39_3rb6g")
+bus = &"FX_DRY"
+
+[node name="Empty" type="AudioStreamPlayer" parent="Woman_Sound/Bonus_Malus" unique_id=68608256]
+stream = ExtResource("40_tht04")
+volume_db = 2.5
+bus = &"FX_DRY"
+
+[node name="Anti_Virus" type="AudioStreamPlayer" parent="Woman_Sound/Bonus_Malus" unique_id=1234003132]
+stream = ExtResource("41_l57rk")
+volume_db = -2.5
+bus = &"FX_DRY"
+
+[node name="Anti_Teleport" type="AudioStreamPlayer" parent="Woman_Sound/Bonus_Malus" unique_id=2056585450]
+stream = ExtResource("42_jhlxb")
 bus = &"FX_DRY"
