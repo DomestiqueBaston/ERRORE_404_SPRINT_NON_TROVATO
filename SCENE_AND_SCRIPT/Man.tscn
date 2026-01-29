@@ -61,10 +61,6 @@ shader = ExtResource("4_y5a35")
 radius = 8.925275
 height = 35.99242
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3lkun"]
-radius = 193.19096
-height = 769.4171
-
 [sub_resource type="Animation" id="Animation_jp0wo"]
 resource_name = "Death_000"
 length = 1.5333368
@@ -2851,11 +2847,8 @@ disabled = true
 [node name="Vision_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=560816304]
 visible = false
 
-[node name="Vision" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Vision_Area" unique_id=948357087]
-position = Vector2(135, 66)
-rotation = -0.5637413
-skew = -0.55152404
-shape = SubResource("CapsuleShape2D_3lkun")
+[node name="Vision" type="CollisionPolygon2D" parent="Character/Papa_Sprite/Runner_Sprite/Vision_Area" unique_id=534655689]
+polygon = PackedVector2Array(-159, -101, -65, -135, 69, -139, 185, -109, 550, 16, 587, 67, 598, 133, 568, 203, 496, 268, 381, 324, 232, 341, 83, 309, -173, 114, -239, 57, -250, 1, -225, -47)
 
 [node name="Cam" type="Camera2D" parent="Character" unique_id=1782995018]
 position = Vector2(-480, -270)
