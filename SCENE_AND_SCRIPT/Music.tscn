@@ -1,24 +1,12 @@
 [gd_scene format=3 uid="uid://em4id2fwd18h"]
 
-[ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="1_p0pgo"]
-[ext_resource type="AudioStream" uid="uid://ddouskyxl7bw7" path="res://SOUND/FX/Short_Beep_Low.ogg" id="2_kco3e"]
 [ext_resource type="AudioStream" uid="uid://t4l7fveb311p" path="res://SOUND/MUSIC/Music.ogg" id="3_kco3e"]
 [ext_resource type="AudioStream" uid="uid://cv55875tvts3k" path="res://SOUND/MUSIC/Intro.ogg" id="3_rjpab"]
 [ext_resource type="Script" uid="uid://dcouh0m854v2c" path="res://SCENE_AND_SCRIPT/Intro.gd" id="4_k5ifq"]
 [ext_resource type="AudioStream" uid="uid://bxcpm34tpan58" path="res://SOUND/MUSIC/Bang.ogg" id="6_ptkxu"]
-[ext_resource type="AudioStream" uid="uid://5vrom7uim4ag" path="res://SOUND/FX/Alert.ogg" id="7_ecwke"]
 
-[node name="UI_Sounds" type="Node2D" unique_id=524227096]
+[node name="Music" type="Node2D" unique_id=524227096]
 visible = false
-
-[node name="Short_Beep_High" type="AudioStreamPlayer" parent="." unique_id=1282303420]
-stream = ExtResource("1_p0pgo")
-bus = &"FX_DRY"
-
-[node name="Short_Beep_Low" type="AudioStreamPlayer" parent="." unique_id=1129496527]
-stream = ExtResource("2_kco3e")
-volume_db = -8.5
-bus = &"FX_DRY"
 
 [node name="Intro" type="AudioStreamPlayer" parent="." unique_id=188631134]
 stream = ExtResource("3_rjpab")
@@ -36,7 +24,3 @@ parameters/looping = true
 stream = ExtResource("6_ptkxu")
 volume_db = -2.5
 bus = &"MUSIC"
-
-[node name="Alert" type="AudioStreamPlayer" parent="." unique_id=2001085936]
-stream = ExtResource("7_ecwke")
-volume_db = -7.5

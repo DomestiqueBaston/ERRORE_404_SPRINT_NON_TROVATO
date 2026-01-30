@@ -7,7 +7,7 @@
 [ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="6_ugatv"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="10_pj754"]
 [ext_resource type="Shader" uid="uid://rfstm5ejtwi3" path="res://SHADER/Reflection.gdshader" id="11_bnvrm"]
-[ext_resource type="PackedScene" uid="uid://em4id2fwd18h" path="res://SCENE_AND_SCRIPT/UI_Sounds.tscn" id="12_jqsr3"]
+[ext_resource type="PackedScene" uid="uid://em4id2fwd18h" path="res://SCENE_AND_SCRIPT/Music.tscn" id="12_jqsr3"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="13_63rpd"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="14_aa5oj"]
 [ext_resource type="Script" uid="uid://dd6brr6ksot15" path="res://SCENE_AND_SCRIPT/Title_Alert.gd" id="14_ykdlm"]

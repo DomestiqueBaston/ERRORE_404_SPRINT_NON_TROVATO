@@ -7,7 +7,7 @@
 [ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="4_5rr24"]
 [ext_resource type="PackedScene" uid="uid://jeuanuva1v8o" path="res://SCENE_AND_SCRIPT/Door.tscn" id="4_swsra"]
 [ext_resource type="AudioStream" uid="uid://gxci2v55iim1" path="res://SOUND/FX/Global_Hum.ogg" id="7_swsra"]
-[ext_resource type="PackedScene" uid="uid://em4id2fwd18h" path="res://SCENE_AND_SCRIPT/UI_Sounds.tscn" id="8_ntkwp"]
+[ext_resource type="PackedScene" uid="uid://em4id2fwd18h" path="res://SCENE_AND_SCRIPT/Music.tscn" id="8_ntkwp"]
 
 [sub_resource type="Environment" id="Environment_ntkwp"]
 background_mode = 3
@@ -56,7 +56,7 @@ metadata/_edit_lock_ = true
 position = Vector2(480, 200)
 metadata/_edit_lock_ = true
 
-[node name="Scene_BG" type="TextureRect" parent="Woman/Character" index="2" unique_id=579448520]
+[node name="Scene_BG" type="TextureRect" parent="Woman/Character" parent_id_path=PackedInt32Array(1689777915, 1360061723) index="2" unique_id=579448520]
 z_index = -10
 anchors_preset = 8
 anchor_left = 0.5
@@ -83,10 +83,7 @@ offset_bottom = -2.0
 text = "Il est quasiment certain que cette solution de fond n'est pas la bonne car la taille de la zone de course va changer avec les glissements de colonnes et lignes."
 metadata/_edit_lock_ = true
 
-[node name="Animation_Runner" parent="Woman" index="1"]
-autoplay = &"Intro"
-
-[node name="Woman_Sound" parent="Woman" index="4"]
+[node name="Woman_Sound" parent="Woman" index="5" unique_id=2112401329]
 visible = true
 
 [node name="Global_Hum" type="AudioStreamPlayer" parent="." unique_id=1263997883]
@@ -97,7 +94,7 @@ bus = &"FX_WET"
 
 [node name="UI_Sounds" parent="." unique_id=1160324946 instance=ExtResource("8_ntkwp")]
 
-[node name="Music" parent="UI_Sounds" index="3"]
+[node name="Music" parent="UI_Sounds" index="3" unique_id=2025180216]
 autoplay = true
 
 [editable path="Woman"]

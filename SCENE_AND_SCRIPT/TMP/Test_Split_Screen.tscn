@@ -33,13 +33,14 @@
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="32_lx2en"]
 [ext_resource type="Shader" uid="uid://crfc2g072t77" path="res://SHADER/Blur.gdshader" id="32_sf4qo"]
 [ext_resource type="Script" uid="uid://d2u0m7lhl07qk" path="res://SCENE_AND_SCRIPT/TMP/Info_Win_Lose.gd" id="32_v6mht"]
-[ext_resource type="PackedScene" uid="uid://em4id2fwd18h" path="res://SCENE_AND_SCRIPT/UI_Sounds.tscn" id="33_5ttrv"]
+[ext_resource type="PackedScene" uid="uid://em4id2fwd18h" path="res://SCENE_AND_SCRIPT/Music.tscn" id="33_5ttrv"]
 [ext_resource type="Texture2D" uid="uid://cutec7wipswh2" path="res://IMAGE/MISC/Title_Gradients.png" id="33_a4yp3"]
 [ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="33_ybkus"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="34_v6mht"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="35_sf4qo"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="36_gk5t3"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="37_ftky1"]
+[ext_resource type="PackedScene" uid="uid://3u5u3tfo43n" path="res://SCENE_AND_SCRIPT/Portraits.tscn" id="40_sf4qo"]
 
 [sub_resource type="Environment" id="Environment_w5jul"]
 background_mode = 3
@@ -1307,14 +1308,19 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Horizontal" type="Line2D" parent="Frames" unique_id=1352771278]
+[node name="Frame" type="Control" parent="Frames" unique_id=1686618486]
+layout_mode = 3
+anchors_preset = 0
+metadata/_edit_lock_ = true
+
+[node name="Horizontal" type="Line2D" parent="Frames/Frame" unique_id=1352771278]
 position = Vector2(0, 270)
 points = PackedVector2Array(0, 0, 960, 0)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="Vertical" type="Line2D" parent="Frames" unique_id=864723986]
+[node name="Vertical" type="Line2D" parent="Frames/Frame" unique_id=864723986]
 position = Vector2(480, 0)
 points = PackedVector2Array(0, 0, 0, 540)
 width = 2.0
@@ -1527,6 +1533,14 @@ bus = &"FX_DRY"
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_4jeej")
 
+[node name="Portraits" parent="Frames" unique_id=461730405 instance=ExtResource("40_sf4qo")]
+visible = false
+offset_left = 240.0
+offset_top = 135.0
+offset_right = 240.0
+offset_bottom = 135.0
+metadata/_edit_lock_ = true
+
 [node name="Animation_Overlays" type="AnimationPlayer" parent="Frames" unique_id=1392428684]
 root_node = NodePath("../Bugs_01/Death")
 libraries/ = SubResource("AnimationLibrary_eou1j")
@@ -1538,11 +1552,12 @@ bus = &"FX_WET"
 
 [node name="UI_Sounds" parent="." unique_id=1252437176 instance=ExtResource("33_5ttrv")]
 
-[node name="Music" parent="UI_Sounds" index="3" unique_id=2025180216]
+[node name="Music" parent="UI_Sounds" index="1" unique_id=2025180216]
 autoplay = true
 
 [editable path="Runners/Top_Runners/Left_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Top_Runners/Right_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport/Runner"]
+[editable path="Frames/Portraits"]
 [editable path="UI_Sounds"]

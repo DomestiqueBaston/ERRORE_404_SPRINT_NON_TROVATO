@@ -33,7 +33,7 @@ uniform float scanline_strength = 0.18;
 uniform float local_warp_strength = 0.14;
 
 // Chance for horizontal flip of slices
-uniform float flip_chance : hint_range(0.0,1.0) = 0.15;
+uniform float flip_chance : hint_range(0.0,1.0) = 0.0;
 
 /* ================= RANDOM FUNCTIONS ================= */
 
