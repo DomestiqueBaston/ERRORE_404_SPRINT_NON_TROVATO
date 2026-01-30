@@ -19,16 +19,12 @@ func play_next_animation():
 
 
 func _ready():
-	# Assurez-vous que le seed est initialisé pour avoir des valeurs aléatoires différentes à chaque démarrage
 	randomize()
 	
-	# Démarrer le cycle d'animations avec un délai aléatoire
 	_start_animation_cycle()
 
 func _start_animation_cycle():
-	# Appeler la fonction de jeu d'animation après un délai aléatoire
 	play_next_animation()
 	
-	# Attendre un délai aléatoire avant de jouer la prochaine animation
 	await get_tree().create_timer(get_random_delay()).timeout
 	_start_animation_cycle()

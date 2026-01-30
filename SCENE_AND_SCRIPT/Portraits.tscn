@@ -6,7 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://bcy7al7vi5kvs" path="res://IMAGE/RUNNER/Portraits_BG.png" id="2_dpf0i"]
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="3_1ivug"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="4_dpf0i"]
+[ext_resource type="Shader" uid="uid://blic88jwr7a1e" path="res://SHADER/Glitch_Only.gdshader" id="4_q0tq6"]
 [ext_resource type="Script" uid="uid://cyf6pnmtk6au5" path="res://SCENE_AND_SCRIPT/TMP/Animation_Portraits.gd" id="6_8cymr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hwl4u"]
+shader = ExtResource("4_q0tq6")
+shader_parameter/shake_power = 0.011
+shader_parameter/shake_rate = 0.3330000158175
+shader_parameter/shake_speed = 2.0
+shader_parameter/shake_block_size = 15.0
+shader_parameter/shake_color_rate = 0.002000000095
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8cymr"]
 content_margin_left = 3.0
@@ -163,6 +172,16 @@ position = Vector2(93, 13)
 texture = ExtResource("1_yaltw")
 metadata/_edit_lock_ = true
 
+[node name="BG_Mask" type="Sprite2D" parent="Frame" unique_id=1093812617]
+clip_children = 2
+texture = ExtResource("2_dpf0i")
+metadata/_edit_lock_ = true
+
+[node name="Glitch" type="Sprite2D" parent="Frame/BG_Mask" unique_id=1077149764]
+material = SubResource("ShaderMaterial_hwl4u")
+texture = ExtResource("2_dpf0i")
+metadata/_edit_lock_ = true
+
 [node name="Announce" type="Control" parent="." unique_id=1447322526]
 anchors_preset = 0
 offset_left = -240.0
@@ -202,19 +221,10 @@ script = ExtResource("6_8cymr")
 [node name="Sounds" type="Node2D" parent="." unique_id=415508272]
 
 [node name="Woosh" type="AudioStreamPlayer" parent="Sounds" unique_id=1803769174]
-volume_db = -2.5
+volume_db = -5.0
 bus = &"FX_DRY"
 
 [node name="Validation" type="AudioStreamPlayer" parent="Sounds" unique_id=1439034082]
 stream = ExtResource("3_1ivug")
 volume_db = -5.0
 bus = &"FX_DRY"
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=2105064216]
-visible = false
-layout_mode = 0
-offset_left = -240.0
-offset_top = -135.0
-offset_right = 240.0
-offset_bottom = 135.0
-color = Color(1, 1, 1, 0.1)
