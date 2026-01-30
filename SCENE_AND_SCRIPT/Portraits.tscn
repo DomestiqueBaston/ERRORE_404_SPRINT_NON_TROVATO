@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bcy7al7vi5kvs" path="res://IMAGE/RUNNER/Portraits_BG.png" id="2_dpf0i"]
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="3_1ivug"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="4_dpf0i"]
+[ext_resource type="Script" uid="uid://cyf6pnmtk6au5" path="res://SCENE_AND_SCRIPT/TMP/Animation_Portraits.gd" id="6_8cymr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8cymr"]
 content_margin_left = 3.0
@@ -196,10 +197,12 @@ metadata/_edit_lock_ = true
 
 [node name="Animation_Portraits" type="AnimationPlayer" parent="." unique_id=2124288444]
 libraries/ = SubResource("AnimationLibrary_h8mj1")
+script = ExtResource("6_8cymr")
 
 [node name="Sounds" type="Node2D" parent="." unique_id=415508272]
 
 [node name="Woosh" type="AudioStreamPlayer" parent="Sounds" unique_id=1803769174]
+volume_db = -2.5
 bus = &"FX_DRY"
 
 [node name="Validation" type="AudioStreamPlayer" parent="Sounds" unique_id=1439034082]

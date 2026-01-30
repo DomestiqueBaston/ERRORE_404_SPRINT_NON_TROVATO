@@ -999,6 +999,7 @@ metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_01" unique_id=869063107]
 visible = false
+modulate = Color(1, 1, 1, 0.017963469)
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -1092,6 +1093,7 @@ metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_02" unique_id=692485606]
 visible = false
+modulate = Color(1, 1, 1, 0.017963469)
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -1185,6 +1187,7 @@ metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_03" unique_id=1435042299]
 visible = false
+modulate = Color(1, 1, 1, 0.017963469)
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -1279,6 +1282,7 @@ metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_04" unique_id=917885689]
 visible = false
+modulate = Color(1, 1, 1, 0.017963469)
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -1329,6 +1333,7 @@ metadata/_edit_lock_ = true
 
 [node name="Info_Overlays" type="Control" parent="Frames" unique_id=130141386]
 visible = false
+modulate = Color(1, 1, 1, 0.017963469)
 layout_mode = 3
 anchors_preset = 0
 metadata/_edit_lock_ = true
@@ -1534,7 +1539,6 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_4jeej")
 
 [node name="Portraits" parent="Frames" unique_id=461730405 instance=ExtResource("40_sf4qo")]
-visible = false
 offset_left = 240.0
 offset_top = 135.0
 offset_right = 240.0

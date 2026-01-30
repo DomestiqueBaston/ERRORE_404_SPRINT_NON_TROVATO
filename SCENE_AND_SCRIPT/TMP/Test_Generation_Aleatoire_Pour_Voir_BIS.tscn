@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b2a2vkvk88415"]
 
-[ext_resource type="Script" uid="uid://cqj1vvbsaikwr" path="res://SCENE_AND_SCRIPT/TMP/test_generation_aleatoire_pour_voir_bis.gd" id="1_sjb8x"]
+[ext_resource type="Script" uid="uid://cqj1vvbsaikwr" path="res://SCENE_AND_SCRIPT/TMP/Test_Generation_Aleatoire_Pour_Voir_Bis.gd" id="1_sjb8x"]
 [ext_resource type="PackedScene" uid="uid://cucs0i7d1er7d" path="res://SCENE_AND_SCRIPT/Cell.tscn" id="2_okjc4"]
 [ext_resource type="PackedScene" uid="uid://brsvllplyc7ih" path="res://SCENE_AND_SCRIPT/Woman.tscn" id="3_okjc4"]
 [ext_resource type="PackedScene" uid="uid://c3up1u8ajktas" path="res://SCENE_AND_SCRIPT/Cube.tscn" id="3_u5bti"]
@@ -94,7 +94,7 @@ bus = &"FX_WET"
 
 [node name="UI_Sounds" parent="." unique_id=1160324946 instance=ExtResource("8_ntkwp")]
 
-[node name="Music" parent="UI_Sounds" index="3" unique_id=2025180216]
+[node name="Music" parent="UI_Sounds" index="1" unique_id=2025180216]
 autoplay = true
 
 [editable path="Woman"]
