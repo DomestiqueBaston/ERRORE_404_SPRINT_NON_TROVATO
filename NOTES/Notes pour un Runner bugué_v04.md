@@ -96,6 +96,7 @@ JEU :
 - Lorsqu’un concurrent traverse une case (donc en traçant son mur) et que la case bouge, alors le concurrent se décale AVEC la case. Et le mur qu’il trace également. Il faudra donc « tronçonner » les murs à chaque fois qu’un concurrent sort d’une case afin que le morceau de mur puisse éventuellement se déplacer avec la case si celle-ci est amenée à se déplacer de nouveau.
 - Cas particuliers de mort : il existe un AnimationPlayer avec une animation « toute bête » pour ces cas-là (Animation_Disappearing_Death). Si par exemple se présent un cas avec deux colonnes baissées et que le concurrent veut passer dessous à vitesse normale, il ne pourra pas et mourra donc et on utilisera cette animation. Écrasé par une colonne, pareil ! Etc.
 - Un concurrent ne peut pas courir sur un autre cadavre → Le jeu forcera le concurrent à tourner aléatoirement à droite ou à gauche. On jouera ici aussi l’Animation_Bonus_Malus et Alert (dans UI_Sounds.tscn). Si par vraiment super pas de bol, le concurrent se retrouve coincé entre des cadavres et/ou d’autres concurrents, alors on lui fera jouer son animation de mort à lui aussi et il sera donc mort ! Ça ne sera pas très joli mais c’est un cas vraiment très peu probable et il faut l’envisager (et faire une animation pour un tel cas…).
+- À la mort d’un concurrent, ce qui reste de son mur ne disparaît pas !
 
 Options à proposer au joueur dans Settings:
 - Taille de la map (de 9 à 21) ✔
@@ -106,8 +107,29 @@ Options à proposer au joueur dans Settings:
 	• Délai entre les déclenchements d’obstacles : 5.5’’ - (0.5 × Difficulté)  en secondes
 
 
+Script de déroulement d’une partie :
+Préambule :
+	• chaque chargement de scène (sauf contre-indication), on joue 1 fois Music/Bang (dans Music.tscn).
+	• Les sons de validation (Validation) et d’annulation (Cancel) sont dans la scène UI_Sounds.tscn.
+	• Par défaut, Intro et Music sont en boucle, pas besoin de le dire dans le code théoriquement !
+	• Dans les scènes, des choses sont mises en place uniquement pour voir comment ça fait (je pense notamment à certains (bouts de) scripts, aux musiques ou sons d’UI qui devraient plus être dans des autoloads ou quoi…).
 
-	
+Avant le jeu :
+	1. Chargement de l’écran titre Title.tscn (l’overlay qui dit de presser un bouton, peu importe lequel) apparaît au bout de 15’’ si je joueur n’a rien fait jusque là). À partir du démarrage, Music/Intro joue en boucle.
+	2. Transition brutale (pour une fois, sans effet de transition !) vers Settings.tscn. À l’ouverture de la scène suivante, on jouera juste Music/Bang (Music/Intro continue donc de jouer). Dans cette scène, presser B (Cancellare) remet les valeurs modifiées à leur valeur précédente et retourne à l’écran titre. Presser A lancera le jeu.
+
+Le jeu :
+	3. Transition brutale vers (pour le moment, la scène, c’est Test_Split_Screen.tscn mais il s’agit d’une scène de démo plus qu’autre chose). Les 4 caméras sont centrées sur les 4 coins de la zone de course. L’écran en haut à gauche affiche la sélection de joueur (Portraits.tscn) qui commence sur la fille et les 3 autres affichent aléatoirement 3 autres personnages MAIS on a toujours 2 gars et 2 filles en tout ! À chaque fois que le joueur change de personnage, les autres sont retirés aléatoirement.
+	4. On sélectionne le personnage avec droite et gauche, on valide avec A et on annule avec B (qui renvoie à l’écran titre avec transition brutale + Bang!). Lorsque le joureur change de personnage, à chaque fois que dans les autres quarts d’écran les personnages changent et on utilisera leurs animation de Glitch sur 5 frames pour faire une transition. Annuler renvoie à l’écran Settings.tscn avec toujours la même transition. Valider Fait disparaître l’overlay de sélection des personnages !
+	5. Tous les Personnages passent alors en animation Start. Au bout d’1/2 seconde, on joue UI_Sounds/3_2_1 puis on coupe Music/Intro, on lance UI_Sounds/Go et Music/Music en boucle (sans Music/Bang cette fois-ci) et les coureurs (Bot) partent dans l’une des deux directions qu’il ont de possible dans, au plus tard, le 1/4 de seconde qui suit ! Si le joueur n’a pas lancé sa course, il partira en même temps que le dernier concurrent (Bot).
+
+La se place le jeu lui-même !
+
+	6. Lorsque les 3 premiers concurrents meurent, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) dans la scène  Test_Split_Screen.tscn (scène pour le moment temporaire, comme je le disais).
+		◦ Lorsque le dernier concurrent meurt, on affiche alors Frames/Info_Win_Lose_Overlay/Lose et on garde les précédents overlays de mort.
+		◦ Si un concurrent gagne (soit parce qu’il est le dernier à courir, soit parce qu’il a franchis la porte de sortie), on affiche Frames/Info_Win_Lose/Win et on garde les éventuels overlays de mort ! Automatiquement, les concurrents restants meurent (animation Death) !
+		◦ Ensuite, (presque) n’importe quel bouton retourne brutalement (toujours) à l’écran de titre. On coupe alors Music/Music et on lance Music/Intro avec Music/Bang. Et on retourne au point 1 de cette liste 
+		◦ Option « cachée » (pour le moment) : presser B ici relance une partie « identique » à partir du point 5 de cette liste !
 Les personnalités des « IA »/Bots :
 - Avant tout, on va considérer que les Bots voient tout le terrain (contrairement au joueur).
 - Par défaut, un Bot tendra bien évidemment à ne pas mourir en évitant les collisions et les chutes.

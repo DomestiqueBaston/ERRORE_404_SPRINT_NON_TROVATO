@@ -1,6 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://capkc1jj6lja6"]
+[gd_scene format=3 uid="uid://capkc1jj6lja6"]
 
-[ext_resource type="Shader" uid="uid://c3gkqv33yx8x5" path="res://SHADER/Outline_Glitch_And_Alpha.gdshader" id="1_tgrj8"]
+[ext_resource type="Shader" uid="uid://c3gkqv33yx8x5" path="res://TRASH/Outline_Glitch_And_Alpha.gdshader" id="1_tgrj8"]
 [ext_resource type="Texture2D" uid="uid://dccbhfnescixw" path="res://TRASH/Title.png" id="2_2mp06"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="3_bhf0k"]
 [ext_resource type="AudioStream" uid="uid://cou5e3uqnnvdj" path="res://SOUND/FX/Crackling_Noise_A.ogg" id="4_tigbc"]

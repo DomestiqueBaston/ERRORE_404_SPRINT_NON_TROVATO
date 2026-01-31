@@ -1,5 +1,8 @@
 extends AnimationPlayer
 
+## Ce script (comme pas mal d'autres)
+## ne sert que de démo pour les effets !
+
 @onready var animation_player : AnimationPlayer = $"."
 var delay_min : float = 4.0
 var delay_max : float = 8.0

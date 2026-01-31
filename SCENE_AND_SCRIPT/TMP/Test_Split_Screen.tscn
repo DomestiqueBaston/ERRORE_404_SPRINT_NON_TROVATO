@@ -33,7 +33,7 @@
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="32_lx2en"]
 [ext_resource type="Shader" uid="uid://crfc2g072t77" path="res://SHADER/Blur.gdshader" id="32_sf4qo"]
 [ext_resource type="Script" uid="uid://d2u0m7lhl07qk" path="res://SCENE_AND_SCRIPT/TMP/Info_Win_Lose.gd" id="32_v6mht"]
-[ext_resource type="PackedScene" uid="uid://em4id2fwd18h" path="res://SCENE_AND_SCRIPT/Music.tscn" id="33_5ttrv"]
+[ext_resource type="PackedScene" path="res://SCENE_AND_SCRIPT/Music.tscn" id="33_5ttrv"]
 [ext_resource type="Texture2D" uid="uid://cutec7wipswh2" path="res://IMAGE/MISC/Title_Gradients.png" id="33_a4yp3"]
 [ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="33_ybkus"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="34_v6mht"]
@@ -999,7 +999,6 @@ metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_01" unique_id=869063107]
 visible = false
-modulate = Color(1, 1, 1, 0.017963469)
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -1093,7 +1092,6 @@ metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_02" unique_id=692485606]
 visible = false
-modulate = Color(1, 1, 1, 0.017963469)
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -1187,7 +1185,6 @@ metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_03" unique_id=1435042299]
 visible = false
-modulate = Color(1, 1, 1, 0.017963469)
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -1282,7 +1279,6 @@ metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_04" unique_id=917885689]
 visible = false
-modulate = Color(1, 1, 1, 0.017963469)
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -1312,19 +1308,19 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Frame" type="Control" parent="Frames" unique_id=1686618486]
+[node name="Black_Frames" type="Control" parent="Frames" unique_id=1686618486]
 layout_mode = 3
 anchors_preset = 0
 metadata/_edit_lock_ = true
 
-[node name="Horizontal" type="Line2D" parent="Frames/Frame" unique_id=1352771278]
+[node name="Horizontal" type="Line2D" parent="Frames/Black_Frames" unique_id=1352771278]
 position = Vector2(0, 270)
 points = PackedVector2Array(0, 0, 960, 0)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="Vertical" type="Line2D" parent="Frames/Frame" unique_id=864723986]
+[node name="Vertical" type="Line2D" parent="Frames/Black_Frames" unique_id=864723986]
 position = Vector2(480, 0)
 points = PackedVector2Array(0, 0, 0, 540)
 width = 2.0
@@ -1333,13 +1329,11 @@ metadata/_edit_lock_ = true
 
 [node name="Info_Overlays" type="Control" parent="Frames" unique_id=130141386]
 visible = false
-modulate = Color(1, 1, 1, 0.017963469)
 layout_mode = 3
 anchors_preset = 0
 metadata/_edit_lock_ = true
 
 [node name="Info_Replay_Game" type="RichTextLabel" parent="Frames/Info_Overlays" unique_id=1193753007]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1409,6 +1403,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="Info_Win_Message" type="Label" parent="Frames/Info_Win_Lose_Overlay/Win" unique_id=2047185897]
 layout_mode = 1
@@ -1432,6 +1427,7 @@ noN
 4ù7oriZz47a…"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Cache_Info_Win_Message" type="Label" parent="Frames/Info_Win_Lose_Overlay/Win" unique_id=7931597]
 clip_children = 2
@@ -1451,12 +1447,14 @@ noN
 4ù7oriZz47a…"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Title_Gradients" type="Sprite2D" parent="Frames/Info_Win_Lose_Overlay/Win/Cache_Info_Win_Message" unique_id=1007982414]
 self_modulate = Color(0.969, 1.215, 1.892, 0.863)
 position = Vector2(480, 270)
 texture = ExtResource("33_a4yp3")
 offset = Vector2(0, 30)
+metadata/_edit_lock_ = true
 
 [node name="Lose" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=1658104479]
 visible = false
@@ -1466,6 +1464,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="Info_Lose_Message" type="Label" parent="Frames/Info_Win_Lose_Overlay/Lose" unique_id=2110242301]
 layout_mode = 1
@@ -1489,6 +1488,7 @@ eliminato.
 Prevedibile..."
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Cache_Info_Lose_Message" type="Label" parent="Frames/Info_Win_Lose_Overlay/Lose" unique_id=537761493]
 clip_children = 2
@@ -1508,15 +1508,16 @@ eliminato.
 Prevedibile..."
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Title_Gradients" type="Sprite2D" parent="Frames/Info_Win_Lose_Overlay/Lose/Cache_Info_Lose_Message" unique_id=1078891476]
 self_modulate = Color(0.969, 1.215, 1.892, 0.863)
 position = Vector2(480, 270)
 texture = ExtResource("33_a4yp3")
 offset = Vector2(0, 30)
+metadata/_edit_lock_ = true
 
 [node name="Glitches" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=1057999679]
-visible = false
 anchors_preset = 0
 offset_right = 960.0
 offset_bottom = 540.0
@@ -1543,7 +1544,6 @@ offset_left = 240.0
 offset_top = 135.0
 offset_right = 240.0
 offset_bottom = 135.0
-metadata/_edit_lock_ = true
 
 [node name="Animation_Overlays" type="AnimationPlayer" parent="Frames" unique_id=1392428684]
 root_node = NodePath("../Bugs_01/Death")
@@ -1554,14 +1554,10 @@ volume_db = -15.0
 autoplay = true
 bus = &"FX_WET"
 
-[node name="UI_Sounds" parent="." unique_id=1252437176 instance=ExtResource("33_5ttrv")]
-
-[node name="Music" parent="UI_Sounds" index="1" unique_id=2025180216]
-autoplay = true
+[node name="Music" parent="." unique_id=524227096 instance=ExtResource("33_5ttrv")]
 
 [editable path="Runners/Top_Runners/Left_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Top_Runners/Right_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport/Runner"]
 [editable path="Frames/Portraits"]
-[editable path="UI_Sounds"]

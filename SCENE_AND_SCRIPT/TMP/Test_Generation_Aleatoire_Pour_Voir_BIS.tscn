@@ -7,7 +7,7 @@
 [ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="4_5rr24"]
 [ext_resource type="PackedScene" uid="uid://jeuanuva1v8o" path="res://SCENE_AND_SCRIPT/Door.tscn" id="4_swsra"]
 [ext_resource type="AudioStream" uid="uid://gxci2v55iim1" path="res://SOUND/FX/Global_Hum.ogg" id="7_swsra"]
-[ext_resource type="PackedScene" uid="uid://em4id2fwd18h" path="res://SCENE_AND_SCRIPT/Music.tscn" id="8_ntkwp"]
+[ext_resource type="PackedScene" path="res://SCENE_AND_SCRIPT/Music.tscn" id="8_ntkwp"]
 
 [sub_resource type="Environment" id="Environment_ntkwp"]
 background_mode = 3
@@ -92,10 +92,6 @@ volume_db = -5.0
 autoplay = true
 bus = &"FX_WET"
 
-[node name="UI_Sounds" parent="." unique_id=1160324946 instance=ExtResource("8_ntkwp")]
-
-[node name="Music" parent="UI_Sounds" index="1" unique_id=2025180216]
-autoplay = true
+[node name="Music" parent="." unique_id=524227096 instance=ExtResource("8_ntkwp")]
 
 [editable path="Woman"]
-[editable path="UI_Sounds"]

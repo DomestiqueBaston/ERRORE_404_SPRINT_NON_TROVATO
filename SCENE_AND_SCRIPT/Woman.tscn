@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://brsvllplyc7ih"]
 
 [ext_resource type="Script" uid="uid://7rcfji6ehwky" path="res://SCENE_AND_SCRIPT/Runner.gd" id="1_bpqq7"]
-[ext_resource type="Shader" uid="uid://c3gkqv33yx8x5" path="res://SHADER/Outline_Glitch_And_Alpha.gdshader" id="2_axddh"]
+[ext_resource type="Shader" uid="uid://b3okewpame84w" path="res://SHADER/Outline_Glitch.gdshader" id="2_eam2g"]
 [ext_resource type="Texture2D" uid="uid://5grfiugqisi8" path="res://IMAGE/RUNNER/WOMAN/Woman_Sprite_Sheet.png" id="3_gjkpv"]
 [ext_resource type="Shader" uid="uid://3f2wtq4pn17q" path="res://SHADER/Shadow_Compositing.gdshader" id="4_kxl5h"]
 [ext_resource type="Texture2D" uid="uid://brl52e8ox1ue8" path="res://IMAGE/RUNNER/Shadow.png" id="5_1s22q"]
@@ -27,6 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://bmg2lx0qadmkd" path="res://SOUND/FX/Crackling_Noise_B.ogg" id="20_1we7y"]
 [ext_resource type="AudioStream" uid="uid://y4doxkf0qxtd" path="res://SOUND/FX/Crackling_Noise_F.ogg" id="21_0thg2"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="22_1yje6"]
+[ext_resource type="AudioStream" uid="uid://dn68ist7fukqi" path="res://SOUND/FX/RUNNER/Disappearing_Death.ogg" id="28_eam2g"]
 [ext_resource type="AudioStream" uid="uid://boubqyiskws1h" path="res://SOUND/FX/RUNNER/Dash.ogg" id="29_eam2g"]
 [ext_resource type="AudioStream" uid="uid://c0isopdpo0qnl" path="res://SOUND/FX/RUNNER/Through.ogg" id="30_uy4o6"]
 [ext_resource type="AudioStream" uid="uid://dv6h02qyq3s4y" path="res://SOUND/FX/RUNNER/Virus.ogg" id="31_q7cjs"]
@@ -43,14 +44,15 @@
 [ext_resource type="AudioStream" uid="uid://b262xncyf383x" path="res://SOUND/FX/RUNNER/Anti_Teleport.ogg" id="42_jhlxb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gcyqs"]
-shader = ExtResource("2_axddh")
+shader = ExtResource("2_eam2g")
 shader_parameter/shake_enabled = false
-shader_parameter/shake_power = 0.0019999999494
-shader_parameter/shake_speed = 100.0
-shader_parameter/shake_block_size = 75.0
-shader_parameter/shake_color_rate = 0.0019999999494
+shader_parameter/shake_power = 0.0009999999747
+shader_parameter/shake_speed = 25.00000037253
+shader_parameter/shake_block_size = 175.0
+shader_parameter/shake_color_rate = 0.00029999999240999
 shader_parameter/outline_thickness = 2.0
 shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_boost_when_glitch = 5.000000074506
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lts44"]
 shader = ExtResource("4_kxl5h")
@@ -2346,10 +2348,10 @@ tracks/1/path = NodePath("Papa_Sprite/Runner_Sprite:material:shader_parameter/sh
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.3, 0.36666667, 0.53333336, 0.73333335, 1.0666667, 1.4666667, 1.8000001, 1.9000001, 2, 2.3, 2.7333333, 3.0666668, 3.266667, 4.566667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.10000001, 0.3, 0.36666667, 0.53333336, 0.73333335, 1.0666667, 1.4666667, 1.8000001, 1.9000001, 2, 2.3, 2.7333333, 3.0666668, 3.266667, 4.566667, 4.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [75.0, 50.0, 100.0, 25.0, 15.0, 50.0, 15.0, 85.0, 25.0, 125.0, 33.0, 15.0, 33.0, 66.0, 100.0, 33.0]
+"values": [175.0, 150.0, 200.0, 125.0, 115.0, 150.0, 115.0, 185.0, 125.0, 225.0, 133.0, 115.0, 133.0, 166.0, 200.0, 133.0, 133.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -2361,7 +2363,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0.002]
+"values": [0.0009999999747]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -2373,7 +2375,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [100.0]
+"values": [25.00000037253]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -2385,7 +2387,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0.0019999999494]
+"values": [0.00029999999240999]
 }
 tracks/5/type = "audio"
 tracks/5/imported = false
@@ -2515,7 +2517,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [75.0]
+"values": [175.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -2527,7 +2529,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0.0019999999494]
+"values": [0.0009999999747]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -2539,7 +2541,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [100.0]
+"values": [25.00000037253]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -2551,7 +2553,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0.0019999999494]
+"values": [0.00029999999240999]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -2570,6 +2572,82 @@ tracks/5/keys = {
 _data = {
 &"Glitch": SubResource("Animation_6rj8i"),
 &"RESET": SubResource("Animation_hq7h1")
+}
+
+[sub_resource type="Animation" id="Animation_y5a35"]
+resource_name = "Disappearing"
+length = 0.23333667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character/Papa_Sprite/Runner_Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.13333334, 0.19999999, 0.23333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Character/Papa_Sprite/Runner_Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.13333334, 0.19999999, 0.23333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Woman_Sound/Disappearing_Death")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("28_eam2g")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_h0yk5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character/Papa_Sprite/Runner_Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Character/Papa_Sprite/Runner_Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uy4o6"]
+_data = {
+&"Disappearing": SubResource("Animation_y5a35"),
+&"RESET": SubResource("Animation_h0yk5")
 }
 
 [sub_resource type="Animation" id="Animation_3lkun"]
@@ -2687,8 +2765,8 @@ autoplay = &"Intro"
 root_node = NodePath("../Character")
 libraries/ = SubResource("AnimationLibrary_w02lc")
 
-[node name="Animation_Disappearing_Death" type="AnimationPlayer" parent="." unique_id=1890520424]
-libraries/ = SubResource("AnimationLibrary_td8gx")
+[node name="Animation_Disappearing_Death" type="AnimationPlayer" parent="." unique_id=220080073]
+libraries/ = SubResource("AnimationLibrary_uy4o6")
 
 [node name="Animation_Bonus_Malus" type="AnimationPlayer" parent="." unique_id=142180349]
 libraries/ = SubResource("AnimationLibrary_td8gx")
