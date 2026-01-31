@@ -866,6 +866,25 @@ metadata/_edit_lock_ = true
 polygon = PackedVector2Array(-118, -1, 0, -60, 118, -1, 118, 0, 0, 59, -118, 0)
 metadata/_edit_lock_ = true
 
+[node name="Start_Points" type="Node2D" parent="Column/Cell_Tops" unique_id=1212303450]
+metadata/_edit_lock_ = true
+
+[node name="South_Start_Point" type="Marker2D" parent="Column/Cell_Tops/Start_Points" unique_id=518218170]
+position = Vector2(0, 38)
+metadata/_edit_lock_ = true
+
+[node name="East_Start_Point" type="Marker2D" parent="Column/Cell_Tops/Start_Points" unique_id=2038243324]
+position = Vector2(77, 0)
+metadata/_edit_lock_ = true
+
+[node name="West_Start_Point" type="Marker2D" parent="Column/Cell_Tops/Start_Points" unique_id=1593584138]
+position = Vector2(-77, 0)
+metadata/_edit_lock_ = true
+
+[node name="North_Start_Point" type="Marker2D" parent="Column/Cell_Tops/Start_Points" unique_id=366405065]
+position = Vector2(0, -39)
+metadata/_edit_lock_ = true
+
 [node name="Cell_Extension" type="Sprite2D" parent="Column/Cell_Tops" unique_id=982586807]
 position = Vector2(0, -81)
 texture = ExtResource("1_e50o2")

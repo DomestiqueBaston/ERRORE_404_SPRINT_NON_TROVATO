@@ -94,4 +94,8 @@ bus = &"FX_WET"
 
 [node name="Music" parent="." unique_id=524227096 instance=ExtResource("8_ntkwp")]
 
+[node name="Music" parent="Music" index="1" unique_id=2025180216]
+autoplay = true
+
 [editable path="Woman"]
+[editable path="Music"]
