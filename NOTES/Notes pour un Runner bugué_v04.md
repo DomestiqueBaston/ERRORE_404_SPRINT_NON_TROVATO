@@ -29,20 +29,20 @@ Le but du jeu est ici de tenir le plus longtemps possible et être le dernier su
 
 Un runner bugué :
 Aléatoirement, 1/10 chance d’en déclencher 1 toutes les 10 à 15 secondes. Les bugs liés au son concernent forcément tout le monde !
-	1. Joueur « hors phase » (shader) ✔ Dure 10 à 20’’
-	2. Plus aucune musique ✔ Dure 10 à 20’’
-	3. Plus aucun bruitages ✔ Dure 10 à 20’’
-	4. Son chiant qui… ✔ Dure 10 à 20’’ (toujours un seul à la fois)
-	5. Cellules à sens unique  ✔ Dure 10 à 20’’
-	6. Cellule hors phase ✔ Dure 10 à 20’’ (Screen_Glitch : Fait tourner aléatoirement à droite, Glitch_Only : fait tourner à gauche)
-	7. Les sprites se mélangent (?) (changer des frames à la volée dans les cycles de course) → Ça se fait : ✔ Dure 10 à 20’’
-	8. Les textures de sol changent → Ça se fait (tween?) : ✔ Dure 10 à 20’’
-	9. La palette de couleurs change → ✔  Dure 10 à 20’’
-	10. Image floue → Ça se fait : ✔ Dure 10 à 20’’
-	11. L’image globale se décale dans la vue du joueur (la caméra se décentre du joueur) → Ça se fait : ✔ Dure 10 à 20’’
-	12. La caméra vibre → ✔ Dure 10 à 20’’
-	13. Couleurs inversées → ✔  Dure 10 à 20’’
-	14. Sur-pixelisation → ✔  Dure 10 à 20’’
+    1. Joueur « hors phase » (shader) ✔ Dure 10 à 20’’
+    2. Plus aucune musique ✔ Dure 10 à 20’’
+    3. Plus aucun bruitages ✔ Dure 10 à 20’’
+    4. Son chiant qui… ✔ Dure 10 à 20’’ (toujours un seul à la fois)
+    5. Cellules à sens unique  ✔ Dure 10 à 20’’
+    6. Cellule hors phase ✔ Dure 10 à 20’’ (Screen_Glitch : Fait tourner aléatoirement à droite, Glitch_Only : fait tourner à gauche)
+    7. Les sprites se mélangent (?) (changer des frames à la volée dans les cycles de course) → Ça se fait : ✔ Dure 10 à 20’’
+    8. Les textures de sol changent → Ça se fait (tween?) : ✔ Dure 10 à 20’’
+    9. La palette de couleurs change → ✔  Dure 10 à 20’’
+    10. Image floue → Ça se fait : ✔ Dure 10 à 20’’
+    11. L’image globale se décale dans la vue du joueur (la caméra se décentre du joueur) → Ça se fait : ✔ Dure 10 à 20’’
+    12. La caméra vibre → ✔ Dure 10 à 20’’
+    13. Couleurs inversées → ✔  Dure 10 à 20’’
+    14. Sur-pixelisation → ✔  Dure 10 à 20’’
 
 Les bonus et malus en jeu (Cube.tscn) :
 - Il n’y a que 2 exemplaires de chaque Bonus/Malus (y compris en possession d’un joueur).
@@ -54,40 +54,40 @@ Les bonus et malus en jeu (Cube.tscn) :
 - Si le ramassage et l’activation se font en même temps, on ne joue qu’une fois le son correspondant et le clignotement du concurrent.
 
 Les bonus :
-	1. Invulnérabilité (annule le prochain malus récolté) → ✔ Invincible
-	2. Dash (permet de parcourir 2 cases dans le temps d’1) : 4% plus rapide. → ✔ Dash
-	3. Passe-muraille (uniquement les murs des concurrents) → ✔ Through
-	4. Virus (envoie automatiquement le prochain malus récolté à un adversaire aléatoire) → ✔ Virus
-	5. Téléportation (destination aléatoire sur une « cellule saine »)→ ✔ Teleport
-	6. Débogueur (vire un bug actif)→ ✔ Debug
-	7. Le murs tracé par le concurrent dure 1.5 fois plus longtemps.→ ✔ Last_Longer
+    1. Invulnérabilité (annule le prochain malus récolté) → ✔ Invincible
+    2. Dash (permet de parcourir 2 cases dans le temps d’1) : 4% plus rapide. → ✔ Dash
+    3. Passe-muraille (uniquement les murs des concurrents) → ✔ Through
+    4. Virus (envoie automatiquement le prochain malus récolté à un adversaire aléatoire) → ✔ Virus
+    5. Téléportation (destination aléatoire sur une « cellule saine »)→ ✔ Teleport
+    6. Débogueur (vire un bug actif)→ ✔ Debug
+    7. Le murs tracé par le concurrent dure 1.5 fois plus longtemps.→ ✔ Last_Longer
 
 Les malus :
-	1. Inversion de commandes (droite/gauche) → ✔ Invert
-	2. Lenteur de réaction (on ajoute un délai d’1/10’’ (à préciser) dans les commandes du concurrent) → ✔ Slow
-	3. Les murs tracés par le concurrent durent 2 fois moins longtemps → ✔ Last_Shorter
-	4. Course, saut et glissade : 4% plus lent → ✔ Anti_Dash
-	5. Rien ! → ✔ Empty
-	6. Virus (envoie automatiquement le prochain Bonus récolté à un adversaire aléatoire) → ✔ Anti_Virus
-	7. Téléportation (le concurrent ne choisit pas le moment de l’activation et destination aléatoire)→ ✔ Anti_Teleport
+    1. Inversion de commandes (droite/gauche) → ✔ Invert
+    2. Lenteur de réaction (on ajoute un délai d’1/10’’ (à préciser) dans les commandes du concurrent) → ✔ Slow
+    3. Les murs tracés par le concurrent durent 2 fois moins longtemps → ✔ Last_Shorter
+    4. Course, saut et glissade : 4% plus lent → ✔ Anti_Dash
+    5. Rien ! → ✔ Empty
+    6. Virus (envoie automatiquement le prochain Bonus récolté à un adversaire aléatoire) → ✔ Anti_Virus
+    7. Téléportation (le concurrent ne choisit pas le moment de l’activation et destination aléatoire)→ ✔ Anti_Teleport
 
 Les obstacles :
 Toutes les X secondes (voir Options à proposer au joueur dans Settings) un des obstacles est déclenché. 1 sur 4 est un glissement de Ligne/Colonne.
-	1. Ligne/Colonne (de cellules) qui glisse d’1 à 2 cases → ✔ (On joue Alarm_Before_Movement dans Cell.tscn 1’’ avant ET pendant le glissement, jusqu’à la fin du glissement)
-	2. Trous (cellules qui descendent) → ✔
-	3. Murs des concurrents → ✔ (voir avec Geoff comment faire)
-	4. Cellule à sens unique → ✔
-	5. Colonnes tombantes → ✔
-	6. Dalles disparaissant → Cellules qui disparaissent ✔
+    1. Ligne/Colonne (de cellules) qui glisse d’1 à 2 cases → ✔ (On joue Alarm_Before_Movement dans Cell.tscn 1’’ avant ET pendant le glissement, jusqu’à la fin du glissement)
+    2. Trous (cellules qui descendent) → ✔
+    3. Murs des concurrents → ✔ (voir avec Geoff comment faire)
+    4. Cellule à sens unique → ✔
+    5. Colonnes tombantes → ✔
+    6. Dalles disparaissant → Cellules qui disparaissent ✔
 
 Liste des animations des personnages :
-	1. Courir ✔ ✔
-	2. Sauter ✔ ✔
-	3. Glissade ✔ ✔
-	4. Pose de départ ✔ ✔
-	5. Intro ✔ ✔
-	6. Tomber dans le vide → Mort ! ✔ ✔
-	7. Bim ! Dans un mur → Mort ! ✔ ✔
+    1. Courir ✔ ✔
+    2. Sauter ✔ ✔
+    3. Glissade ✔ ✔
+    4. Pose de départ ✔ ✔
+    5. Intro ✔ ✔
+    6. Tomber dans le vide → Mort ! ✔ ✔
+    7. Bim ! Dans un mur → Mort ! ✔ ✔
 
 Notes de fabrication :
 SON :
@@ -103,56 +103,55 @@ Options à proposer au joueur dans Settings:
 - Volume sonore général (de 0 à 100) ✔
 - Volume de la musique (de 0 à 100) ✔
 - Difficulté (de 1 à 5) ✔ :
-	• Temps avant l’apparition de la porte de sortie : (Taille de la map + (3 × Difficulté)) / 4 en minutes
-	• Délai entre les déclenchements d’obstacles : 5.5’’ - (0.5 × Difficulté)  en secondes
+    • Temps avant l’apparition de la porte de sortie : (Taille de la map + (3 × Difficulté)) / 4 en minutes
+    • Délai entre les déclenchements d’obstacles : 5.5’’ - (0.5 × Difficulté)  en secondes
 
 
 Script de déroulement d’une partie :
 Préambule :
-	• chaque chargement de scène (sauf contre-indication), on joue 1 fois Music/Bang (dans Music.tscn).
-	• Les sons de validation (Validation) et d’annulation (Cancel) sont dans la scène UI_Sounds.tscn.
-	• Par défaut, Intro et Music sont en boucle, pas besoin de le dire dans le code théoriquement !
-	• Dans les scènes, des choses sont mises en place uniquement pour voir comment ça fait (je pense notamment à certains (bouts de) scripts, aux musiques ou sons d’UI qui devraient plus être dans des autoloads ou quoi…).
+    • chaque chargement de scène (sauf contre-indication), on joue 1 fois Music/Bang (dans Music.tscn).
+    • Les sons de validation (Validation) et d’annulation (Cancel) sont dans la scène UI_Sounds.tscn.
+    • Par défaut, Intro et Music sont en boucle, pas besoin de le dire dans le code théoriquement !
+    • Dans les scènes, des choses sont mises en place uniquement pour voir comment ça fait (je pense notamment à certains (bouts de) scripts, aux musiques ou sons d’UI qui devraient plus être dans des autoloads ou quoi…).
 
 Avant le jeu :
-	1. Chargement de l’écran titre Title.tscn (l’overlay qui dit de presser un bouton, peu importe lequel) apparaît au bout de 15’’ si je joueur n’a rien fait jusque là). À partir du démarrage, Music/Intro joue en boucle.
-	2. Transition brutale (pour une fois, sans effet de transition !) vers Settings.tscn. À l’ouverture de la scène suivante, on jouera juste Music/Bang (Music/Intro continue donc de jouer). Dans cette scène, presser B (Cancellare) remet les valeurs modifiées à leur valeur précédente et retourne à l’écran titre. Presser A lancera le jeu.
+    1. Chargement de l’écran titre Title.tscn (l’overlay qui dit de presser un bouton, peu importe lequel) apparaît au bout de 15’’ si je joueur n’a rien fait jusque là). À partir du démarrage, Music/Intro joue en boucle.
+    2. Transition brutale (pour une fois, sans effet de transition !) vers Settings.tscn. À l’ouverture de la scène suivante, on jouera juste Music/Bang (Music/Intro continue donc de jouer). Dans cette scène, presser B (Cancellare) remet les valeurs modifiées à leur valeur précédente et retourne à l’écran titre. Presser A lancera le jeu.
 
 Le jeu :
-	3. Transition brutale vers (pour le moment, la scène, c’est Test_Split_Screen.tscn mais il s’agit d’une scène de démo plus qu’autre chose). Les 4 caméras sont centrées sur les 4 coins de la zone de course. L’écran en haut à gauche affiche la sélection de joueur (Portraits.tscn) qui commence sur la fille et les 3 autres affichent aléatoirement 3 autres personnages MAIS on a toujours 2 gars et 2 filles en tout ! À chaque fois que le joueur change de personnage, les autres sont retirés aléatoirement.
-	4. On sélectionne le personnage avec droite et gauche, on valide avec A et on annule avec B (qui renvoie à l’écran titre avec transition brutale + Bang!). Lorsque le joureur change de personnage, à chaque fois que dans les autres quarts d’écran les personnages changent et on utilisera leurs animation de Glitch sur 5 frames pour faire une transition. Annuler renvoie à l’écran Settings.tscn avec toujours la même transition. Valider Fait disparaître l’overlay de sélection des personnages !
-	5. Tous les Personnages passent alors en animation Start. Au bout d’1/2 seconde, on joue UI_Sounds/3_2_1 puis on coupe Music/Intro, on lance UI_Sounds/Go et Music/Music en boucle (sans Music/Bang cette fois-ci) et les coureurs (Bot) partent dans l’une des deux directions qu’il ont de possible dans, au plus tard, le 1/4 de seconde qui suit ! Si le joueur n’a pas lancé sa course, il partira en même temps que le dernier concurrent (Bot).
+    3. Transition brutale vers (pour le moment, la scène, c’est Test_Split_Screen.tscn mais il s’agit d’une scène de démo plus qu’autre chose). Les 4 caméras sont centrées sur les 4 coins de la zone de course. L’écran en haut à gauche affiche la sélection de joueur (Portraits.tscn) qui commence sur la fille et les 3 autres affichent aléatoirement 3 autres personnages MAIS on a toujours 2 gars et 2 filles en tout ! À chaque fois que le joueur change de personnage, les autres sont retirés aléatoirement.
+    4. On sélectionne le personnage avec droite et gauche, on valide avec A et on annule avec B (qui renvoie à l’écran titre avec transition brutale + Bang!). Lorsque le joureur change de personnage, à chaque fois que dans les autres quarts d’écran les personnages changent et on utilisera leurs animation de Glitch sur 5 frames pour faire une transition. Annuler renvoie à l’écran Settings.tscn avec toujours la même transition. Valider Fait disparaître l’overlay de sélection des personnages !
+    5. Tous les Personnages passent alors en animation Start. Au bout d’1/2 seconde, on joue UI_Sounds/3_2_1 puis on coupe Music/Intro, on lance UI_Sounds/Go et Music/Music en boucle (sans Music/Bang cette fois-ci) et les coureurs (Bot) partent dans l’une des deux directions qu’il ont de possible dans, au plus tard, le 1/4 de seconde qui suit ! Si le joueur n’a pas lancé sa course, il partira en même temps que le dernier concurrent (Bot).
 
-La se place le jeu lui-même !
+Ici, la course elle-même prend place !
 
-	6. Lorsque les 3 premiers concurrents meurent, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) dans la scène  Test_Split_Screen.tscn (scène pour le moment temporaire, comme je le disais).
-		◦ Lorsque le dernier concurrent meurt, on affiche alors Frames/Info_Win_Lose_Overlay/Lose et on garde les précédents overlays de mort.
-		◦ Si un concurrent gagne (soit parce qu’il est le dernier à courir, soit parce qu’il a franchis la porte de sortie), on affiche Frames/Info_Win_Lose/Win et on garde les éventuels overlays de mort ! Automatiquement, les concurrents restants meurent (animation Death) !
-		◦ Ensuite, (presque) n’importe quel bouton retourne brutalement (toujours) à l’écran de titre. On coupe alors Music/Music et on lance Music/Intro avec Music/Bang. Et on retourne au point 1 de cette liste 
-		◦ Option « cachée » (pour le moment) : presser B ici relance une partie « identique » à partir du point 5 de cette liste !
+    6. Lorsque les 3 premiers concurrents meurent, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) dans la scène  Test_Split_Screen.tscn (scène pour le moment temporaire, comme je le disais).
+        ◦ Lorsque le dernier concurrent meurt, on affiche alors Frames/Info_Win_Lose_Overlay/Lose et on garde les précédents overlays de mort.
+        ◦ Si un concurrent gagne (soit parce qu’il est le dernier à courir, soit parce qu’il a franchis la porte de sortie), on affiche Frames/Info_Win_Lose/Win et on garde les éventuels overlays de mort ! Automatiquement, les concurrents restants meurent (animation Death) !
+        ◦ Ensuite, n’importe quel bouton (sauf B) retourne brutalement (toujours) à l’écran de titre. On coupe alors Music/Music et on lance Music/Intro avec Music/Bang. Et on retourne au point 1 de cette liste. Presser B relance une partie « identique » à partir du point 5 de cette liste !
 Les personnalités des « IA »/Bots :
 - Avant tout, on va considérer que les Bots voient tout le terrain (contrairement au joueur).
 - Par défaut, un Bot tendra bien évidemment à ne pas mourir en évitant les collisions et les chutes.
 
 Comportements face aux obstacles :
 
-	1. Survivaliste : Évite de se faire coincer (par les murs des adversaires, les vides et murs/colonnes → cône de vision plus long et plus large), se concentre sur sa route et bloque les autres concurrents.
-	2. Idiot : Se comporte de manière aléatoire.
-	3. Peureux : Va là où il y a le moins de monde et d’obstacles (murs des concurrents, vides et murs/colonnes).
+    1. Survivaliste : Évite de se faire coincer (par les murs des adversaires, les vides et murs/colonnes → cône de vision plus long et plus large), se concentre sur sa route et bloque les autres concurrents.
+    2. Idiot : Se comporte de manière aléatoire.
+    3. Peureux : Va là où il y a le moins de monde et d’obstacles (murs des concurrents, vides et murs/colonnes).
 
 Comportements face aux Bonus/malus – Part 1 :
 
-	1. Agressif : Fonce sur les bonus. S’il est "mineur", il s'en débarrasse immédiatement, sinon il le garde pour plus tard ou pour empêcher un autre concurrent de le prendre.
-	2. Aléatoire : Utilise n'importe quand ses bonus/malus sans logique.
-	3. Prudent : Évite les bonus/malus autant que possible car il a peur des malus.
+    1. Agressif : Fonce sur les bonus. S’il est "mineur", il s'en débarrasse immédiatement, sinon il le garde pour plus tard ou pour empêcher un autre concurrent de le prendre.
+    2. Aléatoire : Utilise n'importe quand ses bonus/malus sans logique.
+    3. Prudent : Évite les bonus/malus autant que possible car il a peur des malus.
 Comportements face aux Bonus/Malus – Part 2 :
 
-	1. Conservateur : Privilégie les Bonus/Malus pour soi (tend à rejeter vite les autres).
-	2. Belliqueux : Privilégie les Bonus/Malus contre les autres (tend à rejeter vite les autres).
-	3. Indifférent : Ne privilégie rien en particulier et tire avantage de ce qu’il a.
+    1. Conservateur : Privilégie les Bonus/Malus pour soi (tend à rejeter vite les autres).
+    2. Belliqueux : Privilégie les Bonus/Malus contre les autres (tend à rejeter vite les autres).
+    3. Indifférent : Ne privilégie rien en particulier et tire avantage de ce qu’il a.
 
 Comportements face aux bugs du jeu (continuer tout droit, tourner ou utiliser un bonus – pas d’autre option pour le moment, il me semble) :
 
-	1. Prudent : réfléchit plus tôt (si possible) face aux obstacles et réagit plus tôt.
-	2. Inconscient : réagit avec les mêmes délais impliquant qu’1 fois sur 3 il fera un choix différent de celui qu’il aurait fait sans bug.
-	3. Suicidaire (tricheur) : face à un obstacle fera un choix aléatoire ! 1 fois sur 3, si cela le condamne à mourir, alors il ne mourra pas en évitant l’obstacle ou utilisant un bonus « inventé » qu’il n’avait pas.
+    1. Prudent : réfléchit plus tôt (si possible) face aux obstacles et réagit plus tôt.
+    2. Inconscient : réagit avec les mêmes délais impliquant qu’1 fois sur 3 il fera un choix différent de celui qu’il aurait fait sans bug.
+    3. Suicidaire (tricheur) : face à un obstacle fera un choix aléatoire ! 1 fois sur 3, si cela le condamne à mourir, alors il ne mourra pas en évitant l’obstacle ou utilisant un bonus « inventé » qu’il n’avait pas.
