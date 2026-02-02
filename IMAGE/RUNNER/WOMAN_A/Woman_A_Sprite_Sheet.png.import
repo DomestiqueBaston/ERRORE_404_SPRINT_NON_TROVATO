@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvhum1ai0b121"
-path="res://.godot/imported/Man_Sprite_Sheet.png-8f66e7b96d3f44299bf26710e12551d6.ctex"
+uid="uid://5grfiugqisi8"
+path="res://.godot/imported/Woman_A_Sprite_Sheet.png-9e2276f89d671d53f0b03f7de6d8af77.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/RUNNER/MAN/Man_Sprite_Sheet.png"
-dest_files=["res://.godot/imported/Man_Sprite_Sheet.png-8f66e7b96d3f44299bf26710e12551d6.ctex"]
+source_file="res://IMAGE/RUNNER/WOMAN_A/Woman_A_Sprite_Sheet.png"
+dest_files=["res://.godot/imported/Woman_A_Sprite_Sheet.png-9e2276f89d671d53f0b03f7de6d8af77.ctex"]
 
 [params]
 

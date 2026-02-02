@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bcy7al7vi5kvs" path="res://IMAGE/RUNNER/Portraits_BG.png" id="2_dpf0i"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="4_dpf0i"]
 [ext_resource type="Shader" uid="uid://blic88jwr7a1e" path="res://SHADER/Glitch_Only.gdshader" id="4_q0tq6"]
-[ext_resource type="Script" uid="uid://cyf6pnmtk6au5" path="res://SCENE_AND_SCRIPT/TMP/Animation_Portraits.gd" id="6_8cymr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hwl4u"]
 shader = ExtResource("4_q0tq6")
@@ -32,8 +31,8 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 anti_aliasing = false
 
-[sub_resource type="Animation" id="Animation_yaltw"]
-resource_name = "Her_To_Him"
+[sub_resource type="Animation" id="Animation_8cymr"]
+resource_name = "Left_A_To_D"
 length = 0.13333334
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -42,10 +41,10 @@ tracks/0/path = NodePath("Frame/BG/Her_Him:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1, 0.13333333),
+"times": PackedFloat32Array(0, 0.03333333, 0.06666665, 0.099999994, 0.13333334),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(93, 5), Vector2(88, 5), Vector2(8, 5), Vector2(-80, 5), Vector2(-85, 5)]
+"values": [Vector2(268, 5), Vector2(243, 5), Vector2(0, 5), Vector2(-238, 5), Vector2(-263, 5)]
 }
 tracks/1/type = "audio"
 tracks/1/imported = false
@@ -72,11 +71,11 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.2]
+"values": [1.0]
 }
 
-[sub_resource type="Animation" id="Animation_8y87r"]
-resource_name = "Him_To_Her"
+[sub_resource type="Animation" id="Animation_q0tq6"]
+resource_name = "Left_B_To_A"
 length = 0.13333334
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -85,10 +84,96 @@ tracks/0/path = NodePath("Frame/BG/Her_Him:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333346, 0.06666666, 0.10000001, 0.13333336),
+"times": PackedFloat32Array(0, 0.03333333, 0.06666665, 0.099999994, 0.13333334),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-85, 5), Vector2(-80, 5), Vector2(8, 5), Vector2(88, 5), Vector2(93, 5)]
+"values": [Vector2(90, 5), Vector2(95, 5), Vector2(187, 5), Vector2(263, 5), Vector2(268, 5)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/Woosh")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_8y87r")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sounds/Woosh:pitch_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_hwl4u"]
+resource_name = "Left_C_To_B"
+length = 0.13333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333333, 0.06666665, 0.099999994, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-85, 5), Vector2(-80, 5), Vector2(0, 5), Vector2(85, 5), Vector2(90, 5)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/Woosh")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_8y87r")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sounds/Woosh:pitch_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_gciow"]
+resource_name = "Left_D_To_C"
+length = 0.13333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333333, 0.06666665, 0.099999994, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-263, 5), Vector2(-258, 5), Vector2(-177, 5), Vector2(-93, 5), Vector2(-85, 5)]
 }
 tracks/1/type = "audio"
 tracks/1/imported = false
@@ -130,7 +215,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(93, 13)]
+"values": [Vector2(268, 13)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -145,11 +230,189 @@ tracks/1/keys = {
 "values": [1.0]
 }
 
+[sub_resource type="Animation" id="Animation_yaltw"]
+resource_name = "Right_A_To_B"
+length = 0.13333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(268, 5), Vector2(263, 5), Vector2(187, 5), Vector2(95, 5), Vector2(90, 5)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/Woosh")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_8y87r")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sounds/Woosh:pitch_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.2]
+}
+
+[sub_resource type="Animation" id="Animation_7tprj"]
+resource_name = "Right_B_To_C"
+length = 0.13333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(90, 5), Vector2(85, 5), Vector2(0, 5), Vector2(-80, 5), Vector2(-85, 5)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/Woosh")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_8y87r")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sounds/Woosh:pitch_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.2]
+}
+
+[sub_resource type="Animation" id="Animation_t8f4h"]
+resource_name = "Right_C_To_D"
+length = 0.13333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-85, 5), Vector2(-93, 5), Vector2(-177, 5), Vector2(-258, 5), Vector2(-263, 5)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/Woosh")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_8y87r")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sounds/Woosh:pitch_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.2]
+}
+
+[sub_resource type="Animation" id="Animation_ucfla"]
+resource_name = "Right_D_To_A"
+length = 0.13333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-263, 5), Vector2(-238, 5), Vector2(0, 5), Vector2(243, 5), Vector2(268, 5)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sounds/Woosh")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_8y87r")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sounds/Woosh:pitch_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.2]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h8mj1"]
 _data = {
-&"Her_To_Him": SubResource("Animation_yaltw"),
-&"Him_To_Her": SubResource("Animation_8y87r"),
-&"RESET": SubResource("Animation_1ivug")
+&"Left_A_To_D": SubResource("Animation_8cymr"),
+&"Left_B_To_A": SubResource("Animation_q0tq6"),
+&"Left_C_To_B": SubResource("Animation_hwl4u"),
+&"Left_D_To_C": SubResource("Animation_gciow"),
+&"RESET": SubResource("Animation_1ivug"),
+&"Right_A_To_B": SubResource("Animation_yaltw"),
+&"Right_B_To_C": SubResource("Animation_7tprj"),
+&"Right_C_To_D": SubResource("Animation_t8f4h"),
+&"Right_D_To_A": SubResource("Animation_ucfla")
 }
 
 [node name="Portraits" type="Control" unique_id=2050210296]
@@ -168,7 +431,7 @@ texture = ExtResource("2_dpf0i")
 metadata/_edit_lock_ = true
 
 [node name="Her_Him" type="Sprite2D" parent="Frame/BG" unique_id=1114499252]
-position = Vector2(93, 13)
+position = Vector2(268, 13)
 texture = ExtResource("1_yaltw")
 offset = Vector2(0, -3)
 metadata/_edit_lock_ = true
@@ -217,7 +480,6 @@ metadata/_edit_lock_ = true
 
 [node name="Animation_Portraits" type="AnimationPlayer" parent="." unique_id=2124288444]
 libraries/ = SubResource("AnimationLibrary_h8mj1")
-script = ExtResource("6_8cymr")
 
 [node name="Sounds" type="Node2D" parent="." unique_id=415508272]
 

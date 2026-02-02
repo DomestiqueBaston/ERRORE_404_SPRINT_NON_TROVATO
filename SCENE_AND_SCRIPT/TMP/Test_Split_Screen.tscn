@@ -24,7 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://bvr7mwob6g81h" path="res://SOUND/FX/Disappearing_Cell.ogg" id="22_tmij7"]
 [ext_resource type="AudioStream" uid="uid://bifaoucknr7f5" path="res://SOUND/FX/Sliding_Cell.ogg" id="23_77ago"]
 [ext_resource type="AudioStream" uid="uid://vldsf8ak3y4t" path="res://SOUND/FX/Alarm.ogg" id="24_tfq6m"]
-[ext_resource type="PackedScene" uid="uid://brsvllplyc7ih" path="res://SCENE_AND_SCRIPT/Woman.tscn" id="25_xu4sf"]
+[ext_resource type="PackedScene" uid="uid://brsvllplyc7ih" path="res://SCENE_AND_SCRIPT/Woman_A.tscn" id="25_xu4sf"]
 [ext_resource type="Shader" uid="uid://bw1rtxnpr4o0b" path="res://SHADER/Pixelisation.gdshader" id="26_qp1y0"]
 [ext_resource type="Shader" uid="uid://cw8pro7ug7hfy" path="res://SHADER/Shake.gdshader" id="27_5t0h1"]
 [ext_resource type="Shader" uid="uid://djvm4hdir6bn0" path="res://SHADER/Invert_Colors.gdshader" id="27_myj71"]
@@ -49,9 +49,9 @@ glow_enabled = true
 glow_levels/2 = 1.25
 glow_levels/4 = 1.0
 glow_normalized = true
-glow_intensity = 4.0
+glow_intensity = 2.0
 glow_strength = 0.25
-glow_bloom = 0.67
+glow_bloom = 0.5
 glow_hdr_threshold = 1.1
 glow_hdr_scale = 0.0
 glow_hdr_luminance_cap = 0.1
@@ -1592,11 +1592,16 @@ autoplay = true
 bus = &"FX_WET"
 
 [node name="Portraits" parent="Frames" unique_id=461730405 instance=ExtResource("40_sf4qo")]
-visible = false
 offset_left = 240.0
 offset_top = 135.0
 offset_right = 240.0
 offset_bottom = 135.0
+
+[node name="Her_Him" parent="Frames/Portraits/Frame/BG" parent_id_path=PackedInt32Array(461730405, 847994713) index="0" unique_id=1114499252]
+offset = Vector2(0, -13)
+
+[node name="Animation_Portraits" parent="Frames/Portraits" index="2" unique_id=2124288444]
+script = null
 
 [node name="Animation_Overlays" type="AnimationPlayer" parent="Frames" unique_id=1392428684]
 root_node = NodePath("../Bugs_01/Death")

@@ -15,6 +15,20 @@
 [ext_resource type="Script" uid="uid://dd6brr6ksot15" path="res://SCENE_AND_SCRIPT/Title_Alert.gd" id="13_wgd1c"]
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="14_sobyg"]
 
+[sub_resource type="Environment" id="Environment_wgd1c"]
+background_mode = 3
+tonemap_white = 3.6
+glow_enabled = true
+glow_levels/2 = 1.25
+glow_levels/4 = 1.0
+glow_normalized = true
+glow_intensity = 2.0
+glow_strength = 0.25
+glow_bloom = 0.5
+glow_hdr_threshold = 1.1
+glow_hdr_scale = 0.0
+glow_hdr_luminance_cap = 0.1
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_picqc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0iask"]
@@ -235,6 +249,9 @@ _data = {
 
 [node name="Settings" type="Node2D" unique_id=758904323]
 metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=869803178]
+environment = SubResource("Environment_wgd1c")
 
 [node name="ATTENTION" type="Label" parent="." unique_id=1196339688]
 offset_top = -66.0
