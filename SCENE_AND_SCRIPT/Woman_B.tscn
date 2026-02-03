@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7rcfji6ehwky" path="res://SCENE_AND_SCRIPT/Runner.gd" id="1_b858v"]
 [ext_resource type="Shader" uid="uid://b3okewpame84w" path="res://SHADER/Outline_Glitch.gdshader" id="2_4pmps"]
-[ext_resource type="Texture2D" uid="uid://5grfiugqisi8" path="res://IMAGE/RUNNER/WOMAN_A/Woman_A_Sprite_Sheet.png" id="3_yl0jf"]
+[ext_resource type="Texture2D" uid="uid://j2jtb5xwxv25" path="res://IMAGE/RUNNER/WOMAN_B/Woman_B_Sprite_Sheet.png" id="3_b858v"]
 [ext_resource type="Shader" uid="uid://3f2wtq4pn17q" path="res://SHADER/Shadow_Compositing.gdshader" id="4_moomj"]
 [ext_resource type="Texture2D" uid="uid://brl52e8ox1ue8" path="res://IMAGE/RUNNER/Shadow.png" id="5_3pclx"]
 [ext_resource type="AudioStream" uid="uid://ccc3vfmvpg54n" path="res://SOUND/FX/RUNNER/Bump_Wall.ogg" id="6_lgnag"]
@@ -14,8 +14,9 @@
 [ext_resource type="AudioStream" uid="uid://06kaf7akc8r3" path="res://SOUND/FX/RUNNER/Foot_Step_01.ogg" id="12_0wei6"]
 [ext_resource type="AudioStream" uid="uid://cns80ks0bg3jv" path="res://SOUND/FX/RUNNER/Foot_Step_02.ogg" id="13_ifvtu"]
 [ext_resource type="AudioStream" uid="uid://wm0mpe0ypbad" path="res://SOUND/FX/RUNNER/Woman_A_Pushing.ogg" id="14_w2sfk"]
-[ext_resource type="AudioStream" uid="uid://b0focmedmn3xq" path="res://SOUND/FX/RUNNER/Woman_A_Running.ogg" id="15_7r5mk"]
+[ext_resource type="AudioStream" uid="uid://d0pp8lius4a10" path="res://SOUND/FX/RUNNER/Foot_Step_03.ogg" id="15_4pmps"]
 [ext_resource type="AudioStream" uid="uid://b2a03ph6qsmpd" path="res://SOUND/FX/RUNNER/Sliding.ogg" id="16_npn0x"]
+[ext_resource type="AudioStream" uid="uid://cccak1pcfdifx" path="res://SOUND/FX/RUNNER/Woman_B_Running.ogg" id="16_yl0jf"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="17_dncos"]
 [ext_resource type="AudioStream" uid="uid://cou5e3uqnnvdj" path="res://SOUND/FX/Crackling_Noise_A.ogg" id="18_ltgdr"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="19_03ig1"]
@@ -1415,13 +1416,13 @@ tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("12_0wei6")
+"stream": ExtResource("15_4pmps")
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
 "stream": ExtResource("13_ifvtu")
 }],
-"times": PackedFloat32Array(0.15155959, 0.44972098)
+"times": PackedFloat32Array(0.2506925, 0.5159742)
 }
 tracks/3/use_blend = true
 tracks/4/type = "value"
@@ -1470,7 +1471,7 @@ tracks/7/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("15_7r5mk")
+"stream": ExtResource("16_yl0jf")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -1598,13 +1599,13 @@ tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("12_0wei6")
+"stream": ExtResource("15_4pmps")
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
 "stream": ExtResource("13_ifvtu")
 }],
-"times": PackedFloat32Array(0.1521217, 0.45028308)
+"times": PackedFloat32Array(0.21488923, 0.51488924)
 }
 tracks/3/use_blend = true
 tracks/4/type = "value"
@@ -1653,7 +1654,7 @@ tracks/7/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("15_7r5mk")
+"stream": ExtResource("16_yl0jf")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -2720,7 +2721,7 @@ script = ExtResource("1_b858v")
 
 [node name="Runner_Sprite" type="Sprite2D" parent="Character/Papa_Sprite" unique_id=1169504972]
 material = SubResource("ShaderMaterial_gcyqs")
-texture = ExtResource("3_yl0jf")
+texture = ExtResource("3_b858v")
 offset = Vector2(-5, -44)
 hframes = 36
 vframes = 11
