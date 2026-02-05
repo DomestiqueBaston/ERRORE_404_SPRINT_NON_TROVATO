@@ -25,8 +25,10 @@
 [ext_resource type="AudioStream" uid="uid://bifaoucknr7f5" path="res://SOUND/FX/Sliding_Cell.ogg" id="23_77ago"]
 [ext_resource type="AudioStream" uid="uid://vldsf8ak3y4t" path="res://SOUND/FX/Alarm.ogg" id="24_tfq6m"]
 [ext_resource type="PackedScene" uid="uid://brsvllplyc7ih" path="res://SCENE_AND_SCRIPT/Woman_A.tscn" id="25_xu4sf"]
+[ext_resource type="PackedScene" uid="uid://cpdmu8glt6s05" path="res://SCENE_AND_SCRIPT/Woman_B.tscn" id="26_gk5t3"]
 [ext_resource type="Shader" uid="uid://bw1rtxnpr4o0b" path="res://SHADER/Pixelisation.gdshader" id="26_qp1y0"]
 [ext_resource type="Shader" uid="uid://cw8pro7ug7hfy" path="res://SHADER/Shake.gdshader" id="27_5t0h1"]
+[ext_resource type="PackedScene" uid="uid://p751chhvtga6" path="res://SCENE_AND_SCRIPT/Man_A.tscn" id="27_ftky1"]
 [ext_resource type="Shader" uid="uid://djvm4hdir6bn0" path="res://SHADER/Invert_Colors.gdshader" id="27_myj71"]
 [ext_resource type="Shader" uid="uid://dlwdh275codsc" path="res://SHADER/Change_Colors.gdshader" id="28_myj71"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="31_nkbw3"]
@@ -930,6 +932,9 @@ render_target_update_mode = 4
 [node name="Runner" parent="Runners/Top_Runners/Left_Runner/Runner_SubViewport" unique_id=1956377035 instance=ExtResource("25_xu4sf")]
 z_index = 1
 
+[node name="Woman_A" parent="Runners/Top_Runners/Left_Runner/Runner_SubViewport" unique_id=1635856392 instance=ExtResource("25_xu4sf")]
+z_index = 1
+
 [node name="Right_Runner" type="SubViewportContainer" parent="Runners/Top_Runners" unique_id=1099668457]
 custom_minimum_size = Vector2(480, 270)
 layout_mode = 2
@@ -943,12 +948,9 @@ snap_2d_vertices_to_pixel = true
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
-[node name="Runner" parent="Runners/Top_Runners/Right_Runner/Runner_SubViewport" unique_id=1125712153 instance=ExtResource("25_xu4sf")]
+[node name="Woman_A" parent="Runners/Top_Runners/Right_Runner/Runner_SubViewport" unique_id=39072352 instance=ExtResource("26_gk5t3")]
 z_index = 1
 position = Vector2(50, 0)
-
-[node name="Character" parent="Runners/Top_Runners/Right_Runner/Runner_SubViewport/Runner" index="0" unique_id=1360061723]
-script = null
 
 [node name="Bottom_Runners" type="HBoxContainer" parent="Runners" unique_id=2103010928]
 layout_mode = 2
@@ -969,12 +971,9 @@ snap_2d_vertices_to_pixel = true
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
-[node name="Runner" parent="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport" unique_id=823328066 instance=ExtResource("25_xu4sf")]
-z_index = 1
+[node name="Man_A" parent="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport" unique_id=1403848273 instance=ExtResource("27_ftky1")]
+z_index = 2
 position = Vector2(0, 50)
-
-[node name="Character" parent="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport/Runner" index="0" unique_id=1360061723]
-script = null
 
 [node name="Right_Runner" type="SubViewportContainer" parent="Runners/Bottom_Runners" unique_id=2074751218]
 custom_minimum_size = Vector2(480, 270)
@@ -989,11 +988,12 @@ snap_2d_vertices_to_pixel = true
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
-[node name="Runner" parent="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport" unique_id=1315328218 instance=ExtResource("25_xu4sf")]
-z_index = 1
+[node name="To_Change" parent="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport" unique_id=1315328218 instance=ExtResource("25_xu4sf")]
+visible = false
+z_index = 2
 position = Vector2(50, 50)
 
-[node name="Character" parent="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport/Runner" index="0" unique_id=1360061723]
+[node name="Character" parent="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport/To_Change" index="0" unique_id=1360061723]
 script = null
 
 [node name="Frames" type="CanvasLayer" parent="." unique_id=2092233837]
@@ -1600,9 +1600,6 @@ offset_bottom = 135.0
 [node name="Her_Him" parent="Frames/Portraits/Frame/BG" parent_id_path=PackedInt32Array(461730405, 847994713) index="0" unique_id=1114499252]
 offset = Vector2(0, -13)
 
-[node name="Animation_Portraits" parent="Frames/Portraits" index="2" unique_id=2124288444]
-script = null
-
 [node name="Animation_Overlays" type="AnimationPlayer" parent="Frames" unique_id=1392428684]
 root_node = NodePath("../Bugs_01/Death")
 libraries/ = SubResource("AnimationLibrary_eou1j")
@@ -1614,8 +1611,10 @@ bus = &"FX_WET"
 
 [node name="Music" parent="." unique_id=524227096 instance=ExtResource("33_5ttrv")]
 
+[node name="Music" parent="Music" index="1" unique_id=2025180216]
+autoplay = true
+
 [editable path="Runners/Top_Runners/Left_Runner/Runner_SubViewport/Runner"]
-[editable path="Runners/Top_Runners/Right_Runner/Runner_SubViewport/Runner"]
-[editable path="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport/Runner"]
-[editable path="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport/Runner"]
+[editable path="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport/To_Change"]
 [editable path="Frames/Portraits"]
+[editable path="Music"]

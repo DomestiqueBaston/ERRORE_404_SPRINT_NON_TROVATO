@@ -5,7 +5,9 @@
 [ext_resource type="AudioStream" uid="uid://bes5a835nqime" path="res://SOUND/FX/Woosh.ogg" id="2_8y87r"]
 [ext_resource type="Texture2D" uid="uid://bcy7al7vi5kvs" path="res://IMAGE/RUNNER/Portraits_BG.png" id="2_dpf0i"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="4_dpf0i"]
+[ext_resource type="Texture2D" uid="uid://2tpjqqwsonk2" path="res://IMAGE/RUNNER/Portrait_Arrows.png" id="4_hwl4u"]
 [ext_resource type="Shader" uid="uid://blic88jwr7a1e" path="res://SHADER/Glitch_Only.gdshader" id="4_q0tq6"]
+[ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="7_gciow"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hwl4u"]
 shader = ExtResource("4_q0tq6")
@@ -30,6 +32,55 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 anti_aliasing = false
+
+[sub_resource type="Animation" id="Animation_b0nga"]
+resource_name = "Blink"
+length = 0.66667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Frame/BG/Portrait_Arrows:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.46666667, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Portrait_Arrows:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.46666667, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sounds/Alarm")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_gciow")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p3xvu"]
+_data = {
+&"Blink": SubResource("Animation_b0nga")
+}
 
 [sub_resource type="Animation" id="Animation_8cymr"]
 resource_name = "Left_A_To_D"
@@ -415,6 +466,8 @@ _data = {
 &"Right_D_To_A": SubResource("Animation_ucfla")
 }
 
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_u61m0"]
+
 [node name="Portraits" type="Control" unique_id=2050210296]
 layout_mode = 3
 anchors_preset = 0
@@ -436,6 +489,10 @@ texture = ExtResource("1_yaltw")
 offset = Vector2(0, -3)
 metadata/_edit_lock_ = true
 
+[node name="Portrait_Arrows" type="Sprite2D" parent="Frame/BG" unique_id=2100214986]
+self_modulate = Color(1, 1, 1, 0.6893451)
+texture = ExtResource("4_hwl4u")
+
 [node name="BG_Mask" type="Sprite2D" parent="Frame" unique_id=1093812617]
 clip_children = 2
 texture = ExtResource("2_dpf0i")
@@ -445,6 +502,11 @@ metadata/_edit_lock_ = true
 material = SubResource("ShaderMaterial_hwl4u")
 texture = ExtResource("2_dpf0i")
 metadata/_edit_lock_ = true
+
+[node name="Portrait_Arrows" type="Sprite2D" parent="." unique_id=189567814]
+self_modulate = Color(1, 1, 1, 0.6893451)
+position = Vector2(0, -14)
+texture = ExtResource("4_hwl4u")
 
 [node name="Announce" type="Control" parent="." unique_id=1447322526]
 anchors_preset = 0
@@ -478,6 +540,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
+[node name="Animation_Arrows" type="AnimationPlayer" parent="." unique_id=942789416]
+libraries/ = SubResource("AnimationLibrary_p3xvu")
+autoplay = &"Blink"
+
 [node name="Animation_Portraits" type="AnimationPlayer" parent="." unique_id=2124288444]
 libraries/ = SubResource("AnimationLibrary_h8mj1")
 
@@ -486,3 +552,10 @@ libraries/ = SubResource("AnimationLibrary_h8mj1")
 [node name="Woosh" type="AudioStreamPlayer" parent="Sounds" unique_id=1803769174]
 volume_db = -5.0
 bus = &"FX_DRY"
+
+[node name="Alarm" type="AudioStreamPlayer" parent="Sounds" unique_id=1444163914]
+stream = SubResource("AudioStreamPolyphonic_u61m0")
+volume_db = -30.0
+pitch_scale = 0.5
+autoplay = true
+bus = &"FX_WET"
