@@ -1611,9 +1611,6 @@ bus = &"FX_WET"
 
 [node name="Music" parent="." unique_id=524227096 instance=ExtResource("33_5ttrv")]
 
-[node name="Music" parent="Music" index="1" unique_id=2025180216]
-autoplay = true
-
 [editable path="Runners/Top_Runners/Left_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport/To_Change"]
 [editable path="Frames/Portraits"]
