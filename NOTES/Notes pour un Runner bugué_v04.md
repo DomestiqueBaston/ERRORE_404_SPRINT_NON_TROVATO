@@ -60,16 +60,16 @@ Les bonus :
     4. Virus (envoie automatiquement le prochain malus récolté à un adversaire aléatoire) → ✔ Virus – Automatique !
     5. Téléportation (destination aléatoire sur une « cellule saine »)→ ✔ Teleport – Activable !
     6. Débogueur (vire un bug actif)→ ✔ Debug – Activable !
-    7. Le murs tracé par le concurrent dure 1.5 fois plus longtemps.→ ✔ Last_Longer – Automatique !
+    7. Le mur tracé par le concurrent dure 1.5 fois plus longtemps.→ ✔ Last_Longer – Automatique !
 
 Les malus (automatiques) :
-    1. Inversion de commandes (droite/gauche) → ✔ Invert
-    2. Lenteur de réaction (on ajoute un délai d’1/10’’ (à préciser) dans les commandes du concurrent) → ✔ Slow
-    3. Les murs tracés par le concurrent durent 2 fois moins longtemps → ✔ Last_Shorter
-    4. Course, saut et glissade : 4% plus lent (animation aussi) → ✔ Anti_Dash
+    1. Inversion de commandes (droite/gauche) – dure 2’’ → ✔ Invert
+    2. Lenteur de réaction (on ajoute un délai d’1/10’’ (à préciser) dans les commandes du concurrent) – dure 5’’ → ✔ Slow
+    3. Les murs tracés par le concurrent durent 2 fois moins longtemps – dure 10’’ → ✔ Last_Shorter
+    4. Course, saut et glissade : 4% plus lent (animation aussi) – dure 5’’ → ✔ Anti_Dash
     5. Rien ! → ✔ Empty
-    6. Virus (envoie automatiquement le prochain Bonus récolté à un adversaire aléatoire) → ✔ Anti_Virus
-    7. Téléportation (le concurrent ne choisit pas le moment de l’activation et destination aléatoire)→ ✔ Anti_Teleport
+    6. Virus (envoie automatiquement le prochain Bonus (pas malus) récolté à un adversaire aléatoire) → ✔ Anti_Virus
+    7. Téléportation (instantané et destination aléatoire)→ ✔ Anti_Teleport
 
 Les obstacles :
 Toutes les X secondes (voir Options à proposer au joueur dans Settings) un des obstacles est déclenché. 1 sur 4 est un glissement de Ligne/Colonne.
@@ -77,15 +77,16 @@ Toutes les X secondes (voir Options à proposer au joueur dans Settings) un des
     2. Trous (cellules qui descendent) → ✔
     3. Murs des concurrents → ✔ (voir avec Geoff comment faire)
     4. Cellule à sens unique → ✔
-    5. Colonnes tombantes → ✔
-    6. Dalles disparaissant → Cellules qui disparaissent ✔
+    5. Colonnes descendantes → ✔
+    6. Colonnes écrasantes → ✔
+    7. Dalles disparaissant → Cellules qui disparaissent ✔
 
 Liste des animations des personnages :
-    1. Courir ✔ ✔
+    1. Courir ✔ ✔ ✔
     2. Sauter ✔ ✔
     3. Glissade ✔ ✔
-    4. Pose de départ ✔ ✔
-    5. Intro ✔ ✔
+    4. Pose de départ ✔ ✔ ✔
+    5. Intro ✔ ✔ ✔
     6. Tomber dans le vide → Mort ! ✔ ✔
     7. Bim ! Dans un mur → Mort ! ✔ ✔
 
