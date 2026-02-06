@@ -94,10 +94,11 @@ Notes de fabrication :
 SON :
 - Au lancement du jeu, la musique qui joue en boucle en permanence, c’est Intro. Jusqu’au moment où le Départ est donné. À cet instant précis, on passe à Music (en boucle). Music ne s’arrête qu’en finissant la partie (soit en relançant une nouvelle partie directement soit en retournant à l’écran de Titre (ou de Settings, je ne sais pas encore présentement). Au moment de lancer à nouveau Intro, il faudra jouer une fois démarrant en même temps qu’Intro le song Bang.
 JEU :
-- Lorsqu’un concurrent traverse une case (donc en traçant son mur) et que la case bouge, alors le concurrent se décale AVEC la case. Et le mur qu’il trace également. Il faudra donc « tronçonner » les murs à chaque fois qu’un concurrent sort d’une case afin que le morceau de mur puisse éventuellement se déplacer avec la case si celle-ci est amenée à se déplacer de nouveau.
+- Sauf pendant la sélection de joueur, par défaut, la caméra de chaque joueur ne montre pas le joueur centré mais se décale afin d’avoir plus de visibilité devant le joueur en fonctino de la directino dans laquelle il court. On utilisera un tween d’1/4 de seconde pour déplacer la caméra. Au démarrage de la course, dès la première frame de course, la caméra rejoindra sa place avec le tween décrit précédemment.
+- Lorsqu’un concurrent traverse une case (donc en traçant son mur) et que la cellule bouge, alors le concurrent se décale AVEC la cellule. Et le mur qu’il trace également. Il faudra donc « tronçonner » les murs à chaque fois qu’un concurrent sort d’une case afin que le morceau de mur puisse éventuellement se déplacer avec la case si celle-ci est amenée à se déplacer de nouveau.
 - Cas particuliers de mort : il existe un AnimationPlayer avec une animation « toute bête » pour ces cas-là (Animation_Disappearing_Death). Si par exemple se présent un cas avec deux colonnes baissées et que le concurrent veut passer dessous à vitesse normale, il ne pourra pas et mourra donc et on utilisera cette animation. Écrasé par une colonne, pareil ! Etc.
 - Un concurrent ne peut pas courir sur un autre cadavre → Le jeu forcera le concurrent à tourner aléatoirement à droite ou à gauche. On jouera ici aussi l’Animation_Bonus_Malus et Alert (dans UI_Sounds.tscn). Si par vraiment super pas de bol, le concurrent se retrouve coincé entre des cadavres et/ou d’autres concurrents, alors on lui fera jouer son animation de mort à lui aussi et il sera donc mort ! Ça ne sera pas très joli mais c’est un cas vraiment très peu probable et il faut l’envisager (et faire une animation pour un tel cas…).
-- À la mort d’un concurrent, ce qui reste de son mur ne disparaît pas !
+- À la mort d’un concurrent, ce qui reste de son mur ne disparaît pas ! Mais attention, l’animation de mort projette les concurrents en arrière, donc sur le mur : ça ne va pas aussi prendra-t-on soin de supprimer 1 ou 2 tronçons (suivant les animations, je pense qu’il ne sera pas nécessaire d’en effacer plus) de mur pour cela.
 
 Options à proposer au joueur dans Settings:
 - Taille de la map (de 9 à 21) ✔
@@ -110,49 +111,49 @@ Options à proposer au joueur dans Settings:
 
 Script de déroulement d’une partie :
 Préambule :
-    • chaque chargement de scène (sauf contre-indication), on joue 1 fois Music/Bang (dans Music.tscn).
+    • À chaque chargement de scène (sauf contre-indication), on joue 1 fois Music/Bang (dans Music.tscn).
     • Les sons de validation (Validation) et d’annulation (Cancel) sont dans la scène UI_Sounds.tscn.
     • Par défaut, Intro et Music sont en boucle, pas besoin de le dire dans le code théoriquement !
-    • Dans les scènes, des choses sont mises en place uniquement pour voir comment ça fait (je pense notamment à certains (bouts de) scripts, aux musiques ou sons d’UI qui devraient plus être dans des autoloads ou quoi…).
+    • Dans les scènes, des choses sont mises en place uniquement pour voir comment ça fait (je pense notamment à certains (bouts de) scripts, aux musiques ou sons d’UI qui devraient plus être dans des autoloads ou quoi, etc…).
 
 Avant le jeu :
     1. Chargement de l’écran titre Title.tscn (l’overlay qui dit de presser un bouton, peu importe lequel) apparaît au bout de 15’’ si je joueur n’a rien fait jusque là). À partir du démarrage, Music/Intro joue en boucle.
     2. Transition brutale (pour une fois, sans effet de transition !) vers Settings.tscn. À l’ouverture de la scène suivante, on jouera juste Music/Bang (Music/Intro continue donc de jouer). Dans cette scène, presser B (Cancellare) remet les valeurs modifiées à leur valeur précédente et retourne à l’écran titre. Presser A lancera le jeu.
 
 Le jeu :
-    3. Transition brutale vers (pour le moment, la scène, c’est Test_Split_Screen.tscn mais il s’agit d’une scène de démo plus qu’autre chose). Les 4 caméras sont centrées sur les 4 coins de la zone de course. L’écran en haut à gauche affiche la sélection de joueur (Portraits.tscn) qui commence sur la fille et les 3 autres affichent aléatoirement 3 autres personnages MAIS on a toujours 2 gars et 2 filles en tout ! À chaque fois que le joueur change de personnage, les autres sont retirés aléatoirement.
-    4. On sélectionne le personnage avec droite et gauche, on valide avec A et on annule avec B (qui renvoie à l’écran titre avec transition brutale + Bang!). Lorsque le joureur change de personnage, à chaque fois que dans les autres quarts d’écran les personnages changent et on utilisera leurs animation de Glitch sur 5 frames pour faire une transition. Annuler renvoie à l’écran Settings.tscn avec toujours la même transition. Valider Fait disparaître l’overlay de sélection des personnages !
-    5. Tous les Personnages passent alors en animation Start. Au bout d’1/2 seconde, on joue UI_Sounds/3_2_1 puis on coupe Music/Intro, on lance UI_Sounds/Go et Music/Music en boucle (sans Music/Bang cette fois-ci) et les coureurs (Bot) partent dans l’une des deux directions qu’il ont de possible dans, au plus tard, le 1/4 de seconde qui suit ! Si le joueur n’a pas lancé sa course, il partira en même temps que le dernier concurrent (Bot).
+    3. Transition brutale vers (pour le moment, la scène, c’est Test_Split_Screen.tscn mais il s’agit d’une scène de démo plus qu’autre chose). Les 4 caméras sont centrées sur les 4 coins de la zone de course. L’écran en haut à gauche affiche la sélection de joueur (Portraits.tscn) qui commence sur la fille et les 3 autres affichent aléatoirement les 3 autres personnages : pas de doublons ! À chaque fois que le joueur change de personnage, les autres sont retirés aléatoirement.
+    4. On sélectionne le personnage avec droite et gauche, on valide avec A et on annule avec B (qui renvoie à l’écran titre avec transition brutale + Bang!). Lorsque le joueur change de personnage, à chaque fois, dans les autres quarts d’écran les personnages changent et on utilisera leurs animations de Glitch sur 5 frames pour faire une transition. Annuler renvoie à l’écran Settings.tscn avec toujours la même transition. Valider Fait disparaître l’overlay de sélection des personnages !
+        ◦ Ceci est pour la cas où il n’y aurait qu’1 joueur humain et 3 bots mais pour ajouter 1 autre (ou plusieurs autres) joueur humain, il suffira de presser un des boutons d’un autre contrôleur pour que le quart d’écran suivant lui soit attribué. Le reste se fait comme pour le premier joueur… Overlay des portraits, etc. Il ne peut pas avoir de doublons de personnage !
+    5. Tous les Personnages passent alors en animation Start. Au bout d’1/2 seconde, on joue UI_Sounds/3_2_1 puis on coupe Music/Intro, on lance UI_Sounds/Go et Music/Music en boucle (sans Music/Bang cette fois-ci) et les coureurs (Bot) partent aléatoirement dans l’une des deux directions qu’il ont de possible dans, au plus tard, la 1/2 de seconde qui suit ! Au pire, 1 seconde après le « top départ », tous les concurrents restants partiront automatiquement avec un décalage de 1/4 de seconde les uns avec les autres pasque tous synchro, c’est pas joli.
 
 Ici, la course elle-même prend place !
 
     6. Lorsque les 3 premiers concurrents meurent, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) dans la scène  Test_Split_Screen.tscn (scène pour le moment temporaire, comme je le disais).
         ◦ Lorsque le dernier concurrent meurt, on affiche alors Frames/Info_Win_Lose_Overlay/Lose et on garde les précédents overlays de mort.
-        ◦ Si un concurrent gagne (soit parce qu’il est le dernier à courir, soit parce qu’il a franchis la porte de sortie), on affiche Frames/Info_Win_Lose/Win et on garde les éventuels overlays de mort ! Automatiquement, les concurrents restants meurent (animation Death) !
+        ◦ Si un concurrent gagne (soit parce qu’il est le dernier à courir, soit parce qu’il a franchis la porte de sortie), on affiche Frames/Info_Win_Lose/Win et on garde les éventuels overlays de mort ! Automatiquement, les concurrents restants meurent (animation Death) chacun avec un décalage 1/4 de seconde afin de ne pas les avoir tous exactement synchro, ce qui est moche !
         ◦ Ensuite, n’importe quel bouton (sauf B) retourne brutalement (toujours) à l’écran de titre. On coupe alors Music/Music et on lance Music/Intro avec Music/Bang. Et on retourne au point 1 de cette liste. Presser B relance une partie « identique » à partir du point 5 de cette liste !
 Les personnalités des « IA »/Bots :
-- Avant tout, on va considérer que les Bots voient tout le terrain (contrairement au joueur).
 - Par défaut, un Bot tendra bien évidemment à ne pas mourir en évitant les collisions et les chutes.
+- On définira des valeurs « par défaut » pour un bot afin de faire varier ces valeurs en fonction du comportement sélectionné.
+- Pour former un bot, on combine 1 comportement choisi aléatoirement dans chaque catégorie.
 
 Comportements face aux obstacles :
 
-    1. Survivaliste : Évite de se faire coincer (par les murs des adversaires, les vides et murs/colonnes → cône de vision plus long et plus large), se concentre sur sa route et bloque les autres concurrents.
-    2. Idiot : Se comporte de manière aléatoire.
-    3. Peureux : Va là où il y a le moins de monde et d’obstacles (murs des concurrents, vides et murs/colonnes).
+    1. Anticipatif : Voit plus loin.
+    2. Fuyant : S’éloigne des concurrents.
+    3. Téméraire : Tente des passage plus étroits.
+    4. Agressif : Essaye de bloquer les concurrents.
 
-Comportements face aux Bonus/malus – Part 1 :
+Comportements face aux Bonus/malus :
 
-    1. Agressif : Fonce sur les bonus. S’il est "mineur", il s'en débarrasse immédiatement, sinon il le garde pour plus tard ou pour empêcher un autre concurrent de le prendre.
-    2. Aléatoire : Utilise n'importe quand ses bonus/malus sans logique.
-    3. Prudent : Évite les bonus/malus autant que possible car il a peur des malus.
-Comportements face aux Bonus/Malus – Part 2 :
+    1. Cupide : Fonce sur les bonus/malus.
+    2. Sélectif : Ne ramasse que les bonus/malus à 1 case de lui.
+    3. Méfiant : Évite les bonus/malus autant que possible.
+    4. Opportuniste : Priorise le ramassage d’un bonus si un concurrent se dirige vers le bonus/malus.
 
-    1. Conservateur : Privilégie les Bonus/Malus pour soi (tend à rejeter vite les autres).
-    2. Belliqueux : Privilégie les Bonus/Malus contre les autres (tend à rejeter vite les autres).
-    3. Indifférent : Ne privilégie rien en particulier et tire avantage de ce qu’il a.
+Comportements face aux bugs du jeu (continuer tout droit, tourner et/ou utiliser un bonus – pas d’autre option pour le moment, il me semble) :
 
-Comportements face aux bugs du jeu (continuer tout droit, tourner ou utiliser un bonus – pas d’autre option pour le moment, il me semble) :
-
-    1. Prudent : réfléchit plus tôt (si possible) face aux obstacles et réagit plus tôt.
-    2. Inconscient : réagit avec les mêmes délais impliquant qu’1 fois sur 3 il fera un choix différent de celui qu’il aurait fait sans bug.
-    3. Suicidaire (tricheur) : face à un obstacle fera un choix aléatoire ! 1 fois sur 3, si cela le condamne à mourir, alors il ne mourra pas en évitant l’obstacle ou utilisant un bonus « inventé » qu’il n’avait pas.
+    1. Prudent : Réagit plus tôt (si possible) face aux obstacles.
+    2. Inconscient : Collider de vision plus court.
+    3. Panique : Réaction totalement aléatoire face à un obstacle.
+    4. Maladroit : Confond les obstacles.
