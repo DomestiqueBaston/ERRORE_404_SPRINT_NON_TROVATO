@@ -185,6 +185,7 @@ _data = {
 }
 
 [node name="Light_Wall" type="Node2D" unique_id=2109438449]
+metadata/_edit_lock_ = true
 
 [node name="Light_Wall_Collider" type="Area2D" parent="." unique_id=1434049907]
 metadata/_edit_lock_ = true
@@ -202,11 +203,13 @@ antialiased = true
 texture = SubResource("GradientTexture2D_cwxye")
 polygon = PackedVector2Array(-118, -59, 0, 0, 0, -80, -118, -139)
 uv = PackedVector2Array(-0.024783134, 64.03354, 63.99833, 64.017, 64.01071, 0.0029670596, -0.017838173, 0.0069375634)
+metadata/_edit_lock_ = true
 
 [node name="Light_Wall_Animation" type="AnimationPlayer" parent="." unique_id=594533283]
 libraries/ = SubResource("AnimationLibrary_jdkuv")
 
 [node name="Sound" type="Node2D" parent="." unique_id=1803890025]
+visible = false
 
 [node name="Appearing_Disappearing" type="AudioStreamPlayer" parent="Sound" unique_id=449367181]
 volume_db = -5.0
