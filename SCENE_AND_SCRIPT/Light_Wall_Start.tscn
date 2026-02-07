@@ -196,7 +196,7 @@ material = SubResource("ShaderMaterial_i5m2m")
 antialiased = true
 texture = ExtResource("2_hkxm2")
 polygon = PackedVector2Array(-118, -59, -31.999985, -16, -31.999985, -96, -118, -139)
-uv = PackedVector2Array(-0.024783134, 64.03354, 63.99833, 64.017, 64.01071, 0.0029670596, -0.017838173, 0.0069375634)
+uv = PackedVector2Array(0, 64, 80.00001, 63.999996, 87.99999, 0, 0, 0)
 metadata/_edit_lock_ = true
 
 [node name="Light_Wall_Start_Animation" type="AnimationPlayer" parent="." unique_id=594533283]
