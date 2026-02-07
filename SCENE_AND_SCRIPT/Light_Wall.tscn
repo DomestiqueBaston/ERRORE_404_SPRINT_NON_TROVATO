@@ -3,10 +3,10 @@
 [ext_resource type="Shader" uid="uid://1uirkyntqux" path="res://SHADER/Light_Wall_Glitch.gdshader" id="1_bjou7"]
 [ext_resource type="Gradient" uid="uid://d2yj5gmwpcn0g" path="res://RESOURCE/Runner_Wall_Main_Gradient.tres" id="1_cwxye"]
 [ext_resource type="AudioStream" uid="uid://dhqe43polir8c" path="res://SOUND/FX/Appearing_Light_Wall.ogg" id="3_jdkuv"]
-[ext_resource type="AudioStream" uid="uid://3b3j7ke38t82" path="res://SOUND/FX/Disappearing_Light_Wall.ogg" id="4_i5m2m"]
+[ext_resource type="AudioStream" uid="uid://c3qqajab60jgj" path="res://SOUND/FX/RUNNER/Disappearing_Light_Wall.ogg" id="4_i5m2m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5tnv1"]
-size = Vector2(44.719193, 7.0045767)
+size = Vector2(131.86778, 7.0045767)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i5m2m"]
 shader = ExtResource("1_bjou7")
@@ -26,6 +26,7 @@ shader_parameter/flip_chance = 0.0
 gradient = ExtResource("1_cwxye")
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0)
+metadata/_snap_enabled = true
 
 [sub_resource type="Animation" id="Animation_et0x4"]
 resource_name = "Appearing"
@@ -84,7 +85,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_bjou7"]
 resource_name = "Disappearing"
-length = 0.36667
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -92,10 +93,10 @@ tracks/0/path = NodePath("Wall_Main:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666666, 0.1, 0.16666667, 0.2, 0.23333333, 0.26666668, 0.3, 0.33333334, 0.36666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.03333333, 0.06666667, 0.13333333, 0.16666669, 0.20000002),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [true, false, true, false, true, false, true, false, true, false]
+"values": [true, false, true, false, true, false]
 }
 tracks/1/type = "audio"
 tracks/1/imported = false
@@ -119,7 +120,7 @@ tracks/2/path = NodePath("Wall_Main:material:shader_parameter/glitch_chance")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.33333334, 0.36666667),
+"times": PackedFloat32Array(0, 0.033333335, 0.16666667, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0.0, 1.0, 1.0, 0.0]
@@ -131,7 +132,7 @@ tracks/3/path = NodePath("Wall_Main:material:shader_parameter/shake_strength")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.20000002, 0.33333334),
+"times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.2, 0.9, 1.5]
@@ -186,12 +187,11 @@ _data = {
 [node name="Light_Wall" type="Node2D" unique_id=2109438449]
 
 [node name="Light_Wall_Collider" type="Area2D" parent="." unique_id=1434049907]
-visible = false
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionShape2D" parent="Light_Wall_Collider" unique_id=1818071791]
-position = Vector2(-56.029694, -28.014868)
-rotation = 0.46425754
+position = Vector2(-58.99771, -29.501137)
+rotation = 0.46425757
 skew = 0.6422812
 shape = SubResource("RectangleShape2D_5tnv1")
 metadata/_edit_lock_ = true
