@@ -1062,7 +1062,6 @@ metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_01" unique_id=869063107]
 visible = false
-modulate = Color(1, 1, 1, 0.26872498)
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -1075,22 +1074,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -155.5
+offset_left = -163.5
 offset_top = -15.0
-offset_right = 155.5
-offset_bottom = 15.0
+offset_right = 165.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/default_color = Color(0.6431373, 0.63529414, 0.8745098, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/normal_font = ExtResource("31_nkbw3")
 theme_override_font_sizes/normal_font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
 bbcode_enabled = true
-text = "[color=#a4a2df]Fine di linea:[/color] [color=#ed7252]utente eliminato![/color]"
+text = "F!n[color=#ed7252]e[/color] di line@: [color=#ed7252]u7ènt[/color]e 3L[color=#ed7252]im!natø[/color]!"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="Bugs_02" type="Control" parent="Frames" unique_id=592369790]
 custom_minimum_size = Vector2(480, 270)
@@ -1156,35 +1155,34 @@ metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_02" unique_id=692485606]
 visible = false
-modulate = Color(1, 1, 1, 0.26872498)
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
 metadata/_edit_lock_ = true
 
-[node name="Message" type="RichTextLabel" parent="Frames/Bugs_02/Death" unique_id=1654844519]
+[node name="Message" type="RichTextLabel" parent="Frames/Bugs_02/Death" unique_id=56449001]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -155.5
+offset_left = -163.5
 offset_top = -15.0
-offset_right = 155.5
-offset_bottom = 15.0
+offset_right = 165.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/default_color = Color(0.6431373, 0.63529414, 0.8745098, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/normal_font = ExtResource("31_nkbw3")
 theme_override_font_sizes/normal_font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
 bbcode_enabled = true
-text = "[color=#a4a2df]Fine di linea:[/color] [color=#ed7252]utente eliminato![/color]"
+text = "F!n[color=#ed7252]e[/color] di line@: [color=#ed7252]u7ènt[/color]e 3L[color=#ed7252]im!natø[/color]!"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="Bugs_03" type="Control" parent="Frames" unique_id=640770387]
 custom_minimum_size = Vector2(480, 270)
@@ -1250,35 +1248,34 @@ metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_03" unique_id=1435042299]
 visible = false
-modulate = Color(1, 1, 1, 0.26872498)
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
 metadata/_edit_lock_ = true
 
-[node name="Message" type="RichTextLabel" parent="Frames/Bugs_03/Death" unique_id=91132253]
+[node name="Message" type="RichTextLabel" parent="Frames/Bugs_03/Death" unique_id=1753743630]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -155.5
+offset_left = -163.5
 offset_top = -15.0
-offset_right = 155.5
-offset_bottom = 15.0
+offset_right = 165.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/default_color = Color(0.6431373, 0.63529414, 0.8745098, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/normal_font = ExtResource("31_nkbw3")
 theme_override_font_sizes/normal_font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
 bbcode_enabled = true
-text = "[color=#a4a2df]Fine di linea:[/color] [color=#ed7252]utente eliminato![/color]"
+text = "F!n[color=#ed7252]e[/color] di line@: [color=#ed7252]u7ènt[/color]e 3L[color=#ed7252]im!natø[/color]!"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="Bugs_04" type="Control" parent="Frames" unique_id=189187206]
 custom_minimum_size = Vector2(480, 270)
@@ -1345,35 +1342,34 @@ metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_04" unique_id=917885689]
 visible = false
-modulate = Color(1, 1, 1, 0.26872498)
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
 metadata/_edit_lock_ = true
 
-[node name="Message" type="RichTextLabel" parent="Frames/Bugs_04/Death" unique_id=765053341]
+[node name="Message" type="RichTextLabel" parent="Frames/Bugs_04/Death" unique_id=414195370]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -155.5
+offset_left = -163.5
 offset_top = -15.0
-offset_right = 155.5
-offset_bottom = 15.0
+offset_right = 165.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/default_color = Color(0.6431373, 0.63529414, 0.8745098, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/normal_font = ExtResource("31_nkbw3")
 theme_override_font_sizes/normal_font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
 bbcode_enabled = true
-text = "[color=#a4a2df]Fine di linea:[/color] [color=#ed7252]utente eliminato![/color]"
+text = "F!n[color=#ed7252]e[/color] di line@: [color=#ed7252]u7ènt[/color]e 3L[color=#ed7252]im!natø[/color]!"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="Black_Frames" type="Control" parent="Frames" unique_id=1686618486]
 layout_mode = 3
@@ -1395,7 +1391,6 @@ default_color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="Info_Win_Lose_Overlay" type="Control" parent="Frames" unique_id=1735657927]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
@@ -1431,7 +1426,7 @@ theme_override_fonts/font = ExtResource("31_nkbw3")
 theme_override_font_sizes/font_size = 100
 text = "erЯ0r3 Ao4:
 vi7t0rIa
-noN
+nøN
 4ù7oriZz47a…"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1451,7 +1446,7 @@ theme_override_fonts/font = ExtResource("31_nkbw3")
 theme_override_font_sizes/font_size = 100
 text = "erЯ0r3 Ao4:
 vi7t0rIa
-noN
+nøN
 4ù7oriZz47a…"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1490,10 +1485,10 @@ theme_override_constants/outline_size = 17
 theme_override_constants/shadow_outline_size = 34
 theme_override_fonts/font = ExtResource("31_nkbw3")
 theme_override_font_sizes/font_size = 100
-text = "Ultimo utente
-eliminato.
+text = "Ultim° uTent3
+elim!na7ø.
 
-Prevedibile..."
+pЯ_véd!biLe..."
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
@@ -1510,10 +1505,10 @@ theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
 theme_override_constants/line_spacing = -24
 theme_override_fonts/font = ExtResource("31_nkbw3")
 theme_override_font_sizes/font_size = 100
-text = "Ultimo utente
-eliminato.
+text = "Ultim° uTent3
+elim!na7ø.
 
-Prevedibile..."
+pЯ_véd!biLe..."
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
@@ -1526,6 +1521,7 @@ offset = Vector2(0, 30)
 metadata/_edit_lock_ = true
 
 [node name="Glitches" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=1057999679]
+visible = false
 anchors_preset = 0
 offset_right = 960.0
 offset_bottom = 540.0
@@ -1576,7 +1572,7 @@ theme_override_fonts/normal_font = ExtResource("31_nkbw3")
 theme_override_font_sizes/normal_font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_sf4qo")
 bbcode_enabled = true
-text = "[color=#cb5030]A[/color] per una nuova [color=#cb5030]umiliazione[/color]… e per il mio [color=#cb5030]divertimento[/color]."
+text = "[color=#cb5030]A[/color] p€r [color=#70cb10]u[/color]n@ nµovà [color=#cb5030]u[color=#70cb10]mi[/color]l!@zi0ne[/color]… € pe® !l m[color=#cb5030]io d[/color][color=#70cb10]ivèrt!m€nto[/color]."
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
@@ -1597,9 +1593,6 @@ offset_top = 135.0
 offset_right = 240.0
 offset_bottom = 135.0
 
-[node name="Her_Him" parent="Frames/Portraits/Frame/BG" parent_id_path=PackedInt32Array(461730405, 847994713) index="0" unique_id=1114499252]
-offset = Vector2(0, -13)
-
 [node name="Animation_Overlays" type="AnimationPlayer" parent="Frames" unique_id=1392428684]
 root_node = NodePath("../Bugs_01/Death")
 libraries/ = SubResource("AnimationLibrary_eou1j")
@@ -1613,5 +1606,4 @@ bus = &"FX_WET"
 
 [editable path="Runners/Top_Runners/Left_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport/To_Change"]
-[editable path="Frames/Portraits"]
 [editable path="Music"]

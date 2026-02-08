@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="13_1skkq"]
 [ext_resource type="Script" uid="uid://dd6brr6ksot15" path="res://SCENE_AND_SCRIPT/Title_Alert.gd" id="13_wgd1c"]
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="14_sobyg"]
+[ext_resource type="PackedScene" path="res://SCENE_AND_SCRIPT/Music.tscn" id="15_sobyg"]
 
 [sub_resource type="Environment" id="Environment_wgd1c"]
 background_mode = 3
@@ -205,7 +206,7 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.8333333, 1),
+"times": PackedFloat32Array(0, 0.23333333, 0.8333333, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
@@ -257,8 +258,8 @@ environment = SubResource("Environment_wgd1c")
 offset_top = -66.0
 offset_right = 921.0
 offset_bottom = -17.0
-text = "Il faudra penser à connecter les curseurs aussi aux manettes. Haut et bas pour passer d'un curseur à l'autre et droite et
-gauche pour changer les valeurs."
+text = "Il faudra penser à \"connecter\" les curseurs aussi aux manettes.
+Haut et bas pour passer d'un curseur à l'autre et droite et gauche pour changer les valeurs."
 metadata/_edit_lock_ = true
 
 [node name="Impostazioni" type="Control" parent="." unique_id=1157028759]
@@ -1017,7 +1018,6 @@ anchors_preset = 0
 offset_right = 960.0
 offset_bottom = 540.0
 script = ExtResource("13_wgd1c")
-blink_timeout = 1.0
 metadata/_edit_lock_ = true
 
 [node name="Info_Settings" type="RichTextLabel" parent="Info_Overlay" unique_id=1219377438]
@@ -1042,7 +1042,8 @@ theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_e6nj5")
 bbcode_enabled = true
-text = "[color=#70cb10]A[/color] per [color=#70cb10]rimpianto[/color], [color=#cb5030]B[/color] per [color=#cb5030]cancellare[/color]…"
+text = "[color=#70cb10]A[/color] p€r [color=#70cb10]Sprint//Avvio[/color][…][color=#70cb10]Pronto[/color]?
+[color=#cb5030]B[/color] pe® [color=#cb5030]CaN©êlL@r€[/color]…"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1055,3 +1056,7 @@ libraries/ = SubResource("AnimationLibrary_a50p4")
 volume_db = -15.0
 autoplay = true
 bus = &"FX_WET"
+
+[node name="Music" parent="." unique_id=524227096 instance=ExtResource("15_sobyg")]
+
+[editable path="Music"]
