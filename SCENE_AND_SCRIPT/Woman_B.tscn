@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://cns80ks0bg3jv" path="res://SOUND/FX/RUNNER/Foot_Step_02.ogg" id="13_ifvtu"]
 [ext_resource type="AudioStream" uid="uid://wm0mpe0ypbad" path="res://SOUND/FX/RUNNER/Woman_A_Pushing.ogg" id="14_w2sfk"]
 [ext_resource type="AudioStream" uid="uid://d0pp8lius4a10" path="res://SOUND/FX/RUNNER/Foot_Step_03.ogg" id="15_4pmps"]
+[ext_resource type="Script" uid="uid://dujx068vw2hmu" path="res://SCENE_AND_SCRIPT/Animation_Runner.gd" id="15_yl0jf"]
 [ext_resource type="AudioStream" uid="uid://b2a03ph6qsmpd" path="res://SOUND/FX/RUNNER/Sliding.ogg" id="16_npn0x"]
 [ext_resource type="AudioStream" uid="uid://cccak1pcfdifx" path="res://SOUND/FX/RUNNER/Woman_B_Running.ogg" id="16_yl0jf"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="17_dncos"]
@@ -995,7 +996,7 @@ tracks/12/keys = {
 tracks/13/type = "method"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath(".")
+tracks/13/path = NodePath("../Animation_Runner")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -1175,7 +1176,7 @@ tracks/12/keys = {
 tracks/13/type = "method"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath(".")
+tracks/13/path = NodePath("../Animation_Runner")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -1539,11 +1540,11 @@ tracks/12/keys = {
 tracks/13/type = "method"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath(".")
+tracks/13/path = NodePath("../Animation_Runner")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0.2503132, 0.5163535),
+"times": PackedFloat32Array(0.24960755, 0.5156478),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -1720,11 +1721,11 @@ tracks/12/keys = {
 tracks/13/type = "method"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath(".")
+tracks/13/path = NodePath("../Animation_Runner")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0.25223714, 0.5182774),
+"times": PackedFloat32Array(0.2517774, 0.5178177),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -1737,7 +1738,7 @@ tracks/13/keys = {
 
 [sub_resource type="Animation" id="Animation_gjkpv"]
 resource_name = "Sliding_000"
-length = 0.7000034
+length = 0.53333336
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1745,10 +1746,10 @@ tracks/0/path = NodePath("Papa_Sprite/Runner_Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.40000004, 0.43333337, 0.4666667, 0.5, 0.53333336, 0.5666667, 0.6, 0.6333334, 0.6666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333346, 0.06666668, 0.10000001, 0.13333334, 0.16666667, 0.2, 0.23333336, 0.2666667, 0.3, 0.3333333, 0.36666667, 0.40000004, 0.43333334, 0.4666667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238]
+"values": [223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1757,10 +1758,10 @@ tracks/1/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:position"
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.33333334, 0.70000005),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.16666667, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-27, -8), Vector2(-26, -7.7), Vector2(-25, -10.000001), Vector2(-25, -10.000001)]
+"values": [Vector2(-26, -7.7), Vector2(-25, -10.000001), Vector2(-25, -10.000001)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1769,7 +1770,7 @@ tracks/2/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:rotation"
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.7),
+"times": PackedFloat32Array(0, 0.5333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.34906584, 0.34906584]
@@ -1781,10 +1782,10 @@ tracks/3/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.33333334, 0.70000005),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.16666667, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1.5, 1), Vector2(1.62, 1), Vector2(2.2, 1), Vector2(2.2, 1)]
+"values": [Vector2(1.62, 1), Vector2(2.2, 1), Vector2(2.2, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1793,7 +1794,7 @@ tracks/4/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.7),
+"times": PackedFloat32Array(0, 0.5333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, true]
@@ -1810,7 +1811,7 @@ tracks/5/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("16_npn0x")
 }],
-"times": PackedFloat32Array(0.033333335)
+"times": PackedFloat32Array(0)
 }
 tracks/5/use_blend = true
 tracks/6/type = "value"
@@ -1820,7 +1821,7 @@ tracks/6/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disab
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.7),
+"times": PackedFloat32Array(0, 0.5333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, false]
@@ -1832,10 +1833,10 @@ tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:posit
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.69999665),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.53332996),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(4, 2), Vector2(-4, -2), Vector2(-4, -2)]
+"values": [Vector2(-4, -2), Vector2(-4, -2)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -1844,7 +1845,7 @@ tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotat
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.7),
+"times": PackedFloat32Array(0, 0.5333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-0.3211406, -0.3211406]
@@ -1856,10 +1857,10 @@ tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.69999665),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.53332996),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1.5), Vector2(1, 1.5)]
+"values": [Vector2(1, 1.5), Vector2(1, 1.5)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -1868,7 +1869,7 @@ tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.7),
+"times": PackedFloat32Array(0, 0.5333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-0.7853982, -0.7853982]
@@ -1876,7 +1877,7 @@ tracks/10/keys = {
 
 [sub_resource type="Animation" id="Animation_kxl5h"]
 resource_name = "Sliding_180"
-length = 0.7000034
+length = 0.53333336
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1884,10 +1885,10 @@ tracks/0/path = NodePath("Papa_Sprite/Runner_Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.40000004, 0.43333337, 0.4666667, 0.5, 0.53333336, 0.5666667, 0.6, 0.6333334, 0.6666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333346, 0.06666668, 0.10000001, 0.13333334, 0.16666667, 0.2, 0.23333336, 0.2666667, 0.3, 0.3333333, 0.36666667, 0.40000004, 0.43333334, 0.4666667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259]
+"values": [244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1896,10 +1897,10 @@ tracks/1/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:position"
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.33333334, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.16666667, 0.5333333),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-2, 3), Vector2(-5, 0.99999976), Vector2(-13, -3), Vector2(-13, -3)]
+"values": [Vector2(-6.3333335, 0.33333313), Vector2(-13, -3), Vector2(-13, -3)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1908,7 +1909,7 @@ tracks/2/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:rotation"
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.70000005),
+"times": PackedFloat32Array(0, 0.53333336),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.34906584, 0.34906584]
@@ -1920,10 +1921,10 @@ tracks/3/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.33333334, 0.70000005),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.16666667, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1.5, 1), Vector2(1.62, 1), Vector2(2.2, 1), Vector2(2.2, 1)]
+"values": [Vector2(1.7166667, 1), Vector2(2.2, 1), Vector2(2.2, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1932,7 +1933,7 @@ tracks/4/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.7),
+"times": PackedFloat32Array(0, 0.5333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, true]
@@ -1949,7 +1950,7 @@ tracks/5/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("16_npn0x")
 }],
-"times": PackedFloat32Array(0.033333335)
+"times": PackedFloat32Array(0)
 }
 tracks/5/use_blend = true
 tracks/6/type = "value"
@@ -1959,7 +1960,7 @@ tracks/6/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disab
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.5333367),
+"times": PackedFloat32Array(0, 0.53333336),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, false]
@@ -1971,10 +1972,10 @@ tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:posit
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.53333336),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.53333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(4, 2), Vector2(12, 6), Vector2(12, 6)]
+"values": [Vector2(12, 6), Vector2(12, 6)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -1983,7 +1984,7 @@ tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotat
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.5333367),
+"times": PackedFloat32Array(0, 0.53333336),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-0.3211406, -0.3211406]
@@ -1995,10 +1996,10 @@ tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.53333336),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.53333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1.5), Vector2(1, 1.5)]
+"values": [Vector2(1, 1.5), Vector2(1, 1.5)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -2007,7 +2008,7 @@ tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.5333367),
+"times": PackedFloat32Array(0, 0.53333336),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-0.7853982, -0.7853982]
@@ -2764,6 +2765,7 @@ metadata/_edit_lock_ = true
 root_node = NodePath("../Character")
 libraries/ = SubResource("AnimationLibrary_8jbc5")
 autoplay = &"Intro"
+script = ExtResource("15_yl0jf")
 
 [node name="Animation_Glitch" type="AnimationPlayer" parent="." unique_id=591582504]
 root_node = NodePath("../Character")

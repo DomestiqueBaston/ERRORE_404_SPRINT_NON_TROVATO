@@ -1,7 +1,7 @@
 extends Node
 
 func _input(event):
-	if event.is_action_pressed("Full_Screen"):
+	if event.is_action_pressed("ui_fullscreen"):
 		var mode := DisplayServer.window_get_mode()
 
 		if mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:

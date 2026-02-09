@@ -751,17 +751,15 @@ metadata/_edit_lock_ = true
 environment = SubResource("Environment_w5jul")
 
 [node name="ATTENTION" type="Label" parent="." unique_id=1606020396]
-offset_left = 5.0
-offset_top = -186.0
-offset_right = 537.0
+offset_left = 43.0
+offset_top = -134.0
+offset_right = 583.0
 offset_bottom = -7.0
 text = "Il faudrait que les choses (effets, etc.) ne soient pas synchros lorsque
 l'on affiche des effets identiques dans des quarts d'écran différents.
 
-Il faudra que la caméra pointe devant le coureur genre:
-+64px et x et +36px en y lorsque le coureur vas vers le bas à droite
-par rapport à une visée centrale. On fera un tween sur la caméra
-lorsque le joueur change de direction."
+Il faudra que la caméra pointe devant le coureur (voir les notes).
+On fera un tween sur la caméra lorsque le joueur change de direction."
 
 [node name="BG_SubViewport" type="SubViewport" parent="." unique_id=469166842]
 transparent_bg = true
@@ -1522,7 +1520,6 @@ offset = Vector2(0, 30)
 metadata/_edit_lock_ = true
 
 [node name="Glitches" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=1057999679]
-visible = false
 anchors_preset = 0
 offset_right = 960.0
 offset_bottom = 540.0
