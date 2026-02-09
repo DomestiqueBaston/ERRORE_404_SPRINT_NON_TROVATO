@@ -1391,6 +1391,7 @@ default_color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="Info_Win_Lose_Overlay" type="Control" parent="Frames" unique_id=1735657927]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
@@ -1603,6 +1604,9 @@ autoplay = true
 bus = &"FX_WET"
 
 [node name="Music" parent="." unique_id=524227096 instance=ExtResource("33_5ttrv")]
+
+[node name="Music" parent="Music" index="1" unique_id=2025180216]
+autoplay = true
 
 [editable path="Runners/Top_Runners/Left_Runner/Runner_SubViewport/Runner"]
 [editable path="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport/To_Change"]

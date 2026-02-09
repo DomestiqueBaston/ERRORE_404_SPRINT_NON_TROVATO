@@ -233,3 +233,16 @@ func is_valid_direction(new_direction: Vector2) -> bool:
 	if last_direction == Vector2.ZERO:
 		return true
 	return not is_zero_approx(last_direction.dot(new_direction) + 1.0)
+
+
+#########################################################
+## Fonctions des Call Method Tracks (Animation_Runner) ##
+#########################################################
+func play_foot_step_01():
+	$"../Sound/Foot_Step_01".play()
+	
+func play_foot_step_02():
+	$"../Sound/Foot_Step_02".play()
+	
+func play_foot_step_03():
+	$"../Sound/Foot_Step_03".play()

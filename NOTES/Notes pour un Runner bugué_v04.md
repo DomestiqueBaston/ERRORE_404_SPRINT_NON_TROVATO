@@ -105,6 +105,7 @@ JEU :
 - Cas particuliers de mort : il existe un AnimationPlayer avec une animation « toute bête » pour ces cas-là (Animation_Disappearing_Death). Si par exemple se présent un cas avec deux colonnes baissées et que le concurrent veut passer dessous à vitesse normale, il ne pourra pas et mourra donc et on utilisera cette animation. Écrasé par une colonne, pareil ! Etc.
 - Un concurrent ne peut pas courir sur un autre cadavre → Le jeu forcera le concurrent à tourner aléatoirement à droite ou à gauche. On jouera ici aussi l’Animation_Bonus_Malus et Alert (dans UI_Sounds.tscn). Si par vraiment super pas de bol, le concurrent se retrouve coincé entre des cadavres et/ou d’autres concurrents, alors on lui fera jouer son animation de mort à lui aussi et il sera donc mort ! Ça ne sera pas très joli mais c’est un cas vraiment très peu probable et il faut l’envisager (et faire une animation pour un tel cas…).
 - À la mort d’un concurrent, ce qui reste de son mur ne disparaît pas ! Mais attention, l’animation de mort projette les concurrents en arrière, donc sur le mur : ça ne va pas aussi prendra-t-on soin de supprimer 1 tronçon de mur : celui qui sert à l’apparition du mur (Light_Wall_Start.tscn).
+- Seule l’animation de course peut être interrompue. Toutes les autres doivent finir avant d’enchaîner sur autre chose.
 
 Options à proposer au joueur dans Settings:
 - Taille de la map (de 9 à 21) ✔
