@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://dedxcbs4bf5ld"]
+[gd_scene format=3 uid="uid://dedxcbs4bf5ld"]
 
 [ext_resource type="Texture2D" uid="uid://dmedkgtjj7r3t" path="res://IMAGE/ENVIRONMENT/CELL/Pylone_Shadow.png" id="1_4ropo"]
-[ext_resource type="Texture2D" uid="uid://dsrmr325mtsek" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_01.png" id="1_yrggj"]
 [ext_resource type="Shader" uid="uid://cv2sbt316r24a" path="res://Pylone_Shadow_Compositing.gdshader" id="2_llfy2"]
 [ext_resource type="Texture2D" uid="uid://w0y6jf5wx4px" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de pylone.png" id="27_i1aus"]
 [ext_resource type="Texture2D" uid="uid://br32hmm1061" path="res://IMAGE/ENVIRONMENT/CELL/Extension de pylone.png" id="28_cedp7"]
@@ -46,7 +45,7 @@ tracks/1/keys = {
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Pylon_Sound/Appearing_Pylon")
+tracks/2/path = NodePath("../Sound/Appearing_Pylon")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -73,7 +72,7 @@ tracks/3/keys = {
 tracks/4/type = "audio"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Pylon_Sound/Up_Pylon")
+tracks/4/path = NodePath("../Sound/Up_Pylon")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -124,7 +123,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id="Animation_6o5ds"]
 resource_name = "Going_Down_Falling"
-length = 0.7000034
+length = 0.73333335
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -132,7 +131,7 @@ tracks/0/path = NodePath("Pylon_Walls:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6666667, 0.7),
+"times": PackedFloat32Array(0, 0.6666667, 0.73333335),
 "transitions": PackedFloat32Array(4, 1, 1),
 "update": 0,
 "values": [Vector2(0, -120), Vector2(0, 0), Vector2(0, 0)]
@@ -144,7 +143,7 @@ tracks/1/path = NodePath("Pylon_Walls:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666666, 0.099999905, 0.1333332, 0.16666651, 0.20000005, 0.23333335, 0.26666668, 0.29999998, 0.7),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666666, 0.099999905, 0.1333332, 0.16666651, 0.20000005, 0.23333335, 0.26666668, 0.29999998, 0.73333335),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
@@ -152,7 +151,7 @@ tracks/1/keys = {
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Pylon_Sound/Appearing_Pylon")
+tracks/2/path = NodePath("../Sound/Appearing_Pylon")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -167,7 +166,7 @@ tracks/2/use_blend = true
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Pylon_Sound/Pylon_Boom")
+tracks/3/path = NodePath("../Sound/Pylon_Boom")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -182,7 +181,7 @@ tracks/3/use_blend = true
 tracks/4/type = "audio"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Pylon_Sound/Starting_To_Fall_Down")
+tracks/4/path = NodePath("../Sound/Starting_To_Fall_Down")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -201,7 +200,7 @@ tracks/5/path = NodePath("Pylon_Walls/Collider_Impactor:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.70000005),
+"times": PackedFloat32Array(0, 0.033333335, 0.73333335),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, true]
@@ -225,7 +224,7 @@ tracks/7/path = NodePath("../Shadow/Pylone_Shadow:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 0.70000005),
+"times": PackedFloat32Array(0, 0.26666668, 0.73333335),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, true]
@@ -237,7 +236,7 @@ tracks/8/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/inte
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 0.70000005),
+"times": PackedFloat32Array(0, 0.26666668, 0.73333335),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 0.0, 0.250000011875]
@@ -273,7 +272,7 @@ tracks/1/keys = {
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Pylon_Sound/Clang_Start")
+tracks/2/path = NodePath("../Sound/Clang_Start")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -288,7 +287,7 @@ tracks/2/use_blend = true
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Pylon_Sound/Up_Pylon")
+tracks/3/path = NodePath("../Sound/Up_Pylon")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -311,7 +310,7 @@ tracks/3/use_blend = true
 tracks/4/type = "audio"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Pylon_Sound/Vanishing_Pylon")
+tracks/4/path = NodePath("../Sound/Vanishing_Pylon")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -402,7 +401,7 @@ tracks/1/keys = {
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Pylon_Sound/Clang_Start")
+tracks/2/path = NodePath("../Sound/Clang_Start")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -417,7 +416,7 @@ tracks/2/use_blend = true
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Pylon_Sound/Up_Pylon")
+tracks/3/path = NodePath("../Sound/Up_Pylon")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -440,7 +439,7 @@ tracks/3/use_blend = true
 tracks/4/type = "audio"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Pylon_Sound/Vanishing_Pylon")
+tracks/4/path = NodePath("../Sound/Vanishing_Pylon")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -609,87 +608,81 @@ _data = {
 &"RESET": SubResource("Animation_iotr2")
 }
 
-[node name="Cell" type="Node2D"]
+[node name="Cell" type="Node2D" unique_id=1565454703]
 metadata/_edit_lock_ = true
 
-[node name="CelluleDeTerrain01" type="Sprite2D" parent="."]
-position = Vector2(0, 179.5)
-texture = ExtResource("1_yrggj")
-
-[node name="Collider_Obstacle" type="Area2D" parent="."]
+[node name="Collider_Obstacle" type="Area2D" parent="." unique_id=505806384]
 visible = false
 metadata/_edit_lock_ = true
 
-[node name="Collider" type="CollisionPolygon2D" parent="Collider_Obstacle"]
+[node name="Collider" type="CollisionPolygon2D" parent="Collider_Obstacle" unique_id=1503758237]
 visible = false
 position = Vector2(0, -40)
 polygon = PackedVector2Array(0, -20, 118, 39, 118, 40, 0, 99, -118, 40, -118, 39)
 metadata/_edit_lock_ = true
 
-[node name="Shadow" type="Node2D" parent="."]
+[node name="Shadow" type="Node2D" parent="." unique_id=1869682303]
 modulate = Color(1, 1, 1, 0)
 
-[node name="Pylone_Shadow" type="Sprite2D" parent="Shadow"]
+[node name="Pylone_Shadow" type="Sprite2D" parent="Shadow" unique_id=1454845365]
 visible = false
 material = SubResource("ShaderMaterial_i673b")
 position = Vector2(0, -0.5)
 texture = ExtResource("1_4ropo")
 
-[node name="Pylon" type="Node2D" parent="."]
+[node name="Pylon" type="Node2D" parent="." unique_id=1096971533]
 metadata/_edit_lock_ = true
 
-[node name="Pylon_Walls" type="Node2D" parent="Pylon"]
+[node name="Pylon_Walls" type="Node2D" parent="Pylon" unique_id=511893038]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(0, -120)
 metadata/_edit_lock_ = true
 
-[node name="Collider_Impactor" type="Area2D" parent="Pylon/Pylon_Walls"]
+[node name="Collider_Impactor" type="Area2D" parent="Pylon/Pylon_Walls" unique_id=1413379515]
 visible = false
 metadata/_edit_lock_ = true
 
-[node name="Collider" type="CollisionPolygon2D" parent="Pylon/Pylon_Walls/Collider_Impactor"]
+[node name="Collider" type="CollisionPolygon2D" parent="Pylon/Pylon_Walls/Collider_Impactor" unique_id=1505075427]
 polygon = PackedVector2Array(-118, -1, 0, -60, 118, -1, 118, 0, 0, 59, -118, 0)
 metadata/_edit_lock_ = true
 
-[node name="Images" type="Node2D" parent="Pylon/Pylon_Walls"]
+[node name="Images" type="Node2D" parent="Pylon/Pylon_Walls" unique_id=1224975738]
 metadata/_edit_lock_ = true
 
-[node name="Extension_De_Pylone" type="Sprite2D" parent="Pylon/Pylon_Walls/Images"]
+[node name="Extension_De_Pylone" type="Sprite2D" parent="Pylon/Pylon_Walls/Images" unique_id=548903508]
 texture = ExtResource("28_cedp7")
 offset = Vector2(0, -1215)
 metadata/_edit_lock_ = true
 
-[node name="Cellule_De_Pylone" type="Sprite2D" parent="Pylon/Pylon_Walls/Images"]
+[node name="Cellule_De_Pylone" type="Sprite2D" parent="Pylon/Pylon_Walls/Images" unique_id=2097598160]
 texture = ExtResource("27_i1aus")
 offset = Vector2(0, -202.5)
 metadata/_edit_lock_ = true
 
-[node name="Pylon_Sound" type="Node2D" parent="."]
+[node name="Sound" type="Node2D" parent="." unique_id=2114263496]
 
-[node name="Up_Pylon" type="AudioStreamPlayer" parent="Pylon_Sound"]
+[node name="Up_Pylon" type="AudioStreamPlayer" parent="Sound" unique_id=925476567]
 volume_db = 5.0
 bus = &"FX_WET"
 
-[node name="Clang_Start" type="AudioStreamPlayer" parent="Pylon_Sound"]
+[node name="Clang_Start" type="AudioStreamPlayer" parent="Sound" unique_id=1252192256]
 volume_db = 5.0
 bus = &"FX_WET"
 
-[node name="Vanishing_Pylon" type="AudioStreamPlayer" parent="Pylon_Sound"]
+[node name="Vanishing_Pylon" type="AudioStreamPlayer" parent="Sound" unique_id=346554288]
 bus = &"FX_WET"
 
-[node name="Appearing_Pylon" type="AudioStreamPlayer" parent="Pylon_Sound"]
+[node name="Appearing_Pylon" type="AudioStreamPlayer" parent="Sound" unique_id=553174034]
 bus = &"FX_WET"
 
-[node name="Pylon_Boom" type="AudioStreamPlayer" parent="Pylon_Sound"]
-volume_db = 7.5
+[node name="Pylon_Boom" type="AudioStreamPlayer" parent="Sound" unique_id=130081305]
+volume_db = 10.0
 bus = &"FX_WET"
 
-[node name="Starting_To_Fall_Down" type="AudioStreamPlayer" parent="Pylon_Sound"]
+[node name="Starting_To_Fall_Down" type="AudioStreamPlayer" parent="Sound" unique_id=11329044]
 volume_db = -7.5
 bus = &"FX_WET"
 
-[node name="Animation_Pylon" type="AnimationPlayer" parent="."]
+[node name="Animation_Pylon" type="AnimationPlayer" parent="." unique_id=1911472662]
 root_node = NodePath("../Pylon")
-libraries = {
-&"": SubResource("AnimationLibrary_u038b")
-}
+libraries/ = SubResource("AnimationLibrary_u038b")

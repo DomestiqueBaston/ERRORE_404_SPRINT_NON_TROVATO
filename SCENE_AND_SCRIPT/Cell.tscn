@@ -245,7 +245,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Cellule_Sound/Appearing_Cell")
+tracks/1/path = NodePath("Sound/Appearing_Cell")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -288,7 +288,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Cellule_Sound/Disappearing_Cell")
+tracks/1/path = NodePath("Sound/Disappearing_Cell")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -315,7 +315,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_e50o2"]
 resource_name = "Down_Sliding_Beginning"
-length = 0.66667
+length = 0.76666665
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -323,7 +323,7 @@ tracks/0/path = NodePath("Column/Cell_Tops:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.36666667, 0.6666667),
+"times": PackedFloat32Array(0, 0.10000001, 0.36666667, 0.76666665),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 250), Vector2(0, 250), Vector2(0, 246), Vector2(0, 246)]
@@ -331,7 +331,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Cellule_Sound/Start_Cell")
+tracks/1/path = NodePath("Sound/Start_Cell")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -346,7 +346,7 @@ tracks/1/use_blend = true
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Cellule_Sound/Up_Down_Cell")
+tracks/2/path = NodePath("Sound/Up_Down_Cell")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -361,7 +361,7 @@ tracks/2/use_blend = true
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Cellule_Sound/Stop_Cell")
+tracks/3/path = NodePath("Sound/Stop_Cell")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -388,7 +388,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_ej7e8"]
 resource_name = "Down_Sliding_End"
-length = 0.96667004
+length = 1.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -396,7 +396,7 @@ tracks/0/path = NodePath("Column/Cell_Tops:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6666667, 0.96666664),
+"times": PackedFloat32Array(0, 0.4, 0.6666667, 1.0666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 246), Vector2(0, 246), Vector2(0, 250), Vector2(0, 250)]
@@ -404,7 +404,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Cellule_Sound/Start_Cell")
+tracks/1/path = NodePath("Sound/Start_Cell")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -419,7 +419,7 @@ tracks/1/use_blend = true
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Cellule_Sound/Up_Down_Cell")
+tracks/2/path = NodePath("Sound/Up_Down_Cell")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -434,7 +434,7 @@ tracks/2/use_blend = true
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Cellule_Sound/Stop_Cell")
+tracks/3/path = NodePath("Sound/Stop_Cell")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -461,7 +461,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_5dg73"]
 resource_name = "Going_Down"
-length = 7.3666706
+length = 7.4666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -469,7 +469,7 @@ tracks/0/path = NodePath("Column/Cell_Tops:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 7.3333335, 7.3666673),
+"times": PackedFloat32Array(0, 1, 7.3333335, 7.4666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 250), Vector2(0, 250)]
@@ -477,7 +477,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Cellule_Sound/Start_Cell")
+tracks/1/path = NodePath("Sound/Start_Cell")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -492,7 +492,7 @@ tracks/1/use_blend = true
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Cellule_Sound/Up_Down_Cell")
+tracks/2/path = NodePath("Sound/Up_Down_Cell")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -515,7 +515,7 @@ tracks/2/use_blend = true
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Cellule_Sound/Stop_Cell")
+tracks/3/path = NodePath("Sound/Stop_Cell")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -542,7 +542,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_6vv1n"]
 resource_name = "Going_Up"
-length = 7.3666706
+length = 7.4666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -550,7 +550,7 @@ tracks/0/path = NodePath("Column/Cell_Tops:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 7.3333335, 7.3666673),
+"times": PackedFloat32Array(0, 1, 7.3333335, 7.4666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 250), Vector2(0, 250), Vector2(0, 0), Vector2(0, 0)]
@@ -558,7 +558,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Cellule_Sound/Start_Cell")
+tracks/1/path = NodePath("Sound/Start_Cell")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -573,7 +573,7 @@ tracks/1/use_blend = true
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Cellule_Sound/Up_Down_Cell")
+tracks/2/path = NodePath("Sound/Up_Down_Cell")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -596,7 +596,7 @@ tracks/2/use_blend = true
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Cellule_Sound/Stop_Cell")
+tracks/3/path = NodePath("Sound/Stop_Cell")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -662,7 +662,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_qkut6"]
 resource_name = "Up_Sliding_Beginning"
-length = 0.66667
+length = 0.76666665
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -670,7 +670,7 @@ tracks/0/path = NodePath("Column/Cell_Tops:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.36666667, 0.6666667),
+"times": PackedFloat32Array(0, 0.10000001, 0.36666667, 0.76666665),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 4), Vector2(0, 4), Vector2(0, 0), Vector2(0, 0)]
@@ -678,7 +678,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Cellule_Sound/Start_Cell")
+tracks/1/path = NodePath("Sound/Start_Cell")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -693,7 +693,7 @@ tracks/1/use_blend = true
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Cellule_Sound/Up_Down_Cell")
+tracks/2/path = NodePath("Sound/Up_Down_Cell")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -708,7 +708,7 @@ tracks/2/use_blend = true
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Cellule_Sound/Stop_Cell")
+tracks/3/path = NodePath("Sound/Stop_Cell")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -735,7 +735,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_psu53"]
 resource_name = "Up_Sliding_End"
-length = 0.96667004
+length = 1.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -743,7 +743,7 @@ tracks/0/path = NodePath("Column/Cell_Tops:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6666667, 0.96666664),
+"times": PackedFloat32Array(0, 0.4, 0.6666667, 1.0666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 4), Vector2(0, 4)]
@@ -751,7 +751,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Cellule_Sound/Start_Cell")
+tracks/1/path = NodePath("Sound/Start_Cell")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -766,7 +766,7 @@ tracks/1/use_blend = true
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Cellule_Sound/Up_Down_Cell")
+tracks/2/path = NodePath("Sound/Up_Down_Cell")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -781,7 +781,7 @@ tracks/2/use_blend = true
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Cellule_Sound/Stop_Cell")
+tracks/3/path = NodePath("Sound/Stop_Cell")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -822,7 +822,6 @@ _data = {
 [node name="Cell" type="Node2D" unique_id=2120336095]
 
 [node name="ATTENTION" type="Label" parent="." unique_id=1347624169]
-visible = false
 offset_left = 124.0
 offset_top = 132.0
 offset_right = 475.0
@@ -1168,46 +1167,46 @@ bus = &"FX_DRY"
 libraries/ = SubResource("AnimationLibrary_ej7e8")
 autoplay = &"RESET"
 
-[node name="Cellule_Sound" type="Node2D" parent="." unique_id=589879206]
+[node name="Sound" type="Node2D" parent="." unique_id=589879206]
 metadata/_edit_lock_ = true
 
-[node name="Moving_Cell" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=2131109079]
+[node name="Moving_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=2131109079]
 bus = &"FX_WET"
 
-[node name="Start_Cell" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=1720354538]
+[node name="Start_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=1720354538]
 volume_db = 2.5
 bus = &"FX_WET"
 
-[node name="Stop_Cell" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=1776672692]
+[node name="Stop_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=1776672692]
 volume_db = 5.0
 bus = &"FX_WET"
 
-[node name="Up_Down_Cell" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=2081589942]
+[node name="Up_Down_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=2081589942]
 volume_db = 5.0
 bus = &"FX_WET"
 
-[node name="Disappearing_Cell" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=295905289]
+[node name="Disappearing_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=295905289]
 volume_db = 1.5
 bus = &"FX_WET"
 
-[node name="Sliding_Cell" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=479006352]
+[node name="Sliding_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=479006352]
 stream = ExtResource("27_5dg73")
 bus = &"FX_WET"
 
-[node name="Appearing_Cell" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=228232776]
+[node name="Appearing_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=228232776]
 bus = &"FX_WET"
 
-[node name="Glitch_For_Screen_Glitch" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=1685933352]
+[node name="Glitch_For_Screen_Glitch" type="AudioStreamPlayer" parent="Sound" unique_id=1685933352]
 stream = ExtResource("37_qjqwi")
 volume_db = -5.0
 bus = &"FX_DRY"
 
-[node name="Glitch_For_Glitch_Only" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=2124933242]
+[node name="Glitch_For_Glitch_Only" type="AudioStreamPlayer" parent="Sound" unique_id=2124933242]
 stream = ExtResource("38_5memm")
 volume_db = -22.5
 bus = &"FX_WET"
 
-[node name="Alarm_Before_Movement" type="AudioStreamPlayer" parent="Cellule_Sound" unique_id=657381530]
+[node name="Alarm_Before_Movement" type="AudioStreamPlayer" parent="Sound" unique_id=657381530]
 stream = ExtResource("46_psu53")
 bus = &"FX_WET"
 parameters/looping = true

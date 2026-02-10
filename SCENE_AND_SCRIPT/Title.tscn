@@ -7,9 +7,7 @@
 [ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="6_ugatv"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="10_pj754"]
 [ext_resource type="Shader" uid="uid://rfstm5ejtwi3" path="res://SHADER/Reflection.gdshader" id="11_bnvrm"]
-[ext_resource type="PackedScene" path="res://SCENE_AND_SCRIPT/Music.tscn" id="12_jqsr3"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="13_63rpd"]
-[ext_resource type="PackedScene" uid="uid://em4id2fwd18h" path="res://SCENE_AND_SCRIPT/UI_Sounds.tscn" id="13_n8ll0"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="14_aa5oj"]
 [ext_resource type="Script" uid="uid://dd6brr6ksot15" path="res://SCENE_AND_SCRIPT/Title_Alert.gd" id="14_ykdlm"]
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="15_ykdlm"]
@@ -256,18 +254,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Music/Intro:volume_db")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.33333668),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-80.0, -2.5]
-}
 
 [sub_resource type="Animation" id="Animation_n8ll0"]
 length = 0.001
@@ -282,18 +268,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Music/Intro:volume_db")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-2.5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hvxmu"]
@@ -434,7 +408,7 @@ anchor_bottom = 1.0
 offset_left = -118.0
 offset_top = -89.0
 offset_right = 120.0
-offset_bottom = -35.0
+offset_bottom = -38.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
@@ -447,7 +421,7 @@ theme_override_font_sizes/normal_font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_aa5oj")
 bbcode_enabled = true
 text = "[color=#70cb10]B[/color]as[color=#70cb10]h://[/color] $pri[color=#cb5030]nt[[/color]_]: 40[color=#70cb10]4[/color]!
-[color=#cb5030]Pr[/color]_[color=#70cb10]M[color=#cb5030]i[/color] q[/color]µ@lc[color=#70cb10]°[/color][color=#cb5030]$à[/color]!"
+[color=#cb5030]Pr[/color]_[color=#70cb10]M[color=#cb5030]i[/color] q[/color]ù@lc[color=#70cb10]°[/color][color=#cb5030]$à[/color]!"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -464,7 +438,3 @@ bus = &"FX_WET"
 [node name="Animation_Intro" type="AnimationPlayer" parent="." unique_id=722104241]
 libraries/ = SubResource("AnimationLibrary_hvxmu")
 autoplay = &"Intro"
-
-[node name="Music" parent="." unique_id=524227096 instance=ExtResource("12_jqsr3")]
-
-[node name="UI_Sounds" parent="." unique_id=353078132 instance=ExtResource("13_n8ll0")]

@@ -19,7 +19,7 @@ shader_parameter/shake_color_rate = 0.002000000095
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q0tq6"]
 content_margin_left = 3.0
-content_margin_top = 1.0
+content_margin_top = 3.0
 content_margin_bottom = 4.0
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 2
@@ -524,9 +524,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -163.0
-offset_top = 75.0
+offset_top = 74.0
 offset_right = 163.0
-offset_bottom = 103.0
+offset_bottom = 101.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.6431373, 0.63529414, 0.8745098, 1)
@@ -535,11 +535,10 @@ theme_override_fonts/normal_font = ExtResource("4_dpf0i")
 theme_override_font_sizes/normal_font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_q0tq6")
 bbcode_enabled = true
-text = "$cê[color=#ed7252]g[/color]l! l'@va[color=#ed7252]ta[/color]® ©O_ çµi [color=#ed7252]fall!r@i[/color]..."
+text = "$cê[color=#ed7252]g[/color]l! l'@va[color=#ed7252]ta[/color]® ©O_ çùi [color=#ed7252]fall!r@i[/color]..."
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="Animation_Arrows" type="AnimationPlayer" parent="." unique_id=942789416]
 libraries/ = SubResource("AnimationLibrary_p3xvu")

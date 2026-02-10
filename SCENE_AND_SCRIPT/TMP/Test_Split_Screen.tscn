@@ -36,7 +36,7 @@
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="32_lx2en"]
 [ext_resource type="Shader" uid="uid://crfc2g072t77" path="res://SHADER/Blur.gdshader" id="32_sf4qo"]
 [ext_resource type="Script" uid="uid://d2u0m7lhl07qk" path="res://SCENE_AND_SCRIPT/TMP/Info_Win_Lose.gd" id="32_v6mht"]
-[ext_resource type="PackedScene" path="res://SCENE_AND_SCRIPT/Music.tscn" id="33_5ttrv"]
+[ext_resource type="PackedScene" uid="uid://f84754sgk1nd" path="res://SCENE_AND_SCRIPT/Music.tscn" id="33_5ttrv"]
 [ext_resource type="Texture2D" uid="uid://cutec7wipswh2" path="res://IMAGE/MISC/Title_Gradients.png" id="33_a4yp3"]
 [ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="33_ybkus"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="34_v6mht"]
@@ -992,6 +992,7 @@ size = Vector2i(480, 270)
 render_target_update_mode = 4
 
 [node name="Man_B" parent="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport" unique_id=1222795312 instance=ExtResource("28_fe2l5")]
+visible = false
 z_index = 3
 position = Vector2(50, 50)
 

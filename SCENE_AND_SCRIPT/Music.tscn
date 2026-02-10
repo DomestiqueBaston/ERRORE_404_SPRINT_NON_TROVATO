@@ -1,8 +1,9 @@
-[gd_scene format=3 uid="uid://c47vh8lf8b82k"]
+[gd_scene format=3 uid="uid://f84754sgk1nd"]
 
 [ext_resource type="AudioStream" uid="uid://t4l7fveb311p" path="res://SOUND/MUSIC/Music.ogg" id="3_kco3e"]
 [ext_resource type="AudioStream" uid="uid://cv55875tvts3k" path="res://SOUND/MUSIC/Intro.ogg" id="3_rjpab"]
 [ext_resource type="Script" uid="uid://dcouh0m854v2c" path="res://SCENE_AND_SCRIPT/Intro.gd" id="4_k5ifq"]
+[ext_resource type="AudioStream" uid="uid://gxci2v55iim1" path="res://SOUND/FX/Global_Hum.ogg" id="5_rwgee"]
 [ext_resource type="AudioStream" uid="uid://bxcpm34tpan58" path="res://SOUND/MUSIC/Bang.ogg" id="6_ptkxu"]
 
 [node name="Music" type="Node2D" unique_id=524227096]
@@ -24,3 +25,8 @@ parameters/looping = true
 stream = ExtResource("6_ptkxu")
 volume_db = -2.5
 bus = &"MUSIC"
+
+[node name="Global_Hum" type="AudioStreamPlayer" parent="." unique_id=815631941]
+stream = ExtResource("5_rwgee")
+volume_db = 10.0
+bus = &"FX_WET"
