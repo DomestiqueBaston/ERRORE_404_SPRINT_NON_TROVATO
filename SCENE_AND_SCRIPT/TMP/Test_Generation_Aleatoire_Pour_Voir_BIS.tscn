@@ -83,7 +83,7 @@ offset_bottom = -2.0
 text = "Il est quasiment certain que cette solution de fond n'est pas la bonne car la taille de la zone de course va changer avec les glissements de colonnes et lignes."
 metadata/_edit_lock_ = true
 
-[node name="Woman_Sound" parent="Woman" index="5" unique_id=2112401329]
+[node name="Sound" parent="Woman" index="5" unique_id=2112401329]
 visible = true
 
 [node name="Global_Hum" type="AudioStreamPlayer" parent="." unique_id=1263997883]

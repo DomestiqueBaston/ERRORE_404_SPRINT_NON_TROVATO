@@ -2,15 +2,15 @@ shader_type canvas_item;
 
 // Uniforms du tremblement
 uniform bool shake_enabled = false;
-uniform float shake_power : hint_range(0.0, 0.01, 0.0001) = 0.002;
-uniform float shake_speed : hint_range(0.0, 100.0, 0.1) = 100.0;
-uniform float shake_block_size = 75.0;
-uniform float shake_color_rate : hint_range(0.0, 0.02, 0.0001) = 0.004;   // ← un peu plus fort par défaut
+uniform float shake_power : hint_range(0.0, 0.01, 0.0001) = 0.001;
+uniform float shake_speed : hint_range(0.0, 100.0, 0.1) = 10.0;
+uniform float shake_block_size = 150.0;
+uniform float shake_color_rate : hint_range(0.0, 0.02, 0.0001) = 0.0007;
 
 // Uniforms de l'outline
 uniform float outline_thickness : hint_range(0.0, 5.0, 1.0) = 2.0;
 uniform vec4 outline_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
-uniform float outline_boost_when_glitch : hint_range(0.0, 100.0, 0.1) = 1.2;  // ← nouveau : 1.0 = normal, >1 = plus fort quand glitch
+uniform float outline_boost_when_glitch : hint_range(0.0, 100.0, 0.1) = 100.0;
 
 
 bool is_inside_usquare(vec2 x) {

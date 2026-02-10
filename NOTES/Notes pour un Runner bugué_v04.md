@@ -55,7 +55,7 @@ Les bonus et malus en jeu (Cube.tscn) :
 
 Les bonus :
 	1. Invulnérabilité (annule le prochain malus récolté) – dure 5’’ → ✔ Invincible – Automatique !
-	2. Dash (course uniquement – dure 1’’ – changement de direction seulement pendant la seconde !) : 66% plus rapide (animation aussi). → ✔ Dash – Activable !
+	2. Dash (course uniquement – dure 1’’ – ne peut pas être interrompu, virage impossible !) : 66% plus rapide (animation aussi). → ✔ Dash – Activable !
 	3. Passe-muraille (uniquement les murs des concurrents) – 1 seul mur → ✔ Through – Automatique !
 	4. Virus (envoie automatiquement le prochain malus récolté à un adversaire aléatoire) → ✔ Virus – Automatique !
 	5. Téléportation (destination aléatoire sur une « cellule saine »)→ ✔ Teleport – Activable !
@@ -66,7 +66,7 @@ Les malus (automatiques) :
 	1. Inversion de commandes (droite/gauche) – dure 2’’ → ✔ Invert
 	2. Lenteur de réaction (on ajoute un délai d’1/10’’ (à préciser) dans les commandes du concurrent) – dure 5’’ → ✔ Slow
 	3. Les murs tracés par le concurrent durent 2 fois moins longtemps – dure 10’’ → ✔ Last_Shorter
-	4. Course, saut et glissade : 4% plus lent (animation aussi) – dure 5’’ → ✔ Anti_Dash
+	4. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1 seconde) – dure 5’’ → ✔ Anti_Dash
 	5. Rien ! → ✔ Empty
 	6. Virus (envoie automatiquement le prochain Bonus (pas malus) récolté à un adversaire aléatoire) → ✔ Anti_Virus
 	7. Téléportation (instantané et destination aléatoire)→ ✔ Anti_Teleport
@@ -102,10 +102,11 @@ JEU :
 	• Position de caméra par rapport au root d’un concurrent tourné vers le haut à droite : px = -120, py = -230.
 - Le premier tronçon de mur qui apparaît derrière un coureur est Light_Wall_Start.tscn puis chaque module suivant est un Light_Wall.tscn. Dit autrement, le tronçon le plus jeune est  Light_Wall_Start.tscn et les plus anciens sont  Light_Wall.tscn !
 - Lorsqu’un concurrent traverse une case (donc en traçant son mur) et que la cellule bouge, alors le concurrent se décale AVEC la cellule. Et le mur qu’il trace également. Il faudra donc « tronçonner » les murs à chaque fois qu’un concurrent sort d’une case afin que le morceau de mur puisse éventuellement se déplacer avec la case si celle-ci est amenée à se déplacer de nouveau.
-- Cas particuliers de mort : il existe un AnimationPlayer avec une animation « toute bête » pour ces cas-là (Animation_Disappearing_Death). Si par exemple se présent un cas avec deux colonnes baissées et que le concurrent veut passer dessous à vitesse normale, il ne pourra pas et mourra donc et on utilisera cette animation. Écrasé par une colonne, pareil ! Etc.
+- Cas particuliers de mort : il existe un AnimationPlayer avec une animation « toute bête » pour ces cas-là (Animation_Disappearing_Death). Si par exemple se présente un cas avec deux colonnes baissées et que le concurrent veut passer dessous à vitesse normale, il ne pourra pas, mourra donc et on utilisera cette animation. Écrasé par une colonne, ce sera pareil ! Etc.
 - Un concurrent ne peut pas courir sur un autre cadavre → Le jeu forcera le concurrent à tourner aléatoirement à droite ou à gauche. On jouera ici aussi l’Animation_Bonus_Malus et Alert (dans UI_Sounds.tscn). Si par vraiment super pas de bol, le concurrent se retrouve coincé entre des cadavres et/ou d’autres concurrents, alors on lui fera jouer son animation de mort à lui aussi et il sera donc mort ! Ça ne sera pas très joli mais c’est un cas vraiment très peu probable et il faut l’envisager (et faire une animation pour un tel cas…).
 - À la mort d’un concurrent, ce qui reste de son mur ne disparaît pas ! Mais attention, l’animation de mort projette les concurrents en arrière, donc sur le mur : ça ne va pas aussi prendra-t-on soin de supprimer 1 tronçon de mur : celui qui sert à l’apparition du mur (Light_Wall_Start.tscn).
 - Seule l’animation de course peut être interrompue. Toutes les autres doivent finir avant d’enchaîner sur autre chose.
+- Toutes les 15 à 20’’, chaque coureur va gagner 4% de vitesse. Et toutes les 15 à 20’’ perdre ces 4 % de vitesse. Les animations seront également accélérées et ralenties de la même proportion  pour que ce soit plus « joli ». On utilisera également un tween d’1 seconde pour appliquer la modification.
 
 Options à proposer au joueur dans Settings:
 - Taille de la map (de 9 à 21) ✔

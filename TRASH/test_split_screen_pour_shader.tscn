@@ -29,8 +29,8 @@
 [ext_resource type="Shader" uid="uid://cw8pro7ug7hfy" path="res://SHADER/Shake.gdshader" id="28_m6txe"]
 [ext_resource type="Texture2D" uid="uid://bg8x247cwwks8" path="res://TRASH/BSOD.png" id="30_8eerl"]
 [ext_resource type="Shader" uid="uid://bw1rtxnpr4o0b" path="res://SHADER/Pixelisation.gdshader" id="30_vvr5n"]
-[ext_resource type="Shader" uid="uid://btajsboyumguy" path="res://SHADER/Slice_Screen.gdshader" id="31_gckxn"]
-[ext_resource type="Shader" uid="uid://b1v2s56rmwn5o" path="res://SHADER/CRT.gdshader" id="31_m3ab0"]
+[ext_resource type="Shader" uid="uid://btajsboyumguy" path="res://TRASH/Slice_Screen.gdshader" id="31_gckxn"]
+[ext_resource type="Shader" uid="uid://b1v2s56rmwn5o" path="res://CRT.gdshader" id="31_m3ab0"]
 
 [sub_resource type="Environment" id="Environment_w5jul"]
 background_mode = 3
