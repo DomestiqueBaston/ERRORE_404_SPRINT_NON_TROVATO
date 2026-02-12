@@ -12,10 +12,10 @@
 [ext_resource type="AudioStream" uid="uid://ccc3vfmvpg54n" path="res://SOUND/FX/RUNNER/Bump_Wall.ogg" id="6_lgnag"]
 [ext_resource type="AudioStream" uid="uid://cijoxlwmmsm7v" path="res://SOUND/FX/RUNNER/Fall_Death.ogg" id="7_npanl"]
 [ext_resource type="AudioStream" uid="uid://nr37tg36a6ub" path="res://SOUND/FX/RUNNER/Both_Feet_Falling.ogg" id="8_rdls7"]
-[ext_resource type="AudioStream" uid="uid://b3b1gr4l221h6" path="res://SOUND/FX/RUNNER/Woman_A_Ouch.ogg" id="9_6yq0o"]
 [ext_resource type="AudioStream" uid="uid://bom677o0xms5i" path="res://SOUND/FX/Disappearing.ogg" id="10_305es"]
 [ext_resource type="AudioStream" uid="uid://3pw2jkhk3kd7" path="res://SOUND/FX/RUNNER/Woman_B_Falling.ogg" id="11_4pmps"]
 [ext_resource type="AudioStream" uid="uid://cns80ks0bg3jv" path="res://SOUND/FX/RUNNER/Foot_Step_02.ogg" id="13_ifvtu"]
+[ext_resource type="AudioStream" uid="uid://dbggngg0ot4i0" path="res://SOUND/FX/RUNNER/Woman_B_Ouch.ogg" id="13_lgnag"]
 [ext_resource type="AudioStream" uid="uid://wm0mpe0ypbad" path="res://SOUND/FX/RUNNER/Woman_A_Pushing.ogg" id="14_w2sfk"]
 [ext_resource type="AudioStream" uid="uid://d0pp8lius4a10" path="res://SOUND/FX/RUNNER/Foot_Step_03.ogg" id="15_4pmps"]
 [ext_resource type="Script" uid="uid://dujx068vw2hmu" path="res://SCENE_AND_SCRIPT/Animation_Runner.gd" id="15_yl0jf"]
@@ -116,7 +116,7 @@ height = 35.99242
 
 [sub_resource type="Animation" id="Animation_jp0wo"]
 resource_name = "Death_000"
-length = 1.4333367
+length = 1.5333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -124,10 +124,10 @@ tracks/0/path = NodePath("Papa_Sprite/Runner_Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.40000004, 0.43333337, 0.4666667, 0.5, 0.53333336, 0.5666667, 0.6, 0.6333334, 0.6666667, 0.70000005, 0.73333335, 0.7666667, 0.8000001, 0.8333334, 0.86666673, 0.90000004, 0.9333334, 0.9666667, 1, 1.0333334, 1.0666667, 1.1, 1.1333334, 1.1666667, 1.2, 1.2333333, 1.2666668, 1.3000001, 1.3333334, 1.3666668, 1.4000001),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.40000004, 0.43333334, 0.4666667, 0.5, 0.53333336, 0.5666667, 0.6, 0.6333334, 0.6666667, 0.70000005, 0.73333335, 0.7666667, 0.8000001, 0.8333334, 0.86666673, 0.90000004, 0.9333334, 0.9666667, 1, 1.0333334, 1.0666667, 1.1, 1.1333334, 1.1666667, 1.2, 1.2333333, 1.2666668, 1.3000001, 1.3333334, 1.3666668, 1.4000001, 1.4333334, 1.4666667, 1.5000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333]
+"values": [296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -136,10 +136,10 @@ tracks/1/path = NodePath("Papa_Sprite/Runner_Sprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.5666667, 1.4333334),
-"transitions": PackedFloat32Array(1, 0.75, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334, 0.2, 0.33333334, 0.46666667, 0.53333336, 1.5333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(76, 38), Vector2(76, 38)]
+"values": [Vector2(-6, -3), Vector2(0, 0), Vector2(0, 0), Vector2(4.1666665, 2.0833333), Vector2(24.79167, 12.395835), Vector2(45.416664, 22.708332), Vector2(50, 25), Vector2(50, 25)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -148,10 +148,10 @@ tracks/2/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:position"
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.3, 0.43333337, 0.5666667, 0.73333335, 1.0333333, 1.4333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.13333334, 0.3, 0.43333337, 0.5666667, 0.73333335, 1.5333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(-2.8943472, -1.9471736), Vector2(-29.377968, -11.188984), Vector2(-19.101181, -4.5505905), Vector2(-13.999998, 1.0000019), Vector2(-10.000001, 0.9999995), Vector2(-28, -8), Vector2(-28, -8)]
+"values": [Vector2(15, 9.000001), Vector2(-2.8943472, -1.9471736), Vector2(-18.839378, -6.919689), Vector2(-23.030746, -9.015373), Vector2(-17, -2.999998), Vector2(-13.000002, -4.0000014), Vector2(-13.000002, -4.0000014)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -160,10 +160,10 @@ tracks/3/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.3, 0.43333337, 0.5666667, 0.73333335, 1.0333333, 1.4333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.13333334, 0.3, 0.43333337, 0.5666667, 0.73333335, 1.1, 1.5333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1.5, 1.5), Vector2(1.25, 1.25), Vector2(1, 1), Vector2(2.25, 1), Vector2(1.5, 1), Vector2(2, 1.333), Vector2(2, 1.5), Vector2(2.5, 1.5), Vector2(2.5, 1.5)]
+"values": [Vector2(2.25, 1.5), Vector2(1, 1), Vector2(1, 1), Vector2(1.5, 1), Vector2(2.5, 1.333), Vector2(2.5, 1.5), Vector2(2.5, 1.75), Vector2(2.5, 1.75)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -172,10 +172,10 @@ tracks/4/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:rotation"
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.3, 0.43333337, 0.5666667, 0.73333335, 1.0333333, 1.4333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.13333334, 0.3, 0.43333337, 0.5666667, 1.5333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.17453292, 0.17453292, 0.17453292, 0.3926991, 0.43633232, 0.3926991, 0.3926991, 0.3926991, 0.3926991]
+"values": [0.48171088, 0.48171088, 0.3926991, 0.43633232, 0.48171088, 0.48171088]
 }
 tracks/5/type = "audio"
 tracks/5/imported = false
@@ -197,7 +197,7 @@ tracks/5/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("8_rdls7")
 }],
-"times": PackedFloat32Array(0, 0.46666667, 0.96666664)
+"times": PackedFloat32Array(0.033333335, 0.53333336, 0.8333333)
 }
 tracks/5/use_blend = true
 tracks/6/type = "audio"
@@ -210,9 +210,9 @@ tracks/6/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("9_6yq0o")
+"stream": ExtResource("13_lgnag")
 }],
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0.033333335)
 }
 tracks/6/use_blend = true
 tracks/7/type = "value"
@@ -282,7 +282,7 @@ tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite:offset")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0, 1.4333334),
+"times": PackedFloat32Array(0, 1.5333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-5, -44), Vector2(-5, -44)]
@@ -290,7 +290,7 @@ tracks/12/keys = {
 
 [sub_resource type="Animation" id="Animation_6u6kr"]
 resource_name = "Death_180"
-length = 1.4333367
+length = 1.5333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -298,10 +298,10 @@ tracks/0/path = NodePath("Papa_Sprite/Runner_Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.40000004, 0.43333337, 0.4666667, 0.5, 0.53333336, 0.5666667, 0.6, 0.6333334, 0.6666667, 0.70000005, 0.73333335, 0.7666667, 0.8000001, 0.8333334, 0.86666673, 0.90000004, 0.9333334, 0.9666667, 1, 1.0333334, 1.0666667, 1.1, 1.1333334, 1.1666667, 1.2, 1.2333333, 1.2666668, 1.3000001, 1.3333334, 1.3666668, 1.4000001),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.40000004, 0.43333337, 0.4666667, 0.5, 0.53333336, 0.5666667, 0.6, 0.6333334, 0.6666667, 0.70000005, 0.73333335, 0.7666667, 0.8000001, 0.8333334, 0.86666673, 0.90000004, 0.9333334, 0.9666667, 1, 1.0333334, 1.0666667, 1.1, 1.1333334, 1.1666667, 1.2, 1.2333333, 1.2666668, 1.3000001, 1.3333334, 1.3666668, 1.4000001, 1.4333334, 1.4666667, 1.5000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376]
+"values": [342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -310,10 +310,10 @@ tracks/1/path = NodePath("Papa_Sprite/Runner_Sprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.5666667, 1.4333334),
-"transitions": PackedFloat32Array(1, 0.75, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334, 0.2, 0.33333334, 0.46666667, 0.53333336, 1.5333333),
+"transitions": PackedFloat32Array(1, 1, 0.75, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(-76, -38), Vector2(-76, -38)]
+"values": [Vector2(6, 3), Vector2(0, 0), Vector2(0, 0), Vector2(-5.476914, -2.738457), Vector2(-25.512306, -12.756153), Vector2(-45.547688, -22.773844), Vector2(-50, -25), Vector2(-50, -25)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -322,10 +322,10 @@ tracks/2/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:position"
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.3, 0.43333337, 0.5666667, 0.73333335, 1.0333333, 1.4333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.13333334, 0.20000002, 0.3, 0.43333337, 0.5666667, 0.7, 1.5333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-21, -2.9999995), Vector2(-16.000002, -1.0000001), Vector2(-8.105654, 2.9471736), Vector2(-30, -7), Vector2(-15, -1.9999998), Vector2(-25.999998, -4.9999986), Vector2(-30, -7.0000005), Vector2(-28, -8), Vector2(-28, -8)]
+"values": [Vector2(-54, -26), Vector2(-34, -15.000002), Vector2(-23.999996, -8), Vector2(-14, -6.9999995), Vector2(-15.523085, -5.261543), Vector2(-14.496544, -3.748272), Vector2(-15, -1.9999998), Vector2(-17.999998, -3), Vector2(-30, -7.0000005), Vector2(-30, -7)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -334,10 +334,10 @@ tracks/3/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.3, 0.43333337, 0.5666667, 0.73333335, 1.0333333, 1.4333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.13333334, 0.20000002, 0.3, 0.43333337, 0.5666667, 0.7, 1.5333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1.5, 1.5), Vector2(1.25, 1.25), Vector2(1, 1), Vector2(2.25, 1), Vector2(1.5, 1), Vector2(2, 1.333), Vector2(2, 1.5), Vector2(2.5, 1.5), Vector2(2.5, 1.5)]
+"values": [Vector2(2, 1), Vector2(1.25, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1.05, 1), Vector2(1.333, 1), Vector2(1.75, 1.25), Vector2(2, 1.25), Vector2(2.25, 1.5), Vector2(2.25, 1.5)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -346,10 +346,10 @@ tracks/4/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:rotation"
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.3, 0.43333337, 0.5666667, 0.73333335, 1.0333333, 1.4333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.20000002, 0.3, 0.43333337, 0.5666667, 1.5333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.17453292, 0.17453292, 0.17453292, 0.3926991, 0.43633232, 0.3926991, 0.3926991, 0.3926991, 0.3926991]
+"values": [0.48171088, 0.40491638, 0.48171088, 0.44610617, 0.3926991, 0.43633232, 0.3926991, 0.3926991]
 }
 tracks/5/type = "audio"
 tracks/5/imported = false
@@ -371,7 +371,7 @@ tracks/5/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("8_rdls7")
 }],
-"times": PackedFloat32Array(0, 0.46666667, 0.96666664)
+"times": PackedFloat32Array(0.033333335, 0.53333336, 0.8333333)
 }
 tracks/5/use_blend = true
 tracks/6/type = "audio"
@@ -384,9 +384,9 @@ tracks/6/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("9_6yq0o")
+"stream": ExtResource("13_lgnag")
 }],
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0.033333335)
 }
 tracks/6/use_blend = true
 tracks/7/type = "value"
@@ -448,6 +448,18 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite:offset")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 1.5333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-5, -44), Vector2(-5, -44)]
 }
 
 [sub_resource type="Animation" id="Animation_bpqq7"]
@@ -2924,7 +2936,7 @@ volume_db = -10.0
 bus = &"FX_DRY"
 
 [node name="Ouch" type="AudioStreamPlayer" parent="Sound" unique_id=1772537407]
-volume_db = -12.5
+volume_db = -5.0
 bus = &"FX_DRY"
 
 [node name="Pushing" type="AudioStreamPlayer" parent="Sound" unique_id=2103180944]
