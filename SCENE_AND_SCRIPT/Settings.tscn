@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://blsopsfjc5gfa"]
 
+[ext_resource type="Script" uid="uid://ds5c5n35wvh37" path="res://SCENE_AND_SCRIPT/Settings.gd" id="1_e6nj5"]
 [ext_resource type="Texture2D" uid="uid://b8x0ihnlq10s2" path="res://IMAGE/MISC/Large_Shadow.png" id="1_pepy6"]
 [ext_resource type="Texture2D" uid="uid://cdxwexyvht0dp" path="res://IMAGE/MISC/Settings_Cursor.png" id="2_07jpc"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="2_shryd"]
@@ -9,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://pypr1mgwq0et" path="res://IMAGE/MISC/Settings_Cursor_Light.png" id="4_2k1s1"]
 [ext_resource type="Script" uid="uid://clccpnapl4u45" path="res://SCENE_AND_SCRIPT/Settings_Glitches.gd" id="4_07jpc"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="5_a50p4"]
+[ext_resource type="Texture2D" uid="uid://brv8on4hwu0r7" path="res://IMAGE/MISC/Tick.png" id="5_sobyg"]
 [ext_resource type="Shader" uid="uid://rfstm5ejtwi3" path="res://SHADER/Reflection.gdshader" id="8_shryd"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="10_0rcrj"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="13_1skkq"]
@@ -253,19 +255,12 @@ metadata/_edit_lock_ = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=869803178]
 environment = SubResource("Environment_wgd1c")
 
-[node name="ATTENTION" type="Label" parent="." unique_id=1196339688]
-offset_top = -66.0
-offset_right = 921.0
-offset_bottom = -17.0
-text = "Il faudra penser à \"connecter\" les curseurs aussi aux manettes.
-Haut et bas pour passer d'un curseur à l'autre et droite et gauche pour changer les valeurs."
-metadata/_edit_lock_ = true
-
 [node name="Impostazioni" type="Control" parent="." unique_id=1157028759]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
 offset_bottom = 540.0
+script = ExtResource("1_e6nj5")
 metadata/_edit_lock_ = true
 
 [node name="BG" type="ColorRect" parent="Impostazioni" unique_id=2028915463]
@@ -342,9 +337,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -480.0
+offset_left = -495.0
 offset_top = 136.0
-offset_right = 480.0
+offset_right = 465.0
 offset_bottom = 175.0
 grow_horizontal = 2
 pivot_offset = Vector2(527, 222)
@@ -365,8 +360,8 @@ horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Line_Map" type="Line2D" parent="Impostazioni" unique_id=239642515]
-position = Vector2(94, 155)
-points = PackedVector2Array(0, 0, 760, 0)
+position = Vector2(79, 155)
+points = PackedVector2Array(3, 0, 757, 0)
 width = 8.0
 default_color = Color(0.7764706, 0.84313726, 0.9843137, 1)
 begin_cap_mode = 2
@@ -374,7 +369,7 @@ end_cap_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Line_Black" type="Line2D" parent="Impostazioni/Line_Map" unique_id=1876516488]
-points = PackedVector2Array(0, 0, 760, 0)
+points = PackedVector2Array(3, 0, 757, 0)
 width = 4.0
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
@@ -383,18 +378,21 @@ metadata/_edit_lock_ = true
 
 [node name="HSlider_Map" type="HSlider" parent="Impostazioni" unique_id=220456702]
 layout_mode = 0
-offset_left = 87.0
+offset_left = 68.0
 offset_top = 142.0
-offset_right = 861.0
-offset_bottom = 169.0
+offset_right = 850.0
+offset_bottom = 170.0
 theme_override_icons/grabber = ExtResource("2_07jpc")
 theme_override_icons/grabber_highlight = ExtResource("4_2k1s1")
 theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
+theme_override_icons/tick = ExtResource("5_sobyg")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
 min_value = 9.0
 max_value = 21.0
 step = 2.0
 value = 15.0
+tick_count = 7
+ticks_on_borders = true
 metadata/_edit_lock_ = true
 
 [node name="Difficulty" type="RichTextLabel" parent="Impostazioni" unique_id=127181917]
@@ -430,9 +428,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -480.0
+offset_left = -495.0
 offset_top = 216.0
-offset_right = 480.0
+offset_right = 465.0
 offset_bottom = 255.0
 grow_horizontal = 2
 pivot_offset = Vector2(527, 222)
@@ -445,7 +443,7 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = " 1                                                                         5"
+text = "  1                                                                          5  "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -453,8 +451,8 @@ horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Line_Difficulty" type="Line2D" parent="Impostazioni" unique_id=1347992443]
-position = Vector2(94, 235)
-points = PackedVector2Array(0, 0, 760, 0)
+position = Vector2(79, 235)
+points = PackedVector2Array(3, 0, 757, 0)
 width = 8.0
 default_color = Color(0.7764706, 0.84313726, 0.9843137, 1)
 begin_cap_mode = 2
@@ -462,7 +460,7 @@ end_cap_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Line_Black" type="Line2D" parent="Impostazioni/Line_Difficulty" unique_id=1407812792]
-points = PackedVector2Array(0, 0, 760, 0)
+points = PackedVector2Array(3, 0, 757, 0)
 width = 4.0
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
@@ -471,17 +469,20 @@ metadata/_edit_lock_ = true
 
 [node name="HSlider_Difficulty" type="HSlider" parent="Impostazioni" unique_id=1206662753]
 layout_mode = 0
-offset_left = 87.0
+offset_left = 68.0
 offset_top = 222.0
-offset_right = 861.0
-offset_bottom = 249.0
+offset_right = 850.0
+offset_bottom = 250.0
 theme_override_icons/grabber = ExtResource("2_07jpc")
 theme_override_icons/grabber_highlight = ExtResource("4_2k1s1")
 theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
+theme_override_icons/tick = ExtResource("5_sobyg")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
 min_value = 1.0
 max_value = 5.0
 value = 3.0
+tick_count = 5
+ticks_on_borders = true
 metadata/_edit_lock_ = true
 
 [node name="Audio" type="RichTextLabel" parent="Impostazioni" unique_id=2041634373]
@@ -540,7 +541,7 @@ metadata/_edit_lock_ = true
 
 [node name="Line_Audio" type="Line2D" parent="Impostazioni" unique_id=422019962]
 position = Vector2(79, 315)
-points = PackedVector2Array(0, 0, 760, 0)
+points = PackedVector2Array(3, 0, 757, 0)
 width = 8.0
 default_color = Color(0.7764706, 0.84313726, 0.9843137, 1)
 begin_cap_mode = 2
@@ -548,7 +549,7 @@ end_cap_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Line_Black" type="Line2D" parent="Impostazioni/Line_Audio" unique_id=1280635266]
-points = PackedVector2Array(0, 0, 760, 0)
+points = PackedVector2Array(3, 0, 757, 0)
 width = 4.0
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
@@ -557,15 +558,19 @@ metadata/_edit_lock_ = true
 
 [node name="HSlider_Audio" type="HSlider" parent="Impostazioni" unique_id=1143135609]
 layout_mode = 0
-offset_left = 72.0
+offset_left = 68.0
 offset_top = 302.0
-offset_right = 846.0
-offset_bottom = 329.0
+offset_right = 850.0
+offset_bottom = 330.0
 theme_override_icons/grabber = ExtResource("2_07jpc")
 theme_override_icons/grabber_highlight = ExtResource("4_2k1s1")
 theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
+theme_override_icons/tick = ExtResource("5_sobyg")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
+step = 10.0
 value = 100.0
+tick_count = 11
+ticks_on_borders = true
 metadata/_edit_lock_ = true
 
 [node name="Music" type="RichTextLabel" parent="Impostazioni" unique_id=519578696]
@@ -624,7 +629,7 @@ metadata/_edit_lock_ = true
 
 [node name="Line_Music" type="Line2D" parent="Impostazioni" unique_id=1098754470]
 position = Vector2(79, 395)
-points = PackedVector2Array(0, 0, 760, 0)
+points = PackedVector2Array(3, 0, 757, 0)
 width = 8.0
 default_color = Color(0.7764706, 0.84313726, 0.9843137, 1)
 begin_cap_mode = 2
@@ -632,7 +637,7 @@ end_cap_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Line_Black" type="Line2D" parent="Impostazioni/Line_Music" unique_id=1796836554]
-points = PackedVector2Array(0, 0, 760, 0)
+points = PackedVector2Array(3, 0, 757, 0)
 width = 4.0
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
@@ -641,15 +646,19 @@ metadata/_edit_lock_ = true
 
 [node name="HSlider_Music" type="HSlider" parent="Impostazioni" unique_id=1381525169]
 layout_mode = 0
-offset_left = 72.0
+offset_left = 68.0
 offset_top = 382.0
-offset_right = 846.0
-offset_bottom = 409.0
+offset_right = 850.0
+offset_bottom = 410.0
 theme_override_icons/grabber = ExtResource("2_07jpc")
 theme_override_icons/grabber_highlight = ExtResource("4_2k1s1")
 theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
+theme_override_icons/tick = ExtResource("5_sobyg")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
+step = 10.0
 value = 100.0
+tick_count = 11
+ticks_on_borders = true
 metadata/_edit_lock_ = true
 
 [node name="Masks" type="Control" parent="Impostazioni" unique_id=1994543020]
@@ -728,15 +737,15 @@ mouse_filter = 2
 texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
 
-[node name="Map_0_100" type="RichTextLabel" parent="Impostazioni/Masks" unique_id=1746892684]
+[node name="Map_9_21" type="RichTextLabel" parent="Impostazioni/Masks" unique_id=1746892684]
 clip_children = 2
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -435.5
+offset_left = -450.5
 offset_top = 136.0
-offset_right = 433.5
+offset_right = 418.5
 offset_bottom = 175.0
 grow_horizontal = 2
 pivot_offset = Vector2(527, 222)
@@ -750,9 +759,8 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-metadata/_edit_lock_ = true
 
-[node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Map_0_100" unique_id=1914571701]
+[node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Map_9_21" unique_id=1914571701]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
 layout_mode = 0
 offset_left = -44.5
@@ -804,9 +812,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -480.0
+offset_left = -495.0
 offset_top = 216.0
-offset_right = 480.0
+offset_right = 465.0
 offset_bottom = 255.0
 grow_horizontal = 2
 pivot_offset = Vector2(527, 222)
@@ -815,12 +823,11 @@ theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = " 1                                                                         5"
+text = "  1                                                                          5  "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Difficulty_1_5" unique_id=2053147865]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
@@ -974,6 +981,7 @@ texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
 
 [node name="Glitches" type="Control" parent="." unique_id=1199082990]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
@@ -1012,10 +1020,12 @@ mouse_filter = 1
 metadata/_edit_lock_ = true
 
 [node name="Info_Overlay" type="Control" parent="." unique_id=350611365]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
 offset_bottom = 540.0
+mouse_filter = 2
 script = ExtResource("13_wgd1c")
 metadata/_edit_lock_ = true
 

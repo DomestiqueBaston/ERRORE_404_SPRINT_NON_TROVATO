@@ -47,6 +47,7 @@
 [ext_resource type="AudioStream" uid="uid://brb24ixtrvqg3" path="res://SOUND/FX/RUNNER/Empty.ogg" id="40_tht04"]
 [ext_resource type="AudioStream" uid="uid://5w55chwkxbr5" path="res://SOUND/FX/RUNNER/Anti_Virus.ogg" id="41_l57rk"]
 [ext_resource type="AudioStream" uid="uid://b262xncyf383x" path="res://SOUND/FX/RUNNER/Anti_Teleport.ogg" id="42_jhlxb"]
+[ext_resource type="PackedScene" uid="uid://bjsba2kod4q2x" path="res://SCENE_AND_SCRIPT/Light_Wall_Start.tscn" id="48_lorph"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_i2jqs"]
 frames = 4
@@ -3026,3 +3027,7 @@ bus = &"FX_DRY"
 [node name="Anti_Teleport" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=2056585450]
 stream = ExtResource("42_jhlxb")
 bus = &"FX_DRY"
+
+[node name="Light_Wall_Start" parent="." unique_id=2109438449 instance=ExtResource("48_lorph")]
+
+[editable path="Light_Wall_Start"]

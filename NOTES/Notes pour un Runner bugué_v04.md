@@ -83,12 +83,12 @@ Toutes les X secondes (voir Options à proposer au joueur dans Settings) un des
 
 Liste des animations des personnages :
     1. Courir ✔ ✔ ✔
-    2. Sauter ✔ ✔
+    2. Sauter ✔ ✔ ✔
     3. Glissade ✔ ✔ ✔
     4. Pose de départ ✔ ✔ ✔
     5. Intro ✔ ✔ ✔
     6. Tomber dans le vide → Mort ! ✔ ✔ ✔
-    7. Bim ! Dans un mur → Mort ! ✔ ✔
+    7. Bim ! Dans un mur → Mort ! ✔ ✔ ✔
 
 Notes de fabrication :
 SON :
