@@ -17,6 +17,8 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="ERRORE 404: SPRINT NON TROVATO!"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://54k11ge564p0"
+config/macos_native_icon="res://404.icns"
+config/windows_native_icon="res://404.ico"
 
 [audio]
 
@@ -25,6 +27,8 @@ buses/default_bus_layout="uid://87w0widytofu"
 [autoload]
 
 Autoload="*uid://ubao4e160a71"
+UISounds="*uid://em4id2fwd18h"
+Music="*uid://f84754sgk1nd"
 
 [display]
 

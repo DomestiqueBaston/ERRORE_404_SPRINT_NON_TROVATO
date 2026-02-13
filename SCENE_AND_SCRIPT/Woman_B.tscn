@@ -2781,9 +2781,11 @@ _data = {
 }
 
 [node name="Woman_B" type="Node2D" unique_id=1635856392]
+metadata/_edit_lock_ = true
 
 [node name="Character" type="Node2D" parent="." unique_id=1360061723]
 script = ExtResource("1_b858v")
+metadata/_edit_lock_ = true
 
 [node name="Dash_Trails" type="Node2D" parent="Character" unique_id=805665382]
 visible = false
@@ -2853,9 +2855,11 @@ offset = Vector2(-5, -44)
 hframes = 36
 vframes = 11
 frame = 36
+metadata/_edit_lock_ = true
 
 [node name="Papa_Shadow" type="Node2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=1235909948]
 show_behind_parent = true
+metadata/_edit_lock_ = true
 
 [node name="Shadow" type="Sprite2D" parent="Character/Papa_Sprite/Runner_Sprite/Papa_Shadow" unique_id=795088438]
 self_modulate = Color(1, 1, 1, 0.12941177)
@@ -2864,20 +2868,25 @@ position = Vector2(-7, 1)
 rotation = 0.17453292
 texture = ExtResource("5_3pclx")
 offset = Vector2(7, 0)
+metadata/_edit_lock_ = true
 
 [node name="Collider_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=2058946939]
 visible = false
+metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Collider_Area" unique_id=825152419]
 rotation = -1.0471976
 shape = SubResource("CapsuleShape2D_rjpof")
 disabled = true
+metadata/_edit_lock_ = true
 
 [node name="Vision_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=929364484]
 visible = false
+metadata/_edit_lock_ = true
 
 [node name="Vision" type="CollisionPolygon2D" parent="Character/Papa_Sprite/Runner_Sprite/Vision_Area" unique_id=1312714900]
 polygon = PackedVector2Array(-159, -101, -65, -135, 69, -139, 185, -109, 550, 16, 587, 67, 598, 133, 568, 203, 496, 268, 381, 324, 232, 341, 83, 309, -173, 114, -239, 57, -250, 1, -225, -47)
+metadata/_edit_lock_ = true
 
 [node name="Cam" type="Camera2D" parent="Character" unique_id=1828297682]
 position = Vector2(-480, -270)
@@ -2902,6 +2911,7 @@ libraries/ = SubResource("AnimationLibrary_td8gx")
 
 [node name="Sound" type="Node2D" parent="." unique_id=2112401329]
 visible = false
+metadata/_edit_lock_ = true
 
 [node name="Foot_Step_02" type="AudioStreamPlayer" parent="Sound" unique_id=1689604947]
 stream = ExtResource("13_ifvtu")

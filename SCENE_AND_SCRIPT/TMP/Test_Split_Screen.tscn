@@ -36,7 +36,6 @@
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="32_lx2en"]
 [ext_resource type="Shader" uid="uid://crfc2g072t77" path="res://SHADER/Blur.gdshader" id="32_sf4qo"]
 [ext_resource type="Script" uid="uid://d2u0m7lhl07qk" path="res://SCENE_AND_SCRIPT/TMP/Info_Win_Lose.gd" id="32_v6mht"]
-[ext_resource type="PackedScene" uid="uid://f84754sgk1nd" path="res://SCENE_AND_SCRIPT/Music.tscn" id="33_5ttrv"]
 [ext_resource type="Texture2D" uid="uid://cutec7wipswh2" path="res://IMAGE/MISC/Title_Gradients.png" id="33_a4yp3"]
 [ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="33_ybkus"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="34_v6mht"]
@@ -779,14 +778,6 @@ size_flags_vertical = 4
 texture = SubResource("GradientTexture2D_up2n3")
 stretch_mode = 4
 metadata/_edit_lock_ = true
-
-[node name="ATTENTION" type="Label" parent="BG_SubViewport/Scene_BG" unique_id=532758851]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-text = "Ce fond doit faire la taille de la zone de jeu plus les marges.
-Il est quasiment certain que cette solution n'est pas la bonne car la taille de la zone de course va changer avec les glissements de colonnes et lignes."
 
 [node name="BG" type="Node2D" parent="BG_SubViewport" unique_id=91550360]
 position = Vector2(-447, -232.5)
@@ -1588,6 +1579,7 @@ autoplay = true
 bus = &"FX_WET"
 
 [node name="Portraits" parent="Frames" unique_id=461730405 instance=ExtResource("40_sf4qo")]
+visible = false
 offset_left = 240.0
 offset_top = 135.0
 offset_right = 240.0
@@ -1602,10 +1594,4 @@ volume_db = -15.0
 autoplay = true
 bus = &"FX_WET"
 
-[node name="Music" parent="." unique_id=524227096 instance=ExtResource("33_5ttrv")]
-
-[node name="Music" parent="Music" index="1" unique_id=2025180216]
-autoplay = true
-
 [editable path="Runners/Top_Runners/Left_Runner/Runner_SubViewport/Runner"]
-[editable path="Music"]

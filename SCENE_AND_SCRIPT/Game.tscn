@@ -1,0 +1,1169 @@
+[gd_scene format=3 uid="uid://dufv824xcbi7c"]
+
+[ext_resource type="Script" uid="uid://jda3iip3f7fn" path="res://SCENE_AND_SCRIPT/TMP/Test_Split_Screen.gd" id="1_4dsww"]
+[ext_resource type="Shader" uid="uid://bw1rtxnpr4o0b" path="res://SHADER/Pixelisation.gdshader" id="2_1luj4"]
+[ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="2_4dsww"]
+[ext_resource type="Shader" uid="uid://djvm4hdir6bn0" path="res://SHADER/Invert_Colors.gdshader" id="3_rlifm"]
+[ext_resource type="Shader" uid="uid://cw8pro7ug7hfy" path="res://SHADER/Shake.gdshader" id="4_mhpl2"]
+[ext_resource type="Shader" uid="uid://dlwdh275codsc" path="res://SHADER/Change_Colors.gdshader" id="5_8mbax"]
+[ext_resource type="Shader" uid="uid://crfc2g072t77" path="res://SHADER/Blur.gdshader" id="6_hihx7"]
+[ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="7_qkdav"]
+[ext_resource type="Texture2D" uid="uid://cutec7wipswh2" path="res://IMAGE/MISC/Title_Gradients.png" id="9_1y105"]
+[ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="10_w61ia"]
+[ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="11_qmfpm"]
+[ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="12_a16rd"]
+[ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="13_85jel"]
+[ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="14_l8g7l"]
+[ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="15_jmt5m"]
+[ext_resource type="PackedScene" uid="uid://3u5u3tfo43n" path="res://SCENE_AND_SCRIPT/Portraits.tscn" id="16_g5vlg"]
+[ext_resource type="PackedScene" uid="uid://f84754sgk1nd" path="res://SCENE_AND_SCRIPT/Music.tscn" id="17_h5gqv"]
+
+[sub_resource type="Environment" id="Environment_w5jul"]
+background_mode = 3
+tonemap_white = 3.6
+glow_enabled = true
+glow_levels/2 = 1.25
+glow_levels/4 = 1.0
+glow_normalized = true
+glow_intensity = 2.0
+glow_strength = 0.25
+glow_bloom = 0.5
+glow_hdr_threshold = 1.1
+glow_hdr_scale = 0.0
+glow_hdr_luminance_cap = 0.1
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1luj4"]
+gradient = ExtResource("2_4dsww")
+width = 480
+height = 270
+use_hdr = true
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nboss"]
+shader = ExtResource("2_1luj4")
+shader_parameter/pixelation = 0.010000000475
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1gyup"]
+shader = ExtResource("3_rlifm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2l4bx"]
+shader = ExtResource("4_mhpl2")
+shader_parameter/hit_effect = 1.0
+shader_parameter/shake_intensity = 7.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qp1y0"]
+shader = ExtResource("5_8mbax")
+shader_parameter/saturation = 2.0
+shader_parameter/value = 1.0
+shader_parameter/alpha = 1.0
+shader_parameter/interval = 0.25000000861512
+shader_parameter/duration = 0.750000035625
+shader_parameter/min_hue_shift_deg = 60.00000285
+shader_parameter/max_hue_shift_deg = 180.00000855
+shader_parameter/min_double_offset_px = 2.000000095
+shader_parameter/max_double_offset_px = 8.00000038
+shader_parameter/double_strength = 0.400000019
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eou1j"]
+shader = ExtResource("6_hihx7")
+shader_parameter/change_interval = 0.75
+shader_parameter/blur_min = 2
+shader_parameter/blur_max = 10
+shader_parameter/blur_strength = 0.6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkbw3"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lx2en"]
+shader = ExtResource("6_hihx7")
+shader_parameter/change_interval = 0.75
+shader_parameter/blur_min = 2
+shader_parameter/blur_max = 10
+shader_parameter/blur_strength = 0.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tsfvn"]
+shader = ExtResource("6_hihx7")
+shader_parameter/change_interval = 0.75
+shader_parameter/blur_min = 2
+shader_parameter/blur_max = 10
+shader_parameter/blur_strength = 0.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ilduf"]
+shader = ExtResource("6_hihx7")
+shader_parameter/change_interval = 0.75000003236512
+shader_parameter/blur_min = 2
+shader_parameter/blur_max = 10
+shader_parameter/blur_strength = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fe2l5"]
+shader = ExtResource("10_w61ia")
+shader_parameter/same_width_lines_count = 17.237
+shader_parameter/same_width_change_per_sec = 0.40000001574012
+shader_parameter/glitch_change_per_sec = 7.50000030875
+shader_parameter/threshold = 0.499999988824
+shader_parameter/strength = 0.30000001192093
+shader_parameter/glitch_blend = 0.8499999810008
+
+[sub_resource type="Animation" id="Animation_chp44"]
+resource_name = "Glitchy_Sound"
+length = 8.333337
+loop_mode = 1
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glitches/Glitch_Sound")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_qmfpm")
+}, {
+"end_offset": 0.003817588,
+"start_offset": 0.0,
+"stream": ExtResource("12_a16rd")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_85jel")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("14_l8g7l")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_85jel")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_a16rd")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_a16rd")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_qmfpm")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_85jel")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_a16rd")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("14_l8g7l")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_85jel")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_qmfpm")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("14_l8g7l")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_a16rd")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_a16rd")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_qmfpm")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_85jel")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_a16rd")
+}, {
+"end_offset": 0.003817588,
+"start_offset": 0.0,
+"stream": ExtResource("12_a16rd")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_85jel")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("14_l8g7l")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_85jel")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_a16rd")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_a16rd")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_qmfpm")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_85jel")
+}],
+"times": PackedFloat32Array(0, 0.23333333, 0.3, 0.96666664, 1.1, 1.2666667, 1.7, 1.8, 2.3333333, 2.4666667, 2.8666666, 3.2333333, 3.6666667, 3.8, 4.4666667, 4.866667, 5.033334, 5.566667, 5.700001, 5.830103, 5.8967695, 6.4666667, 6.6967697, 6.863436, 7.066667, 7.133333, 7.7666674)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4jeej"]
+_data = {
+&"Glitchy_Sound": SubResource("Animation_chp44")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sf4qo"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Animation" id="Animation_rbpew"]
+resource_name = "Blink"
+length = 1.0000033
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Alarm")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("15_jmt5m")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_qq84j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gk5t3"]
+_data = {
+&"Blink": SubResource("Animation_rbpew"),
+&"RESET": SubResource("Animation_qq84j")
+}
+
+[sub_resource type="Animation" id="Animation_nkbw3"]
+resource_name = "Blink"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.8333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Alarm")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("15_jmt5m")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Bugs_02/Death:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.8333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../Bugs_03/Death:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.8333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../Bugs_04/Death:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.8333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eou1j"]
+_data = {
+&"Blink": SubResource("Animation_nkbw3")
+}
+
+[node name="Game" type="Node2D" unique_id=1997447785]
+script = ExtResource("1_4dsww")
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2070283447]
+environment = SubResource("Environment_w5jul")
+
+[node name="BG_SubViewport" type="SubViewport" parent="." unique_id=469166842]
+transparent_bg = true
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+size = Vector2i(480, 270)
+
+[node name="Runners" type="VBoxContainer" parent="." unique_id=1026385380]
+custom_minimum_size = Vector2(960, 540)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+metadata/_edit_lock_ = true
+
+[node name="Top_Runners" type="HBoxContainer" parent="Runners" unique_id=1544766428]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+metadata/_edit_lock_ = true
+
+[node name="Left_Runner" type="SubViewportContainer" parent="Runners/Top_Runners" unique_id=616447961]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Runner_SubViewport" type="SubViewport" parent="Runners/Top_Runners/Left_Runner" unique_id=396900229]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+msaa_2d = 3
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="BG" type="Control" parent="Runners/Top_Runners/Left_Runner/Runner_SubViewport" unique_id=763920532]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Scene_BG" type="TextureRect" parent="Runners/Top_Runners/Left_Runner/Runner_SubViewport/BG" unique_id=1420492116]
+z_index = -1000
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_1luj4")
+stretch_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Right_Runner" type="SubViewportContainer" parent="Runners/Top_Runners" unique_id=1099668457]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Runner_SubViewport" type="SubViewport" parent="Runners/Top_Runners/Right_Runner" unique_id=442975171]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+msaa_2d = 3
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="BG" type="Control" parent="Runners/Top_Runners/Right_Runner/Runner_SubViewport" unique_id=1211026115]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Scene_BG" type="TextureRect" parent="Runners/Top_Runners/Right_Runner/Runner_SubViewport/BG" unique_id=1225181667]
+z_index = -1000
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_1luj4")
+stretch_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Bottom_Runners" type="HBoxContainer" parent="Runners" unique_id=2103010928]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+metadata/_edit_lock_ = true
+
+[node name="Left_Runner" type="SubViewportContainer" parent="Runners/Bottom_Runners" unique_id=1849113146]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Runner_SubViewport" type="SubViewport" parent="Runners/Bottom_Runners/Left_Runner" unique_id=1754591463]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+msaa_2d = 3
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="BG" type="Control" parent="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport" unique_id=1925940596]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Scene_BG" type="TextureRect" parent="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport/BG" unique_id=1305835731]
+z_index = -1000
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_1luj4")
+stretch_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Right_Runner" type="SubViewportContainer" parent="Runners/Bottom_Runners" unique_id=2074751218]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Runner_SubViewport" type="SubViewport" parent="Runners/Bottom_Runners/Right_Runner" unique_id=2031024510]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+msaa_2d = 3
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="BG" type="Control" parent="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport" unique_id=1619000500]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Scene_BG" type="TextureRect" parent="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport/BG" unique_id=1897322094]
+z_index = -1000
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_1luj4")
+stretch_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="Frames" type="CanvasLayer" parent="." unique_id=2092233837]
+metadata/_edit_lock_ = true
+
+[node name="Bugs_01" type="Control" parent="Frames" unique_id=434706610]
+visible = false
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_lock_ = true
+
+[node name="Pixelate" type="ColorRect" parent="Frames/Bugs_01" unique_id=1103788109]
+visible = false
+material = SubResource("ShaderMaterial_nboss")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Invert_Colors" type="ColorRect" parent="Frames/Bugs_01" unique_id=1535973312]
+visible = false
+material = SubResource("ShaderMaterial_1gyup")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Shake" type="ColorRect" parent="Frames/Bugs_01" unique_id=1250349596]
+visible = false
+material = SubResource("ShaderMaterial_2l4bx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Change_Colors" type="ColorRect" parent="Frames/Bugs_01" unique_id=1519676364]
+visible = false
+material = SubResource("ShaderMaterial_qp1y0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Blur_Glitches" type="ColorRect" parent="Frames/Bugs_01" unique_id=504267194]
+visible = false
+material = SubResource("ShaderMaterial_eou1j")
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(0.3882353, 0.1882353, 0.64705884, 1)
+metadata/_edit_lock_ = true
+
+[node name="Death" type="Control" parent="Frames/Bugs_01" unique_id=869063107]
+visible = false
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_lock_ = true
+
+[node name="Message" type="RichTextLabel" parent="Frames/Bugs_01/Death" unique_id=795550649]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.5
+offset_top = -15.0
+offset_right = 165.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.6431373, 0.63529414, 0.8745098, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("7_qkdav")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
+bbcode_enabled = true
+text = "F!n[color=#ed7252]e[/color] di line@: [color=#ed7252]u7ènt[/color]e 3L[color=#ed7252]im!natø[/color]!"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bugs_02" type="Control" parent="Frames" unique_id=592369790]
+visible = false
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 480.0
+offset_right = 960.0
+offset_bottom = 270.0
+metadata/_edit_lock_ = true
+
+[node name="Pixelate" type="ColorRect" parent="Frames/Bugs_02" unique_id=1488799779]
+visible = false
+material = SubResource("ShaderMaterial_nboss")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Invert_Colors" type="ColorRect" parent="Frames/Bugs_02" unique_id=356442975]
+visible = false
+material = SubResource("ShaderMaterial_1gyup")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Shake" type="ColorRect" parent="Frames/Bugs_02" unique_id=1966631630]
+visible = false
+material = SubResource("ShaderMaterial_2l4bx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Change_Colors" type="ColorRect" parent="Frames/Bugs_02" unique_id=1560804202]
+visible = false
+material = SubResource("ShaderMaterial_qp1y0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Blur_Glitches" type="ColorRect" parent="Frames/Bugs_02" unique_id=376458958]
+visible = false
+material = SubResource("ShaderMaterial_lx2en")
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(0.7529412, 0.50980395, 0.078431375, 1)
+metadata/_edit_lock_ = true
+
+[node name="Death" type="Control" parent="Frames/Bugs_02" unique_id=692485606]
+visible = false
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_lock_ = true
+
+[node name="Message" type="RichTextLabel" parent="Frames/Bugs_02/Death" unique_id=56449001]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.5
+offset_top = -15.0
+offset_right = 165.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.6431373, 0.63529414, 0.8745098, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("7_qkdav")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
+bbcode_enabled = true
+text = "F!n[color=#ed7252]e[/color] di line@: [color=#ed7252]u7ènt[/color]e 3L[color=#ed7252]im!natø[/color]!"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bugs_03" type="Control" parent="Frames" unique_id=640770387]
+visible = false
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 270.0
+offset_right = 480.0
+offset_bottom = 540.0
+metadata/_edit_lock_ = true
+
+[node name="Pixelate" type="ColorRect" parent="Frames/Bugs_03" unique_id=1892726232]
+visible = false
+material = SubResource("ShaderMaterial_nboss")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Invert_Colors" type="ColorRect" parent="Frames/Bugs_03" unique_id=1743729148]
+visible = false
+material = SubResource("ShaderMaterial_1gyup")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Shake" type="ColorRect" parent="Frames/Bugs_03" unique_id=340673098]
+visible = false
+material = SubResource("ShaderMaterial_2l4bx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Change_Colors" type="ColorRect" parent="Frames/Bugs_03" unique_id=1403450542]
+visible = false
+material = SubResource("ShaderMaterial_qp1y0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Blur_Glitches" type="ColorRect" parent="Frames/Bugs_03" unique_id=331912418]
+visible = false
+material = SubResource("ShaderMaterial_tsfvn")
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(0.16470589, 0.5529412, 0.8352941, 1)
+metadata/_edit_lock_ = true
+
+[node name="Death" type="Control" parent="Frames/Bugs_03" unique_id=1435042299]
+visible = false
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_lock_ = true
+
+[node name="Message" type="RichTextLabel" parent="Frames/Bugs_03/Death" unique_id=1753743630]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.5
+offset_top = -15.0
+offset_right = 165.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.6431373, 0.63529414, 0.8745098, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("7_qkdav")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
+bbcode_enabled = true
+text = "F!n[color=#ed7252]e[/color] di line@: [color=#ed7252]u7ènt[/color]e 3L[color=#ed7252]im!natø[/color]!"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bugs_04" type="Control" parent="Frames" unique_id=189187206]
+visible = false
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 480.0
+offset_top = 270.0
+offset_right = 960.0
+offset_bottom = 540.0
+metadata/_edit_lock_ = true
+
+[node name="Pixelate" type="ColorRect" parent="Frames/Bugs_04" unique_id=1961528873]
+visible = false
+material = SubResource("ShaderMaterial_nboss")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Invert_Colors" type="ColorRect" parent="Frames/Bugs_04" unique_id=1249065901]
+visible = false
+material = SubResource("ShaderMaterial_1gyup")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Shake" type="ColorRect" parent="Frames/Bugs_04" unique_id=1147924587]
+visible = false
+material = SubResource("ShaderMaterial_2l4bx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Change_Colors" type="ColorRect" parent="Frames/Bugs_04" unique_id=512838475]
+visible = false
+material = SubResource("ShaderMaterial_qp1y0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Blur_Glitches" type="ColorRect" parent="Frames/Bugs_04" unique_id=2100009688]
+visible = false
+material = SubResource("ShaderMaterial_ilduf")
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(0.49019608, 0.74509805, 0.27058825, 1)
+metadata/_edit_lock_ = true
+
+[node name="Death" type="Control" parent="Frames/Bugs_04" unique_id=917885689]
+visible = false
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_lock_ = true
+
+[node name="Message" type="RichTextLabel" parent="Frames/Bugs_04/Death" unique_id=414195370]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.5
+offset_top = -15.0
+offset_right = 165.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.6431373, 0.63529414, 0.8745098, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("7_qkdav")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
+bbcode_enabled = true
+text = "F!n[color=#ed7252]e[/color] di line@: [color=#ed7252]u7ènt[/color]e 3L[color=#ed7252]im!natø[/color]!"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Black_Frames" type="Control" parent="Frames" unique_id=1686618486]
+layout_mode = 3
+anchors_preset = 0
+metadata/_edit_lock_ = true
+
+[node name="Horizontal" type="Line2D" parent="Frames/Black_Frames" unique_id=1352771278]
+position = Vector2(0, 270)
+points = PackedVector2Array(0, 0, 960, 0)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Vertical" type="Line2D" parent="Frames/Black_Frames" unique_id=864723986]
+position = Vector2(480, 0)
+points = PackedVector2Array(0, 0, 0, 540)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Info_Win_Lose_Overlay" type="Control" parent="Frames" unique_id=1735657927]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 540.0
+metadata/_edit_lock_ = true
+
+[node name="Win" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=2073683163]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Info_Win_Message" type="Label" parent="Frames/Info_Win_Lose_Overlay/Win" unique_id=2047185897]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529, 0.68498176, 0.97, 0.49803922)
+theme_override_constants/line_spacing = -24
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 17
+theme_override_constants/shadow_outline_size = 34
+theme_override_fonts/font = ExtResource("7_qkdav")
+theme_override_font_sizes/font_size = 100
+text = "erЯ0r3 Ao4:
+vi7t0rIa
+nøN
+4ù7oriZz47a…"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Cache_Info_Win_Message" type="Label" parent="Frames/Info_Win_Lose_Overlay/Win" unique_id=7931597]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_constants/line_spacing = -24
+theme_override_fonts/font = ExtResource("7_qkdav")
+theme_override_font_sizes/font_size = 100
+text = "erЯ0r3 Ao4:
+vi7t0rIa
+nøN
+4ù7oriZz47a…"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Title_Gradients" type="Sprite2D" parent="Frames/Info_Win_Lose_Overlay/Win/Cache_Info_Win_Message" unique_id=1007982414]
+self_modulate = Color(0.969, 1.215, 1.892, 0.863)
+position = Vector2(480, 270)
+texture = ExtResource("9_1y105")
+offset = Vector2(0, 30)
+metadata/_edit_lock_ = true
+
+[node name="Lose" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=1658104479]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Info_Lose_Message" type="Label" parent="Frames/Info_Win_Lose_Overlay/Lose" unique_id=2110242301]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529, 0.68498176, 0.97, 0.49803922)
+theme_override_constants/line_spacing = -24
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 17
+theme_override_constants/shadow_outline_size = 34
+theme_override_fonts/font = ExtResource("7_qkdav")
+theme_override_font_sizes/font_size = 100
+text = "Ultim° uTent3
+elim!na7ø.
+
+pЯ_véd!biLe..."
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Cache_Info_Lose_Message" type="Label" parent="Frames/Info_Win_Lose_Overlay/Lose" unique_id=537761493]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_constants/line_spacing = -24
+theme_override_fonts/font = ExtResource("7_qkdav")
+theme_override_font_sizes/font_size = 100
+text = "Ultim° uTent3
+elim!na7ø.
+
+pЯ_véd!biLe..."
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Title_Gradients" type="Sprite2D" parent="Frames/Info_Win_Lose_Overlay/Lose/Cache_Info_Lose_Message" unique_id=1078891476]
+self_modulate = Color(0.969, 1.215, 1.892, 0.863)
+position = Vector2(480, 270)
+texture = ExtResource("9_1y105")
+offset = Vector2(0, 30)
+metadata/_edit_lock_ = true
+
+[node name="Glitches" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=1057999679]
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 540.0
+metadata/_edit_lock_ = true
+
+[node name="Shader" type="ColorRect" parent="Frames/Info_Win_Lose_Overlay/Glitches" unique_id=687197275]
+material = SubResource("ShaderMaterial_fe2l5")
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 418.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Glitch_Sound" type="AudioStreamPlayer" parent="Frames/Info_Win_Lose_Overlay/Glitches" unique_id=243452642]
+volume_db = -15.0
+bus = &"FX_DRY"
+
+[node name="Sound_Animation" type="AnimationPlayer" parent="Frames/Info_Win_Lose_Overlay/Glitches" unique_id=1693356571]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_4jeej")
+
+[node name="Info_Retry" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=1218435428]
+visible = false
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 540.0
+metadata/_edit_lock_ = true
+
+[node name="Message" type="RichTextLabel" parent="Frames/Info_Win_Lose_Overlay/Info_Retry" unique_id=1996716773]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -289.0
+offset_top = -60.0
+offset_right = 289.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("7_qkdav")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_sf4qo")
+bbcode_enabled = true
+text = "[color=#cb5030]A[/color] p€r [color=#70cb10]u[/color]n@ nµovà [color=#cb5030]u[color=#70cb10]mi[/color]l!@zi0ne[/color]… € pe® !l m[color=#cb5030]io d[/color][color=#70cb10]ivèrt!m€nto[/color]."
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Animation_Retry" type="AnimationPlayer" parent="Frames/Info_Win_Lose_Overlay/Info_Retry" unique_id=451605478]
+libraries/ = SubResource("AnimationLibrary_gk5t3")
+
+[node name="Alarm" type="AudioStreamPlayer" parent="Frames/Info_Win_Lose_Overlay/Info_Retry" unique_id=403269282]
+volume_db = -15.0
+autoplay = true
+bus = &"FX_WET"
+
+[node name="Portraits" parent="Frames" unique_id=461730405 instance=ExtResource("16_g5vlg")]
+visible = false
+offset_left = 240.0
+offset_top = 135.0
+offset_right = 240.0
+offset_bottom = 135.0
+
+[node name="Animation_Overlays" type="AnimationPlayer" parent="Frames" unique_id=1392428684]
+root_node = NodePath("../Bugs_01/Death")
+libraries/ = SubResource("AnimationLibrary_eou1j")
+
+[node name="Alarm" type="AudioStreamPlayer" parent="Frames" unique_id=202204808]
+volume_db = -15.0
+autoplay = true
+bus = &"FX_WET"
+
+[node name="Music" parent="." unique_id=524227096 instance=ExtResource("17_h5gqv")]
