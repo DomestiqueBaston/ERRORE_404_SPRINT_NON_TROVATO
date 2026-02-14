@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdhbt0m0qdwsk"
-path="res://.godot/imported/Dash_Trail_Gradient_Anim_1.png-0b2e50a5094977e21090d1a4c98f804d.ctex"
+uid="uid://bt34n8lsfm4yq"
+path="res://.godot/imported/Dash_Trail_Gradient_Anim_3.png-7b428c5edb6578f62b178e72105e2be9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/RUNNER/Dash_Trail_Gradient_Anim_1.png"
-dest_files=["res://.godot/imported/Dash_Trail_Gradient_Anim_1.png-0b2e50a5094977e21090d1a4c98f804d.ctex"]
+source_file="res://TRASH/Dash_Trail_Gradient_Anim_3.png"
+dest_files=["res://.godot/imported/Dash_Trail_Gradient_Anim_3.png-7b428c5edb6578f62b178e72105e2be9.ctex"]
 
 [params]
 
