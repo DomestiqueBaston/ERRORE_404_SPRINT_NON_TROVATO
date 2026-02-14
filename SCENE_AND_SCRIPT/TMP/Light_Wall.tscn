@@ -31,7 +31,6 @@ metadata/_snap_enabled = true
 [sub_resource type="Animation" id="Animation_5tnv1"]
 resource_name = "Drawing_A_Wall"
 length = 1.9666702
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -212,7 +211,6 @@ metadata/_edit_lock_ = true
 
 [node name="What_It_Should_Look_Like" type="AnimationPlayer" parent="." unique_id=594533283]
 libraries/ = SubResource("AnimationLibrary_jdkuv")
-autoplay = &"Drawing_A_Wall"
 
 [node name="Disappear_Animation" type="AnimationPlayer" parent="." unique_id=1374559120]
 libraries/ = SubResource("AnimationLibrary_sbirr")

@@ -30,7 +30,6 @@
 [ext_resource type="Shader" uid="uid://cw8pro7ug7hfy" path="res://SHADER/Shake.gdshader" id="27_5t0h1"]
 [ext_resource type="PackedScene" uid="uid://p751chhvtga6" path="res://SCENE_AND_SCRIPT/Man_A.tscn" id="27_ftky1"]
 [ext_resource type="Shader" uid="uid://djvm4hdir6bn0" path="res://SHADER/Invert_Colors.gdshader" id="27_myj71"]
-[ext_resource type="PackedScene" uid="uid://djtsckm76aeau" path="res://SCENE_AND_SCRIPT/Light_Wall.tscn" id="28_4jeej"]
 [ext_resource type="PackedScene" uid="uid://briu2vy1xb35c" path="res://SCENE_AND_SCRIPT/Man_B.tscn" id="28_fe2l5"]
 [ext_resource type="Shader" uid="uid://dlwdh275codsc" path="res://SHADER/Change_Colors.gdshader" id="28_myj71"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="31_nkbw3"]
@@ -923,10 +922,6 @@ render_target_update_mode = 4
 
 [node name="Woman_A" parent="Runners/Top_Runners/Left_Runner/Runner_SubViewport" unique_id=1635856392 instance=ExtResource("25_xu4sf")]
 z_index = 1
-
-[node name="Light_Wall" parent="Runners/Top_Runners/Left_Runner/Runner_SubViewport" unique_id=2109438449 instance=ExtResource("28_4jeej")]
-position = Vector2(-58, 62)
-metadata/_edit_lock_ = true
 
 [node name="Right_Runner" type="SubViewportContainer" parent="Runners/Top_Runners" unique_id=1099668457]
 custom_minimum_size = Vector2(480, 270)
