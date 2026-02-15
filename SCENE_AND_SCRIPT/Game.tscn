@@ -8,7 +8,7 @@
 [ext_resource type="Shader" uid="uid://dlwdh275codsc" path="res://SHADER/Change_Colors.gdshader" id="5_8mbax"]
 [ext_resource type="Shader" uid="uid://crfc2g072t77" path="res://SHADER/Blur.gdshader" id="6_hihx7"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="7_qkdav"]
-[ext_resource type="Texture2D" uid="uid://cutec7wipswh2" path="res://IMAGE/MISC/Title_Gradients.png" id="9_1y105"]
+[ext_resource type="Texture2D" uid="uid://cutec7wipswh2" path="res://IMAGE/MISC/Title_Gradient.png" id="9_1y105"]
 [ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="10_w61ia"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="11_qmfpm"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="12_a16rd"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cutec7wipswh2"
-path="res://.godot/imported/Title_Gradients.png-6c021b85531819341d82f22efe208144.ctex"
+uid="uid://c1htfdg5reygb"
+path="res://.godot/imported/Credits_Gradient.png-e22c366025eca25841b5e20c37bdbd61.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/MISC/Title_Gradients.png"
-dest_files=["res://.godot/imported/Title_Gradients.png-6c021b85531819341d82f22efe208144.ctex"]
+source_file="res://IMAGE/MISC/Credits_Gradient.png"
+dest_files=["res://.godot/imported/Credits_Gradient.png-e22c366025eca25841b5e20c37bdbd61.ctex"]
 
 [params]
 

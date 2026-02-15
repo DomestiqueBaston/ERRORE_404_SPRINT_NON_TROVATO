@@ -123,7 +123,8 @@ Préambule :
 	• À chaque chargement de scène (sauf contre-indication), on joue 1 fois Music/Bang (dans Music.tscn).
 	• Les sons de validation (Validation) et d’annulation (Cancel) sont dans la scène UI_Sounds.tscn.
 	• Par défaut, Intro et Music sont en boucle, pas besoin de le dire dans le code théoriquement !
-	• Dans les scènes, des choses sont mises en place uniquement pour voir comment ça fait (je pense notamment à certains (bouts de) scripts, aux musiques ou sons d’UI qui devraient plus être dans des autoloads ou quoi, etc…).
+	• En permanence on aura accès au bouton Quit (Quit_Button_tscn). J’aimerais que le bouton qui sert à passer de plein écran à fenêtré puisse aussi servir à quitter (Quit_Button.tscn) sur une pression longue (voir dans la scène pour les délais). Pour le moment, la maquette ne fait pas ça et utilise un autre bouton pour quitter (je n’arrivais pas à le maquetter)… 
+	• En gros, dans les scènes, des choses sont mises en place uniquement pour voir comment ça fait (je pense notamment à certains (bouts de) scripts, aux musiques ou sons d’UI qui, je suppose, devraient plus être dans des autoloads ou quoi, etc…).
 
 Avant le jeu :
 	1. Chargement de l’écran titre Title.tscn (l’overlay qui dit de presser un bouton, peu importe lequel) apparaît au bout de 15’’ si je joueur n’a rien fait jusque là). À partir du démarrage, Music/Intro joue en boucle.

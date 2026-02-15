@@ -36,13 +36,14 @@
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="32_lx2en"]
 [ext_resource type="Shader" uid="uid://crfc2g072t77" path="res://SHADER/Blur.gdshader" id="32_sf4qo"]
 [ext_resource type="Script" uid="uid://d2u0m7lhl07qk" path="res://SCENE_AND_SCRIPT/TMP/Info_Win_Lose.gd" id="32_v6mht"]
-[ext_resource type="Texture2D" uid="uid://cutec7wipswh2" path="res://IMAGE/MISC/Title_Gradients.png" id="33_a4yp3"]
+[ext_resource type="Texture2D" uid="uid://cutec7wipswh2" path="res://IMAGE/MISC/Title_Gradient.png" id="33_a4yp3"]
 [ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="33_ybkus"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="34_v6mht"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="35_sf4qo"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="36_gk5t3"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="37_ftky1"]
 [ext_resource type="PackedScene" uid="uid://3u5u3tfo43n" path="res://SCENE_AND_SCRIPT/Portraits.tscn" id="40_sf4qo"]
+[ext_resource type="PackedScene" uid="uid://bs6lfs8h7kibb" path="res://SCENE_AND_SCRIPT/Quit_Button.tscn" id="44_fe2l5"]
 
 [sub_resource type="Environment" id="Environment_w5jul"]
 background_mode = 3
@@ -1590,3 +1591,5 @@ libraries/ = SubResource("AnimationLibrary_eou1j")
 volume_db = -15.0
 autoplay = true
 bus = &"FX_WET"
+
+[node name="Quit_Button" parent="Frames" unique_id=1295710875 instance=ExtResource("44_fe2l5")]

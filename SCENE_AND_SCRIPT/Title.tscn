@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b8x0ihnlq10s2" path="res://IMAGE/MISC/Large_Shadow.png" id="1_bnvrm"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="3_aa5oj"]
-[ext_resource type="Texture2D" uid="uid://cutec7wipswh2" path="res://IMAGE/MISC/Title_Gradients.png" id="4_jqsr3"]
+[ext_resource type="Texture2D" uid="uid://cutec7wipswh2" path="res://IMAGE/MISC/Title_Gradient.png" id="4_jqsr3"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="5_heyj7"]
 [ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="6_ugatv"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="10_pj754"]
@@ -11,20 +11,6 @@
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="14_aa5oj"]
 [ext_resource type="Script" uid="uid://dd6brr6ksot15" path="res://SCENE_AND_SCRIPT/Title_Alert.gd" id="14_ykdlm"]
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="15_ykdlm"]
-
-[sub_resource type="Environment" id="Environment_n8ll0"]
-background_mode = 3
-tonemap_white = 3.6
-glow_enabled = true
-glow_levels/2 = 1.25
-glow_levels/4 = 1.0
-glow_normalized = true
-glow_intensity = 2.0
-glow_strength = 0.25
-glow_bloom = 0.5
-glow_hdr_threshold = 1.1
-glow_hdr_scale = 0.0
-glow_hdr_luminance_cap = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bnvrm"]
 shader = ExtResource("6_ugatv")
@@ -279,9 +265,6 @@ _data = {
 [node name="Title" type="Node2D" unique_id=582724467]
 metadata/_edit_lock_ = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1207513444]
-environment = SubResource("Environment_n8ll0")
-
 [node name="White" type="ColorRect" parent="." unique_id=806878626]
 offset_right = 960.0
 offset_bottom = 540.0
@@ -328,6 +311,7 @@ non
 trovato!"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Cache" type="Label" parent="Graphics/Game_Name" unique_id=1192637321]
 clip_children = 2
@@ -348,11 +332,13 @@ non
 trovato!"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Title_Gradients" type="Sprite2D" parent="Graphics/Game_Name/Cache" unique_id=1732612865]
 self_modulate = Color(0.969, 1.215, 1.892, 0.863)
 position = Vector2(480, 270)
 texture = ExtResource("4_jqsr3")
+metadata/_edit_lock_ = true
 
 [node name="Glitches" type="Control" parent="Graphics" unique_id=642320963]
 layout_mode = 3

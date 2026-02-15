@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://bs6lfs8h7kibb"]
+
+[ext_resource type="Texture2D" uid="uid://dntggrgsj0hck" path="res://IMAGE/MISC/Timer_Bottom.png" id="1_ts8rr"]
+[ext_resource type="Texture2D" uid="uid://cgus6d8llm7p8" path="res://IMAGE/MISC/Timer_Top.png" id="2_888e3"]
+[ext_resource type="Texture2D" uid="uid://ujwxl1dl6h6y" path="res://IMAGE/MISC/Timer.png" id="3_n3c8u"]
+[ext_resource type="Script" uid="uid://bbt0f7cqh233k" path="res://SCENE_AND_SCRIPT/Quit_Button.gd" id="4_lslwb"]
+[ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="5_888e3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3c8u"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Quit_Button" type="Control" unique_id=1295710875]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 923.0
+offset_top = 503.0
+offset_right = 955.0
+offset_bottom = 535.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Progress_Bar" type="TextureProgressBar" parent="." unique_id=1047692277]
+visible = false
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+fill_mode = 4
+texture_under = ExtResource("1_ts8rr")
+texture_over = ExtResource("2_888e3")
+texture_progress = ExtResource("3_n3c8u")
+script = ExtResource("4_lslwb")
+metadata/_edit_lock_ = true
+
+[node name="Info_Start" type="RichTextLabel" parent="Progress_Bar" unique_id=91592957]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -32.0
+offset_right = -21.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("5_888e3")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_n3c8u")
+bbcode_enabled = true
+text = "[color=#70cb10]Q[/color]u![color=#70cb10]7[/color][color=#cb5030]...[/color]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
