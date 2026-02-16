@@ -11,6 +11,7 @@
 [ext_resource type="Shader" uid="uid://rfstm5ejtwi3" path="res://SHADER/Reflection.gdshader" id="9_e0phu"]
 [ext_resource type="Script" uid="uid://dd6brr6ksot15" path="res://SCENE_AND_SCRIPT/Title_Alert.gd" id="10_7qrm5"]
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="11_2xpyw"]
+[ext_resource type="PackedScene" uid="uid://bs6lfs8h7kibb" path="res://SCENE_AND_SCRIPT/Quit_Button.tscn" id="12_7vkle"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bnvrm"]
 shader = ExtResource("4_e60u7")
@@ -395,3 +396,9 @@ libraries/ = SubResource("AnimationLibrary_xweb4")
 volume_db = -15.0
 autoplay = true
 bus = &"FX_WET"
+
+[node name="Quit_Button" parent="." unique_id=1295710875 instance=ExtResource("12_7vkle")]
+offset_left = 870.0
+offset_top = 450.0
+offset_right = 960.0
+offset_bottom = 540.0

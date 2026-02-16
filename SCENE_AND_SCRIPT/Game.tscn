@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="14_l8g7l"]
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="15_jmt5m"]
 [ext_resource type="PackedScene" uid="uid://3u5u3tfo43n" path="res://SCENE_AND_SCRIPT/Portraits.tscn" id="16_g5vlg"]
+[ext_resource type="PackedScene" uid="uid://bs6lfs8h7kibb" path="res://SCENE_AND_SCRIPT/Quit_Button.tscn" id="17_1luj4"]
 [ext_resource type="PackedScene" uid="uid://f84754sgk1nd" path="res://SCENE_AND_SCRIPT/Music.tscn" id="17_h5gqv"]
 
 [sub_resource type="Environment" id="Environment_w5jul"]
@@ -1165,5 +1166,11 @@ libraries/ = SubResource("AnimationLibrary_eou1j")
 volume_db = -15.0
 autoplay = true
 bus = &"FX_WET"
+
+[node name="Quit_Button" parent="Frames" unique_id=1295710875 instance=ExtResource("17_1luj4")]
+offset_left = 435.0
+offset_top = 225.0
+offset_right = 525.0
+offset_bottom = 315.0
 
 [node name="Music" parent="." unique_id=524227096 instance=ExtResource("17_h5gqv")]

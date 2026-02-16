@@ -1,7 +1,7 @@
 extends TextureProgressBar
 
 @export var hold_to_show_time := 0.25
-@export var fill_duration := 1.5
+@export var fill_duration := 1.25
 
 var _press_timer := 0.0
 var _fill_timer := 0.0
