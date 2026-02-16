@@ -25,10 +25,8 @@ corner_radius_bottom_left = 4
 [node name="Quit_Button" type="Control" unique_id=1295710875]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 923.0
-offset_top = 503.0
-offset_right = 955.0
-offset_bottom = 535.0
+offset_right = 32.0
+offset_bottom = 32.0
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
@@ -52,7 +50,7 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -96.0
+offset_left = -90.0
 offset_top = -32.0
 offset_right = -21.0
 grow_horizontal = 2
@@ -66,8 +64,9 @@ theme_override_fonts/normal_font = ExtResource("5_888e3")
 theme_override_font_sizes/normal_font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_n3c8u")
 bbcode_enabled = true
-text = "[color=#70cb10]Q[/color]u![color=#70cb10]7[/color][color=#cb5030]...[/color]"
+text = "[color=#70cb10]3[/color]sc[color=#cb5030]i[/color][color=#70cb10]...[/color]"
 fit_content = true
 autowrap_mode = 0
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
+metadata/_edit_lock_ = true
