@@ -1,5 +1,14 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://87w0widytofu"]
 
+[sub_resource type="AudioEffectEQ6" id="AudioEffectEQ6_n8wo2"]
+resource_name = "EQ6"
+band_db/32_hz = -2.5
+band_db/100_hz = -2.5
+band_db/320_hz = 2.5
+band_db/1000_hz = -2.5
+band_db/3200_hz = -2.5
+band_db/10000_hz = 2.5
+
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_g28q7"]
 resource_name = "Reverb"
 damping = 0.33
@@ -7,12 +16,14 @@ hipass = 0.15
 dry = 0.4
 wet = 0.6
 
-[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_n8wo2"]
-resource_name = "Limiter"
-ceiling_db = -1.0
-threshold_db = -3.0
-soft_clip_db = 4.0
-soft_clip_ratio = 4.0
+[sub_resource type="AudioEffectEQ6" id="AudioEffectEQ6_g28q7"]
+resource_name = "EQ6"
+band_db/32_hz = 2.5
+band_db/100_hz = -2.5
+band_db/320_hz = -2.5
+band_db/1000_hz = 2.5
+band_db/3200_hz = -2.5
+band_db/10000_hz = -2.5
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_n8wo2"]
 resource_name = "Reverb"
@@ -22,17 +33,14 @@ hipass = 0.15
 dry = 0.6
 wet = 0.4
 
-[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_g28q7"]
-resource_name = "Limiter"
-ceiling_db = -1.0
-threshold_db = -3.0
-soft_clip_db = 4.0
-soft_clip_ratio = 4.0
-
-[sub_resource type="AudioEffectEQ10" id="AudioEffectEQ10_j3pel"]
-resource_name = "EQ10"
-band_db/31_hz = -60.0
-band_db/62_hz = -20.0
+[sub_resource type="AudioEffectEQ6" id="AudioEffectEQ6_j3pel"]
+resource_name = "EQ6"
+band_db/32_hz = -2.5
+band_db/100_hz = 2.5
+band_db/320_hz = -2.5
+band_db/1000_hz = -2.5
+band_db/3200_hz = 2.5
+band_db/10000_hz = -2.5
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
 resource_name = "Reverb"
@@ -42,50 +50,46 @@ hipass = 0.15
 dry = 0.75
 wet = 0.25
 
-[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_j3pel"]
-resource_name = "Limiter"
-ceiling_db = -1.0
-threshold_db = -3.0
-soft_clip_db = 4.0
-soft_clip_ratio = 4.0
-
 [resource]
-bus/0/bypass_fx = true
-bus/1/name = &"GLOBAL_FX"
+bus/1/name = &"FX_WET"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = 0.0
+bus/1/volume_db = -5.0
 bus/1/send = &"Master"
-bus/2/name = &"FX_WET"
+bus/1/effect/0/effect = SubResource("AudioEffectEQ6_n8wo2")
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectReverb_g28q7")
+bus/1/effect/1/enabled = true
+bus/2/name = &"FX_DRY"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = -5.0
-bus/2/send = &"GLOBAL_FX"
-bus/2/effect/0/effect = SubResource("AudioEffectReverb_g28q7")
+bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectEQ6_g28q7")
 bus/2/effect/0/enabled = true
-bus/2/effect/1/effect = SubResource("AudioEffectLimiter_n8wo2")
-bus/2/effect/1/enabled = false
-bus/3/name = &"FX_DRY"
+bus/2/effect/1/effect = SubResource("AudioEffectReverb_n8wo2")
+bus/2/effect/1/enabled = true
+bus/3/name = &"MUSIC"
 bus/3/solo = false
 bus/3/mute = false
 bus/3/bypass_fx = false
-bus/3/volume_db = -5.0
-bus/3/send = &"GLOBAL_FX"
-bus/3/effect/0/effect = SubResource("AudioEffectReverb_n8wo2")
+bus/3/volume_db = -7.5
+bus/3/send = &"Master"
+bus/3/effect/0/effect = SubResource("AudioEffectEQ6_j3pel")
 bus/3/effect/0/enabled = true
-bus/3/effect/1/effect = SubResource("AudioEffectLimiter_g28q7")
-bus/3/effect/1/enabled = false
-bus/4/name = &"MUSIC"
+bus/3/effect/1/effect = SubResource("AudioEffectReverb_j3pel")
+bus/3/effect/1/enabled = true
+bus/4/name = &"RUNNERS"
 bus/4/solo = false
 bus/4/mute = false
 bus/4/bypass_fx = false
-bus/4/volume_db = -10.0
-bus/4/send = &"Master"
-bus/4/effect/0/effect = SubResource("AudioEffectEQ10_j3pel")
-bus/4/effect/0/enabled = false
-bus/4/effect/1/effect = SubResource("AudioEffectReverb_j3pel")
-bus/4/effect/1/enabled = true
-bus/4/effect/2/effect = SubResource("AudioEffectLimiter_j3pel")
-bus/4/effect/2/enabled = false
+bus/4/volume_db = -5.0
+bus/4/send = &"FX_DRY"
+bus/5/name = &"BONUS_MALUS"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = 0.0
+bus/5/send = &"FX_DRY"

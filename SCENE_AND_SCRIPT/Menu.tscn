@@ -1,0 +1,839 @@
+[gd_scene format=3 uid="uid://cowdomhde3xwb"]
+
+[ext_resource type="Texture2D" uid="uid://b8x0ihnlq10s2" path="res://IMAGE/MISC/Large_Shadow.png" id="2_146yv"]
+[ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="3_w2k81"]
+[ext_resource type="Script" uid="uid://b52ec7x0btchd" path="res://SCENE_AND_SCRIPT/Menu_Buttons.gd" id="4_tqwhx"]
+[ext_resource type="Texture2D" uid="uid://csnhbg2y348b7" path="res://IMAGE/MISC/Settings_Gradients.png" id="7_uckxu"]
+[ext_resource type="Script" uid="uid://clccpnapl4u45" path="res://SCENE_AND_SCRIPT/Settings_Glitches.gd" id="8_slcgh"]
+[ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="9_kh7nf"]
+[ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="10_08ppy"]
+[ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="11_w7ff0"]
+[ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="12_ikad7"]
+[ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="13_k32fr"]
+[ext_resource type="Shader" uid="uid://rfstm5ejtwi3" path="res://SHADER/Reflection.gdshader" id="14_ubmir"]
+[ext_resource type="PackedScene" uid="uid://bs6lfs8h7kibb" path="res://SCENE_AND_SCRIPT/Quit_Button.tscn" id="17_0k2xt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0iask"]
+content_margin_top = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ktj1"]
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mfq6d"]
+shader = ExtResource("9_kh7nf")
+shader_parameter/same_width_lines_count = 17.237
+shader_parameter/same_width_change_per_sec = 0.40000001574012
+shader_parameter/glitch_change_per_sec = 7.50000030875
+shader_parameter/threshold = 0.499999988824
+shader_parameter/strength = 0.30000001192093
+shader_parameter/glitch_blend = 0.8499999810008
+
+[sub_resource type="Animation" id="Animation_chp44"]
+resource_name = "Glitchy_Sound"
+length = 8.333337
+loop_mode = 1
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glitches/Glitch_Sound")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_08ppy")
+}, {
+"end_offset": 0.003817588,
+"start_offset": 0.0,
+"stream": ExtResource("11_w7ff0")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_ikad7")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_k32fr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_ikad7")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_w7ff0")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_w7ff0")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_08ppy")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_ikad7")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_w7ff0")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_k32fr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_ikad7")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_08ppy")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_k32fr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_w7ff0")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_w7ff0")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_08ppy")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_ikad7")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_w7ff0")
+}, {
+"end_offset": 0.003817588,
+"start_offset": 0.0,
+"stream": ExtResource("11_w7ff0")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_ikad7")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_k32fr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_ikad7")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_w7ff0")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_w7ff0")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_08ppy")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_ikad7")
+}],
+"times": PackedFloat32Array(0, 0.23333333, 0.3, 0.96666664, 1.1, 1.2666667, 1.7, 1.8, 2.3333333, 2.4666667, 2.8666666, 3.2333333, 3.6666667, 3.8, 4.4666667, 4.866667, 5.033334, 5.566667, 5.700001, 5.830103, 5.8967695, 6.4666667, 6.6967697, 6.863436, 7.066667, 7.133333, 7.7666674)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_shryd"]
+_data = {
+&"Glitchy_Sound": SubResource("Animation_chp44")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pepy6"]
+shader = ExtResource("14_ubmir")
+shader_parameter/scale_y = 1000.0
+shader_parameter/y_zoom = 1.25
+shader_parameter/opacity = 0.150000007125
+
+[node name="Menu" type="Node2D" unique_id=758904323]
+metadata/_edit_lock_ = true
+
+[node name="Content" type="Control" parent="." unique_id=1157028759]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 540.0
+metadata/_edit_lock_ = true
+
+[node name="BG" type="ColorRect" parent="Content" unique_id=2028915463]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Large_Shadow" type="Sprite2D" parent="Content" unique_id=1210640026]
+self_modulate = Color(0.6507289, 0.6507289, 0.6507289, 0.25)
+position = Vector2(480.00003, 412)
+scale = Vector2(0.75, 0.1)
+texture = ExtResource("2_146yv")
+metadata/_edit_lock_ = true
+
+[node name="Menu" type="RichTextLabel" parent="Content" unique_id=392770590]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 19.0
+offset_right = 480.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 24
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "Grillia principale"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Mask" type="RichTextLabel" parent="Content/Menu" unique_id=1526704074]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -379.5
+offset_right = 377.5
+offset_bottom = 59.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "Grillia principale"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings_Gradients" type="TextureRect" parent="Content/Menu/Mask" unique_id=954143722]
+self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
+layout_mode = 0
+offset_left = -100.0
+offset_top = -24.0
+offset_right = 860.0
+offset_bottom = 516.0
+mouse_filter = 2
+texture = ExtResource("7_uckxu")
+metadata/_edit_lock_ = true
+
+[node name="Buttons" type="Control" parent="Content" unique_id=779172503]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_tqwhx")
+metadata/_edit_lock_ = true
+
+[node name="Start_Game_Off" type="RichTextLabel" parent="Content/Buttons" unique_id=1266123687]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 104.0
+offset_right = 480.0
+offset_bottom = 143.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "   Inizia intrusione   "
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Start_Game_Mask" type="RichTextLabel" parent="Content/Buttons/Start_Game_Off" unique_id=210086932]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -376.0
+offset_right = 376.0
+offset_bottom = 39.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "   Inizia intrusione   "
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings_Gradients" type="TextureRect" parent="Content/Buttons/Start_Game_Off/Start_Game_Mask" unique_id=370925034]
+self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
+layout_mode = 0
+offset_left = -104.0
+offset_top = -144.0
+offset_right = 856.0
+offset_bottom = 396.0
+mouse_filter = 2
+texture = ExtResource("7_uckxu")
+metadata/_edit_lock_ = true
+
+[node name="Start_Game_On" type="RichTextLabel" parent="Content/Buttons" unique_id=1349131884]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 104.0
+offset_right = 480.0
+offset_bottom = 143.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "• Inizia intrusione •"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Start_Game_Mask" type="RichTextLabel" parent="Content/Buttons/Start_Game_On" unique_id=1762043074]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -376.0
+offset_right = 376.0
+offset_bottom = 39.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "• Inizia intrusione •"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings_Gradients" type="TextureRect" parent="Content/Buttons/Start_Game_On/Start_Game_Mask" unique_id=1747504088]
+self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
+layout_mode = 0
+offset_left = -104.0
+offset_top = -144.0
+offset_right = 856.0
+offset_bottom = 396.0
+mouse_filter = 2
+texture = ExtResource("7_uckxu")
+metadata/_edit_lock_ = true
+
+[node name="Start_Game_Color" type="ColorRect" parent="Content/Buttons/Start_Game_On/Start_Game_Mask/Settings_Gradients" unique_id=683860865]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 148.0
+offset_right = 644.0
+offset_bottom = 176.0
+color = Color(1, 1, 1, 0.627451)
+metadata/_edit_lock_ = true
+
+[node name="Tutorial_Off" type="RichTextLabel" parent="Content/Buttons" unique_id=127181917]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 182.0
+offset_right = 480.0
+offset_bottom = 223.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0iask")
+bbcode_enabled = true
+text = "   Routine operativa   "
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Tutorial_Mask" type="RichTextLabel" parent="Content/Buttons/Tutorial_Off" unique_id=129564336]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -376.0
+offset_top = 2.0
+offset_right = 376.0
+offset_bottom = 41.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "   Routine operativa   "
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings_Gradients" type="TextureRect" parent="Content/Buttons/Tutorial_Off/Tutorial_Mask" unique_id=345322505]
+self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
+layout_mode = 0
+offset_left = -104.0
+offset_top = -280.0
+offset_right = -104.0
+offset_bottom = -280.0
+mouse_filter = 2
+texture = ExtResource("7_uckxu")
+metadata/_edit_lock_ = true
+
+[node name="Tutorial_On" type="RichTextLabel" parent="Content/Buttons" unique_id=1888060899]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 182.0
+offset_right = 480.0
+offset_bottom = 223.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0iask")
+bbcode_enabled = true
+text = "• Routine operativa •"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Tutorial_Mask" type="RichTextLabel" parent="Content/Buttons/Tutorial_On" unique_id=2145652756]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -376.0
+offset_top = 2.0
+offset_right = 376.0
+offset_bottom = 41.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "• Routine operativa •"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings_Gradients" type="TextureRect" parent="Content/Buttons/Tutorial_On/Tutorial_Mask" unique_id=1834142174]
+self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
+layout_mode = 0
+offset_left = -104.0
+offset_top = -280.0
+offset_right = -104.0
+offset_bottom = -280.0
+mouse_filter = 2
+texture = ExtResource("7_uckxu")
+metadata/_edit_lock_ = true
+
+[node name="Tutorial_Color" type="ColorRect" parent="Content/Buttons/Tutorial_On/Tutorial_Mask/Settings_Gradients" unique_id=1587551993]
+layout_mode = 0
+offset_left = 294.0
+offset_top = 284.0
+offset_right = 666.0
+offset_bottom = 318.0
+color = Color(1, 1, 1, 0.627451)
+metadata/_edit_lock_ = true
+
+[node name="Settings_Off" type="RichTextLabel" parent="Content/Buttons" unique_id=2041634373]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 264.0
+offset_right = 480.0
+offset_bottom = 303.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "   Protocolli di calibrazione   "
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings_Mask" type="RichTextLabel" parent="Content/Buttons/Settings_Off" unique_id=1018890447]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -376.0
+offset_right = 376.0
+offset_bottom = 39.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "   Protocolli di calibrazione   "
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings_Gradients" type="TextureRect" parent="Content/Buttons/Settings_Off/Settings_Mask" unique_id=163295015]
+self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
+layout_mode = 0
+offset_left = -104.0
+offset_top = -144.0
+offset_right = 856.0
+offset_bottom = 396.0
+mouse_filter = 2
+texture = ExtResource("7_uckxu")
+metadata/_edit_lock_ = true
+
+[node name="Settings_On" type="RichTextLabel" parent="Content/Buttons" unique_id=666323282]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 264.0
+offset_right = 480.0
+offset_bottom = 303.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "• Protocolli di calibrazione •"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings_Mask" type="RichTextLabel" parent="Content/Buttons/Settings_On" unique_id=177825548]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -376.0
+offset_right = 376.0
+offset_bottom = 39.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "• Protocolli di calibrazione •"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings_Gradients" type="TextureRect" parent="Content/Buttons/Settings_On/Settings_Mask" unique_id=1564724937]
+self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
+layout_mode = 0
+offset_left = -104.0
+offset_top = -144.0
+offset_right = 856.0
+offset_bottom = 396.0
+mouse_filter = 2
+texture = ExtResource("7_uckxu")
+metadata/_edit_lock_ = true
+
+[node name="Settings_Color" type="ColorRect" parent="Content/Buttons/Settings_On/Settings_Mask/Settings_Gradients" unique_id=413360350]
+layout_mode = 0
+offset_left = 228.0
+offset_top = 149.0
+offset_right = 732.0
+offset_bottom = 176.0
+color = Color(1, 1, 1, 0.627451)
+metadata/_edit_lock_ = true
+
+[node name="Credits_Off" type="RichTextLabel" parent="Content/Buttons" unique_id=519578696]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 335.0
+offset_right = 480.0
+offset_bottom = 382.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6ktj1")
+bbcode_enabled = true
+text = "   Log di sistema   "
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Credits_Mask" type="RichTextLabel" parent="Content/Buttons/Credits_Off" unique_id=595218674]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -376.0
+offset_top = 4.0
+offset_right = 376.0
+offset_bottom = 43.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "   Log di sistema   "
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings_Gradients" type="TextureRect" parent="Content/Buttons/Credits_Off/Credits_Mask" unique_id=524151685]
+self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
+layout_mode = 0
+offset_left = -104.0
+offset_top = -280.0
+offset_right = -104.0
+offset_bottom = -280.0
+mouse_filter = 2
+texture = ExtResource("7_uckxu")
+metadata/_edit_lock_ = true
+
+[node name="Credits_On" type="RichTextLabel" parent="Content/Buttons" unique_id=1555932992]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 339.0
+offset_right = 480.0
+offset_bottom = 378.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "• Log di sistema •"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Credits_Mask" type="RichTextLabel" parent="Content/Buttons/Credits_On" unique_id=1940618990]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -376.0
+offset_right = 376.0
+offset_bottom = 39.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/normal_font = ExtResource("3_w2k81")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "• Log di sistema •"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings_Gradients" type="TextureRect" parent="Content/Buttons/Credits_On/Credits_Mask" unique_id=632409357]
+self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
+layout_mode = 0
+offset_left = -104.0
+offset_top = -280.0
+offset_right = -104.0
+offset_bottom = -280.0
+mouse_filter = 2
+texture = ExtResource("7_uckxu")
+metadata/_edit_lock_ = true
+
+[node name="Map_Color" type="ColorRect" parent="Content/Buttons/Credits_On/Credits_Mask/Settings_Gradients" unique_id=446411085]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 285.0
+offset_right = 629.0
+offset_bottom = 319.0
+color = Color(1, 1, 1, 0.5019608)
+metadata/_edit_lock_ = true
+
+[node name="Glitches" type="Control" parent="." unique_id=1199082990]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 540.0
+mouse_filter = 2
+script = ExtResource("8_slcgh")
+metadata/_edit_lock_ = true
+
+[node name="Shader" type="ColorRect" parent="Glitches" unique_id=210468866]
+material = SubResource("ShaderMaterial_mfq6d")
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 411.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Glitch_Sound" type="AudioStreamPlayer" parent="Glitches" unique_id=1637873984]
+volume_db = -15.0
+bus = &"FX_DRY"
+
+[node name="Sound_Animation" type="AnimationPlayer" parent="Glitches" unique_id=193257768]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_shryd")
+autoplay = &"Glitchy_Sound"
+
+[node name="BackBufferCopy_Reflection" type="BackBufferCopy" parent="." unique_id=1629008785]
+rect = Rect2(0, 0, 960, 540)
+metadata/_edit_lock_ = true
+
+[node name="Reflection" type="ColorRect" parent="BackBufferCopy_Reflection" unique_id=1315767615]
+material = SubResource("ShaderMaterial_pepy6")
+offset_top = 411.0
+offset_right = 960.0
+offset_bottom = 951.0
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="Quit_Button" parent="." unique_id=1295710875 instance=ExtResource("17_0k2xt")]
+offset_left = 435.0
+offset_top = 435.0
+offset_right = 525.0
+offset_bottom = 525.0

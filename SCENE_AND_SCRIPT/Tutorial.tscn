@@ -1,0 +1,612 @@
+[gd_scene format=3 uid="uid://bk8me5671n4t7"]
+
+[ext_resource type="Texture2D" uid="uid://b8x0ihnlq10s2" path="res://IMAGE/MISC/Large_Shadow.png" id="2_fhuq5"]
+[ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="3_6mfkc"]
+[ext_resource type="Texture2D" uid="uid://csnhbg2y348b7" path="res://IMAGE/MISC/Settings_Gradients.png" id="7_2ampn"]
+[ext_resource type="Script" uid="uid://clccpnapl4u45" path="res://SCENE_AND_SCRIPT/Settings_Glitches.gd" id="8_0c486"]
+[ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="9_w0fvs"]
+[ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="10_uk6sr"]
+[ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="11_mk0wp"]
+[ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="12_0xv2q"]
+[ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="13_4quj4"]
+[ext_resource type="Shader" uid="uid://rfstm5ejtwi3" path="res://SHADER/Reflection.gdshader" id="14_qdpy6"]
+[ext_resource type="PackedScene" uid="uid://bs6lfs8h7kibb" path="res://SCENE_AND_SCRIPT/Quit_Button.tscn" id="15_w51ux"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ua4dd"]
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yxi8t"]
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1xoj5"]
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ckudt"]
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bpuh4"]
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mfq6d"]
+shader = ExtResource("9_w0fvs")
+shader_parameter/same_width_lines_count = 17.237
+shader_parameter/same_width_change_per_sec = 0.40000001574012
+shader_parameter/glitch_change_per_sec = 7.50000030875
+shader_parameter/threshold = 0.499999988824
+shader_parameter/strength = 0.30000001192093
+shader_parameter/glitch_blend = 0.8499999810008
+
+[sub_resource type="Animation" id="Animation_chp44"]
+resource_name = "Glitchy_Sound"
+length = 8.333337
+loop_mode = 1
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glitches/Glitch_Sound")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_uk6sr")
+}, {
+"end_offset": 0.003817588,
+"start_offset": 0.0,
+"stream": ExtResource("11_mk0wp")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_0xv2q")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_4quj4")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_0xv2q")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_mk0wp")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_mk0wp")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_uk6sr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_0xv2q")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_mk0wp")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_4quj4")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_0xv2q")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_uk6sr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_4quj4")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_mk0wp")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_mk0wp")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_uk6sr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_0xv2q")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_mk0wp")
+}, {
+"end_offset": 0.003817588,
+"start_offset": 0.0,
+"stream": ExtResource("11_mk0wp")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_0xv2q")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_4quj4")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_0xv2q")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_mk0wp")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_mk0wp")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_uk6sr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_0xv2q")
+}],
+"times": PackedFloat32Array(0, 0.23333333, 0.3, 0.96666664, 1.1, 1.2666667, 1.7, 1.8, 2.3333333, 2.4666667, 2.8666666, 3.2333333, 3.6666667, 3.8, 4.4666667, 4.866667, 5.033334, 5.566667, 5.700001, 5.830103, 5.8967695, 6.4666667, 6.6967697, 6.863436, 7.066667, 7.133333, 7.7666674)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_shryd"]
+_data = {
+&"Glitchy_Sound": SubResource("Animation_chp44")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pepy6"]
+shader = ExtResource("14_qdpy6")
+shader_parameter/scale_y = 1000.0
+shader_parameter/y_zoom = 1.25
+shader_parameter/opacity = 0.150000007125
+
+[node name="Tutorial" type="Node2D" unique_id=758904323]
+metadata/_edit_lock_ = true
+
+[node name="Info" type="Control" parent="." unique_id=1157028759]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 540.0
+metadata/_edit_lock_ = true
+
+[node name="BG" type="ColorRect" parent="Info" unique_id=2028915463]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Large_Shadow" type="Sprite2D" parent="Info" unique_id=1210640026]
+self_modulate = Color(0.6507289, 0.6507289, 0.6507289, 0.25)
+position = Vector2(480.00003, 412)
+scale = Vector2(1.8, 0.1)
+texture = ExtResource("2_fhuq5")
+metadata/_edit_lock_ = true
+
+[node name="Title" type="RichTextLabel" parent="Info" unique_id=392770590]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 19.0
+offset_right = 480.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 24
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("3_6mfkc")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "Routine operativa"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Movements" type="RichTextLabel" parent="Info" unique_id=1266123687]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 104.0
+offset_right = 480.0
+offset_bottom = 143.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_6mfkc")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Movimento: vettori diagonali"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Talent" type="RichTextLabel" parent="Info" unique_id=127181917]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 180.0
+offset_right = 480.0
+offset_bottom = 227.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_6mfkc")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ua4dd")
+bbcode_enabled = true
+text = "Modulo: attivabile con [X]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Jump_Slide" type="RichTextLabel" parent="Info" unique_id=519578696]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 260.0
+offset_right = 480.0
+offset_bottom = 307.0
+grow_horizontal = 2
+pivot_offset = Vector2(627, 139)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_6mfkc")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yxi8t")
+bbcode_enabled = true
+text = "Esegui Salto/Scivolo: pulsanti [A]&[B]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Quit" type="RichTextLabel" parent="Info" unique_id=2041634373]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 336.0
+offset_right = 480.0
+offset_bottom = 383.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_6mfkc")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1xoj5")
+bbcode_enabled = true
+text = "Uscita: pressione prolungata su [_1$};"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Masks" type="Control" parent="Info" unique_id=1994543020]
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 540.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Title" type="RichTextLabel" parent="Info/Masks" unique_id=1526704074]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -379.5
+offset_top = 19.0
+offset_right = 377.5
+offset_bottom = 78.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/normal_font = ExtResource("3_6mfkc")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "Routine operativa"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings_Gradients" type="TextureRect" parent="Info/Masks/Title" unique_id=954143722]
+self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
+layout_mode = 0
+offset_left = -100.0
+offset_top = -24.0
+offset_right = 860.0
+offset_bottom = 516.0
+mouse_filter = 2
+texture = ExtResource("7_2ampn")
+metadata/_edit_lock_ = true
+
+[node name="Movements" type="RichTextLabel" parent="Info/Masks" unique_id=210086932]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -376.0
+offset_top = 104.0
+offset_right = 376.0
+offset_bottom = 143.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/normal_font = ExtResource("3_6mfkc")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Movimento: vettori diagonali"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings_Gradients" type="TextureRect" parent="Info/Masks/Movements" unique_id=370925034]
+self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
+layout_mode = 0
+offset_left = -104.0
+offset_top = -144.0
+offset_right = 856.0
+offset_bottom = 396.0
+mouse_filter = 2
+texture = ExtResource("7_2ampn")
+metadata/_edit_lock_ = true
+
+[node name="Directions_Color" type="ColorRect" parent="Info/Masks/Movements/Settings_Gradients" unique_id=653696508]
+layout_mode = 0
+offset_left = 587.0
+offset_top = 148.0
+offset_right = 774.0
+offset_bottom = 182.0
+color = Color(0.4392157, 0.79607844, 0.0627451, 0.5019608)
+metadata/_edit_lock_ = true
+
+[node name="Talent" type="RichTextLabel" parent="Info/Masks" unique_id=129564336]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -376.0
+offset_top = 180.0
+offset_right = 376.0
+offset_bottom = 227.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/normal_font = ExtResource("3_6mfkc")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ckudt")
+bbcode_enabled = true
+text = "Modulo: attivabile con [X]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings_Gradients" type="TextureRect" parent="Info/Masks/Talent" unique_id=345322505]
+self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
+layout_mode = 0
+offset_left = -104.0
+offset_top = -280.0
+offset_right = -104.0
+offset_bottom = -280.0
+mouse_filter = 2
+texture = ExtResource("7_2ampn")
+metadata/_edit_lock_ = true
+
+[node name="A_Color" type="ColorRect" parent="Info/Masks/Talent/Settings_Gradients" unique_id=747035452]
+layout_mode = 0
+offset_left = 687.0
+offset_top = 280.0
+offset_right = 740.0
+offset_bottom = 323.0
+color = Color(0.79607844, 0.3137255, 0.1882353, 0.627451)
+metadata/_edit_lock_ = true
+
+[node name="Jump_Slide" type="RichTextLabel" parent="Info/Masks" unique_id=595218674]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -392.5
+offset_top = 264.0
+offset_right = 390.5
+offset_bottom = 303.0
+grow_horizontal = 2
+pivot_offset = Vector2(523, 139)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/normal_font = ExtResource("3_6mfkc")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Esegui Salto/Scivolo: pulsanti [A]&[B]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings_Gradients" type="TextureRect" parent="Info/Masks/Jump_Slide" unique_id=524151685]
+self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
+layout_mode = 0
+offset_left = -104.0
+offset_top = -282.0
+offset_right = 856.0
+offset_bottom = 258.0
+mouse_filter = 2
+texture = ExtResource("7_2ampn")
+metadata/_edit_lock_ = true
+
+[node name="Button_A_Color" type="ColorRect" parent="Info/Masks/Jump_Slide/Settings_Gradients" unique_id=1563603495]
+layout_mode = 0
+offset_left = 733.5
+offset_top = 282.0
+offset_right = 786.5
+offset_bottom = 320.0
+color = Color(0.4392157, 0.79607844, 0.0627451, 0.5019608)
+metadata/_edit_lock_ = true
+
+[node name="Button_B_Color" type="ColorRect" parent="Info/Masks/Jump_Slide/Settings_Gradients" unique_id=1571331358]
+layout_mode = 0
+offset_left = 821.5
+offset_top = 282.0
+offset_right = 874.5
+offset_bottom = 320.0
+color = Color(0.4392157, 0.79607844, 0.0627451, 0.5019608)
+metadata/_edit_lock_ = true
+
+[node name="Quit" type="RichTextLabel" parent="Info/Masks" unique_id=1018890447]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -389.5
+offset_top = 336.0
+offset_right = 387.5
+offset_bottom = 383.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/normal_font = ExtResource("3_6mfkc")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bpuh4")
+bbcode_enabled = true
+text = "Uscita: pressione prolungata su [_1$};"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings_Gradients" type="TextureRect" parent="Info/Masks/Quit" unique_id=163295015]
+self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
+layout_mode = 0
+offset_left = -104.0
+offset_top = -145.0
+offset_right = 856.0
+offset_bottom = 395.0
+mouse_filter = 2
+texture = ExtResource("7_2ampn")
+metadata/_edit_lock_ = true
+
+[node name="Button_Color" type="ColorRect" parent="Info/Masks/Quit/Settings_Gradients" unique_id=164421678]
+layout_mode = 0
+offset_left = 789.5
+offset_top = 149.0
+offset_right = 880.5
+offset_bottom = 188.0
+color = Color(0.79607844, 0.3137255, 0.1882353, 0.627451)
+metadata/_edit_lock_ = true
+
+[node name="Glitches" type="Control" parent="." unique_id=1199082990]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 540.0
+mouse_filter = 2
+script = ExtResource("8_0c486")
+metadata/_edit_lock_ = true
+
+[node name="Shader" type="ColorRect" parent="Glitches" unique_id=210468866]
+material = SubResource("ShaderMaterial_mfq6d")
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 411.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Glitch_Sound" type="AudioStreamPlayer" parent="Glitches" unique_id=1637873984]
+volume_db = -15.0
+bus = &"FX_DRY"
+
+[node name="Sound_Animation" type="AnimationPlayer" parent="Glitches" unique_id=193257768]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_shryd")
+autoplay = &"Glitchy_Sound"
+
+[node name="BackBufferCopy_Reflection" type="BackBufferCopy" parent="." unique_id=1629008785]
+rect = Rect2(0, 0, 960, 540)
+metadata/_edit_lock_ = true
+
+[node name="Reflection" type="ColorRect" parent="BackBufferCopy_Reflection" unique_id=1315767615]
+material = SubResource("ShaderMaterial_pepy6")
+offset_top = 411.0
+offset_right = 960.0
+offset_bottom = 951.0
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="Quit_Button" parent="." unique_id=1295710875 instance=ExtResource("15_w51ux")]
+offset_left = 435.0
+offset_top = 435.0
+offset_right = 525.0
+offset_bottom = 525.0

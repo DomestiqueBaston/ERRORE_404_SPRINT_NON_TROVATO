@@ -9,8 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="7_i50ug"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="8_ocqcn"]
 [ext_resource type="Shader" uid="uid://rfstm5ejtwi3" path="res://SHADER/Reflection.gdshader" id="9_e0phu"]
-[ext_resource type="Script" uid="uid://dd6brr6ksot15" path="res://SCENE_AND_SCRIPT/Title_Alert.gd" id="10_7qrm5"]
-[ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="11_2xpyw"]
 [ext_resource type="PackedScene" uid="uid://bs6lfs8h7kibb" path="res://SCENE_AND_SCRIPT/Quit_Button.tscn" id="12_7vkle"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bnvrm"]
@@ -157,75 +155,6 @@ shader_parameter/scale_y = 1000.0
 shader_parameter/y_zoom = 1.25
 shader_parameter/opacity = 0.10000000475
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aa5oj"]
-content_margin_left = 8.0
-content_margin_top = 6.0
-content_margin_right = 6.0
-content_margin_bottom = 5.0
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="Animation" id="Animation_rbpew"]
-resource_name = "Blink"
-length = 1.0000033
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.8333333, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Alarm")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("11_2xpyw")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/1/use_blend = true
-
-[sub_resource type="Animation" id="Animation_qq84j"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xweb4"]
-_data = {
-&"Blink": SubResource("Animation_rbpew"),
-&"RESET": SubResource("Animation_qq84j")
-}
-
 [node name="Credits" type="Node2D" unique_id=582724467]
 metadata/_edit_lock_ = true
 
@@ -271,7 +200,7 @@ theme_override_font_sizes/font_size = 30
 text = "Gdt-Sml_Bck7t - Coñtró!!ò attivo:
 	“Pro©es$i inutili Яilevati.”
 
-Codice int®usivo söspe7tato -  #001:
+Cod!ce int®usivo söspe7tato -  #001:
 	GeoFf
 (Anålisi utente in cor$o - Cancellaziøne in coda)
 
@@ -298,7 +227,7 @@ theme_override_font_sizes/font_size = 30
 text = "Gdt-Sml_Bck7t - Coñtró!!ò attivo:
 	“Pro©es$i inutili Яilevati.”
 
-Codice int®usivo söspe7tato -  #001:
+Cod!ce int®usivo söspe7tato -  #001:
 	GeoFf
 (Anålisi utente in cor$o - Cancellaziøne in coda)
 
@@ -315,8 +244,39 @@ position = Vector2(480, 270)
 texture = ExtResource("3_f5jx6")
 metadata/_edit_lock_ = true
 
+[node name="Geoff_Color" type="ColorRect" parent="Graphics/Game_Credits/Cache/Credits_Gradients" unique_id=699426503]
+offset_left = -58.0
+offset_top = -101.0
+offset_right = 60.0
+offset_bottom = -74.0
+color = Color(0.79607844, 0.3137255, 0.1882353, 0.5019608)
+metadata/_edit_lock_ = true
+
+[node name="Ferdi_Color" type="ColorRect" parent="Graphics/Game_Credits/Cache/Credits_Gradients" unique_id=1800632384]
+offset_left = -53.0
+offset_top = 59.0
+offset_right = 52.0
+offset_bottom = 87.0
+color = Color(0.4392157, 0.79607844, 0.0627451, 0.5019608)
+metadata/_edit_lock_ = true
+
+[node name="002_Color" type="ColorRect" parent="Graphics/Game_Credits/Cache/Credits_Gradients" unique_id=377183651]
+offset_left = 118.0
+offset_top = 20.0
+offset_right = 232.0
+offset_bottom = 47.0
+color = Color(1, 1, 1, 0.627451)
+metadata/_edit_lock_ = true
+
+[node name="001_Color" type="ColorRect" parent="Graphics/Game_Credits/Cache/Credits_Gradients" unique_id=1415359029]
+offset_left = 254.0
+offset_top = -139.0
+offset_right = 353.0
+offset_bottom = -113.0
+color = Color(1, 1, 1, 0.627451)
+metadata/_edit_lock_ = true
+
 [node name="Glitches" type="Control" parent="Graphics" unique_id=642320963]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
@@ -351,54 +311,8 @@ offset_right = 960.0
 offset_bottom = 963.0
 metadata/_edit_lock_ = true
 
-[node name="Info_Overlay" type="Control" parent="Graphics" unique_id=1869904629]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 960.0
-offset_bottom = 540.0
-script = ExtResource("10_7qrm5")
-blink_timeout = 5.0
-metadata/_edit_lock_ = true
-
-[node name="Info_Start" type="RichTextLabel" parent="Graphics/Info_Overlay" unique_id=1381950875]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -118.0
-offset_top = -89.0
-offset_right = 120.0
-offset_bottom = -38.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 0
-theme_override_constants/outline_size = 6
-theme_override_fonts/normal_font = ExtResource("2_7vkle")
-theme_override_font_sizes/normal_font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_aa5oj")
-bbcode_enabled = true
-text = "[color=#70cb10]S[/color]s[color=#70cb10]h://[/color] Qù![color=#cb5030]7[[/color]_]: 40[color=#70cb10]4[/color]!
-[color=#cb5030]Pr[/color]_[color=#70cb10]M[color=#cb5030]i[/color] q[/color]ù@lc[color=#70cb10]°[/color][color=#cb5030]$à[/color]!"
-fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="Animation_Overlay" type="AnimationPlayer" parent="Graphics/Info_Overlay" unique_id=122317364]
-libraries/ = SubResource("AnimationLibrary_xweb4")
-
-[node name="Alarm" type="AudioStreamPlayer" parent="Graphics/Info_Overlay" unique_id=1037405880]
-volume_db = -15.0
-autoplay = true
-bus = &"FX_WET"
-
 [node name="Quit_Button" parent="." unique_id=1295710875 instance=ExtResource("12_7vkle")]
-offset_left = 870.0
-offset_top = 450.0
-offset_right = 960.0
-offset_bottom = 540.0
+offset_left = 435.0
+offset_top = 435.0
+offset_right = 525.0
+offset_bottom = 525.0

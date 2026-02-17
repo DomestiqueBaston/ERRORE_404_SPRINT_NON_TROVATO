@@ -14,14 +14,16 @@
 [ext_resource type="Shader" uid="uid://rfstm5ejtwi3" path="res://SHADER/Reflection.gdshader" id="8_shryd"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="10_0rcrj"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="13_1skkq"]
-[ext_resource type="Script" uid="uid://dd6brr6ksot15" path="res://SCENE_AND_SCRIPT/Title_Alert.gd" id="13_wgd1c"]
-[ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="14_sobyg"]
 [ext_resource type="PackedScene" uid="uid://bs6lfs8h7kibb" path="res://SCENE_AND_SCRIPT/Quit_Button.tscn" id="17_a50p4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_picqc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0iask"]
 content_margin_top = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sobyg"]
+content_margin_top = 4.0
+content_margin_bottom = 4.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mfq6d"]
 shader = ExtResource("3_cgbcj")
@@ -167,79 +169,10 @@ shader_parameter/scale_y = 1000.0
 shader_parameter/y_zoom = 1.25
 shader_parameter/opacity = 0.150000007125
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6nj5"]
-content_margin_left = 6.0
-content_margin_top = 6.0
-content_margin_right = 6.0
-content_margin_bottom = 5.0
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="Animation" id="Animation_rbpew"]
-resource_name = "Blink"
-length = 1.0000033
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.23333333, 0.8333333, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Alarm")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("14_sobyg")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/1/use_blend = true
-
-[sub_resource type="Animation" id="Animation_qq84j"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_a50p4"]
-_data = {
-&"Blink": SubResource("Animation_rbpew"),
-&"RESET": SubResource("Animation_qq84j")
-}
-
 [node name="Settings" type="Node2D" unique_id=758904323]
 metadata/_edit_lock_ = true
 
-[node name="Impostazioni" type="Control" parent="." unique_id=1157028759]
+[node name="Parameters" type="Control" parent="." unique_id=1157028759]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
@@ -247,7 +180,7 @@ offset_bottom = 540.0
 script = ExtResource("1_e6nj5")
 metadata/_edit_lock_ = true
 
-[node name="BG" type="ColorRect" parent="Impostazioni" unique_id=2028915463]
+[node name="BG" type="ColorRect" parent="Parameters" unique_id=2028915463]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -256,14 +189,14 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="Large_Shadow" type="Sprite2D" parent="Impostazioni" unique_id=1210640026]
+[node name="Large_Shadow" type="Sprite2D" parent="Parameters" unique_id=1210640026]
 self_modulate = Color(0.6507289, 0.6507289, 0.6507289, 0.25)
 position = Vector2(480.00003, 412)
 scale = Vector2(1.8, 0.1)
 texture = ExtResource("1_pepy6")
 metadata/_edit_lock_ = true
 
-[node name="Title" type="RichTextLabel" parent="Impostazioni" unique_id=392770590]
+[node name="Title" type="RichTextLabel" parent="Parameters" unique_id=392770590]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -289,7 +222,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Map" type="RichTextLabel" parent="Impostazioni" unique_id=1266123687]
+[node name="Map" type="RichTextLabel" parent="Parameters" unique_id=1266123687]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -316,7 +249,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Map_9_21" type="RichTextLabel" parent="Impostazioni" unique_id=1768988869]
+[node name="Map_9_21" type="RichTextLabel" parent="Parameters" unique_id=1768988869]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -343,7 +276,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Line_Map" type="Line2D" parent="Impostazioni" unique_id=239642515]
+[node name="Line_Map" type="Line2D" parent="Parameters" unique_id=239642515]
 position = Vector2(79, 155)
 points = PackedVector2Array(3, 0, 757, 0)
 width = 8.0
@@ -352,7 +285,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Line_Black" type="Line2D" parent="Impostazioni/Line_Map" unique_id=1876516488]
+[node name="Line_Black" type="Line2D" parent="Parameters/Line_Map" unique_id=1876516488]
 points = PackedVector2Array(3, 0, 757, 0)
 width = 4.0
 default_color = Color(0, 0, 0, 1)
@@ -360,7 +293,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="HSlider_Map" type="HSlider" parent="Impostazioni" unique_id=220456702]
+[node name="HSlider_Map" type="HSlider" parent="Parameters" unique_id=220456702]
 layout_mode = 0
 offset_left = 68.0
 offset_top = 142.0
@@ -379,7 +312,7 @@ tick_count = 7
 ticks_on_borders = true
 metadata/_edit_lock_ = true
 
-[node name="Difficulty" type="RichTextLabel" parent="Impostazioni" unique_id=127181917]
+[node name="Difficulty" type="RichTextLabel" parent="Parameters" unique_id=127181917]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -407,7 +340,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Difficulty_1_3" type="RichTextLabel" parent="Impostazioni" unique_id=1909184154]
+[node name="Difficulty_1_3" type="RichTextLabel" parent="Parameters" unique_id=1909184154]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -434,7 +367,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Line_Difficulty" type="Line2D" parent="Impostazioni" unique_id=1347992443]
+[node name="Line_Difficulty" type="Line2D" parent="Parameters" unique_id=1347992443]
 position = Vector2(79, 235)
 points = PackedVector2Array(3, 0, 757, 0)
 width = 8.0
@@ -443,7 +376,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Line_Black" type="Line2D" parent="Impostazioni/Line_Difficulty" unique_id=1407812792]
+[node name="Line_Black" type="Line2D" parent="Parameters/Line_Difficulty" unique_id=1407812792]
 points = PackedVector2Array(3, 0, 757, 0)
 width = 4.0
 default_color = Color(0, 0, 0, 1)
@@ -451,7 +384,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="HSlider_Difficulty" type="HSlider" parent="Impostazioni" unique_id=1206662753]
+[node name="HSlider_Difficulty" type="HSlider" parent="Parameters" unique_id=1206662753]
 layout_mode = 0
 offset_left = 68.0
 offset_top = 222.0
@@ -469,15 +402,15 @@ tick_count = 5
 ticks_on_borders = true
 metadata/_edit_lock_ = true
 
-[node name="Audio" type="RichTextLabel" parent="Impostazioni" unique_id=2041634373]
+[node name="Audio" type="RichTextLabel" parent="Parameters" unique_id=2041634373]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -480.0
-offset_top = 264.0
+offset_top = 260.0
 offset_right = 480.0
-offset_bottom = 303.0
+offset_bottom = 307.0
 grow_horizontal = 2
 pivot_offset = Vector2(527, 222)
 theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
@@ -488,6 +421,7 @@ theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sobyg")
 bbcode_enabled = true
 text = "Livello audio generale:"
 fit_content = true
@@ -496,7 +430,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Audio_0_100" type="RichTextLabel" parent="Impostazioni" unique_id=1690798611]
+[node name="Audio_0_100" type="RichTextLabel" parent="Parameters" unique_id=1690798611]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -523,7 +457,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Line_Audio" type="Line2D" parent="Impostazioni" unique_id=422019962]
+[node name="Line_Audio" type="Line2D" parent="Parameters" unique_id=422019962]
 position = Vector2(79, 315)
 points = PackedVector2Array(3, 0, 757, 0)
 width = 8.0
@@ -532,7 +466,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Line_Black" type="Line2D" parent="Impostazioni/Line_Audio" unique_id=1280635266]
+[node name="Line_Black" type="Line2D" parent="Parameters/Line_Audio" unique_id=1280635266]
 points = PackedVector2Array(3, 0, 757, 0)
 width = 4.0
 default_color = Color(0, 0, 0, 1)
@@ -540,7 +474,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="HSlider_Audio" type="HSlider" parent="Impostazioni" unique_id=1143135609]
+[node name="HSlider_Audio" type="HSlider" parent="Parameters" unique_id=1143135609]
 layout_mode = 0
 offset_left = 68.0
 offset_top = 302.0
@@ -557,7 +491,7 @@ tick_count = 11
 ticks_on_borders = true
 metadata/_edit_lock_ = true
 
-[node name="Music" type="RichTextLabel" parent="Impostazioni" unique_id=519578696]
+[node name="Music" type="RichTextLabel" parent="Parameters" unique_id=519578696]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -584,7 +518,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Music_0_100" type="RichTextLabel" parent="Impostazioni" unique_id=1847479215]
+[node name="Music_0_100" type="RichTextLabel" parent="Parameters" unique_id=1847479215]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -611,7 +545,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Line_Music" type="Line2D" parent="Impostazioni" unique_id=1098754470]
+[node name="Line_Music" type="Line2D" parent="Parameters" unique_id=1098754470]
 position = Vector2(79, 395)
 points = PackedVector2Array(3, 0, 757, 0)
 width = 8.0
@@ -620,7 +554,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Line_Black" type="Line2D" parent="Impostazioni/Line_Music" unique_id=1796836554]
+[node name="Line_Black" type="Line2D" parent="Parameters/Line_Music" unique_id=1796836554]
 points = PackedVector2Array(3, 0, 757, 0)
 width = 4.0
 default_color = Color(0, 0, 0, 1)
@@ -628,7 +562,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="HSlider_Music" type="HSlider" parent="Impostazioni" unique_id=1381525169]
+[node name="HSlider_Music" type="HSlider" parent="Parameters" unique_id=1381525169]
 layout_mode = 0
 offset_left = 68.0
 offset_top = 382.0
@@ -645,14 +579,14 @@ tick_count = 11
 ticks_on_borders = true
 metadata/_edit_lock_ = true
 
-[node name="Masks" type="Control" parent="Impostazioni" unique_id=1994543020]
+[node name="Masks" type="Control" parent="Parameters" unique_id=1994543020]
 anchors_preset = 0
 offset_right = 960.0
 offset_bottom = 540.0
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="Title" type="RichTextLabel" parent="Impostazioni/Masks" unique_id=1526704074]
+[node name="Title" type="RichTextLabel" parent="Parameters/Masks" unique_id=1526704074]
 clip_children = 2
 layout_mode = 1
 anchors_preset = 5
@@ -675,7 +609,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Title" unique_id=954143722]
+[node name="Settings_Gradients" type="TextureRect" parent="Parameters/Masks/Title" unique_id=954143722]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
 layout_mode = 0
 offset_left = -100.0
@@ -686,7 +620,7 @@ mouse_filter = 2
 texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
 
-[node name="Map" type="RichTextLabel" parent="Impostazioni/Masks" unique_id=210086932]
+[node name="Map" type="RichTextLabel" parent="Parameters/Masks" unique_id=210086932]
 clip_children = 2
 layout_mode = 1
 anchors_preset = 5
@@ -710,7 +644,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Map" unique_id=370925034]
+[node name="Settings_Gradients" type="TextureRect" parent="Parameters/Masks/Map" unique_id=370925034]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
 layout_mode = 0
 offset_left = -104.0
@@ -721,7 +655,16 @@ mouse_filter = 2
 texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
 
-[node name="Map_9_21" type="RichTextLabel" parent="Impostazioni/Masks" unique_id=1746892684]
+[node name="Map_Color" type="ColorRect" parent="Parameters/Masks/Map/Settings_Gradients" unique_id=283005762]
+layout_mode = 0
+offset_left = 584.0
+offset_top = 155.0
+offset_right = 726.0
+offset_bottom = 182.0
+color = Color(1, 1, 1, 0.627451)
+metadata/_edit_lock_ = true
+
+[node name="Map_9_21" type="RichTextLabel" parent="Parameters/Masks" unique_id=1746892684]
 clip_children = 2
 layout_mode = 1
 anchors_preset = 5
@@ -743,8 +686,9 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
-[node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Map_9_21" unique_id=1914571701]
+[node name="Settings_Gradients" type="TextureRect" parent="Parameters/Masks/Map_9_21" unique_id=1914571701]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
 layout_mode = 0
 offset_left = -44.5
@@ -755,7 +699,7 @@ mouse_filter = 2
 texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
 
-[node name="Difficulty" type="RichTextLabel" parent="Impostazioni/Masks" unique_id=129564336]
+[node name="Difficulty" type="RichTextLabel" parent="Parameters/Masks" unique_id=129564336]
 clip_children = 2
 layout_mode = 1
 anchors_preset = 5
@@ -779,7 +723,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Difficulty" unique_id=345322505]
+[node name="Settings_Gradients" type="TextureRect" parent="Parameters/Masks/Difficulty" unique_id=345322505]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
 layout_mode = 0
 offset_left = -104.0
@@ -790,7 +734,16 @@ mouse_filter = 2
 texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
 
-[node name="Difficulty_1_5" type="RichTextLabel" parent="Impostazioni/Masks" unique_id=2029150627]
+[node name="Difficulty_Color" type="ColorRect" parent="Parameters/Masks/Difficulty/Settings_Gradients" unique_id=1632677871]
+layout_mode = 0
+offset_left = 387.0
+offset_top = 282.0
+offset_right = 565.0
+offset_bottom = 312.0
+color = Color(1, 1, 1, 0.627451)
+metadata/_edit_lock_ = true
+
+[node name="Difficulty_1_5" type="RichTextLabel" parent="Parameters/Masks" unique_id=2029150627]
 clip_children = 2
 layout_mode = 1
 anchors_preset = 5
@@ -812,8 +765,9 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
-[node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Difficulty_1_5" unique_id=2053147865]
+[node name="Settings_Gradients" type="TextureRect" parent="Parameters/Masks/Difficulty_1_5" unique_id=2053147865]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
 layout_mode = 0
 offset_left = -30.5
@@ -824,7 +778,7 @@ mouse_filter = 2
 texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
 
-[node name="Audio" type="RichTextLabel" parent="Impostazioni/Masks" unique_id=1018890447]
+[node name="Audio" type="RichTextLabel" parent="Parameters/Masks" unique_id=1018890447]
 clip_children = 2
 layout_mode = 1
 anchors_preset = 5
@@ -848,7 +802,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Audio" unique_id=163295015]
+[node name="Settings_Gradients" type="TextureRect" parent="Parameters/Masks/Audio" unique_id=163295015]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
 layout_mode = 0
 offset_left = -104.0
@@ -859,7 +813,16 @@ mouse_filter = 2
 texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
 
-[node name="Audio_0_100" type="RichTextLabel" parent="Impostazioni/Masks" unique_id=275154943]
+[node name="Audio_Color" type="ColorRect" parent="Parameters/Masks/Audio/Settings_Gradients" unique_id=472341959]
+layout_mode = 0
+offset_left = 389.0
+offset_top = 148.0
+offset_right = 507.0
+offset_bottom = 176.0
+color = Color(1, 1, 1, 0.627451)
+metadata/_edit_lock_ = true
+
+[node name="Audio_0_100" type="RichTextLabel" parent="Parameters/Masks" unique_id=275154943]
 clip_children = 2
 layout_mode = 1
 anchors_preset = 5
@@ -883,7 +846,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Audio_0_100" unique_id=1655802927]
+[node name="Settings_Gradients" type="TextureRect" parent="Parameters/Masks/Audio_0_100" unique_id=1655802927]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
 layout_mode = 0
 offset_left = -44.5
@@ -894,7 +857,7 @@ mouse_filter = 2
 texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
 
-[node name="Music" type="RichTextLabel" parent="Impostazioni/Masks" unique_id=595218674]
+[node name="Music" type="RichTextLabel" parent="Parameters/Masks" unique_id=595218674]
 clip_children = 2
 layout_mode = 1
 anchors_preset = 5
@@ -918,7 +881,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Music" unique_id=524151685]
+[node name="Settings_Gradients" type="TextureRect" parent="Parameters/Masks/Music" unique_id=524151685]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
 layout_mode = 0
 offset_left = -104.0
@@ -929,7 +892,15 @@ mouse_filter = 2
 texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
 
-[node name="Music_0_100" type="RichTextLabel" parent="Impostazioni/Masks" unique_id=1294065887]
+[node name="Music_Color" type="ColorRect" parent="Parameters/Masks/Music/Settings_Gradients" unique_id=155781137]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 284.0
+offset_right = 672.0
+offset_bottom = 312.0
+color = Color(1, 1, 1, 0.627451)
+
+[node name="Music_0_100" type="RichTextLabel" parent="Parameters/Masks" unique_id=1294065887]
 clip_children = 2
 layout_mode = 1
 anchors_preset = 5
@@ -953,7 +924,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Settings_Gradients" type="TextureRect" parent="Impostazioni/Masks/Music_0_100" unique_id=712580080]
+[node name="Settings_Gradients" type="TextureRect" parent="Parameters/Masks/Music_0_100" unique_id=712580080]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
 layout_mode = 0
 offset_left = -30.5
@@ -965,7 +936,6 @@ texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
 
 [node name="Glitches" type="Control" parent="." unique_id=1199082990]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
@@ -1003,55 +973,8 @@ offset_bottom = 951.0
 mouse_filter = 1
 metadata/_edit_lock_ = true
 
-[node name="Info_Overlay" type="Control" parent="." unique_id=350611365]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 960.0
-offset_bottom = 540.0
-mouse_filter = 2
-script = ExtResource("13_wgd1c")
-metadata/_edit_lock_ = true
-
-[node name="Info_Settings" type="RichTextLabel" parent="Info_Overlay" unique_id=1219377438]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -197.0
-offset_top = -66.0
-offset_right = 197.0
-offset_bottom = -35.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 0
-theme_override_constants/outline_size = 6
-theme_override_fonts/normal_font = ExtResource("2_shryd")
-theme_override_font_sizes/normal_font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_e6nj5")
-bbcode_enabled = true
-text = "[color=#70cb10]A[/color] p3r [color=#70cb10]Sprint//Avvio[/color][…][color=#70cb10]Pronto[/color]?
-[color=#cb5030]B[/color] pe® [color=#cb5030]CaN©êlL@r€[/color]…"
-fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="Animation_Overlay" type="AnimationPlayer" parent="Info_Overlay" unique_id=1256038439]
-libraries/ = SubResource("AnimationLibrary_a50p4")
-
-[node name="Alarm" type="AudioStreamPlayer" parent="Info_Overlay" unique_id=1801030583]
-volume_db = -15.0
-autoplay = true
-bus = &"FX_WET"
-
 [node name="Quit_Button" parent="." unique_id=1295710875 instance=ExtResource("17_a50p4")]
-offset_left = 870.0
-offset_top = 450.0
-offset_right = 960.0
-offset_bottom = 540.0
+offset_left = 435.0
+offset_top = 435.0
+offset_right = 525.0
+offset_bottom = 525.0

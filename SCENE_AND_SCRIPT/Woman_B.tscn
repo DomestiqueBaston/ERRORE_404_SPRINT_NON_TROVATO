@@ -2807,112 +2807,112 @@ metadata/_edit_lock_ = true
 stream = ExtResource("13_ifvtu")
 volume_db = -2.5
 pitch_scale = 0.5
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Foot_Step_03" type="AudioStreamPlayer" parent="Sound" unique_id=1328140485]
 stream = ExtResource("15_4pmps")
 volume_db = -2.5
 pitch_scale = 0.5
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Glitch_Sound" type="AudioStreamPlayer" parent="Sound" unique_id=1963298143]
 volume_db = -15.0
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Disappearing" type="AudioStreamPlayer" parent="Sound" unique_id=748581328]
 volume_db = -2.5
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Falling" type="AudioStreamPlayer" parent="Sound" unique_id=953067423]
 volume_db = -5.0
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Running" type="AudioStreamPlayer" parent="Sound" unique_id=1886074975]
 volume_db = -12.5
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Fall_Death" type="AudioStreamPlayer" parent="Sound" unique_id=203481195]
 volume_db = -10.0
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Ouch" type="AudioStreamPlayer" parent="Sound" unique_id=1772537407]
 volume_db = -5.0
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Pushing" type="AudioStreamPlayer" parent="Sound" unique_id=2103180944]
 volume_db = -12.5
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Sliding" type="AudioStreamPlayer" parent="Sound" unique_id=2082912143]
 volume_db = -12.5
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Disappearing_Death" type="AudioStreamPlayer" parent="Sound" unique_id=122269528]
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Bonus_Malus" type="Node2D" parent="Sound" unique_id=666166875]
 visible = false
 
 [node name="Dash" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=73071796]
 stream = ExtResource("39_8765u")
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Through" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1223350761]
 stream = ExtResource("30_yf3j5")
 volume_db = -1.5
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Virus" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1210360327]
 stream = ExtResource("31_5fiyw")
 volume_db = -2.5
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Teleport" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=557198775]
 stream = ExtResource("32_dclff")
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Debug" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1546342177]
 stream = ExtResource("33_kwd4r")
 volume_db = 2.5
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Last_Longer" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=930834947]
 stream = ExtResource("34_nmd72")
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Invincible" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=766227303]
 stream = ExtResource("35_sp8am")
 volume_db = -1.5
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Invert" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=2145704177]
 stream = ExtResource("36_phu4t")
 volume_db = -2.5
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Slow" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1509545821]
 stream = ExtResource("37_bqex6")
 volume_db = 2.5
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Last_Shorter" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=966521952]
 stream = ExtResource("38_rf28l")
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Anti_Dash" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=248441186]
 stream = ExtResource("29_lpk6h")
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Empty" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=68608256]
 stream = ExtResource("40_646ki")
 volume_db = 2.5
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Anti_Virus" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1234003132]
 stream = ExtResource("41_djysl")
 volume_db = -2.5
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Anti_Teleport" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=2056585450]
 stream = ExtResource("42_su48l")
-bus = &"FX_DRY"
+bus = &"MISC"

@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 		return
 
 	# Reset total avec Échap
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_tab_button"):
 		last_direction = Vector2.ZERO
 		jump_direction = Vector2.ZERO
 		slide_direction = Vector2.ZERO

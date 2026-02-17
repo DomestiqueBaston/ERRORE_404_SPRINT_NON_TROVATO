@@ -2828,116 +2828,116 @@ metadata/_edit_lock_ = true
 stream = ExtResource("29_o60mx")
 volume_db = -2.5
 pitch_scale = 0.5
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Foot_Step_02" type="AudioStreamPlayer" parent="Sound" unique_id=475336406]
 stream = ExtResource("13_wqidb")
 volume_db = -2.5
 pitch_scale = 0.5
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Glitch_Sound" type="AudioStreamPlayer" parent="Sound" unique_id=1006391615]
 volume_db = -15.0
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Disappearing" type="AudioStreamPlayer" parent="Sound" unique_id=40752013]
 volume_db = -2.5
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Falling" type="AudioStreamPlayer" parent="Sound" unique_id=916835663]
 volume_db = -5.0
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Running" type="AudioStreamPlayer" parent="Sound" unique_id=1371606945]
 volume_db = -12.5
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Fall_Death" type="AudioStreamPlayer" parent="Sound" unique_id=1910313179]
 volume_db = -10.0
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Ouch" type="AudioStreamPlayer" parent="Sound" unique_id=2090339564]
 volume_db = -2.5
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Pushing" type="AudioStreamPlayer" parent="Sound" unique_id=918143632]
 volume_db = -15.0
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Sliding" type="AudioStreamPlayer" parent="Sound" unique_id=2142143059]
 volume_db = -12.5
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Bim" type="AudioStreamPlayer" parent="Sound" unique_id=1901487774]
 volume_db = -7.5
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Disappearing_Death" type="AudioStreamPlayer" parent="Sound" unique_id=1732010629]
-bus = &"FX_DRY"
+bus = &"RUNNERS"
 
 [node name="Bonus_Malus" type="Node2D" parent="Sound" unique_id=1636344193]
 visible = false
 
 [node name="Dash" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=347522302]
 stream = ExtResource("40_w6tkd")
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Through" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1428876517]
 stream = ExtResource("31_fwjxr")
 volume_db = -1.5
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Virus" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=787587184]
 stream = ExtResource("32_r6ph6")
 volume_db = -2.5
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Teleport" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=556419031]
 stream = ExtResource("33_4mt1g")
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Debug" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1988301064]
 stream = ExtResource("34_qiasf")
 volume_db = 2.5
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Last_Longer" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=696299228]
 stream = ExtResource("35_x6lkg")
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Invincible" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=2046569927]
 stream = ExtResource("36_kiruc")
 volume_db = -1.5
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Invert" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1065463390]
 stream = ExtResource("37_q6wey")
 volume_db = -2.5
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Slow" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1881074534]
 stream = ExtResource("38_am40h")
 volume_db = 2.5
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Last_Shorter" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=25389255]
 stream = ExtResource("39_o58ue")
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Anti_Dash" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1725499644]
 stream = ExtResource("40_w6tkd")
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Empty" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1586039620]
 stream = ExtResource("41_2x0cp")
 volume_db = 2.5
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Anti_Virus" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=285590685]
 stream = ExtResource("42_ucwfd")
 volume_db = -2.5
-bus = &"FX_DRY"
+bus = &"MISC"
 
 [node name="Anti_Teleport" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=2101665834]
 stream = ExtResource("43_r1vii")
-bus = &"FX_DRY"
+bus = &"MISC"

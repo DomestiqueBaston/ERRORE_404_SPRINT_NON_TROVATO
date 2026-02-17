@@ -3,7 +3,7 @@ extends Node2D
 @onready var anim_on_off: AnimationPlayer = $Animation_Cube_On_Off
 @onready var anim_alive:  AnimationPlayer = $Animation_Cube
 
-## Couleurs aléatoires pour les bonus (voir sprite_color sur Cube) :
+## Couleurs pour les bonus (voir sprite_color sur le Material du node Cube) :
 ## Rouge : Color(1.523, 1.044, 1.044)
 ## Vert : Color(0.953, 1.164, 0.695)
 ## Bleu : Color(0.939, 1.013, 1.382)
