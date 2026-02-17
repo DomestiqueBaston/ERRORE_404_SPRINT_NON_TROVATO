@@ -22,11 +22,11 @@ func _ready():
 	update_menu()
 
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_down"):
+	if event.is_action_pressed("ui_down_button"):
 		current_index = (current_index + 1) % entries.size()
 		update_menu()
 
-	elif event.is_action_pressed("ui_up"):
+	elif event.is_action_pressed("ui_up_button"):
 		current_index = (current_index - 1 + entries.size()) % entries.size()
 		update_menu()
 

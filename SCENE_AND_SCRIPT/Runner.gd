@@ -71,13 +71,13 @@ func _process(delta: float) -> void:
 
 	# === Entrées de déplacement ===
 	if not is_jumping and not is_sliding:
-		if Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_down"):
+		if Input.is_action_pressed("ui_right_button") and Input.is_action_pressed("ui_down_button"):
 			input_direction = Vector2(1, 1).rotated(deg_to_rad(-18.4))
-		elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_down"):
+		elif Input.is_action_pressed("ui_left_button") and Input.is_action_pressed("ui_down_button"):
 			input_direction = Vector2(-1, 1).rotated(deg_to_rad(18.4))
-		elif Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_up"):
+		elif Input.is_action_pressed("ui_right_button") and Input.is_action_pressed("ui_up_button"):
 			input_direction = Vector2(1, -1).rotated(deg_to_rad(18.4))
-		elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_up"):
+		elif Input.is_action_pressed("ui_left_button") and Input.is_action_pressed("ui_up_button"):
 			input_direction = Vector2(-1, -1).rotated(deg_to_rad(-18.4))
 
 		if input_direction != Vector2.ZERO:

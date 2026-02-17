@@ -1,18 +1,23 @@
 extends TextureProgressBar
 
 @export var hold_to_show_time := 0.25
-@export var fill_duration := 1.25
+@export var fill_duration := 1.0
 
 var _press_timer := 0.0
 var _fill_timer := 0.0
 var _locked := false
+
+#####################################################################################
+## Le comportement du bouton n'est pas totalement finalisé (même s'il fonctionne). ##
+#####################################################################################
+
 
 func _ready():
 	visible = false
 	value = min_value
 
 func _process(delta):
-	if Input.is_action_pressed("ui_esc_button"):
+	if Input.is_action_pressed("ui_quit_button"):
 		_press_timer += delta
 		
 		if _press_timer >= hold_to_show_time:

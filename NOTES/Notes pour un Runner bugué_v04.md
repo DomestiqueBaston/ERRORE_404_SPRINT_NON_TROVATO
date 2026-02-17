@@ -122,23 +122,34 @@ Script de déroulement d’une partie (depuis le lancement d’Errore_404.exe) 
 Préambule :
 	• À chaque chargement de scène (sauf contre-indication), on joue 1 fois Music/Bang (dans Music.tscn).
 	• Les sons de validation (Validation) et d’annulation (Cancel) sont dans la scène UI_Sounds.tscn.
-	• Par défaut, Intro et Music sont en boucle, pas besoin de le dire dans le code théoriquement !
-	• En permanence on aura accès au bouton Quit (Quit_Button_tscn). J’aimerais que le bouton qui sert à passer de plein écran à fenêtré puisse aussi servir à quitter (Quit_Button.tscn) sur une pression longue (voir dans la scène pour les délais). Pour le moment, la maquette ne fait pas ça et utilise un autre bouton pour quitter (je n’arrivais pas à le maquetter)… 
-	• En gros, dans les scènes, des choses sont mises en place uniquement pour voir comment ça fait (je pense notamment à certains (bouts de) scripts, aux musiques ou sons d’UI qui, je suppose, devraient plus être dans des autoloads ou quoi, etc…).
+	• Par défaut, Intro et Music sont en boucle, pas besoin de le dire dans le code (théoriquement) !
+	• En permanence on aura accès au bouton Quit (Quit_Button_tscn) pour quitter le jeu définitivement. 
+	• En gros, dans les scènes, des choses sont mises en place uniquement « pour voir comment ça fait » (je pense notamment à certains (bouts de) scripts, aux musiques ou sons d’UI qui, je suppose, devraient plus être dans des autoloads ou quoi, etc…).
+	• Utilisation des boutons :
+		◦ ui_a_button : Valider et Sauter (A)
+		◦ ui_b_button : Annuler et Glisser (B)
+		◦ ui_x_button et ui_y_button : Activer les Bonus/Malus (X et Y)
+		◦ ui_left_button, ui_right_button, ui_up_button et ui_down_button : Direction et navigation menu
+		◦ ui_fullscreen : Plein écran/Fenêtré
+		◦ ui_quit_button : Quitter (pression longue, voir Quit_Button.tscn)
+	Il faudra penser à virer ui_tab_button qui ne servira à rien dans le jeu !
 
 Avant le jeu :
-	1. Chargement de l’écran titre Title.tscn (l’overlay qui dit de presser un bouton, peu importe lequel) apparaît au bout de 15’’ si je joueur n’a rien fait jusque là). À partir du démarrage, Music/Intro joue en boucle.
-	2. Transition brutale (pour une fois, sans effet de transition !) vers Settings.tscn. À l’ouverture de la scène suivante, on jouera juste Music/Bang (Music/Intro continue donc de jouer). Dans cette scène, presser B (Cancellare) remet les valeurs modifiées à leur valeur précédente et retourne à l’écran titre. Presser A lancera le jeu.
+	1. Chargement de l’écran titre Title.tscn. L’overlay qui dit de presser un bouton, peu importe lequel, apparaît au bout de qqs secondes si je joueur n’a rien fait jusque là). À partir du démarrage (on commence avec Title.tscn), Music/Intro joue en boucle. N’importe quel bouton (sauf pression longue sur ui_quit_button, donc) amène à…
+	2. Transition brutale (sans effet de transition) vers Menu.tscn. À l’ouverture de la scène, on jouera juste Music/Bang (Music/Intro continue donc de jouer depuis le lancement du jeu). Ici, on navigue avec la manette (haut/bas). On navigue dans le menu avec les direction haut et bas on valide avec A. Et on va directement, en fonction du choix, à…
+	3. Transition brutale vers… en fonction du choix :
+		◦ Settings.tscn (sans effet de transition, juste avec le Bang) : encore une fois, à l’ouverture de la scène, on jouera juste Music/Bang (Music/Intro continue donc de jouer). On navigue dans les paramètres avec haut et bas, on change les valeurs avec droite et gauche, on valide avec A. On revient à Menu.tscn avec B. Si on valide sur le premier choix du menu, on lance une partie !
+		◦ Dans Credits.tscn, Tutorial.tscn, n’importe quelle bouton renvoi au menu (encore une fois, sauf pression longue, etc.).
 
 Le jeu :
-	3. Transition brutale vers Game.tscn. Les 4 caméras sont centrées sur les 4 coins de la zone de course. L’écran en haut à gauche affiche la sélection de joueur (Portraits.tscn) qui commence sur la fille et les 3 autres affichent aléatoirement les 3 autres personnages : pas de doublons ! À chaque fois que le joueur change de personnage, les autres sont retirés aléatoirement.
-	4. On sélectionne le personnage avec droite et gauche, on valide avec A et on annule avec B (qui renvoie à l’écran titre avec transition brutale + Bang!). Lorsque le joueur change de personnage, à chaque fois, dans les autres quarts d’écran les personnages changent et on utilisera leurs animations de Glitch sur 5 frames (à préciser ultérieurement) pour faire une transition. Annuler renvoie à l’écran Settings.tscn avec toujours la même transition. Valider Fait disparaître l’overlay de sélection des personnages !
-		◦ Ceci est pour la cas où il n’y aurait qu’1 joueur humain et 3 bots mais pour ajouter 1 autre (ou plusieurs autres) joueur humain, il suffira de presser un des boutons d’un autre contrôleur pour que le quart d’écran suivant lui soit attribué. Le reste se fait comme pour le premier joueur… Overlay des portraits, etc. Il ne peut pas avoir de doublons de personnage !
-	5. Tous les Personnages passent alors en animation Start. Au bout d’1/2 seconde, on joue UI_Sounds/3_2_1 puis on coupe Music/Intro, on lance UI_Sounds/Go et Music/Music en boucle (sans Music/Bang cette fois-ci) et les coureurs (Bot) partent aléatoirement dans l’une des deux directions qu’il ont de possible dans, au plus tard, la 1/2 de seconde qui suit ! Au pire, 1 seconde après le « top départ », tous les concurrents restants partiront automatiquement avec un décalage de 1/4 de seconde les uns avec les autres pasque tous synchro, c’est pas joli.
+	4. Transition brutale vers Game.tscn. Les 4 caméras sont centrées sur les 4 coins de la zone de course. L’écran en haut à gauche affiche la sélection de joueur (Portraits.tscn) qui commence sur la fille et les 3 autres affichent aléatoirement les 3 autres personnages : pas de doublons ! À chaque fois que le joueur change de personnage, les autres sont retirés aléatoirement.
+	5. On sélectionne le personnage avec droite et gauche, on valide avec A. Lorsque le joueur change de personnage, à chaque fois, dans les autres quarts d’écran les personnages changent et on utilisera leurs animations de Glitch sur 5 frames (à préciser ultérieurement) pour faire une transition entre les personnages. ui_quit_button renvoie à Menu.tscn transition brutale). Valider Fait disparaître l’overlay de sélection des personnages et lance la course...
+		◦ Ceci est pour la cas où il n’y aurait qu’1 joueur humain et 3 bots mais pour ajouter 1 autre (ou plusieurs autres) joueur humain, il suffira de presser un des boutons d’un autre contrôleur pour que le quart d’écran suivant lui soit attribué. Le reste se fait comme pour le premier joueur… Overlay des portraits, etc. Il ne peut pas avoir de doublons de personnage ! On ne peut plus ajouter de joueur quand il n’y a plus d’overlay de sélection de personnage.
+	6. Tous les Personnages passent alors en animation Start. Au bout d’1/2 seconde, on joue UI_Sounds/3_2_1 puis on coupe Music/Intro, on lance UI_Sounds/Go et Music/Music en boucle (sans Music/Bang cette fois-ci car il est inclus dans la musique) et les coureurs (Bot) partent aléatoirement dans l’une des deux directions qu’il ont de possible dans, au plus tard, la 1/2 de seconde qui suit ! Au pire, 1 seconde après le « top départ », tous les concurrents restants partiront automatiquement avec un décalage de 1/4 de seconde les uns avec les autres pasque tous synchro, c’est pas joli.
 
 Ici, la course elle-même prend place !
 
-	6. Lorsque les 3 premiers concurrents meurent, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) dans la scène  Game.tscn (scène pour le moment temporaire, comme je le disais).
+	7. Lorsque les 3 premiers concurrents meurent, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) dans la scène  Game.tscn (scène pour le moment temporaire, comme je le disais).
 		◦ Lorsque le dernier concurrent meurt, on affiche alors Frames/Info_Win_Lose_Overlay/Lose et on garde les précédents overlays de mort.
 		◦ Si un concurrent gagne (soit parce qu’il est le dernier à courir, soit parce qu’il a franchis la porte de sortie), on affiche Frames/Info_Win_Lose/Win et on garde les éventuels overlays de mort ! Automatiquement, les concurrents restants meurent (animation Death) chacun avec un décalage 1/4 de seconde afin de ne pas les avoir tous exactement synchro, ce qui est moche !
 		◦ Ensuite, n’importe quel bouton (sauf B) retourne brutalement (toujours) à l’écran de titre. On coupe alors Music/Music et on lance Music/Intro avec Music/Bang. Et on retourne au point 1 de cette liste. Presser B relance une partie « identique » à partir du point 5 de cette liste !
