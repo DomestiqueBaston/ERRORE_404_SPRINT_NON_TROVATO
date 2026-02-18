@@ -7,9 +7,9 @@ var _press_timer := 0.0
 var _fill_timer := 0.0
 var _locked := false
 
-#####################################################################################
-## Le comportement du bouton n'est pas totalement finalisé (même s'il fonctionne). ##
-#####################################################################################
+#########################################################################
+## Le comportement du bouton n'est pas totalement finalisé (maquette). ##
+#########################################################################
 
 
 func _ready():

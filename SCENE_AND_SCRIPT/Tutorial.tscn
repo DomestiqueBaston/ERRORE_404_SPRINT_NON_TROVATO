@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bk8me5671n4t7"]
 
+[ext_resource type="Script" uid="uid://bsx18oi27ppbr" path="res://SCENE_AND_SCRIPT/Tutorial.gd" id="1_yxi8t"]
 [ext_resource type="Texture2D" uid="uid://b8x0ihnlq10s2" path="res://IMAGE/MISC/Large_Shadow.png" id="2_fhuq5"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="3_6mfkc"]
 [ext_resource type="Texture2D" uid="uid://csnhbg2y348b7" path="res://IMAGE/MISC/Settings_Gradients.png" id="7_2ampn"]
@@ -177,6 +178,7 @@ shader_parameter/y_zoom = 1.25
 shader_parameter/opacity = 0.150000007125
 
 [node name="Tutorial" type="Node2D" unique_id=758904323]
+script = ExtResource("1_yxi8t")
 metadata/_edit_lock_ = true
 
 [node name="Info" type="Control" parent="." unique_id=1157028759]

@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://em4id2fwd18h"]
 
+[ext_resource type="Script" uid="uid://bhr5npqfvxov5" path="res://SCENE_AND_SCRIPT/UI_Sounds.gd" id="1_k5ifq"]
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="1_p0pgo"]
 [ext_resource type="AudioStream" uid="uid://ddouskyxl7bw7" path="res://SOUND/FX/Short_Beep_Low.ogg" id="2_kco3e"]
 [ext_resource type="AudioStream" uid="uid://1lc5r82un1qy" path="res://SOUND/FX/3_2_1.ogg" id="3_rjpab"]
 [ext_resource type="AudioStream" uid="uid://1yidvkv4dxoq" path="res://SOUND/FX/Go.ogg" id="4_k5ifq"]
+[ext_resource type="AudioStream" uid="uid://goi8yd4dovnf" path="res://SOUND/FX/Menu_Navigation.ogg" id="4_ptkxu"]
 
 [node name="UI_Sounds" type="Node2D" unique_id=524227096]
 visible = false
+script = ExtResource("1_k5ifq")
 
 [node name="Validation" type="AudioStreamPlayer" parent="." unique_id=2072789497]
 stream = ExtResource("1_p0pgo")
@@ -15,15 +18,19 @@ bus = &"FX_DRY"
 
 [node name="Cancel" type="AudioStreamPlayer" parent="." unique_id=1062544417]
 stream = ExtResource("2_kco3e")
-volume_db = -5.0
+volume_db = -12.5
+bus = &"FX_DRY"
+
+[node name="Menu_Navigation" type="AudioStreamPlayer" parent="." unique_id=797927155]
+stream = ExtResource("4_ptkxu")
 bus = &"FX_DRY"
 
 [node name="3_2_1" type="AudioStreamPlayer" parent="." unique_id=1306357443]
 stream = ExtResource("3_rjpab")
-volume_db = -2.5
+volume_db = -5.0
 bus = &"FX_DRY"
 
 [node name="Go" type="AudioStreamPlayer" parent="." unique_id=1071304123]
 stream = ExtResource("4_k5ifq")
-volume_db = -2.5
+volume_db = -5.0
 bus = &"FX_DRY"

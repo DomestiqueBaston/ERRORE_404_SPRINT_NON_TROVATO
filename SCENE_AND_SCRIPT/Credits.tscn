@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cgs3aqbqm7gku"]
 
+[ext_resource type="Script" uid="uid://dmu75clw443bu" path="res://SCENE_AND_SCRIPT/Credits.gd" id="1_7vkle"]
 [ext_resource type="Texture2D" uid="uid://b8x0ihnlq10s2" path="res://IMAGE/MISC/Large_Shadow.png" id="1_f5jx6"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="2_7vkle"]
 [ext_resource type="Texture2D" uid="uid://c1htfdg5reygb" path="res://IMAGE/MISC/Credits_Gradient.png" id="3_f5jx6"]
@@ -156,6 +157,7 @@ shader_parameter/y_zoom = 1.25
 shader_parameter/opacity = 0.10000000475
 
 [node name="Credits" type="Node2D" unique_id=582724467]
+script = ExtResource("1_7vkle")
 metadata/_edit_lock_ = true
 
 [node name="White" type="ColorRect" parent="." unique_id=806878626]
