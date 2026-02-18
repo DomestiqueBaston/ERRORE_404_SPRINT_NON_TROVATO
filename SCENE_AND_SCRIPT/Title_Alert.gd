@@ -18,7 +18,7 @@ func _ready():
 	animation_player.play("Blink")
 	
 
-func _process(_float):
+func _process(_delta):
 	if $"../../Quit_Button/Progress_Bar".visible:
 		self.hide()
 		animation_player.playback_active = false
