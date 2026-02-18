@@ -8,10 +8,11 @@
 [ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="3_cgbcj"]
 [ext_resource type="Texture2D" uid="uid://csnhbg2y348b7" path="res://IMAGE/MISC/Settings_Gradients.png" id="3_picqc"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="3_sobyg"]
-[ext_resource type="Texture2D" uid="uid://pypr1mgwq0et" path="res://IMAGE/MISC/Settings_Cursor_Light.png" id="4_2k1s1"]
 [ext_resource type="Script" uid="uid://clccpnapl4u45" path="res://SCENE_AND_SCRIPT/Settings_Glitches.gd" id="4_07jpc"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="5_a50p4"]
 [ext_resource type="Texture2D" uid="uid://brv8on4hwu0r7" path="res://IMAGE/MISC/Tick.png" id="5_sobyg"]
+[ext_resource type="Texture2D" uid="uid://kbs25hhwf3i8" path="res://IMAGE/MISC/Settings_Cursor_Light_Orange.png" id="6_a50p4"]
+[ext_resource type="Texture2D" uid="uid://b1b24sxr48m55" path="res://IMAGE/MISC/Settings_Cursor_Light_Green.png" id="8_3bceu"]
 [ext_resource type="Shader" uid="uid://rfstm5ejtwi3" path="res://SHADER/Reflection.gdshader" id="8_shryd"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="10_0rcrj"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="13_1skkq"]
@@ -302,7 +303,7 @@ offset_top = 142.0
 offset_right = 850.0
 offset_bottom = 170.0
 theme_override_icons/grabber = ExtResource("2_07jpc")
-theme_override_icons/grabber_highlight = ExtResource("4_2k1s1")
+theme_override_icons/grabber_highlight = ExtResource("6_a50p4")
 theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
 theme_override_icons/tick = ExtResource("5_sobyg")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
@@ -393,7 +394,7 @@ offset_top = 222.0
 offset_right = 850.0
 offset_bottom = 250.0
 theme_override_icons/grabber = ExtResource("2_07jpc")
-theme_override_icons/grabber_highlight = ExtResource("4_2k1s1")
+theme_override_icons/grabber_highlight = ExtResource("8_3bceu")
 theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
 theme_override_icons/tick = ExtResource("5_sobyg")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
@@ -483,7 +484,7 @@ offset_top = 302.0
 offset_right = 850.0
 offset_bottom = 330.0
 theme_override_icons/grabber = ExtResource("2_07jpc")
-theme_override_icons/grabber_highlight = ExtResource("4_2k1s1")
+theme_override_icons/grabber_highlight = ExtResource("6_a50p4")
 theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
 theme_override_icons/tick = ExtResource("5_sobyg")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
@@ -571,7 +572,7 @@ offset_top = 382.0
 offset_right = 850.0
 offset_bottom = 410.0
 theme_override_icons/grabber = ExtResource("2_07jpc")
-theme_override_icons/grabber_highlight = ExtResource("4_2k1s1")
+theme_override_icons/grabber_highlight = ExtResource("8_3bceu")
 theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
 theme_override_icons/tick = ExtResource("5_sobyg")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
