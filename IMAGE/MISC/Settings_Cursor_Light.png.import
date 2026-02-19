@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://pypr1mgwq0et"
-path="res://.godot/imported/Settings_Cursor_Light.png-92bd987ca8cb716debd33e46c796a9c2.ctex"
+path="res://.godot/imported/Settings_Cursor_Light.png-db3696ba2f2363652d18012188f6116d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TRASH/Settings_Cursor_Light.png"
-dest_files=["res://.godot/imported/Settings_Cursor_Light.png-92bd987ca8cb716debd33e46c796a9c2.ctex"]
+source_file="res://IMAGE/MISC/Settings_Cursor_Light.png"
+dest_files=["res://.godot/imported/Settings_Cursor_Light.png-db3696ba2f2363652d18012188f6116d.ctex"]
 
 [params]
 

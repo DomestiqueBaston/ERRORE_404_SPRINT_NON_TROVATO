@@ -19,6 +19,11 @@ var sliders: Array[HSlider]
 var normal_grabbers := {}
 var highlight_grabbers := {}
 
+var default_map_text = "   Dimensione della mappa   "
+var default_difficulty_text = "   Difficoltà   "
+var default_audio_text = "   Livello audio generale   "
+var default_music_text = "   Livello della musica   "
+
 func _ready():
 	map_slider.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	difficulty_slider.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -79,6 +84,35 @@ func _update_slider_visuals():
 				"grabber",
 				normal_grabbers[slider]
 			)
+	match selected_slider:
+		0:
+			$Map.text = " • Dimensione della mappa • "
+			$Masks/Map.text = " • Dimensione della mappa • "
+		1:
+			$Difficulty.text = " • Difficoltà • "
+			$Masks/Difficulty.text = " • Difficoltà • "
+		2:
+			$Audio.text = " • Livello audio generale • "
+			$Masks/Audio.text = " • Livello audio generale • "
+		3:
+			$Music.text = " • Livello della musica • "
+			$Masks/Music.text = " • Livello della musica • "
+			
+	_reset_texts_if_deselected()
+	
+func _reset_texts_if_deselected():
+	if selected_slider != 0:
+		$Map.text = default_map_text
+		$Masks/Map.text = default_map_text
+	if selected_slider != 1:
+		$Difficulty.text = default_difficulty_text
+		$Masks/Difficulty.text = default_difficulty_text
+	if selected_slider != 2:
+		$Audio.text = default_audio_text
+		$Masks/Audio.text = default_audio_text
+	if selected_slider != 3:
+		$Music.text = default_music_text
+		$Masks/Music.text = default_music_text
 
 
 func adjust_slider_value(direction: int):

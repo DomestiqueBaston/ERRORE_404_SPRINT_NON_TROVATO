@@ -11,8 +11,7 @@
 [ext_resource type="Script" uid="uid://clccpnapl4u45" path="res://SCENE_AND_SCRIPT/Settings_Glitches.gd" id="4_07jpc"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="5_a50p4"]
 [ext_resource type="Texture2D" uid="uid://brv8on4hwu0r7" path="res://IMAGE/MISC/Tick.png" id="5_sobyg"]
-[ext_resource type="Texture2D" uid="uid://kbs25hhwf3i8" path="res://IMAGE/MISC/Settings_Cursor_Light_Orange.png" id="6_a50p4"]
-[ext_resource type="Texture2D" uid="uid://b1b24sxr48m55" path="res://IMAGE/MISC/Settings_Cursor_Light_Green.png" id="8_3bceu"]
+[ext_resource type="Texture2D" uid="uid://pypr1mgwq0et" path="res://IMAGE/MISC/Settings_Cursor_Light.png" id="6_e6nj5"]
 [ext_resource type="Shader" uid="uid://rfstm5ejtwi3" path="res://SHADER/Reflection.gdshader" id="8_shryd"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="10_0rcrj"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="13_1skkq"]
@@ -245,7 +244,7 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "Dimensione della mappa:"
+text = "   Dimensione della mappa   "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -280,13 +279,12 @@ horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Line_Map" type="Line2D" parent="Parameters" unique_id=239642515]
-position = Vector2(79, 155)
+position = Vector2(79, 157)
 points = PackedVector2Array(3, 0, 757, 0)
 width = 8.0
 default_color = Color(0.7764706, 0.84313726, 0.9843137, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
-metadata/_edit_lock_ = true
 
 [node name="Line_Black" type="Line2D" parent="Parameters/Line_Map" unique_id=1876516488]
 points = PackedVector2Array(3, 0, 757, 0)
@@ -299,11 +297,11 @@ metadata/_edit_lock_ = true
 [node name="HSlider_Map" type="HSlider" parent="Parameters" unique_id=220456702]
 layout_mode = 0
 offset_left = 68.0
-offset_top = 142.0
+offset_top = 139.0
 offset_right = 850.0
-offset_bottom = 170.0
+offset_bottom = 175.0
 theme_override_icons/grabber = ExtResource("2_07jpc")
-theme_override_icons/grabber_highlight = ExtResource("6_a50p4")
+theme_override_icons/grabber_highlight = ExtResource("6_e6nj5")
 theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
 theme_override_icons/tick = ExtResource("5_sobyg")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
@@ -313,7 +311,6 @@ step = 2.0
 value = 15.0
 tick_count = 7
 ticks_on_borders = true
-metadata/_edit_lock_ = true
 
 [node name="Difficulty" type="RichTextLabel" parent="Parameters" unique_id=127181917]
 layout_mode = 1
@@ -336,7 +333,7 @@ theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0iask")
 bbcode_enabled = true
-text = "Difficoltà:"
+text = "   Difficoltà   "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -371,13 +368,12 @@ horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Line_Difficulty" type="Line2D" parent="Parameters" unique_id=1347992443]
-position = Vector2(79, 235)
+position = Vector2(79, 237)
 points = PackedVector2Array(3, 0, 757, 0)
 width = 8.0
 default_color = Color(0.7764706, 0.84313726, 0.9843137, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
-metadata/_edit_lock_ = true
 
 [node name="Line_Black" type="Line2D" parent="Parameters/Line_Difficulty" unique_id=1407812792]
 points = PackedVector2Array(3, 0, 757, 0)
@@ -390,11 +386,11 @@ metadata/_edit_lock_ = true
 [node name="HSlider_Difficulty" type="HSlider" parent="Parameters" unique_id=1206662753]
 layout_mode = 0
 offset_left = 68.0
-offset_top = 222.0
+offset_top = 219.0
 offset_right = 850.0
-offset_bottom = 250.0
+offset_bottom = 255.0
 theme_override_icons/grabber = ExtResource("2_07jpc")
-theme_override_icons/grabber_highlight = ExtResource("8_3bceu")
+theme_override_icons/grabber_highlight = ExtResource("6_e6nj5")
 theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
 theme_override_icons/tick = ExtResource("5_sobyg")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
@@ -403,7 +399,6 @@ max_value = 5.0
 value = 3.0
 tick_count = 5
 ticks_on_borders = true
-metadata/_edit_lock_ = true
 
 [node name="Audio" type="RichTextLabel" parent="Parameters" unique_id=2041634373]
 layout_mode = 1
@@ -426,7 +421,7 @@ theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_sobyg")
 bbcode_enabled = true
-text = "Livello audio generale:"
+text = "   Livello audio generale   "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -461,13 +456,12 @@ horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Line_Audio" type="Line2D" parent="Parameters" unique_id=422019962]
-position = Vector2(79, 315)
+position = Vector2(79, 317)
 points = PackedVector2Array(3, 0, 757, 0)
 width = 8.0
 default_color = Color(0.7764706, 0.84313726, 0.9843137, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
-metadata/_edit_lock_ = true
 
 [node name="Line_Black" type="Line2D" parent="Parameters/Line_Audio" unique_id=1280635266]
 points = PackedVector2Array(3, 0, 757, 0)
@@ -480,11 +474,11 @@ metadata/_edit_lock_ = true
 [node name="HSlider_Audio" type="HSlider" parent="Parameters" unique_id=1143135609]
 layout_mode = 0
 offset_left = 68.0
-offset_top = 302.0
+offset_top = 299.0
 offset_right = 850.0
-offset_bottom = 330.0
+offset_bottom = 335.0
 theme_override_icons/grabber = ExtResource("2_07jpc")
-theme_override_icons/grabber_highlight = ExtResource("6_a50p4")
+theme_override_icons/grabber_highlight = ExtResource("6_e6nj5")
 theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
 theme_override_icons/tick = ExtResource("5_sobyg")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
@@ -492,7 +486,6 @@ step = 10.0
 value = 100.0
 tick_count = 11
 ticks_on_borders = true
-metadata/_edit_lock_ = true
 
 [node name="Music" type="RichTextLabel" parent="Parameters" unique_id=519578696]
 layout_mode = 1
@@ -514,7 +507,7 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "Livello della musica:"
+text = "   Livello della musica   "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -549,13 +542,12 @@ horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Line_Music" type="Line2D" parent="Parameters" unique_id=1098754470]
-position = Vector2(79, 395)
+position = Vector2(79, 397)
 points = PackedVector2Array(3, 0, 757, 0)
 width = 8.0
 default_color = Color(0.7764706, 0.84313726, 0.9843137, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
-metadata/_edit_lock_ = true
 
 [node name="Line_Black" type="Line2D" parent="Parameters/Line_Music" unique_id=1796836554]
 points = PackedVector2Array(3, 0, 757, 0)
@@ -568,11 +560,11 @@ metadata/_edit_lock_ = true
 [node name="HSlider_Music" type="HSlider" parent="Parameters" unique_id=1381525169]
 layout_mode = 0
 offset_left = 68.0
-offset_top = 382.0
+offset_top = 379.0
 offset_right = 850.0
-offset_bottom = 410.0
+offset_bottom = 415.0
 theme_override_icons/grabber = ExtResource("2_07jpc")
-theme_override_icons/grabber_highlight = ExtResource("8_3bceu")
+theme_override_icons/grabber_highlight = ExtResource("6_e6nj5")
 theme_override_icons/grabber_disabled = ExtResource("2_07jpc")
 theme_override_icons/tick = ExtResource("5_sobyg")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_picqc")
@@ -580,7 +572,6 @@ step = 10.0
 value = 100.0
 tick_count = 11
 ticks_on_borders = true
-metadata/_edit_lock_ = true
 
 [node name="Masks" type="Control" parent="Parameters" unique_id=1994543020]
 anchors_preset = 0
@@ -640,7 +631,7 @@ theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "Dimensione della mappa:"
+text = "   Dimensione della mappa   "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -660,9 +651,9 @@ metadata/_edit_lock_ = true
 
 [node name="Map_Color" type="ColorRect" parent="Parameters/Masks/Map/Settings_Gradients" unique_id=283005762]
 layout_mode = 0
-offset_left = 584.0
+offset_left = 588.0
 offset_top = 155.0
-offset_right = 726.0
+offset_right = 730.0
 offset_bottom = 182.0
 color = Color(1, 1, 1, 0.627451)
 metadata/_edit_lock_ = true
@@ -719,7 +710,7 @@ theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "Difficoltà:"
+text = "   Difficoltà   "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -739,9 +730,9 @@ metadata/_edit_lock_ = true
 
 [node name="Difficulty_Color" type="ColorRect" parent="Parameters/Masks/Difficulty/Settings_Gradients" unique_id=1632677871]
 layout_mode = 0
-offset_left = 387.0
+offset_left = 391.0
 offset_top = 282.0
-offset_right = 565.0
+offset_right = 569.0
 offset_bottom = 312.0
 color = Color(1, 1, 1, 0.627451)
 metadata/_edit_lock_ = true
@@ -798,7 +789,7 @@ theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "Livello audio generale:"
+text = "   Livello audio generale   "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -818,9 +809,9 @@ metadata/_edit_lock_ = true
 
 [node name="Audio_Color" type="ColorRect" parent="Parameters/Masks/Audio/Settings_Gradients" unique_id=472341959]
 layout_mode = 0
-offset_left = 389.0
+offset_left = 394.0
 offset_top = 148.0
-offset_right = 507.0
+offset_right = 512.0
 offset_bottom = 176.0
 color = Color(1, 1, 1, 0.627451)
 metadata/_edit_lock_ = true
@@ -877,7 +868,7 @@ theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "Livello della musica:"
+text = "   Livello della musica   "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -897,11 +888,12 @@ metadata/_edit_lock_ = true
 
 [node name="Music_Color" type="ColorRect" parent="Parameters/Masks/Music/Settings_Gradients" unique_id=155781137]
 layout_mode = 0
-offset_left = 526.0
+offset_left = 531.0
 offset_top = 284.0
-offset_right = 672.0
+offset_right = 677.0
 offset_bottom = 312.0
 color = Color(1, 1, 1, 0.627451)
+metadata/_edit_lock_ = true
 
 [node name="Music_0_100" type="RichTextLabel" parent="Parameters/Masks" unique_id=1294065887]
 clip_children = 2
