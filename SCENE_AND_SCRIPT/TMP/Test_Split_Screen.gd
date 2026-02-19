@@ -15,4 +15,5 @@ func _unhandled_input(event: InputEvent) -> void:
 			Music.stop_intro()
 			Music.play_bang()
 			Music.play_music()
+			
 		once = false

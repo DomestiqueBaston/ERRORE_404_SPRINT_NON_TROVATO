@@ -7,16 +7,16 @@ var entries := [
 	"Credits"
 ]
 
-var scenes := {
-	"Start_Game": "res://SCENE_AND_SCRIPT/TMP/Test_Split_Screen.tscn",
-	"Tutorial": "res://SCENE_AND_SCRIPT/Tutorial.tscn",
-	"Settings": "res://SCENE_AND_SCRIPT/Settings.tscn",
-	"Credits": "res://SCENE_AND_SCRIPT/Credits.tscn"
+@onready var preloaded_scenes: Dictionary = {
+	"Start_Game": preload("res://SCENE_AND_SCRIPT/TMP/Test_Split_Screen.tscn"),
+	"Tutorial":   preload("res://SCENE_AND_SCRIPT/Tutorial.tscn"),
+	"Settings":   preload("res://SCENE_AND_SCRIPT/Settings.tscn"),
+	"Credits":    preload("res://SCENE_AND_SCRIPT/Credits.tscn"),
+	"Title":      preload("res://SCENE_AND_SCRIPT/Title.tscn")
 }
 
-var start_game_scene := preload("res://SCENE_AND_SCRIPT/TMP/Test_Split_Screen.tscn")
-
 var current_index: int = 0
+
 
 func _ready() -> void:
 	for entry_name in entries:
@@ -29,6 +29,7 @@ func _ready() -> void:
 	
 	current_index = 0
 	update_menu()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_down_button"):
@@ -43,17 +44,24 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	elif event.is_action_pressed("ui_a_button"):
 		UISounds.play_validation()
-		var selected_entry = entries[current_index]
-		if selected_entry in scenes:
-			if selected_entry == "Start_Game":
+		Music.play_bang()
+		
+		var selected = entries[current_index]
+		
+		if selected in preloaded_scenes:
+			var scene: PackedScene = preloaded_scenes[selected]
+			
+			if selected == "Start_Game":
 				Music.play_bang()
-				get_tree().change_scene_to_file(start_game_scene.resource_path)
-			else:
-				get_tree().change_scene_to_file(scenes[selected_entry])
+			
+			get_tree().change_scene_to_packed(scene)
+
 
 	elif event.is_action_pressed("ui_b_button"):
 		UISounds.play_cancel()
-		get_tree().change_scene_to_file("res://SCENE_AND_SCRIPT/Title.tscn")
+		Music.play_bang()
+		get_tree().change_scene_to_packed(preloaded_scenes["Title"])
+
 
 func update_menu() -> void:
 	for i in range(entries.size()):
@@ -63,6 +71,6 @@ func update_menu() -> void:
 		if not on_label or not off_label:
 			continue
 		
-		var selected = (i == current_index)
-		on_label.visible  = selected
-		off_label.visible = not selected
+		var is_selected = (i == current_index)
+		on_label.visible  = is_selected
+		off_label.visible = not is_selected
