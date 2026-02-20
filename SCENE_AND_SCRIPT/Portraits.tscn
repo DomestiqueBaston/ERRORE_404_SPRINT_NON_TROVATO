@@ -84,7 +84,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_nv63b"]
 resource_name = "Man_A_From_Left"
-length = 0.10000334
+length = 0.06666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -92,15 +92,15 @@ tracks/0/path = NodePath("Frame/BG/Her_Him:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 2),
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(277, 5), Vector2(147, 5)]
+"values": [Vector2(233.66666, 5), Vector2(147, 5)]
 }
 
 [sub_resource type="Animation" id="Animation_8tvfj"]
 resource_name = "Man_A_From_Right"
-length = 0.1
+length = 0.06666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -108,10 +108,10 @@ tracks/0/path = NodePath("Frame/BG/Her_Him:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 2),
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(22, 5), Vector2(147, 5)]
+"values": [Vector2(63.666668, 5), Vector2(147, 5)]
 }
 
 [sub_resource type="Animation" id="Animation_q0tq6"]
@@ -178,7 +178,7 @@ tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_o3kcc"]
 resource_name = "Man_B_From_Left"
-length = 0.1
+length = 0.06666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -186,15 +186,15 @@ tracks/0/path = NodePath("Frame/BG/Her_Him:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 2),
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(-263, 3), Vector2(-388, 3)]
+"values": [Vector2(-304.66666, 3), Vector2(-388, 3)]
 }
 
 [sub_resource type="Animation" id="Animation_yxdw6"]
 resource_name = "Man_B_From_Right"
-length = 0.1
+length = 0.06666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -202,10 +202,10 @@ tracks/0/path = NodePath("Frame/BG/Her_Him:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.099999994),
-"transitions": PackedFloat32Array(1, 2),
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(-513, 3), Vector2(-388, 3)]
+"values": [Vector2(-471.3333, 3), Vector2(-388, 3)]
 }
 
 [sub_resource type="Animation" id="Animation_gciow"]
@@ -287,7 +287,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_an4sn"]
 resource_name = "Woman_A_From_Left"
-length = 0.1
+length = 0.06666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -295,15 +295,15 @@ tracks/0/path = NodePath("Frame/BG/Her_Him:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 2),
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(541, 5), Vector2(414, 5)]
+"values": [Vector2(498.66666, 5), Vector2(414, 5)]
 }
 
 [sub_resource type="Animation" id="Animation_t8108"]
 resource_name = "Woman_A_From_Right"
-length = 0.1
+length = 0.06666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -311,10 +311,10 @@ tracks/0/path = NodePath("Frame/BG/Her_Him:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 2),
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(287, 5), Vector2(414, 5)]
+"values": [Vector2(329.33334, 5), Vector2(414, 5)]
 }
 
 [sub_resource type="Animation" id="Animation_t8f4h"]
@@ -381,7 +381,7 @@ tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_mbthr"]
 resource_name = "Woman_B_From_Left"
-length = 0.1
+length = 0.06666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -389,15 +389,15 @@ tracks/0/path = NodePath("Frame/BG/Her_Him:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 2),
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(8, 5), Vector2(-117, 5)]
+"values": [Vector2(-33.666668, 5), Vector2(-117, 5)]
 }
 
 [sub_resource type="Animation" id="Animation_ldhvg"]
 resource_name = "Woman_B_From_Right"
-length = 0.1
+length = 0.06666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -405,10 +405,10 @@ tracks/0/path = NodePath("Frame/BG/Her_Him:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 2),
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(-242, 5), Vector2(-117, 5)]
+"values": [Vector2(-200.33333, 5), Vector2(-117, 5)]
 }
 
 [sub_resource type="Animation" id="Animation_p3xvu"]
@@ -494,8 +494,6 @@ _data = {
 &"Woman_B_To_Right": SubResource("Animation_u61m0")
 }
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_u61m0"]
-
 [node name="Portraits" type="Control" unique_id=2050210296]
 layout_mode = 3
 anchors_preset = 0
@@ -515,6 +513,7 @@ metadata/_edit_lock_ = true
 position = Vector2(0, 13)
 texture = ExtResource("1_yaltw")
 offset = Vector2(0, -3)
+metadata/_edit_lock_ = true
 
 [node name="Portrait_Arrows" type="Sprite2D" parent="Frame/BG" unique_id=2100214986]
 self_modulate = Color(1, 1, 1, 0)
@@ -522,7 +521,6 @@ texture = ExtResource("4_hwl4u")
 metadata/_edit_lock_ = true
 
 [node name="BG_Mask" type="Sprite2D" parent="Frame" unique_id=1093812617]
-visible = false
 clip_children = 2
 texture = ExtResource("2_dpf0i")
 metadata/_edit_lock_ = true
@@ -536,6 +534,7 @@ metadata/_edit_lock_ = true
 self_modulate = Color(1, 1, 1, 0)
 position = Vector2(0, -14)
 texture = ExtResource("4_hwl4u")
+metadata/_edit_lock_ = true
 
 [node name="Announce" type="Control" parent="." unique_id=1447322526]
 anchors_preset = 0
@@ -568,6 +567,7 @@ text = "$cê[color=#ed7252]g[/color]l! l'@va[color=#ed7252]ta[/color]® ©O_ ç�
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Animation_Arrows" type="AnimationPlayer" parent="." unique_id=942789416]
 libraries/ = SubResource("AnimationLibrary_p3xvu")
@@ -583,7 +583,6 @@ volume_db = -5.0
 bus = &"FX_DRY"
 
 [node name="Alarm" type="AudioStreamPlayer" parent="Sounds" unique_id=1444163914]
-stream = SubResource("AudioStreamPolyphonic_u61m0")
 volume_db = -30.0
 pitch_scale = 0.5
 autoplay = true
