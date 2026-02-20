@@ -14,3 +14,6 @@ func play_three_two_one():
 	
 func play_go():
 	$Go.play()
+
+func play_full():
+	$Full.play()

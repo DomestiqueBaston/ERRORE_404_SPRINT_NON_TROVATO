@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://1lc5r82un1qy" path="res://SOUND/FX/3_2_1.ogg" id="3_rjpab"]
 [ext_resource type="AudioStream" uid="uid://1yidvkv4dxoq" path="res://SOUND/FX/Go.ogg" id="4_k5ifq"]
 [ext_resource type="AudioStream" uid="uid://goi8yd4dovnf" path="res://SOUND/FX/Menu_Navigation.ogg" id="4_ptkxu"]
+[ext_resource type="AudioStream" uid="uid://v25jstm0b3b7" path="res://SOUND/FX/Bar_full.ogg" id="7_ecwke"]
 
 [node name="UI_Sounds" type="Node2D" unique_id=524227096]
 visible = false
@@ -33,4 +34,8 @@ bus = &"FX_DRY"
 [node name="Go" type="AudioStreamPlayer" parent="." unique_id=1071304123]
 stream = ExtResource("4_k5ifq")
 volume_db = -5.0
+bus = &"FX_DRY"
+
+[node name="Full" type="AudioStreamPlayer" parent="." unique_id=309873625]
+stream = ExtResource("7_ecwke")
 bus = &"FX_DRY"

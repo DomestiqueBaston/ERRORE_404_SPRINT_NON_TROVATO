@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://3u5u3tfo43n" path="res://SCENE_AND_SCRIPT/Portraits.tscn" id="16_g5vlg"]
 [ext_resource type="PackedScene" uid="uid://bs6lfs8h7kibb" path="res://SCENE_AND_SCRIPT/Quit_Button.tscn" id="17_1luj4"]
 [ext_resource type="PackedScene" uid="uid://f84754sgk1nd" path="res://SCENE_AND_SCRIPT/Music.tscn" id="17_h5gqv"]
+[ext_resource type="PackedScene" uid="uid://bdkdfkk4qjapg" path="res://SCENE_AND_SCRIPT/Start_Button.tscn" id="18_rlifm"]
 
 [sub_resource type="Environment" id="Environment_w5jul"]
 background_mode = 3
@@ -1172,5 +1173,14 @@ offset_left = 435.0
 offset_top = 225.0
 offset_right = 525.0
 offset_bottom = 315.0
+metadata/_edit_lock_ = true
+
+[node name="Start_Button" parent="Frames" unique_id=650510075 instance=ExtResource("18_rlifm")]
+visible = false
+offset_left = 430.0
+offset_top = 220.0
+offset_right = 530.0
+offset_bottom = 320.0
+metadata/_edit_lock_ = true
 
 [node name="Music" parent="." unique_id=524227096 instance=ExtResource("17_h5gqv")]

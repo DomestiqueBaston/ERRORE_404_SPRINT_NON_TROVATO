@@ -33,6 +33,7 @@ buses/default_bus_layout="uid://87w0widytofu"
 Autoload="*uid://ubao4e160a71"
 UISounds="*uid://em4id2fwd18h"
 Music="*uid://f84754sgk1nd"
+AnnoyingSounds="*uid://cp2hksxfplvk0"
 
 [display]
 

@@ -37,4 +37,8 @@ func _process(delta):
 			_fill_timer = 0.0
 			_press_timer = 0.0
 		else:
+			##Les 2 lignes suivantes fonctionnent mal probablement à cause du fait qu'on reste
+			##forcément un peu appuyé sur le bouton pour quitter après que la barre soit pleine
+			#UISounds.play_full()
+			#await get_tree().create_timer(0.3).timeout
 			get_tree().quit()

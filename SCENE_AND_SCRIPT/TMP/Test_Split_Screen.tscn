@@ -44,6 +44,7 @@
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="37_ftky1"]
 [ext_resource type="PackedScene" uid="uid://3u5u3tfo43n" path="res://SCENE_AND_SCRIPT/Portraits.tscn" id="40_sf4qo"]
 [ext_resource type="PackedScene" uid="uid://bs6lfs8h7kibb" path="res://SCENE_AND_SCRIPT/Quit_Button.tscn" id="44_fe2l5"]
+[ext_resource type="PackedScene" uid="uid://bdkdfkk4qjapg" path="res://SCENE_AND_SCRIPT/Start_Button.tscn" id="45_4jeej"]
 
 [sub_resource type="Environment" id="Environment_w5jul"]
 background_mode = 3
@@ -1597,3 +1598,11 @@ offset_left = 435.0
 offset_top = 225.0
 offset_right = 525.0
 offset_bottom = 315.0
+
+[node name="Start_Button" parent="Frames" unique_id=610328938 instance=ExtResource("45_4jeej")]
+visible = false
+offset_left = 430.0
+offset_top = 220.0
+offset_right = 530.0
+offset_bottom = 320.0
+metadata/_edit_lock_ = true
