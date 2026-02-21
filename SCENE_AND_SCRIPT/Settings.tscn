@@ -33,7 +33,7 @@ shader_parameter/same_width_change_per_sec = 0.40000001574012
 shader_parameter/glitch_change_per_sec = 7.50000030875
 shader_parameter/threshold = 0.499999988824
 shader_parameter/strength = 0.30000001192093
-shader_parameter/glitch_blend = 0.8499999810008
+shader_parameter/glitch_blend = 0.499999988824
 
 [sub_resource type="Animation" id="Animation_chp44"]
 resource_name = "Glitchy_Sound"
@@ -650,6 +650,7 @@ texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
 
 [node name="Map_Color" type="ColorRect" parent="Parameters/Masks/Map/Settings_Gradients" unique_id=283005762]
+visible = false
 layout_mode = 0
 offset_left = 588.0
 offset_top = 155.0
@@ -729,6 +730,7 @@ texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
 
 [node name="Difficulty_Color" type="ColorRect" parent="Parameters/Masks/Difficulty/Settings_Gradients" unique_id=1632677871]
+visible = false
 layout_mode = 0
 offset_left = 391.0
 offset_top = 282.0
@@ -808,6 +810,7 @@ texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
 
 [node name="Audio_Color" type="ColorRect" parent="Parameters/Masks/Audio/Settings_Gradients" unique_id=472341959]
+visible = false
 layout_mode = 0
 offset_left = 394.0
 offset_top = 148.0
@@ -887,6 +890,7 @@ texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
 
 [node name="Music_Color" type="ColorRect" parent="Parameters/Masks/Music/Settings_Gradients" unique_id=155781137]
+visible = false
 layout_mode = 0
 offset_left = 531.0
 offset_top = 284.0

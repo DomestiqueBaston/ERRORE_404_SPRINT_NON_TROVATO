@@ -19,7 +19,7 @@ shader_parameter/same_width_change_per_sec = 0.40000001574012
 shader_parameter/glitch_change_per_sec = 7.50000030875
 shader_parameter/threshold = 0.499999988824
 shader_parameter/strength = 0.30000001192093
-shader_parameter/glitch_blend = 0.8499999810008
+shader_parameter/glitch_blend = 0.499999988824
 
 [sub_resource type="Animation" id="Animation_chp44"]
 resource_name = "Glitchy_Sound"
