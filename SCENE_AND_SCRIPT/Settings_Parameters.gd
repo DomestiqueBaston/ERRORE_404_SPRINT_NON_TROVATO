@@ -57,18 +57,40 @@ func _process(_delta):
 		if selected_slider < 0:
 			selected_slider = 3
 		_update_slider_visuals()
+		UISounds.play_menu_navigation()
 
 	elif Input.is_action_just_pressed("ui_down_button"):
 		selected_slider += 1
 		if selected_slider > 3:
 			selected_slider = 0
 		_update_slider_visuals()
+		UISounds.play_menu_navigation()
 	
 	if Input.is_action_just_pressed("ui_right_button"):
-		adjust_slider_value(1)
-	elif Input.is_action_just_pressed("ui_left_button"):
-		adjust_slider_value(-1)
+		if !is_slider_at_max(selected_slider):
+			adjust_slider_value(1)
+			UISounds.play_woosh()
 
+	elif Input.is_action_just_pressed("ui_left_button"):
+		if !is_slider_at_min(selected_slider):
+			adjust_slider_value(-1)
+			UISounds.play_woosh()
+
+func is_slider_at_min(slider_index: int) -> bool:
+	var slider: HSlider = get_slider_by_index(slider_index)
+	return slider.value <= slider.min_value
+	
+func is_slider_at_max(slider_index: int) -> bool:
+	var slider: HSlider = get_slider_by_index(slider_index)
+	return slider.value >= slider.max_value
+	
+func get_slider_by_index(index: int) -> HSlider:
+	match index:
+		0: return map_slider
+		1: return difficulty_slider
+		2: return master_slider
+		3: return music_slider
+	return null
 
 func _update_slider_visuals():
 	for i in sliders.size():
@@ -86,15 +108,19 @@ func _update_slider_visuals():
 			)
 	match selected_slider:
 		0:
+			$Masks/Map/Settings_Gradients/Map_Color.show()
 			$Map.text = " • Dimensione della mappa • "
 			$Masks/Map.text = " • Dimensione della mappa • "
 		1:
+			$Masks/Difficulty/Settings_Gradients/Difficulty_Color.show()
 			$Difficulty.text = " • Difficoltà • "
 			$Masks/Difficulty.text = " • Difficoltà • "
 		2:
+			$Masks/Audio/Settings_Gradients/Audio_Color.show()
 			$Audio.text = " • Livello audio generale • "
 			$Masks/Audio.text = " • Livello audio generale • "
 		3:
+			$Masks/Music/Settings_Gradients/Music_Color.show()
 			$Music.text = " • Livello della musica • "
 			$Masks/Music.text = " • Livello della musica • "
 			
@@ -102,15 +128,19 @@ func _update_slider_visuals():
 	
 func _reset_texts_if_deselected():
 	if selected_slider != 0:
+		$Masks/Map/Settings_Gradients/Map_Color.hide()
 		$Map.text = default_map_text
 		$Masks/Map.text = default_map_text
 	if selected_slider != 1:
+		$Masks/Difficulty/Settings_Gradients/Difficulty_Color.hide()
 		$Difficulty.text = default_difficulty_text
 		$Masks/Difficulty.text = default_difficulty_text
 	if selected_slider != 2:
+		$Masks/Audio/Settings_Gradients/Audio_Color.hide()
 		$Audio.text = default_audio_text
 		$Masks/Audio.text = default_audio_text
 	if selected_slider != 3:
+		$Masks/Music/Settings_Gradients/Music_Color.hide()
 		$Music.text = default_music_text
 		$Masks/Music.text = default_music_text
 

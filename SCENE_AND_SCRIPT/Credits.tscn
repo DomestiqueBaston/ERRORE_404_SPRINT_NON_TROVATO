@@ -6,11 +6,113 @@
 [ext_resource type="Texture2D" uid="uid://c1htfdg5reygb" path="res://IMAGE/MISC/Credits_Gradient.png" id="3_f5jx6"]
 [ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="4_e60u7"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="5_2yodr"]
+[ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="5_7vkle"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="6_8ln8e"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="7_i50ug"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="8_ocqcn"]
 [ext_resource type="Shader" uid="uid://rfstm5ejtwi3" path="res://SHADER/Reflection.gdshader" id="9_e0phu"]
 [ext_resource type="PackedScene" uid="uid://bs6lfs8h7kibb" path="res://SCENE_AND_SCRIPT/Quit_Button.tscn" id="12_7vkle"]
+
+[sub_resource type="Animation" id="Animation_j0kfs"]
+resource_name = "Blink"
+length = 0.66667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Credits_Gradients/Geoff_Color:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Credits_Gradients/Ferdi_Color:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Credits_Gradients/Geoff_Color:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.46666667, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.79607844, 0.3137255, 0.1882353, 0.5019608), Color(0.79607844, 0.3137255, 0.1882353, 0.5019608), Color(0.79607844, 0.3137255, 0.1882353, 0), Color(0.79607844, 0.3137255, 0.1882353, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Credits_Gradients/Ferdi_Color:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.46666667, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.4392157, 0.79607844, 0.0627451, 0.5019608), Color(0.4392157, 0.79607844, 0.0627451, 0.5019608), Color(0.4392157, 0.79607844, 0.0627451, 0), Color(0.4392157, 0.79607844, 0.0627451, 0)]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../../Alarm")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_7vkle")
+}],
+"times": PackedFloat32Array(0.13333334)
+}
+tracks/4/use_blend = true
+
+[sub_resource type="Animation" id="Animation_e60u7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Credits_Gradients/Geoff_Color:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.79607844, 0.3137255, 0.1882353, 0.5019608)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Credits_Gradients/Ferdi_Color:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.4392157, 0.79607844, 0.0627451, 0.5019608)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2yodr"]
+_data = {
+&"Blink": SubResource("Animation_j0kfs"),
+&"RESET": SubResource("Animation_e60u7")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bnvrm"]
 shader = ExtResource("4_e60u7")
@@ -278,6 +380,10 @@ offset_bottom = -113.0
 color = Color(1, 1, 1, 0.627451)
 metadata/_edit_lock_ = true
 
+[node name="Name_Animations" type="AnimationPlayer" parent="Graphics/Game_Credits/Cache" unique_id=1768056542]
+libraries/ = SubResource("AnimationLibrary_2yodr")
+autoplay = &"Blink"
+
 [node name="Glitches" type="Control" parent="Graphics" unique_id=642320963]
 layout_mode = 3
 anchors_preset = 0
@@ -318,3 +424,7 @@ offset_left = 435.0
 offset_top = 435.0
 offset_right = 525.0
 offset_bottom = 525.0
+
+[node name="Alarm" type="AudioStreamPlayer" parent="." unique_id=502750112]
+volume_db = -22.5
+bus = &"FX_WET"

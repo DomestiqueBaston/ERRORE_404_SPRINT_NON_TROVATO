@@ -17,3 +17,9 @@ func play_go():
 
 func play_full():
 	$Full.play()
+	
+func play_alert():
+	$Alert.play()
+
+func play_woosh():
+	$Woosh.play()
