@@ -8,18 +8,17 @@
 
 [node name="Glitchy_Sound_E" type="AudioStreamPlayer" parent="." unique_id=1492087052]
 stream = ExtResource("5_ns4qs")
-volume_db = -2.5
 bus = &"FX_WET"
 parameters/looping = true
 
 [node name="Glitchy_Sound_F" type="AudioStreamPlayer" parent="." unique_id=215692396]
 stream = ExtResource("6_8feb6")
-volume_db = -5.0
+volume_db = -7.5
 bus = &"FX_WET"
 parameters/looping = true
 
 [node name="Glitchy_Sound_G" type="AudioStreamPlayer" parent="." unique_id=538076908]
 stream = ExtResource("7_jea5g")
-volume_db = -12.5
+volume_db = -10.0
 bus = &"FX_WET"
 parameters/looping = true

@@ -616,19 +616,20 @@ visible = false
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionPolygon2D" parent="Collider_Obstacle" unique_id=1503758237]
-visible = false
 position = Vector2(0, -40)
 polygon = PackedVector2Array(0, -20, 118, 39, 118, 40, 0, 99, -118, 40, -118, 39)
 metadata/_edit_lock_ = true
 
 [node name="Shadow" type="Node2D" parent="." unique_id=1869682303]
 modulate = Color(1, 1, 1, 0)
+metadata/_edit_lock_ = true
 
 [node name="Pylone_Shadow" type="Sprite2D" parent="Shadow" unique_id=1454845365]
 visible = false
 material = SubResource("ShaderMaterial_i673b")
 position = Vector2(0, -0.5)
 texture = ExtResource("1_4ropo")
+metadata/_edit_lock_ = true
 
 [node name="Pylon" type="Node2D" parent="." unique_id=1096971533]
 metadata/_edit_lock_ = true

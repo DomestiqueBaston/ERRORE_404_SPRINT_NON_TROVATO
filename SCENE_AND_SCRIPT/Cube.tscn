@@ -295,6 +295,7 @@ libraries/ = SubResource("AnimationLibrary_uma14")
 libraries/ = SubResource("AnimationLibrary_1e78n")
 
 [node name="Cube_Sound" type="Node2D" parent="." unique_id=97411741]
+visible = false
 
 [node name="Cube_Hum" type="AudioStreamPlayer" parent="Cube_Sound" unique_id=994272503]
 volume_db = -5.0

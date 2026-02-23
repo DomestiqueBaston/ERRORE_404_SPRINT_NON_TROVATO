@@ -820,6 +820,7 @@ _data = {
 }
 
 [node name="Cell" type="Node2D" unique_id=2120336095]
+metadata/_edit_lock_ = true
 
 [node name="ATTENTION" type="Label" parent="." unique_id=1347624169]
 offset_left = 124.0
@@ -837,21 +838,17 @@ puis on fait un Tween de déplacement en jouant
 le son Sliding_Cell
 puis on finit en jouant l'animation Sliding_End.
 
-Tout cela ne vaut que pour les glissements."
-metadata/_edit_lock_ = true
+Tout cela ne vaut que pour les glissements.
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=187786599]
-visible = false
-offset_left = -153.0
-offset_top = -128.0
-offset_right = 317.0
-offset_bottom = 290.0
+Concernant le collider de direction,
+ je ne sais pas comment faire...
+Ce qui est en place ne va très certainement pas !"
+metadata/_edit_lock_ = true
 
 [node name="Column" type="Node2D" parent="." unique_id=294314283]
 metadata/_edit_lock_ = true
 
 [node name="Navigation_Tile" type="NavigationRegion2D" parent="Column" unique_id=2074369045]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_mwy7o")
 metadata/_edit_lock_ = true
 
@@ -1108,10 +1105,11 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionShape2D" parent="Column/Cell_Tops/One_Way_Direction/Shadow_Orientation/Direction_Collider" unique_id=636798695]
-position = Vector2(-0.7547445, -0.37794787)
+position = Vector2(-1, 0)
 rotation = 0.46425754
 skew = 0.65973437
 shape = SubResource("RectangleShape2D_qkut6")
+metadata/_edit_lock_ = true
 
 [node name="Shadow" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Shadow_Orientation" unique_id=1270092676]
 self_modulate = Color(1, 1, 1, 0.12941177)
@@ -1168,6 +1166,7 @@ libraries/ = SubResource("AnimationLibrary_ej7e8")
 autoplay = &"RESET"
 
 [node name="Sound" type="Node2D" parent="." unique_id=589879206]
+visible = false
 metadata/_edit_lock_ = true
 
 [node name="Moving_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=2131109079]

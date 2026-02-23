@@ -17,12 +17,17 @@ func _ready() -> void:
 	if south_east:
 		$Shadow_Orientation.scale = Vector2(1.0, 1.0)
 		$Direction_Orientation.scale = Vector2(1.0, 1.0)
+		$Direction_Orientation.position = Vector2(-9.0, -55.0)
 	if north_west:
 		$Shadow_Orientation.scale = Vector2(-1.0, -1.0)
 		$Direction_Orientation.scale = Vector2(-1.0, -1.0)
+		$Direction_Orientation.position = Vector2(11.0, -45.0)
 	if south_west:
 		$Shadow_Orientation.scale = Vector2(-1.0, 1.0)
 		$Direction_Orientation.scale = Vector2(-1.0, 1.0)
+		$Direction_Orientation.position = Vector2(11.0, -55.0)
 	if north_east:
 		$Shadow_Orientation.scale = Vector2(1.0, -1.0)
 		$Direction_Orientation.scale = Vector2(1.0, -1.0)
+		$Direction_Orientation.position = Vector2(-9.0, -45.0)
+		

@@ -358,6 +358,7 @@ texture = ExtResource("4_jqsr3")
 metadata/_edit_lock_ = true
 
 [node name="Glitches" type="Control" parent="Graphics" unique_id=642320963]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0

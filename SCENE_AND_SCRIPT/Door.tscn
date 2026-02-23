@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://jeuanuva1v8o"]
+[gd_scene format=3 uid="uid://jeuanuva1v8o"]
 
 [ext_resource type="Script" uid="uid://b3ee2ad2rdstv" path="res://SCENE_AND_SCRIPT/Door.gd" id="1_ecpiw"]
 [ext_resource type="Texture2D" uid="uid://bgq4edmw16b8" path="res://IMAGE/ENVIRONMENT/DOOR/Door_Shadow.png" id="1_w6txa"]
@@ -318,42 +318,42 @@ _data = {
 &"RESET": SubResource("Animation_3dh1m")
 }
 
-[node name="Door" type="Node2D"]
+[node name="Door" type="Node2D" unique_id=754266912]
 script = ExtResource("1_ecpiw")
 
-[node name="Collider_Door" type="Area2D" parent="."]
+[node name="Collider_Door" type="Area2D" parent="." unique_id=1723708210]
 visible = false
 metadata/_edit_lock_ = true
 
-[node name="Passage" type="CollisionShape2D" parent="Collider_Door"]
+[node name="Passage" type="CollisionShape2D" parent="Collider_Door" unique_id=1711003240]
 position = Vector2(2.6447163, -1.0161018)
 rotation = 0.42760566
 skew = 0.6283184
 shape = SubResource("RectangleShape2D_ecpiw")
 metadata/_edit_lock_ = true
 
-[node name="Leg_D" type="CollisionShape2D" parent="Collider_Door"]
-position = Vector2(46.444004, 18.699099)
+[node name="Leg_D" type="CollisionShape2D" parent="Collider_Door" unique_id=1502495294]
+position = Vector2(47, 19)
 rotation = 0.42760566
 skew = 0.6283184
 shape = SubResource("RectangleShape2D_t7lr0")
 metadata/_edit_lock_ = true
 
-[node name="Leg_G" type="CollisionShape2D" parent="Collider_Door"]
+[node name="Leg_G" type="CollisionShape2D" parent="Collider_Door" unique_id=88603420]
 position = Vector2(-41.000004, -21.000004)
 rotation = 0.42760566
 skew = 0.6283184
 shape = SubResource("RectangleShape2D_mhnl0")
 metadata/_edit_lock_ = true
 
-[node name="Door_Shadow" type="Sprite2D" parent="."]
+[node name="Door_Shadow" type="Sprite2D" parent="." unique_id=864377854]
 visible = false
 self_modulate = Color(1, 1, 1, 0.29411766)
 texture = ExtResource("1_w6txa")
 offset = Vector2(0, 6)
 metadata/_edit_lock_ = true
 
-[node name="Door_Back" type="Sprite2D" parent="."]
+[node name="Door_Back" type="Sprite2D" parent="." unique_id=780878611]
 visible = false
 light_mask = 3
 material = SubResource("ShaderMaterial_jbtw0")
@@ -363,7 +363,7 @@ hframes = 25
 vframes = 4
 metadata/_edit_lock_ = true
 
-[node name="Door_Light" type="PointLight2D" parent="Door_Back"]
+[node name="Door_Light" type="PointLight2D" parent="Door_Back" unique_id=815141957]
 position = Vector2(-14, -78)
 color = Color(0.29000002, 0.33733332, 1, 1)
 energy = 1.3
@@ -371,7 +371,7 @@ range_item_cull_mask = 2
 texture = SubResource("GradientTexture2D_t7lr0")
 metadata/_edit_lock_ = true
 
-[node name="Door_Front" type="Sprite2D" parent="."]
+[node name="Door_Front" type="Sprite2D" parent="." unique_id=1737667010]
 visible = false
 light_mask = 5
 z_index = 1
@@ -382,30 +382,25 @@ hframes = 25
 vframes = 4
 metadata/_edit_lock_ = true
 
-[node name="Animation_Door" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_yp78x")
-}
+[node name="Animation_Door" type="AnimationPlayer" parent="." unique_id=1952673219]
+libraries/ = SubResource("AnimationLibrary_yp78x")
 
-[node name="Animation_Door_On" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_jbtw0")
-}
+[node name="Animation_Door_On" type="AnimationPlayer" parent="." unique_id=102206761]
+libraries/ = SubResource("AnimationLibrary_jbtw0")
 
-[node name="Animation_Door_Light" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_wpkfy")
-}
-autoplay = "Floating_Light"
+[node name="Animation_Door_Light" type="AnimationPlayer" parent="." unique_id=1569582900]
+libraries/ = SubResource("AnimationLibrary_wpkfy")
+autoplay = &"Floating_Light"
 
-[node name="Door_Sound" type="Node2D" parent="."]
+[node name="Door_Sound" type="Node2D" parent="." unique_id=835668334]
+visible = false
 
-[node name="Door_Hum" type="AudioStreamPlayer" parent="Door_Sound"]
+[node name="Door_Hum" type="AudioStreamPlayer" parent="Door_Sound" unique_id=2074876252]
 stream = ExtResource("5_jbtw0")
 volume_db = -7.5
 bus = &"FX_DRY"
 parameters/looping = true
 
-[node name="Door_On" type="AudioStreamPlayer" parent="Door_Sound"]
+[node name="Door_On" type="AudioStreamPlayer" parent="Door_Sound" unique_id=2093460215]
 volume_db = -5.0
 bus = &"FX_WET"
