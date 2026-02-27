@@ -2923,7 +2923,7 @@ volume_db = -12.5
 bus = &"RUNNERS"
 
 [node name="Bim" type="AudioStreamPlayer" parent="Man_Sound" unique_id=1901487774]
-volume_db = -7.5
+volume_db = 2.5
 bus = &"RUNNERS"
 
 [node name="Disappearing_Death" type="AudioStreamPlayer" parent="Man_Sound" unique_id=1732010629]
@@ -2934,64 +2934,64 @@ visible = false
 
 [node name="Dash" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=347522302]
 stream = ExtResource("40_engcl")
-bus = &"MISC"
+bus = &"BONUS_MALUS"
 
 [node name="Through" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1428876517]
 stream = ExtResource("31_vbos4")
 volume_db = -1.5
-bus = &"MISC"
+bus = &"BONUS_MALUS"
 
 [node name="Virus" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=787587184]
 stream = ExtResource("32_kbcvm")
 volume_db = -2.5
-bus = &"MISC"
+bus = &"BONUS_MALUS"
 
 [node name="Teleport" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=556419031]
 stream = ExtResource("33_wtakq")
-bus = &"MISC"
+bus = &"BONUS_MALUS"
 
 [node name="Debug" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1988301064]
 stream = ExtResource("34_krg8n")
 volume_db = 2.5
-bus = &"MISC"
+bus = &"BONUS_MALUS"
 
 [node name="Last_Longer" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=696299228]
 stream = ExtResource("35_ey168")
-bus = &"MISC"
+bus = &"BONUS_MALUS"
 
 [node name="Invincible" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=2046569927]
 stream = ExtResource("36_f5mvr")
 volume_db = -1.5
-bus = &"MISC"
+bus = &"BONUS_MALUS"
 
 [node name="Invert" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1065463390]
 stream = ExtResource("37_kp8mp")
 volume_db = -2.5
-bus = &"MISC"
+bus = &"BONUS_MALUS"
 
 [node name="Slow" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1881074534]
 stream = ExtResource("38_igndv")
 volume_db = 2.5
-bus = &"MISC"
+bus = &"BONUS_MALUS"
 
 [node name="Last_Shorter" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=25389255]
 stream = ExtResource("39_b1qeq")
-bus = &"MISC"
+bus = &"BONUS_MALUS"
 
 [node name="Anti_Dash" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1725499644]
 stream = ExtResource("30_47c2y")
-bus = &"MISC"
+bus = &"BONUS_MALUS"
 
 [node name="Empty" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1586039620]
 stream = ExtResource("41_bo18h")
 volume_db = 2.5
-bus = &"MISC"
+bus = &"BONUS_MALUS"
 
 [node name="Anti_Virus" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=285590685]
 stream = ExtResource("42_c5xvm")
 volume_db = -2.5
-bus = &"MISC"
+bus = &"BONUS_MALUS"
 
 [node name="Anti_Teleport" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=2101665834]
 stream = ExtResource("43_m8iob")
-bus = &"MISC"
+bus = &"BONUS_MALUS"

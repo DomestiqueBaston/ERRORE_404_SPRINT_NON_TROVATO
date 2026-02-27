@@ -1065,7 +1065,6 @@ offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
 [node name="Top_Cell_FX_Mask" type="Sprite2D" parent="Column/Cell_Tops" unique_id=1142209556]
-visible = false
 clip_children = 1
 texture = ExtResource("27_7mpjj")
 centered = false

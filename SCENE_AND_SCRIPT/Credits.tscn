@@ -20,58 +20,34 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Credits_Gradients/Geoff_Color:modulate")
+tracks/0/path = NodePath("Credits_Gradients/Geoff_Color:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Credits_Gradients/Ferdi_Color:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Credits_Gradients/Geoff_Color:color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.46666667, 0.6666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(0.79607844, 0.3137255, 0.1882353, 0.5019608), Color(0.79607844, 0.3137255, 0.1882353, 0.5019608), Color(0.79607844, 0.3137255, 0.1882353, 0), Color(0.79607844, 0.3137255, 0.1882353, 0)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Credits_Gradients/Ferdi_Color:color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Credits_Gradients/Ferdi_Color:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.46666667, 0.6666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(0.4392157, 0.79607844, 0.0627451, 0.5019608), Color(0.4392157, 0.79607844, 0.0627451, 0.5019608), Color(0.4392157, 0.79607844, 0.0627451, 0), Color(0.4392157, 0.79607844, 0.0627451, 0)]
 }
-tracks/4/type = "audio"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../../../Alarm")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../Alarm")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -79,7 +55,7 @@ tracks/4/keys = {
 }],
 "times": PackedFloat32Array(0.13333334)
 }
-tracks/4/use_blend = true
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_e60u7"]
 length = 0.001
@@ -301,16 +277,16 @@ theme_override_constants/outline_size = 17
 theme_override_constants/shadow_outline_size = 34
 theme_override_fonts/font = ExtResource("2_7vkle")
 theme_override_font_sizes/font_size = 30
-text = "Gdt-Sml_Bck7t - Coñtró!!ò attivo:
-	“Pro©es$i inutili Яilevati.”
+text = "Gdt-Sml_Bcktt - Controllo attivo:
+	“Processi inutili rilevati.”
 
-Cod!ce int®usivo söspe7tato -  #001:
-	GeøFf
-(Anålisi utente in cor$o - Cancellaziøne in coda)
+Codice intrusivo sospettato -  #001:
+	Geoff
+(Analisi utente in corso - Cancellazione in coda)
 
-Qualùnque cøsa - #002:
-F3rdi
-(uten7e identif_cato - Cancellaz!one in c0Яso)"
+Qualunque cosa - #002:
+Ferdi
+(utente identificato - Cancellazione in corso)"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
@@ -328,16 +304,16 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("2_7vkle")
 theme_override_font_sizes/font_size = 30
-text = "Gdt-Sml_Bck7t - Coñtró!!ò attivo:
-	“Pro©es$i inutili Яilevati.”
+text = "Gdt-Sml_Bcktt - Controllo attivo:
+	“Processi inutili rilevati.”
 
-Cod!ce int®usivo söspe7tato -  #001:
-	GeøFf
-(Anålisi utente in cor$o - Cancellaziøne in coda)
+Codice intrusivo sospettato -  #001:
+	Geoff
+(Analisi utente in corso - Cancellazione in coda)
 
-Qualùnque cøsa - #002:
-F3rdi
-(uten7e identif_cato - Cancellaz!one in c0Яso)"
+Qualunque cosa - #002:
+Ferdi
+(utente identificato - Cancellazione in corso)"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
@@ -365,17 +341,17 @@ color = Color(0.4392157, 0.79607844, 0.0627451, 0.5019608)
 metadata/_edit_lock_ = true
 
 [node name="002_Color" type="ColorRect" parent="Graphics/Game_Credits/Cache/Credits_Gradients" unique_id=377183651]
-offset_left = 118.0
+offset_left = 119.0
 offset_top = 20.0
-offset_right = 232.0
+offset_right = 233.0
 offset_bottom = 47.0
 color = Color(1, 1, 1, 0.627451)
 metadata/_edit_lock_ = true
 
 [node name="001_Color" type="ColorRect" parent="Graphics/Game_Credits/Cache/Credits_Gradients" unique_id=1415359029]
-offset_left = 254.0
+offset_left = 242.0
 offset_top = -139.0
-offset_right = 353.0
+offset_right = 341.0
 offset_bottom = -113.0
 color = Color(1, 1, 1, 0.627451)
 metadata/_edit_lock_ = true
@@ -426,5 +402,5 @@ offset_right = 525.0
 offset_bottom = 525.0
 
 [node name="Alarm" type="AudioStreamPlayer" parent="." unique_id=502750112]
-volume_db = -22.5
+volume_db = -10.0
 bus = &"FX_WET"
