@@ -1365,6 +1365,7 @@ tracks/14/keys = {
 [sub_resource type="Animation" id="Animation_w5jul"]
 resource_name = "Run_000"
 length = 0.60000336
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

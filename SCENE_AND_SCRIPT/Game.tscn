@@ -441,6 +441,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="Scene_BG" type="TextureRect" parent="Runners/Top_Runners/Left_Runner/Runner_SubViewport/BG" unique_id=1420492116]
 z_index = -1000
@@ -474,6 +475,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="Scene_BG" type="TextureRect" parent="Runners/Top_Runners/Right_Runner/Runner_SubViewport/BG" unique_id=1225181667]
 z_index = -1000
@@ -513,6 +515,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="Scene_BG" type="TextureRect" parent="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport/BG" unique_id=1305835731]
 z_index = -1000
@@ -546,6 +549,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="Scene_BG" type="TextureRect" parent="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport/BG" unique_id=1897322094]
 z_index = -1000

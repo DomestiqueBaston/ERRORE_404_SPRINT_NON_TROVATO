@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7rcfji6ehwky" path="res://SCENE_AND_SCRIPT/Runner.gd" id="1_ercnf"]
 [ext_resource type="Shader" uid="uid://b3okewpame84w" path="res://SHADER/Outline_Glitch.gdshader" id="2_38vqc"]
-[ext_resource type="Texture2D" uid="uid://cvhum1ai0b121" path="res://IMAGE/RUNNER/MAN_A/Man_A_Sprite_Sheet.png" id="3_qxubv"]
+[ext_resource type="Texture2D" uid="uid://pwb1j0skfyv8" path="res://IMAGE/RUNNER/MAN_B/Man_B_Sprite_Sheet.png" id="3_ercnf"]
 [ext_resource type="Shader" uid="uid://3f2wtq4pn17q" path="res://SHADER/Shadow_Compositing.gdshader" id="4_susyb"]
 [ext_resource type="Texture2D" uid="uid://brl52e8ox1ue8" path="res://IMAGE/RUNNER/Shadow.png" id="5_rpmb2"]
 [ext_resource type="AudioStream" uid="uid://bom677o0xms5i" path="res://SOUND/FX/Disappearing.ogg" id="6_n84pb"]
@@ -11,11 +11,11 @@
 [ext_resource type="AudioStream" uid="uid://nr37tg36a6ub" path="res://SOUND/FX/RUNNER/Both_Feet_Falling.ogg" id="9_u3vs8"]
 [ext_resource type="AudioStream" uid="uid://f6vb87l8v0dw" path="res://SOUND/FX/RUNNER/Man_A_Ouch.ogg" id="10_8yu5v"]
 [ext_resource type="AudioStream" uid="uid://ck08fhxboj0hd" path="res://SOUND/FX/RUNNER/Man_A_Falling.ogg" id="11_t3esl"]
-[ext_resource type="AudioStream" uid="uid://06kaf7akc8r3" path="res://SOUND/FX/RUNNER/Foot_Step_01.ogg" id="12_w7ywx"]
 [ext_resource type="AudioStream" uid="uid://cns80ks0bg3jv" path="res://SOUND/FX/RUNNER/Foot_Step_02.ogg" id="13_5vco3"]
 [ext_resource type="AudioStream" uid="uid://ci6awlpxx6jwn" path="res://SOUND/FX/RUNNER/Man_A_Pushing.ogg" id="14_1pryk"]
 [ext_resource type="AudioStream" uid="uid://cm86n3hliidko" path="res://SOUND/FX/RUNNER/Man_A_Running.ogg" id="15_lqw3g"]
 [ext_resource type="AudioStream" uid="uid://be7egi1g7yovq" path="res://SOUND/FX/RUNNER/Man_A_Bim.ogg" id="16_5igel"]
+[ext_resource type="Script" uid="uid://dujx068vw2hmu" path="res://SCENE_AND_SCRIPT/Animation_Runner.gd" id="16_38vqc"]
 [ext_resource type="AudioStream" uid="uid://b2a03ph6qsmpd" path="res://SOUND/FX/RUNNER/Sliding.ogg" id="17_na7f6"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="18_u5ssp"]
 [ext_resource type="AudioStream" uid="uid://cou5e3uqnnvdj" path="res://SOUND/FX/Crackling_Noise_A.ogg" id="19_s6mgt"]
@@ -30,6 +30,7 @@
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="28_5y26m"]
 [ext_resource type="AudioStream" uid="uid://dn68ist7fukqi" path="res://SOUND/FX/RUNNER/Disappearing_Death.ogg" id="29_jsn6s"]
 [ext_resource type="AudioStream" uid="uid://boubqyiskws1h" path="res://SOUND/FX/RUNNER/Anti_Dash.ogg" id="30_47c2y"]
+[ext_resource type="AudioStream" uid="uid://d0pp8lius4a10" path="res://SOUND/FX/RUNNER/Foot_Step_03.ogg" id="30_qxubv"]
 [ext_resource type="AudioStream" uid="uid://c0isopdpo0qnl" path="res://SOUND/FX/RUNNER/Through.ogg" id="31_vbos4"]
 [ext_resource type="AudioStream" uid="uid://dv6h02qyq3s4y" path="res://SOUND/FX/RUNNER/Virus.ogg" id="32_kbcvm"]
 [ext_resource type="AudioStream" uid="uid://bwkr0tdf7e1fn" path="res://SOUND/FX/RUNNER/Teleport.ogg" id="33_wtakq"]
@@ -128,7 +129,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Man_Sound/Fall_Death")
+tracks/5/path = NodePath("../Sound/Fall_Death")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -151,7 +152,7 @@ tracks/5/use_blend = true
 tracks/6/type = "audio"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Man_Sound/Ouch")
+tracks/6/path = NodePath("../Sound/Ouch")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -238,7 +239,7 @@ tracks/12/keys = {
 tracks/13/type = "audio"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("../Man_Sound/Disappearing")
+tracks/13/path = NodePath("../Sound/Disappearing")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -317,7 +318,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Man_Sound/Fall_Death")
+tracks/5/path = NodePath("../Sound/Fall_Death")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -340,7 +341,7 @@ tracks/5/use_blend = true
 tracks/6/type = "audio"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Man_Sound/Ouch")
+tracks/6/path = NodePath("../Sound/Ouch")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -427,7 +428,7 @@ tracks/12/keys = {
 tracks/13/type = "audio"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("../Man_Sound/Disappearing")
+tracks/13/path = NodePath("../Sound/Disappearing")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -482,7 +483,7 @@ tracks/2/keys = {
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Man_Sound/Disappearing")
+tracks/3/path = NodePath("../Sound/Disappearing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -509,7 +510,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Man_Sound/Falling")
+tracks/5/path = NodePath("../Sound/Falling")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -596,7 +597,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("../Man_Sound/Falling:volume_db")
+tracks/12/path = NodePath("../Sound/Falling:volume_db")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -648,7 +649,7 @@ tracks/2/keys = {
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Man_Sound/Disappearing")
+tracks/3/path = NodePath("../Sound/Disappearing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -675,7 +676,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Man_Sound/Falling")
+tracks/5/path = NodePath("../Sound/Falling")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -762,7 +763,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("../Man_Sound/Falling:volume_db")
+tracks/12/path = NodePath("../Sound/Falling:volume_db")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -963,29 +964,10 @@ tracks/6/keys = {
 tracks/7/type = "audio"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../Man_Sound/Foot_Step")
+tracks/7/path = NodePath("../Sound/Pushing")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("12_w7ywx")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("13_5vco3")
-}],
-"times": PackedFloat32Array(0.4, 0.43333334)
-}
-tracks/7/use_blend = true
-tracks/8/type = "audio"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../Man_Sound/Pushing")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -993,62 +975,62 @@ tracks/8/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/8/use_blend = true
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/7/use_blend = true
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
+tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [-0.3211406]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
+tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-0.3211406]
+"values": [Vector2(1, 1)]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -1145,29 +1127,10 @@ tracks/6/keys = {
 tracks/7/type = "audio"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../Man_Sound/Foot_Step")
+tracks/7/path = NodePath("../Sound/Pushing")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("12_w7ywx")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("13_5vco3")
-}],
-"times": PackedFloat32Array(0.4, 0.43333334)
-}
-tracks/7/use_blend = true
-tracks/8/type = "audio"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../Man_Sound/Pushing")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -1175,62 +1138,62 @@ tracks/8/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/8/use_blend = true
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/7/use_blend = true
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
+tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [-0.3211406]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
+tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-0.3211406]
+"values": [Vector2(1, 1)]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -1410,7 +1373,7 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("../Man_Sound/Falling:volume_db")
+tracks/14/path = NodePath("../Sound/Falling:volume_db")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -1423,6 +1386,7 @@ tracks/14/keys = {
 [sub_resource type="Animation" id="Animation_w5jul"]
 resource_name = "Run_000"
 length = 0.60000336
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1459,68 +1423,49 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(2, 1), Vector2(2.5, 1), Vector2(2.2142859, 1), Vector2(1.25, 1), Vector2(1.75, 1), Vector2(2.5, 1), Vector2(2.2142859, 1), Vector2(1.25, 1), Vector2(2, 1)]
 }
-tracks/3/type = "audio"
+tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Man_Sound/Foot_Step")
+tracks/3/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("12_w7ywx")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("13_5vco3")
-}],
-"times": PackedFloat32Array(0.21666667, 0.51666665)
-}
-tracks/3/use_blend = true
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.4666667, 0.5666667, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.34906584, 0.34906584, 0.43633232, 0.34906584, 0.34906584]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Papa_Sprite/Runner_Sprite:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Papa_Sprite/Runner_Sprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.60000336),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, true]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Papa_Sprite/Runner_Sprite:offset")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Papa_Sprite/Runner_Sprite:offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-2.5, -44), Vector2(-2.5, -44)]
 }
-tracks/7/type = "audio"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Man_Sound/Running")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Sound/Running")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -1528,78 +1473,95 @@ tracks/7/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/7/use_blend = true
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/6/use_blend = true
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, true]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
+tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [-0.3211406]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
+tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-0.3211406]
+"values": [Vector2(1, 1)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
+tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [-0.7853982]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.7853982]
+"update": 1,
+"values": [false]
 }
-tracks/13/type = "value"
+tracks/13/type = "method"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/13/path = NodePath("../Animation_Runner")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"times": PackedFloat32Array(0.26666668, 0.56666666),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_foot_step_02"
+}, {
+"args": [],
+"method": &"play_foot_step_03"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_w02lc"]
@@ -1642,68 +1604,49 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(2, 1), Vector2(2.5, 1), Vector2(2.2142859, 1), Vector2(1.25, 1), Vector2(1.75, 1), Vector2(2.5, 1), Vector2(2.2142859, 1), Vector2(1.25, 1), Vector2(2, 1)]
 }
-tracks/3/type = "audio"
+tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Man_Sound/Foot_Step")
+tracks/3/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("12_w7ywx")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("13_5vco3")
-}],
-"times": PackedFloat32Array(0.21666667, 0.51666665)
-}
-tracks/3/use_blend = true
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.4666667, 0.5666667, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.34906584, 0.34906584, 0.43633232, 0.34906584, 0.34906584]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Papa_Sprite/Runner_Sprite:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Papa_Sprite/Runner_Sprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.60000336),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, true]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Papa_Sprite/Runner_Sprite:offset")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Papa_Sprite/Runner_Sprite:offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(2.5, -44), Vector2(2.5, -44)]
 }
-tracks/7/type = "audio"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Man_Sound/Running")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Sound/Running")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -1711,78 +1654,95 @@ tracks/7/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/7/use_blend = true
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/6/use_blend = true
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, true]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
+tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [-0.3211406]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
+tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-0.3211406]
+"values": [Vector2(1, 1)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
+tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [-0.7853982]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.7853982]
+"update": 1,
+"values": [false]
 }
-tracks/13/type = "value"
+tracks/13/type = "method"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/13/path = NodePath("../Animation_Runner")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"times": PackedFloat32Array(0.26666668, 0.56666666),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_foot_step_02"
+}, {
+"args": [],
+"method": &"play_foot_step_03"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_gjkpv"]
@@ -1851,7 +1811,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Man_Sound/Sliding")
+tracks/5/path = NodePath("../Sound/Sliding")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1926,7 +1886,7 @@ tracks/10/keys = {
 tracks/11/type = "audio"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("../Man_Sound/Bim")
+tracks/11/path = NodePath("../Sound/Bim")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -2013,7 +1973,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Man_Sound/Sliding")
+tracks/5/path = NodePath("../Sound/Sliding")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -2088,7 +2048,7 @@ tracks/10/keys = {
 tracks/11/type = "audio"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("../Man_Sound/Bim")
+tracks/11/path = NodePath("../Sound/Bim")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -2492,7 +2452,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Man_Sound/Glitch_Sound")
+tracks/5/path = NodePath("../Sound/Glitch_Sound")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -2704,7 +2664,7 @@ tracks/1/keys = {
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Man_Sound/Disappearing_Death")
+tracks/2/path = NodePath("Sound/Disappearing_Death")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -2823,7 +2783,7 @@ metadata/_edit_lock_ = true
 
 [node name="Runner_Sprite" type="Sprite2D" parent="Character/Papa_Sprite" unique_id=143163856]
 material = SubResource("ShaderMaterial_gcyqs")
-texture = ExtResource("3_qxubv")
+texture = ExtResource("3_ercnf")
 offset = Vector2(-5, -44)
 hframes = 36
 vframes = 11
@@ -2869,7 +2829,8 @@ metadata/_edit_lock_ = true
 [node name="Animation_Runner" type="AnimationPlayer" parent="." unique_id=1015872210]
 root_node = NodePath("../Character")
 libraries/ = SubResource("AnimationLibrary_8jbc5")
-autoplay = &"Intro"
+autoplay = &"Run_180"
+script = ExtResource("16_38vqc")
 
 [node name="Animation_Glitch" type="AnimationPlayer" parent="." unique_id=1918896994]
 root_node = NodePath("../Character")
@@ -2881,117 +2842,124 @@ libraries/ = SubResource("AnimationLibrary_td8gx")
 [node name="Animation_Bonus_Malus" type="AnimationPlayer" parent="." unique_id=1415136860]
 libraries/ = SubResource("AnimationLibrary_2yfnd")
 
-[node name="Man_Sound" type="Node2D" parent="." unique_id=1016992791]
+[node name="Sound" type="Node2D" parent="." unique_id=1016992791]
 visible = false
 metadata/_edit_lock_ = true
 
-[node name="Foot_Step" type="AudioStreamPlayer" parent="Man_Sound" unique_id=374701022]
+[node name="Foot_Step_02" type="AudioStreamPlayer" parent="Sound" unique_id=1016295594]
+stream = ExtResource("13_5vco3")
 volume_db = -2.5
 pitch_scale = 0.5
 bus = &"RUNNERS"
 
-[node name="Glitch_Sound" type="AudioStreamPlayer" parent="Man_Sound" unique_id=1006391615]
+[node name="Foot_Step_03" type="AudioStreamPlayer" parent="Sound" unique_id=1437601171]
+stream = ExtResource("30_qxubv")
+volume_db = -2.5
+pitch_scale = 0.5
+bus = &"RUNNERS"
+
+[node name="Glitch_Sound" type="AudioStreamPlayer" parent="Sound" unique_id=1006391615]
 volume_db = -15.0
 bus = &"RUNNERS"
 
-[node name="Disappearing" type="AudioStreamPlayer" parent="Man_Sound" unique_id=40752013]
+[node name="Disappearing" type="AudioStreamPlayer" parent="Sound" unique_id=40752013]
 volume_db = -2.5
 bus = &"RUNNERS"
 
-[node name="Falling" type="AudioStreamPlayer" parent="Man_Sound" unique_id=916835663]
+[node name="Falling" type="AudioStreamPlayer" parent="Sound" unique_id=916835663]
 volume_db = -5.0
 bus = &"RUNNERS"
 
-[node name="Running" type="AudioStreamPlayer" parent="Man_Sound" unique_id=1371606945]
+[node name="Running" type="AudioStreamPlayer" parent="Sound" unique_id=1371606945]
 volume_db = -10.0
 bus = &"RUNNERS"
 
-[node name="Fall_Death" type="AudioStreamPlayer" parent="Man_Sound" unique_id=1910313179]
+[node name="Fall_Death" type="AudioStreamPlayer" parent="Sound" unique_id=1910313179]
 volume_db = -10.0
 bus = &"RUNNERS"
 
-[node name="Ouch" type="AudioStreamPlayer" parent="Man_Sound" unique_id=2090339564]
+[node name="Ouch" type="AudioStreamPlayer" parent="Sound" unique_id=2090339564]
 volume_db = -2.5
 bus = &"RUNNERS"
 
-[node name="Pushing" type="AudioStreamPlayer" parent="Man_Sound" unique_id=918143632]
+[node name="Pushing" type="AudioStreamPlayer" parent="Sound" unique_id=918143632]
 volume_db = -12.5
 bus = &"RUNNERS"
 
-[node name="Sliding" type="AudioStreamPlayer" parent="Man_Sound" unique_id=2142143059]
+[node name="Sliding" type="AudioStreamPlayer" parent="Sound" unique_id=2142143059]
 volume_db = -12.5
 bus = &"RUNNERS"
 
-[node name="Bim" type="AudioStreamPlayer" parent="Man_Sound" unique_id=1901487774]
+[node name="Bim" type="AudioStreamPlayer" parent="Sound" unique_id=1901487774]
 volume_db = 2.5
 bus = &"RUNNERS"
 
-[node name="Disappearing_Death" type="AudioStreamPlayer" parent="Man_Sound" unique_id=1732010629]
+[node name="Disappearing_Death" type="AudioStreamPlayer" parent="Sound" unique_id=1732010629]
 bus = &"RUNNERS"
 
-[node name="Bonus_Malus" type="Node2D" parent="Man_Sound" unique_id=1636344193]
+[node name="Bonus_Malus" type="Node2D" parent="Sound" unique_id=1636344193]
 visible = false
 
-[node name="Dash" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=347522302]
+[node name="Dash" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=347522302]
 stream = ExtResource("40_engcl")
 bus = &"BONUS_MALUS"
 
-[node name="Through" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1428876517]
+[node name="Through" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1428876517]
 stream = ExtResource("31_vbos4")
 volume_db = -1.5
 bus = &"BONUS_MALUS"
 
-[node name="Virus" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=787587184]
+[node name="Virus" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=787587184]
 stream = ExtResource("32_kbcvm")
 volume_db = -2.5
 bus = &"BONUS_MALUS"
 
-[node name="Teleport" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=556419031]
+[node name="Teleport" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=556419031]
 stream = ExtResource("33_wtakq")
 bus = &"BONUS_MALUS"
 
-[node name="Debug" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1988301064]
+[node name="Debug" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1988301064]
 stream = ExtResource("34_krg8n")
 volume_db = 2.5
 bus = &"BONUS_MALUS"
 
-[node name="Last_Longer" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=696299228]
+[node name="Last_Longer" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=696299228]
 stream = ExtResource("35_ey168")
 bus = &"BONUS_MALUS"
 
-[node name="Invincible" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=2046569927]
+[node name="Invincible" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=2046569927]
 stream = ExtResource("36_f5mvr")
 volume_db = -1.5
 bus = &"BONUS_MALUS"
 
-[node name="Invert" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1065463390]
+[node name="Invert" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1065463390]
 stream = ExtResource("37_kp8mp")
 volume_db = -2.5
 bus = &"BONUS_MALUS"
 
-[node name="Slow" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1881074534]
+[node name="Slow" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1881074534]
 stream = ExtResource("38_igndv")
 volume_db = 2.5
 bus = &"BONUS_MALUS"
 
-[node name="Last_Shorter" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=25389255]
+[node name="Last_Shorter" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=25389255]
 stream = ExtResource("39_b1qeq")
 bus = &"BONUS_MALUS"
 
-[node name="Anti_Dash" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1725499644]
+[node name="Anti_Dash" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1725499644]
 stream = ExtResource("30_47c2y")
 bus = &"BONUS_MALUS"
 
-[node name="Empty" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=1586039620]
+[node name="Empty" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1586039620]
 stream = ExtResource("41_bo18h")
 volume_db = 2.5
 bus = &"BONUS_MALUS"
 
-[node name="Anti_Virus" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=285590685]
+[node name="Anti_Virus" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=285590685]
 stream = ExtResource("42_c5xvm")
 volume_db = -2.5
 bus = &"BONUS_MALUS"
 
-[node name="Anti_Teleport" type="AudioStreamPlayer" parent="Man_Sound/Bonus_Malus" unique_id=2101665834]
+[node name="Anti_Teleport" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=2101665834]
 stream = ExtResource("43_m8iob")
 bus = &"BONUS_MALUS"
