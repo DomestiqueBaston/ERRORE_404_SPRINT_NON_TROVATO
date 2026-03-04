@@ -6,8 +6,8 @@
 [ext_resource type="Shader" uid="uid://68aobjd54xxo" path="res://SHADER/Outline_And_Color.gdshader" id="3_mfqlr"]
 [ext_resource type="Texture2D" uid="uid://daxlt5o4goj2w" path="res://IMAGE/ENVIRONMENT/CUBE/Cube_Sprite_Sheet_v2.png" id="4_mfqlr"]
 [ext_resource type="AudioStream" uid="uid://cgbxwl13x4oax" path="res://SOUND/FX/Cube_Hum.ogg" id="5_i7obx"]
-[ext_resource type="AudioStream" uid="uid://0gevs5b21y8i" path="res://SOUND/FX/Appearing.ogg" id="5_mfqlr"]
-[ext_resource type="AudioStream" uid="uid://bom677o0xms5i" path="res://SOUND/FX/Disappearing.ogg" id="6_i7obx"]
+[ext_resource type="AudioStream" uid="uid://clgt4fhw7wp4c" path="res://SOUND/FX/Appearing_Cube.ogg" id="7_i7obx"]
+[ext_resource type="AudioStream" uid="uid://1ojf301p0bbg" path="res://SOUND/FX/Disappearing_Cube.ogg" id="8_oh6sb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i7obx"]
 radius = 15.241224
@@ -101,7 +101,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_f37ux"]
 resource_name = "Appearing"
-length = 0.36667
+length = 0.23333667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -109,10 +109,10 @@ tracks/0/path = NodePath("Cube_Shadow:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666668, 0.10000001, 0.13333334, 0.16666669, 0.20000002, 0.23333335, 0.26666668, 0.30000004, 0.33333334, 0.3666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666668, 0.10000001, 0.13333334, 0.16666669, 0.20000002, 0.23333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [false, true, false, true, false, true, false, true, false, true, false, true]
+"values": [false, true, false, true, false, true, false, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -121,10 +121,10 @@ tracks/1/path = NodePath("Cube:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666668, 0.10000001, 0.13333334, 0.16666669, 0.20000002, 0.23333335, 0.26666668, 0.30000004, 0.33333334, 0.3666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666668, 0.10000001, 0.13333334, 0.16666669, 0.20000002, 0.23333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [false, true, false, true, false, true, false, true, false, true, false, true]
+"values": [false, true, false, true, false, true, false, true]
 }
 tracks/2/type = "audio"
 tracks/2/imported = false
@@ -136,9 +136,9 @@ tracks/2/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("5_mfqlr")
+"stream": ExtResource("7_i7obx")
 }],
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0.00041162968)
 }
 tracks/2/use_blend = true
 tracks/3/type = "value"
@@ -148,7 +148,7 @@ tracks/3/path = NodePath("Collider_Cube:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.36666667),
+"times": PackedFloat32Array(0, 0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, true]
@@ -156,7 +156,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_oh6sb"]
 resource_name = "Disappearing"
-length = 0.30000335
+length = 0.16667001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -164,10 +164,10 @@ tracks/0/path = NodePath("Cube_Shadow:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [true, false, true, false, true, false, true, false, true, false]
+"values": [true, false, true, false, true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -176,10 +176,10 @@ tracks/1/path = NodePath("Cube:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [true, false, true, false, true, false, true, false, true, false]
+"values": [true, false, true, false, true, false]
 }
 tracks/2/type = "audio"
 tracks/2/imported = false
@@ -191,7 +191,7 @@ tracks/2/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("6_i7obx")
+"stream": ExtResource("8_oh6sb")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -203,7 +203,7 @@ tracks/3/path = NodePath("Collider_Cube:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 0.3),
+"times": PackedFloat32Array(0, 0.13333334, 0.16666667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, true, false]
@@ -294,8 +294,7 @@ libraries/ = SubResource("AnimationLibrary_uma14")
 [node name="Animation_Cube_On_Off" type="AnimationPlayer" parent="." unique_id=253847085]
 libraries/ = SubResource("AnimationLibrary_1e78n")
 
-[node name="Cube_Sound" type="Node2D" parent="." unique_id=97411741]
-visible = false
+[node name="Cube_Sound" type="Node" parent="." unique_id=1414439794]
 
 [node name="Cube_Hum" type="AudioStreamPlayer" parent="Cube_Sound" unique_id=994272503]
 volume_db = -5.0

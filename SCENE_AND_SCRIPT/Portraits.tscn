@@ -574,7 +574,7 @@ libraries/ = SubResource("AnimationLibrary_p3xvu")
 [node name="Animation_Portraits" type="AnimationPlayer" parent="." unique_id=2124288444]
 libraries/ = SubResource("AnimationLibrary_h8mj1")
 
-[node name="Sounds" type="Node2D" parent="." unique_id=415508272]
+[node name="Sounds" type="Node" parent="." unique_id=1395196986]
 
 [node name="Woosh" type="AudioStreamPlayer" parent="Sounds" unique_id=1803769174]
 volume_db = -5.0

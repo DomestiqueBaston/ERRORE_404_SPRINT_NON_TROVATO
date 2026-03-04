@@ -10,8 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://5vrom7uim4ag" path="res://SOUND/FX/Alert.ogg" id="8_e5knn"]
 [ext_resource type="AudioStream" uid="uid://bes5a835nqime" path="res://SOUND/FX/Woosh.ogg" id="9_20up4"]
 
-[node name="UI_Sounds" type="Node2D" unique_id=524227096]
-visible = false
+[node name="UI_Sounds" type="Node" unique_id=1926116312]
 script = ExtResource("1_k5ifq")
 
 [node name="Validation" type="AudioStreamPlayer" parent="." unique_id=2072789497]

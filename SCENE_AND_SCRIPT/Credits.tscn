@@ -8,6 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="5_2yodr"]
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="5_7vkle"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="6_8ln8e"]
+[ext_resource type="AudioStream" uid="uid://ddouskyxl7bw7" path="res://SOUND/FX/Short_Beep_Low.ogg" id="6_e60u7"]
+[ext_resource type="Script" uid="uid://clccpnapl4u45" path="res://SCENE_AND_SCRIPT/Settings_Glitches.gd" id="6_j0kfs"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="7_i50ug"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="8_ocqcn"]
 [ext_resource type="Shader" uid="uid://rfstm5ejtwi3" path="res://SHADER/Reflection.gdshader" id="9_e0phu"]
@@ -44,7 +46,7 @@ tracks/1/keys = {
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../../../Alarm")
+tracks/2/path = NodePath("../../../Alarm_High")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -53,9 +55,40 @@ tracks/2/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("5_7vkle")
 }],
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0.06666667)
 }
 tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Cache_Percent:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.26666668, 0.33333334, 0.36666667, 0.53333336, 0.59999996, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.5882353), Color(1, 1, 1, 0.5882353), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.5882353), Color(1, 1, 1, 0.5882353)]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../../Alarm_Low")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_e60u7")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_e60u7")
+}],
+"times": PackedFloat32Array(0.1, 0.46666667)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_e60u7"]
 length = 0.001
@@ -82,6 +115,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.4392157, 0.79607844, 0.0627451, 0.5019608)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Cache_Percent:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2yodr"]
@@ -260,7 +305,7 @@ offset_right = 960.0
 offset_bottom = 540.0
 metadata/_edit_lock_ = true
 
-[node name="Credits" type="Label" parent="Graphics/Game_Credits" unique_id=521001925]
+[node name="Title" type="Label" parent="Graphics/Game_Credits" unique_id=521001925]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -273,25 +318,16 @@ theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
 theme_override_colors/font_shadow_color = Color(0.5529, 0.68498176, 0.97, 0.49803922)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
-theme_override_constants/outline_size = 17
-theme_override_constants/shadow_outline_size = 34
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 24
 theme_override_fonts/font = ExtResource("2_7vkle")
-theme_override_font_sizes/font_size = 30
-text = "Gdt-Sml_Bcktt - Controllo attivo:
-	“Processi inutili rilevati.”
-
-Codice intrusivo sospettato -  #001:
-	Geoff
-(Analisi utente in corso - Cancellazione in coda)
-
-Qualunque cosa - #002:
-Ferdi
-(utente identificato - Cancellazione in corso)"
+theme_override_font_sizes/font_size = 48
+text = "Gdt 5 - Sml_Bcktt - Ctrl. attivo:
+“Scaric. mai iniziat. _0%”"
 horizontal_alignment = 1
-vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Cache" type="Label" parent="Graphics/Game_Credits" unique_id=1192637321]
+[node name="Cache_Title" type="Label" parent="Graphics/Game_Credits" unique_id=1192637321]
 clip_children = 2
 layout_mode = 1
 anchors_preset = 15
@@ -303,9 +339,45 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("2_7vkle")
+theme_override_font_sizes/font_size = 48
+text = "Gdt 5 - Sml_Bcktt - Ctrl. attivo:
+“Scaric. mai iniziat. _0%”"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Credits_Gradients" type="Sprite2D" parent="Graphics/Game_Credits/Cache_Title" unique_id=375991660]
+self_modulate = Color(0.969, 1.215, 1.892, 0.863)
+position = Vector2(480, 380.49994)
+scale = Vector2(1, 1.4129632)
+texture = ExtResource("3_f5jx6")
+metadata/_edit_lock_ = true
+
+[node name="Cache_Percent" type="Polygon2D" parent="Graphics/Game_Credits" unique_id=145020082]
+position = Vector2(-11, 0)
+polygon = PackedVector2Array(693, 71, 693, 130, 833, 130, 833, 99, 830, 98, 828, 96, 827, 94, 826, 90, 827, 88, 825, 84, 825, 71)
+metadata/_edit_lock_ = true
+
+[node name="Credits" type="Label" parent="Graphics/Game_Credits" unique_id=1934400468]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 34.0
+offset_bottom = -97.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(-101, 198)
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529, 0.68498176, 0.97, 0.49803922)
+theme_override_constants/line_spacing = -2
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 20
+theme_override_fonts/font = ExtResource("2_7vkle")
 theme_override_font_sizes/font_size = 30
-text = "Gdt-Sml_Bcktt - Controllo attivo:
-	“Processi inutili rilevati.”
+text = "
+
 
 Codice intrusivo sospettato -  #001:
 	Geoff
@@ -318,13 +390,43 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Credits_Gradients" type="Sprite2D" parent="Graphics/Game_Credits/Cache" unique_id=1732612865]
+[node name="Cache_Credits" type="Label" parent="Graphics/Game_Credits" unique_id=1363930852]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 34.0
+offset_bottom = -97.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(-101, 198)
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_constants/line_spacing = -2
+theme_override_fonts/font = ExtResource("2_7vkle")
+theme_override_font_sizes/font_size = 30
+text = "
+
+
+Codice intrusivo sospettato -  #001:
+	Geoff
+(Analisi utente in corso - Cancellazione in coda)
+
+Qualunque cosa - #002:
+Ferdi
+(utente identificato - Cancellazione in corso)"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Credits_Gradients" type="Sprite2D" parent="Graphics/Game_Credits/Cache_Credits" unique_id=1607150654]
 self_modulate = Color(0.969, 1.215, 1.892, 0.863)
-position = Vector2(480, 270)
+position = Vector2(480, 258.99997)
+scale = Vector2(1, 0.8740741)
 texture = ExtResource("3_f5jx6")
 metadata/_edit_lock_ = true
 
-[node name="Geoff_Color" type="ColorRect" parent="Graphics/Game_Credits/Cache/Credits_Gradients" unique_id=699426503]
+[node name="Geoff_Color" type="ColorRect" parent="Graphics/Game_Credits/Cache_Credits/Credits_Gradients" unique_id=1259888646]
 offset_left = -58.0
 offset_top = -101.0
 offset_right = 60.0
@@ -332,39 +434,41 @@ offset_bottom = -72.0
 color = Color(0.79607844, 0.3137255, 0.1882353, 0.5019608)
 metadata/_edit_lock_ = true
 
-[node name="Ferdi_Color" type="ColorRect" parent="Graphics/Game_Credits/Cache/Credits_Gradients" unique_id=1800632384]
+[node name="Ferdi_Color" type="ColorRect" parent="Graphics/Game_Credits/Cache_Credits/Credits_Gradients" unique_id=977984513]
 offset_left = -53.0
-offset_top = 59.0
+offset_top = 62.47641
 offset_right = 52.0
-offset_bottom = 87.0
+offset_bottom = 90.47641
 color = Color(0.4392157, 0.79607844, 0.0627451, 0.5019608)
 metadata/_edit_lock_ = true
 
-[node name="002_Color" type="ColorRect" parent="Graphics/Game_Credits/Cache/Credits_Gradients" unique_id=377183651]
+[node name="002_Color" type="ColorRect" parent="Graphics/Game_Credits/Cache_Credits/Credits_Gradients" unique_id=1971316035]
 offset_left = 119.0
-offset_top = 20.0
+offset_top = 22.317596
 offset_right = 233.0
-offset_bottom = 47.0
+offset_bottom = 49.317596
 color = Color(1, 1, 1, 0.627451)
 metadata/_edit_lock_ = true
 
-[node name="001_Color" type="ColorRect" parent="Graphics/Game_Credits/Cache/Credits_Gradients" unique_id=1415359029]
+[node name="001_Color" type="ColorRect" parent="Graphics/Game_Credits/Cache_Credits/Credits_Gradients" unique_id=2073248418]
 offset_left = 242.0
-offset_top = -139.0
+offset_top = -139.0558
 offset_right = 341.0
-offset_bottom = -113.0
+offset_bottom = -111.84122
 color = Color(1, 1, 1, 0.627451)
 metadata/_edit_lock_ = true
 
-[node name="Name_Animations" type="AnimationPlayer" parent="Graphics/Game_Credits/Cache" unique_id=1768056542]
+[node name="Name_Animations" type="AnimationPlayer" parent="Graphics/Game_Credits/Cache_Credits" unique_id=1282971080]
 libraries/ = SubResource("AnimationLibrary_2yodr")
 autoplay = &"Blink"
 
 [node name="Glitches" type="Control" parent="Graphics" unique_id=642320963]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
 offset_bottom = 540.0
+script = ExtResource("6_j0kfs")
 metadata/_edit_lock_ = true
 
 [node name="Shader" type="ColorRect" parent="Graphics/Glitches" unique_id=1085162898]
@@ -401,7 +505,12 @@ offset_top = 435.0
 offset_right = 525.0
 offset_bottom = 525.0
 
-[node name="Alarm" type="AudioStreamPlayer" parent="." unique_id=502750112]
+[node name="Alarm_High" type="AudioStreamPlayer" parent="." unique_id=502750112]
 volume_db = -20.0
+pitch_scale = 0.5
+bus = &"FX_WET"
+
+[node name="Alarm_Low" type="AudioStreamPlayer" parent="." unique_id=2068948743]
+volume_db = -27.5
 pitch_scale = 0.5
 bus = &"FX_WET"

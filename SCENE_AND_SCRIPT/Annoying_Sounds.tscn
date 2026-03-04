@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://1u5cnl60ptxf" path="res://SOUND/FX/Glitchy_Sound_F.ogg" id="6_8feb6"]
 [ext_resource type="AudioStream" uid="uid://bg1810o3k0s8b" path="res://SOUND/FX/Glitchy_Sound_G.ogg" id="7_jea5g"]
 
-[node name="Annoying_Sounds" type="Node2D" unique_id=544030865]
+[node name="Annoying_Sounds" type="Node" unique_id=1732596331]
 
 [node name="Glitchy_Sound_E" type="AudioStreamPlayer" parent="." unique_id=1492087052]
 stream = ExtResource("5_ns4qs")

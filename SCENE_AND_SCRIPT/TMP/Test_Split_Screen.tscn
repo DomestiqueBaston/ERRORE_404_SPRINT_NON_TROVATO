@@ -402,7 +402,7 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nboss"]
 shader = ExtResource("26_qp1y0")
-shader_parameter/pixelation = 0.010000000475
+shader_parameter/pixel_factor = 5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1gyup"]
 shader = ExtResource("27_myj71")

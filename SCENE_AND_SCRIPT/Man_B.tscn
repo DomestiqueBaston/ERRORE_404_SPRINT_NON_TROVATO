@@ -606,6 +606,42 @@ tracks/12/keys = {
 "update": 0,
 "values": [-5.0, -5.0, -22.5]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.17453292]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.5, 1.5)]
+}
 
 [sub_resource type="Animation" id="Animation_axddh"]
 resource_name = "Falling_180"
@@ -771,6 +807,42 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [-5.0, -5.0, -22.5]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.17453292]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.5, 1.5)]
 }
 
 [sub_resource type="Animation" id="Animation_0257l"]
@@ -2801,6 +2873,7 @@ position = Vector2(-7, 1)
 rotation = 0.17453292
 texture = ExtResource("5_rpmb2")
 offset = Vector2(7, 0)
+metadata/_edit_lock_ = true
 
 [node name="Collider_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=1579218920]
 visible = false
@@ -2840,9 +2913,7 @@ libraries/ = SubResource("AnimationLibrary_td8gx")
 [node name="Animation_Bonus_Malus" type="AnimationPlayer" parent="." unique_id=1415136860]
 libraries/ = SubResource("AnimationLibrary_2yfnd")
 
-[node name="Sound" type="Node2D" parent="." unique_id=1016992791]
-visible = false
-metadata/_edit_lock_ = true
+[node name="Sound" type="Node" parent="." unique_id=1185610532]
 
 [node name="Foot_Step_02" type="AudioStreamPlayer" parent="Sound" unique_id=1016295594]
 stream = ExtResource("13_5vco3")
@@ -2895,8 +2966,7 @@ bus = &"RUNNERS"
 [node name="Disappearing_Death" type="AudioStreamPlayer" parent="Sound" unique_id=1732010629]
 bus = &"RUNNERS"
 
-[node name="Bonus_Malus" type="Node2D" parent="Sound" unique_id=1636344193]
-visible = false
+[node name="Bonus_Malus" type="Node" parent="Sound" unique_id=1989510480]
 
 [node name="Dash" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=347522302]
 stream = ExtResource("40_engcl")

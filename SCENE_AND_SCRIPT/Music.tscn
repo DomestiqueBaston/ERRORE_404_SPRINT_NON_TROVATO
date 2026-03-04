@@ -6,8 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://gxci2v55iim1" path="res://SOUND/FX/Global_Hum.ogg" id="5_rwgee"]
 [ext_resource type="AudioStream" uid="uid://bxcpm34tpan58" path="res://SOUND/MUSIC/Bang.ogg" id="6_ptkxu"]
 
-[node name="Music" type="Node2D" unique_id=524227096]
-visible = false
+[node name="Music" type="Node" unique_id=2114224613]
 script = ExtResource("1_rwgee")
 
 [node name="Intro" type="AudioStreamPlayer" parent="." unique_id=188631134]
@@ -18,6 +17,7 @@ parameters/looping = true
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=2025180216]
 stream = ExtResource("3_kco3e")
+volume_db = 2.5
 bus = &"MUSIC"
 parameters/looping = true
 

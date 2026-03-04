@@ -323,10 +323,10 @@ tracks/0/path = NodePath("Column/Cell_Tops:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.36666667, 0.76666665),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 250), Vector2(0, 250), Vector2(0, 246), Vector2(0, 246)]
+"times": PackedFloat32Array(0, 0.10000001, 0.16666667, 0.23333333, 0.3, 0.36666667, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 250), Vector2(0, 250), Vector2(0, 249), Vector2(0, 248), Vector2(0, 247), Vector2(0, 246), Vector2(0, 246)]
 }
 tracks/1/type = "audio"
 tracks/1/imported = false
@@ -396,10 +396,10 @@ tracks/0/path = NodePath("Column/Cell_Tops:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6666667, 1.0666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 246), Vector2(0, 246), Vector2(0, 250), Vector2(0, 250)]
+"times": PackedFloat32Array(0, 0.4, 0.46666667, 0.53333336, 0.6, 0.6666667, 1.0666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 246), Vector2(0, 246), Vector2(0, 247), Vector2(0, 248), Vector2(0, 249), Vector2(0, 250), Vector2(0, 250)]
 }
 tracks/1/type = "audio"
 tracks/1/imported = false
@@ -469,10 +469,10 @@ tracks/0/path = NodePath("Column/Cell_Tops:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 7.3333335, 7.4666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 250), Vector2(0, 250)]
+"times": PackedFloat32Array(0, 1, 1.0666667, 1.1333333, 1.2, 1.2666667, 1.3333334, 1.4, 1.4666667, 1.5333333, 1.6, 1.6666666, 1.7333333, 1.8, 1.8666667, 1.9333333, 2, 2.0666666, 2.1333334, 2.2, 2.2666667, 2.3333333, 2.4, 2.4666667, 2.5333333, 2.6, 2.6666667, 2.7333333, 2.8, 2.8666666, 2.9333334, 3, 3.0666666, 3.1333334, 3.2, 3.2666667, 3.3333333, 3.4, 3.4666667, 3.5333333, 3.6, 3.6666667, 3.7333333, 3.8, 3.8666666, 3.9333334, 4, 4.0666666, 4.133333, 4.2, 4.266667, 4.3333335, 4.4, 4.4666667, 4.5333333, 4.6, 4.6666665, 4.733333, 4.8, 4.866667, 4.9333334, 5, 5.0666666, 5.133333, 5.2, 5.266667, 5.3333335, 5.4, 5.4666667, 5.5333333, 5.6, 5.6666665, 5.733333, 5.8, 5.866667, 5.9333334, 6, 6.0666666, 6.133333, 6.2, 6.266667, 6.3333335, 6.4, 6.4666667, 6.5333333, 6.6, 6.6666665, 6.733333, 6.8, 6.866667, 6.9333334, 7, 7.0666666, 7.133333, 7.2, 7.266667, 7.3333335, 7.4666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 3), Vector2(0, 5), Vector2(0, 8), Vector2(0, 11), Vector2(0, 13), Vector2(0, 16), Vector2(0, 18), Vector2(0, 21), Vector2(0, 24), Vector2(0, 26), Vector2(0, 29), Vector2(0, 32), Vector2(0, 34), Vector2(0, 37), Vector2(0, 39), Vector2(0, 42), Vector2(0, 45), Vector2(0, 47), Vector2(0, 50.000057), Vector2(0, 53), Vector2(0, 55), Vector2(0, 58), Vector2(0, 61), Vector2(0, 63), Vector2(0, 66), Vector2(0, 68), Vector2(0, 71), Vector2(0, 74), Vector2(0, 76), Vector2(0, 79), Vector2(0, 82), Vector2(0, 84), Vector2(0, 87), Vector2(0, 89), Vector2(0, 92), Vector2(0, 95), Vector2(0, 97), Vector2(0, 100.00013), Vector2(0, 103), Vector2(0, 105), Vector2(0, 108), Vector2(0, 111), Vector2(0, 113), Vector2(0, 116), Vector2(0, 118), Vector2(0, 121), Vector2(0, 124), Vector2(0, 126), Vector2(0, 129), Vector2(0, 132), Vector2(0, 134), Vector2(0, 137), Vector2(0, 140), Vector2(0, 142), Vector2(0, 145), Vector2(0, 147), Vector2(0, 150.00024), Vector2(0, 153), Vector2(0, 155), Vector2(0, 158), Vector2(0, 161), Vector2(0, 163), Vector2(0, 166), Vector2(0, 168), Vector2(0, 171), Vector2(0, 174), Vector2(0, 176), Vector2(0, 179), Vector2(0, 182), Vector2(0, 184), Vector2(0, 187), Vector2(0, 189), Vector2(0, 192), Vector2(0, 195), Vector2(0, 197), Vector2(0, 200.00027), Vector2(0, 203), Vector2(0, 205), Vector2(0, 208), Vector2(0, 211), Vector2(0, 213), Vector2(0, 216), Vector2(0, 219), Vector2(0, 221), Vector2(0, 224), Vector2(0, 226), Vector2(0, 229), Vector2(0, 235), Vector2(0, 234), Vector2(0, 237), Vector2(0, 239), Vector2(0, 242), Vector2(0, 245), Vector2(0, 247), Vector2(0, 250), Vector2(0, 250)]
 }
 tracks/1/type = "audio"
 tracks/1/imported = false
@@ -550,10 +550,10 @@ tracks/0/path = NodePath("Column/Cell_Tops:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 7.3333335, 7.4666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 250), Vector2(0, 250), Vector2(0, 0), Vector2(0, 0)]
+"times": PackedFloat32Array(0, 1, 1.0666667, 1.1333333, 1.2, 1.2666667, 1.3333334, 1.4, 1.4666667, 1.5333333, 1.6, 1.6666666, 1.7333333, 1.8, 1.8666667, 1.9333333, 2, 2.0666666, 2.1333334, 2.2, 2.2666667, 2.3333333, 2.4, 2.4666667, 2.5333333, 2.6, 2.6666667, 2.7333333, 2.8, 2.8666666, 2.9333334, 3, 3.0666666, 3.1333334, 3.2, 3.2666667, 3.3333333, 3.4, 3.4666667, 3.5333333, 3.6, 3.6666667, 3.7333333, 3.8, 3.8666666, 3.9333334, 4, 4.0666666, 4.133333, 4.2, 4.266667, 4.3333335, 4.4, 4.4666667, 4.5333333, 4.6, 4.6666665, 4.733333, 4.8, 4.866667, 4.9333334, 5, 5.0666666, 5.133333, 5.2, 5.266667, 5.3333335, 5.4, 5.4666667, 5.5333333, 5.6, 5.6666665, 5.733333, 5.8, 5.866667, 5.9333334, 6, 6.0666666, 6.133333, 6.2, 6.266667, 6.3333335, 6.4, 6.4666667, 6.5333333, 6.6, 6.6666665, 6.733333, 6.8, 6.866667, 6.9333334, 7, 7.0666666, 7.133333, 7.2, 7.266667, 7.3333335, 7.4666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 250), Vector2(0, 250), Vector2(0, 247), Vector2(0, 245), Vector2(0, 242), Vector2(0, 239), Vector2(0, 237), Vector2(0, 234), Vector2(0, 232), Vector2(0, 229), Vector2(0, 226), Vector2(0, 224), Vector2(0, 221), Vector2(0, 218), Vector2(0, 216), Vector2(0, 213), Vector2(0, 211), Vector2(0, 208), Vector2(0, 206), Vector2(0, 203), Vector2(0, 200), Vector2(0, 198), Vector2(0, 195), Vector2(0, 193), Vector2(0, 190), Vector2(0, 187), Vector2(0, 185), Vector2(0, 182), Vector2(0, 179), Vector2(0, 177), Vector2(0, 174), Vector2(0, 171), Vector2(0, 169), Vector2(0, 166), Vector2(0, 164), Vector2(0, 161), Vector2(0, 158), Vector2(0, 157), Vector2(0, 153), Vector2(0, 150), Vector2(0, 148), Vector2(0, 145), Vector2(0, 142), Vector2(0, 140), Vector2(0, 137), Vector2(0, 135), Vector2(0, 132), Vector2(0, 129), Vector2(0, 127), Vector2(0, 124), Vector2(0, 121), Vector2(0, 119), Vector2(0, 116), Vector2(0, 113), Vector2(0, 111), Vector2(0, 108), Vector2(0, 106), Vector2(0, 103), Vector2(0, 100), Vector2(0, 98), Vector2(0, 95), Vector2(0, 92), Vector2(0, 90), Vector2(0, 87), Vector2(0, 84), Vector2(0, 82), Vector2(0, 79), Vector2(0, 76), Vector2(0, 74), Vector2(0, 71), Vector2(0, 69), Vector2(0, 66), Vector2(0, 63), Vector2(0, 61), Vector2(0, 58), Vector2(0, 55), Vector2(0, 53), Vector2(0, 50), Vector2(0, 47), Vector2(0, 45), Vector2(0, 42), Vector2(0, 40), Vector2(0, 37), Vector2(0, 34), Vector2(0, 32), Vector2(0, 29), Vector2(0, 26), Vector2(0, 24), Vector2(0, 21), Vector2(0, 18), Vector2(0, 16), Vector2(0, 13), Vector2(0, 11), Vector2(0, 8), Vector2(0, 5), Vector2(0, 3), Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/1/type = "audio"
 tracks/1/imported = false
@@ -670,10 +670,10 @@ tracks/0/path = NodePath("Column/Cell_Tops:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.36666667, 0.76666665),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 4), Vector2(0, 4), Vector2(0, 0), Vector2(0, 0)]
+"times": PackedFloat32Array(0, 0.10000001, 0.16666667, 0.23333333, 0.3, 0.36666667, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 4), Vector2(0, 4), Vector2(0, 3), Vector2(0, 1.9999999), Vector2(0, 0.9999999), Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/1/type = "audio"
 tracks/1/imported = false
@@ -743,10 +743,10 @@ tracks/0/path = NodePath("Column/Cell_Tops:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6666667, 1.0666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 4), Vector2(0, 4)]
+"times": PackedFloat32Array(0, 0.4, 0.46666667, 0.53333336, 0.6, 0.6666667, 1.0666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 1.0000002), Vector2(0, 2.0000005), Vector2(0, 3.0000005), Vector2(0, 4), Vector2(0, 4)]
 }
 tracks/1/type = "audio"
 tracks/1/imported = false
@@ -862,23 +862,23 @@ metadata/_edit_lock_ = true
 polygon = PackedVector2Array(-118, -1, 0, -60, 118, -1, 118, 0, 0, 59, -118, 0)
 metadata/_edit_lock_ = true
 
-[node name="Start_Points" type="Node2D" parent="Column/Cell_Tops" unique_id=1212303450]
+[node name="Corner_Start_Points" type="Node2D" parent="Column/Cell_Tops" unique_id=1212303450]
 metadata/_edit_lock_ = true
 
-[node name="South_Start_Point" type="Marker2D" parent="Column/Cell_Tops/Start_Points" unique_id=518218170]
-position = Vector2(0, 38)
+[node name="South_Start_Point" type="Marker2D" parent="Column/Cell_Tops/Corner_Start_Points" unique_id=518218170]
+position = Vector2(0, 25)
 metadata/_edit_lock_ = true
 
-[node name="East_Start_Point" type="Marker2D" parent="Column/Cell_Tops/Start_Points" unique_id=2038243324]
-position = Vector2(77, 0)
+[node name="East_Start_Point" type="Marker2D" parent="Column/Cell_Tops/Corner_Start_Points" unique_id=2038243324]
+position = Vector2(50, 0)
 metadata/_edit_lock_ = true
 
-[node name="West_Start_Point" type="Marker2D" parent="Column/Cell_Tops/Start_Points" unique_id=1593584138]
-position = Vector2(-77, 0)
+[node name="West_Start_Point" type="Marker2D" parent="Column/Cell_Tops/Corner_Start_Points" unique_id=1593584138]
+position = Vector2(-50, 0)
 metadata/_edit_lock_ = true
 
-[node name="North_Start_Point" type="Marker2D" parent="Column/Cell_Tops/Start_Points" unique_id=366405065]
-position = Vector2(0, -39)
+[node name="North_Start_Point" type="Marker2D" parent="Column/Cell_Tops/Corner_Start_Points" unique_id=366405065]
+position = Vector2(0, -25)
 metadata/_edit_lock_ = true
 
 [node name="Cell_Extension" type="Sprite2D" parent="Column/Cell_Tops" unique_id=982586807]
@@ -1162,11 +1162,8 @@ bus = &"FX_DRY"
 
 [node name="Animation_Cell" type="AnimationPlayer" parent="." unique_id=1288134592]
 libraries/ = SubResource("AnimationLibrary_ej7e8")
-autoplay = &"RESET"
 
-[node name="Sound" type="Node2D" parent="." unique_id=589879206]
-visible = false
-metadata/_edit_lock_ = true
+[node name="Sound" type="Node" parent="." unique_id=887095933]
 
 [node name="Moving_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=2131109079]
 bus = &"FX_WET"

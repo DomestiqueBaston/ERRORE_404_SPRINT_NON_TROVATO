@@ -392,8 +392,7 @@ libraries/ = SubResource("AnimationLibrary_jbtw0")
 libraries/ = SubResource("AnimationLibrary_wpkfy")
 autoplay = &"Floating_Light"
 
-[node name="Door_Sound" type="Node2D" parent="." unique_id=835668334]
-visible = false
+[node name="Door_Sound" type="Node" parent="." unique_id=1045552022]
 
 [node name="Door_Hum" type="AudioStreamPlayer" parent="Door_Sound" unique_id=2074876252]
 stream = ExtResource("5_jbtw0")
@@ -402,5 +401,4 @@ bus = &"FX_DRY"
 parameters/looping = true
 
 [node name="Door_On" type="AudioStreamPlayer" parent="Door_Sound" unique_id=2093460215]
-volume_db = -5.0
 bus = &"FX_WET"

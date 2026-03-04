@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 func play_validation():
 	$Validation.play()
