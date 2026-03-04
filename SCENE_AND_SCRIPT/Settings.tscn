@@ -432,7 +432,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Audio_0_100" type="RichTextLabel" parent="Parameters" unique_id=1690798611]
+[node name="Audio_50_100" type="RichTextLabel" parent="Parameters" unique_id=1690798611]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -452,7 +452,7 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "0                                                                         100"
+text = "½                                                                          1    "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -520,7 +520,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Music_0_100" type="RichTextLabel" parent="Parameters" unique_id=1847479215]
+[node name="Music_50_100" type="RichTextLabel" parent="Parameters" unique_id=1847479215]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -540,7 +540,7 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "0                                                                         100"
+text = "½                                                                          1    "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -826,7 +826,7 @@ offset_right = 707.0
 offset_bottom = 182.0
 color = Color(1, 1, 1, 0.627451)
 
-[node name="Audio_0_100" type="RichTextLabel" parent="Parameters/Masks" unique_id=275154943]
+[node name="Audio_50_100" type="RichTextLabel" parent="Parameters/Masks" unique_id=275154943]
 clip_children = 2
 layout_mode = 1
 anchors_preset = 5
@@ -843,14 +843,14 @@ theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "0                                                                         100"
+text = "½                                                                          1    "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Settings_Gradients" type="TextureRect" parent="Parameters/Masks/Audio_0_100" unique_id=1655802927]
+[node name="Settings_Gradients" type="TextureRect" parent="Parameters/Masks/Audio_50_100" unique_id=1655802927]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
 layout_mode = 0
 offset_left = -44.5
@@ -906,7 +906,7 @@ offset_bottom = 312.0
 color = Color(1, 1, 1, 0.627451)
 metadata/_edit_lock_ = true
 
-[node name="Music_0_100" type="RichTextLabel" parent="Parameters/Masks" unique_id=1294065887]
+[node name="Music_50_100" type="RichTextLabel" parent="Parameters/Masks" unique_id=1294065887]
 clip_children = 2
 layout_mode = 1
 anchors_preset = 5
@@ -923,14 +923,14 @@ theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
 theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "0                                                                         100"
+text = "½                                                                          1    "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Settings_Gradients" type="TextureRect" parent="Parameters/Masks/Music_0_100" unique_id=712580080]
+[node name="Settings_Gradients" type="TextureRect" parent="Parameters/Masks/Music_50_100" unique_id=712580080]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
 layout_mode = 0
 offset_left = -30.5

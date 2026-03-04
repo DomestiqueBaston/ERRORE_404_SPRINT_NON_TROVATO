@@ -24,7 +24,11 @@ var default_difficulty_text = "   Difficoltà   "
 var default_audio_text = "   Livello audio generale   "
 var default_music_text = "   Livello della musica   "
 
+
 func _ready():
+	master_slider.value = _db_to_slider(AudioServer.get_bus_volume_db(0))
+	music_slider.value = _db_to_slider_music(AudioServer.get_bus_volume_db(3))
+
 	map_slider.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	difficulty_slider.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	master_slider.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -42,7 +46,6 @@ func _ready():
 
 	sliders = [map_slider, difficulty_slider, master_slider, music_slider]
 
-	# Stockage des icônes normales / highlight
 	for slider in sliders:
 		normal_grabbers[slider] = slider.get_theme_icon("grabber")
 		highlight_grabbers[slider] = slider.get_theme_icon("grabber_highlight")
@@ -175,24 +178,20 @@ func adjust_slider_value(direction: int):
 
 func _slider_to_db(value: float) -> float:
 	var normalized = value / 100.0
-	return lerp(-80.0, 0.0, pow(normalized, 0.1))
-
+	return lerp(-10.0, 0.0, normalized)
 
 func _db_to_slider(db: float) -> float:
-	var normalized = (db + 80.0) / 80.0
-	return pow(normalized, 5) * 100.0
-
+	var normalized = (db + 10.0) / 10.0
+	return normalized * 100.0
 
 func _slider_to_db_music(value: float) -> float:
-	# Important : le son max. pour le bus MUSIC, c'est -7.5db (pour le moment) !
 	var max_music = -7.5
 	var normalized = value / 100.0
-	return lerp(-80.0, max_music, pow(normalized, 0.1))
-
+	return lerp(-15.0, max_music, normalized)
 
 func _db_to_slider_music(db: float) -> float:
-	var normalized = (db + 80.0) / 70.0
-	return pow(normalized, 5) * 100.0
+	var normalized = (db + 15.0) / 7.5
+	return normalized * 100.0
 
 
 func _on_map_slider_changed(_value: float):
