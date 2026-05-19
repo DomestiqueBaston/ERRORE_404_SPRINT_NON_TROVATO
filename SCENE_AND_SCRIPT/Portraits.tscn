@@ -13,7 +13,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hwl4u"]
 shader = ExtResource("4_q0tq6")
 shader_parameter/shake_power = 0.011
-shader_parameter/shake_rate = 0.3330000158175
+shader_parameter/shake_rate = 0.50000002375
 shader_parameter/shake_speed = 2.0
 shader_parameter/shake_block_size = 15.0
 shader_parameter/shake_color_rate = 0.002000000095

@@ -45,7 +45,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("ui_a_button"):
 		UISounds.play_validation()
 		Music.play_bang()
-		
+		get_viewport().set_input_as_handled()
 		var selected = entries[current_index]
 		
 		if selected in preloaded_scenes:
@@ -59,7 +59,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	elif event.is_action_pressed("ui_b_button"):
 		UISounds.play_cancel()
-		Music.play_bang()
+		#Music.play_bang() # Supprimer cette ligne règle le problème du double bang au retour à Title.tscn
+		get_viewport().set_input_as_handled()
 		get_tree().change_scene_to_packed(preloaded_scenes["Title"])
 
 
