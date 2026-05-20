@@ -10,30 +10,6 @@
 [ext_resource type="Shader" uid="uid://blic88jwr7a1e" path="res://SHADER/Glitch_Only.gdshader" id="4_q0tq6"]
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="7_gciow"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hwl4u"]
-shader = ExtResource("4_q0tq6")
-shader_parameter/shake_power = 0.011
-shader_parameter/shake_rate = 0.50000002375
-shader_parameter/shake_speed = 2.0
-shader_parameter/shake_block_size = 15.0
-shader_parameter/shake_color_rate = 0.002000000095
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q0tq6"]
-content_margin_left = 3.0
-content_margin_top = 3.0
-content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-anti_aliasing = false
-
 [sub_resource type="Animation" id="Animation_b0nga"]
 resource_name = "Blink"
 length = 0.66667
@@ -495,13 +471,57 @@ _data = {
 &"Woman_B_To_Right": SubResource("Animation_u61m0")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hwl4u"]
+shader = ExtResource("4_q0tq6")
+shader_parameter/shake_power = 0.011
+shader_parameter/shake_rate = 0.666000031635
+shader_parameter/shake_speed = 2.0
+shader_parameter/shake_block_size = 15.0
+shader_parameter/shake_color_rate = 0.002000000095
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q0tq6"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
 [node name="Portraits" type="Control" unique_id=2050210296]
 layout_mode = 3
 anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
 script = ExtResource("1_hwl4u")
 
+[node name="Animation_Arrows" type="AnimationPlayer" parent="." unique_id=942789416]
+libraries/ = SubResource("AnimationLibrary_p3xvu")
+
+[node name="Animation_Portraits" type="AnimationPlayer" parent="." unique_id=2124288444]
+libraries/ = SubResource("AnimationLibrary_h8mj1")
+
+[node name="Sounds" type="Node" parent="." unique_id=1395196986]
+
+[node name="Woosh" type="AudioStreamPlayer" parent="Sounds" unique_id=1803769174]
+volume_db = -5.0
+bus = &"FX_DRY"
+
+[node name="Alarm" type="AudioStreamPlayer" parent="Sounds" unique_id=1444163914]
+volume_db = -22.5
+pitch_scale = 0.5
+autoplay = true
+bus = &"FX_WET"
+
 [node name="Frame" type="Sprite2D" parent="." unique_id=1365764552]
-position = Vector2(0, -14)
+position = Vector2(240, 121)
 texture = ExtResource("1_o755c")
 metadata/_edit_lock_ = true
 
@@ -531,16 +551,14 @@ texture = ExtResource("2_dpf0i")
 metadata/_edit_lock_ = true
 
 [node name="Portrait_Arrows" type="Sprite2D" parent="." unique_id=189567814]
-position = Vector2(0, -14)
+position = Vector2(240, 121)
 texture = ExtResource("4_hwl4u")
 metadata/_edit_lock_ = true
 
 [node name="Announce" type="Control" parent="." unique_id=1447322526]
 anchors_preset = 0
-offset_left = -240.0
-offset_top = -135.0
-offset_right = 240.0
-offset_bottom = 135.0
+offset_right = 480.0
+offset_bottom = 270.0
 metadata/_edit_lock_ = true
 
 [node name="Message" type="RichTextLabel" parent="Announce" unique_id=519191263]
@@ -567,21 +585,3 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
-
-[node name="Animation_Arrows" type="AnimationPlayer" parent="." unique_id=942789416]
-libraries/ = SubResource("AnimationLibrary_p3xvu")
-
-[node name="Animation_Portraits" type="AnimationPlayer" parent="." unique_id=2124288444]
-libraries/ = SubResource("AnimationLibrary_h8mj1")
-
-[node name="Sounds" type="Node" parent="." unique_id=1395196986]
-
-[node name="Woosh" type="AudioStreamPlayer" parent="Sounds" unique_id=1803769174]
-volume_db = -5.0
-bus = &"FX_DRY"
-
-[node name="Alarm" type="AudioStreamPlayer" parent="Sounds" unique_id=1444163914]
-volume_db = -22.5
-pitch_scale = 0.5
-autoplay = true
-bus = &"FX_WET"

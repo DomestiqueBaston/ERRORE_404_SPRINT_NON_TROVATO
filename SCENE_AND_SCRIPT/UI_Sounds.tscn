@@ -15,7 +15,7 @@ script = ExtResource("1_k5ifq")
 
 [node name="Validation" type="AudioStreamPlayer" parent="." unique_id=2072789497]
 stream = ExtResource("1_p0pgo")
-volume_db = -5.0
+volume_db = -3.5
 bus = &"FX_DRY"
 
 [node name="Cancel" type="AudioStreamPlayer" parent="." unique_id=1062544417]

@@ -1578,10 +1578,8 @@ bus = &"FX_WET"
 
 [node name="Portraits" parent="Frames" unique_id=461730405 instance=ExtResource("40_sf4qo")]
 visible = false
-offset_left = 240.0
-offset_top = 135.0
-offset_right = 240.0
-offset_bottom = 135.0
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="Animation_Overlays" type="AnimationPlayer" parent="Frames" unique_id=1392428684]
 root_node = NodePath("../Bugs_01/Death")
