@@ -39,7 +39,6 @@ bus = &"FX_DRY"
 
 [node name="Full" type="AudioStreamPlayer" parent="." unique_id=309873625]
 stream = ExtResource("7_ecwke")
-volume_db = -2.5
 bus = &"FX_DRY"
 
 [node name="Alert" type="AudioStreamPlayer" parent="." unique_id=1938493406]
