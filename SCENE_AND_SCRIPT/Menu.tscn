@@ -257,6 +257,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_tqwhx")
+metadata/_edit_lock_ = true
 
 [node name="Start_Game_Off" type="RichTextLabel" parent="Content/Buttons" unique_id=1266123687]
 visible = false
@@ -836,3 +837,4 @@ offset_left = 435.0
 offset_top = 435.0
 offset_right = 525.0
 offset_bottom = 525.0
+metadata/_edit_lock_ = true

@@ -501,6 +501,7 @@ anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
 script = ExtResource("1_hwl4u")
+metadata/_edit_lock_ = true
 
 [node name="Animation_Arrows" type="AnimationPlayer" parent="." unique_id=942789416]
 libraries/ = SubResource("AnimationLibrary_p3xvu")

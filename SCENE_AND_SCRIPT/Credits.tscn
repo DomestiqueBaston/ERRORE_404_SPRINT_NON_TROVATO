@@ -504,6 +504,7 @@ offset_left = 435.0
 offset_top = 435.0
 offset_right = 525.0
 offset_bottom = 525.0
+metadata/_edit_lock_ = true
 
 [node name="Alarm_High" type="AudioStreamPlayer" parent="." unique_id=502750112]
 volume_db = -20.0

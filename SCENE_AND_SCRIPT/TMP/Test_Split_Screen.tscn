@@ -1595,6 +1595,7 @@ offset_left = 435.0
 offset_top = 225.0
 offset_right = 525.0
 offset_bottom = 315.0
+metadata/_edit_lock_ = true
 
 [node name="Start_Button" parent="Frames" unique_id=610328938 instance=ExtResource("45_4jeej")]
 visible = false
