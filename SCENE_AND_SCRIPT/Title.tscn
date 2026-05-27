@@ -393,14 +393,12 @@ offset_bottom = 955.0
 metadata/_edit_lock_ = true
 
 [node name="Info_Overlay" type="Control" parent="Graphics" unique_id=1869904629]
-visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
 offset_bottom = 540.0
 script = ExtResource("14_ykdlm")
-blink_timeout = 5.0
 metadata/_edit_lock_ = true
 
 [node name="Info_Start" type="RichTextLabel" parent="Graphics/Info_Overlay" unique_id=1381950875]
