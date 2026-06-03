@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://cgbxwl13x4oax" path="res://SOUND/FX/Cube_Hum.ogg" id="5_i7obx"]
 [ext_resource type="AudioStream" uid="uid://clgt4fhw7wp4c" path="res://SOUND/FX/Appearing_Cube.ogg" id="7_i7obx"]
 [ext_resource type="AudioStream" uid="uid://1ojf301p0bbg" path="res://SOUND/FX/Disappearing_Cube.ogg" id="8_oh6sb"]
+[ext_resource type="AudioStream" uid="uid://dxm4eey7we1f1" path="res://SOUND/FX/Grab_Cube.ogg" id="9_oh6sb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i7obx"]
 radius = 15.241224
@@ -303,3 +304,8 @@ bus = &"FX_WET"
 
 [node name="Cube_On_Off" type="AudioStreamPlayer" parent="Cube_Sound" unique_id=1694479839]
 bus = &"FX_WET"
+
+[node name="Grab_Cube" type="AudioStreamPlayer" parent="Cube_Sound" unique_id=1939369789]
+stream = ExtResource("9_oh6sb")
+volume_db = -12.5
+bus = &"BONUS_MALUS"
