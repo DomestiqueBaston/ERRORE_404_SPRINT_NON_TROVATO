@@ -6,6 +6,60 @@
 [ext_resource type="AudioStream" uid="uid://gxci2v55iim1" path="res://SOUND/FX/Global_Hum.ogg" id="5_rwgee"]
 [ext_resource type="AudioStream" uid="uid://bxcpm34tpan58" path="res://SOUND/MUSIC/Bang.ogg" id="6_ptkxu"]
 
+[sub_resource type="Animation" id="Animation_rwgee"]
+resource_name = "Pitch_Down"
+length = 3.0000036
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music:pitch_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [1.0, 0.06999999999999999]
+}
+
+[sub_resource type="Animation" id="Animation_3jvsj"]
+resource_name = "Pitch_Up"
+length = 1.0000033
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music:pitch_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.333, 1),
+"update": 0,
+"values": [0.06999999999999999, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_qatb8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music:pitch_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r5mkq"]
+_data = {
+&"Pitch_Down": SubResource("Animation_rwgee"),
+&"Pitch_Up": SubResource("Animation_3jvsj"),
+&"RESET": SubResource("Animation_qatb8")
+}
+
 [node name="Music" type="Node" unique_id=2114224613]
 script = ExtResource("1_rwgee")
 
@@ -29,3 +83,6 @@ bus = &"MUSIC"
 stream = ExtResource("5_rwgee")
 volume_db = 10.0
 bus = &"FX_WET"
+
+[node name="Music_Pitch" type="AnimationPlayer" parent="." unique_id=129303618]
+libraries/ = SubResource("AnimationLibrary_r5mkq")
