@@ -46,7 +46,7 @@ Aléatoirement, 1/10 chance d’en déclencher 1 toutes les 10 à 15 secondes. L
     14. Sur-pixelisation → ✔  Dure 10 à 20’’
 
 Les bonus et malus en jeu (Cube.tscn) :
-- Il n’y a que 2 exemplaires de chaque Bonus/Malus (y compris en possession d’un joueur).
+- En jeu, il n’y aura que 2 exemplaires de chaque Bonus/Malus (y compris en possession d’un joueur).
 - Les Bonus/Malus apparaissent en jeu toutes les 10 secondes.
 - Il ne peut pas y avoir plus de 5 Bonus/Malus simultanément à ramasser → le 6ème supprime d’abord automatiquement le plus ancien restant et apparaît 1’’ après.
 - Ils ont une couleur aléatoire en jeu (voir Cube.gd). Avec la couleur par défaut, ce sera toujours un Bonus.
@@ -94,9 +94,10 @@ Liste des animations des personnages :
 Notes de fabrication :
 SON :
 - Au lancement du jeu, la musique qui joue en boucle en permanence, c’est Intro. Jusqu’au moment dans le jeu proprement dit où le Départ est donné. À cet instant précis, on passe à Music (en boucle). Music ne s’arrête qu’en finissant la partie (soit en relançant une nouvelle partie directement soit en retournant à l’écran de Titre. Au moment de lancer à nouveau Intro, il faudra jouer une fois démarrant en même temps qu’Intro le song Bang.
+- /!\ ATTENTION /!\ On ne joue jamais Bang au lancement de Music car il est intégré dans la musique.
 JEU :
-- Sauf pendant la sélection de joueur, par défaut, la caméra de chaque joueur ne montre pas le joueur centré mais se décale afin d’avoir plus de visibilité devant le joueur en fonction de la direction dans laquelle il court. On utilisera un tween d’1/4 de seconde pour déplacer la caméra. Au démarrage de la course, dès la première frame de course, la caméra rejoindra sa place avec le tween décrit précédemment.
-    • Position de caméra par défaut par rapport au root d’un coureur : px = -240, py = -170 (afin de centrer le personnage visuellement dans la caméra. Animations concernées : Intro, Start, Death et Falling.
+- Sauf pendant la sélection de joueur, par défaut, la caméra de chaque joueur ne montre pas le joueur centré mais se décale afin d’avoir plus de visibilité devant le joueur en fonction de la direction dans laquelle il court. On utilisera systématiquement un tween d’1/4 de seconde pour déplacer la caméra. Au démarrage de la course, dès la première frame de course, la caméra rejoindra sa place avec le tween décrit précédemment.
+    • Position de caméra par défaut par rapport au root d’un coureur : px = -240, py = -170 (afin de centrer le personnage visuellement dans la caméra). Animations concernées : Intro, Start, Death et Falling.
     • Position de caméra par rapport au root d’un concurrent tourné vers le bas à droite : px = -120, py = -110.
     • Position de caméra par rapport au root d’un concurrent tourné vers le bas à gauche : px = -360, py = -110.
     • Position de caméra par rapport au root d’un concurrent tourné vers le haut à gauche : px = -360, py = -230.
@@ -104,11 +105,11 @@ JEU :
 - Le premier tronçon de mur qui apparaît derrière un coureur est Light_Wall_Start.tscn puis chaque module suivant est un Light_Wall.tscn. Dit autrement, le tronçon le plus jeune est  Light_Wall_Start.tscn et les plus anciens sont  Light_Wall.tscn !
 - Lorsqu’un concurrent traverse une case (donc en traçant son mur) et que la cellule bouge, alors le concurrent se décale AVEC la cellule. Et le mur qu’il trace également. Il faudra donc « tronçonner » les murs à chaque fois qu’un concurrent sort d’une case afin que le morceau de mur puisse éventuellement se déplacer avec la case si celle-ci est amenée à se déplacer de nouveau.
 - Cas particuliers de mort : il existe un AnimationPlayer avec une animation « toute bête » pour ces cas-là (Animation_Disappearing_Death). Si par exemple se présente un cas avec deux colonnes baissées et que le concurrent veut passer dessous à vitesse normale, il ne pourra pas, mourra donc et on utilisera cette animation. Écrasé par une colonne, ce sera pareil ! Etc.
-- Un concurrent ne peut pas courir sur un autre cadavre → Le jeu forcera le concurrent à tourner aléatoirement à droite ou à gauche. On jouera ici aussi l’Animation_Bonus_Malus et Alert (dans UI_Sounds.tscn). Si par vraiment super pas de bol, le concurrent se retrouve coincé entre des cadavres et/ou d’autres concurrents, alors on lui fera jouer son animation de mort à lui aussi et il sera donc mort ! Ça ne sera pas très joli mais c’est un cas vraiment très peu probable et il faut l’envisager (et faire une animation pour un tel cas…).
-- À la mort d’un concurrent, ce qui reste de son mur ne disparaît pas ! Mais attention, l’animation de mort projette les concurrents en arrière, donc sur le mur : ça ne va pas aussi prendra-t-on soin de supprimer 1 tronçon de mur : celui qui sert à l’apparition du mur (Light_Wall_Start.tscn).
+- Un concurrent ne peut pas courir sur un autre cadavre → Le jeu forcera le concurrent à tourner aléatoirement à droite ou à gauche. On jouera ici aussi l’Animation_Bonus_Malus et Alert (dans UI_Sounds.tscn). Si par vraiment super pas de bol, le concurrent se retrouve coincé entre des cadavres et/ou d’autres concurrents, alors on lui fera jouer son animation de mort à lui aussi et il sera donc mort (Animation_Disappearing_Death) ! Ça ne sera pas très « joli » mais c’est un cas vraiment très peu probable.
+- À la mort d’un concurrent, ce qui reste de son mur ne disparaît pas ! Mais attention, l’animation de mort projette les concurrents en arrière, donc sur le mur : ça ne va pas donc on prendra soin de supprimer 1 tronçon de mur : celui qui sert à l’apparition du mur (Light_Wall_Start.tscn).
 - Seule l’animation de course peut être interrompue (pour changer de direction, sauter, etc.). Toutes les autres doivent finir avant d’enchaîner sur autre chose.
-- Toutes les 10 à 20’’, chaque coureur va gagner 4% de vitesse. Et toutes les 10 à 20’’ perdre ces 4% de vitesse. Les animations seront également accélérées et ralenties de la même proportion  pour que ce soit plus « joli ». On utilisera également un tween d’1 seconde pour appliquer la modification (si possible).
-- Pour le moment, la solution pour tracer le mur que laisse les coureurs derrière eux n’est pas bonne (notamment inutilisable dans des virages).
+- Toutes les 10 à 20’’, chaque coureur va gagner 4% de vitesse. Et toutes les 10 à 20’’ perdre ces 4% de vitesse. Les animations seront également accélérées et ralenties de la même proportion  pour que ce soit plus « joli ». On utilisera également un tween d’1/2 seconde pour appliquer la modification (si possible).
+- Pour le moment, la solution pour tracer le mur que laisse les coureurs derrière eux n’est pas bonne (notamment inutilisable dans des virages ?).
 
 Options à proposer au joueur dans Settings:
 - Taille de la map (de 9 à 21) ✔
@@ -151,9 +152,9 @@ Le jeu :
 
 Ici, la course elle-même prend place !
 
-    7. Lorsque les 3 premiers concurrents meurent, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) dans la scène  Game.tscn (scène pour le moment temporaire, comme je le disais).
+    7. Lorsque les 3 premiers concurrents meurent, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) dans la scène Game.tscn (scène pour le moment temporaire, comme je le disais).
         ◦ Lorsque le dernier concurrent meurt, on affiche alors Frames/Info_Win_Lose_Overlay/Lose et on garde les précédents overlays de mort.
-        ◦ Si un concurrent gagne (soit parce qu’il est le dernier à courir, soit parce qu’il a franchis la porte de sortie), on affiche Frames/Info_Win_Lose/Win et on garde les éventuels overlays de mort ! Automatiquement, les concurrents restants meurent (animation Death) chacun avec un décalage 1/4 de seconde afin de ne pas les avoir tous exactement synchro, ce qui est moche ! À l’instant où on a un gagnant : Music/Music va voir son Pitch qui va descendre et pour cela on utilisera l’AnimationPlayer Music_Pitch/Pitch_Down.
+        ◦ Si un concurrent gagne (soit parce qu’il est le dernier en course ou soit parce qu’il a franchi la porte de sortie), on affiche Frames/Info_Win_Lose/Win et on garde les éventuels overlays de mort des autres concurrents ! Automatiquement, les concurrents restants meurent (animation Death) chacun avec un décalage 1/4 de seconde afin de ne pas les avoir tous exactement synchro, ce qui est moche ! À l’instant où on a un gagnant : Music/Music va voir son Pitch qui va descendre et pour cela on utilisera l’AnimationPlayer Music_Pitch/Pitch_Down.
         ◦ Ensuite, n’importe quel bouton (sauf B) retourne brutalement (toujours) à l’écran de titre. On coupe alors Music/Music et on lance Music/Intro avec Music/Bang. Et on retourne au point 1 de cette liste. Presser B relance une partie « identique » à partir du point 5 de cette liste !
 Les personnalités des « IA »/Bots :
 - Par défaut, un Bot tendra bien évidemment à ne pas mourir en évitant les collisions et les chutes.

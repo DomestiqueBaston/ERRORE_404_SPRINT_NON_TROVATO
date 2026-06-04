@@ -322,7 +322,7 @@ theme_override_constants/outline_size = 12
 theme_override_constants/shadow_outline_size = 24
 theme_override_fonts/font = ExtResource("2_7vkle")
 theme_override_font_sizes/font_size = 48
-text = "Gdt 5 - Sml_Bcktt - Ctrl. attivo:
+text = "Gdt 4 - Sml_Bcktt - Ctrl. attivo:
 “Scaric. mai iniziat. _0%”"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
@@ -340,7 +340,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
 theme_override_fonts/font = ExtResource("2_7vkle")
 theme_override_font_sizes/font_size = 48
-text = "Gdt 5 - Sml_Bcktt - Ctrl. attivo:
+text = "Gdt 4 - Sml_Bcktt - Ctrl. attivo:
 “Scaric. mai iniziat. _0%”"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true

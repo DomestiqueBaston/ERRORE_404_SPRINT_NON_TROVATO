@@ -22,7 +22,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_3jvsj"]
-resource_name = "Pitch_Up"
+resource_name = "Pitch_Up_(useless)"
 length = 1.0000033
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -55,7 +55,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r5mkq"]
 _data = {
 &"Pitch_Down": SubResource("Animation_rwgee"),
-&"Pitch_Up": SubResource("Animation_3jvsj"),
+&"Pitch_Up_(useless)": SubResource("Animation_3jvsj"),
 &"RESET": SubResource("Animation_qatb8")
 }
 
