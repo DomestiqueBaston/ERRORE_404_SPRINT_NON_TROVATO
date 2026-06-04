@@ -153,13 +153,13 @@ Ici, la course elle-même prend place !
 
     7. Lorsque les 3 premiers concurrents meurent, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) dans la scène  Game.tscn (scène pour le moment temporaire, comme je le disais).
         ◦ Lorsque le dernier concurrent meurt, on affiche alors Frames/Info_Win_Lose_Overlay/Lose et on garde les précédents overlays de mort.
-        ◦ Si un concurrent gagne (soit parce qu’il est le dernier à courir, soit parce qu’il a franchis la porte de sortie), on affiche Frames/Info_Win_Lose/Win et on garde les éventuels overlays de mort ! Automatiquement, les concurrents restants meurent (animation Death) chacun avec un décalage 1/4 de seconde afin de ne pas les avoir tous exactement synchro, ce qui est moche ! À l’instant où on a une gagnant : Music/Music va voir son Pitch qui va descendre jusqu’à 0.05 en 5 secondes (à valider ultérieurement).
+        ◦ Si un concurrent gagne (soit parce qu’il est le dernier à courir, soit parce qu’il a franchis la porte de sortie), on affiche Frames/Info_Win_Lose/Win et on garde les éventuels overlays de mort ! Automatiquement, les concurrents restants meurent (animation Death) chacun avec un décalage 1/4 de seconde afin de ne pas les avoir tous exactement synchro, ce qui est moche ! À l’instant où on a un gagnant : Music/Music va voir son Pitch qui va descendre et pour cela on utilisera l’AnimationPlayer Music_Pitch/Pitch_Down.
         ◦ Ensuite, n’importe quel bouton (sauf B) retourne brutalement (toujours) à l’écran de titre. On coupe alors Music/Music et on lance Music/Intro avec Music/Bang. Et on retourne au point 1 de cette liste. Presser B relance une partie « identique » à partir du point 5 de cette liste !
 Les personnalités des « IA »/Bots :
 - Par défaut, un Bot tendra bien évidemment à ne pas mourir en évitant les collisions et les chutes.
 - On définira des valeurs « par défaut » pour un bot afin de faire varier ces valeurs en fonction du comportement sélectionné.
-	- Un passage de moins d1/2 case de large n’est pas emprunté par un bot.
-	- Temps de réaction de base : 300ms (surlignés en jaune : ne sont pas concernés).
+	- Un passage de moins d1/2 case de large n’est pas emprunté par un bot (s’il n’a pas d’alternative, il ira dans l’obstacle).
+	- Temps de réaction de base : 300ms (surlignés en jaune : pas concerné).
 - Pour former un bot, on combine 3 comportements choisi aléatoirement (1 dans dans chaque catégorie).
 
 Comportements face aux obstacles :
@@ -181,4 +181,4 @@ Comportements face aux bugs du jeu (continuer tout droit, tourner et/ou utilise
     1. Prudent : Réagit plus tôt (si possible) face aux obstacles.
     2. Inconscient : Collider de vision plus court.
     3. Panique : Réaction totalement aléatoire face à un obstacle.
-    4. Maladroit : Confond les obstacles.
+    4. Maladroit : Confond les obstacles (saute au lieu de glisser, etc.).

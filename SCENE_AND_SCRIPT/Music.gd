@@ -12,6 +12,3 @@ func play_intro():
 
 func stop_intro():
 	$Intro.stop()
-
-func play_global_hum():
-	$Global_Hum.play()
