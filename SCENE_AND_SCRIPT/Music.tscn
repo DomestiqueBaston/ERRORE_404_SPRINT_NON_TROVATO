@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bxehpmcbkgqid" path="res://SCENE_AND_SCRIPT/Music.gd" id="1_rwgee"]
 [ext_resource type="AudioStream" uid="uid://t4l7fveb311p" path="res://SOUND/MUSIC/Music.ogg" id="3_kco3e"]
 [ext_resource type="AudioStream" uid="uid://cv55875tvts3k" path="res://SOUND/MUSIC/Intro.ogg" id="3_rjpab"]
+[ext_resource type="AudioStream" uid="uid://dvn44pi0uxq00" path="res://SOUND/FX/Win_Glitchy_Sound.ogg" id="5_rwgee"]
 [ext_resource type="AudioStream" uid="uid://bxcpm34tpan58" path="res://SOUND/MUSIC/Bang.ogg" id="6_ptkxu"]
 
 [sub_resource type="Animation" id="Animation_rwgee"]
@@ -20,21 +21,29 @@ tracks/0/keys = {
 "update": 0,
 "values": [1.0, 0.06999999999999999]
 }
-
-[sub_resource type="Animation" id="Animation_3jvsj"]
-resource_name = "Pitch_Up_(useless)"
-length = 1.0000033
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Music:pitch_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.333, 1),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Win_Glitchy_Sound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Win_Glitchy_Sound:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.06999999999999999, 1.0]
+"values": [-80.0, -5.0]
 }
 
 [sub_resource type="Animation" id="Animation_qatb8"]
@@ -51,11 +60,34 @@ tracks/0/keys = {
 "update": 0,
 "values": [1.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Win_Glitchy_Sound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Win_Glitchy_Sound:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-5.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r5mkq"]
 _data = {
 &"Pitch_Down": SubResource("Animation_rwgee"),
-&"Pitch_Up_(useless)": SubResource("Animation_3jvsj"),
 &"RESET": SubResource("Animation_qatb8")
 }
 
@@ -77,6 +109,12 @@ parameters/looping = true
 [node name="Bang" type="AudioStreamPlayer" parent="." unique_id=1371113068]
 stream = ExtResource("6_ptkxu")
 bus = &"MUSIC"
+
+[node name="Win_Glitchy_Sound" type="AudioStreamPlayer" parent="." unique_id=1191243891]
+stream = ExtResource("5_rwgee")
+volume_db = -5.0
+bus = &"FX_DRY"
+parameters/looping = true
 
 [node name="Music_Pitch" type="AnimationPlayer" parent="." unique_id=129303618]
 libraries/ = SubResource("AnimationLibrary_r5mkq")
