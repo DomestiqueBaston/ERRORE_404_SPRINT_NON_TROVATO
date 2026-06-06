@@ -45,7 +45,6 @@
 [ext_resource type="AudioStream" uid="uid://ec0m1xfy6c32" path="res://SOUND/FX/Digital_Glitch_C.ogg" id="36_pnhl5"]
 [ext_resource type="AudioStream" uid="uid://bm1v8dymi3n0a" path="res://SOUND/FX/Digital_Glitch_B.ogg" id="37_qjqwi"]
 [ext_resource type="AudioStream" uid="uid://bxr32qgishsy8" path="res://SOUND/FX/Digital_Glitch_D.ogg" id="38_5memm"]
-[ext_resource type="AudioStream" uid="uid://vldsf8ak3y4t" path="res://SOUND/FX/Alarm.ogg" id="46_psu53"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mwy7o"]
 vertices = PackedVector2Array(95.78125, 0.3515625, 0.0078125, 47.828125, -96.64844, -0.5, -0.0625, -48.789063)
@@ -63,11 +62,11 @@ shader_parameter/glitch_blend = 0.8499999810008
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3k4r"]
 shader = ExtResource("28_vso1q")
-shader_parameter/shake_power = 0.004
+shader_parameter/shake_power = 0.005
 shader_parameter/shake_rate = 1.0
 shader_parameter/shake_speed = 5.0
-shader_parameter/shake_block_size = 123.0
-shader_parameter/shake_color_rate = 0.0010000000475
+shader_parameter/shake_block_size = 15.0
+shader_parameter/shake_color_rate = 0.0030000001425
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qkut6"]
 size = Vector2(124.56604, 47.564228)
@@ -111,6 +110,18 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Glitch:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_gwl88"]
 resource_name = "Disappearing"
@@ -142,6 +153,18 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Glitch:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.13333334),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_cr4ld"]
 length = 0.001
@@ -152,6 +175,18 @@ tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glitch:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -311,152 +346,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, true, false]
-}
-
-[sub_resource type="Animation" id="Animation_e50o2"]
-resource_name = "Down_Sliding_Beginning"
-length = 0.76666665
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Column/Cell_Tops:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.16666667, 0.23333333, 0.3, 0.36666667, 0.76666665),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(0, 250), Vector2(0, 250), Vector2(0, 249), Vector2(0, 248), Vector2(0, 247), Vector2(0, 246), Vector2(0, 246)]
-}
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sound/Start_Cell")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("27_e50o2")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/1/use_blend = true
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sound/Up_Down_Cell")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 2.0713782,
-"start_offset": 0.0,
-"stream": ExtResource("28_7mpjj")
-}],
-"times": PackedFloat32Array(0.1)
-}
-tracks/2/use_blend = true
-tracks/3/type = "audio"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sound/Stop_Cell")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("29_8ohl3")
-}],
-"times": PackedFloat32Array(0.6333333)
-}
-tracks/3/use_blend = true
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Column/Cell_Tops/Collider_Ground:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_ej7e8"]
-resource_name = "Down_Sliding_End"
-length = 1.0666667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Column/Cell_Tops:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.46666667, 0.53333336, 0.6, 0.6666667, 1.0666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(0, 246), Vector2(0, 246), Vector2(0, 247), Vector2(0, 248), Vector2(0, 249), Vector2(0, 250), Vector2(0, 250)]
-}
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sound/Start_Cell")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("27_e50o2")
-}],
-"times": PackedFloat32Array(0.29999998)
-}
-tracks/1/use_blend = true
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sound/Up_Down_Cell")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 2.0713782,
-"start_offset": 0.0,
-"stream": ExtResource("28_7mpjj")
-}],
-"times": PackedFloat32Array(0.4)
-}
-tracks/2/use_blend = true
-tracks/3/type = "audio"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sound/Stop_Cell")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("29_8ohl3")
-}],
-"times": PackedFloat32Array(0.93333334)
-}
-tracks/3/use_blend = true
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Column/Cell_Tops/Collider_Ground:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_5dg73"]
@@ -621,47 +510,8 @@ tracks/4/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_mye8y"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Column/Cell_Tops:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Column/Cell_Tops:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Column/Cell_Tops/Collider_Ground:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="Animation" id="Animation_qkut6"]
-resource_name = "Up_Sliding_Beginning"
+resource_name = "High_Sliding_Beginning"
 length = 0.76666665
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -734,7 +584,7 @@ tracks/4/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_psu53"]
-resource_name = "Up_Sliding_End"
+resource_name = "High_Sliding_End"
 length = 1.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -806,17 +656,202 @@ tracks/4/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_e50o2"]
+resource_name = "Low_Sliding_Beginning"
+length = 0.76666665
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Column/Cell_Tops:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.16666667, 0.23333333, 0.3, 0.36666667, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 250), Vector2(0, 250), Vector2(0, 249), Vector2(0, 248), Vector2(0, 247), Vector2(0, 246), Vector2(0, 246)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sound/Start_Cell")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("27_e50o2")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sound/Up_Down_Cell")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 2.0713782,
+"start_offset": 0.0,
+"stream": ExtResource("28_7mpjj")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sound/Stop_Cell")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("29_8ohl3")
+}],
+"times": PackedFloat32Array(0.6333333)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Column/Cell_Tops/Collider_Ground:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ej7e8"]
+resource_name = "Low_Sliding_End"
+length = 1.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Column/Cell_Tops:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.46666667, 0.53333336, 0.6, 0.6666667, 1.0666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 246), Vector2(0, 246), Vector2(0, 247), Vector2(0, 248), Vector2(0, 249), Vector2(0, 250), Vector2(0, 250)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sound/Start_Cell")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("27_e50o2")
+}],
+"times": PackedFloat32Array(0.29999998)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sound/Up_Down_Cell")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 2.0713782,
+"start_offset": 0.0,
+"stream": ExtResource("28_7mpjj")
+}],
+"times": PackedFloat32Array(0.4)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sound/Stop_Cell")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("29_8ohl3")
+}],
+"times": PackedFloat32Array(0.93333334)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Column/Cell_Tops/Collider_Ground:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_mye8y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Column/Cell_Tops:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Column/Cell_Tops:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Column/Cell_Tops/Collider_Ground:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ej7e8"]
 _data = {
 &"Appearing": SubResource("Animation_vso1q"),
 &"Disappearing": SubResource("Animation_7mpjj"),
-&"Down_Sliding_Beginning": SubResource("Animation_e50o2"),
-&"Down_Sliding_End": SubResource("Animation_ej7e8"),
 &"Going_Down": SubResource("Animation_5dg73"),
 &"Going_Up": SubResource("Animation_6vv1n"),
-&"RESET": SubResource("Animation_mye8y"),
-&"Up_Sliding_Beginning": SubResource("Animation_qkut6"),
-&"Up_Sliding_End": SubResource("Animation_psu53")
+&"High_Sliding_Beginning": SubResource("Animation_qkut6"),
+&"High_Sliding_End": SubResource("Animation_psu53"),
+&"Low_Sliding_Beginning": SubResource("Animation_e50o2"),
+&"Low_Sliding_End": SubResource("Animation_ej7e8"),
+&"RESET": SubResource("Animation_mye8y")
 }
 
 [node name="Cell" type="Node2D" unique_id=2120336095]
@@ -824,25 +859,28 @@ metadata/_edit_lock_ = true
 
 [node name="ATTENTION" type="Label" parent="." unique_id=1347624169]
 offset_left = 124.0
-offset_top = 132.0
-offset_right = 475.0
-offset_bottom = 207.0
+offset_right = 497.0
+offset_bottom = 621.0
 text = "Lorsqu' une colonne ou une ligne glisse,
-on joue les sons pour une seule Cell
+on joue les sons pour UNE SEULE Cell
 (sinon, on va devenir dingo) car toutes
 les Cells bougent en même temps.
+On prendra soin de couper les tracks de
+son des autres Cells.
 
-Pour faire glisser les Cells (en colonne ou ligne),
-On joue d'abord Sliding_Beginning
-puis on fait un Tween de déplacement en jouant
-le son Sliding_Cell
-puis on finit en jouant l'animation Sliding_End.
+Pour faire glisser les Cells (en colonne
+ou ligne), On joue d'abord
+(High or Low)_Sliding_Beginning
+puis on fait un Tween de déplacement
+en jouant le son Sliding_Cell puis on finit
+en jouant l'animation (High/Low)_Sliding_End.
+(\"High\" pour une Cell au niveau du sol.
+\"Low\" pour une Cell basse.)
 
 Tout cela ne vaut que pour les glissements.
 
 Concernant le collider de direction,
- je ne sais pas comment faire...
-Ce qui est en place ne va très certainement pas !"
+ce qui est en place ne va probablement pas."
 metadata/_edit_lock_ = true
 
 [node name="Column" type="Node2D" parent="." unique_id=294314283]
@@ -1065,6 +1103,7 @@ offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true
 
 [node name="Top_Cell_FX_Mask" type="Sprite2D" parent="Column/Cell_Tops" unique_id=1142209556]
+visible = false
 clip_children = 1
 texture = ExtResource("27_7mpjj")
 centered = false
@@ -1159,14 +1198,12 @@ bus = &"FX_WET"
 stream = ExtResource("36_pnhl5")
 volume_db = -5.0
 bus = &"FX_DRY"
+parameters/looping = true
 
 [node name="Animation_Cell" type="AnimationPlayer" parent="." unique_id=1288134592]
 libraries/ = SubResource("AnimationLibrary_ej7e8")
 
 [node name="Sound" type="Node" parent="." unique_id=887095933]
-
-[node name="Moving_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=2131109079]
-bus = &"FX_WET"
 
 [node name="Start_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=1720354538]
 volume_db = 2.5
@@ -1186,7 +1223,9 @@ bus = &"FX_WET"
 
 [node name="Sliding_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=479006352]
 stream = ExtResource("27_5dg73")
+volume_db = 2.5
 bus = &"FX_WET"
+parameters/looping = true
 
 [node name="Appearing_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=228232776]
 bus = &"FX_WET"
@@ -1200,8 +1239,3 @@ bus = &"FX_DRY"
 stream = ExtResource("38_5memm")
 volume_db = -22.5
 bus = &"FX_WET"
-
-[node name="Alarm_Before_Movement" type="AudioStreamPlayer" parent="Sound" unique_id=657381530]
-stream = ExtResource("46_psu53")
-bus = &"FX_WET"
-parameters/looping = true

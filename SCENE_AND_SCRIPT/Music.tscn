@@ -8,7 +8,7 @@
 
 [sub_resource type="Animation" id="Animation_rwgee"]
 resource_name = "Pitch_Down"
-length = 3.0000036
+length = 1.5000035
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -16,8 +16,8 @@ tracks/0/path = NodePath("Music:pitch_scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(0.75, 1),
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.333, 1),
 "update": 0,
 "values": [1.0, 0.06999999999999999]
 }
@@ -102,7 +102,7 @@ parameters/looping = true
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=2025180216]
 stream = ExtResource("3_kco3e")
-volume_db = 2.5
+volume_db = 3.5
 bus = &"MUSIC"
 parameters/looping = true
 

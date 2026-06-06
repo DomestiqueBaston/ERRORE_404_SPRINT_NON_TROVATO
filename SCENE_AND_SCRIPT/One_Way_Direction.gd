@@ -1,7 +1,7 @@
 extends Node2D
 
 # Ce script ne sert à rien d'autre que donner les orientations des noeuds
-# en fonction de l'orientation voulue de la flèche
+# en fonction de l'orientation voulue de la flèche.
 
 @onready var shadow_orientation: Node2D = $Shadow_Orientation
 @onready var direction_orientation: Node2D = $Direction_Orientation
