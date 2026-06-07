@@ -677,7 +677,7 @@ _data = {
 [node name="Cell" type="Node2D" unique_id=2120336095]
 metadata/_edit_lock_ = true
 
-[node name="ATTENTION" type="Label" parent="." unique_id=1347624169]
+[node name="ATTENTION (à lire)" type="Label" parent="." unique_id=1347624169]
 visible = false
 offset_left = 124.0
 offset_right = 497.0
