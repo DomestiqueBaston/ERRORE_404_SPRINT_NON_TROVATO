@@ -92,10 +92,9 @@ Liste des animations des personnages :
     7. Bim ! Dans un mur → Mort ! ✔ ✔ ✔ ✔
 
 Notes de fabrication :
-SON :
 - Au lancement du jeu, la musique qui joue en boucle en permanence, c’est Intro. Jusqu’au moment dans le jeu proprement dit où le Départ est donné. À cet instant précis, on passe à Music (en boucle). Music ne s’arrête qu’en finissant la partie (soit en relançant une nouvelle partie directement soit en retournant à l’écran de Titre. Au moment de lancer à nouveau Intro, il faudra jouer une fois le son Bang tout en démarrant en même temps Intro.
 - /!\ ATTENTION /!\ On ne joue jamais Bang au lancement de Music car il est intégré dans la musique.
-JEU :
+- /!\ ATTENTION /!\  Il est fort probable que pas mal de sons ne soient au final pas utilisés car inaudibles et/ou inutiles et/ou trop pénibles à entendre en permanence. Je pense à la respiration des concurrents qui courent, le « hum » des light walls ou ce genre de chose qui existent en plusieurs exemplaires (il y a 4 concurrents!) en jeu.
 - Sauf pendant la sélection de joueur, par défaut, la caméra de chaque joueur ne montre pas le joueur centré mais se décale afin d’avoir plus de visibilité devant le joueur en fonction de la direction dans laquelle il court. On utilisera systématiquement un tween d’1/4 de seconde pour déplacer la caméra. Au démarrage de la course, dès la première frame de course, la caméra rejoindra sa place avec le tween décrit précédemment.
     • Position de caméra par défaut par rapport au root d’un coureur : px = -240, py = -170 (afin de centrer le personnage visuellement dans la caméra). Animations concernées : Intro, Start, Death et Falling.
     • Position de caméra par rapport au root d’un concurrent tourné vers le bas à droite : px = -120, py = -110.
@@ -103,7 +102,7 @@ JEU :
     • Position de caméra par rapport au root d’un concurrent tourné vers le haut à gauche : px = -360, py = -230.
     • Position de caméra par rapport au root d’un concurrent tourné vers le haut à droite : px = -120, py = -230.
 - Le mur tracé derrière un concurrent lorsqu’il se déplace est Light_Wall.tscn. À chaque entrée d’un concurrent sur une Cell ou virage, on commence le tracé d’un nouveau Light_Wall.tscn qui sera raccord avec le précédent. Lorsqu’un concurrent quitte une Cell ou fait un virage sur une Cell, on coupe le précédent Light_Wall.tscn et on en commence un autre raccord également. On ne trace pas de Light_Wall.tscn lorsqu’un concurrent fait autre chose que courir, sauter ou glisser.
-- Au démarrage de chaque concurrent (lorsqu’il commence à courir), on joue le son Light_Wall_Sounds/Appearing dans Sounds.tscn pour commencer son mur.
+- Au démarrage de chaque concurrent (lorsqu’il commence à courir), on joue le son Light_Wall_Sounds/Appearing dans Sounds.tscn pour commencer son mur. On joue également Light_Wall_Sounds/Wall_Hum en boucle jusqu’à ce que le mur disparaissent complètement.
 - À la mort d’un concurrent, lorsque son mur disparaît, joue le son Light_Wall_Sounds/Disappearing dans Sounds.tscn (en plus de l’animation  Light_Wall_Animation/Disappearing.
 - Lorsqu’un concurrent traverse une case (donc en traçant son mur) et que la cellule bouge, alors le concurrent se décale AVEC la cellule. Et le mur qu’il trace également afin que le morceau de mur puisse se déplacer avec la case si celle-ci est amenée à se déplacer de nouveau.
 - Cas particuliers de mort de concurrent : il existe une animation alternative, un AnimationPlayer avec une animation « toute bête » pour ces cas-là (Animation_Disappearing_Death/Disappearing). Si par exemple se présente un cas avec deux colonnes baissées et que le concurrent veut passer dessous à vitesse normale, il ne pourra pas, mourra donc et on utilisera cette animation. Écrasé par une colonne, ce sera pareil ! Etc.
@@ -112,7 +111,7 @@ JEU :
 - Seule l’animation de course peut être interrompue (pour changer de direction, sauter, etc.). Toutes les autres doivent finir avant d’enchaîner sur autre chose. Par défaut, à la fin d’une animation d’interruption (saut, glissade, etc.), on retourne toujours à la course.
 - Toutes les 10 à 20’’, chaque coureur va gagner/perdre 4% de vitesse. Et toutes les 10 à 20’’ perdre/récupérer ces 4% de vitesse. Les animations seront également accélérées et ralenties de la même proportion pour que ce soit plus « joli ». On utilisera également un tween d’1/2 seconde pour appliquer la modification (si possible).
 
-Options à proposer au joueur dans Settings:
+Options (nécessaires) dans Settings:
 - Taille de la map (de 9 à 21) ✔
 - Volume sonore général (de 0 à 100) ✔
 - Volume de la musique (de 0 à 100) ✔
@@ -184,3 +183,7 @@ Ici, la course elle-même prend place !
         ◦ Lorsque le dernier concurrent meurt, on affiche alors Frames/Info_Win_Lose_Overlay/Lose et on garde les précédents overlays de mort.
         ◦ Si un concurrent gagne (soit parce qu’il est le dernier en course ou soit parce qu’il a franchi la porte de sortie), on affiche Frames/Info_Win_Lose/Win et on garde les éventuels overlays de mort des autres concurrents ! Automatiquement, les concurrents restants meurent (animation Death) chacun avec un décalage 1/4 de seconde afin de ne pas les avoir tous exactement synchro, ce qui est moche ! À l’instant où on a un gagnant : Music/Music va voir son Pitch qui va descendre et pour cela on utilisera l’AnimationPlayer Music_Pitch/Pitch_Down. Tous les concurrents (y compris les morts) disparaissent (avec Animation_Disappearing_Death/Disappearing) au franchissant de la porte par le vainqueur ou lorsqu’un troisième concurrent meurt.
         ◦ Ensuite, n’importe quel bouton (sauf B) retourne brutalement (toujours) à l’écran de titre. On coupe alors Music/Music et on lance Music/Intro avec Music/Bang. Et on retourne au point 1 de cette liste. Presser B relance une partie « identique » à partir du point 5 de cette liste !
+
+Ajouts ultérieurs possibles :
+- Jeu multi local.
+- …

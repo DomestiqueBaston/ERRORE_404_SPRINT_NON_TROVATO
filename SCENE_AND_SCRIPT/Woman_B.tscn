@@ -3323,7 +3323,7 @@ volume_db = -5.0
 bus = &"RUNNERS"
 
 [node name="Running" type="AudioStreamPlayer" parent="Sound" unique_id=1886074975]
-volume_db = -12.5
+volume_db = -10.0
 bus = &"RUNNERS"
 
 [node name="Fall_Death" type="AudioStreamPlayer" parent="Sound" unique_id=203481195]
