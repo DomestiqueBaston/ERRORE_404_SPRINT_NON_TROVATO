@@ -14,6 +14,9 @@
 [ext_resource type="AudioStream" uid="uid://ccoauvddaj8m" path="res://SOUND/FX/Up_Down_Cell.ogg" id="12_liv3w"]
 [ext_resource type="AudioStream" uid="uid://dek1co7fuef8g" path="res://SOUND/FX/Clang_Stop_Cell.ogg" id="13_yt3q1"]
 [ext_resource type="AudioStream" uid="uid://bifaoucknr7f5" path="res://SOUND/FX/Sliding_Cell.ogg" id="14_liv3w"]
+[ext_resource type="AudioStream" uid="uid://3b3j7ke38t82" path="res://SOUND/FX/Disappearing_Light_Wall.ogg" id="15_sbfjp"]
+[ext_resource type="AudioStream" uid="uid://dttkq5rw4spvt" path="res://SOUND/FX/Wall_Hum.ogg" id="15_yt3q1"]
+[ext_resource type="AudioStream" uid="uid://dhqe43polir8c" path="res://SOUND/FX/Appearing_Light_Wall.ogg" id="16_ke38t"]
 
 [sub_resource type="Animation" id="Animation_qkut6"]
 resource_name = "High_Sliding_Beginning"
@@ -290,4 +293,22 @@ parameters/looping = true
 [node name="Alarm_Before_Cell_Slide" type="AudioStreamPlayer" parent="Cell_Slide_Sounds" unique_id=609901888]
 stream = ExtResource("10_uopt1")
 bus = &"FX_WET"
+parameters/looping = true
+
+[node name="Light_Wall_Sounds" type="Node" parent="." unique_id=1810054260]
+
+[node name="Disappearing" type="AudioStreamPlayer" parent="Light_Wall_Sounds" unique_id=291701906]
+stream = ExtResource("15_sbfjp")
+volume_db = -5.0
+bus = &"FX_DRY"
+
+[node name="Appearing" type="AudioStreamPlayer" parent="Light_Wall_Sounds" unique_id=1388832222]
+stream = ExtResource("16_ke38t")
+volume_db = -5.0
+bus = &"FX_DRY"
+
+[node name="Wall_Hum" type="AudioStreamPlayer" parent="Light_Wall_Sounds" unique_id=519304884]
+stream = ExtResource("15_yt3q1")
+volume_db = -7.5
+bus = &"FX_DRY"
 parameters/looping = true

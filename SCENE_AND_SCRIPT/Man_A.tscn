@@ -158,6 +158,10 @@ shader = ExtResource("4_laype")
 radius = 8.925275
 height = 35.99242
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_04ypo"]
+radius = 20.60812
+height = 65.080215
+
 [sub_resource type="Animation" id="Animation_jp0wo"]
 resource_name = "Death_000"
 length = 1.5333368
@@ -318,6 +322,42 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.5666667, 1.1333333, 1.5333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(14, 4), Vector2(-18, -12), Vector2(-25, -4), Vector2(-25, -4)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.56666666, 1.5333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.0245082, -1.3526301, -1.3526301]
 }
 
 [sub_resource type="Animation" id="Animation_6u6kr"]
@@ -480,6 +520,42 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.5666667, 1.1333333, 1.5333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-10.000001, -10), Vector2(10, 7.000002), Vector2(19, 3), Vector2(19, 3)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.56666666, 1.5333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.0245082, -1.2426745, -1.2426745]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_bpqq7"]
@@ -683,6 +759,18 @@ tracks/15/keys = {
 "update": 0,
 "values": [Vector2(1.5, 1.5)]
 }
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_axddh"]
 resource_name = "Falling_180"
@@ -885,6 +973,18 @@ tracks/15/keys = {
 "update": 0,
 "values": [Vector2(1.5, 1.5)]
 }
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_0257l"]
 resource_name = "Intro"
@@ -981,6 +1081,18 @@ tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disab
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -1166,6 +1278,18 @@ tracks/13/keys = {
 "method": &"play_foot_step_01"
 }]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ahumo"]
 resource_name = "Jump_180"
@@ -1345,6 +1469,18 @@ tracks/13/keys = {
 "args": [],
 "method": &"play_foot_step_01"
 }]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_p514w"]
@@ -1529,6 +1665,42 @@ tracks/14/keys = {
 "update": 0,
 "values": [-5.0]
 }
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-25, -4)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:rotation")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.3526301]
+}
 
 [sub_resource type="Animation" id="Animation_w5jul"]
 resource_name = "Run_000"
@@ -1709,6 +1881,18 @@ tracks/13/keys = {
 "args": [],
 "method": &"play_foot_step_01"
 }]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_w02lc"]
@@ -1891,6 +2075,18 @@ tracks/13/keys = {
 "method": &"play_foot_step_01"
 }]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_gjkpv"]
 resource_name = "Sliding_000"
@@ -2053,6 +2249,18 @@ tracks/11/keys = {
 "times": PackedFloat32Array(0.1, 0.2, 0.254239)
 }
 tracks/11/use_blend = true
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_kxl5h"]
 resource_name = "Sliding_180"
@@ -2215,6 +2423,18 @@ tracks/11/keys = {
 "times": PackedFloat32Array(0.1, 0.2, 0.25235415)
 }
 tracks/11/use_blend = true
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_t3hkb"]
 resource_name = "Start_000"
@@ -2364,6 +2584,18 @@ tracks/11/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ojupx"]
 resource_name = "Start_180"
@@ -2512,6 +2744,18 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8jbc5"]
@@ -2957,6 +3201,13 @@ metadata/_edit_lock_ = true
 [node name="Collider" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Collider_Area" unique_id=50269794]
 rotation = -1.0471976
 shape = SubResource("CapsuleShape2D_rjpof")
+disabled = true
+metadata/_edit_lock_ = true
+
+[node name="Death_Collider" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Collider_Area" unique_id=1050781692]
+position = Vector2(-25, -4)
+rotation = -1.3526301
+shape = SubResource("CapsuleShape2D_04ypo")
 disabled = true
 metadata/_edit_lock_ = true
 
