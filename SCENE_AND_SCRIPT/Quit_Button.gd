@@ -38,6 +38,6 @@ func _process(delta):
 		_press_timer = 0.0
 
 func _on_charge_completed():
-	UISounds.play_full()
+	Sounds.play_full()
 	await get_tree().create_timer(0.666).timeout
 	get_tree().quit()

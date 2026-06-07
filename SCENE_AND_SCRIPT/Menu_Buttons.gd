@@ -33,17 +33,17 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_down_button"):
-		UISounds.play_menu_navigation()
+		Sounds.play_menu_navigation()
 		current_index = (current_index + 1) % entries.size()
 		update_menu()
 
 	elif event.is_action_pressed("ui_up_button"):
-		UISounds.play_menu_navigation()
+		Sounds.play_menu_navigation()
 		current_index = (current_index - 1 + entries.size()) % entries.size()
 		update_menu()
 
 	elif event.is_action_pressed("ui_a_button"):
-		UISounds.play_validation()
+		Sounds.play_validation()
 		Music.play_bang()
 		get_viewport().set_input_as_handled()
 		var selected = entries[current_index]
@@ -58,7 +58,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 	elif event.is_action_pressed("ui_b_button"):
-		UISounds.play_cancel()
+		Sounds.play_cancel()
 		#Music.play_bang() # Supprimer cette ligne règle le problème du double bang au retour à Title.tscn
 		get_viewport().set_input_as_handled()
 		get_tree().change_scene_to_packed(preloaded_scenes["Title"])

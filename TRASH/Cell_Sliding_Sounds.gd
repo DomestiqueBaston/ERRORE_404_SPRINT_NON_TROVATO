@@ -1,9 +1,5 @@
 extends Node
 
-########################################
-## Fonctions des "Call Method Tracks" ##
-########################################
-
 func play_start_cell():
 	$Start_Cell.play()
 
@@ -15,3 +11,6 @@ func play_up_down_cell():
 
 func Sliding_cell():
 	$Sliding_Cell.play()
+
+func Alarm_before_cell_slide():
+	$Alarm_Before_Cell_Slide.play()

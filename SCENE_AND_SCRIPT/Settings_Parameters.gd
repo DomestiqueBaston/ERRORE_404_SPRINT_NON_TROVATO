@@ -60,24 +60,24 @@ func _process(_delta):
 		if selected_slider < 0:
 			selected_slider = 3
 		_update_slider_visuals()
-		UISounds.play_menu_navigation()
+		Sounds.play_menu_navigation()
 
 	elif Input.is_action_just_pressed("ui_down_button"):
 		selected_slider += 1
 		if selected_slider > 3:
 			selected_slider = 0
 		_update_slider_visuals()
-		UISounds.play_menu_navigation()
+		Sounds.play_menu_navigation()
 	
 	if Input.is_action_just_pressed("ui_right_button"):
 		if !is_slider_at_max(selected_slider):
 			adjust_slider_value(1)
-			UISounds.play_woosh()
+			Sounds.play_woosh()
 
 	elif Input.is_action_just_pressed("ui_left_button"):
 		if !is_slider_at_min(selected_slider):
 			adjust_slider_value(-1)
-			UISounds.play_woosh()
+			Sounds.play_woosh()
 
 func is_slider_at_min(slider_index: int) -> bool:
 	var slider: HSlider = get_slider_by_index(slider_index)
