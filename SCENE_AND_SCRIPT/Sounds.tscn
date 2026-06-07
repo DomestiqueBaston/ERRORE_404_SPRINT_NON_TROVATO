@@ -20,7 +20,7 @@ length = 0.76666665
 tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sound/Start_Cell")
+tracks/0/path = NodePath("Cell_Slide_Sound_Sounds/Start_Cell")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -35,7 +35,7 @@ tracks/0/use_blend = true
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sound/Up_Down_Cell")
+tracks/1/path = NodePath("Cell_Slide_Sound_Sounds/Up_Down_Cell")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -50,7 +50,7 @@ tracks/1/use_blend = true
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sound/Stop_Cell")
+tracks/2/path = NodePath("Cell_Slide_Sound_Sounds/Stop_Cell")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -69,7 +69,7 @@ length = 1.0666667
 tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sound/Start_Cell")
+tracks/0/path = NodePath("Cell_Slide_Sound_Sounds/Start_Cell")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -84,7 +84,7 @@ tracks/0/use_blend = true
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sound/Up_Down_Cell")
+tracks/1/path = NodePath("Cell_Slide_Sound_Sounds/Up_Down_Cell")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -99,7 +99,7 @@ tracks/1/use_blend = true
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sound/Stop_Cell")
+tracks/2/path = NodePath("Cell_Slide_Sound_Sounds/Stop_Cell")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -118,7 +118,7 @@ length = 0.76666665
 tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sound/Start_Cell")
+tracks/0/path = NodePath("Cell_Slide_Sound_Sounds/Start_Cell")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -133,7 +133,7 @@ tracks/0/use_blend = true
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sound/Up_Down_Cell")
+tracks/1/path = NodePath("Cell_Slide_Sound_Sounds/Up_Down_Cell")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -148,7 +148,7 @@ tracks/1/use_blend = true
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sound/Stop_Cell")
+tracks/2/path = NodePath("Cell_Slide_Sound_Sounds/Stop_Cell")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -167,7 +167,7 @@ length = 1.0666667
 tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sound/Start_Cell")
+tracks/0/path = NodePath("Cell_Slide_Sound_Sounds/Start_Cell")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -182,7 +182,7 @@ tracks/0/use_blend = true
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sound/Up_Down_Cell")
+tracks/1/path = NodePath("Cell_Slide_Sound_Sounds/Up_Down_Cell")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -197,7 +197,7 @@ tracks/1/use_blend = true
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sound/Stop_Cell")
+tracks/2/path = NodePath("Cell_Slide_Sound_Sounds/Stop_Cell")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -271,16 +271,16 @@ parameters/looping = true
 [node name="Cell_Slide_Sound_Animations" type="AnimationPlayer" parent="." unique_id=341046235]
 libraries/ = SubResource("AnimationLibrary_7va83")
 
-[node name="Sound" type="Node" parent="." unique_id=1388280018]
+[node name="Cell_Slide_Sound_Sounds" type="Node" parent="." unique_id=1388280018]
 
-[node name="Start_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=308062066]
+[node name="Start_Cell" type="AudioStreamPlayer" parent="Cell_Slide_Sound_Sounds" unique_id=308062066]
 volume_db = 2.5
 bus = &"FX_WET"
 
-[node name="Stop_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=1889343789]
+[node name="Stop_Cell" type="AudioStreamPlayer" parent="Cell_Slide_Sound_Sounds" unique_id=1889343789]
 volume_db = 5.0
 bus = &"FX_WET"
 
-[node name="Up_Down_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=179519665]
+[node name="Up_Down_Cell" type="AudioStreamPlayer" parent="Cell_Slide_Sound_Sounds" unique_id=179519665]
 volume_db = 5.0
 bus = &"FX_WET"
