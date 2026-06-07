@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://mkvmu7rmdx3t" path="res://SOUND/FX/Clang_Start_Cell.ogg" id="11_dip6j"]
 [ext_resource type="AudioStream" uid="uid://ccoauvddaj8m" path="res://SOUND/FX/Up_Down_Cell.ogg" id="12_liv3w"]
 [ext_resource type="AudioStream" uid="uid://dek1co7fuef8g" path="res://SOUND/FX/Clang_Stop_Cell.ogg" id="13_yt3q1"]
+[ext_resource type="AudioStream" uid="uid://bifaoucknr7f5" path="res://SOUND/FX/Sliding_Cell.ogg" id="14_liv3w"]
 
 [sub_resource type="Animation" id="Animation_qkut6"]
 resource_name = "High_Sliding_Beginning"
@@ -263,11 +264,6 @@ stream = ExtResource("9_e5knn")
 volume_db = -2.5
 bus = &"FX_DRY"
 
-[node name="Alarm_Before_Cell_Slide" type="AudioStreamPlayer" parent="." unique_id=609901888]
-stream = ExtResource("10_uopt1")
-bus = &"FX_WET"
-parameters/looping = true
-
 [node name="Cell_Slide_Sound_Animations" type="AnimationPlayer" parent="." unique_id=341046235]
 libraries/ = SubResource("AnimationLibrary_7va83")
 
@@ -284,3 +280,14 @@ bus = &"FX_WET"
 [node name="Up_Down_Cell" type="AudioStreamPlayer" parent="Cell_Slide_Sounds" unique_id=179519665]
 volume_db = 5.0
 bus = &"FX_WET"
+
+[node name="Sliding_Cell" type="AudioStreamPlayer" parent="Cell_Slide_Sounds" unique_id=452550303]
+stream = ExtResource("14_liv3w")
+volume_db = 2.5
+bus = &"FX_WET"
+parameters/looping = true
+
+[node name="Alarm_Before_Cell_Slide" type="AudioStreamPlayer" parent="Cell_Slide_Sounds" unique_id=609901888]
+stream = ExtResource("10_uopt1")
+bus = &"FX_WET"
+parameters/looping = true

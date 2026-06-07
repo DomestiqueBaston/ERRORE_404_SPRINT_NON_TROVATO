@@ -15,7 +15,7 @@ Des cases s’élèveront et/ou se baisseront également.
 L’aire de course sera composée, au choix du joueur, de base de 9x9 à 21x21 (uniquement impaires pour avoir la case « 404 » au centre) cellules de terrain (ou plus ?).
 Un jeu pour 1 joueur mais il y aura toujours 4 concurrents en piste. Les 3 autres concurrents manquants seront pris en charge par l’IA (Bots). Il y a toujours 2 hommes et 2 femmes en course.
 L’écran est divisé en 4 avec les vues de chaque concurrent. Le joueur sera toujours dans le quart supérieur gauche.
-À chaque fois que le jeu va bouger une ligne/colonne, une alarme se fera entendre (Alarm_Before_Movement).
+À chaque fois que le jeu va bouger une ligne/colonne, une alarme se fera entendre (Alarm_Before_Cell_Slide dans Sounds.tscn).
 Sur le terrain, au centre, une case est levée (colonne verticale, cette fois). C’est sur cette case, une fois la colonne redescendue qu’apparaîtra la porte de sortie de la zone au bout de 14 secondes + Difficulté (de 1 à 5). Il pourra arriver que la porte ne soit plus accessible à cause de mouvements de terrain.
 Pour les concurrents, 4 directions de mouvement (les diagonales).
 Les concurrents ne peuvent pas faire directement demi-tour (à cause du mur qu’ils tracent).
@@ -74,7 +74,7 @@ Les malus (automatiques) :
 
 Les obstacles :
 Toutes les X secondes (voir Options à proposer au joueur dans Settings) un des obstacles est déclenché. 1 sur 4 est un glissement de Ligne/Colonne.
-    1. Ligne/Colonne (de cellules) qui glisse d’1 à 2 cases → ✔ (On joue Alarm_Before_Movement dans Cell.tscn 1’’ avant ET pendant le glissement, jusqu’à la fin du glissement)
+    1. Ligne/Colonne (de cellules) qui glisse d’1 à 2 cases → ✔ (On joue Alarm_Before_Cell_Slide dans Sounds.tscn 1’’ avant ET pendant le glissement, jusqu’à la fin du glissement)
     2. Trous (cellules qui descendent) → ✔
     3. Murs des concurrents → ✔ (voir avec Geoff comment faire)
     4. Cellule à sens unique → ✔

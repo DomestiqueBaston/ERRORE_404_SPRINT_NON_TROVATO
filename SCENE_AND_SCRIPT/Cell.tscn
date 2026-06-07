@@ -26,7 +26,6 @@
 [ext_resource type="Texture2D" uid="uid://cb5pq11kumjn2" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Haut_Droit_3.png" id="18_8qjf4"]
 [ext_resource type="Texture2D" uid="uid://de5qq3notn7hs" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Centre.png" id="18_ik60n"]
 [ext_resource type="Texture2D" uid="uid://cugkt51fbb3p3" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Haut_Gauche_3.png" id="20_ao42k"]
-[ext_resource type="AudioStream" uid="uid://bifaoucknr7f5" path="res://SOUND/FX/Sliding_Cell.ogg" id="27_5dg73"]
 [ext_resource type="Texture2D" uid="uid://c65rps6vfpkyq" path="res://IMAGE/ENVIRONMENT/CELL/Top_Cell_Mask.png" id="27_7mpjj"]
 [ext_resource type="AudioStream" uid="uid://mkvmu7rmdx3t" path="res://SOUND/FX/Clang_Start_Cell.ogg" id="27_e50o2"]
 [ext_resource type="AudioStream" uid="uid://4a1byy4t0n2y" path="res://SOUND/FX/Appearing_Cell.ogg" id="28_6vv1n"]
@@ -696,17 +695,18 @@ Pour faire glisser les Cells (en colonne
 ou ligne), On joue d'abord
 (High or Low)_Sliding_Beginning
 puis on fait un Tween de déplacement
-en jouant le son Sliding_Cell puis on finit
-en jouant l'animation (High/Low)_Sliding_End.
+en jouant le son Sliding_Cell dans Sounds.tscn
+puis on finit en jouant l'animation
+(High/Low)_Sliding_End.
 (\"High\" pour une Cell au niveau du sol.
 \"Low\" pour une Cell basse.)
 
 Tout cela ne vaut QUE pour les glissements,
 pas pour les montées et descentes de Cell
-qui se font une par une et pas par groupe.
+qui se font une par une et non par groupe.
 
 Et concernant le collider de direction,
-ce qui est en place ne va probablement pas."
+ce qui est en place ne va probablement pas..."
 metadata/_edit_lock_ = true
 
 [node name="Column" type="Node2D" parent="." unique_id=294314283]
@@ -1046,12 +1046,6 @@ bus = &"FX_WET"
 [node name="Disappearing_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=295905289]
 volume_db = 1.5
 bus = &"FX_WET"
-
-[node name="Sliding_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=479006352]
-stream = ExtResource("27_5dg73")
-volume_db = 2.5
-bus = &"FX_WET"
-parameters/looping = true
 
 [node name="Appearing_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=228232776]
 bus = &"FX_WET"
