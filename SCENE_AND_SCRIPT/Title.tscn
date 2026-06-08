@@ -439,6 +439,7 @@ autoplay = true
 bus = &"FX_WET"
 
 [node name="Quit_Button" parent="." unique_id=1295710875 instance=ExtResource("12_jqsr3")]
+visible = false
 offset_left = 435.0
 offset_top = 435.0
 offset_right = 525.0

@@ -2,13 +2,13 @@ PIXEL ART V
 
 Errore 404: Sprint Non Trovato!
 
-Un jeu basé sur les bugs (se souvenir du site e13.com)
-Pour le moment, on part pour de la 2D !
+Un jeu qui bugue (se souvenir du site e13.com il y a longtemps) !
 
 Un runner à pied (étonnant !)
 
 Ce « Runner » va se « rapprocher » de la (fameuse) séquence de course de moto dans Tron (1982) qu’on va mélanger avec un peu du film Cube (salles dont les connexions mutuelles changent régulièrement).
 
+Un jeu en 2D (vue isométrique).
 Un champ de course qui sera carré au départ et deviendra « plus du tout carré » par les transformations successives.
 Le champ de course se structurera sous forme de grille dont les lignes et colonnes (complètes, même s’il y a des trous dans une ligne/colonne) vont être poussées ou tirées par le jeu transformant ainsi le terrain en permanence.
 Des cases s’élèveront et/ou se baisseront également.
@@ -22,8 +22,7 @@ Les concurrents ne peuvent pas faire directement demi-tour (à cause du mur qu�
 Les concurrents ne peuvent tourner qu’à 90°.
 Les concurrents ne peuvent pas arrêter de courir !
 Ils tracent un mur temporaire derrière eux (qui s’efface au fur et à mesure par tronçons après 10 secondes).
-Un tronçon de mur est la partie sur une case du terrain.
-
+Un tronçon de mur est la partie du mur sur une case du terrain.
 
 Le but du jeu est ici de tenir le plus longtemps possible et être le dernier survivant ou être le premier à atteindre la sortie qui se manifestera aléatoirement au bout d’un certain temps.
 
@@ -160,7 +159,7 @@ Préambule :
         ◦ ui_left_button, ui_right_button, ui_up_button et ui_down_button : Direction et navigation menu (en course, on n’utilise que les diagonales)
         ◦ ui_fullscreen : Plein écran/Fenêtré
         ◦ ui_quit_button : Quitter (pression longue, voir Quit_Button.tscn)
-	Il faudra penser à éventuellement virer ui_tab_button qui ne servira à rien dans le jeu !
+	Il faudra penser à virer ui_tab_button qui ne sert plus à rien dans le jeu !
 
 Avant le jeu :
     1. Chargement de l’écran titre Title.tscn. L’overlay qui dit de presser un bouton, peu importe lequel, apparaît au bout de qqs secondes si je joueur n’a rien fait jusque là). À partir du démarrage (on commence avec Title.tscn), Music/Intro joue en boucle. Une pression longue sur ui_quit_button fait quitter le jeu et le bouton A amène à…
@@ -186,4 +185,5 @@ Ici, la course elle-même prend place !
 
 Ajouts ultérieurs possibles :
 - Jeu multi local.
+- Jeu multi réseau.
 - …

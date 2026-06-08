@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://em4id2fwd18h"]
 
-[ext_resource type="Script" uid="uid://bhr5npqfvxov5" path="res://SCENE_AND_SCRIPT/UI_Sounds.gd" id="1_k5ifq"]
+[ext_resource type="Script" uid="uid://bhr5npqfvxov5" path="res://SCENE_AND_SCRIPT/Sounds.gd" id="1_k5ifq"]
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="1_p0pgo"]
 [ext_resource type="AudioStream" uid="uid://ddouskyxl7bw7" path="res://SOUND/FX/Short_Beep_Low.ogg" id="2_kco3e"]
 [ext_resource type="AudioStream" uid="uid://1lc5r82un1qy" path="res://SOUND/FX/3_2_1.ogg" id="3_rjpab"]
@@ -229,48 +229,52 @@ _data = {
 [node name="Sounds" type="Node" unique_id=1926116312]
 script = ExtResource("1_k5ifq")
 
-[node name="Validation" type="AudioStreamPlayer" parent="." unique_id=2072789497]
+[node name="UI_Sounds" type="Node" parent="." unique_id=92386256]
+
+[node name="Validation" type="AudioStreamPlayer" parent="UI_Sounds" unique_id=2072789497]
 stream = ExtResource("1_p0pgo")
 volume_db = -3.5
 bus = &"FX_DRY"
 
-[node name="Cancel" type="AudioStreamPlayer" parent="." unique_id=1062544417]
+[node name="Cancel" type="AudioStreamPlayer" parent="UI_Sounds" unique_id=1062544417]
 stream = ExtResource("2_kco3e")
 volume_db = -12.5
 bus = &"FX_DRY"
 
-[node name="Menu_Navigation" type="AudioStreamPlayer" parent="." unique_id=797927155]
+[node name="Menu_Navigation" type="AudioStreamPlayer" parent="UI_Sounds" unique_id=797927155]
 stream = ExtResource("4_ptkxu")
 bus = &"FX_DRY"
 
-[node name="3_2_1" type="AudioStreamPlayer" parent="." unique_id=1306357443]
+[node name="Three_Two_One" type="AudioStreamPlayer" parent="UI_Sounds" unique_id=1306357443]
 stream = ExtResource("3_rjpab")
 volume_db = -5.0
 bus = &"FX_DRY"
 
-[node name="Go" type="AudioStreamPlayer" parent="." unique_id=1071304123]
+[node name="Go" type="AudioStreamPlayer" parent="UI_Sounds" unique_id=1071304123]
 stream = ExtResource("4_k5ifq")
 volume_db = -5.0
 bus = &"FX_DRY"
 
-[node name="Full" type="AudioStreamPlayer" parent="." unique_id=309873625]
+[node name="Full" type="AudioStreamPlayer" parent="UI_Sounds" unique_id=309873625]
 stream = ExtResource("7_ecwke")
+volume_db = 2.5
 bus = &"FX_DRY"
 
-[node name="Woosh" type="AudioStreamPlayer" parent="." unique_id=1200560620]
+[node name="Woosh" type="AudioStreamPlayer" parent="UI_Sounds" unique_id=1200560620]
 stream = ExtResource("9_20up4")
 volume_db = -7.5
 bus = &"FX_DRY"
 
-[node name="Disappearing" type="AudioStreamPlayer" parent="." unique_id=1515206413]
+[node name="Disappearing" type="AudioStreamPlayer" parent="UI_Sounds" unique_id=1515206413]
 stream = ExtResource("9_e5knn")
 volume_db = -2.5
 bus = &"FX_DRY"
 
-[node name="Cell_Slide_Sound_Animations" type="AnimationPlayer" parent="." unique_id=341046235]
-libraries/ = SubResource("AnimationLibrary_7va83")
-
 [node name="Cell_Slide_Sounds" type="Node" parent="." unique_id=1388280018]
+
+[node name="Cell_Slide_Sound_Animations" type="AnimationPlayer" parent="Cell_Slide_Sounds" unique_id=341046235]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_7va83")
 
 [node name="Start_Cell" type="AudioStreamPlayer" parent="Cell_Slide_Sounds" unique_id=308062066]
 volume_db = 2.5
