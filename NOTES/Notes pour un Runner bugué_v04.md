@@ -6,28 +6,28 @@ Un jeu qui bugue (se souvenir du site e13.com il y a longtemps) !
 
 Un runner à pied (étonnant !)
 
-Ce « Runner » va se « rapprocher » de la (fameuse) séquence de course de moto dans Tron (1982) qu’on va mélanger avec un peu du film Cube (salles dont les connexions mutuelles changent régulièrement).
+- Ce « Runner » va se « rapprocher » de la (fameuse) séquence de course de moto dans Tron (1982) qu’on va mélanger avec un peu du film Cube (salles dont les connexions mutuelles changent régulièrement).
 
-Un jeu en 2D (vue isométrique).
-Un champ de course qui sera carré au départ et deviendra « plus du tout carré » par les transformations successives.
-Le champ de course se structurera sous forme de grille dont les lignes et colonnes (complètes, même s’il y a des trous dans une ligne/colonne) vont être poussées ou tirées par le jeu transformant ainsi le terrain en permanence.
-Des cases s’élèveront et/ou se baisseront également.
-L’aire de course sera composée, au choix du joueur, de base de 9x9 à 21x21 (uniquement impaires pour avoir la case « 404 » au centre) cellules de terrain (ou plus ?).
-Un jeu pour 1 joueur mais il y aura toujours 4 concurrents en piste. Les 3 autres concurrents manquants seront pris en charge par l’IA (Bots). Il y a toujours 2 hommes et 2 femmes en course.
-L’écran est divisé en 4 avec les vues de chaque concurrent. Le joueur sera toujours dans le quart supérieur gauche.
-À chaque fois que le jeu va bouger une ligne/colonne, une alarme se fera entendre (Alarm_Before_Cell_Slide dans Sounds.tscn).
-Sur le terrain, au centre, une case est levée (colonne verticale, cette fois). C’est sur cette case, une fois la colonne redescendue qu’apparaîtra la porte de sortie de la zone au bout de 14 secondes + Difficulté (de 1 à 5). Il pourra arriver que la porte ne soit plus accessible à cause de mouvements de terrain.
-Pour les concurrents, 4 directions de mouvement (les diagonales).
-Les concurrents ne peuvent pas faire directement demi-tour (à cause du mur qu’ils tracent).
-Les concurrents ne peuvent tourner qu’à 90°.
-Les concurrents ne peuvent pas arrêter de courir !
-Ils tracent un mur temporaire derrière eux (qui s’efface au fur et à mesure par tronçons après 10 secondes).
-Un tronçon de mur est la partie du mur sur une case du terrain.
+- Un jeu en 2D (vue isométrique).
+- Un champ de course qui sera carré au départ et deviendra « plus du tout carré » par les transformations successives.
+- Le champ de course se structurera sous forme de grille dont les lignes et colonnes (complètes, même s’il y a des trous dans une ligne/colonne) vont être poussées ou tirées par le jeu transformant ainsi le terrain en permanence.
+- Des cases s’élèveront et/ou se baisseront également.
+- L’aire de course sera composée, au choix du joueur, de base de 9x9 à 21x21 (uniquement impaires pour avoir la case « 404 » au centre) cellules de terrain (ou plus ?).
+- Un jeu pour 1 joueur mais il y aura toujours 4 concurrents en piste. Les 3 autres concurrents manquants seront pris en charge par l’IA (Bots). Il y a toujours 2 hommes et 2 femmes en course.
+- L’écran est divisé en 4 avec les vues de chaque concurrent. Le joueur sera toujours dans le quart supérieur gauche.
+- À chaque fois que le jeu va bouger une ligne/colonne, une alarme se fera entendre (Alarm_Before_Cell_Slide dans Sounds.tscn).
+- Sur le terrain, au centre, une case est levée (colonne verticale, cette fois). C’est sur cette case, une fois la colonne redescendue qu’apparaîtra la porte de sortie de la zone au bout de 14 secondes + Difficulté (de 1 à 5). Il pourra arriver que la porte ne soit plus accessible à cause de mouvements de terrain.
+- Pour les concurrents, 4 directions de mouvement (les diagonales).
+- Les concurrents ne peuvent pas faire directement demi-tour (à cause du mur qu’ils tracent).
+- Les concurrents ne peuvent tourner qu’à 90°.
+- Les concurrents ne peuvent pas arrêter de courir !
+- Ils tracent un mur temporaire derrière eux (qui s’efface au fur et à mesure par tronçons après 10 secondes).
+- Un tronçon de mur est la partie du mur sur une case du terrain.
 
-Le but du jeu est ici de tenir le plus longtemps possible et être le dernier survivant ou être le premier à atteindre la sortie qui se manifestera aléatoirement au bout d’un certain temps.
+- Le but du jeu est ici de tenir le plus longtemps possible et être le dernier survivant ou être le premier à atteindre la sortie qui se manifestera aléatoirement au bout d’un certain temps.
 
 Un runner bugué :
-Aléatoirement, 1/10 chance de déclencher 1 bug toutes les 10 à 15 secondes. Les bugs liés au son concernent forcément tout le monde !
+- Aléatoirement, 1/10 chance de déclencher 1 bug toutes les 10 à 15 secondes. Les bugs liés au son concernent forcément tout le monde !
     1. Joueur « hors phase » (shader) ✔ Dure 10 à 20’’ (1 joueur affecté)
     2. Plus aucune musique ✔ Dure 10 à 20’’ (en coupant MUSIC)
     3. Plus aucun bruitages ✔ Dure 10 à 20’’ (en coupant FX_WET et FX_DRY)
@@ -48,28 +48,28 @@ Les bonus et malus en jeu (Cube.tscn) :
 - Chaque concurrent ne peut porter qu’1 Bonus/Malus. On ne peut pas ramasser de nouveau bonus/malus tant qu’un est en cours d’utilisation.
 - Les Bonus/Malus apparaissent en jeu toutes les 8 à 12 secondes.
 - Il ne peut pas y avoir plus de 5 Bonus/Malus simultanément à ramasser → le 6ème supprime d’abord automatiquement le plus ancien restant pendant qu’il apparaît.
-- Ils ont une couleur aléatoire en jeu (voir Cube.gd). Avec la couleur par défaut (« blanc »), ce sera toujours un Bonus.
+- Pour chaque couleur correspondent un bonus et un malus (le joueur ne sait donc pas s’il voit un bonus ou un malus).
 - Au ramassage d’un Bonus/Malus, on joue le son correspondant et on joue le clignotement du concurrent (Animation_Bonus_Malus).
 - À l’activation (automatique ou au déclenchement du joueur) on joue également le son correspondant et on joue le clignotement du concurrent.
 - Si le ramassage et l’activation se font en même temps, on ne joue qu’une fois le son correspondant et le clignotement du concurrent.
 
 Les bonus :
-    1. Invulnérabilité (annule le prochain malus récolté) – dure 5’’ → ✔ Invincible – Automatique !
-    2. Dash (course uniquement – dure 1’’ – ne peut pas être interrompu, virage impossible !) : 66% plus rapide (animation aussi). → ✔ Dash – Activable !
-    3. Passe-muraille (uniquement les murs des concurrents) – 1 seul mur → ✔ Through – Automatique !
-    4. Virus (envoie automatiquement le prochain malus récolté à un adversaire aléatoire) → ✔ Virus – Automatique !
-    5. Téléportation (destination aléatoire sur une « cellule saine »)→ ✔ Teleport – Activable !
-    6. Débogueur (vire un bug actif)→ ✔ Debug – Activable !
-    7. Le mur tracé par le concurrent dure 1.5 fois plus longtemps.→ ✔ Last_Longer – Automatique !
+    1. Invulnérabilité – Rouge (annule le prochain malus récolté) – dure 5’’ → ✔ Invincible – Automatique !
+    2. Dash – Vert (course uniquement – dure 1’’ – ne peut pas être interrompu, virage impossible !) : 66% plus rapide (animation aussi). → ✔ Dash – Activable !
+    3. Passe-muraille – Bleu (uniquement les murs des concurrents) – 1 seul mur → ✔ Through – Automatique !
+    4. Virus – Violet (envoie automatiquement le prochain malus récolté à un adversaire aléatoire) → ✔ Virus – Automatique !
+    5. Téléportation – Jaune (destination aléatoire sur une « cellule saine »)→ ✔ Teleport – Activable !
+    6. Débogueur – Noir (vire un bug actif)→ ✔ Debug – Activable !
+    7. Le mur tracé par le concurrent dure 1.5 fois plus longtemps. – Blanc → ✔ Last_Longer – Automatique !
 
 Les malus (automatiques) :
-    1. Inversion de commandes – dure 2’’ → ✔ Invert
-    2. Lenteur de réaction (on ajoute un délai d’1/10’’ (à préciser) dans les commandes du concurrent) – dure 5’’ → ✔ Slow
-    3. Les murs tracés par le concurrent durent 2 fois moins longtemps – dure 10’’ → ✔ Last_Shorter
-    4. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1 seconde) – dure 5’’ → ✔ Anti_Dash
-    5. Rien ! → ✔ Empty
-    6. Virus (envoie automatiquement le prochain Bonus (pas malus) récolté à un adversaire aléatoire, quitte à remplacer celui qu’il porte → ✔ Anti_Virus
-    7. Téléportation (instantané et destination aléatoire)→ ✔ Anti_Teleport
+    1. Inversion de commandes – Rouge – dure 2’’ → ✔ Invert
+    2. Lenteur de réaction (on ajoute un délai d’1/10’’ (à préciser) dans les commandes du concurrent) – Noir – dure 5’’ → ✔ Slow
+    3. Les murs tracés par le concurrent durent 2 fois moins longtemps – Blanc – dure 10’’ → ✔ Last_Shorter
+    4. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1 seconde) – Vert – dure 5’’ → ✔ Anti_Dash
+    5. Rien ! – Bleu → ✔ Empty
+    6. Virus (envoie automatiquement le prochain Bonus (pas malus) récolté à un adversaire aléatoire, quitte à remplacer celui qu’il porte – Violet → ✔ Anti_Virus
+    7. Téléportation (instantané et destination aléatoire) – Jaune → ✔ Anti_Teleport
 
 Les obstacles :
 Toutes les X secondes (voir Options à proposer au joueur dans Settings) un des obstacles est déclenché. 1 sur 4 est un glissement de Ligne/Colonne.
@@ -111,19 +111,19 @@ Notes de fabrication :
 - Toutes les 10 à 20’’, chaque coureur va gagner/perdre 4% de vitesse. Et toutes les 10 à 20’’ perdre/récupérer ces 4% de vitesse. Les animations seront également accélérées et ralenties de la même proportion pour que ce soit plus « joli ». On utilisera également un tween d’1/2 seconde pour appliquer la modification (si possible).
 
 Options (nécessaires) dans Settings:
-- Taille de la map (de 9 à 21) ✔
-- Volume sonore général (de 0 à 100) ✔
-- Volume de la musique (de 0 à 100) ✔
-- Difficulté (de 1 à 5) ✔
-    • Temps avant l’apparition de la porte de sortie : (Taille de la map + (3 × Difficulté)) / 4 en minutes
-    • Délai entre les déclenchements d’obstacles : 5.5 - (0.5 × Difficulté) en secondes
+    1. Taille de la map (de 9 à 21) ✔
+    2. Volume sonore général (de 0 à 100) ✔
+    3. Volume de la musique (de 0 à 100) ✔
+    4. Difficulté (de 1 à 5) ✔
+        ◦ Temps avant l’apparition de la porte de sortie : (Taille de la map + (3 × Difficulté)) / 4 en minutes
+        ◦ Délai entre les déclenchements d’obstacles : 5.5 - (0.5 × Difficulté) en secondes
 
 Les personnalités des « IA »/Bots :
-- Par défaut, un Bot tendra bien évidemment à ne pas mourir en évitant les collisions et les chutes.
-- On définira des valeurs « par défaut » pour un bot afin de faire varier ces valeurs en fonction du comportement sélectionné.
-	- Un passage de moins d1/2 case de large n’est pas emprunté par un bot (s’il n’a pas d’alternative, il ira dans l’obstacle et mourra).
-	- Temps de réaction de base : 300ms (surlignés en jaune : pas concerné).
-- Pour former un bot, on combine 3 comportements choisi aléatoirement (1 dans dans chaque catégorie).
+    1. Par défaut, un Bot tendra bien évidemment à ne pas mourir en évitant les collisions et les chutes.
+    2. On définira des valeurs « par défaut » pour un bot afin de faire varier ces valeurs en fonction du comportement sélectionné.
+        ◦ Un passage de moins d1/2 case de large n’est pas emprunté par un bot (s’il n’a pas d’alternative, il ira dans l’obstacle et mourra).
+        ◦ Temps de réaction de base : 300ms (surlignés en jaune : pas concerné).
+    3. Pour former un bot, on combine 3 comportements choisi aléatoirement (1 dans dans chaque catégorie).
 
 Comportements face aux obstacles :
 
@@ -178,10 +178,12 @@ Le jeu :
 
 Ici, la course elle-même prend place !
 
-    7. Lorsque les 3 premiers concurrents meurent, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) dans la scène Game.tscn (scène pour le moment temporaire, comme je le disais).
-        ◦ Lorsque le dernier concurrent meurt, on affiche alors Frames/Info_Win_Lose_Overlay/Lose et on garde les précédents overlays de mort.
-        ◦ Si un concurrent gagne (soit parce qu’il est le dernier en course ou soit parce qu’il a franchi la porte de sortie), on affiche Frames/Info_Win_Lose/Win et on garde les éventuels overlays de mort des autres concurrents ! Automatiquement, les concurrents restants meurent (animation Death) chacun avec un décalage 1/4 de seconde afin de ne pas les avoir tous exactement synchro, ce qui est moche ! À l’instant où on a un gagnant : Music/Music va voir son Pitch qui va descendre et pour cela on utilisera l’AnimationPlayer Music_Pitch/Pitch_Down. Tous les concurrents (y compris les morts) disparaissent (avec Animation_Disappearing_Death/Disappearing) au franchissant de la porte par le vainqueur ou lorsqu’un troisième concurrent meurt.
+    7. Fin de course (humain ou bot, tant qu’il y a au moins 2 concurrents vivants, la course continu) :
+        ◦ Lorsque les 3 premiers concurrents meurent, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) dans la scène Game.tscn.
+        ◦ Lorsqu’un concurrent gagne (soit parce qu’il est le dernier en course ou soit parce qu’il a franchi la porte de sortie), on affiche Frames/Info_Win_Lose/Win et on garde les éventuels overlays de mort des autres concurrents ! À l’instant où on a un gagnant : Music/Music va voir son Pitch qui va descendre et pour cela on utilisera l’AnimationPlayer Music_Pitch/Pitch_Down.
+            a) Si le vainqueur gagne en sortant par la porte (de sortie), automatiquement, TOUS les concurrents restants meurent (animation Death) chacun avec un décalage 1/4 de seconde afin de ne pas les avoir tous exactement synchro, ce qui serait moche !
         ◦ Ensuite, n’importe quel bouton (sauf B) retourne brutalement (toujours) à l’écran de titre. On coupe alors Music/Music et on lance Music/Intro avec Music/Bang. Et on retourne au point 1 de cette liste. Presser B relance une partie « identique » à partir du point 5 de cette liste !
+
 
 Liste des scènes (et succinctes descriptions de leurs contenus) :
     1. Annoying_Sounds.tscn : contient les sons chiants relatifs aux bugs (voir Un runner bugué #4).
@@ -205,8 +207,7 @@ Liste des scènes (et succinctes descriptions de leurs contenus) :
 Dans le dossier TMP, on trouve (dossier à supprimer ultérieurement) :
     1. Test_Split_Screen.tscn : contient une maquette (très rough) montrant à quoi ressemble le jeu lui-même. Cette scène m’a servi également à tester les animations des concurrents, c’est pour ça que les 4 personnages sont regroupés ensemble et bougent tous avec une seule manette.
 
-
 Ajouts ultérieurs possibles :
-- Jeu multi local.
-- Jeu multi réseau.
-- …
+    1. Jeu multi local.
+    2. Jeu multi réseau.
+    3. …
