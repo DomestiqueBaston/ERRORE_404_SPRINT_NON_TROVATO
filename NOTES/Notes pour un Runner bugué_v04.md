@@ -45,10 +45,10 @@ Aléatoirement, 1/10 chance de déclencher 1 bug toutes les 10 à 15 secondes. L
 
 Les bonus et malus en jeu (Cube.tscn) :
 - En jeu, il n’y aura que 2 exemplaires de chaque Bonus/Malus (y compris en possession d’un joueur).
-- Chaque concurrent ne peut porter qu’1 Bonus/Malus (un bonus en cours d’utilisation n’est pas comptabilisé).
+- Chaque concurrent ne peut porter qu’1 Bonus/Malus. On ne peut pas ramasser de nouveau bonus/malus tant qu’un est en cours d’utilisation.
 - Les Bonus/Malus apparaissent en jeu toutes les 8 à 12 secondes.
 - Il ne peut pas y avoir plus de 5 Bonus/Malus simultanément à ramasser → le 6ème supprime d’abord automatiquement le plus ancien restant pendant qu’il apparaît.
-- Ils ont une couleur aléatoire en jeu (voir Cube.gd). Avec la couleur par défaut, ce sera toujours un Bonus.
+- Ils ont une couleur aléatoire en jeu (voir Cube.gd). Avec la couleur par défaut (« blanc »), ce sera toujours un Bonus.
 - Au ramassage d’un Bonus/Malus, on joue le son correspondant et on joue le clignotement du concurrent (Animation_Bonus_Malus).
 - À l’activation (automatique ou au déclenchement du joueur) on joue également le son correspondant et on joue le clignotement du concurrent.
 - Si le ramassage et l’activation se font en même temps, on ne joue qu’une fois le son correspondant et le clignotement du concurrent.
@@ -182,6 +182,29 @@ Ici, la course elle-même prend place !
         ◦ Lorsque le dernier concurrent meurt, on affiche alors Frames/Info_Win_Lose_Overlay/Lose et on garde les précédents overlays de mort.
         ◦ Si un concurrent gagne (soit parce qu’il est le dernier en course ou soit parce qu’il a franchi la porte de sortie), on affiche Frames/Info_Win_Lose/Win et on garde les éventuels overlays de mort des autres concurrents ! Automatiquement, les concurrents restants meurent (animation Death) chacun avec un décalage 1/4 de seconde afin de ne pas les avoir tous exactement synchro, ce qui est moche ! À l’instant où on a un gagnant : Music/Music va voir son Pitch qui va descendre et pour cela on utilisera l’AnimationPlayer Music_Pitch/Pitch_Down. Tous les concurrents (y compris les morts) disparaissent (avec Animation_Disappearing_Death/Disappearing) au franchissant de la porte par le vainqueur ou lorsqu’un troisième concurrent meurt.
         ◦ Ensuite, n’importe quel bouton (sauf B) retourne brutalement (toujours) à l’écran de titre. On coupe alors Music/Music et on lance Music/Intro avec Music/Bang. Et on retourne au point 1 de cette liste. Presser B relance une partie « identique » à partir du point 5 de cette liste !
+
+Liste des scènes (et succinctes descriptions de leurs contenus) :
+    1. Annoying_Sounds.tscn : contient les sons chiants relatifs aux bugs (voir Un runner bugué #4).
+    2. Cell.tscn : contient toutes les cellules de sol, contient également les modificateurs de sens de passage One_Way_Direction (voir Un runner bugué #5), les 2 glitchs de surface Top_Cell_FX_Mask (voir Un runner bugué #6) et les points de départ des 4 concurrents (qu’on n’applique qu’aux 4 coins du terrain). Certains sons liés à certaines animations se trouvent dans Sounds.tscn.
+    3. Credits.tscn : contient la scène de générique du jeu (intègre également le bouton pour quitter le jeu).
+    4. Cube.tscn : contient les bonus/malus à ramasser en course.
+    5. Door.tscn : contient la porte de sortie du jeu. La porte est scindée en 2 couches (l’avant et l’arrière pour que les concurrents puisse la franchir puisqu’elle ressemble à une arche).
+    6. Game.tscn : il s’agit de la scène (théorique) de composition du jeu avec ses 4 vues, ses layers de glitch, etc. (intègre également le bouton pour quitter le jeu ET le bouton pour lancer la course).
+    7. Light_Wall.tscn : contient le (prototype de) mur que tracent les concurrents en courant. Inclus un AnimationPlayer qui sert de démo pour voir à quoi ça doit ressembler. Les sons se trouvent dans Sounds.tscn.
+    8. Man_A.tscn, Man_B.tscn, Woman_A.tscn et Woman_B.tscn : contiennent les 4 concurrents du jeu.
+    9. Menu.tscn : contient le menu principal du jeu (intègre également le bouton pour quitter le jeu).
+    10. Music.tscn : contient les musiques du jeu (et le « bang » nécessaire à certaines transitions entre musiques).
+    11. Portraits.tscn : contient le sélecteur de concurrent pour le joueur (humain).
+    12. Pylon.tscn : contient les pylones qui tombent et qui peuvent écraser les concurrents (voir Les obstacles #6).
+    13. Quit_Button.tscn : contient le bouton pour quitter le jeu.
+    14. Settings.tscn : contient la scène permettant de régler la taille du terrain de course, la difficulté du jeu, le volume général du son du jeu et le volume de la musique (intègre également le bouton pour quitter le jeu).
+    15. Sounds.tscn : contient les sons de l’UI du jeu, certains sons des cellules de terrain et les sons des murs des concurrents.
+    16. Start_Button.tscn : contient le bouton pour démarrer la course.
+    17. Tutorial.tscn : contient la scène qui dit comment jouer (intègre également le bouton pour quitter le jeu).
+
+Dans le dossier TMP, on trouve (dossier à supprimer ultérieurement) :
+    1. Test_Split_Screen.tscn : contient une maquette (très rough) montrant à quoi ressemble le jeu lui-même. Cette scène m’a servi également à tester les animations des concurrents, c’est pour ça que les 4 personnages sont regroupés ensemble et bougent tous avec une seule manette.
+
 
 Ajouts ultérieurs possibles :
 - Jeu multi local.
