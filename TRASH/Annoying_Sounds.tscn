@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cp2hksxfplvk0"]
 
-[ext_resource type="AudioStream" uid="uid://o0i0pyhy8xon" path="res://SOUND/FX/Glitchy_Sound_E.ogg" id="5_ns4qs"]
-[ext_resource type="AudioStream" uid="uid://1u5cnl60ptxf" path="res://SOUND/FX/Glitchy_Sound_F.ogg" id="6_8feb6"]
-[ext_resource type="AudioStream" uid="uid://bg1810o3k0s8b" path="res://SOUND/FX/Glitchy_Sound_G.ogg" id="7_jea5g"]
+[ext_resource type="AudioStream" uid="uid://o0i0pyhy8xon" path="res://TRASH/Glitchy_Sound_E.ogg" id="5_ns4qs"]
+[ext_resource type="AudioStream" uid="uid://1u5cnl60ptxf" path="res://TRASH/Glitchy_Sound_F.ogg" id="6_8feb6"]
+[ext_resource type="AudioStream" uid="uid://bg1810o3k0s8b" path="res://TRASH/Glitchy_Sound_G.ogg" id="7_jea5g"]
 
 [node name="Annoying_Sounds" type="Node" unique_id=1732596331]
 

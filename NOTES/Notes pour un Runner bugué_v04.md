@@ -197,7 +197,7 @@ Liste des scènes (et succinctes descriptions de leurs contenus) :
     11. Pylon.tscn : contient les pylones qui tombent et qui peuvent écraser les concurrents (voir Les obstacles #6).
     12. Quit_Button.tscn : contient le bouton pour quitter le jeu.
     13. Settings.tscn : contient la scène permettant de régler la taille du terrain de course, la difficulté du jeu, le volume général du son du jeu et le volume de la musique (intègre également le bouton pour quitter le jeu).
-    14. Sounds.tscn : contient les sons de l’UI du jeu, certains sons des cellules de terrain et les sons des murs des concurrents, les musiques du jeu (et le « bang » nécessaire à certaines transitions entre musiques), etc.
+    14. Sounds.tscn : contient les sons de l’UI du jeu, certains sons des cellules de terrain, les sons des murs des concurrents, les musiques du jeu (et le « bang » nécessaire à certaines transitions entre musiques).
     15. Start_Button.tscn : contient le bouton pour démarrer la course.
     16. Tutorial.tscn : contient la scène qui dit comment jouer (intègre également le bouton pour quitter le jeu).
 

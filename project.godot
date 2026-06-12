@@ -47,7 +47,13 @@ movie_writer/movie_file="D:/GRAPHISME/PIXEL/PIXEL ART V/VIDEO.ogv"
 [file_customization]
 
 folder_colors={
+"res://IMAGE/": "yellow",
+"res://NOTES/": "blue",
+"res://RESOURCE/": "green",
+"res://SCENE_AND_SCRIPT/": "orange",
 "res://SCENE_AND_SCRIPT/TMP/": "purple",
+"res://SHADER/": "teal",
+"res://SOUND/": "purple",
 "res://TRASH/": "red"
 }
 

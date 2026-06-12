@@ -21,9 +21,6 @@
 [ext_resource type="AudioStream" uid="uid://3b3j7ke38t82" path="res://SOUND/FX/Disappearing_Light_Wall.ogg" id="15_sbfjp"]
 [ext_resource type="AudioStream" uid="uid://dttkq5rw4spvt" path="res://SOUND/FX/Wall_Hum.ogg" id="15_yt3q1"]
 [ext_resource type="AudioStream" uid="uid://dhqe43polir8c" path="res://SOUND/FX/Appearing_Light_Wall.ogg" id="16_ke38t"]
-[ext_resource type="AudioStream" uid="uid://o0i0pyhy8xon" path="res://SOUND/FX/Glitchy_Sound_E.ogg" id="18_r6lsn"]
-[ext_resource type="AudioStream" uid="uid://1u5cnl60ptxf" path="res://SOUND/FX/Glitchy_Sound_F.ogg" id="19_cwlm1"]
-[ext_resource type="AudioStream" uid="uid://bg1810o3k0s8b" path="res://SOUND/FX/Glitchy_Sound_G.ogg" id="20_j07eh"]
 
 [sub_resource type="Animation" id="Animation_rwgee"]
 resource_name = "Pitch_Down"
@@ -434,23 +431,4 @@ bus = &"FX_DRY"
 stream = ExtResource("15_yt3q1")
 volume_db = -7.5
 bus = &"FX_DRY"
-parameters/looping = true
-
-[node name="Annoying_Sounds" type="Node" parent="." unique_id=1732596331]
-
-[node name="Glitchy_Sound_E" type="AudioStreamPlayer" parent="Annoying_Sounds" unique_id=1492087052]
-stream = ExtResource("18_r6lsn")
-bus = &"FX_WET"
-parameters/looping = true
-
-[node name="Glitchy_Sound_F" type="AudioStreamPlayer" parent="Annoying_Sounds" unique_id=215692396]
-stream = ExtResource("19_cwlm1")
-volume_db = -7.5
-bus = &"FX_WET"
-parameters/looping = true
-
-[node name="Glitchy_Sound_G" type="AudioStreamPlayer" parent="Annoying_Sounds" unique_id=538076908]
-stream = ExtResource("20_j07eh")
-volume_db = -10.0
-bus = &"FX_WET"
 parameters/looping = true
