@@ -5,7 +5,7 @@ uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_n
 
 // 震动参数 (Shake parameters)
 uniform float hit_effect : hint_range(0, 1) = 1.0;
-uniform float shake_intensity = 7.5;
+uniform float shake_intensity = 4.5;
 
 float rand(vec2 co) {
     return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453);

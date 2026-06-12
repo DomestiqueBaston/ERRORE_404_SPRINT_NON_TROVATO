@@ -27,21 +27,18 @@ Un runner à pied (étonnant !)
 - Le but du jeu est ici de tenir le plus longtemps possible et être le dernier survivant ou être le premier à atteindre la sortie qui se manifestera aléatoirement au bout d’un certain temps.
 
 Un runner bugué :
-- Aléatoirement, 1/10 chance de déclencher 1 bug toutes les 10 à 15 secondes. Les bugs liés au son concernent forcément tout le monde !
+- Aléatoirement, 1/10 chance de déclencher 1 des bugs toutes les 10 à 15 secondes.
     1. Joueur « hors phase » (shader) ✔ Dure 10 à 20’’ (1 joueur affecté)
-    2. Plus aucune musique ✔ Dure 10 à 20’’ (en coupant MUSIC)
-    3. Plus aucun bruitages ✔ Dure 10 à 20’’ (en coupant FX_WET et FX_DRY)
-    4. Son chiant qui… ✔ Dure 10 à 20’’ (toujours un seul son à la fois)
-    5. 1 à 5 cellules (en fonction de la difficulté) à sens unique  ✔ Dure 10 à 20’’
-    6. 1 à 5 cellules (en fonction de la difficulté) hors phase ✔ Dure 10 à 20’’ (Screen_Glitch : Fait tourner aléatoirement à droite, Glitch_Only : fait tourner à gauche)
-    7. Les sprites se mélangent (?) (changer des frames à la volée dans les cycles de course) → Ça se fait : ✔ Dure 10 à 20’’ (1 joueur affecté)
-    8. Les textures de sol changent → Ça se fait (tween?) : ✔ Dure 10 à 20’’
-    9. La palette de couleurs change → ✔  Dure 10 à 20’’
-    10. Image floue → Ça se fait : ✔ Dure 10 à 20’’
-    11. L’image globale se décale dans la vue du joueur (la caméra se décentre du joueur) → Ça se fait : ✔ Dure 10 à 20’’
-    12. La caméra vibre → ✔ Dure 10 à 20’’
-    13. Couleurs inversées → ✔  Dure 10 à 20’’
-    14. Sur-pixelisation → ✔  Dure 10 à 20’’
+    2. 1 à 5 cellules (en fonction de la difficulté) à sens unique  ✔ Dure 10 à 20’’
+    3. 1 à 5 cellules (en fonction de la difficulté) hors phase ✔ Dure 10 à 20’’ (Screen_Glitch : Fait tourner aléatoirement à droite, Glitch_Only : fait tourner à gauche)
+    4. Les sprites se « mélangent » (changer 1 à 5 frames en fonction du niveau de difficulté) → Ça se fait : ✔ Dure 10 à 20’’ (1 joueur affecté)
+    5. 1 à 5 textures de sol (en fonction de la difficulté) changent (on joue le son Sound/Flashing_Cell) → Ça se fait : ✔ Dure 10 à 20’’
+    6. La palette de couleurs change → ✔  Dure 10 à 20’’
+    7. Image floue → Ça se fait : ✔ Dure 10 à 20’’
+    8. L’image globale se décale dans la vue du joueur (la caméra se décentre du joueur) → Ça se fait : ✔ Dure 10 à 20’’
+    9. La caméra vibre → ✔ Dure 10 à 20’’
+    10. Couleurs inversées → ✔  Dure 10 à 20’’
+    11. Sur-pixelisation → ✔  Dure 10 à 20’’
 
 Les bonus et malus en jeu (Cube.tscn) :
 - En jeu, il n’y aura que 2 exemplaires de chaque Bonus/Malus (y compris en possession d’un joueur).
@@ -147,7 +144,7 @@ Comportements face aux bugs du jeu (continuer tout droit, tourner et/ou utilise
     4. Maladroit : Confond les obstacles (saute au lieu de glisser, etc.).
 Script de déroulement d’une partie (depuis le lancement d’Errore_404.exe) :
 Préambule :
-    • À chaque chargement de scène (sauf contre-indication), on joue 1 fois Music/Bang (dans Music.tscn).
+    • À chaque chargement de scène (sauf contre-indication), on joue 1 fois Music/Bang (dans Sounds.tscn).
     • Sauf contre-indication, on ne joue jamais le Bang quand on va jouer Music (car il est intégré dedans).
     • Les sons de validation (Validation) et d’annulation (Cancel) sont dans la scène UI_Sounds.tscn.
     • Par défaut, Intro et Music sont en boucle, pas besoin de le dire dans le code (théoriquement) !
@@ -186,23 +183,22 @@ Ici, la course elle-même prend place !
 
 
 Liste des scènes (et succinctes descriptions de leurs contenus) :
-    1. Annoying_Sounds.tscn : contient les sons chiants relatifs aux bugs (voir Un runner bugué #4).
-    2. Cell.tscn : contient toutes les cellules de sol, contient également les modificateurs de sens de passage One_Way_Direction (voir Un runner bugué #5), les 2 glitchs de surface Top_Cell_FX_Mask (voir Un runner bugué #6) et les points de départ des 4 concurrents (qu’on n’applique qu’aux 4 coins du terrain). Certains sons liés à certaines animations se trouvent dans Sounds.tscn.
-    3. Credits.tscn : contient la scène de générique du jeu (intègre également le bouton pour quitter le jeu).
-    4. Cube.tscn : contient les bonus/malus à ramasser en course.
-    5. Door.tscn : contient la porte de sortie du jeu. La porte est scindée en 2 couches (l’avant et l’arrière pour que les concurrents puisse la franchir puisqu’elle ressemble à une arche).
-    6. Game.tscn : il s’agit de la scène (théorique) de composition du jeu avec ses 4 vues, ses layers de glitch, etc. (intègre également le bouton pour quitter le jeu ET le bouton pour lancer la course).
-    7. Light_Wall.tscn : contient le (prototype de) mur que tracent les concurrents en courant. Inclus un AnimationPlayer qui sert de démo pour voir à quoi ça doit ressembler. Les sons se trouvent dans Sounds.tscn.
-    8. Man_A.tscn, Man_B.tscn, Woman_A.tscn et Woman_B.tscn : contiennent les 4 concurrents du jeu.
-    9. Menu.tscn : contient le menu principal du jeu (intègre également le bouton pour quitter le jeu).
-    10. Music.tscn : contient les musiques du jeu (et le « bang » nécessaire à certaines transitions entre musiques).
-    11. Portraits.tscn : contient le sélecteur de concurrent pour le joueur (humain).
-    12. Pylon.tscn : contient les pylones qui tombent et qui peuvent écraser les concurrents (voir Les obstacles #6).
-    13. Quit_Button.tscn : contient le bouton pour quitter le jeu.
-    14. Settings.tscn : contient la scène permettant de régler la taille du terrain de course, la difficulté du jeu, le volume général du son du jeu et le volume de la musique (intègre également le bouton pour quitter le jeu).
-    15. Sounds.tscn : contient les sons de l’UI du jeu, certains sons des cellules de terrain et les sons des murs des concurrents.
-    16. Start_Button.tscn : contient le bouton pour démarrer la course.
-    17. Tutorial.tscn : contient la scène qui dit comment jouer (intègre également le bouton pour quitter le jeu).
+    1. Cell.tscn : contient toutes les cellules de sol, contient également les modificateurs de sens de passage One_Way_Direction (voir Un runner bugué #5), les 2 glitchs de surface Top_Cell_FX_Mask (voir Un runner bugué #6) et les points de départ des 4 concurrents (qu’on n’applique qu’aux 4 coins du terrain). Certains sons liés à certaines animations se trouvent dans Sounds.tscn.
+    2. Credits.tscn : contient la scène de générique du jeu (intègre également le bouton pour quitter le jeu).
+    3. Cube.tscn : contient les bonus/malus à ramasser en course.
+    4. Door.tscn : contient la porte de sortie du jeu. La porte est scindée en 2 couches (l’avant et l’arrière pour que les concurrents puisse la franchir puisqu’elle ressemble à une arche).
+    5. Game.tscn : il s’agit de la scène (théorique) de composition du jeu avec ses 4 vues, ses layers de glitch, etc. (intègre également le bouton pour quitter le jeu ET le bouton pour lancer la course).
+    6. Light_Wall.tscn : contient le (prototype de) mur que tracent les concurrents en courant. Inclus un AnimationPlayer qui sert de démo pour voir à quoi ça doit ressembler. Les sons se trouvent dans Sounds.tscn.
+    7. Man_A.tscn, Man_B.tscn, Woman_A.tscn et Woman_B.tscn : contiennent les 4 concurrents du jeu.
+    8. Menu.tscn : contient le menu principal du jeu (intègre également le bouton pour quitter le jeu).
+    9. Music.tscn : contient les musiques du jeu (et le « bang » nécessaire à certaines transitions entre musiques).
+    10. Portraits.tscn : contient le sélecteur de concurrent pour le joueur (humain).
+    11. Pylon.tscn : contient les pylones qui tombent et qui peuvent écraser les concurrents (voir Les obstacles #6).
+    12. Quit_Button.tscn : contient le bouton pour quitter le jeu.
+    13. Settings.tscn : contient la scène permettant de régler la taille du terrain de course, la difficulté du jeu, le volume général du son du jeu et le volume de la musique (intègre également le bouton pour quitter le jeu).
+    14. Sounds.tscn : contient les sons de l’UI du jeu, certains sons des cellules de terrain et les sons des murs des concurrents, les musiques du jeu (et le « bang » nécessaire à certaines transitions entre musiques), etc.
+    15. Start_Button.tscn : contient le bouton pour démarrer la course.
+    16. Tutorial.tscn : contient la scène qui dit comment jouer (intègre également le bouton pour quitter le jeu).
 
 Dans le dossier TMP, on trouve (dossier à supprimer ultérieurement) :
     1. Test_Split_Screen.tscn : contient une maquette (très rough) montrant à quoi ressemble le jeu lui-même. Cette scène m’a servi également à tester les animations des concurrents, c’est pour ça que les 4 personnages sont regroupés ensemble et bougent tous avec une seule manette.

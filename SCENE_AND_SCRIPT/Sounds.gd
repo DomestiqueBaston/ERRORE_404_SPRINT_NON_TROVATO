@@ -23,3 +23,15 @@ func play_woosh():
 
 func play_disappearing():
 	$UI_Sounds/Disappearing.play()
+
+func play_bang():
+	$Music/Bang.play()
+
+func play_music():
+	$Music/Music.play()
+
+func play_intro():
+	$Music/Intro.play()
+
+func stop_intro():
+	$Music/Intro.stop()

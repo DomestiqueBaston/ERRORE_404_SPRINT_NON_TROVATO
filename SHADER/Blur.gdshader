@@ -7,7 +7,7 @@ uniform float change_interval : hint_range(0.1, 30.0) = 0.75; // X
 
 // Blur range
 uniform int blur_min : hint_range(0, 8) = 2;
-uniform int blur_max : hint_range(0, 16) = 10;
+uniform int blur_max : hint_range(0, 16) = 8;
 
 // Blur intensity
 uniform float blur_strength : hint_range(0.0, 1.0) = 1.0;

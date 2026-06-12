@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://f84754sgk1nd"]
 
-[ext_resource type="Script" uid="uid://bxehpmcbkgqid" path="res://SCENE_AND_SCRIPT/Music.gd" id="1_rwgee"]
+[ext_resource type="Script" uid="uid://bxehpmcbkgqid" path="res://TRASH/Music.gd" id="1_rwgee"]
 [ext_resource type="AudioStream" uid="uid://t4l7fveb311p" path="res://SOUND/MUSIC/Music.ogg" id="3_kco3e"]
 [ext_resource type="AudioStream" uid="uid://cv55875tvts3k" path="res://SOUND/MUSIC/Intro.ogg" id="3_rjpab"]
 [ext_resource type="AudioStream" uid="uid://dvn44pi0uxq00" path="res://SOUND/FX/Win_Glitchy_Sound.ogg" id="5_rwgee"]

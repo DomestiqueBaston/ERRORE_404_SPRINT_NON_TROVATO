@@ -1,8 +1,8 @@
 extends AnimationPlayer
 
-###########################################################
-## Fonctions des "Call Method Tracks" (Animation_Runner) ##
-###########################################################
+################################################################
+## Fonctions des "Call Method Tracks" (Animation_Runner/Run_) ##
+################################################################
 
 func play_foot_step_01():
 	$"../Sound/Foot_Step_01".play()

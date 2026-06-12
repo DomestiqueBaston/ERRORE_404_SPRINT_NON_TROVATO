@@ -5,22 +5,22 @@ shader_type canvas_item;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 // 🎛️ Réglages généraux
-uniform float saturation : hint_range(0.0, 2.0) = 1.0;
+uniform float saturation : hint_range(0.0, 10.0) = 5.0;
 uniform float value : hint_range(0.0, 2.0) = 1.0;
 uniform float alpha : hint_range(0.0, 1.0) = 1.0;
 
 // ⏱️ Timing
-uniform float interval : hint_range(0.1, 30.0) = 5.0;   // X
-uniform float duration : hint_range(0.0, 30.0) = 1.0;   // Y
+uniform float interval : hint_range(0.1, 30.0) = 0.25;   // X
+uniform float duration : hint_range(0.0, 30.0) = 0.75;   // Y
 
 // 🎨 Hue shift aléatoire
-uniform float min_hue_shift_deg : hint_range(0.0, 180.0) = 40.0;
-uniform float max_hue_shift_deg : hint_range(0.0, 360.0) = 160.0;
+uniform float min_hue_shift_deg : hint_range(0.0, 180.0) = 60.0;
+uniform float max_hue_shift_deg : hint_range(0.0, 360.0) = 180.0;
 
 // 👁️ Dédoublement horizontal (en pixels écran)
-uniform float min_double_offset_px : hint_range(0.0, 20.0) = 3.0;
-uniform float max_double_offset_px : hint_range(0.0, 50.0) = 8.0;
-uniform float double_strength : hint_range(0.0, 1.0) = 0.6;
+uniform float min_double_offset_px : hint_range(0.0, 20.0) = 1.5;
+uniform float max_double_offset_px : hint_range(0.0, 50.0) = 3.5;
+uniform float double_strength : hint_range(0.0, 1.0) = 0.4;
 
 // --------------------
 // Utils HSV

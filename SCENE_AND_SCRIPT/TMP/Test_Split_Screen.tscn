@@ -410,27 +410,27 @@ shader = ExtResource("27_myj71")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2l4bx"]
 shader = ExtResource("27_5t0h1")
 shader_parameter/hit_effect = 1.0
-shader_parameter/shake_intensity = 7.5
+shader_parameter/shake_intensity = 4.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qp1y0"]
 shader = ExtResource("28_myj71")
-shader_parameter/saturation = 2.0
+shader_parameter/saturation = 5.0000002375
 shader_parameter/value = 1.0
 shader_parameter/alpha = 1.0
 shader_parameter/interval = 0.25000000861512
 shader_parameter/duration = 0.750000035625
 shader_parameter/min_hue_shift_deg = 60.00000285
 shader_parameter/max_hue_shift_deg = 180.00000855
-shader_parameter/min_double_offset_px = 2.000000095
-shader_parameter/max_double_offset_px = 8.00000038
+shader_parameter/min_double_offset_px = 1.5000000712500001
+shader_parameter/max_double_offset_px = 3.50000016625
 shader_parameter/double_strength = 0.400000019
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eou1j"]
 shader = ExtResource("32_sf4qo")
 shader_parameter/change_interval = 0.75
 shader_parameter/blur_min = 2
-shader_parameter/blur_max = 10
-shader_parameter/blur_strength = 0.6
+shader_parameter/blur_max = 8
+shader_parameter/blur_strength = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkbw3"]
 bg_color = Color(1, 1, 1, 1)
@@ -989,6 +989,7 @@ position = Vector2(50, 50)
 metadata/_edit_lock_ = true
 
 [node name="Bugs_01" type="Control" parent="Frames" unique_id=434706610]
+visible = false
 custom_minimum_size = Vector2(480, 270)
 layout_mode = 3
 anchors_preset = 0
@@ -1595,7 +1596,6 @@ offset_left = 435.0
 offset_top = 225.0
 offset_right = 525.0
 offset_bottom = 315.0
-metadata/_edit_lock_ = true
 
 [node name="Start_Button" parent="Frames" unique_id=610328938 instance=ExtResource("45_4jeej")]
 visible = false
@@ -1603,4 +1603,3 @@ offset_left = 430.0
 offset_top = 220.0
 offset_right = 530.0
 offset_bottom = 320.0
-metadata/_edit_lock_ = true

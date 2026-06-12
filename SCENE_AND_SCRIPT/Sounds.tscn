@@ -3,9 +3,13 @@
 [ext_resource type="Script" uid="uid://bhr5npqfvxov5" path="res://SCENE_AND_SCRIPT/Sounds.gd" id="1_k5ifq"]
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="1_p0pgo"]
 [ext_resource type="AudioStream" uid="uid://ddouskyxl7bw7" path="res://SOUND/FX/Short_Beep_Low.ogg" id="2_kco3e"]
+[ext_resource type="AudioStream" uid="uid://cv55875tvts3k" path="res://SOUND/MUSIC/Intro.ogg" id="3_2qj8y"]
 [ext_resource type="AudioStream" uid="uid://1lc5r82un1qy" path="res://SOUND/FX/3_2_1.ogg" id="3_rjpab"]
 [ext_resource type="AudioStream" uid="uid://1yidvkv4dxoq" path="res://SOUND/FX/Go.ogg" id="4_k5ifq"]
+[ext_resource type="AudioStream" uid="uid://t4l7fveb311p" path="res://SOUND/MUSIC/Music.ogg" id="4_kedx7"]
 [ext_resource type="AudioStream" uid="uid://goi8yd4dovnf" path="res://SOUND/FX/Menu_Navigation.ogg" id="4_ptkxu"]
+[ext_resource type="AudioStream" uid="uid://bxcpm34tpan58" path="res://SOUND/MUSIC/Bang.ogg" id="5_bpp1d"]
+[ext_resource type="AudioStream" uid="uid://dvn44pi0uxq00" path="res://SOUND/FX/Win_Glitchy_Sound.ogg" id="6_fgrgl"]
 [ext_resource type="AudioStream" uid="uid://v25jstm0b3b7" path="res://SOUND/FX/Bar_full.ogg" id="7_ecwke"]
 [ext_resource type="AudioStream" uid="uid://bes5a835nqime" path="res://SOUND/FX/Woosh.ogg" id="9_20up4"]
 [ext_resource type="AudioStream" uid="uid://bom677o0xms5i" path="res://SOUND/FX/Disappearing.ogg" id="9_e5knn"]
@@ -17,6 +21,94 @@
 [ext_resource type="AudioStream" uid="uid://3b3j7ke38t82" path="res://SOUND/FX/Disappearing_Light_Wall.ogg" id="15_sbfjp"]
 [ext_resource type="AudioStream" uid="uid://dttkq5rw4spvt" path="res://SOUND/FX/Wall_Hum.ogg" id="15_yt3q1"]
 [ext_resource type="AudioStream" uid="uid://dhqe43polir8c" path="res://SOUND/FX/Appearing_Light_Wall.ogg" id="16_ke38t"]
+[ext_resource type="AudioStream" uid="uid://o0i0pyhy8xon" path="res://SOUND/FX/Glitchy_Sound_E.ogg" id="18_r6lsn"]
+[ext_resource type="AudioStream" uid="uid://1u5cnl60ptxf" path="res://SOUND/FX/Glitchy_Sound_F.ogg" id="19_cwlm1"]
+[ext_resource type="AudioStream" uid="uid://bg1810o3k0s8b" path="res://SOUND/FX/Glitchy_Sound_G.ogg" id="20_j07eh"]
+
+[sub_resource type="Animation" id="Animation_rwgee"]
+resource_name = "Pitch_Down"
+length = 1.5000035
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music:pitch_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.333, 1),
+"update": 0,
+"values": [1.0, 0.06999999999999999]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Win_Glitchy_Sound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Win_Glitchy_Sound:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [-80.0, -5.0]
+}
+
+[sub_resource type="Animation" id="Animation_qatb8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music:pitch_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Win_Glitchy_Sound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Win_Glitchy_Sound:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-5.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r5mkq"]
+_data = {
+&"Pitch_Down": SubResource("Animation_rwgee"),
+&"RESET": SubResource("Animation_qatb8")
+}
 
 [sub_resource type="Animation" id="Animation_qkut6"]
 resource_name = "High_Sliding_Beginning"
@@ -229,6 +321,33 @@ _data = {
 [node name="Sounds" type="Node" unique_id=1926116312]
 script = ExtResource("1_k5ifq")
 
+[node name="Music" type="Node" parent="." unique_id=2114224613]
+
+[node name="Intro" type="AudioStreamPlayer" parent="Music" unique_id=188631134]
+stream = ExtResource("3_2qj8y")
+volume_db = -2.5
+bus = &"MUSIC"
+parameters/looping = true
+
+[node name="Music" type="AudioStreamPlayer" parent="Music" unique_id=2025180216]
+stream = ExtResource("4_kedx7")
+volume_db = 3.5
+bus = &"MUSIC"
+parameters/looping = true
+
+[node name="Bang" type="AudioStreamPlayer" parent="Music" unique_id=1371113068]
+stream = ExtResource("5_bpp1d")
+bus = &"MUSIC"
+
+[node name="Win_Glitchy_Sound" type="AudioStreamPlayer" parent="Music" unique_id=1191243891]
+stream = ExtResource("6_fgrgl")
+volume_db = -5.0
+bus = &"FX_DRY"
+parameters/looping = true
+
+[node name="Music_Win_Animation" type="AnimationPlayer" parent="Music" unique_id=129303618]
+libraries/ = SubResource("AnimationLibrary_r5mkq")
+
 [node name="UI_Sounds" type="Node" parent="." unique_id=92386256]
 
 [node name="Validation" type="AudioStreamPlayer" parent="UI_Sounds" unique_id=2072789497]
@@ -315,4 +434,23 @@ bus = &"FX_DRY"
 stream = ExtResource("15_yt3q1")
 volume_db = -7.5
 bus = &"FX_DRY"
+parameters/looping = true
+
+[node name="Annoying_Sounds" type="Node" parent="." unique_id=1732596331]
+
+[node name="Glitchy_Sound_E" type="AudioStreamPlayer" parent="Annoying_Sounds" unique_id=1492087052]
+stream = ExtResource("18_r6lsn")
+bus = &"FX_WET"
+parameters/looping = true
+
+[node name="Glitchy_Sound_F" type="AudioStreamPlayer" parent="Annoying_Sounds" unique_id=215692396]
+stream = ExtResource("19_cwlm1")
+volume_db = -7.5
+bus = &"FX_WET"
+parameters/looping = true
+
+[node name="Glitchy_Sound_G" type="AudioStreamPlayer" parent="Annoying_Sounds" unique_id=538076908]
+stream = ExtResource("20_j07eh")
+volume_db = -10.0
+bus = &"FX_WET"
 parameters/looping = true
