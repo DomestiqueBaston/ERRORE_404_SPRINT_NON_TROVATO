@@ -390,19 +390,19 @@ bus = &"FX_DRY"
 
 [node name="Cell_Pylon_Alarms" type="Node" parent="." unique_id=56068673]
 
-[node name="Cell_Down" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=584849644]
+[node name="Cell_Down_Disappearing" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=584849644]
 stream = ExtResource("14_jeqsl")
 volume_db = -5.0
 bus = &"FX_WET"
 parameters/looping = true
 
-[node name="Pylon_Down" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=399303785]
+[node name="Pylon_Down_Falling" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=399303785]
 stream = ExtResource("15_aehec")
 volume_db = -12.5
 bus = &"FX_WET"
 parameters/looping = true
 
-[node name="Cell_Slide" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=609901888]
+[node name="Column_Row_Slide" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=609901888]
 stream = ExtResource("10_uopt1")
 pitch_scale = 2.0
 bus = &"FX_WET"
