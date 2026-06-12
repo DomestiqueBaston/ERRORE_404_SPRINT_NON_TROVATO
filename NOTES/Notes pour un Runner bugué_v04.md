@@ -142,7 +142,8 @@ Comportements face aux bugs du jeu (continuer tout droit, tourner et/ou utilise
     2. Inconscient : Collider de vision plus court.
     3. Panique : Réaction totalement aléatoire face à un obstacle.
     4. Maladroit : Confond les obstacles (saute au lieu de glisser, etc.).
-Script de déroulement d’une partie (depuis le lancement d’Errore_404.exe) :
+Script de déroulement d’une partie (depuis le lancement d’Errore_404.exe)
+
 Préambule :
     • À chaque chargement de scène (sauf contre-indication), on joue 1 fois Music/Bang (dans Sounds.tscn).
     • Sauf contre-indication, on ne joue jamais le Bang quand on va jouer Music (car il est intégré dedans).
@@ -202,8 +203,3 @@ Liste des scènes (et succinctes descriptions de leurs contenus) :
 
 Dans le dossier TMP, on trouve (dossier à supprimer ultérieurement) :
     1. Test_Split_Screen.tscn : contient une maquette (très rough) montrant à quoi ressemble le jeu lui-même. Cette scène m’a servi également à tester les animations des concurrents, c’est pour ça que les 4 personnages sont regroupés ensemble et bougent tous avec une seule manette.
-
-Ajouts ultérieurs possibles :
-    1. Jeu multi local.
-    2. Jeu multi réseau.
-    3. …
