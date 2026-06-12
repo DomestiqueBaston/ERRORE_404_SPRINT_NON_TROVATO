@@ -17,7 +17,9 @@
 [ext_resource type="AudioStream" uid="uid://mkvmu7rmdx3t" path="res://SOUND/FX/Clang_Start_Cell.ogg" id="11_dip6j"]
 [ext_resource type="AudioStream" uid="uid://ccoauvddaj8m" path="res://SOUND/FX/Up_Down_Cell.ogg" id="12_liv3w"]
 [ext_resource type="AudioStream" uid="uid://dek1co7fuef8g" path="res://SOUND/FX/Clang_Stop_Cell.ogg" id="13_yt3q1"]
+[ext_resource type="AudioStream" uid="uid://o0i0pyhy8xon" path="res://TRASH/Glitchy_Sound_E.ogg" id="14_jeqsl"]
 [ext_resource type="AudioStream" uid="uid://bifaoucknr7f5" path="res://SOUND/FX/Sliding_Cell.ogg" id="14_liv3w"]
+[ext_resource type="AudioStream" uid="uid://1u5cnl60ptxf" path="res://TRASH/Glitchy_Sound_F.ogg" id="15_aehec"]
 [ext_resource type="AudioStream" uid="uid://3b3j7ke38t82" path="res://SOUND/FX/Disappearing_Light_Wall.ogg" id="15_sbfjp"]
 [ext_resource type="AudioStream" uid="uid://dttkq5rw4spvt" path="res://SOUND/FX/Wall_Hum.ogg" id="15_yt3q1"]
 [ext_resource type="AudioStream" uid="uid://dhqe43polir8c" path="res://SOUND/FX/Appearing_Light_Wall.ogg" id="16_ke38t"]
@@ -386,6 +388,26 @@ stream = ExtResource("9_e5knn")
 volume_db = -2.5
 bus = &"FX_DRY"
 
+[node name="Cell_Pylon_Alarms" type="Node" parent="." unique_id=56068673]
+
+[node name="Cell_Down" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=584849644]
+stream = ExtResource("14_jeqsl")
+volume_db = -5.0
+bus = &"FX_WET"
+parameters/looping = true
+
+[node name="Pylon_Down" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=399303785]
+stream = ExtResource("15_aehec")
+volume_db = -12.5
+bus = &"FX_WET"
+parameters/looping = true
+
+[node name="Cell_Slide" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=609901888]
+stream = ExtResource("10_uopt1")
+pitch_scale = 2.0
+bus = &"FX_WET"
+parameters/looping = true
+
 [node name="Cell_Slide_Sounds" type="Node" parent="." unique_id=1388280018]
 
 [node name="Cell_Slide_Sound_Animations" type="AnimationPlayer" parent="Cell_Slide_Sounds" unique_id=341046235]
@@ -407,11 +429,6 @@ bus = &"FX_WET"
 [node name="Sliding_Cell" type="AudioStreamPlayer" parent="Cell_Slide_Sounds" unique_id=452550303]
 stream = ExtResource("14_liv3w")
 volume_db = 2.5
-bus = &"FX_WET"
-parameters/looping = true
-
-[node name="Alarm_Before_Cell_Slide" type="AudioStreamPlayer" parent="Cell_Slide_Sounds" unique_id=609901888]
-stream = ExtResource("10_uopt1")
 bus = &"FX_WET"
 parameters/looping = true
 

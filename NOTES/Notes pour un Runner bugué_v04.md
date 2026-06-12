@@ -15,13 +15,14 @@ Un runner à pied (étonnant !)
 - L’aire de course sera composée, au choix du joueur, de base de 9x9 à 21x21 (uniquement impaires pour avoir la case « 404 » au centre) cellules de terrain (ou plus ?).
 - Un jeu pour 1 joueur mais il y aura toujours 4 concurrents en piste. Les 3 autres concurrents manquants seront pris en charge par l’IA (Bots). Il y a toujours 2 hommes et 2 femmes en course.
 - L’écran est divisé en 4 avec les vues de chaque concurrent. Le joueur sera toujours dans le quart supérieur gauche.
-- À chaque fois que le jeu va bouger une ligne/colonne, une alarme se fera entendre (Alarm_Before_Cell_Slide dans Sounds.tscn).
+- À chaque fois que le jeu va bouger une ligne/colonne ou baisser un pylône (qui n’écrase pas et laisse passer dessous) ou baisser une cellule ou lâcher un pylône ou faire disparaître une cellule, une alarme (Cell_Pylon_Alarms/ dans Sounds.tscn) se fera d’abord entendre pendant 1’’ ET jusqu’à la fin de l’animation.
+- Une cellule baissée ou disparue ou un pylône (baissé ou arrivé au sol) reste dans cette position 10 à 20’’. S’il font partie d’une ligne/colonne qui glisse pendant qu’ils sont dans l’état évoqué ici, alors ils suivent le mouvement de la ligne/colonne. On ne joue pas les alarmes pour le retour à l’état normal.
 - Sur le terrain, au centre, une case est levée (colonne verticale, cette fois). C’est sur cette case, une fois la colonne redescendue qu’apparaîtra la porte de sortie de la zone au bout de 14 secondes + Difficulté (de 1 à 5). Il pourra arriver que la porte ne soit plus accessible à cause de mouvements de terrain.
 - Pour les concurrents, 4 directions de mouvement (les diagonales).
 - Les concurrents ne peuvent pas faire directement demi-tour (à cause du mur qu’ils tracent).
 - Les concurrents ne peuvent tourner qu’à 90°.
 - Les concurrents ne peuvent pas arrêter de courir !
-- Ils tracent un mur temporaire derrière eux (qui s’efface au fur et à mesure par tronçons après 10 secondes).
+- Ils tracent un mur temporaire derrière eux (qui s’efface au fur et à mesure par tronçons après 5 à 10 secondes en fonction du niveau de difficulté).
 - Un tronçon de mur est la partie du mur sur une case du terrain.
 
 - Le but du jeu est ici de tenir le plus longtemps possible et être le dernier survivant ou être le premier à atteindre la sortie qui se manifestera aléatoirement au bout d’un certain temps.
@@ -69,8 +70,8 @@ Les malus (automatiques) :
     7. Téléportation (instantané et destination aléatoire) – Jaune → ✔ Anti_Teleport
 
 Les obstacles :
-Toutes les X secondes (voir Options à proposer au joueur dans Settings) un des obstacles est déclenché. 1 sur 4 est un glissement de Ligne/Colonne.
-    1. Ligne/Colonne (de cellules) qui glisse d’1 à 2 cases → ✔ (On joue Alarm_Before_Cell_Slide dans Sounds.tscn 1’’ avant ET pendant le glissement, jusqu’à la fin du glissement)
+Toutes les X secondes (voir Options nécessaires dans Settings) un des obstacles est déclenché. 1 sur 4 est un glissement de Ligne/Colonne.
+    1. Ligne/Colonne (de cellules) qui glisse d’1 à 2 cases → ✔ (1’’ avant, on joue Cell_Pylon_Alarms/Cell_Slide dans Sounds.tscn ET jusqu’à la fin de l’animation)
     2. Trous (cellules qui descendent) → ✔
     3. Murs des concurrents → ✔ (voir avec Geoff comment faire)
     4. Cellule à sens unique → ✔
@@ -194,7 +195,7 @@ Liste des scènes (et succinctes descriptions de leurs contenus) :
     8. Menu.tscn : contient le menu principal du jeu (intègre également le bouton pour quitter le jeu).
     9. Music.tscn : contient les musiques du jeu (et le « bang » nécessaire à certaines transitions entre musiques).
     10. Portraits.tscn : contient le sélecteur de concurrent pour le joueur (humain).
-    11. Pylon.tscn : contient les pylones qui tombent et qui peuvent écraser les concurrents (voir Les obstacles #6).
+    11. Pylon.tscn : contient les pylônes qui tombent et qui peuvent écraser les concurrents (voir Les obstacles #6).
     12. Quit_Button.tscn : contient le bouton pour quitter le jeu.
     13. Settings.tscn : contient la scène permettant de régler la taille du terrain de course, la difficulté du jeu, le volume général du son du jeu et le volume de la musique (intègre également le bouton pour quitter le jeu).
     14. Sounds.tscn : contient les sons de l’UI du jeu, certains sons des cellules de terrain, les sons des murs des concurrents, les musiques du jeu (et le « bang » nécessaire à certaines transitions entre musiques).

@@ -707,7 +707,8 @@ pas pour les montées et descentes de Cell
 qui se font une par une et non par groupe.
 
 Et concernant le collider de direction,
-ce qui est en place ne va probablement pas..."
+ce qui est en place ne va probablement pas,
+je sais pas trop..."
 metadata/_edit_lock_ = true
 
 [node name="Column" type="Node2D" parent="." unique_id=294314283]
