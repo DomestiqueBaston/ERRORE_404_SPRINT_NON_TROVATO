@@ -115,8 +115,8 @@ Options (nécessaires) dans Settings:
     2. Volume sonore général (de 0 à 100) ✔
     3. Volume de la musique (de 0 à 100) ✔
     4. Difficulté (de 1 à 5) ✔
-        ◦ Temps avant l’apparition de la porte de sortie : (Taille de la map + (3 × Difficulté)) / 4 en minutes
-        ◦ Délai entre les déclenchements d’obstacles : 5.5 - (0.5 × Difficulté) en secondes
+        ◦ Temps avant l’apparition de la porte de sortie : (Taille de la map + (3 × Difficulté)) / 4 en minutes.
+        ◦ Délai entre les déclenchements d’obstacles : 5.5 - (0.5 × Difficulté) en secondes.
 
 Les personnalités des « IA »/Bots :
     1. Par défaut, un Bot tendra bien évidemment à ne pas mourir en évitant les collisions et les chutes.
