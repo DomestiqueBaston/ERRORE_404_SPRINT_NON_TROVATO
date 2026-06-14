@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://jda3iip3f7fn" path="res://SCENE_AND_SCRIPT/TMP/Test_Split_Screen.gd" id="1_4dsww"]
 [ext_resource type="Shader" uid="uid://bw1rtxnpr4o0b" path="res://SHADER/Pixelisation.gdshader" id="2_1luj4"]
 [ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="2_4dsww"]
+[ext_resource type="Texture2D" uid="uid://dsrmr325mtsek" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_01.png" id="3_mhpl2"]
 [ext_resource type="Shader" uid="uid://djvm4hdir6bn0" path="res://SHADER/Invert_Colors.gdshader" id="3_rlifm"]
 [ext_resource type="Shader" uid="uid://cw8pro7ug7hfy" path="res://SHADER/Shake.gdshader" id="4_mhpl2"]
 [ext_resource type="Shader" uid="uid://dlwdh275codsc" path="res://SHADER/Change_Colors.gdshader" id="5_8mbax"]
@@ -18,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://3u5u3tfo43n" path="res://SCENE_AND_SCRIPT/Portraits.tscn" id="16_g5vlg"]
 [ext_resource type="PackedScene" uid="uid://bs6lfs8h7kibb" path="res://SCENE_AND_SCRIPT/Quit_Button.tscn" id="17_1luj4"]
 [ext_resource type="PackedScene" uid="uid://bdkdfkk4qjapg" path="res://SCENE_AND_SCRIPT/Start_Button.tscn" id="18_rlifm"]
+[ext_resource type="AudioStream" uid="uid://ec0m1xfy6c32" path="res://SOUND/FX/Digital_Glitch_C.ogg" id="20_8mbax"]
 
 [sub_resource type="Environment" id="Environment_w5jul"]
 background_mode = 3
@@ -536,6 +538,11 @@ texture = SubResource("GradientTexture2D_1luj4")
 stretch_mode = 4
 metadata/_edit_lock_ = true
 
+[node name="CelluleDeTerrain01" type="Sprite2D" parent="." unique_id=928714994]
+visible = false
+position = Vector2(197, 248)
+texture = ExtResource("3_mhpl2")
+
 [node name="Frames" type="CanvasLayer" parent="." unique_id=2092233837]
 metadata/_edit_lock_ = true
 
@@ -603,7 +610,7 @@ metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_01" unique_id=869063107]
 visible = false
-modulate = Color(1, 1, 1, 0.7790332)
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -698,7 +705,7 @@ metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_02" unique_id=692485606]
 visible = false
-modulate = Color(1, 1, 1, 0.7790332)
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -793,7 +800,7 @@ metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_03" unique_id=1435042299]
 visible = false
-modulate = Color(1, 1, 1, 0.7790332)
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -889,7 +896,7 @@ metadata/_edit_lock_ = true
 
 [node name="Death" type="Control" parent="Frames/Bugs_04" unique_id=917885689]
 visible = false
-modulate = Color(1, 1, 1, 0.7790332)
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -1155,3 +1162,9 @@ libraries/ = SubResource("AnimationLibrary_eou1j")
 volume_db = -15.0
 autoplay = true
 bus = &"FX_WET"
+
+[node name="Bug_Sound" type="AudioStreamPlayer" parent="Frames" unique_id=1299573347]
+stream = ExtResource("20_8mbax")
+volume_db = -7.5
+bus = &"FX_DRY"
+parameters/looping = true

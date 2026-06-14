@@ -30,6 +30,7 @@ Un runner à pied (étonnant !)
 Un runner bugué :
 - Aléatoirement, 1/10 chance de déclencher 1 des bugs toutes les 10 à 15 secondes.
 - Les bugs durent de 5’’ en difficulté 1 à 20’’ en difficulté 5.
+- Au lancement des bugs 6 à 11, on joue le son Frames/Bug_Sound et on le coupe à la fin du bug.
     1. Joueur « hors phase » (shader) ✔ (1 joueur affecté)
     2. 1 à 5 cellules (en fonction de la difficulté) à sens unique  ✔
     3. 1 à 5 cellules (en fonction de la difficulté) hors phase ✔ (Screen_Glitch : Fait tourner aléatoirement à droite, Glitch_Only : fait tourner à gauche)
@@ -53,19 +54,19 @@ Les bonus et malus en jeu (Cube.tscn) :
 - Si le ramassage et l’activation se font en même temps, on ne joue qu’une fois le son correspondant et le clignotement du concurrent.
 
 Les bonus :
-    1. Invulnérabilité – Rouge (annule le prochain malus récolté) – dure 5’’ → ✔ Invincible – Automatique !
-    2. Dash – Vert (course uniquement – dure 1’’ – ne peut pas être interrompu, virage impossible !) : 66% plus rapide (animation aussi). → ✔ Dash – Activable !
+    1. Invulnérabilité – Rouge (annule le prochain malus récolté) – dure (5 ÷ difficulté)’’ → ✔ Invincible – Automatique !
+    2. Dash – Vert (course uniquement – dure 1/2’’ – ne peut pas être interrompu ET virage impossible !) : 66% plus rapide (animation aussi). → ✔ Dash – Activable !
     3. Passe-muraille – Bleu (uniquement les murs des concurrents) – 1 seul mur → ✔ Through – Automatique !
     4. Virus – Violet (envoie automatiquement le prochain malus récolté à un adversaire aléatoire) → ✔ Virus – Automatique !
     5. Téléportation – Jaune (destination aléatoire sur une « cellule saine »)→ ✔ Teleport – Activable !
     6. Débogueur – Noir (vire un bug actif)→ ✔ Debug – Activable !
-    7. Le mur tracé par le concurrent dure 1.5 fois plus longtemps. – Blanc → ✔ Last_Longer – Automatique !
+    7. Le mur tracé par les concurrents disparaissent – Blanc → ✔ Last_Longer – Automatique !
 
 Les malus (automatiques) :
-    1. Inversion de commandes – Rouge – dure 2’’ → ✔ Invert
-    2. Lenteur de réaction (on ajoute un délai d’1/10’’ (à préciser) dans les commandes du concurrent) – Noir – dure 5’’ → ✔ Slow
-    3. Les murs tracés par le concurrent durent 2 fois moins longtemps – Blanc – dure 10’’ → ✔ Last_Shorter
-    4. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1 seconde) – Vert – dure 5’’ → ✔ Anti_Dash
+    1. Inversion de commandes – Rouge – dure (difficulté)’’ → ✔ Invert
+    2. Lenteur de réaction (on ajoute un délai d’1/10’’ (à préciser) dans les commandes du concurrent) – Noir – dure (2 × difficulté)’’ → ✔ Slow
+    3. Les murs tracés par les concurrents ne disparaissent plus – Blanc – dure (2 × difficulté)’’ → ✔ Last_Shorter
+    4. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1 seconde) – Vert – dure ((2 × difficulté) + 3)’’ → ✔ Anti_Dash
     5. Rien ! – Bleu → ✔ Empty
     6. Virus (envoie automatiquement le prochain Bonus (pas malus) récolté à un adversaire aléatoire, quitte à remplacer celui qu’il porte – Violet → ✔ Anti_Virus
     7. Téléportation (instantané et destination aléatoire) – Jaune → ✔ Anti_Teleport
