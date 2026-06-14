@@ -175,6 +175,7 @@ script = ExtResource("1_e6nj5")
 metadata/_edit_lock_ = true
 
 [node name="ATTENTION (à lire)" type="Label" parent="." unique_id=724023530]
+visible = false
 offset_left = 277.0
 offset_top = -154.0
 offset_right = 647.0
