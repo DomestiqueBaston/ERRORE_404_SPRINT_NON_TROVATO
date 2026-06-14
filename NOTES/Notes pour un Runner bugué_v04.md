@@ -30,7 +30,7 @@ Un runner à pied (étonnant !)
 Un runner bugué :
 - Aléatoirement, 1/10 chance de déclencher 1 des bugs toutes les 10 à 15 secondes.
 - Les bugs durent de 5’’ en difficulté 1 à 20’’ en difficulté 5.
-- Au lancement des bugs 6 à 11, on joue le son Frames/Bug_Sound et on le coupe à la fin du bug.
+- Au lancement des bugs 6 à 11, on joue le son Frames/Bug_Sound et on le coupe à la fin du bug. Pas d’intro/outro, effets directs !
     1. Joueur « hors phase » (shader) ✔ (1 joueur affecté)
     2. 1 à 5 cellules (en fonction de la difficulté) à sens unique  ✔
     3. 1 à 5 cellules (en fonction de la difficulté) hors phase ✔ (Screen_Glitch : Fait tourner aléatoirement à droite, Glitch_Only : fait tourner à gauche)
