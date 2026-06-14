@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://jda3iip3f7fn" path="res://SCENE_AND_SCRIPT/TMP/Test_Split_Screen.gd" id="1_4dsww"]
 [ext_resource type="Shader" uid="uid://bw1rtxnpr4o0b" path="res://SHADER/Pixelisation.gdshader" id="2_1luj4"]
 [ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="2_4dsww"]
-[ext_resource type="Texture2D" uid="uid://dsrmr325mtsek" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_01.png" id="3_mhpl2"]
 [ext_resource type="Shader" uid="uid://djvm4hdir6bn0" path="res://SHADER/Invert_Colors.gdshader" id="3_rlifm"]
 [ext_resource type="Shader" uid="uid://cw8pro7ug7hfy" path="res://SHADER/Shake.gdshader" id="4_mhpl2"]
 [ext_resource type="Shader" uid="uid://dlwdh275codsc" path="res://SHADER/Change_Colors.gdshader" id="5_8mbax"]
@@ -537,11 +536,6 @@ size_flags_vertical = 4
 texture = SubResource("GradientTexture2D_1luj4")
 stretch_mode = 4
 metadata/_edit_lock_ = true
-
-[node name="CelluleDeTerrain01" type="Sprite2D" parent="." unique_id=928714994]
-visible = false
-position = Vector2(197, 248)
-texture = ExtResource("3_mhpl2")
 
 [node name="Frames" type="CanvasLayer" parent="." unique_id=2092233837]
 metadata/_edit_lock_ = true
