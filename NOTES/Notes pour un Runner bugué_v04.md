@@ -29,17 +29,18 @@ Un runner à pied (étonnant !)
 
 Un runner bugué :
 - Aléatoirement, 1/10 chance de déclencher 1 des bugs toutes les 10 à 15 secondes.
-    1. Joueur « hors phase » (shader) ✔ Dure 10 à 20’’ (1 joueur affecté)
-    2. 1 à 5 cellules (en fonction de la difficulté) à sens unique  ✔ Dure 10 à 20’’
-    3. 1 à 5 cellules (en fonction de la difficulté) hors phase ✔ Dure 10 à 20’’ (Screen_Glitch : Fait tourner aléatoirement à droite, Glitch_Only : fait tourner à gauche)
-    4. Les sprites se « mélangent » (changer 1 à 5 frames en fonction du niveau de difficulté) → Ça se fait : ✔ Dure 10 à 20’’ (1 joueur affecté)
-    5. 1 à 5 textures de sol (en fonction de la difficulté) changent (on joue le son Sound/Flashing_Cell) → Ça se fait : ✔ Dure 10 à 20’’
-    6. La palette de couleurs change → ✔  Dure 10 à 20’’
-    7. Image floue → Ça se fait : ✔ Dure 10 à 20’’
-    8. L’image globale se décale dans la vue du joueur (la caméra se décentre du joueur) → Ça se fait : ✔ Dure 10 à 20’’
-    9. La caméra vibre → ✔ Dure 10 à 20’’
-    10. Couleurs inversées → ✔  Dure 10 à 20’’
-    11. Sur-pixelisation → ✔  Dure 10 à 20’’
+- Les bugs durent de 5’’ en difficulté 1 à 20’’ en difficulté 5.
+    1. Joueur « hors phase » (shader) ✔ (1 joueur affecté)
+    2. 1 à 5 cellules (en fonction de la difficulté) à sens unique  ✔
+    3. 1 à 5 cellules (en fonction de la difficulté) hors phase ✔ (Screen_Glitch : Fait tourner aléatoirement à droite, Glitch_Only : fait tourner à gauche)
+    4. Les sprites se « mélangent » (changer 1 à 5 frames en fonction du niveau de difficulté) → Ça se fait : ✔ (1 joueur affecté)
+    5. 1 à 5 textures de sol (en fonction de la difficulté) changent (on joue le son Sound/Flashing_Cell) → Ça se fait : ✔
+    6. La palette de couleurs change → ✔
+    7. Image floue → Ça se fait : ✔
+    8. L’image globale se décale dans la vue du joueur (la caméra se décentre du joueur) → Ça se fait : ✔
+    9. La caméra vibre → ✔
+    10. Couleurs inversées → ✔
+    11. Sur-pixelisation → ✔
 
 Les bonus et malus en jeu (Cube.tscn) :
 - En jeu, il n’y aura que 2 exemplaires de chaque Bonus/Malus (y compris en possession d’un joueur).
@@ -70,14 +71,14 @@ Les malus (automatiques) :
     7. Téléportation (instantané et destination aléatoire) – Jaune → ✔ Anti_Teleport
 
 Les obstacles :
-Toutes les X secondes (voir Options nécessaires dans Settings) un des obstacles est déclenché. 1 sur 4 est un glissement de Ligne/Colonne.
-    1. Ligne/Colonne (de cellules) qui glisse d’1 à 2 cases → ✔ (1’’ avant, on joue Cell_Pylon_Alarms/Cell_Slide dans Sounds.tscn ET jusqu’à la fin de l’animation)
-    2. Trous (cellules qui descendent) → ✔
-    3. Murs des concurrents → ✔ (voir avec Geoff comment faire)
-    4. Cellule à sens unique → ✔
-    5. Colonnes descendantes → ✔
-    6. Colonnes écrasantes → ✔
-    7. Dalles disparaissant → Cellules qui disparaissent ✔
+- Toutes les X secondes (voir Options nécessaires dans Settings) un des obstacles est déclenché. 1 sur 4 est un glissement de Ligne/Colonne. La « quantité » de glissement des Ligne/Colonne se font aléatoirement d’1 à (longueur d’un côté au départ/3) cases (pour ne pas dire cellule qui pourrait être perturbant). On fait TOUJOURS glisser une ligne/colonne complète (« trous » inclus).
+    1. Ligne/Colonne (de cellules) qui glisse d’1 à 2 cases – Permanent → ✔ (1’’ avant, on joue Cell_Pylon_Alarms/Cell_Slide dans Sounds.tscn ET jusqu’à la fin de l’animation)
+    2. Trous (cellules qui descendent) – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
+    3. Murs des concurrents – (Durée : comme précisé ailleurs dans le doc.) → ✔ (voir avec Geoff comment faire)
+    4. Cellule à sens unique – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
+    5. Colonnes descendantes – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
+    6. Colonnes écrasantes – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
+    7. Dalles disparaissantes – 5’’ en difficulté 1 à 20’’ en difficulté 5 → Cellules qui disparaissent ✔
 
 Liste des animations des personnages :
     1. Courir ✔ ✔ ✔ ✔
@@ -115,6 +116,7 @@ Options (nécessaires) dans Settings:
     4. Difficulté (de 1 à 5) ✔
         ◦ Temps avant l’apparition de la porte de sortie : (Taille de la map + (3 × Difficulté)) / 4 en minutes.
         ◦ Délai entre les déclenchements d’obstacles : 5.5 - (0.5 × Difficulté) en secondes.
+        ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en gagnant 1 course en Difficulté 5) qui rend tous les obstacles PERMANENTS !
 
 Les personnalités des « IA »/Bots :
     1. Par défaut, un Bot tendra bien évidemment à ne pas mourir en évitant les collisions et les chutes.

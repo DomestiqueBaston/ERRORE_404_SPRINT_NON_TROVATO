@@ -41,7 +41,6 @@
 [ext_resource type="Texture2D" uid="uid://bt60360rl2yyk" path="res://IMAGE/ENVIRONMENT/DIRECTION/Direction_Front.png" id="32_iotr2"]
 [ext_resource type="AudioStream" uid="uid://b4hci50dsyb6m" path="res://SOUND/FX/Short_Appearing.ogg" id="34_qkut6"]
 [ext_resource type="AudioStream" uid="uid://7d1t448ecpba" path="res://SOUND/FX/Short_Disappearing.ogg" id="35_psu53"]
-[ext_resource type="AudioStream" uid="uid://ec0m1xfy6c32" path="res://SOUND/FX/Digital_Glitch_C.ogg" id="36_pnhl5"]
 [ext_resource type="AudioStream" uid="uid://bm1v8dymi3n0a" path="res://SOUND/FX/Digital_Glitch_B.ogg" id="37_qjqwi"]
 [ext_resource type="AudioStream" uid="uid://bxr32qgishsy8" path="res://SOUND/FX/Digital_Glitch_D.ogg" id="38_5memm"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="45_qkut6"]
@@ -67,6 +66,238 @@ shader_parameter/shake_rate = 1.0
 shader_parameter/shake_speed = 5.0
 shader_parameter/shake_block_size = 15.0
 shader_parameter/shake_color_rate = 0.0030000001425
+
+[sub_resource type="Animation" id="Animation_fki3o"]
+resource_name = "Glitch_Only_Appearing"
+length = 0.16667001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../Sound/Flashing_Cell:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glitch_Only:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666669),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../Sound/Sound_For_Glitch_Only:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_pnhl5"]
+resource_name = "Glitch_Only_Disappearing"
+length = 0.16667001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../Sound/Flashing_Cell:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glitch_Only:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666668, 0.10000001, 0.13333336, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../Sound/Sound_For_Glitch_Only:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.13333334),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_vwuvy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Screen_Glitch:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../Sound/Flashing_Cell:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Glitch_Only:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../../Sound/Sound_For_Glitch_Only:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../../Sound/Sound_For_Screen_Glitch:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_oyod2"]
+resource_name = "Screen_Glitch_Appearing"
+length = 0.16667001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Screen_Glitch:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666669),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../Sound/Flashing_Cell:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../Sound/Sound_For_Screen_Glitch:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_yp78x"]
+resource_name = "Screen_Glitch_Disappearing"
+length = 0.16667001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Screen_Glitch:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666668, 0.10000001, 0.13333336, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../Sound/Flashing_Cell:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../Sound/Sound_For_Screen_Glitch:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.13333334),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cdabr"]
+_data = {
+&"Glitch_Only_Appearing": SubResource("Animation_fki3o"),
+&"Glitch_Only_Disappearing": SubResource("Animation_pnhl5"),
+&"RESET": SubResource("Animation_vwuvy"),
+&"Screen_Glitch_Appearing": SubResource("Animation_oyod2"),
+&"Screen_Glitch_Disappearing": SubResource("Animation_yp78x")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qkut6"]
 size = Vector2(124.56604, 47.564228)
@@ -98,7 +329,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Appearing_Disappearing")
+tracks/1/path = NodePath("../../../Sound/Appearing_Disappearing_One_Way")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -110,18 +341,6 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/1/use_blend = true
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Glitch:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.033333335),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
 
 [sub_resource type="Animation" id="Animation_gwl88"]
 resource_name = "Disappearing"
@@ -141,7 +360,7 @@ tracks/0/keys = {
 tracks/1/type = "audio"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Appearing_Disappearing")
+tracks/1/path = NodePath("../../../Sound/Appearing_Disappearing_One_Way")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -153,18 +372,6 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/1/use_blend = true
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Glitch:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.13333334),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_cr4ld"]
 length = 0.001
@@ -175,18 +382,6 @@ tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Glitch:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -959,6 +1154,9 @@ offset_bottom = 59.0
 color = Color(1, 1, 1, 0.5254902)
 metadata/_edit_lock_ = true
 
+[node name="Glitch_Animation" type="AnimationPlayer" parent="Column/Cell_Tops/Top_Cell_FX_Mask" unique_id=1010142019]
+libraries/ = SubResource("AnimationLibrary_cdabr")
+
 [node name="One_Way_Direction" type="Node2D" parent="Column/Cell_Tops" unique_id=880013981]
 visible = false
 script = ExtResource("31_qkut6")
@@ -1019,15 +1217,6 @@ libraries/ = SubResource("AnimationLibrary_vwuvy")
 libraries/ = SubResource("AnimationLibrary_oyod2")
 autoplay = &"Floating"
 
-[node name="Appearing_Disappearing" type="AudioStreamPlayer" parent="Column/Cell_Tops/One_Way_Direction" unique_id=1759639142]
-bus = &"FX_WET"
-
-[node name="Glitch" type="AudioStreamPlayer" parent="Column/Cell_Tops/One_Way_Direction" unique_id=61025417]
-stream = ExtResource("36_pnhl5")
-volume_db = -5.0
-bus = &"FX_DRY"
-parameters/looping = true
-
 [node name="Animation_Cell" type="AnimationPlayer" parent="." unique_id=1288134592]
 libraries/ = SubResource("AnimationLibrary_ej7e8")
 
@@ -1065,4 +1254,7 @@ bus = &"FX_WET"
 [node name="Flashing_Cell" type="AudioStreamPlayer" parent="Sound" unique_id=1096757475]
 stream = ExtResource("45_qkut6")
 volume_db = -5.0
+bus = &"FX_WET"
+
+[node name="Appearing_Disappearing_One_Way" type="AudioStreamPlayer" parent="Sound" unique_id=1759639142]
 bus = &"FX_WET"

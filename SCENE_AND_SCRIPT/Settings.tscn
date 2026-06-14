@@ -174,6 +174,18 @@ shader_parameter/opacity = 0.150000007125
 script = ExtResource("1_e6nj5")
 metadata/_edit_lock_ = true
 
+[node name="ATTENTION (à lire)" type="Label" parent="." unique_id=724023530]
+offset_left = 277.0
+offset_top = -154.0
+offset_right = 647.0
+offset_bottom = -17.0
+text = "Pour Difficulté 6, on passe:
+- Hslider_Difficulty.tick_count = 6 (au lieu de 5)
+- Hslider_Difficulty.max_value = 6 (au lieu de 5)
+- on cache les deux Difficulty_1_5
+- on affiche les deux Difficulty_1_6"
+metadata/_edit_lock_ = true
+
 [node name="Parameters" type="Control" parent="." unique_id=1157028759]
 layout_mode = 3
 anchors_preset = 0
@@ -342,7 +354,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Difficulty_1_3" type="RichTextLabel" parent="Parameters" unique_id=1909184154]
+[node name="Difficulty_1_5" type="RichTextLabel" parent="Parameters" unique_id=1909184154]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -363,6 +375,34 @@ theme_override_fonts/normal_font = ExtResource("2_shryd")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "  1                                                                          5  "
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Difficulty_1_6" type="RichTextLabel" parent="Parameters" unique_id=1334761374]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -487.0
+offset_top = 212.0
+offset_right = 473.0
+offset_bottom = 251.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("2_shryd")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "  1                                                                          6  "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -782,6 +822,42 @@ mouse_filter = 2
 texture = ExtResource("3_picqc")
 metadata/_edit_lock_ = true
 
+[node name="Difficulty_1_6" type="RichTextLabel" parent="Parameters/Masks" unique_id=916924920]
+visible = false
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -487.0
+offset_top = 212.0
+offset_right = 473.0
+offset_bottom = 251.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/normal_font = ExtResource("2_shryd")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "  1                                                                          6  "
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings_Gradients" type="TextureRect" parent="Parameters/Masks/Difficulty_1_6" unique_id=1286122199]
+self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
+layout_mode = 0
+offset_left = -30.5
+offset_top = -341.0
+offset_right = -30.5
+offset_bottom = -341.0
+mouse_filter = 2
+texture = ExtResource("3_picqc")
+metadata/_edit_lock_ = true
+
 [node name="Audio" type="RichTextLabel" parent="Parameters/Masks" unique_id=1018890447]
 clip_children = 2
 layout_mode = 1
@@ -985,4 +1061,3 @@ offset_left = 435.0
 offset_top = 435.0
 offset_right = 525.0
 offset_bottom = 525.0
-metadata/_edit_lock_ = true
