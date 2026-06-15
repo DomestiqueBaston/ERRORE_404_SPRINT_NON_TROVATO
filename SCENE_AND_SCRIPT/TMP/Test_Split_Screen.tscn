@@ -753,6 +753,7 @@ metadata/_edit_lock_ = true
 environment = SubResource("Environment_w5jul")
 
 [node name="ATTENTION" type="Label" parent="." unique_id=1606020396]
+visible = false
 offset_left = 43.0
 offset_top = -134.0
 offset_right = 583.0
