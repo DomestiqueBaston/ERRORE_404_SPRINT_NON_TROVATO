@@ -57,25 +57,13 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/2/use_blend = true
-tracks/3/type = "value"
+tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Pylon_Walls/Collider_Impactor:visible")
+tracks/3/path = NodePath("../Sound/Up_Pylon")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 2.3333333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, true]
-}
-tracks/4/type = "audio"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Sound/Up_Pylon")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -83,50 +71,50 @@ tracks/4/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/4/use_blend = true
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../Collider_Obstacle:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Collider_Obstacle:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 1.7, 2.3333335),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, true]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0, 1.2333333, 2.3333333),
 "transitions": PackedFloat32Array(1, 2, 1),
 "update": 0,
 "values": [0.0, 0.0, 0.1250000059375]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Shadow/Pylone_Shadow:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Shadow/Pylone_Shadow:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0, 1.2333333, 2.3333335),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, true]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../Shadow:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Shadow:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0, 1.2333333, 2.3333335),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
@@ -208,58 +196,46 @@ tracks/4/use_blend = true
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Pylon_Walls/Collider_Impactor:visible")
+tracks/5/path = NodePath("../Collider_Obstacle:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 1.1666666),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.43333334, 0.46666664, 1.1666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [false, true, true]
+"values": [false, false, true, true]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Collider_Obstacle:visible")
+tracks/6/path = NodePath("../Shadow/Pylone_Shadow:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Shadow/Pylone_Shadow:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.03333333, 0.6333333, 0.6666667, 1.1666666),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, true, true, false, false]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.26666668, 0.6666667, 1.1666666),
 "transitions": PackedFloat32Array(1, 2, 1, 1),
 "update": 0,
 "values": [0.0, 0.0, 1.0, 1.0]
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../Shadow:visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Shadow:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0, 0.033333335, 0.6333334, 0.6666667, 1.1666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
@@ -349,58 +325,46 @@ tracks/4/use_blend = true
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Pylon_Walls/Collider_Impactor:visible")
+tracks/5/path = NodePath("../Collider_Obstacle:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 5.0000005),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Collider_Obstacle:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0, 1.9666668, 5.0000005),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, false]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Shadow/Pylone_Shadow:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Shadow/Pylone_Shadow:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0, 2.8, 2.8333333, 5.0000005),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [true, true, false, false]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0, 1, 2.8333333, 5.0000005),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.1250000059375, 0.1250000059375, 0.0, 0.0]
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../Shadow:visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Shadow:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -490,58 +454,46 @@ tracks/4/use_blend = true
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Pylon_Walls/Collider_Impactor:visible")
+tracks/5/path = NodePath("../Collider_Obstacle:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 5.0333333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 3.9666667, 4, 5.0333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [true, true, false, false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Collider_Obstacle:visible")
+tracks/6/path = NodePath("../Shadow:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Shadow:modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.10000001, 1, 4.766667, 5.0333333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0.90000004), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../Shadow/Pylone_Shadow:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Shadow/Pylone_Shadow:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.03333334, 4.766667, 4.8, 5.0333333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, true, true, false, false]
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0, 0.1, 1, 4.8, 5.0333333),
 "transitions": PackedFloat32Array(1, 1, 2, 1, 1),
 "update": 0,
@@ -577,7 +529,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Pylon_Walls/Collider_Impactor:visible")
+tracks/2/path = NodePath("../Collider_Obstacle:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -589,58 +541,46 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Collider_Obstacle:visible")
+tracks/3/path = NodePath("../Shadow:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Shadow:modulate")
+tracks/4/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [0.0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
+tracks/5/path = NodePath("../Shadow/Pylone_Shadow:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Shadow/Pylone_Shadow:visible")
+tracks/6/path = NodePath("../Shadow:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Shadow:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -657,15 +597,6 @@ _data = {
 }
 
 [node name="Cell" type="Node2D" unique_id=1565454703]
-metadata/_edit_lock_ = true
-
-[node name="Collider_Obstacle" type="Area2D" parent="." unique_id=505806384]
-visible = false
-metadata/_edit_lock_ = true
-
-[node name="Collider" type="CollisionPolygon2D" parent="Collider_Obstacle" unique_id=1503758237]
-position = Vector2(0, -40)
-polygon = PackedVector2Array(0, -20, 118, 39, 118, 40, 0, 99, -118, 40, -118, 39)
 metadata/_edit_lock_ = true
 
 [node name="Shadow" type="Node2D" parent="." unique_id=1869682303]
@@ -687,14 +618,6 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(0, -120)
 metadata/_edit_lock_ = true
 
-[node name="Collider_Impactor" type="Area2D" parent="Pylon/Pylon_Walls" unique_id=1413379515]
-visible = false
-metadata/_edit_lock_ = true
-
-[node name="Collider" type="CollisionPolygon2D" parent="Pylon/Pylon_Walls/Collider_Impactor" unique_id=1505075427]
-polygon = PackedVector2Array(-118, -1, 0, -60, 118, -1, 118, 0, 0, 59, -118, 0)
-metadata/_edit_lock_ = true
-
 [node name="Images" type="Node2D" parent="Pylon/Pylon_Walls" unique_id=1224975738]
 metadata/_edit_lock_ = true
 
@@ -706,6 +629,15 @@ metadata/_edit_lock_ = true
 [node name="Cellule_De_Pylone" type="Sprite2D" parent="Pylon/Pylon_Walls/Images" unique_id=2097598160]
 texture = ExtResource("27_i1aus")
 offset = Vector2(0, -202.5)
+metadata/_edit_lock_ = true
+
+[node name="Collider_Obstacle" type="Area2D" parent="." unique_id=505806384]
+visible = false
+metadata/_edit_lock_ = true
+
+[node name="Collider" type="CollisionPolygon2D" parent="Collider_Obstacle" unique_id=1503758237]
+position = Vector2(0, -40)
+polygon = PackedVector2Array(0, -20, 118, 39, 118, 40, 0, 99, -118, 40, -118, 39)
 metadata/_edit_lock_ = true
 
 [node name="Sound" type="Node" parent="." unique_id=1390307832]
@@ -732,6 +664,6 @@ bus = &"FX_WET"
 volume_db = -7.5
 bus = &"FX_WET"
 
-[node name="Animation_Pylon" type="AnimationPlayer" parent="." unique_id=1911472662]
+[node name="Pylon_Animation" type="AnimationPlayer" parent="." unique_id=1911472662]
 root_node = NodePath("../Pylon")
 libraries/ = SubResource("AnimationLibrary_u038b")

@@ -35,7 +35,7 @@ Un runner bugué :
     2. 1 à 5 cellules (en fonction de la difficulté) à sens unique  ✔
     3. 1 à 5 cellules (en fonction de la difficulté) hors phase ✔ (Screen_Glitch : Fait tourner aléatoirement à droite, Glitch_Only : fait tourner à gauche)
     4. Les sprites se « mélangent » (changer 1 à 5 frames en fonction du niveau de difficulté) → Ça se fait : ✔ (1 joueur affecté)
-    5. 1 à 5 textures de sol (en fonction de la difficulté) changent (on joue le son Sound/Flashing_Cell) → Ça se fait : ✔
+    5. 1 à 5 textures de sol (en fonction de la difficulté) → Ça se fait : ✔
     6. La palette de couleurs change → ✔
     7. Image floue → Ça se fait : ✔
     8. L’image globale se décale dans la vue du joueur (la caméra se décentre du joueur) → Ça se fait : ✔
