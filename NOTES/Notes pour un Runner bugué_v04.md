@@ -28,20 +28,18 @@ Un runner à pied (étonnant !)
 - Le but du jeu est ici de tenir le plus longtemps possible et être le dernier survivant ou être le premier à atteindre la sortie qui se manifestera aléatoirement au bout d’un certain temps.
 
 Un runner bugué :
-- Aléatoirement, 1/10 chance de déclencher 1 des bugs toutes les 10 à 15 secondes.
 - Les bugs durent de 5’’ en difficulté 1 à 20’’ en difficulté 5.
-- Au lancement des bugs 6 à 11, on joue le son Frames/Bug_Sound et on le coupe à la fin du bug. Pas d’intro/outro, effets directs !
-    1. Joueur « hors phase » (shader) ✔ (1 joueur affecté)
-    2. 1 à 5 cellules (en fonction de la difficulté) à sens unique  ✔
-    3. 1 à 5 cellules (en fonction de la difficulté) hors phase ✔ (Screen_Glitch : Fait tourner aléatoirement à droite, Glitch_Only : fait tourner à gauche)
-    4. Les sprites se « mélangent » (changer 1 à 5 frames en fonction du niveau de difficulté) → Ça se fait : ✔ (1 joueur affecté)
-    5. 1 à 5 textures de sol (en fonction de la difficulté) → Ça se fait : ✔
-    6. La palette de couleurs change → ✔
-    7. Image floue → Ça se fait : ✔
-    8. L’image globale se décale dans la vue du joueur (la caméra se décentre du joueur) → Ça se fait : ✔
-    9. La caméra vibre → ✔
-    10. Couleurs inversées → ✔
-    11. Sur-pixelisation → ✔
+- Après chaque bug, on attend 10’’ avant d’avoir 1/5 chance d’en déclencher un nouveau.
+- Au lancement des bugs on joue le son Frames/Bug_Sound (dans Game.tscn) et on le coupe à la fin du bug. Pas d’intro/outro, effets directs !
+    1. L’image globale se décale dans la vue du joueur (la caméra se recentre sur le joueur) → Ça se fait : ✔
+    2. La palette de couleurs change → ✔
+    3. Image floue → Ça se fait : ✔
+    4. La caméra vibre → ✔
+    5. Couleurs inversées → ✔
+    6. Sur-pixelisation → ✔
+
+- Toutes les 5’’ (on ne joue pas Frames/Bug_Sound mais Sound/Flashing_Cell dans Cell.tscn) :
+    1. Texture de sol change (sauf les 4 cases de coins et la case 404) – (permanent)→ ✔
 
 Les bonus et malus en jeu (Cube.tscn) :
 - En jeu, il n’y aura que 2 exemplaires de chaque Bonus/Malus (y compris en possession d’un joueur).
@@ -67,7 +65,7 @@ Les malus (automatiques) :
     2. Lenteur de réaction (on ajoute un délai d’1/10’’ (à préciser) dans les commandes du concurrent) – Noir – dure (2 × difficulté)’’ → ✔ Slow
     3. Les murs tracés par les concurrents ne disparaissent plus – Blanc – dure (2 × difficulté)’’ → ✔ Last_Shorter
     4. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1 seconde) – Vert – dure ((2 × difficulté) + 3)’’ → ✔ Anti_Dash
-    5. Rien ! – Bleu → ✔ Empty
+    5. « Hors phase » (shader) – Bleu – dure (2 × difficulté)’’ → ✔ Phase
     6. Virus (envoie automatiquement le prochain Bonus (pas malus) récolté à un adversaire aléatoire, quitte à remplacer celui qu’il porte – Violet → ✔ Anti_Virus
     7. Téléportation (instantané et destination aléatoire) – Jaune → ✔ Anti_Teleport
 
@@ -77,9 +75,11 @@ Les obstacles :
     2. Trous (cellules qui descendent) – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     3. Murs des concurrents – (Durée : comme précisé ailleurs dans le doc.) → ✔ (voir avec Geoff comment faire)
     4. Cellule à sens unique – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
-    5. Colonnes descendantes – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
-    6. Colonnes écrasantes – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
-    7. Dalles disparaissantes – 5’’ en difficulté 1 à 20’’ en difficulté 5 → Cellules qui disparaissent ✔
+    5. Colonne descendante – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
+    6. Colonne écrasante – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
+    7. Cellule « disparaissante » – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
+    8. 1 Cellule à sens unique – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
+    9. 1 Cellule hors phase – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔ (Screen_Glitch : Fait tourner aléatoirement à droite, Glitch_Only : fait tourner à gauche)
 
 Liste des animations des personnages :
     1. Courir ✔ ✔ ✔ ✔

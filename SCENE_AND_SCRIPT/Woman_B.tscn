@@ -3397,7 +3397,7 @@ bus = &"BONUS_MALUS"
 stream = ExtResource("29_lpk6h")
 bus = &"BONUS_MALUS"
 
-[node name="Empty" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=68608256]
+[node name="Phase" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=68608256]
 stream = ExtResource("40_646ki")
 volume_db = 2.5
 bus = &"BONUS_MALUS"
