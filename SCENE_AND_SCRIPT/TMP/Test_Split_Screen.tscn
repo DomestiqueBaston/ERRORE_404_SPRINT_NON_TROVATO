@@ -421,7 +421,7 @@ shader_parameter/interval = 0.25000000861512
 shader_parameter/duration = 0.750000035625
 shader_parameter/min_hue_shift_deg = 60.00000285
 shader_parameter/max_hue_shift_deg = 180.00000855
-shader_parameter/min_double_offset_px = 1.5000000712500001
+shader_parameter/min_double_offset_px = 1.50000007125
 shader_parameter/max_double_offset_px = 3.50000016625
 shader_parameter/double_strength = 0.400000019
 
@@ -762,6 +762,7 @@ l'on affiche des effets identiques dans des quarts d'écran différents.
 
 Il faudra que la caméra pointe devant le coureur (voir les notes).
 On fera un tween sur la caméra lorsque le joueur change de direction."
+metadata/_edit_lock_ = true
 
 [node name="BG_SubViewport" type="SubViewport" parent="." unique_id=469166842]
 transparent_bg = true
@@ -788,68 +789,84 @@ metadata/_edit_lock_ = true
 [node name="CelluleDeTerrainV07" type="Sprite2D" parent="BG_SubViewport/BG" unique_id=58829372]
 position = Vector2(447, 235)
 texture = ExtResource("3_lqdwh")
+metadata/_edit_lock_ = true
 
 [node name="CelluleDeTerrainV03" type="Sprite2D" parent="BG_SubViewport/BG" unique_id=987026675]
 position = Vector2(329, 294)
 texture = ExtResource("4_njsvd")
+metadata/_edit_lock_ = true
 
 [node name="CelluleDeTerrainV11" type="Sprite2D" parent="BG_SubViewport/BG" unique_id=1417652215]
 position = Vector2(565, 294)
 texture = ExtResource("5_nlqf7")
+metadata/_edit_lock_ = true
 
 [node name="CelluleDeTerrainV01" type="Sprite2D" parent="BG_SubViewport/BG" unique_id=1523539042]
 position = Vector2(211, 353)
 texture = ExtResource("6_w3sq1")
+metadata/_edit_lock_ = true
 
 [node name="CelluleDeTerrainV02" type="Sprite2D" parent="BG_SubViewport/BG" unique_id=777189345]
 position = Vector2(260, -166)
 texture = ExtResource("7_pcl2y")
 offset = Vector2(187, 158)
+metadata/_edit_lock_ = true
 
 [node name="CelluleDeTerrainV12" type="Sprite2D" parent="BG_SubViewport/BG" unique_id=404865664]
 position = Vector2(496, 195)
 texture = ExtResource("8_tt0ey")
 offset = Vector2(187, 158)
+metadata/_edit_lock_ = true
 
 [node name="CelluleDeTerrainV05" type="Sprite2D" parent="BG_SubViewport/BG" unique_id=904872601]
 position = Vector2(93, 412)
 texture = ExtResource("9_v0k73")
+metadata/_edit_lock_ = true
 
 [node name="CelluleDeTerrainV04" type="Sprite2D" parent="BG_SubViewport/BG" unique_id=65236675]
 position = Vector2(329, 412)
 texture = ExtResource("10_tjlp3")
+metadata/_edit_lock_ = true
 
 [node name="CelluleDeTerrainV06" type="Sprite2D" parent="BG_SubViewport/BG" unique_id=1133090772]
 position = Vector2(565, 412)
 texture = ExtResource("11_l7d05")
+metadata/_edit_lock_ = true
 
 [node name="CelluleDeTerrainV13" type="Sprite2D" parent="BG_SubViewport/BG" unique_id=1126011817]
 position = Vector2(801, 412)
 texture = ExtResource("12_pfpfx")
+metadata/_edit_lock_ = true
 
 [node name="CelluleDeTerrainV09" type="Sprite2D" parent="BG_SubViewport/BG" unique_id=404774689]
 position = Vector2(211, 471)
 texture = ExtResource("13_nbmmr")
+metadata/_edit_lock_ = true
 
 [node name="CelluleDeTerrainV08" type="Sprite2D" parent="BG_SubViewport/BG" unique_id=2006709953]
 position = Vector2(447, 471)
 texture = ExtResource("14_3agqn")
+metadata/_edit_lock_ = true
 
 [node name="CelluleDeTerrainV14" type="Sprite2D" parent="BG_SubViewport/BG" unique_id=168045142]
 position = Vector2(683, 471)
 texture = ExtResource("15_hlise")
+metadata/_edit_lock_ = true
 
 [node name="CelluleDeTerrainV10" type="Sprite2D" parent="BG_SubViewport/BG" unique_id=1013817455]
 position = Vector2(329, 530)
 texture = ExtResource("16_d73y6")
+metadata/_edit_lock_ = true
 
 [node name="CelluleDeTerrainV15" type="Sprite2D" parent="BG_SubViewport/BG" unique_id=429279908]
 position = Vector2(565, 530)
 texture = ExtResource("17_tuvqh")
+metadata/_edit_lock_ = true
 
 [node name="CelluleDeTerrainV16" type="Sprite2D" parent="BG_SubViewport/BG" unique_id=1117140824]
 position = Vector2(447, 589)
 texture = ExtResource("18_e2k1h")
+metadata/_edit_lock_ = true
 
 [node name="Animation_Up_BG" type="AnimationPlayer" parent="BG_SubViewport" unique_id=1889503930]
 root_node = NodePath("../..")

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://j2jtb5xwxv25" path="res://IMAGE/RUNNER/WOMAN_B/Woman_B_Sprite_Sheet.png" id="3_b858v"]
 [ext_resource type="Shader" uid="uid://3f2wtq4pn17q" path="res://SHADER/Shadow_Compositing.gdshader" id="4_moomj"]
 [ext_resource type="Texture2D" uid="uid://brl52e8ox1ue8" path="res://IMAGE/RUNNER/Shadow.png" id="5_3pclx"]
+[ext_resource type="Script" uid="uid://qc5u6mlkikxg" path="res://SCENE_AND_SCRIPT/Cam.gd" id="5_yl0jf"]
 [ext_resource type="AudioStream" uid="uid://ccc3vfmvpg54n" path="res://SOUND/FX/RUNNER/Bump_Wall.ogg" id="6_lgnag"]
 [ext_resource type="AudioStream" uid="uid://cijoxlwmmsm7v" path="res://SOUND/FX/RUNNER/Fall_Death.ogg" id="7_npanl"]
 [ext_resource type="AudioStream" uid="uid://nr37tg36a6ub" path="res://SOUND/FX/RUNNER/Both_Feet_Falling.ogg" id="8_rdls7"]
@@ -3273,6 +3274,7 @@ metadata/_edit_lock_ = true
 [node name="Cam" type="Camera2D" parent="Character" unique_id=1828297682]
 position = Vector2(-480, -270)
 offset = Vector2(480, 235)
+script = ExtResource("5_yl0jf")
 metadata/_edit_lock_ = true
 
 [node name="Animation_Runner" type="AnimationPlayer" parent="." unique_id=1090802675]

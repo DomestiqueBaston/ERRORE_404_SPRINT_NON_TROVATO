@@ -458,7 +458,7 @@ offset_bottom = -111.84122
 color = Color(1, 1, 1, 0.627451)
 metadata/_edit_lock_ = true
 
-[node name="Name_Animations" type="AnimationPlayer" parent="Graphics/Game_Credits/Cache_Credits" unique_id=1282971080]
+[node name="Blinking_Animation" type="AnimationPlayer" parent="Graphics/Game_Credits/Cache_Credits" unique_id=1282971080]
 libraries/ = SubResource("AnimationLibrary_2yodr")
 autoplay = &"Blink"
 
