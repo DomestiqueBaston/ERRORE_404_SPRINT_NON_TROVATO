@@ -2,7 +2,7 @@
 
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
-uid="uid://sb5f1dqsx1pb"
+uid="uid://dvn44pi0uxq00"
 path="res://.godot/imported/Win_Glitchy_Sound.ogg-f04bead3240ffc3adcaec07ed786d724.oggvorbisstr"
 
 [deps]
@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/Win_Glitchy_Sound.ogg-f04bead3240ffc3adcaec07
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://t4l7fveb311p" path="res://SOUND/MUSIC/Music.ogg" id="4_kedx7"]
 [ext_resource type="AudioStream" uid="uid://goi8yd4dovnf" path="res://SOUND/FX/Menu_Navigation.ogg" id="4_ptkxu"]
 [ext_resource type="AudioStream" uid="uid://bxcpm34tpan58" path="res://SOUND/MUSIC/Bang.ogg" id="5_bpp1d"]
-[ext_resource type="AudioStream" uid="uid://dvn44pi0uxq00" path="res://SOUND/FX/Win_Glitchy_Sound.ogg" id="6_fgrgl"]
+[ext_resource type="AudioStream" uid="uid://dvn44pi0uxq00" path="res://SOUND/MUSIC/Win_Glitchy_Sound.ogg" id="6_fgrgl"]
 [ext_resource type="AudioStream" uid="uid://v25jstm0b3b7" path="res://SOUND/FX/Bar_full.ogg" id="7_ecwke"]
 [ext_resource type="AudioStream" uid="uid://bes5a835nqime" path="res://SOUND/FX/Woosh.ogg" id="9_20up4"]
 [ext_resource type="AudioStream" uid="uid://bom677o0xms5i" path="res://SOUND/FX/Disappearing.ogg" id="9_e5knn"]
