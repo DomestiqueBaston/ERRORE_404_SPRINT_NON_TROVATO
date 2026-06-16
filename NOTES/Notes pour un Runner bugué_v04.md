@@ -17,7 +17,7 @@ Un runner à pied (étonnant !)
 - L’écran est divisé en 4 avec les vues de chaque concurrent. Le joueur sera toujours dans le quart supérieur gauche.
 - À chaque fois que le jeu va bouger une ligne/colonne ou baisser un pylône (qui n’écrase pas et laisse passer dessous) ou baisser une cellule ou lâcher un pylône ou faire disparaître une cellule, une alarme (Cell_Pylon_Alarms/ dans Sounds.tscn) se fera d’abord entendre pendant 1’’ ET jusqu’à la fin de l’animation.
 - Une cellule baissée ou disparue ou un pylône (baissé ou arrivé au sol) reste dans cette position 10 à 20’’. S’il font partie d’une ligne/colonne qui glisse pendant qu’ils sont dans l’état évoqué ici, alors ils suivent le mouvement de la ligne/colonne. On ne joue pas les alarmes pour le retour à l’état normal.
-- Sur le terrain, au centre, une case est levée (colonne verticale, cette fois). C’est sur cette case, une fois la colonne redescendue qu’apparaîtra la porte de sortie de la zone au bout de 14 secondes + Difficulté (de 1 à 5). Il pourra arriver que la porte ne soit plus accessible à cause de mouvements de terrain.
+- Sur le terrain, au centre, une case est levée (colonne verticale, cette fois). C’est sur cette case, une fois la colonne redescendue qu’apparaîtra la porte de sortie de la zone au bout de (Taille de la map + (2 × Difficulté)) / 10 minutes. Il pourra arriver que la porte ne soit plus accessible à cause de mouvements de terrain.
 - Pour les concurrents, 4 directions de mouvement (les diagonales).
 - Les concurrents ne peuvent pas faire directement demi-tour (à cause du mur qu’ils tracent).
 - Les concurrents ne peuvent tourner qu’à 90°.
@@ -112,15 +112,15 @@ Notes de fabrication :
 
 Options (nécessaires) dans Settings:
     1. Taille de la map (de 9 à 21) ✔
-    2. Volume sonore général (de 0 à 100) ✔
-    3. Volume de la musique (de 0 à 100) ✔
+    2. Volume sonore général (de 50% à 100%) ✔
+    3. Volume de la musique (de 50% à 100%) ✔
     4. Difficulté (de 1 à 5) ✔
-        ◦ Temps avant l’apparition de la porte de sortie : (Taille de la map + (3 × Difficulté)) / 4 en minutes.
-        ◦ Délai entre les déclenchements d’obstacles : 5.5 - (0.5 × Difficulté) en secondes.
-        ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en gagnant 1 course en Difficulté 5) qui rend tous les obstacles PERMANENTS !
+        ◦ Temps avant l’apparition de la porte de sortie : (Taille de la map + (2 × Difficulté)) / 10 minutes.
+        ◦ Délai entre les déclenchements d’obstacles : 5.5 - (0.5 × Difficulté) secondes.
+        ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en gagnant 1 course en Difficulté 5) qui rend tous les obstacles PERMANENTS (le reste est traîté comme Difficulté 5 !)
 
 Les personnalités des « IA »/Bots :
-    1. Par défaut, un Bot tendra bien évidemment à ne pas mourir en évitant les collisions et les chutes.
+    1. Par défaut, un Bot tendra bien évidemment à ne pas mourir en évitant les collisions et les chutes. Un Bot essayera également de sortir par la porte lorsqu’elle est présente et accessible (il peut arriver qu’elle ne le soit pas à cause des glissements de lignes/colonnes).
     2. On définira des valeurs « par défaut » pour un bot afin de faire varier ces valeurs en fonction du comportement sélectionné.
         ◦ Un passage de moins d1/2 case de large n’est pas emprunté par un bot (s’il n’a pas d’alternative, il ira dans l’obstacle et mourra).
         ◦ Temps de réaction de base : 300ms (surlignés en jaune : pas concerné).
@@ -157,7 +157,7 @@ Préambule :
     • Utilisation des boutons :
         ◦ ui_a_button : Valider et Sauter (A)
         ◦ ui_b_button : Annuler et Glisser (B)
-        ◦ ui_x_button et ui_y_button : Activer les Bonus/Malus (X et Y)
+        ◦ ui_x_button ou ui_y_button : Activer le Bonus/Malus
         ◦ ui_left_button, ui_right_button, ui_up_button et ui_down_button : Direction et navigation menu (en course, on n’utilise que les diagonales)
         ◦ ui_fullscreen : Plein écran/Fenêtré
         ◦ ui_quit_button : Quitter (pression longue, voir Quit_Button.tscn)
@@ -181,13 +181,15 @@ Le jeu :
 Ici, la course elle-même prend place !
 
     7. Fin de course (humain ou bot, tant qu’il y a au moins 2 concurrents vivants, la course continu) :
-        ◦ Lorsque les 3 premiers concurrents meurent, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) dans la scène Game.tscn.
-        ◦ Lorsqu’un concurrent gagne (soit parce qu’il est le dernier en course ou soit parce qu’il a franchi la porte de sortie), on affiche Frames/Info_Win_Lose/Win et on garde les éventuels overlays de mort des autres concurrents ! À l’instant où on a un gagnant : Music/Music va voir son Pitch qui va descendre et pour cela on utilisera l’AnimationPlayer Music_Pitch/Pitch_Down.
-            a) Si le vainqueur gagne en sortant par la porte (de sortie), automatiquement, TOUS les concurrents restants meurent (animation Death) chacun avec un décalage 1/4 de seconde afin de ne pas les avoir tous exactement synchro, ce qui serait moche !
-        ◦ Ensuite, n’importe quel bouton (sauf B) retourne brutalement (toujours) à l’écran de titre. On coupe alors Music/Music et on lance Music/Intro avec Music/Bang. Et on retourne au point 1 de cette liste. Presser B relance une partie « identique » à partir du point 5 de cette liste !
+        ◦ Lorsque les concurrents meurent, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) dans la scène Game.tscn.
+            a) Lorsque le joueur perd, (en plus de l’affichage de l’overlay Frames/Bug_0X/Death), les bots continuent la course comme si de rien n’était mais on active la possibilité de relancer avec A. Sinon, si c’est compliqué à mettre en place, automatiquement, les bots restants aussi meurent (et on procède comme décrit juste au dessus).
+            b) Lorsque le joueur gagne (soit parce qu’il est le dernier en course ou soit parce qu’il a franchi la porte de sortie), on affiche Frames/Info_Win_Lose/Win et on garde les éventuels overlays de mort des autres concurrents ! À l’instant où on a un gagnant : Music/Music va voir son Pitch qui va descendre et pour cela on utilisera l’AnimationPlayer Music_Pitch/Pitch_Down.
+            c) Si le vainqueur gagne en sortant par la porte (de sortie), automatiquement, TOUS les concurrents restants meurent (animation Death) instantanément et on affiche l’Overlay Frames/Bug_0X/Death !
+            d) Dans tous les cas, le décors continue à « vivre » comme si de rien n’était… Jusqu’à sortir de Game.tscn !
+        ◦ Ensuite, n’importe quel bouton (sauf A) retourne brutalement (toujours) à l’écran de titre. On coupe alors Music/Music et on lance Music/Intro avec Music/Bang. Et on retourne au point 1 de cette liste. Presser A relance une partie « identique » à partir du point 5 de cette liste !
 
 
-Liste des scènes (et succinctes descriptions de leurs contenus) :
+Liste des scènes (et – succinctes – descriptions de leurs contenus) :
     1. Cell.tscn : contient toutes les cellules de sol, contient également les modificateurs de sens de passage One_Way_Direction (voir Un runner bugué #5), les 2 glitchs de surface Top_Cell_FX_Mask (voir Un runner bugué #6) et les points de départ des 4 concurrents (qu’on n’applique qu’aux 4 coins du terrain). Certains sons liés à certaines animations se trouvent dans Sounds.tscn.
     2. Credits.tscn : contient la scène de générique du jeu (intègre également le bouton pour quitter le jeu).
     3. Cube.tscn : contient les bonus/malus à ramasser en course.
@@ -200,10 +202,15 @@ Liste des scènes (et succinctes descriptions de leurs contenus) :
     10. Portraits.tscn : contient le sélecteur de concurrent pour le joueur (humain).
     11. Pylon.tscn : contient les pylônes qui tombent et qui peuvent écraser les concurrents (voir Les obstacles #6).
     12. Quit_Button.tscn : contient le bouton pour quitter le jeu.
-    13. Settings.tscn : contient la scène permettant de régler la taille du terrain de course, la difficulté du jeu, le volume général du son du jeu et le volume de la musique (intègre également le bouton pour quitter le jeu).
+    13. Settings.tscn* : contient la scène permettant de régler la taille du terrain de course, la difficulté du jeu, le volume général du son du jeu et le volume de la musique (intègre également le bouton pour quitter le jeu).
     14. Sounds.tscn : contient les sons de l’UI du jeu, certains sons des cellules de terrain, les sons des murs des concurrents, les musiques du jeu (et le « bang » nécessaire à certaines transitions entre musiques).
     15. Start_Button.tscn : contient le bouton pour démarrer la course.
     16. Tutorial.tscn : contient la scène qui dit comment jouer (intègre également le bouton pour quitter le jeu).
-
 Dans le dossier TMP, on trouve (dossier à supprimer ultérieurement) :
-    1. Test_Split_Screen.tscn : contient une maquette (très rough) montrant à quoi ressemble le jeu lui-même. Cette scène m’a servi également à tester les animations des concurrents, c’est pour ça que les 4 personnages sont regroupés ensemble et bougent tous avec une seule manette.
+    1. Test_Split_Screen.tscn : contient une maquette (très rough) montrant à quoi ressemble le jeu lui-même. Cette scène m’a surtout servi à tester les animations des concurrents, faire des mises en place… C’est pour ça que les 4 personnages sont regroupés et bougent tous avec une seule manette.
+
+* Dans Settings, pour Difficulté 6, on passe :
+    1. Hslider_Difficulty.tick = 6 (au lieu de 5)
+    2. Hslider_Difficulty.max = 6 (au lieu de 5)
+    3. On cache les deux Difficulty_1_5
+    4. On affiche les deux Difficulty_1_6
