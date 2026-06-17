@@ -1016,6 +1016,7 @@ default_color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="Info_Win_Lose_Overlay" type="Control" parent="Frames" unique_id=1735657927]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
@@ -1023,6 +1024,7 @@ offset_bottom = 540.0
 metadata/_edit_lock_ = true
 
 [node name="Win" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=2073683163]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
