@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg8x247cwwks8"
-path="res://.godot/imported/BSOD.png-78975ca5fc4c1546832cab674d8cc62e.ctex"
+uid="uid://ysvcu3wtt5ts"
+path="res://.godot/imported/BSOD_.png-a841ca4e2a60423dcbf8b4c313900690.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TRASH/BSOD.png"
-dest_files=["res://.godot/imported/BSOD.png-78975ca5fc4c1546832cab674d8cc62e.ctex"]
+source_file="res://IMAGE/MISC/BSOD_.png"
+dest_files=["res://.godot/imported/BSOD_.png-a841ca4e2a60423dcbf8b4c313900690.ctex"]
 
 [params]
 
