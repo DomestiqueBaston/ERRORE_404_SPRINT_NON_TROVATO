@@ -1,12 +1,7 @@
-PIXEL ART V
+Errore 404: Sprint Non Trovato! (un jeu qui bugue)
 
-Errore 404: Sprint Non Trovato!
 
-Un jeu qui bugue (se souvenir du site e13.com il y a longtemps) !
-
-Un runner à pied (étonnant !)
-
-- Ce « Runner » va se « rapprocher » de la (fameuse) séquence de course de moto dans Tron (1982) qu’on va mélanger avec un peu du film Cube (salles dont les connexions mutuelles changent régulièrement).
+- Ce « Runner » va se « rapprocher » de la (fameuse) séquence de course de moto dans Tron (1982) qu’on va mélanger avec un peu du film Cube (les connexions entre les salles changent régulièrement comme un Rubik’s Cube).
 
 - Un jeu en 2D (vue isométrique).
 - Un champ de course qui sera carré au départ et deviendra « plus du tout carré » par les transformations successives.
@@ -37,8 +32,9 @@ Un runner bugué :
     4. La caméra vibre → ✔
     5. Couleurs inversées → ✔
     6. Sur-pixelisation → ✔
+    7. Jpeg →  ✔
 
-- Toutes les 5’’ (on ne joue pas Frames/Bug_Sound mais Sound/Flashing_Cell dans Cell.tscn) :
+- Bug permanent : toutes les 3 à 5’’ (on ne joue pas Frames/Bug_Sound mais Sound/Flashing_Cell dans Cell.tscn) :
     1. Texture de sol change (sauf les 4 cases de coins et la case 404) – (permanent)→ ✔
 
 Les bonus et malus en jeu (Cube.tscn) :
@@ -117,7 +113,7 @@ Options (nécessaires) dans Settings:
     4. Difficulté (de 1 à 5) ✔
         ◦ Temps avant l’apparition de la porte de sortie : (Taille de la map + (2 × Difficulté)) / 10 minutes.
         ◦ Délai entre les déclenchements d’obstacles : 5.5 - (0.5 × Difficulté) secondes.
-        ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en gagnant 1 course en Difficulté 5) qui rend tous les obstacles PERMANENTS (le reste est traîté comme Difficulté 5 !)
+        ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en gagnant 1 course en Difficulté 5) qui rend tous les obstacles PERMANENTS (le reste est traîté comme Difficulté 5 !). Voir également à la fin du doc. : Liste des scènes (et – succinctes – descriptions de leurs contenus).
 
 Les personnalités des « IA »/Bots :
     1. Par défaut, un Bot tendra bien évidemment à ne pas mourir en évitant les collisions et les chutes. Un Bot essayera également de sortir par la porte lorsqu’elle est présente et accessible (il peut arriver qu’elle ne le soit pas à cause des glissements de lignes/colonnes).
@@ -176,7 +172,7 @@ Le jeu :
     4. Transition brutale vers Game.tscn. Les 4 caméras sont centrées sur les 4 coins de la zone de course. L’écran en haut à gauche affiche en overlay la sélection de joueur (Portraits.tscn) qui commence sur la fille et les 3 autres vues affichent aléatoirement les 3 autres personnages : pas de doublons !
     5. On sélectionne le personnage avec droite et gauche, on valide avec A. Lorsque le joueur change de personnage, à chaque fois, dans les autres quarts d’écran les personnages changent et sont re-sélectionnés aléatoirement. Ils disparaissent/apparaissent en jouant l’animation Animation_Bonus_Malus/Bonus_Malus ET avec le son UI_Sounds/Disappearing (un seul son est joué pour tous). ui_quit_button renvoie à Menu.tscn (transition brutale, pour rappel). Valider fait disparaître l’overlay de sélection des personnages et apparaître le bouton de lancement de la course. Ce bouton ne peut être activé (ui_a_button) que lorsque le joueur a validé son personnage.
         ◦ Ceci est pour la cas où il n’y aurait qu’1 joueur humain et 3 bots mais pour ajouter 1 autre (ou plusieurs autres) joueur humain, il suffira de presser un des boutons d’un autre contrôleur pour que le quart d’écran suivant lui soit attribué. Le reste se fait comme pour le premier joueur… Overlay des portraits, etc. Il ne peut pas avoir de doublons de personnage ! On ne peut plus ajouter de joueur quand il n’y a plus d’overlay de sélection de personnage. C’est seulement à partir du moment ou tous les joueurs (humains) on validé leur choix de personnage que le bouton de lancement de la course apparaîtra.
-    6. Tous les Personnages passent alors en animation Start. Au bout d’1/2 seconde, on joue UI_Sounds/3_2_1 puis on coupe Music/Intro, on lance UI_Sounds/Go et Music/Music en boucle (sans Music/Bang cette fois-ci car il est inclus dans la musique) et les coureurs (Bot) partent aléatoirement dans l’une des deux directions qu’il ont de possible dans, au plus tard, la 1/2 de seconde qui suit ! Au pire, 1 seconde après le « top départ », tous les concurrents restants partiront automatiquement avec un décalage de 1/4 de seconde les uns avec les autres pasque tous synchro, c’est pas joli.
+    6. Tous les Personnages passent alors en animation Start. Au bout d’1/2 seconde, on joue UI_Sounds/3_2_1 puis on coupe Music/Intro, on lance UI_Sounds/Go et Music/Music en boucle (sans Music/Bang cette fois-ci car il est inclus dans la musique) et les coureurs (Bot) partent aléatoirement dans l’une des deux directions qu’il ont de possible dans, au plus tard, la 1/2 de seconde qui suit ! Au pire, 1 seconde après le « top départ », tous les concurrents restants partiront automatiquement avec un décalage de 1/5 de seconde les uns des autres pasque tous synchros, c’est pas joli.
 
 Ici, la course elle-même prend place !
 
