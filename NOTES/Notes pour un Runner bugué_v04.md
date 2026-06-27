@@ -79,7 +79,7 @@ Les obstacles :
 
 Liste des animations des personnages :
     1. Courir ✔ ✔ ✔ ✔
-    2. Sauter ✔ ✔ ✔
+    2. Sauter ✔ ✔ ✔ ✔
     3. Glissade ✔ ✔ ✔ ✔
     4. Pose de départ ✔ ✔ ✔ ✔
     5. Intro ✔ ✔ ✔ ✔
