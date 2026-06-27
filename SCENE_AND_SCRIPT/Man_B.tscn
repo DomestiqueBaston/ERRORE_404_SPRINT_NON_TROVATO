@@ -14,7 +14,6 @@
 [ext_resource type="AudioStream" uid="uid://cns80ks0bg3jv" path="res://SOUND/FX/RUNNER/Foot_Step_02.ogg" id="13_5vco3"]
 [ext_resource type="AudioStream" uid="uid://bmd6388im1l7b" path="res://SOUND/FX/RUNNER/Man_B_Running.ogg" id="13_38vqc"]
 [ext_resource type="AudioStream" uid="uid://ci6awlpxx6jwn" path="res://SOUND/FX/RUNNER/Man_A_Pushing.ogg" id="14_1pryk"]
-[ext_resource type="AudioStream" uid="uid://be7egi1g7yovq" path="res://SOUND/FX/RUNNER/Man_A_Bim.ogg" id="16_5igel"]
 [ext_resource type="Script" uid="uid://dujx068vw2hmu" path="res://SCENE_AND_SCRIPT/Animation_Runner.gd" id="16_38vqc"]
 [ext_resource type="AudioStream" uid="uid://b2a03ph6qsmpd" path="res://SOUND/FX/RUNNER/Sliding.ogg" id="17_na7f6"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="18_u5ssp"]
@@ -705,7 +704,7 @@ tracks/12/keys = {
 "times": PackedFloat32Array(0, 0.6, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [-12.5, -12.5, -22.5]
+"values": [-10.0, -10.0, -22.5]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
@@ -907,7 +906,7 @@ tracks/12/keys = {
 "times": PackedFloat32Array(0, 0.6, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [-5.0, -5.0, -22.5]
+"values": [-10.0, -10.0, -22.5]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
@@ -1457,7 +1456,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-5, -44)]
+"values": [Vector2(-2, -46)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -2068,29 +2067,6 @@ tracks/10/keys = {
 "update": 0,
 "values": [-0.7853982, -0.7853982]
 }
-tracks/11/type = "audio"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("../Sound/Bim")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("16_5igel")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("16_5igel")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("16_5igel")
-}],
-"times": PackedFloat32Array(0.1, 0.2, 0.254239)
-}
-tracks/11/use_blend = true
 
 [sub_resource type="Animation" id="Animation_kxl5h"]
 resource_name = "Sliding_180"
@@ -2230,29 +2206,6 @@ tracks/10/keys = {
 "update": 0,
 "values": [-0.7853982, -0.7853982]
 }
-tracks/11/type = "audio"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("../Sound/Bim")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("16_5igel")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("16_5igel")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("16_5igel")
-}],
-"times": PackedFloat32Array(0.1, 0.2, 0.25235415)
-}
-tracks/11/use_blend = true
 
 [sub_resource type="Animation" id="Animation_t3hkb"]
 resource_name = "Start_000"
@@ -2969,7 +2922,7 @@ metadata/_edit_lock_ = true
 [node name="Runner_Sprite" type="Sprite2D" parent="Character/Papa_Sprite" unique_id=143163856]
 material = SubResource("ShaderMaterial_gcyqs")
 texture = ExtResource("3_ercnf")
-offset = Vector2(-5, -44)
+offset = Vector2(-2, -46)
 hframes = 36
 vframes = 12
 frame = 36
