@@ -3337,7 +3337,8 @@ volume_db = -5.0
 bus = &"RUNNERS"
 
 [node name="Pushing" type="AudioStreamPlayer" parent="Sound" unique_id=2103180944]
-volume_db = -12.5
+volume_db = -2.5
+pitch_scale = 1.2
 bus = &"RUNNERS"
 
 [node name="Sliding" type="AudioStreamPlayer" parent="Sound" unique_id=2082912143]
