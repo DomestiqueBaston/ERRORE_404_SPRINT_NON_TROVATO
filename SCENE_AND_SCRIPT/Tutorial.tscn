@@ -400,7 +400,7 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("3_6mfkc")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "Movimento: vettori diagonali"
+text = "Movimento: vettori direzionali"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -549,7 +549,7 @@ theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
 theme_override_fonts/normal_font = ExtResource("3_6mfkc")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "Movimento: vettori diagonali"
+text = "Movimento: vettori direzionali"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -569,9 +569,9 @@ metadata/_edit_lock_ = true
 
 [node name="Directions_Color" type="ColorRect" parent="Info/Masks/Movements/Settings_Gradients" unique_id=653696508]
 layout_mode = 0
-offset_left = 587.0
+offset_left = 576.0
 offset_top = 148.0
-offset_right = 774.0
+offset_right = 786.0
 offset_bottom = 182.0
 color = Color(0.4392157, 0.79607844, 0.0627451, 0.5019608)
 metadata/_edit_lock_ = true
@@ -767,7 +767,6 @@ offset_left = 435.0
 offset_top = 435.0
 offset_right = 525.0
 offset_bottom = 525.0
-metadata/_edit_lock_ = true
 
 [node name="Alarm" type="AudioStreamPlayer" parent="." unique_id=863274101]
 volume_db = -20.0
