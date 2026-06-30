@@ -118,117 +118,6 @@ shader_parameter/blur_min = 2
 shader_parameter/blur_max = 8
 shader_parameter/blur_strength = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mbax"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_1y105"]
-resource_name = "Final_Blink"
-length = 0.5333366944823414
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Message:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [1.0, 0.998]
-}
-
-[sub_resource type="Animation" id="Animation_qkdav"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Message:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../../Disconnection:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../Disconnection:volume_db")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-30.0]
-}
-
-[sub_resource type="Animation" id="Animation_f5cpg"]
-resource_name = "Writing"
-length = 13.866670723203196
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Message:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.13333328, 0.1666666, 0.83333325, 0.8666667, 1.2999998, 2.3666663, 3.166667, 3.2000003, 3.7333336, 3.766667, 4.133334, 4.166667, 4.366667, 4.3999996, 4.9333334, 4.9666667, 5.4333334, 5.466667, 5.8, 5.8333335, 7.1000004, 7.1333337, 8.166667, 8.200001, 8.4, 8.433333, 9.266667, 9.3, 9.533334, 9.566668, 9.7, 9.733334, 10.000001, 10.033334, 11.200001, 11.233334, 12.000001, 12.033334, 12.500001, 12.533334, 13.833334, 13.866668),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.055, 0.055, 0.106, 0.106, 0.113, 0.113, 0.16, 0.16, 0.22, 0.22, 0.295, 0.295, 0.374, 0.374, 0.415, 0.415, 0.437, 0.437, 0.465, 0.465, 0.499, 0.499, 0.566, 0.566, 0.594, 0.594, 0.661, 0.661, 0.717, 0.717, 0.768, 0.768, 0.813, 0.813, 0.841, 0.841, 0.88, 0.88, 0.914, 0.914, 1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../../Disconnection:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033333335),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../Disconnection:volume_db")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-30.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1y105"]
-_data = {
-&"Final_Blink": SubResource("Animation_1y105"),
-&"RESET": SubResource("Animation_qkdav"),
-&"Writing": SubResource("Animation_f5cpg")
-}
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sf4qo"]
 content_margin_left = 6.0
 content_margin_top = 6.0
@@ -381,6 +270,117 @@ tracks/0/use_blend = true
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4jeej"]
 _data = {
 &"Glitchy_Sound": SubResource("Animation_chp44")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mbax"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_1y105"]
+resource_name = "Final_Blink"
+length = 0.5333366944823414
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Message:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1.0, 0.998]
+}
+
+[sub_resource type="Animation" id="Animation_qkdav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Message:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Disconnection:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Disconnection:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-30.0]
+}
+
+[sub_resource type="Animation" id="Animation_f5cpg"]
+resource_name = "Writing"
+length = 13.866670723203196
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Message:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333328, 0.1666666, 0.83333325, 0.8666667, 1.2999998, 2.3666663, 3.166667, 3.2000003, 3.7333336, 3.766667, 4.133334, 4.166667, 4.366667, 4.3999996, 4.9333334, 4.9666667, 5.4333334, 5.466667, 5.8, 5.8333335, 7.1000004, 7.1333337, 8.166667, 8.200001, 8.4, 8.433333, 9.266667, 9.3, 9.533334, 9.566668, 9.7, 9.733334, 10.000001, 10.033334, 11.200001, 11.233334, 12.000001, 12.033334, 12.500001, 12.533334, 13.833334, 13.866668),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.055, 0.055, 0.106, 0.106, 0.113, 0.113, 0.16, 0.16, 0.22, 0.22, 0.295, 0.295, 0.374, 0.374, 0.415, 0.415, 0.437, 0.437, 0.465, 0.465, 0.499, 0.499, 0.566, 0.566, 0.594, 0.594, 0.661, 0.661, 0.717, 0.717, 0.768, 0.768, 0.813, 0.813, 0.841, 0.841, 0.88, 0.88, 0.914, 0.914, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Disconnection:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Disconnection:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-30.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1y105"]
+_data = {
+&"Final_Blink": SubResource("Animation_1y105"),
+&"RESET": SubResource("Animation_qkdav"),
+&"Writing": SubResource("Animation_f5cpg")
 }
 
 [sub_resource type="Animation" id="Animation_07ll5"]
@@ -1146,6 +1146,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
+[node name="Portraits" parent="Frames" unique_id=461730405 instance=ExtResource("16_g5vlg")]
+visible = false
+offset_left = 240.0
+offset_top = 135.0
+offset_right = 240.0
+offset_bottom = 135.0
+
 [node name="Black_Frames" type="Control" parent="Frames" unique_id=1686618486]
 layout_mode = 3
 anchors_preset = 0
@@ -1172,6 +1179,64 @@ anchors_preset = 0
 offset_right = 960.0
 offset_bottom = 540.0
 metadata/_edit_lock_ = true
+
+[node name="Info_Retry" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=1218435428]
+visible = false
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 540.0
+metadata/_edit_lock_ = true
+
+[node name="Message" type="RichTextLabel" parent="Frames/Info_Win_Lose_Overlay/Info_Retry" unique_id=1996716773]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -289.0
+offset_top = -60.0
+offset_right = 289.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("7_qkdav")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_sf4qo")
+bbcode_enabled = true
+text = "[color=#cb5030]A[/color] p€r [color=#70cb10]u[/color]n@ nµovà [color=#cb5030]u[color=#70cb10]mi[/color]l!@zi0ne[/color]… € pe® !l m[color=#cb5030]io d[/color][color=#70cb10]ivèrt!m€nto[/color]."
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Glitches" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=1057999679]
+anchors_preset = 0
+offset_right = 960.0
+offset_bottom = 540.0
+metadata/_edit_lock_ = true
+
+[node name="Shader" type="ColorRect" parent="Frames/Info_Win_Lose_Overlay/Glitches" unique_id=687197275]
+material = SubResource("ShaderMaterial_fe2l5")
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 540.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Glitch_Sound" type="AudioStreamPlayer" parent="Frames/Info_Win_Lose_Overlay/Glitches" unique_id=243452642]
+volume_db = -15.0
+bus = &"FX_DRY"
+
+[node name="Sound_Animation" type="AnimationPlayer" parent="Frames/Info_Win_Lose_Overlay/Glitches" unique_id=1693356571]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_4jeej")
 
 [node name="Win" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=2073683163]
 visible = false
@@ -1237,65 +1302,6 @@ metadata/_edit_lock_ = true
 [node name="Animation_Text" type="AnimationPlayer" parent="Frames/Info_Win_Lose_Overlay/Win" unique_id=1620662067]
 libraries/ = SubResource("AnimationLibrary_1y105")
 
-[node name="Info_Retry" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=1218435428]
-visible = false
-anchors_preset = 0
-offset_right = 960.0
-offset_bottom = 540.0
-metadata/_edit_lock_ = true
-
-[node name="Message" type="RichTextLabel" parent="Frames/Info_Win_Lose_Overlay/Info_Retry" unique_id=1996716773]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -289.0
-offset_top = -60.0
-offset_right = 289.0
-offset_bottom = -29.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 0
-theme_override_constants/outline_size = 6
-theme_override_fonts/normal_font = ExtResource("7_qkdav")
-theme_override_font_sizes/normal_font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_sf4qo")
-bbcode_enabled = true
-text = "[color=#cb5030]A[/color] p€r [color=#70cb10]u[/color]n@ nµovà [color=#cb5030]u[color=#70cb10]mi[/color]l!@zi0ne[/color]… € pe® !l m[color=#cb5030]io d[/color][color=#70cb10]ivèrt!m€nto[/color]."
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="Glitches" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=1057999679]
-visible = false
-anchors_preset = 0
-offset_right = 960.0
-offset_bottom = 540.0
-metadata/_edit_lock_ = true
-
-[node name="Shader" type="ColorRect" parent="Frames/Info_Win_Lose_Overlay/Glitches" unique_id=687197275]
-material = SubResource("ShaderMaterial_fe2l5")
-layout_mode = 0
-offset_right = 960.0
-offset_bottom = 540.0
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[node name="Glitch_Sound" type="AudioStreamPlayer" parent="Frames/Info_Win_Lose_Overlay/Glitches" unique_id=243452642]
-volume_db = -15.0
-bus = &"FX_DRY"
-
-[node name="Sound_Animation" type="AnimationPlayer" parent="Frames/Info_Win_Lose_Overlay/Glitches" unique_id=1693356571]
-root_node = NodePath("../..")
-libraries/ = SubResource("AnimationLibrary_4jeej")
-
 [node name="Lose" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=1658104479]
 visible = false
 layout_mode = 1
@@ -1321,13 +1327,6 @@ metadata/_edit_lock_ = true
 [node name="Animation_Blink" type="AnimationPlayer" parent="Frames/Info_Win_Lose_Overlay/Lose" unique_id=634202110]
 libraries/ = SubResource("AnimationLibrary_5pmmo")
 autoplay = &"Blink"
-
-[node name="Portraits" parent="Frames" unique_id=461730405 instance=ExtResource("16_g5vlg")]
-visible = false
-offset_left = 240.0
-offset_top = 135.0
-offset_right = 240.0
-offset_bottom = 135.0
 
 [node name="Quit_Button" parent="Frames" unique_id=1295710875 instance=ExtResource("17_1luj4")]
 visible = false
