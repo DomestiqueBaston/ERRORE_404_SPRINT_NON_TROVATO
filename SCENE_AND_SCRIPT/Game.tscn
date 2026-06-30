@@ -1319,7 +1319,7 @@ metadata/_edit_lock_ = true
 
 [node name="BSOD_" type="Sprite2D" parent="Frames/Info_Win_Lose_Overlay/Lose" unique_id=2075590481]
 visible = false
-position = Vector2(0, 462)
+position = Vector2(0, 452)
 texture = ExtResource("10_hihx7")
 centered = false
 metadata/_edit_lock_ = true
