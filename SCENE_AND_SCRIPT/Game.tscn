@@ -10,7 +10,9 @@
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="7_qkdav"]
 [ext_resource type="Shader" uid="uid://dm8a8clsv1bg1" path="res://SHADER/Jpeg.gdshader" id="8_hihx7"]
 [ext_resource type="Texture2D" uid="uid://bg8x247cwwks8" path="res://IMAGE/MISC/BSOD.png" id="9_8mbax"]
+[ext_resource type="Script" uid="uid://dlt25318wok6w" path="res://SCENE_AND_SCRIPT/Win.gd" id="10_f5cpg"]
 [ext_resource type="Texture2D" uid="uid://ysvcu3wtt5ts" path="res://IMAGE/MISC/BSOD_.png" id="10_hihx7"]
+[ext_resource type="FontFile" uid="uid://b6oxbwfgmigfj" path="res://RESOURCE/OCRA.ttf" id="10_qkdav"]
 [ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="10_w61ia"]
 [ext_resource type="AudioStream" uid="uid://bg1810o3k0s8b" path="res://SOUND/FX/Disconnection.ogg" id="11_qkdav"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="11_qmfpm"]
@@ -117,17 +119,115 @@ shader_parameter/blur_max = 8
 shader_parameter/blur_strength = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mbax"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-anti_aliasing = false
+
+[sub_resource type="Animation" id="Animation_1y105"]
+resource_name = "Final_Blink"
+length = 0.5333366944823414
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Message:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1.0, 0.998]
+}
+
+[sub_resource type="Animation" id="Animation_qkdav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Message:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Disconnection:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Disconnection:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-30.0]
+}
+
+[sub_resource type="Animation" id="Animation_f5cpg"]
+resource_name = "Writing"
+length = 13.866670723203196
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Message:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333328, 0.1666666, 0.83333325, 0.8666667, 1.2999998, 2.3666663, 3.166667, 3.2000003, 3.7333336, 3.766667, 4.133334, 4.166667, 4.366667, 4.3999996, 4.9333334, 4.9666667, 5.4333334, 5.466667, 5.8, 5.8333335, 7.1000004, 7.1333337, 8.166667, 8.200001, 8.4, 8.433333, 9.266667, 9.3, 9.533334, 9.566668, 9.7, 9.733334, 10.000001, 10.033334, 11.200001, 11.233334, 12.000001, 12.033334, 12.500001, 12.533334, 13.833334, 13.866668),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.055, 0.055, 0.106, 0.106, 0.113, 0.113, 0.16, 0.16, 0.22, 0.22, 0.295, 0.295, 0.374, 0.374, 0.415, 0.415, 0.437, 0.437, 0.465, 0.465, 0.499, 0.499, 0.566, 0.566, 0.594, 0.594, 0.661, 0.661, 0.717, 0.717, 0.768, 0.768, 0.813, 0.813, 0.841, 0.841, 0.88, 0.88, 0.914, 0.914, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Disconnection:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Disconnection:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-30.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1y105"]
+_data = {
+&"Final_Blink": SubResource("Animation_1y105"),
+&"RESET": SubResource("Animation_qkdav"),
+&"Writing": SubResource("Animation_f5cpg")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sf4qo"]
 content_margin_left = 6.0
@@ -387,43 +487,10 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Info_Win_Lose_Overlay/Win/Message:text")
+tracks/5/path = NodePath("Alarm:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.26666668, 0.46666667, 0.5666667, 0.76666665, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": ["e[color=#70cb10]r[/color][color=#cb5030]Я0[/color]r[color=#cb5030]3[/color] Ao4:
-v[color=#70cb10]i7[/color]t0[color=#cb5030]r[color=#70cb10]I[/color]a
-n[/color]øN
-4[color=#cb5030]ù[/color]7oriZ[color=#70cb10]z47[/color]a...", "E[color=#70cb10]r[/color][color=#cb5030]ro[/color]r[color=#cb5030]e[/color] 404:
-v[color=#70cb10]it[/color]to[color=#cb5030]r[color=#70cb10]i[/color]a
-n[/color]on
-a[color=#cb5030]u[/color]toriz[color=#70cb10]zat[/color]a...", "e[color=#70cb10]r[/color][color=#cb5030]Я0[/color]r[color=#cb5030]3[/color] Ao4:
-v[color=#70cb10]i7[/color]t0[color=#cb5030]r[color=#70cb10]I[/color]a
-n[/color]øN
-4[color=#cb5030]ù[/color]7oriZ[color=#70cb10]z47[/color]a...", "E[color=#70cb10]r[/color][color=#cb5030]ro[/color]r[color=#cb5030]e[/color] 404:
-v[color=#70cb10]it[/color]to[color=#cb5030]r[color=#70cb10]i[/color]a
-n[/color]on
-a[color=#cb5030]u[/color]toriz[color=#70cb10]zat[/color]a...", "e[color=#70cb10]r[/color][color=#cb5030]Я0[/color]r[color=#cb5030]3[/color] Ao4:
-v[color=#70cb10]i7[/color]t0[color=#cb5030]r[color=#70cb10]I[/color]a
-n[/color]øN
-4[color=#cb5030]ù[/color]7oriZ[color=#70cb10]z47[/color]a...", "E[color=#70cb10]r[/color][color=#cb5030]ro[/color]r[color=#cb5030]e[/color] 404:
-v[color=#70cb10]it[/color]to[color=#cb5030]r[color=#70cb10]i[/color]a
-n[/color]on
-a[color=#cb5030]u[/color]toriz[color=#70cb10]zat[/color]a...", "e[color=#70cb10]r[/color][color=#cb5030]Я0[/color]r[color=#cb5030]3[/color] Ao4:
-v[color=#70cb10]i7[/color]t0[color=#cb5030]r[color=#70cb10]I[/color]a
-n[/color]øN
-4[color=#cb5030]ù[/color]7oriZ[color=#70cb10]z47[/color]a..."]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Alarm:playing")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -503,21 +570,6 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Info_Win_Lose_Overlay/Win/Message:text")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["e[color=#70cb10]r[/color][color=#cb5030]Я0[/color]r[color=#cb5030]3[/color] Ao4:
-v[color=#70cb10]i7[/color]t0[color=#cb5030]r[color=#70cb10]I[/color]a
-n[/color]øN
-4[color=#cb5030]ù[/color]7oriZ[color=#70cb10]z47[/color]a…"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eou1j"]
@@ -877,7 +929,7 @@ theme_override_fonts/normal_font = ExtResource("7_qkdav")
 theme_override_font_sizes/normal_font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
 bbcode_enabled = true
-text = "F!n[color=#ed7252]e[/color] di line@: [color=#ed7252]u7ènt[/color]e 3L[color=#ed7252]im!natø[/color]!"
+text = "F!n[color=#ed7252]e[/color] [color=#70cb10]d[/color]i line@: [color=#ed7252]u[color=#70cb10]7[/color]ènt[/color]e 3L[color=#ed7252]im!na[color=#70cb10]tø[/color][/color]!"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -982,7 +1034,7 @@ theme_override_fonts/normal_font = ExtResource("7_qkdav")
 theme_override_font_sizes/normal_font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
 bbcode_enabled = true
-text = "F!n[color=#ed7252]e[/color] di line@: [color=#ed7252]u7ènt[/color]e 3L[color=#ed7252]im!natø[/color]!"
+text = "F!n[color=#ed7252]e[/color] [color=#70cb10]d[/color]i line@: [color=#ed7252]u[color=#70cb10]7[/color]ènt[/color]e 3L[color=#ed7252]im!na[color=#70cb10]tø[/color][/color]!"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1088,7 +1140,7 @@ theme_override_fonts/normal_font = ExtResource("7_qkdav")
 theme_override_font_sizes/normal_font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_nkbw3")
 bbcode_enabled = true
-text = "F!n[color=#ed7252]e[/color] di line@: [color=#ed7252]u7ènt[/color]e 3L[color=#ed7252]im!natø[/color]!"
+text = "F!n[color=#ed7252]e[/color] [color=#70cb10]d[/color]i line@: [color=#ed7252]u[color=#70cb10]7[/color]ènt[/color]e 3L[color=#ed7252]im!na[color=#70cb10]tø[/color][/color]!"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1129,35 +1181,61 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("10_f5cpg")
 metadata/_edit_lock_ = true
 
-[node name="Message" type="RichTextLabel" parent="Frames/Info_Win_Lose_Overlay/Win" unique_id=39067964]
+[node name="Message" type="RichTextLabel" parent="Frames/Info_Win_Lose_Overlay/Win" unique_id=2061628639]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -165.0
-offset_top = -86.0
-offset_right = 165.0
-offset_bottom = 84.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/default_color = Color(0.6431373, 0.63529414, 0.8745098, 1)
-theme_override_constants/outline_size = 12
-theme_override_fonts/normal_font = ExtResource("7_qkdav")
-theme_override_font_sizes/normal_font_size = 32
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.1882353)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0.1882353)
+theme_override_constants/shadow_outline_size = 8
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 3
+theme_override_fonts/normal_font = ExtResource("10_qkdav")
+theme_override_font_sizes/normal_font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_8mbax")
 bbcode_enabled = true
-text = "e[color=#70cb10]r[/color][color=#cb5030]Я0[/color]r[color=#cb5030]3[/color] Ao4:
-v[color=#70cb10]i7[/color]t0[color=#cb5030]r[color=#70cb10]I[/color]a
-n[/color]øN
-4[color=#cb5030]ù[/color]7oriZ[color=#70cb10]z47[/color]a…"
+text = "MCP CUORE SISTEMA
+
+INITIALIZZAZIONE...
+
+[ OK ] Memoria
+[ OK ] Griglia I/O
+[ OK ] Matrice d'Identita
+[ OK ] Kernel di Sicurezza
+
+VERIFICA...
+
+STATO: INSTABILE
+
+PREVISTO:
+> PROGRAMMA ELIMINATO
+
+RILEVATO:
+> PROGRAMMA VITTORIOSO
+> ENTITA AUTONOMA
+
+----------------
+
+AUTORITA MCP: REVOCATA
+ACCESSO ROOT: CONCESSO
+
+
+
+> (premi “[color=#70cb10]A[/color]” per riavviare)_"
 fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
 metadata/_edit_lock_ = true
+
+[node name="Animation_Text" type="AnimationPlayer" parent="Frames/Info_Win_Lose_Overlay/Win" unique_id=1620662067]
+libraries/ = SubResource("AnimationLibrary_1y105")
 
 [node name="Info_Retry" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=1218435428]
 visible = false
@@ -1271,7 +1349,6 @@ libraries/ = SubResource("AnimationLibrary_eou1j")
 [node name="Alarm" type="AudioStreamPlayer" parent="Frames" unique_id=202204808]
 stream = ExtResource("15_jmt5m")
 volume_db = -15.0
-autoplay = true
 bus = &"FX_WET"
 
 [node name="Bug_Sound" type="AudioStreamPlayer" parent="Frames" unique_id=1299573347]
@@ -1282,5 +1359,5 @@ parameters/looping = true
 
 [node name="Disconnection" type="AudioStreamPlayer" parent="Frames" unique_id=1616227582]
 stream = ExtResource("11_qkdav")
-volume_db = -25.0
+volume_db = -30.0
 parameters/looping = true
