@@ -45,22 +45,6 @@ func _process(delta: float) -> void:
 		start_falling()
 		return
 
-	# Reset total avec Échap
-	if Input.is_action_just_pressed("ui_tab_button"):
-		last_direction = Vector2.ZERO
-		jump_direction = Vector2.ZERO
-		slide_direction = Vector2.ZERO
-		direction = Vector2.ZERO
-		if last_non_zero_direction == Vector2.ZERO:
-			animation_player.play("Intro")
-		elif last_non_zero_direction.y < 0:
-			animation_player.play("Start_000")
-			sprite.scale.x = 1.0 if last_non_zero_direction.x < 0 else -1.0
-		else:
-			animation_player.play("Start_180")
-			sprite.scale.x = -1.0 if last_non_zero_direction.x < 0 else 1.0
-		return
-
 	# SAUT (A)
 	if Input.is_action_just_pressed("ui_a_button") and not is_jumping and not is_sliding:
 		_play_jump_animation()
