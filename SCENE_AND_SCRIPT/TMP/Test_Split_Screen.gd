@@ -29,12 +29,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 			if once:
 				Sounds.stop_intro()
-				Sounds.play_bang()
 				Sounds.play_music()
 				once = false
 
 			break
 
-	# Redémarrage de la scène
+	# Redémarrage de la scène (pour test)
 	if can_restart and event.is_action_pressed("ui_tab_button"):
+		Sounds.stop_music()
+		Sounds.play_bang()
+		Sounds.play_intro()
 		get_tree().reload_current_scene()

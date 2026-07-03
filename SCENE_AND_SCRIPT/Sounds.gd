@@ -30,6 +30,9 @@ func play_bang():
 func play_music():
 	$Music/Music.play()
 
+func stop_music():
+	$Music/Music.stop()
+
 func play_intro():
 	$Music/Intro.play()
 
