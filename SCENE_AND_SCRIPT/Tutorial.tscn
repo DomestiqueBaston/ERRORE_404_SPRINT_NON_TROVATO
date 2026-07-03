@@ -53,7 +53,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Masks/Talent/Settings_Gradients/A_Color:color")
+tracks/1/path = NodePath("Masks/Talent/Settings_Gradients/X_Color:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -113,6 +113,18 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0.06666667)
 }
 tracks/5/use_blend = true
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Masks/Talent/Settings_Gradients/Y_Color:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.4666667, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.79607844, 0.3137255, 0.1882353, 0.627451), Color(0.79607844, 0.3137255, 0.1882353, 0.627451), Color(0.8, 0.31360003, 0.19200002, 0), Color(0.8, 0.31360003, 0.19200002, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_ckudt"]
 length = 0.001
@@ -167,10 +179,22 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Masks/Talent/Settings_Gradients/A_Color:color")
+tracks/4/path = NodePath("Masks/Talent/Settings_Gradients/X_Color:color")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.79607844, 0.3137255, 0.1882353, 0.627451)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Masks/Talent/Settings_Gradients/Y_Color:color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -428,7 +452,7 @@ theme_override_fonts/normal_font = ExtResource("3_6mfkc")
 theme_override_font_sizes/normal_font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ua4dd")
 bbcode_enabled = true
-text = "Modulo: attivabile con [X]"
+text = "Modulo attivabile: [X] / [Y]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -456,7 +480,7 @@ theme_override_fonts/normal_font = ExtResource("3_6mfkc")
 theme_override_font_sizes/normal_font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_yxi8t")
 bbcode_enabled = true
-text = "Esegui Salto/Scivolo: pulsanti [A]&[B]"
+text = "Esegui Salto / Scivolo: [A] & [B]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -569,7 +593,7 @@ metadata/_edit_lock_ = true
 
 [node name="Directions_Color" type="ColorRect" parent="Info/Masks/Movements/Settings_Gradients" unique_id=653696508]
 layout_mode = 0
-offset_left = 576.0
+offset_left = 424.0
 offset_top = 148.0
 offset_right = 786.0
 offset_bottom = 182.0
@@ -594,7 +618,7 @@ theme_override_fonts/normal_font = ExtResource("3_6mfkc")
 theme_override_font_sizes/normal_font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ckudt")
 bbcode_enabled = true
-text = "Modulo: attivabile con [X]"
+text = "Modulo attivabile: [X] / [Y]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -605,16 +629,25 @@ metadata/_edit_lock_ = true
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
 layout_mode = 0
 offset_left = -104.0
-offset_top = -280.0
-offset_right = -104.0
-offset_bottom = -280.0
+offset_top = -279.0
+offset_right = 856.0
+offset_bottom = 261.0
 mouse_filter = 2
 texture = ExtResource("7_2ampn")
 metadata/_edit_lock_ = true
 
-[node name="A_Color" type="ColorRect" parent="Info/Masks/Talent/Settings_Gradients" unique_id=747035452]
+[node name="X_Color" type="ColorRect" parent="Info/Masks/Talent/Settings_Gradients" unique_id=747035452]
 layout_mode = 0
-offset_left = 687.0
+offset_left = 596.0
+offset_top = 280.0
+offset_right = 648.0
+offset_bottom = 323.0
+color = Color(0.79607844, 0.3137255, 0.1882353, 0.627451)
+metadata/_edit_lock_ = true
+
+[node name="Y_Color" type="ColorRect" parent="Info/Masks/Talent/Settings_Gradients" unique_id=1033791928]
+layout_mode = 0
+offset_left = 688.0
 offset_top = 280.0
 offset_right = 740.0
 offset_bottom = 323.0
@@ -638,7 +671,7 @@ theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
 theme_override_fonts/normal_font = ExtResource("3_6mfkc")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "Esegui Salto/Scivolo: pulsanti [A]&[B]"
+text = "Esegui Salto / Scivolo: [A] & [B]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -658,18 +691,18 @@ metadata/_edit_lock_ = true
 
 [node name="Button_A_Color" type="ColorRect" parent="Info/Masks/Jump_Slide/Settings_Gradients" unique_id=1563603495]
 layout_mode = 0
-offset_left = 733.5
+offset_left = 645.5
 offset_top = 282.0
-offset_right = 786.5
+offset_right = 699.5
 offset_bottom = 320.0
 color = Color(0.4392157, 0.79607844, 0.0627451, 0.5019608)
 metadata/_edit_lock_ = true
 
 [node name="Button_B_Color" type="ColorRect" parent="Info/Masks/Jump_Slide/Settings_Gradients" unique_id=1571331358]
 layout_mode = 0
-offset_left = 821.5
+offset_left = 755.5
 offset_top = 282.0
-offset_right = 874.5
+offset_right = 808.5
 offset_bottom = 320.0
 color = Color(0.4392157, 0.79607844, 0.0627451, 0.5019608)
 metadata/_edit_lock_ = true
@@ -703,9 +736,9 @@ metadata/_edit_lock_ = true
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
 layout_mode = 0
 offset_left = -104.0
-offset_top = -145.0
+offset_top = -142.0
 offset_right = 856.0
-offset_bottom = 395.0
+offset_bottom = 398.0
 mouse_filter = 2
 texture = ExtResource("7_2ampn")
 metadata/_edit_lock_ = true
@@ -713,9 +746,9 @@ metadata/_edit_lock_ = true
 [node name="Button_Color" type="ColorRect" parent="Info/Masks/Quit/Settings_Gradients" unique_id=164421678]
 layout_mode = 0
 offset_left = 789.5
-offset_top = 149.0
+offset_top = 146.0
 offset_right = 880.5
-offset_bottom = 188.0
+offset_bottom = 185.0
 color = Color(0.79607844, 0.3137255, 0.1882353, 0.627451)
 metadata/_edit_lock_ = true
 

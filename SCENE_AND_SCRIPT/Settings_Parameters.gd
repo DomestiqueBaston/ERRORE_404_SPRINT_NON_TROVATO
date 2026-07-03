@@ -157,6 +157,8 @@ func adjust_slider_value(direction:int):
 			$Directions/Cardinals.visible = !$Directions/Cardinals.visible
 			$Masks/Diagonals.visible = !$Masks/Diagonals.visible
 			$Masks/Cardinals.visible = !$Masks/Cardinals.visible
+			$Masks/OK/OK_Green_Color.visible = !$Masks/OK/OK_Green_Color.visible
+			$Masks/OK/OK_Red_Color.visible = !$Masks/OK/OK_Red_Color.visible
 		1,2,3,4:
 			var slider = get_selected_hslider()
 			if slider == null:
