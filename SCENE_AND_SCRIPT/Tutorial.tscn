@@ -89,7 +89,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Masks/Quit/Settings_Gradients/Button_Color:color")
+tracks/4/path = NodePath("Masks/Quit/Settings_Gradients/Quit_Button_Color:color")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -125,6 +125,30 @@ tracks/6/keys = {
 "update": 0,
 "values": [Color(0.79607844, 0.3137255, 0.1882353, 0.627451), Color(0.79607844, 0.3137255, 0.1882353, 0.627451), Color(0.8, 0.31360003, 0.19200002, 0), Color(0.8, 0.31360003, 0.19200002, 0)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Quit:text")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": ["Uscita: pressione prolungata su [ | };", "Uscita: pressione prolungata su [ / };", "Uscita: pressione prolungata su [ —  };", "Uscita: pressione prolungata su [ \\ };", "Uscita: pressione prolungata su [ | };"]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Masks/Quit:text")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": ["Uscita: pressione prolungata su [ | };", "Uscita: pressione prolungata su [ / };", "Uscita: pressione prolungata su [ —  };", "Uscita: pressione prolungata su [ \\ };", "Uscita: pressione prolungata su [ | };"]
+}
 
 [sub_resource type="Animation" id="Animation_ckudt"]
 length = 0.001
@@ -143,7 +167,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Masks/Quit/Settings_Gradients/Button_Color:color")
+tracks/1/path = NodePath("Masks/Quit/Settings_Gradients/Quit_Button_Color:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -199,6 +223,30 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.79607844, 0.3137255, 0.1882353, 0.627451)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Quit:text")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Uscita: pressione prolungata su [_1$};"]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Masks/Quit:text")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Uscita: pressione prolungata su [_1$};"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fhuq5"]
@@ -492,9 +540,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -480.0
+offset_left = -376.5
 offset_top = 361.0
-offset_right = 480.0
+offset_right = 437.0
 offset_bottom = 408.0
 grow_horizontal = 2
 pivot_offset = Vector2(527, 222)
@@ -512,7 +560,6 @@ text = "Uscita: pressione prolungata su [_1$};"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
-horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Masks" type="Control" parent="Info" unique_id=1994543020]
@@ -713,9 +760,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -389.5
+offset_left = -376.5
 offset_top = 361.0
-offset_right = 387.5
+offset_right = 437.0
 offset_bottom = 408.0
 grow_horizontal = 2
 pivot_offset = Vector2(527, 222)
@@ -729,7 +776,6 @@ text = "Uscita: pressione prolungata su [_1$};"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
-horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Settings_Gradients" type="TextureRect" parent="Info/Masks/Quit" unique_id=163295015]
@@ -743,9 +789,9 @@ mouse_filter = 2
 texture = ExtResource("7_2ampn")
 metadata/_edit_lock_ = true
 
-[node name="Button_Color" type="ColorRect" parent="Info/Masks/Quit/Settings_Gradients" unique_id=164421678]
+[node name="Quit_Button_Color" type="ColorRect" parent="Info/Masks/Quit/Settings_Gradients" unique_id=164421678]
 layout_mode = 0
-offset_left = 789.5
+offset_left = 781.5
 offset_top = 146.0
 offset_right = 880.5
 offset_bottom = 185.0
