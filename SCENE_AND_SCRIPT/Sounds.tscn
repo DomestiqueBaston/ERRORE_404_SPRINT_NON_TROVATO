@@ -14,15 +14,8 @@
 [ext_resource type="AudioStream" uid="uid://bes5a835nqime" path="res://SOUND/FX/Woosh.ogg" id="9_20up4"]
 [ext_resource type="AudioStream" uid="uid://bom677o0xms5i" path="res://SOUND/FX/Disappearing.ogg" id="9_e5knn"]
 [ext_resource type="AudioStream" uid="uid://vldsf8ak3y4t" path="res://SOUND/FX/Alarm.ogg" id="10_uopt1"]
-[ext_resource type="AudioStream" uid="uid://mkvmu7rmdx3t" path="res://SOUND/FX/Clang_Start_Cell.ogg" id="11_dip6j"]
-[ext_resource type="AudioStream" uid="uid://ccoauvddaj8m" path="res://SOUND/FX/Up_Down_Cell.ogg" id="12_liv3w"]
-[ext_resource type="AudioStream" uid="uid://dek1co7fuef8g" path="res://SOUND/FX/Clang_Stop_Cell.ogg" id="13_yt3q1"]
 [ext_resource type="AudioStream" uid="uid://o0i0pyhy8xon" path="res://SOUND/FX/Glitchy_Sound_E.ogg" id="14_jeqsl"]
-[ext_resource type="AudioStream" uid="uid://bifaoucknr7f5" path="res://SOUND/FX/Sliding_Cell.ogg" id="14_liv3w"]
 [ext_resource type="AudioStream" uid="uid://1u5cnl60ptxf" path="res://SOUND/FX/Glitchy_Sound_F.ogg" id="15_aehec"]
-[ext_resource type="AudioStream" uid="uid://3b3j7ke38t82" path="res://SOUND/FX/Disappearing_Light_Wall.ogg" id="15_sbfjp"]
-[ext_resource type="AudioStream" uid="uid://dttkq5rw4spvt" path="res://SOUND/FX/Wall_Hum.ogg" id="15_yt3q1"]
-[ext_resource type="AudioStream" uid="uid://dhqe43polir8c" path="res://SOUND/FX/Appearing_Light_Wall.ogg" id="16_ke38t"]
 
 [sub_resource type="Animation" id="Animation_rwgee"]
 resource_name = "Pitch_Down"
@@ -37,7 +30,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(0.333, 1),
 "update": 0,
-"values": [1.0, 0.06999999999999999]
+"values": [1.0, 0.06]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -107,214 +100,6 @@ tracks/2/keys = {
 _data = {
 &"Pitch_Down": SubResource("Animation_rwgee"),
 &"RESET": SubResource("Animation_qatb8")
-}
-
-[sub_resource type="Animation" id="Animation_qkut6"]
-resource_name = "High_Sliding_Beginning"
-length = 0.76666665
-tracks/0/type = "audio"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cell_Slide_Sounds/Start_Cell")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("11_dip6j")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/0/use_blend = true
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Cell_Slide_Sounds/Up_Down_Cell")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 2.0713782,
-"start_offset": 0.0,
-"stream": ExtResource("12_liv3w")
-}],
-"times": PackedFloat32Array(0.1)
-}
-tracks/1/use_blend = true
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Cell_Slide_Sounds/Stop_Cell")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("13_yt3q1")
-}],
-"times": PackedFloat32Array(0.6333333)
-}
-tracks/2/use_blend = true
-
-[sub_resource type="Animation" id="Animation_psu53"]
-resource_name = "High_Sliding_End"
-length = 1.0666667
-tracks/0/type = "audio"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cell_Slide_Sounds/Start_Cell")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("11_dip6j")
-}],
-"times": PackedFloat32Array(0.29999998)
-}
-tracks/0/use_blend = true
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Cell_Slide_Sounds/Up_Down_Cell")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 2.0713782,
-"start_offset": 0.0,
-"stream": ExtResource("12_liv3w")
-}],
-"times": PackedFloat32Array(0.4)
-}
-tracks/1/use_blend = true
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Cell_Slide_Sounds/Stop_Cell")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("13_yt3q1")
-}],
-"times": PackedFloat32Array(0.93333334)
-}
-tracks/2/use_blend = true
-
-[sub_resource type="Animation" id="Animation_e50o2"]
-resource_name = "Low_Sliding_Beginning"
-length = 0.76666665
-tracks/0/type = "audio"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cell_Slide_Sounds/Start_Cell")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("11_dip6j")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/0/use_blend = true
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Cell_Slide_Sounds/Up_Down_Cell")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 2.0713782,
-"start_offset": 0.0,
-"stream": ExtResource("12_liv3w")
-}],
-"times": PackedFloat32Array(0.1)
-}
-tracks/1/use_blend = true
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Cell_Slide_Sounds/Stop_Cell")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("13_yt3q1")
-}],
-"times": PackedFloat32Array(0.6333333)
-}
-tracks/2/use_blend = true
-
-[sub_resource type="Animation" id="Animation_ej7e8"]
-resource_name = "Low_Sliding_End"
-length = 1.0666667
-tracks/0/type = "audio"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cell_Slide_Sounds/Start_Cell")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("11_dip6j")
-}],
-"times": PackedFloat32Array(0.29999998)
-}
-tracks/0/use_blend = true
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Cell_Slide_Sounds/Up_Down_Cell")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 2.0713782,
-"start_offset": 0.0,
-"stream": ExtResource("12_liv3w")
-}],
-"times": PackedFloat32Array(0.4)
-}
-tracks/1/use_blend = true
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Cell_Slide_Sounds/Stop_Cell")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("13_yt3q1")
-}],
-"times": PackedFloat32Array(0.93333334)
-}
-tracks/2/use_blend = true
-
-[sub_resource type="Animation" id="Animation_mye8y"]
-length = 0.001
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7va83"]
-_data = {
-&"High_Sliding_Beginning": SubResource("Animation_qkut6"),
-&"High_Sliding_End": SubResource("Animation_psu53"),
-&"Low_Sliding_Beginning": SubResource("Animation_e50o2"),
-&"Low_Sliding_End": SubResource("Animation_ej7e8"),
-&"RESET": SubResource("Animation_mye8y")
 }
 
 [node name="Sounds" type="Node" unique_id=1926116312]
@@ -398,7 +183,7 @@ parameters/looping = true
 
 [node name="Pylon_Down_Falling" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=399303785]
 stream = ExtResource("15_aehec")
-volume_db = -12.5
+volume_db = -15.0
 bus = &"FX_WET"
 parameters/looping = true
 
@@ -406,46 +191,4 @@ parameters/looping = true
 stream = ExtResource("10_uopt1")
 pitch_scale = 2.0
 bus = &"FX_WET"
-parameters/looping = true
-
-[node name="Cell_Slide_Sounds" type="Node" parent="." unique_id=1388280018]
-
-[node name="Cell_Slide_Sound_Animations" type="AnimationPlayer" parent="Cell_Slide_Sounds" unique_id=341046235]
-root_node = NodePath("../..")
-libraries/ = SubResource("AnimationLibrary_7va83")
-
-[node name="Start_Cell" type="AudioStreamPlayer" parent="Cell_Slide_Sounds" unique_id=308062066]
-volume_db = 2.5
-bus = &"FX_WET"
-
-[node name="Stop_Cell" type="AudioStreamPlayer" parent="Cell_Slide_Sounds" unique_id=1889343789]
-volume_db = 5.0
-bus = &"FX_WET"
-
-[node name="Up_Down_Cell" type="AudioStreamPlayer" parent="Cell_Slide_Sounds" unique_id=179519665]
-volume_db = 5.0
-bus = &"FX_WET"
-
-[node name="Sliding_Cell" type="AudioStreamPlayer" parent="Cell_Slide_Sounds" unique_id=452550303]
-stream = ExtResource("14_liv3w")
-volume_db = 2.5
-bus = &"FX_WET"
-parameters/looping = true
-
-[node name="Light_Wall_Sounds" type="Node" parent="." unique_id=1810054260]
-
-[node name="Disappearing" type="AudioStreamPlayer" parent="Light_Wall_Sounds" unique_id=291701906]
-stream = ExtResource("15_sbfjp")
-volume_db = -5.0
-bus = &"FX_DRY"
-
-[node name="Appearing" type="AudioStreamPlayer" parent="Light_Wall_Sounds" unique_id=1388832222]
-stream = ExtResource("16_ke38t")
-volume_db = -5.0
-bus = &"FX_DRY"
-
-[node name="Wall_Hum" type="AudioStreamPlayer" parent="Light_Wall_Sounds" unique_id=519304884]
-stream = ExtResource("15_yt3q1")
-volume_db = -7.5
-bus = &"FX_DRY"
 parameters/looping = true

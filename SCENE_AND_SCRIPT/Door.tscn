@@ -301,13 +301,18 @@ libraries/ = SubResource("AnimationLibrary_yp78x")
 [node name="Animation_Door_On" type="AnimationPlayer" parent="." unique_id=102206761]
 libraries/ = SubResource("AnimationLibrary_jbtw0")
 
-[node name="Door_Sound" type="Node" parent="." unique_id=1045552022]
+[node name="Door_Sound" type="Node2D" parent="." unique_id=1759494700]
+metadata/_edit_lock_ = true
 
-[node name="Door_Hum" type="AudioStreamPlayer" parent="Door_Sound" unique_id=2074876252]
+[node name="Door_Hum" type="AudioStreamPlayer2D" parent="Door_Sound" unique_id=1716600636]
 stream = ExtResource("5_jbtw0")
 volume_db = -7.5
+max_distance = 750.0
 bus = &"FX_DRY"
 parameters/looping = true
+metadata/_edit_lock_ = true
 
-[node name="Door_On" type="AudioStreamPlayer" parent="Door_Sound" unique_id=2093460215]
+[node name="Door_On" type="AudioStreamPlayer2D" parent="Door_Sound" unique_id=1515377633]
+max_distance = 750.0
 bus = &"FX_WET"
+metadata/_edit_lock_ = true

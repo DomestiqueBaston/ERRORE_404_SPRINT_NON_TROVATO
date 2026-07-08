@@ -295,17 +295,24 @@ libraries/ = SubResource("AnimationLibrary_uma14")
 [node name="Animation_Cube_On_Off" type="AnimationPlayer" parent="." unique_id=253847085]
 libraries/ = SubResource("AnimationLibrary_1e78n")
 
-[node name="Cube_Sound" type="Node" parent="." unique_id=1414439794]
+[node name="Cube_Sound" type="Node2D" parent="." unique_id=1929927053]
+metadata/_edit_lock_ = true
 
-[node name="Cube_Hum" type="AudioStreamPlayer" parent="Cube_Sound" unique_id=994272503]
+[node name="Cube_Hum" type="AudioStreamPlayer2D" parent="Cube_Sound" unique_id=133109709]
 volume_db = -5.0
 autoplay = true
+max_distance = 750.0
 bus = &"FX_WET"
+metadata/_edit_lock_ = true
 
-[node name="Cube_On_Off" type="AudioStreamPlayer" parent="Cube_Sound" unique_id=1694479839]
+[node name="Cube_On_Off" type="AudioStreamPlayer2D" parent="Cube_Sound" unique_id=605006399]
+max_distance = 750.0
 bus = &"FX_WET"
+metadata/_edit_lock_ = true
 
-[node name="Grab_Cube" type="AudioStreamPlayer" parent="Cube_Sound" unique_id=1939369789]
+[node name="Grab_Cube" type="AudioStreamPlayer2D" parent="Cube_Sound" unique_id=1610521886]
 stream = ExtResource("9_oh6sb")
 volume_db = -12.5
+max_distance = 750.0
 bus = &"BONUS_MALUS"
+metadata/_edit_lock_ = true

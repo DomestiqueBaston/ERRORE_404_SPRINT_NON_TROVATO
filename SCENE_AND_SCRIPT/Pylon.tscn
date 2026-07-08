@@ -640,29 +640,42 @@ position = Vector2(0, -40)
 polygon = PackedVector2Array(0, -20, 118, 39, 118, 40, 0, 99, -118, 40, -118, 39)
 metadata/_edit_lock_ = true
 
-[node name="Sound" type="Node" parent="." unique_id=1390307832]
+[node name="Sound" type="Node2D" parent="." unique_id=864010110]
+metadata/_edit_lock_ = true
 
-[node name="Up_Pylon" type="AudioStreamPlayer" parent="Sound" unique_id=925476567]
+[node name="Up_Pylon" type="AudioStreamPlayer2D" parent="Sound" unique_id=1043399072]
 volume_db = 5.0
+max_distance = 750.0
 bus = &"FX_WET"
+metadata/_edit_lock_ = true
 
-[node name="Clang_Start" type="AudioStreamPlayer" parent="Sound" unique_id=1252192256]
+[node name="Clang_Start" type="AudioStreamPlayer2D" parent="Sound" unique_id=1901172242]
 volume_db = 5.0
+max_distance = 750.0
 bus = &"FX_WET"
+metadata/_edit_lock_ = true
 
-[node name="Vanishing_Pylon" type="AudioStreamPlayer" parent="Sound" unique_id=346554288]
+[node name="Vanishing_Pylon" type="AudioStreamPlayer2D" parent="Sound" unique_id=2079494201]
+max_distance = 750.0
 bus = &"FX_WET"
+metadata/_edit_lock_ = true
 
-[node name="Appearing_Pylon" type="AudioStreamPlayer" parent="Sound" unique_id=553174034]
+[node name="Appearing_Pylon" type="AudioStreamPlayer2D" parent="Sound" unique_id=671662810]
+max_distance = 750.0
 bus = &"FX_WET"
+metadata/_edit_lock_ = true
 
-[node name="Pylon_Boom" type="AudioStreamPlayer" parent="Sound" unique_id=130081305]
+[node name="Pylon_Boom" type="AudioStreamPlayer2D" parent="Sound" unique_id=519154961]
 volume_db = 10.0
+max_distance = 750.0
 bus = &"FX_WET"
+metadata/_edit_lock_ = true
 
-[node name="Starting_To_Fall_Down" type="AudioStreamPlayer" parent="Sound" unique_id=11329044]
+[node name="Starting_To_Fall_Down" type="AudioStreamPlayer2D" parent="Sound" unique_id=590108877]
 volume_db = -7.5
+max_distance = 750.0
 bus = &"FX_WET"
+metadata/_edit_lock_ = true
 
 [node name="Pylon_Animation" type="AnimationPlayer" parent="." unique_id=1911472662]
 root_node = NodePath("../Pylon")

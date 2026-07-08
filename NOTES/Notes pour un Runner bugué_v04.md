@@ -25,7 +25,7 @@ Errore 404: Sprint Non Trovato! (un jeu qui bugue)
 Un runner bugué :
 - Les bugs durent de 5’’ en difficulté 1 à 20’’ en difficulté 5.
 - Après chaque bug, on attend 10’’ avant d’avoir 1/5 chance d’en déclencher un nouveau.
-- Au lancement des bugs on joue le son Frames/Bug_Sound (dans Game.tscn) et on le coupe à la fin du bug. Pas d’intro/outro, effets directs !
+- Au lancement des bugs, on joue le son Frames/Bug_Sound (dans Game.tscn) et on le coupe à la fin du bug. Pas d’intro/outro, effets directs !
     1. L’image globale se décale dans la vue du joueur (la caméra se recentre sur le joueur) → Ça se fait : ✔
     2. La palette de couleurs change → ✔
     3. Image floue → Ça se fait : ✔
@@ -97,15 +97,16 @@ Notes de fabrication :
     • Position de caméra par rapport au root d’un concurrent tourné vers le haut à gauche : px = -360, py = -230.
     • Position de caméra par rapport au root d’un concurrent tourné vers le haut à droite : px = -120, py = -230.
 - Le mur tracé derrière un concurrent lorsqu’il se déplace est Light_Wall.tscn. À chaque entrée d’un concurrent sur une Cell ou virage, on commence le tracé d’un nouveau Light_Wall.tscn qui sera raccord avec le précédent. Lorsqu’un concurrent quitte une Cell ou fait un virage sur une Cell, on coupe le précédent Light_Wall.tscn et on en commence un autre raccord également. On ne trace pas de Light_Wall.tscn lorsqu’un concurrent fait autre chose que courir, sauter ou glisser.
-- Au démarrage de chaque concurrent (lorsqu’il commence à courir), on joue le son Light_Wall_Sounds/Appearing dans Sounds.tscn pour commencer son mur. On joue également Light_Wall_Sounds/Wall_Hum en boucle jusqu’à ce que le mur disparaissent complètement.
-- À la mort d’un concurrent, lorsque son mur disparaît, joue le son Light_Wall_Sounds/Disappearing dans Sounds.tscn (en plus de l’animation  Light_Wall_Animation/Disappearing.
+- Au démarrage de chaque concurrent (lorsqu’il commence à courir), on joue l’animation Light_Wall_Animations/Appearing dans Light_Wall.tscn pour commencer son mur. On joue également Light_Wall_Sounds/Wall_Hum en boucle (jusqu’à ce que le mur disparaissent complètement).
+- À la mort d’un concurrent, lorsque son mur disparaît, joue l’animation Light_Wall_Animations/Disappearing dans Light_Wall.tscn.
 - À la fin de l’animation de mort d’un concurrent (Death) et que son mur aussi a disparu, on joue l’animation Animation_Disappearing_Death/Disappearing du concurrent afin de faire disparaître son cadavre (c’est dommage mais le laisser, ça risque de trop compliquer les choses).
 - Lorsqu’un concurrent traverse une case (donc en traçant son mur) et que la cellule bouge (horizontalement), alors le concurrent se décale AVEC la cellule. Et le mur qu’il trace également afin que le morceau de mur sur la cellule puisse se déplacer avec la case si celle-ci est amenée à se déplacer de nouveau.
 - Cas particuliers de mort de concurrent : il existe une animation alternative, un AnimationPlayer avec une animation « toute bête » pour ces cas-là (Animation_Disappearing_Death/Disappearing). Si par exemple se présente un cas avec deux colonnes baissées et que le concurrent veut passer dessous à vitesse normale, il ne pourra pas (distance trop grande pour un slide), mourra donc et on utilisera cette animation. Écrasé par une colonne, ce sera pareil ! Etc.
 - Un concurrent ne peut pas courir sur un autre cadavre → Le jeu forcera le concurrent à tourner aléatoirement à droite ou à gauche. On jouera ici aussi l’Animation_Bonus_Malus et le son Alert. Si par vraiment super pas de bol, le concurrent se retrouve coincé entre des cadavres et/ou d’autres concurrents, alors on le fera mourir en jouant son animation de mort à lui aussi (Animation_Disappearing_Death/Disappearing) ! Ça ne sera pas très « joli » mais c’est un cas vraiment peu probable.
-- À la mort d’un concurrent, ce qui reste de son mur disparaît (on joue l’animation de disparition du mur dès la première frame de l’animation de mort du concurrent)! Pour cela on jouera Light_Wall_Animation/Disappearing pour tous les tronçons de mur de ce concurrent et le son Sounds/Light_Wall_Sounds/Disappearing dans Sounds.tscn
+- À la mort d’un concurrent, ce qui reste de son mur disparaît (on joue l’animation de disparition du mur dès la première frame de l’animation de mort du concurrent)! Pour cela on jouera l’animation Light_Wall_Animations/Disappearing dans Light_Wall.tscn.
 - Seule l’animation de course peut être interrompue (pour changer de direction, sauter, etc.). Toutes les autres doivent finir avant d’enchaîner sur autre chose. Par défaut, à la fin d’une animation d’interruption (saut, glissade, etc.), on retourne toujours à la course.
 - Toutes les 10 à 20’’, chaque coureur va gagner/perdre 4% de vitesse. Et toutes les 10 à 20’’ perdre/récupérer ces 4% de vitesse. Les animations seront également accélérées et ralenties de la même proportion pour que ce soit plus « joli ». On utilisera également un tween d’1/2 seconde pour appliquer la modification (si possible).
+- On coupe le son Running dans les AnimationPlayers des bots dans les animations Run_000 et Run_180.
 
 Options (nécessaires) dans Settings:
     1. Taille de la map (de 9 à 21) ✔
@@ -187,7 +188,7 @@ Ici, la course elle-même prend place !
 
 /!\ ATTENTION/!\ : lorsqu’on affiche les overlays de Win ou de Lose, on lance l’animation Blink dans Animation_Overlays (AnimationPlayer).
 Liste des scènes (et – succinctes – descriptions de leurs contenus) :
-    1. Cell.tscn : contient toutes les cellules de sol, contient également les modificateurs de sens de passage One_Way_Direction (voir Un runner bugué #5), les 2 glitchs de surface Top_Cell_FX_Mask (voir Un runner bugué #6) et les points de départ des 4 concurrents (qu’on n’applique qu’aux 4 coins du terrain). Certains sons liés à certaines animations se trouvent dans Sounds.tscn.
+    1. Cell.tscn : contient toutes les cellules de sol, contient également les modificateurs de sens de passage One_Way_Direction (voir Un runner bugué #5), les 2 glitchs de surface Top_Cell_FX_Mask (voir Un runner bugué #6) et les points de départ des 4 concurrents (qu’on n’applique qu’aux 4 coins du terrain).
     2. Credits.tscn : contient la scène de générique du jeu (intègre également le bouton pour quitter le jeu).
     3. Cube.tscn : contient les bonus/malus à ramasser en course.
     4. Door.tscn : contient la porte de sortie du jeu. La porte est scindée en 2 couches (l’avant et l’arrière pour que les concurrents puisse la franchir puisqu’elle ressemble à une arche).
@@ -200,7 +201,7 @@ Liste des scènes (et – succinctes – descriptions de leurs contenus) :
     11. Pylon.tscn : contient les pylônes qui tombent et qui peuvent écraser les concurrents (voir Les obstacles #6).
     12. Quit_Button.tscn : contient le bouton pour quitter le jeu.
     13. Settings.tscn* : contient la scène permettant de régler la taille du terrain de course, la difficulté du jeu, le volume général du son du jeu et le volume de la musique (intègre également le bouton pour quitter le jeu).
-    14. Sounds.tscn : contient les sons de l’UI du jeu, certains sons des cellules de terrain, les sons des murs des concurrents, les musiques du jeu (et le « bang » nécessaire à certaines transitions entre musiques).
+    14. Sounds.tscn : contient les sons de l’UI du jeu, les musiques du jeu (et le « bang » nécessaire à certaines transitions entre musiques ainsi que Win_Glitchy_Sound pour le son ralenti de victoire) et les alarmes de Cellules/Pylones/Colonnes-Lignes de cellules.
     15. Start_Button.tscn : contient le bouton pour démarrer la course.
     16. Tutorial.tscn : contient la scène qui dit comment jouer (intègre également le bouton pour quitter le jeu).
 Dans le dossier TMP, on trouve (dossier à supprimer ultérieurement) :

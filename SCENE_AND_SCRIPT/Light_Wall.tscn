@@ -2,6 +2,9 @@
 
 [ext_resource type="Shader" uid="uid://1uirkyntqux" path="res://SHADER/Light_Wall_Glitch.gdshader" id="1_26063"]
 [ext_resource type="Gradient" uid="uid://d2yj5gmwpcn0g" path="res://RESOURCE/Runner_Wall_Main_Gradient.tres" id="2_bjou7"]
+[ext_resource type="AudioStream" uid="uid://3b3j7ke38t82" path="res://SOUND/FX/Disappearing_Light_Wall.ogg" id="3_jdkuv"]
+[ext_resource type="AudioStream" uid="uid://dhqe43polir8c" path="res://SOUND/FX/Appearing_Light_Wall.ogg" id="4_lnn84"]
+[ext_resource type="AudioStream" uid="uid://dttkq5rw4spvt" path="res://SOUND/FX/Wall_Hum.ogg" id="5_5tnv1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5tnv1"]
 size = Vector2(131.86778, 7.0045767)
@@ -29,7 +32,6 @@ metadata/_snap_enabled = true
 [sub_resource type="Animation" id="Animation_5tnv1"]
 resource_name = "Drawing_A_Wall"
 length = 1.9666702
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -136,6 +138,46 @@ _data = {
 &"RESET": SubResource("Animation_26063")
 }
 
+[sub_resource type="Animation" id="Animation_sbirr"]
+resource_name = "Appearing"
+length = 0.20000334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333333, 0.06666666, 0.13333334, 0.16666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Light_Wall_Collider/Collider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Light_Wall_Sounds/Appearing:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_lnn84"]
 resource_name = "Disappearing"
 length = 0.20000334
@@ -162,6 +204,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Light_Wall_Sounds/Disappearing:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_et0x4"]
@@ -190,9 +244,34 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Light_Wall_Sounds/Disappearing:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Light_Wall_Sounds/Appearing:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sbirr"]
 _data = {
+&"Appearing": SubResource("Animation_sbirr"),
 &"Disappearing": SubResource("Animation_lnn84"),
 &"RESET": SubResource("Animation_et0x4")
 }
@@ -222,5 +301,30 @@ metadata/_edit_lock_ = true
 [node name="What_It_Should_Look_Like_(to_delete)" type="AnimationPlayer" parent="." unique_id=594533283]
 libraries/ = SubResource("AnimationLibrary_jdkuv")
 
-[node name="Light_Wall_Animation" type="AnimationPlayer" parent="." unique_id=1374559120]
+[node name="Light_Wall_Animations" type="AnimationPlayer" parent="." unique_id=1374559120]
 libraries/ = SubResource("AnimationLibrary_sbirr")
+
+[node name="Light_Wall_Sounds" type="Node2D" parent="." unique_id=1646770318]
+metadata/_edit_lock_ = true
+
+[node name="Disappearing" type="AudioStreamPlayer2D" parent="Light_Wall_Sounds" unique_id=912287199]
+stream = ExtResource("3_jdkuv")
+volume_db = -5.0
+max_distance = 250.0
+bus = &"FX_DRY"
+metadata/_edit_lock_ = true
+
+[node name="Appearing" type="AudioStreamPlayer2D" parent="Light_Wall_Sounds" unique_id=13574022]
+stream = ExtResource("4_lnn84")
+volume_db = -5.0
+max_distance = 250.0
+bus = &"FX_DRY"
+metadata/_edit_lock_ = true
+
+[node name="Wall_Hum" type="AudioStreamPlayer2D" parent="Light_Wall_Sounds" unique_id=1186357924]
+stream = ExtResource("5_5tnv1")
+volume_db = -5.0
+max_distance = 250.0
+bus = &"FX_DRY"
+parameters/looping = true
+metadata/_edit_lock_ = true

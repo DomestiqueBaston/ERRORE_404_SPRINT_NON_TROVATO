@@ -586,6 +586,7 @@ metadata/_edit_lock_ = true
 environment = SubResource("Environment_w5jul")
 
 [node name="BG_SubViewport" type="SubViewport" parent="." unique_id=469166842]
+disable_3d = true
 transparent_bg = true
 snap_2d_transforms_to_pixel = true
 snap_2d_vertices_to_pixel = true
@@ -617,11 +618,13 @@ layout_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Runner_SubViewport" type="SubViewport" parent="Runners/Top_Runners/Left_Runner" unique_id=396900229]
+disable_3d = true
 transparent_bg = true
 handle_input_locally = false
 snap_2d_transforms_to_pixel = true
 snap_2d_vertices_to_pixel = true
 msaa_2d = 3
+audio_listener_enable_2d = true
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
@@ -651,11 +654,13 @@ layout_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Runner_SubViewport" type="SubViewport" parent="Runners/Top_Runners/Right_Runner" unique_id=442975171]
+disable_3d = true
 transparent_bg = true
 handle_input_locally = false
 snap_2d_transforms_to_pixel = true
 snap_2d_vertices_to_pixel = true
 msaa_2d = 3
+audio_listener_enable_2d = true
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
@@ -691,11 +696,13 @@ layout_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Runner_SubViewport" type="SubViewport" parent="Runners/Bottom_Runners/Left_Runner" unique_id=1754591463]
+disable_3d = true
 transparent_bg = true
 handle_input_locally = false
 snap_2d_transforms_to_pixel = true
 snap_2d_vertices_to_pixel = true
 msaa_2d = 3
+audio_listener_enable_2d = true
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
@@ -725,11 +732,13 @@ layout_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Runner_SubViewport" type="SubViewport" parent="Runners/Bottom_Runners/Right_Runner" unique_id=2031024510]
+disable_3d = true
 transparent_bg = true
 handle_input_locally = false
 snap_2d_transforms_to_pixel = true
 snap_2d_vertices_to_pixel = true
 msaa_2d = 3
+audio_listener_enable_2d = true
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 

@@ -5,10 +5,10 @@ extends AnimationPlayer
 ################################################################
 
 func play_foot_step_01():
-	$"../Sound/Foot_Step_01".play()
+	$"../Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_01".play()
 	
 func play_foot_step_02():
-	$"../Sound/Foot_Step_02".play()
+	$"../Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_02".play()
 	
 func play_foot_step_03():
-	$"../Sound/Foot_Step_03".play()
+	$"../Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_03".play()

@@ -229,7 +229,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Sound/Fall_Death")
+tracks/5/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Fall_Death")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -252,7 +252,7 @@ tracks/5/use_blend = true
 tracks/6/type = "audio"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Sound/Ouch")
+tracks/6/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Ouch")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -446,12 +446,12 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.7666667, 1.1, 1.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [3.5779249665883754, 3.5779249665883754, 4.101523742186674, 4.101523742186674]
+"values": [3.577924966588375, 3.577924966588375, 4.101523742186674, 4.101523742186674]
 }
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Sound/Fall_Death")
+tracks/5/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Fall_Death")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -474,7 +474,7 @@ tracks/5/use_blend = true
 tracks/6/type = "audio"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Sound/Ouch")
+tracks/6/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Ouch")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -649,7 +649,7 @@ tracks/2/keys = {
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Sound/Disappearing")
+tracks/3/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Disappearing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -676,7 +676,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Sound/Falling")
+tracks/5/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Falling")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -763,7 +763,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("../Sound/Falling:volume_db")
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Falling:volume_db")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -851,7 +851,7 @@ tracks/2/keys = {
 tracks/3/type = "audio"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Sound/Disappearing")
+tracks/3/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Disappearing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -878,7 +878,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Sound/Falling")
+tracks/5/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Falling")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -965,7 +965,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("../Sound/Falling:volume_db")
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Falling:volume_db")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -1202,7 +1202,7 @@ tracks/6/keys = {
 tracks/7/type = "audio"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../Sound/Pushing")
+tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Pushing")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1365,7 +1365,7 @@ tracks/6/keys = {
 tracks/7/type = "audio"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../Sound/Pushing")
+tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Pushing")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1611,7 +1611,7 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("../Sound/Falling:volume_db")
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Falling:volume_db")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -1759,8 +1759,8 @@ tracks/5/keys = {
 }
 tracks/6/type = "audio"
 tracks/6/imported = false
-tracks/6/enabled = false
-tracks/6/path = NodePath("../Sound/Running")
+tracks/6/enabled = true
+tracks/6/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Running")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1940,8 +1940,8 @@ tracks/5/keys = {
 }
 tracks/6/type = "audio"
 tracks/6/imported = false
-tracks/6/enabled = false
-tracks/6/path = NodePath("../Sound/Running")
+tracks/6/enabled = true
+tracks/6/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Running")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -2109,7 +2109,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Sound/Sliding")
+tracks/5/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Sliding")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -2248,7 +2248,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Sound/Sliding")
+tracks/5/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Sliding")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -2704,7 +2704,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Sound/Glitch_Sound")
+tracks/5/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Glitch_Sound")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -2916,7 +2916,7 @@ tracks/1/keys = {
 tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sound/Disappearing_Death")
+tracks/2/path = NodePath("Character/Papa_Sprite/Runner_Sprite/Sound/Disappearing_Death")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -3079,6 +3079,189 @@ metadata/_edit_lock_ = true
 polygon = PackedVector2Array(-159, -101, -65, -135, 69, -139, 185, -109, 550, 16, 587, 67, 598, 133, 568, 203, 496, 268, 381, 324, 232, 341, 83, 309, -173, 114, -239, 57, -250, 1, -225, -47)
 metadata/_edit_lock_ = true
 
+[node name="Sound" type="Node2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=568267787]
+metadata/_edit_lock_ = true
+
+[node name="Alert" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=1079237190]
+stream = ExtResource("28_38vqc")
+volume_db = -12.5
+max_distance = 750.0
+bus = &"RUNNERS"
+metadata/_edit_lock_ = true
+
+[node name="Foot_Step_02" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=17272265]
+stream = ExtResource("13_5vco3")
+volume_db = 2.5
+pitch_scale = 0.5
+max_distance = 750.0
+bus = &"RUNNERS"
+metadata/_edit_lock_ = true
+
+[node name="Foot_Step_03" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=851587156]
+stream = ExtResource("30_qxubv")
+volume_db = 2.5
+pitch_scale = 0.5
+max_distance = 750.0
+bus = &"RUNNERS"
+metadata/_edit_lock_ = true
+
+[node name="Glitch_Sound" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=1048767973]
+volume_db = -15.0
+max_distance = 750.0
+bus = &"RUNNERS"
+metadata/_edit_lock_ = true
+
+[node name="Disappearing" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=256585439]
+volume_db = -2.5
+max_distance = 750.0
+bus = &"RUNNERS"
+metadata/_edit_lock_ = true
+
+[node name="Falling" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=433774268]
+volume_db = -5.0
+max_distance = 750.0
+bus = &"RUNNERS"
+metadata/_edit_lock_ = true
+
+[node name="Running" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=113804333]
+volume_db = -7.5
+max_distance = 750.0
+bus = &"RUNNERS"
+metadata/_edit_lock_ = true
+
+[node name="Fall_Death" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=1398677187]
+volume_db = -10.0
+max_distance = 750.0
+bus = &"RUNNERS"
+metadata/_edit_lock_ = true
+
+[node name="Ouch" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=234335486]
+volume_db = -10.0
+max_distance = 750.0
+bus = &"RUNNERS"
+metadata/_edit_lock_ = true
+
+[node name="Pushing" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=1835973780]
+volume_db = -7.5
+max_distance = 750.0
+bus = &"RUNNERS"
+metadata/_edit_lock_ = true
+
+[node name="Sliding" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=332961220]
+volume_db = -12.5
+max_distance = 750.0
+bus = &"RUNNERS"
+metadata/_edit_lock_ = true
+
+[node name="Bim" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=271223347]
+volume_db = 2.5
+max_distance = 750.0
+bus = &"RUNNERS"
+metadata/_edit_lock_ = true
+
+[node name="Disappearing_Death" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=1273694919]
+max_distance = 750.0
+bus = &"RUNNERS"
+metadata/_edit_lock_ = true
+
+[node name="Bonus_Malus" type="Node2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=1878993103]
+metadata/_edit_lock_ = true
+
+[node name="Dash" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=752660504]
+stream = ExtResource("40_engcl")
+max_distance = 750.0
+bus = &"BONUS_MALUS"
+metadata/_edit_lock_ = true
+
+[node name="Through" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1722170038]
+stream = ExtResource("31_vbos4")
+volume_db = -1.5
+max_distance = 750.0
+bus = &"BONUS_MALUS"
+metadata/_edit_lock_ = true
+
+[node name="Virus" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=892714747]
+stream = ExtResource("32_kbcvm")
+volume_db = -2.5
+max_distance = 750.0
+bus = &"BONUS_MALUS"
+metadata/_edit_lock_ = true
+
+[node name="Teleport" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1993259572]
+stream = ExtResource("33_wtakq")
+max_distance = 750.0
+bus = &"BONUS_MALUS"
+metadata/_edit_lock_ = true
+
+[node name="Debug" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1197389018]
+stream = ExtResource("34_krg8n")
+volume_db = 2.5
+max_distance = 750.0
+bus = &"BONUS_MALUS"
+metadata/_edit_lock_ = true
+
+[node name="Last_Longer" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1108140642]
+stream = ExtResource("35_ey168")
+max_distance = 750.0
+bus = &"BONUS_MALUS"
+metadata/_edit_lock_ = true
+
+[node name="Invincible" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=2047671300]
+stream = ExtResource("36_f5mvr")
+volume_db = -1.5
+max_distance = 750.0
+bus = &"BONUS_MALUS"
+metadata/_edit_lock_ = true
+
+[node name="Invert" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1918818887]
+stream = ExtResource("37_kp8mp")
+volume_db = -2.5
+max_distance = 750.0
+bus = &"BONUS_MALUS"
+metadata/_edit_lock_ = true
+
+[node name="Slow" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1772920305]
+stream = ExtResource("38_igndv")
+volume_db = 2.5
+max_distance = 750.0
+bus = &"BONUS_MALUS"
+metadata/_edit_lock_ = true
+
+[node name="Last_Shorter" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1478474749]
+stream = ExtResource("39_b1qeq")
+max_distance = 750.0
+bus = &"BONUS_MALUS"
+metadata/_edit_lock_ = true
+
+[node name="Anti_Dash" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1944103632]
+stream = ExtResource("30_47c2y")
+max_distance = 750.0
+bus = &"BONUS_MALUS"
+metadata/_edit_lock_ = true
+
+[node name="Phase" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=563932566]
+stream = ExtResource("41_bo18h")
+volume_db = 2.5
+max_distance = 750.0
+bus = &"BONUS_MALUS"
+metadata/_edit_lock_ = true
+
+[node name="Anti_Virus" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=273693011]
+stream = ExtResource("42_c5xvm")
+volume_db = -2.5
+max_distance = 750.0
+bus = &"BONUS_MALUS"
+metadata/_edit_lock_ = true
+
+[node name="Anti_Teleport" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=2050539755]
+stream = ExtResource("43_m8iob")
+max_distance = 750.0
+bus = &"BONUS_MALUS"
+metadata/_edit_lock_ = true
+
+[node name="AudioListener2D" type="AudioListener2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=1410896159]
+metadata/_edit_lock_ = true
+
 [node name="Cam" type="Camera2D" parent="Character" unique_id=1782995018]
 position = Vector2(-480, -270)
 offset = Vector2(480, 235)
@@ -3099,127 +3282,3 @@ libraries/ = SubResource("AnimationLibrary_td8gx")
 
 [node name="Animation_Bonus_Malus" type="AnimationPlayer" parent="." unique_id=1415136860]
 libraries/ = SubResource("AnimationLibrary_2yfnd")
-
-[node name="Sound" type="Node" parent="." unique_id=1185610532]
-
-[node name="Alert" type="AudioStreamPlayer" parent="Sound" unique_id=1519342983]
-stream = ExtResource("28_38vqc")
-volume_db = -12.5
-bus = &"FX_DRY"
-
-[node name="Foot_Step_02" type="AudioStreamPlayer" parent="Sound" unique_id=1016295594]
-stream = ExtResource("13_5vco3")
-volume_db = -2.5
-pitch_scale = 0.5
-bus = &"RUNNERS"
-
-[node name="Foot_Step_03" type="AudioStreamPlayer" parent="Sound" unique_id=1437601171]
-stream = ExtResource("30_qxubv")
-volume_db = -2.5
-pitch_scale = 0.5
-bus = &"RUNNERS"
-
-[node name="Glitch_Sound" type="AudioStreamPlayer" parent="Sound" unique_id=1006391615]
-volume_db = -15.0
-bus = &"RUNNERS"
-
-[node name="Disappearing" type="AudioStreamPlayer" parent="Sound" unique_id=40752013]
-volume_db = -2.5
-bus = &"RUNNERS"
-
-[node name="Falling" type="AudioStreamPlayer" parent="Sound" unique_id=916835663]
-volume_db = -5.0
-bus = &"RUNNERS"
-
-[node name="Running" type="AudioStreamPlayer" parent="Sound" unique_id=1371606945]
-volume_db = -5.0
-bus = &"RUNNERS"
-
-[node name="Fall_Death" type="AudioStreamPlayer" parent="Sound" unique_id=1910313179]
-volume_db = -10.0
-bus = &"RUNNERS"
-
-[node name="Ouch" type="AudioStreamPlayer" parent="Sound" unique_id=2090339564]
-volume_db = -10.0
-bus = &"RUNNERS"
-
-[node name="Pushing" type="AudioStreamPlayer" parent="Sound" unique_id=918143632]
-volume_db = -7.5
-bus = &"RUNNERS"
-
-[node name="Sliding" type="AudioStreamPlayer" parent="Sound" unique_id=2142143059]
-volume_db = -12.5
-bus = &"RUNNERS"
-
-[node name="Bim" type="AudioStreamPlayer" parent="Sound" unique_id=1901487774]
-volume_db = 2.5
-bus = &"RUNNERS"
-
-[node name="Disappearing_Death" type="AudioStreamPlayer" parent="Sound" unique_id=1732010629]
-bus = &"RUNNERS"
-
-[node name="Bonus_Malus" type="Node" parent="Sound" unique_id=1989510480]
-
-[node name="Dash" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=347522302]
-stream = ExtResource("40_engcl")
-bus = &"BONUS_MALUS"
-
-[node name="Through" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1428876517]
-stream = ExtResource("31_vbos4")
-volume_db = -1.5
-bus = &"BONUS_MALUS"
-
-[node name="Virus" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=787587184]
-stream = ExtResource("32_kbcvm")
-volume_db = -2.5
-bus = &"BONUS_MALUS"
-
-[node name="Teleport" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=556419031]
-stream = ExtResource("33_wtakq")
-bus = &"BONUS_MALUS"
-
-[node name="Debug" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1988301064]
-stream = ExtResource("34_krg8n")
-volume_db = 2.5
-bus = &"BONUS_MALUS"
-
-[node name="Last_Longer" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=696299228]
-stream = ExtResource("35_ey168")
-bus = &"BONUS_MALUS"
-
-[node name="Invincible" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=2046569927]
-stream = ExtResource("36_f5mvr")
-volume_db = -1.5
-bus = &"BONUS_MALUS"
-
-[node name="Invert" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1065463390]
-stream = ExtResource("37_kp8mp")
-volume_db = -2.5
-bus = &"BONUS_MALUS"
-
-[node name="Slow" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1881074534]
-stream = ExtResource("38_igndv")
-volume_db = 2.5
-bus = &"BONUS_MALUS"
-
-[node name="Last_Shorter" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=25389255]
-stream = ExtResource("39_b1qeq")
-bus = &"BONUS_MALUS"
-
-[node name="Anti_Dash" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1725499644]
-stream = ExtResource("30_47c2y")
-bus = &"BONUS_MALUS"
-
-[node name="Phase" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=1586039620]
-stream = ExtResource("41_bo18h")
-volume_db = 2.5
-bus = &"BONUS_MALUS"
-
-[node name="Anti_Virus" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=285590685]
-stream = ExtResource("42_c5xvm")
-volume_db = -2.5
-bus = &"BONUS_MALUS"
-
-[node name="Anti_Teleport" type="AudioStreamPlayer" parent="Sound/Bonus_Malus" unique_id=2101665834]
-stream = ExtResource("43_m8iob")
-bus = &"BONUS_MALUS"
