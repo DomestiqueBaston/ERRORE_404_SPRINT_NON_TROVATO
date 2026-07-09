@@ -21,9 +21,6 @@ func play_full():
 func play_woosh():
 	$UI_Sounds/Woosh.play()
 
-func play_disappearing():
-	$UI_Sounds/Disappearing.play()
-
 func play_bang():
 	$Music/Bang.play()
 
