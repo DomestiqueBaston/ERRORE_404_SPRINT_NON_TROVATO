@@ -1854,18 +1854,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../Disconnection:volume_db")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-30.0]
-}
 
 [sub_resource type="Animation" id="Animation_f5cpg"]
 resource_name = "Writing"
@@ -1893,18 +1881,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../Disconnection:volume_db")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-30.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1y105"]
@@ -2749,6 +2725,7 @@ vertical_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Glitches" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=1057999679]
+visible = false
 anchors_preset = 0
 offset_right = 960.0
 offset_bottom = 540.0
@@ -2835,6 +2812,7 @@ metadata/_edit_lock_ = true
 libraries/ = SubResource("AnimationLibrary_1y105")
 
 [node name="Lose" type="Control" parent="Frames/Info_Win_Lose_Overlay" unique_id=1658104479]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2889,5 +2867,5 @@ parameters/looping = true
 
 [node name="Disconnection" type="AudioStreamPlayer" parent="Frames" unique_id=1616227582]
 stream = ExtResource("11_qkdav")
-volume_db = -30.0
+volume_db = -25.0
 parameters/looping = true
