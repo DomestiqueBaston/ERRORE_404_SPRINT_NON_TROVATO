@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://dufv824xcbi7c"]
 
-[ext_resource type="Script" uid="uid://jda3iip3f7fn" path="res://SCENE_AND_SCRIPT/TMP/Test_Split_Screen.gd" id="1_4dsww"]
 [ext_resource type="Shader" uid="uid://bw1rtxnpr4o0b" path="res://SHADER/Pixelisation.gdshader" id="2_1luj4"]
 [ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="2_4dsww"]
 [ext_resource type="Shader" uid="uid://djvm4hdir6bn0" path="res://SHADER/Invert_Colors.gdshader" id="3_rlifm"]
@@ -579,7 +578,6 @@ _data = {
 }
 
 [node name="Game" type="Node2D" unique_id=1997447785]
-script = ExtResource("1_4dsww")
 metadata/_edit_lock_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2070283447]
@@ -1157,10 +1155,8 @@ metadata/_edit_lock_ = true
 
 [node name="Portraits" parent="Frames" unique_id=461730405 instance=ExtResource("16_g5vlg")]
 visible = false
-offset_left = 240.0
-offset_top = 135.0
-offset_right = 240.0
-offset_bottom = 135.0
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="Black_Frames" type="Control" parent="Frames" unique_id=1686618486]
 layout_mode = 3

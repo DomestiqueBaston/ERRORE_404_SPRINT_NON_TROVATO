@@ -53,10 +53,38 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Announce/Message:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.6666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jw40r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Announce/Message:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p3xvu"]
 _data = {
-&"Blink": SubResource("Animation_b0nga")
+&"Blink": SubResource("Animation_b0nga"),
+&"RESET": SubResource("Animation_jw40r")
 }
 
 [sub_resource type="Animation" id="Animation_nv63b"]
@@ -65,7 +93,7 @@ length = 0.06666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/path = NodePath("Frame/BG/Portraits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -81,7 +109,7 @@ length = 0.06666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/path = NodePath("Frame/BG/Portraits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -97,7 +125,7 @@ length = 0.10000334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/path = NodePath("Frame/BG/Portraits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -128,7 +156,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/path = NodePath("Frame/BG/Portraits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -159,7 +187,7 @@ length = 0.06666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/path = NodePath("Frame/BG/Portraits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -175,7 +203,7 @@ length = 0.06666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/path = NodePath("Frame/BG/Portraits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -191,7 +219,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/path = NodePath("Frame/BG/Portraits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -222,7 +250,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/path = NodePath("Frame/BG/Portraits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -252,7 +280,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/path = NodePath("Frame/BG/Portraits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -268,7 +296,7 @@ length = 0.06666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/path = NodePath("Frame/BG/Portraits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -284,7 +312,7 @@ length = 0.06666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/path = NodePath("Frame/BG/Portraits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -300,7 +328,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/path = NodePath("Frame/BG/Portraits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -331,7 +359,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/path = NodePath("Frame/BG/Portraits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -362,7 +390,7 @@ length = 0.06666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/path = NodePath("Frame/BG/Portraits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -378,7 +406,7 @@ length = 0.06666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/path = NodePath("Frame/BG/Portraits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -394,7 +422,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/path = NodePath("Frame/BG/Portraits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -425,7 +453,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Frame/BG/Her_Him:position")
+tracks/0/path = NodePath("Frame/BG/Portraits:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -474,7 +502,7 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hwl4u"]
 shader = ExtResource("4_q0tq6")
 shader_parameter/shake_power = 0.011
-shader_parameter/shake_rate = 0.666000031635
+shader_parameter/shake_rate = 0.250000011875
 shader_parameter/shake_speed = 2.0
 shader_parameter/shake_block_size = 15.0
 shader_parameter/shake_color_rate = 0.002000000095
@@ -531,7 +559,7 @@ clip_children = 2
 texture = ExtResource("2_dpf0i")
 metadata/_edit_lock_ = true
 
-[node name="Her_Him" type="Sprite2D" parent="Frame/BG" unique_id=1114499252]
+[node name="Portraits" type="Sprite2D" parent="Frame/BG" unique_id=1114499252]
 position = Vector2(414, 5)
 texture = ExtResource("1_yaltw")
 offset = Vector2(0, -3)

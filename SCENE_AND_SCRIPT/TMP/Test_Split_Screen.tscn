@@ -1018,7 +1018,6 @@ position = Vector2(50, 50)
 metadata/_edit_lock_ = true
 
 [node name="Bugs_01" type="Control" parent="Frames" unique_id=434706610]
-visible = false
 custom_minimum_size = Vector2(480, 270)
 layout_mode = 3
 anchors_preset = 0
