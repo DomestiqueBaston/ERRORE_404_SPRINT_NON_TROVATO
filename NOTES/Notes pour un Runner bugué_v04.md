@@ -16,7 +16,7 @@ Errore 404: Sprint Non Trovato! (un jeu qui bugue)
 - Les concurrents ne peuvent pas faire directement demi-tour (à cause du mur qu’ils tracent).
 - Les concurrents ne peuvent tourner qu’à 90°.
 - Les concurrents ne peuvent pas arrêter de courir !
-- Ils tracent un mur temporaire derrière eux (qui s’efface au fur et à mesure par tronçons après 5 à 10 secondes en fonction du niveau de difficulté).
+- Ils tracent un mur temporaire derrière eux (qui s’efface au fur et à mesure par tronçons en fonction du niveau de difficulté et de la taille de la map – voir plus loin).
 - Un tronçon de mur est la partie du mur sur une case du terrain.
 - Le but du jeu est de tenir le plus longtemps possible et être le dernier survivant ou être le premier à atteindre la porte de sortie qui se manifestera aléatoirement au bout d’un certain temps.
 
@@ -52,22 +52,23 @@ Les bonus :
     4. Virus – Violet (envoie automatiquement le prochain malus récolté à un adversaire aléatoire) → ✔ Virus – Automatique !
     5. Téléportation – Jaune (destination aléatoire sur une « cellule saine »)→ ✔ Teleport – Activable !
     6. Débogueur – Noir (vire un bug actif)→ ✔ Debug – Activable !
-    7. Le mur tracé par les concurrents disparaissent – Blanc → ✔ Last_Longer – Automatique !
+    7. Les murs tracés jusqu’à présent par les concurrents disparaissent – Blanc → ✔ Last_Longer – Automatique !
 
 Les malus (applications automatiques) :
     1. Inversion de commandes – Rouge – dure (difficulté)’’ → ✔ Invert
     2. Lenteur de réaction (on ajoute un délai d’1/10’’ (à préciser) dans les commandes du concurrent) – Noir – dure (2 × difficulté)’’ → ✔ Slow
-    3. Les murs tracés par les concurrents ne disparaissent plus – Blanc – dure (2 × difficulté)’’ → ✔ Last_Shorter
-    4. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1 seconde) – Vert – dure ((2 × difficulté) + 3)’’ → ✔ Anti_Dash
-    5. « Hors phase » (shader) – Bleu – dure (2 × difficulté)’’ → ✔ Phase
-    6. Virus (envoie automatiquement le prochain Bonus (pas malus) récolté à un adversaire aléatoire, quitte à remplacer celui qu’il porte – Violet → ✔ Anti_Virus
-    7. Téléportation (instantané et destination aléatoire) – Jaune → ✔ Anti_Teleport
+    3. Les murs tracés par les concurrents durent plus longtemps – Blanc – (durée des tronçons de mur × 2) → ✔ Last_Shorter – Au bout de (durée des tronçons de mur × 1), l’effet du malus disparaît et la durée de vie normale de chaque tronçon reprend sa valeur normale et tous les tronçons qui ont vécu ce temps ou plus disparaissent !
+    4. 
+    5. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1 seconde) – Vert – dure ((2 × difficulté) + 3)’’ → ✔ Anti_Dash
+    6. « Hors phase » (shader) – Bleu – dure (2 × difficulté)’’ → ✔ Phase
+    7. Virus (envoie automatiquement le prochain Bonus (pas malus) récolté à un adversaire aléatoire, quitte à remplacer celui qu’il porte – Violet → ✔ Anti_Virus
+    8. Téléportation (instantané et destination aléatoire) – Jaune → ✔ Anti_Teleport
 
 Les obstacles :
 - Toutes les X secondes (voir Options nécessaires dans Settings) un des obstacles est déclenché. 1 sur 4 est un glissement de Ligne/Colonne. La « quantité » de glissement des Ligne/Colonne se font aléatoirement d’1 à (longueur d’un côté au départ/3) cases (pour ne pas dire cellule qui pourrait être perturbant). On fait TOUJOURS glisser une ligne/colonne complète (« trous » inclus).
     1. Ligne/Colonne (de cellules) qui glisse d’1 à 2 cases – Permanent → ✔ (1’’ avant, on joue Cell_Pylon_Alarms/Cell_Slide dans Sounds.tscn ET jusqu’à la fin de l’animation)
     2. Trous (cellules qui descendent) – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
-    3. Murs des concurrents – (Durée : comme précisé ailleurs dans le doc.) → ✔ (voir avec Geoff comment faire)
+    3. Murs des concurrents – (Durée : comme précisé plus loin) → ✔ (voir avec Geoff comment faire)
     4. Cellule à sens unique – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     5. Colonne descendante – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     6. Colonne écrasante – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
@@ -113,7 +114,8 @@ Options (nécessaires) dans Settings:
     4. Difficulté (de 1 à 5) ✔
         ◦ Temps avant l’apparition de la porte de sortie : (Taille de la map + (2 × Difficulté)) / 10 minutes.
         ◦ Délai entre les déclenchements d’obstacles : 5.5 - (0.5 × Difficulté) secondes.
-        ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en gagnant 1 course en Difficulté 5) qui rend tous les obstacles PERMANENTS (le reste est traîté comme Difficulté 5 !). Voir également à la fin du doc. : Liste des scènes (et – succinctes – descriptions de leurs contenus).
+        ◦ Délai avant disparition des tronçons de mur : (Difficulté + Taille de la map) / 2 secondes après apparition.
+        ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en gagnant 3 courses en Difficulté 5) qui rend tous les obstacles PERMANENTS (le reste est traîté comme Difficulté 5 !) SAUF les murs des concurrents. Voir également à la fin du doc. : Liste des scènes (et – succinctes – descriptions de leurs contenus).
 
 Les personnalités des « IA »/Bots :
     1. Par défaut, un Bot tendra bien évidemment à ne pas mourir en évitant les collisions et les chutes. Un Bot essayera également de sortir par la porte lorsqu’elle est présente et accessible (il peut arriver qu’elle ne le soit pas à cause des glissements de lignes/colonnes).
