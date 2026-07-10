@@ -1,6 +1,5 @@
 Errore 404: Sprint Non Trovato! (un jeu qui bugue)
 
-
 - Ce « Runner » va se « rapprocher » de la (fameuse) séquence de course de moto dans Tron (1982) qu’on va mélanger avec un peu du film Cube (les connexions entre les salles changent régulièrement comme un Rubik’s Cube).
 
 - Un jeu en 2D (vue isométrique).
@@ -19,8 +18,7 @@ Errore 404: Sprint Non Trovato! (un jeu qui bugue)
 - Les concurrents ne peuvent pas arrêter de courir !
 - Ils tracent un mur temporaire derrière eux (qui s’efface au fur et à mesure par tronçons après 5 à 10 secondes en fonction du niveau de difficulté).
 - Un tronçon de mur est la partie du mur sur une case du terrain.
-
-- Le but du jeu est ici de tenir le plus longtemps possible et être le dernier survivant ou être le premier à atteindre la sortie qui se manifestera aléatoirement au bout d’un certain temps.
+- Le but du jeu est de tenir le plus longtemps possible et être le dernier survivant ou être le premier à atteindre la porte de sortie qui se manifestera aléatoirement au bout d’un certain temps.
 
 Un runner bugué :
 - Les bugs durent de 5’’ en difficulté 1 à 20’’ en difficulté 5.
@@ -56,7 +54,7 @@ Les bonus :
     6. Débogueur – Noir (vire un bug actif)→ ✔ Debug – Activable !
     7. Le mur tracé par les concurrents disparaissent – Blanc → ✔ Last_Longer – Automatique !
 
-Les malus (automatiques) :
+Les malus (applications automatiques) :
     1. Inversion de commandes – Rouge – dure (difficulté)’’ → ✔ Invert
     2. Lenteur de réaction (on ajoute un délai d’1/10’’ (à préciser) dans les commandes du concurrent) – Noir – dure (2 × difficulté)’’ → ✔ Slow
     3. Les murs tracés par les concurrents ne disparaissent plus – Blanc – dure (2 × difficulté)’’ → ✔ Last_Shorter
@@ -159,7 +157,6 @@ Préambule :
         ◦ ui_left_button, ui_right_button, ui_up_button et ui_down_button : Direction et navigation menu (en course, on n’utilise que les diagonales)
         ◦ ui_fullscreen : Plein écran/Fenêtré
         ◦ ui_quit_button : Quitter (pression longue, voir Quit_Button.tscn)
-	Il faudra penser à virer ui_tab_button qui ne sert plus à rien dans le jeu !
 
 Avant le jeu :
     1. Chargement de l’écran titre Title.tscn. L’overlay qui dit de presser un bouton, peu importe lequel, apparaît au bout de qqs secondes si je joueur n’a rien fait jusque là). À partir du démarrage (on commence avec Title.tscn), Music/Intro joue en boucle. Une pression longue sur ui_quit_button fait quitter le jeu et le bouton A amène à…
@@ -181,7 +178,7 @@ Ici, la course elle-même prend place !
     7. Fin de course (humain ou bot, tant qu’il y a au moins 2 concurrents vivants, la course continu) :
         ◦ Lorsque les concurrents meurent, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) et on lance l’animation Blink dans Animation_Overlays (AnimationPlayer), le tout dans la scène Game.tscn. À noter : il n’y en a pas pour le joueur humain en haut à gauche.
             a) Lorsque le joueur perd, on stoppe le jeu, on coupe les sons, les musiques (même les bus audio sauf Master afin de couper les réverbs et égalisations net), on désactive les glitchs, pas d’Info_Retry, etc. et on affiche Info_Win_Lose_Overlay/Lose et on joue le son Disconnection et l’animation Blink. Une pression sur « A » relance une partie (avec les mêmes paramètres de jeu, restauration du son, etc.) à partie du point 5 de cette liste et tout autre bouton fait retourner à Title.tscn (on jouera le Bang, etc.) ! Exceptionnellement, à ce « BSOD », on n’utilise pas Start_Button.tscn ni Quit_Button.tscn !
-            b) Lorsque le joueur gagne (soit parce qu’il est le dernier en course ou soit parce qu’il a franchi la porte de sortie), on affiche Frames/Info_Win_Lose/Win, on joue le son Disconnection et les animations Writing puis lorsque c’est fini Final_Blink en boucle ! /!\ À l’instant où on a un gagnant : Music/Music va voir son Pitch qui va descendre et pour cela on utilisera l’AnimationPlayer Music_Pitch/Pitch_Down. /!\
+            b) Lorsque le joueur gagne (soit parce qu’il est le dernier en course ou soit parce qu’il a franchi la porte de sortie), on affiche Frames/Info_Win_Lose/Win, on joue les animations Writing (qui intègre le son Disconnection) puis lorsque c’est fini Final_Blink en boucle (on laisse le son Disconnection jouer) ! /!\ À l’instant où on a un gagnant : Music/Music va voir son Pitch qui va descendre et pour cela on utilisera l’AnimationPlayer Music_Pitch/Pitch_Down. /!\
             c) Si le vainqueur gagne en sortant par la porte (de sortie), automatiquement, TOUS les concurrents restants meurent (animation Death) instantanément et on affiche l’Overlay Frames/Bug_0X/Death !
             d) Dans tous les cas, le décors continue à « vivre » comme si de rien n’était… Jusqu’à sortir de Game.tscn !
         ◦ Ensuite, n’importe quel bouton (sauf A) retourne brutalement (toujours) à l’écran de titre. On coupe alors Music/Music et on lance Music/Intro avec Music/Bang. Et on retourne au point 1 de cette liste. Presser A relance une partie « identique » à partir du point 5 de cette liste !

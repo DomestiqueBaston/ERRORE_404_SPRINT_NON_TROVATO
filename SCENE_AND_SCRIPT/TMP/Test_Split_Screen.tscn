@@ -406,11 +406,13 @@ shader_parameter/pixel_factor = 5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1gyup"]
 shader = ExtResource("27_myj71")
+shader_parameter/speed = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2l4bx"]
 shader = ExtResource("27_5t0h1")
 shader_parameter/hit_effect = 1.0
 shader_parameter/shake_intensity = 4.5
+shader_parameter/time_offset = 0.405
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qp1y0"]
 shader = ExtResource("28_myj71")
@@ -755,13 +757,10 @@ environment = SubResource("Environment_w5jul")
 [node name="ATTENTION" type="Label" parent="." unique_id=1606020396]
 visible = false
 offset_left = 43.0
-offset_top = -134.0
+offset_top = -72.0
 offset_right = 583.0
 offset_bottom = -7.0
-text = "Il faudrait que les choses (effets, etc.) ne soient pas synchros lorsque
-l'on affiche des effets identiques dans des quarts d'écran différents.
-
-Il faudra que la caméra pointe devant le coureur (voir les notes).
+text = "Il faudra que la caméra pointe devant le coureur (voir les notes).
 On fera un tween sur la caméra lorsque le joueur change de direction."
 metadata/_edit_lock_ = true
 
