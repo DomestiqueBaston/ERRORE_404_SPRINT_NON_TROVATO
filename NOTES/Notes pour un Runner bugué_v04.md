@@ -23,7 +23,7 @@ Errore 404: Sprint Non Trovato! (un jeu qui bugue)
 Un runner bugué :
 - Les bugs durent de 5’’ en difficulté 1 à 20’’ en difficulté 5.
 - Après chaque bug, on attend 10’’ avant d’avoir 1/5 chance d’en déclencher un nouveau.
-- Au lancement des bugs, on joue le son Frames/Bug_Sound (dans Game.tscn) et on le coupe à la fin du bug. Pas d’intro/outro, effets directs !
+- Au lancement des bugs, on joue le son Frames/Bug_Sound (dans The_Game.tscn) et on le coupe à la fin du bug. Pas d’intro/outro, effets directs !
     1. L’image globale se décale dans la vue du joueur (la caméra se recentre sur le joueur) → Ça se fait : ✔
     2. La palette de couleurs change → ✔
     3. Image floue → Ça se fait : ✔
@@ -170,7 +170,7 @@ Avant le jeu :
         ◦ Ou…
 
 Le jeu :
-    4. Transition brutale vers Game.tscn. Les 4 caméras sont centrées sur les 4 coins de la zone de course. L’écran en haut à gauche affiche en overlay la sélection de joueur (Portraits.tscn) qui commence sur la fille et les 3 autres vues affichent aléatoirement les 3 autres personnages : pas de doublons !
+    4. Transition brutale vers The_Game.tscn. Les 4 caméras sont centrées sur les 4 coins de la zone de course. L’écran en haut à gauche affiche en overlay la sélection de joueur (Portraits.tscn) qui commence sur la fille et les 3 autres vues affichent aléatoirement les 3 autres personnages : pas de doublons !
     5. On sélectionne le personnage avec droite et gauche, on valide avec A. Lorsque le joueur change de personnage, à chaque fois, dans les autres quarts d’écran les personnages changent et sont re-sélectionnés aléatoirement. Ils disparaissent/apparaissent en jouant l’animation Animation_Bonus_Malus/Bonus_Malus ET avec le son UI_Sounds/Disappearing (un seul son est joué pour tous). ui_quit_button renvoie à Menu.tscn (transition brutale, pour rappel). Valider fait disparaître l’overlay de sélection des personnages et apparaître le bouton de lancement de la course. Ce bouton ne peut être activé (ui_a_button) que lorsque le joueur a validé son personnage.
         ◦ Ceci est pour la cas où il n’y aurait qu’1 joueur humain et 3 bots mais pour ajouter 1 autre (ou plusieurs autres) joueur humain, il suffira de presser un des boutons d’un autre contrôleur pour que le quart d’écran suivant lui soit attribué. Le reste se fait comme pour le premier joueur… Overlay des portraits, etc. Il ne peut pas avoir de doublons de personnage ! On ne peut plus ajouter de joueur quand il n’y a plus d’overlay de sélection de personnage. C’est seulement à partir du moment ou tous les joueurs (humains) on validé leur choix de personnage que le bouton de lancement de la course apparaîtra.
     6. Tous les Personnages passent alors en animation Start. Au bout d’1/2 seconde, on joue UI_Sounds/3_2_1 puis on coupe Music/Intro, on lance UI_Sounds/Go et Music/Music en boucle (sans Music/Bang cette fois-ci car il est inclus dans la musique) et les coureurs (Bot) partent aléatoirement dans l’une des deux directions qu’il ont de possible dans, au plus tard, la 1/2 de seconde qui suit ! Au pire, 1 seconde après le « top départ », tous les concurrents restants partiront automatiquement avec un décalage de 1/5 de seconde les uns des autres pasque tous synchros, c’est pas joli.
@@ -178,7 +178,7 @@ Le jeu :
 Ici, la course elle-même prend place !
 
     7. Fin de course (humain ou bot, tant qu’il y a au moins 2 concurrents vivants, la course continu) :
-        ◦ Lorsque les concurrents meurent et tant que le joueur humain est vivant, pour chaque bot mort, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) et on lance l’animation Blink dans Animation_Overlays (AnimationPlayer), tout ça dans la scène Game.tscn. À noter : il n’y en a pas pour le joueur humain en haut à gauche.
+        ◦ Lorsque les concurrents meurent et tant que le joueur humain est vivant, pour chaque bot mort, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) et on lance l’animation Blink dans Animation_Overlays (AnimationPlayer), tout ça dans la scène The_Game.tscn. À noter : il n’y en a pas pour le joueur humain en haut à gauche.
             a) Lorsque le joueur perd, on stoppe le jeu, on coupe les sons, les musiques (même les bus audio sauf Master afin de couper les réverbs et égalisations net), on désactive les glitchs, etc. et on affiche Info_Win_Lose_Overlay/Lose et on joue le son Disconnection et l’animation Blink. Une pression sur « A » relance une partie (avec les mêmes paramètres de jeu, restauration du son, etc.) à partir du point 5 de cette liste et tout autre bouton fait retourner à Menu.tscn (on jouera le Bang, etc.) ! Exceptionnellement, à ce « BSOD », on n’utilise pas Start_Button.tscn ni Quit_Button.tscn !
             b) Lorsque le joueur gagne (soit parce qu’il est le dernier en course ou soit parce qu’il a franchi la porte de sortie), on affiche Frames/Info_Win_Lose/Win, on joue les animations Writing (qui intègre le son Disconnection) puis lorsque c’est fini Final_Blink en boucle (on laisse le son Disconnection jouer) ! /!\ À l’instant où on a un gagnant : Music/Music va voir son Pitch qui va descendre et pour cela on utilisera l’AnimationPlayer Music_Pitch/Pitch_Down. /!\ 
         ◦ Ensuite, n’importe quel bouton (sauf A) retourne brutalement (toujours) à Menu.tscn. On coupe alors Music/Music et on lance Music/Intro avec Music/Bang. Presser A relance une course avec les mêmes paramètres.
@@ -187,7 +187,7 @@ Liste des scènes (et – succinctes – descriptions de leurs contenus) :
     2. Credits.tscn : contient la scène de générique du jeu (intègre également le bouton pour quitter le jeu).
     3. Cube.tscn : contient les bonus/malus à ramasser en course.
     4. Door.tscn : contient la porte de sortie du jeu. La porte est scindée en 2 couches (l’avant et l’arrière pour que les concurrents puisse la franchir puisqu’elle ressemble à une arche).
-    5. Game.tscn : il s’agit de la scène (théorique) de composition du jeu avec ses 4 vues, ses layers de glitch, etc. (intègre également le bouton pour quitter le jeu ET le bouton pour lancer la course).
+    5. The_Game.tscn : il s’agit de la scène (théorique) de composition du jeu avec ses 4 vues, ses layers de glitch, etc. (intègre également le bouton pour quitter le jeu ET le bouton pour lancer la course).
     6. Light_Wall.tscn : contient le (prototype de) mur que tracent les concurrents en courant. Inclus un AnimationPlayer qui sert de démo pour voir à quoi ça doit ressembler. Les sons se trouvent dans Sounds.tscn.
     7. Man_A.tscn, Man_B.tscn, Woman_A.tscn et Woman_B.tscn : contiennent les 4 concurrents du jeu.
     8. Menu.tscn : contient le menu principal du jeu (intègre également le bouton pour quitter le jeu).

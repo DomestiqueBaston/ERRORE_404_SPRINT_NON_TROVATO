@@ -829,6 +829,7 @@ offset_top = 149.0
 offset_right = 879.0
 offset_bottom = 182.0
 color = Color(0.4392157, 0.79607844, 0.0627451, 0.5019608)
+metadata/_edit_lock_ = true
 
 [node name="Cardinals" type="RichTextLabel" parent="Parameters/Masks" unique_id=736139266]
 visible = false
@@ -1113,6 +1114,7 @@ offset_top = 148.0
 offset_right = 707.0
 offset_bottom = 182.0
 color = Color(1, 1, 1, 0.627451)
+metadata/_edit_lock_ = true
 
 [node name="Audio_50_100" type="RichTextLabel" parent="Parameters/Masks" unique_id=275154943]
 clip_children = 2
