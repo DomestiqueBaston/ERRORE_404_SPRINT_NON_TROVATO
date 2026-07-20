@@ -4,7 +4,7 @@ extends Node2D
 @onready var menu_scene: PackedScene = load("res://SCENE_AND_SCRIPT/Menu.tscn")
 
 func _input(event):
-	if event.is_action_pressed("ui_a_button") and !event.is_action_pressed("ui_quit_button") and !event.is_action_pressed("ui_fullscreen"):
+	if event.is_action_pressed("ui_a_button"):
 		Sounds.play_validation()
 		Sounds.play_bang()
 		get_viewport().set_input_as_handled()

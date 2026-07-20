@@ -11,7 +11,7 @@ func _input(event):
 		get_viewport().set_input_as_handled()
 		get_tree().call_deferred("change_scene_to_packed", menu_scene)
 
-	if event.is_action_pressed("ui_a_button"):
+	elif event.is_action_pressed("ui_a_button"):
 		Sounds.play_validation()
 		Sounds.play_bang()
 		get_viewport().set_input_as_handled()
