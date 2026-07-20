@@ -2780,7 +2780,6 @@ libraries/ = SubResource("AnimationLibrary_g17bh")
 autoplay = &"Blink"
 
 [node name="Quit_Button" parent="Frames" unique_id=1295710875 instance=ExtResource("9_mybf8")]
-visible = false
 offset_left = 435.0
 offset_top = 225.0
 offset_right = 525.0
