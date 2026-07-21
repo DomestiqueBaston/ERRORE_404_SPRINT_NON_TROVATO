@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bp0v56bglyo5x"]
+[gd_scene format=3 uid="uid://bp0v56bglyo5x"]
 
 [ext_resource type="Texture2D" uid="uid://w0y6jf5wx4px" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de pylone.png" id="1_d0quk"]
 [ext_resource type="Shader" uid="uid://rfstm5ejtwi3" path="res://SHADER/Reflection.gdshader" id="2_iqsdp"]

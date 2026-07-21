@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://j1o05ogbvejp"]
+[gd_scene format=3 uid="uid://j1o05ogbvejp"]
 
 [ext_resource type="Texture2D" uid="uid://culur3kwelh22" path="res://TRASH/DOOR/Epaules.png" id="1_3hlua"]
 [ext_resource type="Shader" uid="uid://6s75bgp7t8or" path="res://TRASH/Drop_Shadow.gdshader" id="1_wjsb3"]

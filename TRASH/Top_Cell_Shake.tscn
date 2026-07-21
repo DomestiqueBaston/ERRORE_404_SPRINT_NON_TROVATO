@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dn0ap0s3t1i0q"]
+[gd_scene format=3 uid="uid://dn0ap0s3t1i0q"]
 
 [ext_resource type="Texture2D" uid="uid://d0s3llyava71h" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_02.png" id="1_3ovx1"]
 [ext_resource type="Texture2D" uid="uid://dsrmr325mtsek" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_01.png" id="1_pt5u0"]

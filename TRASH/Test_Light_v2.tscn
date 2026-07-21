@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxhwv17jogtia"]
+[gd_scene format=3 uid="uid://dxhwv17jogtia"]
 
 [ext_resource type="Texture2D" uid="uid://culur3kwelh22" path="res://TRASH/DOOR/Epaules.png" id="1_rtbxg"]
 [ext_resource type="Texture2D" uid="uid://c8iuafa4b8q0u" path="res://TRASH/DOOR/Tete.png" id="2_27kea"]
