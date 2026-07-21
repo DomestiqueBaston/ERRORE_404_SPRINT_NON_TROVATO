@@ -30,7 +30,7 @@ buses/default_bus_layout="uid://87w0widytofu"
 
 [autoload]
 
-Autoload="*uid://ubao4e160a71"
+Globals="*uid://ubao4e160a71"
 Sounds="*uid://em4id2fwd18h"
 
 [display]

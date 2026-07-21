@@ -1,8 +1,6 @@
 extends Node2D
 
-
 @onready var menu_scene: PackedScene = load("res://SCENE_AND_SCRIPT/Menu.tscn")
-
 
 func _input(event):
 	if event.is_action_pressed("ui_b_button"):
@@ -14,5 +12,7 @@ func _input(event):
 	elif event.is_action_pressed("ui_a_button"):
 		Sounds.play_validation()
 		Sounds.play_bang()
+		Globals.use_diagonals_for_movement = $Parameters.get_use_diagonals()
+		Globals.save_settings()
 		get_viewport().set_input_as_handled()
 		get_tree().call_deferred("change_scene_to_packed", menu_scene)

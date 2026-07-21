@@ -25,6 +25,8 @@ var is_falling: bool = false
 var jump_direction: Vector2 = Vector2.ZERO
 var slide_direction: Vector2 = Vector2.ZERO
 
+var _rotation: float = deg_to_rad(18.4)
+
 func _ready() -> void:
 	animation_player.animation_finished.connect(_on_animation_finished)
 
@@ -55,18 +57,31 @@ func _process(delta: float) -> void:
 
 	# === Entrées de déplacement ===
 	if not is_jumping and not is_sliding:
-		if Input.is_action_pressed("ui_right_button") and Input.is_action_pressed("ui_down_button"):
-			input_direction = Vector2(1, 1).rotated(deg_to_rad(-18.4))
-		elif Input.is_action_pressed("ui_left_button") and Input.is_action_pressed("ui_down_button"):
-			input_direction = Vector2(-1, 1).rotated(deg_to_rad(18.4))
-		elif Input.is_action_pressed("ui_right_button") and Input.is_action_pressed("ui_up_button"):
-			input_direction = Vector2(1, -1).rotated(deg_to_rad(18.4))
-		elif Input.is_action_pressed("ui_left_button") and Input.is_action_pressed("ui_up_button"):
-			input_direction = Vector2(-1, -1).rotated(deg_to_rad(-18.4))
+		if Globals.use_diagonals_for_movement:
+			if Input.is_action_pressed("ui_left_button"):
+				if Input.is_action_pressed("ui_down_button"):
+					input_direction = Vector2(-1, 1).rotated(_rotation)
+				elif Input.is_action_pressed("ui_up_button"):
+					input_direction = Vector2(-1, -1).rotated(-_rotation)
+			elif Input.is_action_pressed("ui_right_button"):
+				if Input.is_action_pressed("ui_down_button"):
+					input_direction = Vector2(1, 1).rotated(-_rotation)
+				elif Input.is_action_pressed("ui_up_button"):
+					input_direction = Vector2(1, -1).rotated(_rotation)
+		else:
+			if Input.is_action_pressed("ui_left_button"):
+				input_direction = Vector2(-1, 1).rotated(_rotation)
+			elif Input.is_action_pressed("ui_up_button"):
+				input_direction = Vector2(-1, -1).rotated(-_rotation)
+			elif Input.is_action_pressed("ui_right_button"):
+				input_direction = Vector2(1, -1).rotated(_rotation)
+			elif Input.is_action_pressed("ui_down_button"):
+				input_direction = Vector2(1, 1).rotated(-_rotation)
 
 		if input_direction != Vector2.ZERO:
-			if is_valid_direction(input_direction.normalized()):
-				last_direction = input_direction.normalized()
+			var normdir = input_direction.normalized()
+			if is_valid_direction(normdir):
+				last_direction = normdir
 				last_non_zero_direction = last_direction
 
 	# === Direction actuelle ===
