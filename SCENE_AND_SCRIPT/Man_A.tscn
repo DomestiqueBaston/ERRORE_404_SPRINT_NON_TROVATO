@@ -3232,7 +3232,7 @@ metadata/_edit_lock_ = true
 
 [node name="Foot_Step_01" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=1432993778]
 stream = ExtResource("29_o60mx")
-volume_db = 5.0
+volume_db = 7.5
 pitch_scale = 0.5
 max_distance = 750.0
 bus = &"RUNNERS"
@@ -3240,7 +3240,7 @@ metadata/_edit_lock_ = true
 
 [node name="Foot_Step_02" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=1607812989]
 stream = ExtResource("13_wqidb")
-volume_db = 5.0
+volume_db = 7.5
 pitch_scale = 0.5
 max_distance = 750.0
 bus = &"RUNNERS"

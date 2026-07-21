@@ -1,0 +1,170 @@
+[gd_scene format=3 uid="uid://bjsba2kod4q2x"]
+
+[ext_resource type="Shader" uid="uid://1uirkyntqux" path="res://SHADER/Light_Wall_Glitch.gdshader" id="1_hkxm2"]
+[ext_resource type="Texture2D" uid="uid://bmx7k8f1lyd4s" path="res://RESOURCE/Runner_Wall_Main_Start_Gradient.tres" id="2_hkxm2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2r1d"]
+size = Vector2(66.98532, 7.0045767)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i5m2m"]
+shader = ExtResource("1_hkxm2")
+shader_parameter/glitch_chance = 1.0
+shader_parameter/glitch_speed = 7.0
+shader_parameter/slice_density = 14.0
+shader_parameter/slice_strength = 0.38
+shader_parameter/shake_strength = 0.02
+shader_parameter/chroma_offset = 0.0
+shader_parameter/noise_strength = 0.01
+shader_parameter/color_flash_strength = 0.1
+shader_parameter/scanline_strength = 0.18
+shader_parameter/local_warp_strength = 1.0
+shader_parameter/flip_chance = 0.0
+
+[sub_resource type="Animation" id="Animation_bjou7"]
+resource_name = "Disappearing"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall_Start_Main:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333333, 0.06666667, 0.13333333, 0.16666669, 0.20000002),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Light_Wall_Collider/Collider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_i5m2m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall_Start_Main:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Light_Wall_Collider/Collider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jdkuv"]
+_data = {
+&"Disappearing": SubResource("Animation_bjou7"),
+&"RESET": SubResource("Animation_i5m2m")
+}
+
+[sub_resource type="Animation" id="Animation_e2r1d"]
+resource_name = "Drawing_A_Start_Wall"
+length = 0.33333668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall_Start_Main:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedVector2Array(0, 0, 0, -80, 0, -80, 0, 0), PackedVector2Array(0, 0, 0, -80, -60, -110, -60, -30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wall_Start_Main:uv")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.33333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedVector2Array(80, 63.999996, 88, 0, 88, 0, 80, 64), PackedVector2Array(80, 63.999996, 88, 0, 0, 0, 0, 63.999996)]
+}
+
+[sub_resource type="Animation" id="Animation_ctet6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall_Start_Main:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(0, 0, 0, -80, -60, -110, -60, -30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wall_Start_Main:uv")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(80, 63.999996, 88, 0, 0, 0, 0, 63.999996)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5nbyn"]
+_data = {
+&"Drawing_A_Start_Wall": SubResource("Animation_e2r1d"),
+&"RESET": SubResource("Animation_ctet6")
+}
+
+[node name="Light_Wall_Start" type="Node2D" unique_id=2109438449]
+metadata/_edit_lock_ = true
+
+[node name="Light_Wall_Collider" type="Area2D" parent="." unique_id=994869857]
+rotation = 0.46425754
+metadata/_edit_lock_ = true
+
+[node name="Collider" type="CollisionShape2D" parent="Light_Wall_Collider" unique_id=1978496033]
+position = Vector2(-33.558765, 1.9073486e-06)
+skew = 0.6422812
+shape = SubResource("RectangleShape2D_e2r1d")
+metadata/_edit_lock_ = true
+
+[node name="Wall_Start_Main" type="Polygon2D" parent="." unique_id=596188624]
+material = SubResource("ShaderMaterial_i5m2m")
+antialiased = true
+texture = ExtResource("2_hkxm2")
+polygon = PackedVector2Array(0, 0, 0, -80, -60, -110, -60, -30)
+uv = PackedVector2Array(80, 63.999996, 88, 0, 0, 0, 0, 63.999996)
+metadata/_edit_lock_ = true
+
+[node name="Light_Wall_Start_Animation" type="AnimationPlayer" parent="." unique_id=594533283]
+libraries/ = SubResource("AnimationLibrary_jdkuv")
+
+[node name="What_It_Should_Look_Like_(to_delete)" type="AnimationPlayer" parent="." unique_id=611575342]
+libraries/ = SubResource("AnimationLibrary_5nbyn")

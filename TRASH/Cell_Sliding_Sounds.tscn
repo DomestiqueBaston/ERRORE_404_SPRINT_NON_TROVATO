@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://e4qt3bcy8myw"]
+
+[ext_resource type="Script" uid="uid://bmv4bpcu0wfa0" path="res://TRASH/Cell_Sliding_Sounds.gd" id="1_ub6e1"]
+[ext_resource type="AudioStream" uid="uid://bifaoucknr7f5" path="res://SOUND/FX/Sliding_Cell.ogg" id="2_2n34r"]
+[ext_resource type="AudioStream" uid="uid://vldsf8ak3y4t" path="res://SOUND/FX/Alarm.ogg" id="3_1ekqm"]
+
+[node name="Cell_Sliding_Sounds" type="Node" unique_id=287617931]
+script = ExtResource("1_ub6e1")
+
+[node name="Start_Cell" type="AudioStreamPlayer" parent="." unique_id=341155674]
+volume_db = 2.5
+bus = &"FX_WET"
+
+[node name="Stop_Cell" type="AudioStreamPlayer" parent="." unique_id=12799922]
+volume_db = 5.0
+bus = &"FX_WET"
+
+[node name="Up_Down_Cell" type="AudioStreamPlayer" parent="." unique_id=1201743301]
+volume_db = 5.0
+bus = &"FX_WET"
+
+[node name="Sliding_Cell" type="AudioStreamPlayer" parent="." unique_id=20478236]
+stream = ExtResource("2_2n34r")
+bus = &"FX_WET"
+parameters/looping = true
+
+[node name="Alarm_Before_Movement" type="AudioStreamPlayer" parent="." unique_id=30840079]
+stream = ExtResource("3_1ekqm")
+bus = &"FX_WET"
+parameters/looping = true

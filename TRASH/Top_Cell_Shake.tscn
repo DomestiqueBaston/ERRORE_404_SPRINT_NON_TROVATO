@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://dn0ap0s3t1i0q"]
+
+[ext_resource type="Texture2D" uid="uid://d0s3llyava71h" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_02.png" id="1_3ovx1"]
+[ext_resource type="Texture2D" uid="uid://dsrmr325mtsek" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_01.png" id="1_pt5u0"]
+[ext_resource type="Texture2D" uid="uid://c65rps6vfpkyq" path="res://IMAGE/ENVIRONMENT/CELL/Top_Cell_Mask.png" id="2_0qin8"]
+[ext_resource type="Texture2D" uid="uid://c626477xi2e0o" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_03.png" id="2_jyxeg"]
+[ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="5_n00qy"]
+
+[sub_resource type="Gradient" id="Gradient_scn1h"]
+colors = PackedColorArray(0, 0, 0, 1, 0.07058824, 0.08235294, 0.1254902, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2ru0b"]
+gradient = SubResource("Gradient_scn1h")
+width = 640
+height = 360
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jyxeg"]
+shader = ExtResource("5_n00qy")
+shader_parameter/same_width_lines_count = 17.237
+shader_parameter/same_width_change_per_sec = 7.665
+shader_parameter/glitch_change_per_sec = 2.0
+shader_parameter/threshold = 0.4
+shader_parameter/strength = 0.079
+shader_parameter/glitch_blend = 0.85
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Scene_BG" type="TextureRect" parent="."]
+z_index = -10
+offset_right = 640.0
+offset_bottom = 360.0
+texture = SubResource("GradientTexture2D_2ru0b")
+metadata/_edit_lock_ = true
+
+[node name="CelluleDeTerrain02" type="Sprite2D" parent="."]
+position = Vector2(199, 267)
+texture = ExtResource("1_3ovx1")
+
+[node name="CelluleDeTerrain03" type="Sprite2D" parent="."]
+position = Vector2(435, 267)
+texture = ExtResource("2_jyxeg")
+
+[node name="CelluleDeTerrain01" type="Sprite2D" parent="."]
+position = Vector2(317, 326)
+texture = ExtResource("1_pt5u0")
+
+[node name="TopCellMask" type="Sprite2D" parent="."]
+clip_children = 1
+position = Vector2(317, 326)
+texture = ExtResource("2_0qin8")
+
+[node name="CelluleDeTerrain01" type="Sprite2D" parent="TopCellMask"]
+material = SubResource("ShaderMaterial_jyxeg")
+texture = ExtResource("1_pt5u0")
+
+[node name="CelluleDeTerrain04" type="Sprite2D" parent="."]
+position = Vector2(199, 385)
+texture = ExtResource("2_jyxeg")
+
+[node name="CelluleDeTerrain05" type="Sprite2D" parent="."]
+position = Vector2(435, 385)
+texture = ExtResource("2_jyxeg")

@@ -1,0 +1,125 @@
+shader_type canvas_item;
+
+// Uniforms du tremblement
+uniform bool shake_enabled = false;
+uniform float shake_power : hint_range(0.0, 0.01, 0.0001) = 0.001;
+uniform float shake_speed : hint_range(0.0, 100.0, 0.1) = 10.0;
+uniform float shake_block_size = 150.0;
+uniform float shake_color_rate : hint_range(0.0, 0.02, 0.0001) = 0.0007;
+
+// Uniforms de l'outline
+uniform float outline_thickness : hint_range(0.0, 5.0, 1.0) = 2.0;
+uniform vec4 outline_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
+uniform float outline_boost_when_glitch : hint_range(0.0, 100.0, 0.1) = 100.0;
+
+// Uniforms des trails
+uniform float strength : hint_range(0.0, 0.03) = 0.015;
+uniform vec2 direction = vec2(-200.0, -333.0);
+uniform int samples : hint_range(1, 8) = 4;
+uniform float trail_opacity : hint_range(0.0, 1.0) = 1.0;
+uniform vec4 couleur_finale;
+
+
+bool is_inside_usquare(vec2 x) {
+    return x == clamp(x, vec2(0.0), vec2(1.0));
+}
+
+vec4 blend(vec4 bottom, vec4 top) {
+    float alpha = top.a + bottom.a * (1.0 - top.a);
+    if (alpha < 0.0001) return vec4(0.0);
+    vec3 color = mix(bottom.rgb * bottom.a, top.rgb, top.a) / alpha;
+    return vec4(color, alpha);
+}
+
+void fragment() {
+    float enable_shift = float(shake_enabled);
+
+    vec2 base_uv = UV;
+    base_uv.x += enable_shift * shake_power * sign(sin(trunc(UV.y * shake_block_size) * 5.0 + TIME * shake_speed));
+    base_uv.y += enable_shift * shake_power * sign(cos(trunc(UV.x * shake_block_size) * 2.0 + TIME * shake_speed));
+
+    vec4 original_color = texture(TEXTURE, base_uv);
+
+    // ─── Outline sur l’image NON glitchée ───────────────────────────────
+    float outline_alpha = 0.0;
+
+    if (outline_thickness > 0.0 && outline_color.a > 0.0) {
+        vec2 pos = base_uv;
+
+        for (float y = 1.0; y <= outline_thickness; y += 1.0) {
+            for (float x = 0.0; x <= y; x += 1.0) {
+                if (length(vec2(x, y - 0.5)) > outline_thickness) continue;
+
+                vec2 dirs[8] = vec2[](
+                    vec2( x,  y), vec2(-x,  y),
+                    vec2( x, -y), vec2(-x, -y),
+                    vec2( y,  x), vec2(-y,  x),
+                    vec2( y, -x), vec2(-y, -x)
+                );
+
+                for (int i = 0; i < 8; i++) {
+                    vec2 sample_uv = pos + dirs[i] * TEXTURE_PIXEL_SIZE;
+                    if (is_inside_usquare(sample_uv)) {
+                        outline_alpha = max(outline_alpha, texture(TEXTURE, sample_uv).a);
+                    }
+                }
+            }
+        }
+
+        // Boost d’intensité quand glitch actif
+        float outline_boost = 1.0 + (outline_boost_when_glitch - 1.0) * enable_shift;
+        outline_alpha = clamp(outline_alpha * outline_boost, 0.0, 1.0);
+    }
+
+    vec4 outline_layer = vec4(outline_color.rgb, outline_alpha * outline_color.a);
+    vec4 color_with_outline = blend(outline_layer, original_color);
+
+    // ─── Glitch RGB split ───────────────────────────────────────────────
+    vec4 final_color = color_with_outline;
+
+    if (enable_shift > 0.5) {
+        vec2 uv_r = base_uv + vec2( shake_color_rate * 1.5,  0.002);
+        vec2 uv_g = base_uv + vec2(-shake_color_rate * 0.8, -shake_color_rate * 0.5);
+        vec2 uv_b = base_uv + vec2( shake_color_rate * 0.4,  shake_color_rate * 0.8);
+
+        float r = texture(TEXTURE, uv_r).r;
+        float g = texture(TEXTURE, uv_g).g;
+        float b = texture(TEXTURE, uv_b).b;
+
+        // Alpha plus conservateur pour ne pas trop affaiblir les bords
+        float a_sampled  = 0.45 * texture(TEXTURE, uv_r).a
+                         + 0.35 * texture(TEXTURE, uv_g).a
+                         + 0.20 * texture(TEXTURE, uv_b).a;
+
+        float glitch_a = mix(color_with_outline.a, a_sampled, 0.45);  // ← mix doux
+
+        final_color = vec4(r, g, b, glitch_a);
+    }
+
+    if (final_color.a < 0.01) discard;
+    couleur_finale = final_color;
+	//COLOR = final_color;
+	
+	vec4 trails = vec4(0.0);
+    vec2 dir = normalize(direction);
+    float weight_sum = 0.0;
+	
+	for (int i = 1; i <= samples; i++) {
+        float t = float(i) / float(samples);
+        float weight = 1.0 - t;
+        vec4 trail = texture(TEXTURE, UV - dir * strength * t);
+        trails.rgb += trail.rgb * weight * trail_opacity;
+        trails.a = max(trails.a, trail.a * weight * trail_opacity);
+        weight_sum += weight;
+    }
+	
+	if (weight_sum > 0.0) {
+        trails.rgb /= weight_sum;
+    }
+
+    vec4 sprite = texture(TEXTURE, UV);
+
+    COLOR = mix(couleur_finale, trails, sprite, sprite.a);
+	
+	
+}

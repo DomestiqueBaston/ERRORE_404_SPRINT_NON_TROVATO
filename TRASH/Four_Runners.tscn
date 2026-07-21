@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://bqfmqomq3yr0t"]
+
+[ext_resource type="PackedScene" uid="uid://brsvllplyc7ih" path="res://SCENE_AND_SCRIPT/Woman_A.tscn" id="1_b82on"]
+
+[node name="Runners" type="VBoxContainer"]
+custom_minimum_size = Vector2(960, 540)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Top_Runners" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Left_Runner" type="SubViewportContainer" parent="Top_Runners"]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 2
+
+[node name="Runner_SubViewport" type="SubViewport" parent="Top_Runners/Left_Runner"]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="Runner" parent="Top_Runners/Left_Runner/Runner_SubViewport" instance=ExtResource("1_b82on")]
+z_index = 1
+
+[node name="Right_Runner" type="SubViewportContainer" parent="Top_Runners"]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 2
+
+[node name="Runner_SubViewport" type="SubViewport" parent="Top_Runners/Right_Runner"]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="Runner" parent="Top_Runners/Right_Runner/Runner_SubViewport" instance=ExtResource("1_b82on")]
+z_index = 1
+position = Vector2(50, 0)
+
+[node name="Character" parent="Top_Runners/Right_Runner/Runner_SubViewport/Runner" index="0"]
+script = null
+
+[node name="Bottom_Runners" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Left_Runner" type="SubViewportContainer" parent="Bottom_Runners"]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 2
+
+[node name="Runner_SubViewport" type="SubViewport" parent="Bottom_Runners/Left_Runner"]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="Runner" parent="Bottom_Runners/Left_Runner/Runner_SubViewport" instance=ExtResource("1_b82on")]
+z_index = 1
+position = Vector2(0, 50)
+
+[node name="Character" parent="Bottom_Runners/Left_Runner/Runner_SubViewport/Runner" index="0"]
+script = null
+
+[node name="Right_Runner" type="SubViewportContainer" parent="Bottom_Runners"]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 2
+
+[node name="Runner_SubViewport" type="SubViewport" parent="Bottom_Runners/Right_Runner"]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="Runner" parent="Bottom_Runners/Right_Runner/Runner_SubViewport" instance=ExtResource("1_b82on")]
+z_index = 1
+position = Vector2(50, 50)
+
+[node name="Character" parent="Bottom_Runners/Right_Runner/Runner_SubViewport/Runner" index="0"]
+script = null
+
+[editable path="Top_Runners/Left_Runner/Runner_SubViewport/Runner"]
+[editable path="Top_Runners/Right_Runner/Runner_SubViewport/Runner"]
+[editable path="Bottom_Runners/Left_Runner/Runner_SubViewport/Runner"]
+[editable path="Bottom_Runners/Right_Runner/Runner_SubViewport/Runner"]
