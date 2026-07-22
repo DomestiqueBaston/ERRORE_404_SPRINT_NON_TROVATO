@@ -1,43 +1,55 @@
-extends TextureProgressBar
+extends Control
 
-@export var hold_to_show_time := 0.25
+@export var initial_press_duration := 0.25
 @export var fill_duration := 0.75
+@export var pause_duration := 0.666
 
-var _press_timer := 0.0
-var _fill_timer := 0.0
-var _locked := false
-var charge_completed : bool = false
+@onready var _progress = $Progress_Bar
+@onready var _timer = $Timer
+
+var _tween: Tween
+var _done: bool = false
 
 func _ready():
-	visible = false
-	value = min_value
+	_reset()
+	_timer.timeout.connect(_on_timeout)
 
-func _process(delta):
-	if Input.is_action_pressed("ui_quit_button"):
-		_press_timer += delta
-		
-		if _press_timer >= hold_to_show_time:
-			visible = true
-			
-			if not _locked and not charge_completed:
-				_fill_timer += delta
-				value = lerp(min_value, max_value, _fill_timer / fill_duration)
-				
-				if _fill_timer >= fill_duration:
-					_locked = true
-					value = max_value
-					charge_completed = true
-					_on_charge_completed()
-	
+func _reset():
+	if _tween:
+		_tween.stop()
+		_tween = null
+	_progress.hide()
+	_progress.value = _progress.min_value
+
+func _input(event: InputEvent):
+	if _done:
+		return
+	if event.is_action_pressed("ui_quit_button"):
+		_reset()
+		_timer.start(initial_press_duration)
+	elif event.is_action_released("ui_quit_button"):
+		_timer.stop()
+		_reset()
+
+#
+# Called on a timer timeout, meaning either that the button has been pressed
+# for initial_press_duration and it is time to start loading the progress bar
+# (_done is false), or that the progress bar has finished loading and
+# pause_duration has elapsed (_done is true).
+#
+func _on_timeout():
+	if _done:
+		get_tree().quit()
 	else:
-		if not _locked:
-			visible = false
-			value = min_value
-			_fill_timer = 0.0
-		
-		_press_timer = 0.0
+		_progress.show()
+		_tween = create_tween()
+		_tween.tween_property(_progress, "value", _progress.max_value, fill_duration)
+		_tween.finished.connect(_on_completed)
 
-func _on_charge_completed():
+#
+# Called when the progress bar has finished loading: quit after pause_duration.
+#
+func _on_completed():
 	Sounds.play_full()
-	await get_tree().create_timer(0.666).timeout
-	get_tree().quit()
+	_done = true
+	_timer.start(pause_duration)

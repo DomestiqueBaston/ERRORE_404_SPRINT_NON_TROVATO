@@ -11,6 +11,7 @@ anchors_preset = 0
 offset_right = 90.0
 offset_bottom = 90.0
 mouse_filter = 2
+script = ExtResource("4_lslwb")
 metadata/_edit_lock_ = true
 
 [node name="Progress_Bar" type="TextureProgressBar" parent="." unique_id=1047692277]
@@ -22,5 +23,7 @@ fill_mode = 4
 texture_under = ExtResource("1_ts8rr")
 texture_over = ExtResource("2_888e3")
 texture_progress = ExtResource("3_n3c8u")
-script = ExtResource("4_lslwb")
 metadata/_edit_lock_ = true
+
+[node name="Timer" type="Timer" parent="." unique_id=516302208]
+one_shot = true
