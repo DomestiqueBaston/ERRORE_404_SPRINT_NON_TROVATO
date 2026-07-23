@@ -229,7 +229,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_jqsr3"]
 resource_name = "Intro"
-length = 0.33333668
+length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -249,11 +249,14 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.03333333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.03333333, 10),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"play_bang_title"
+}, {
+"args": [],
+"method": &"show_info_overlay"
 }]
 }
 
@@ -443,7 +446,9 @@ offset_left = 435.0
 offset_top = 435.0
 offset_right = 525.0
 offset_bottom = 525.0
-metadata/_edit_lock_ = true
+
+[node name="Progress_Bar" parent="Quit_Button" index="0" unique_id=1047692277]
+visible = false
 
 [node name="Animation_Intro" type="AnimationPlayer" parent="." unique_id=722104241]
 libraries/ = SubResource("AnimationLibrary_hvxmu")

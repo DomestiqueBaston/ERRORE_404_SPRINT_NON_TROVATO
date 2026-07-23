@@ -4,6 +4,9 @@ extends Control
 @export var fill_duration := 0.75
 @export var pause_duration := 0.666
 
+## Signal emitted when the progress bar is shown or hidden.
+signal quit_button_toggled(toggled: bool)
+
 @onready var _progress = $Progress_Bar
 @onready var _timer = $Timer
 
@@ -18,7 +21,9 @@ func _reset():
 	if _tween:
 		_tween.stop()
 		_tween = null
-	_progress.hide()
+	if _progress.visible:
+		_progress.hide()
+		quit_button_toggled.emit(false)
 	_progress.value = _progress.min_value
 
 func _input(event: InputEvent):
@@ -42,6 +47,7 @@ func _on_timeout():
 		get_tree().quit()
 	else:
 		_progress.show()
+		quit_button_toggled.emit(true)
 		_tween = create_tween()
 		_tween.tween_property(_progress, "value", _progress.max_value, fill_duration)
 		_tween.finished.connect(_on_completed)
