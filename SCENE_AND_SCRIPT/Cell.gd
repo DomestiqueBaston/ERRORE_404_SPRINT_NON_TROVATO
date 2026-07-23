@@ -1,6 +1,14 @@
 @tool
 extends Node2D
 
+@export var decoration: Decoration = Decoration.OTHER1:
+	set(deco):
+		if decoration != deco:
+			if is_node_ready():
+				_textures[decoration].hide()
+				_textures[deco].show()
+			decoration = deco
+
 enum Decoration {
 	CENTER,
 	N,
@@ -28,15 +36,6 @@ enum Decoration {
 	OTHER7,
 	OTHER8
 }
-
-@export var decoration: Decoration = Decoration.OTHER1:
-	set(deco):
-		if decoration != deco:
-			if is_node_ready():
-				_textures[decoration].hide()
-			decoration = deco
-			if is_node_ready():
-				_textures[decoration].show()
 
 @onready var _textures = [
 	$Column/Cell_Tops/Cell_Textures/Cellule_De_Terrain_Centre,
