@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cucs0i7d1er7d"]
 
 [ext_resource type="Texture2D" uid="uid://bsel0k65v13mi" path="res://IMAGE/ENVIRONMENT/CELL/Extension de terrain.png" id="1_e50o2"]
+[ext_resource type="Script" uid="uid://b17qiblky0c8e" path="res://SCENE_AND_SCRIPT/Cell.gd" id="1_psu53"]
 [ext_resource type="Texture2D" uid="uid://dsrmr325mtsek" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_01.png" id="1_ypd1c"]
 [ext_resource type="Texture2D" uid="uid://d0s3llyava71h" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_02.png" id="2_0chrw"]
 [ext_resource type="Texture2D" uid="uid://c626477xi2e0o" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_03.png" id="3_wjuty"]
@@ -2089,6 +2090,7 @@ _data = {
 }
 
 [node name="Cell" type="Node2D" unique_id=2120336095]
+script = ExtResource("1_psu53")
 metadata/_edit_lock_ = true
 
 [node name="ATTENTION (à lire)" type="Label" parent="." unique_id=1347624169]
