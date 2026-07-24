@@ -69,7 +69,7 @@ Les malus (applications automatiques) :
 
 Les obstacles :
 - Toutes les X secondes (voir Options nécessaires dans Settings) un des obstacles est déclenché. 1 sur 4 est un glissement de Ligne/Colonne. La « quantité » de glissement des Ligne/Colonne se font aléatoirement d’1 à (longueur d’un côté au départ/3) cases (pour ne pas dire cellule qui pourrait être perturbant). On fait TOUJOURS glisser une ligne/colonne complète (« trous » inclus).
-    1. Ligne/Colonne (de cellules) qui glisse d’1 à 2 cases – Permanent → ✔ (1’’ avant, on joue Cell_Pylon_Alarms/Cell_Slide dans Sounds.tscn ET jusqu’à la fin de l’animation)
+    1. Ligne/Colonne (de cellules) qui glisse – Permanent → ✔ (1’’ avant, on joue Cell_Pylon_Alarms/Cell_Slide dans Sounds.tscn ET jusqu’à la fin de l’animation)
     2. Trous (cellules qui descendent) – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     3. Murs des concurrents – (Durée : comme précisé plus loin) → ✔ (voir avec Geoff comment faire)
     4. Cellule à sens unique – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
