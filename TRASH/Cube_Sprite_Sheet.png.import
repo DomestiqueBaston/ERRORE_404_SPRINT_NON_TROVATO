@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://daxlt5o4goj2w"
-path="res://.godot/imported/Cube_Sprite_Sheet_v2.png-2f7c2cf34ff96047f83e20038308968d.ctex"
+uid="uid://b4k5fxx2uem7o"
+path="res://.godot/imported/Cube_Sprite_Sheet.png-88b91332d7297bf861da019ee272724a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/ENVIRONMENT/CUBE/Cube_Sprite_Sheet_v2.png"
-dest_files=["res://.godot/imported/Cube_Sprite_Sheet_v2.png-2f7c2cf34ff96047f83e20038308968d.ctex"]
+source_file="res://TRASH/Cube_Sprite_Sheet.png"
+dest_files=["res://.godot/imported/Cube_Sprite_Sheet.png-88b91332d7297bf861da019ee272724a.ctex"]
 
 [params]
 

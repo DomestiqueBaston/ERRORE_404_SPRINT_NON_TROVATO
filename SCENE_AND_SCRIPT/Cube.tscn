@@ -4,7 +4,7 @@
 [ext_resource type="Shader" uid="uid://3f2wtq4pn17q" path="res://SHADER/Shadow_Compositing.gdshader" id="2_i7obx"]
 [ext_resource type="Texture2D" uid="uid://c5i7h02ps03t3" path="res://IMAGE/ENVIRONMENT/CUBE/Shadow.png" id="2_yd2d6"]
 [ext_resource type="Shader" uid="uid://68aobjd54xxo" path="res://SHADER/Outline_And_Color.gdshader" id="3_mfqlr"]
-[ext_resource type="Texture2D" uid="uid://daxlt5o4goj2w" path="res://IMAGE/ENVIRONMENT/CUBE/Cube_Sprite_Sheet_v2.png" id="4_mfqlr"]
+[ext_resource type="Texture2D" uid="uid://daxlt5o4goj2w" path="res://IMAGE/ENVIRONMENT/CUBE/Cube_Sprite_Sheet.png" id="4_mfqlr"]
 [ext_resource type="AudioStream" uid="uid://cgbxwl13x4oax" path="res://SOUND/FX/Cube_Hum.ogg" id="5_i7obx"]
 [ext_resource type="AudioStream" uid="uid://clgt4fhw7wp4c" path="res://SOUND/FX/Appearing_Cube.ogg" id="7_i7obx"]
 [ext_resource type="AudioStream" uid="uid://1ojf301p0bbg" path="res://SOUND/FX/Disappearing_Cube.ogg" id="8_oh6sb"]

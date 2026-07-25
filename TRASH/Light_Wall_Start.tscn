@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bjsba2kod4q2x"]
 
 [ext_resource type="Shader" uid="uid://1uirkyntqux" path="res://SHADER/Light_Wall_Glitch.gdshader" id="1_hkxm2"]
-[ext_resource type="Texture2D" uid="uid://bmx7k8f1lyd4s" path="res://RESOURCE/Runner_Wall_Main_Start_Gradient.tres" id="2_hkxm2"]
+[ext_resource type="Texture2D" uid="uid://bmx7k8f1lyd4s" path="res://TRASH/Runner_Wall_Main_Start_Gradient.tres" id="2_hkxm2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2r1d"]
 size = Vector2(66.98532, 7.0045767)
