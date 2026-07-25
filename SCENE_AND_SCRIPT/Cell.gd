@@ -1,5 +1,5 @@
 @tool
-extends Node2D
+class_name Cell extends Node2D
 
 @export var decoration: Decoration = Decoration.OTHER1:
 	set(deco):
