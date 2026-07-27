@@ -1,7 +1,13 @@
 extends Control
 
-# Important : le son max. pour le bus MUSIC, c'est -7.5db (pour le moment) !
+@export var master_db_min: float = -10.0
+@export var master_db_max: float = 0.0
 
+@export var music_db_min: float = -15.0
+@export var music_db_max: float = -7.5
+
+var _master_db_init: float
+var _music_db_init: float
 var _selected_slider: int = 0
 
 var _slider_text: Array[String] = [
@@ -51,17 +57,9 @@ var _slider_text: Array[String] = [
 
 var _normal_grabbers: Array[Texture2D]
 var _highlight_grabbers: Array[Texture2D]
+var _is_updating: bool = false
 
 func _ready():
-	var use_diagonals = Globals.use_diagonals_for_movement
-	$Directions/Diagonals.visible = use_diagonals
-	$Directions/Cardinals.visible = not use_diagonals
-	$Masks/Diagonals.visible = use_diagonals
-	$Masks/Cardinals.visible = not use_diagonals
-
-	master_slider.value = _db_to_slider(AudioServer.get_bus_volume_db(0))
-	music_slider.value = _db_to_slider_music(AudioServer.get_bus_volume_db(3))
-
 	map_slider.value_changed.connect(_on_map_slider_changed)
 	difficulty_slider.value_changed.connect(_on_difficulty_slider_changed)
 	master_slider.value_changed.connect(_on_master_slider_changed)
@@ -77,7 +75,26 @@ func _ready():
 			_normal_grabbers.append(null)
 			_highlight_grabbers.append(null)
 
+func update():
+	var use_diagonals = Globals.use_diagonals_for_movement
+	$Directions/Diagonals.visible = use_diagonals
+	$Directions/Cardinals.visible = not use_diagonals
+	$Masks/Diagonals.visible = use_diagonals
+	$Masks/Cardinals.visible = not use_diagonals
+
+	_master_db_init = AudioServer.get_bus_volume_db(Globals.master_bus)
+	_music_db_init = AudioServer.get_bus_volume_db(Globals.music_bus)
+
+	_is_updating = true
+	master_slider.value = _db_to_slider_master(_master_db_init)
+	music_slider.value = _db_to_slider_music(_music_db_init)
+	_is_updating = false
+
 	_update_slider_visuals()
+
+func reset():
+	AudioServer.set_bus_volume_db(Globals.master_bus, _master_db_init)
+	AudioServer.set_bus_volume_db(Globals.music_bus, _music_db_init)
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("ui_up_button"):
@@ -138,22 +155,17 @@ func _adjust_slider_value(direction: int):
 		new_value = clamp(new_value, slider.min_value, slider.max_value)
 		slider.value = new_value
 
-func _slider_to_db(value: float) -> float:
-	var normalized = value / 100.0
-	return lerp(-10.0, 0.0, normalized)
+func _slider_to_db_master(value: float) -> float:
+	return lerp(master_db_min, master_db_max, value / 100.0)
 
-func _db_to_slider(db: float) -> float:
-	var normalized = (db + 10.0) / 10.0
-	return normalized * 100.0
+func _db_to_slider_master(db: float) -> float:
+	return 100.0 * ((db - master_db_min) / (master_db_max - master_db_min))
 
 func _slider_to_db_music(value: float) -> float:
-	var max_music = -7.5
-	var normalized = value / 100.0
-	return lerp(-15.0, max_music, normalized)
+	return lerp(music_db_min, music_db_max, value / 100.0)
 
 func _db_to_slider_music(db: float) -> float:
-	var normalized = (db + 15.0) / 7.5
-	return normalized * 100.0
+	return 100.0 * ((db - music_db_min) / (music_db_max - music_db_min))
 
 func _on_map_slider_changed(_value: float):
 	pass
@@ -162,10 +174,12 @@ func _on_difficulty_slider_changed(_value: float):
 	pass
 
 func _on_master_slider_changed(value: float):
-	AudioServer.set_bus_volume_db(0, _slider_to_db(value))
+	if not _is_updating:
+		AudioServer.set_bus_volume_db(Globals.master_bus, _slider_to_db_master(value))
 
 func _on_music_slider_changed(value: float):
-	AudioServer.set_bus_volume_db(3, _slider_to_db_music(value))
+	if not _is_updating:
+		AudioServer.set_bus_volume_db(Globals.music_bus, _slider_to_db_music(value))
 
 func get_use_diagonals() -> bool:
 	return $Directions/Diagonals.visible
