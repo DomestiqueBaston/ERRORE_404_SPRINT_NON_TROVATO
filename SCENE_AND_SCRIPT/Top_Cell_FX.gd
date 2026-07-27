@@ -3,11 +3,11 @@ extends Sprite2D
 # Références déjà définies dans le code
 @onready var screen_glitch: ColorRect = $Screen_Glitch
 @onready var glitch_only: ColorRect = $Glitch_Only
-@onready var glitch_for_screen_glitch: AudioStreamPlayer = $"../../../Sound/Glitch_For_Screen_Glitch"
-@onready var glitch_for_glitch_only: AudioStreamPlayer = $"../../../Sound/Glitch_For_Glitch_Only"
+@onready var glitch_for_screen_glitch: AudioStreamPlayer2D = $"../../../Sound/Sound_For_Screen_Glitch"
+@onready var glitch_for_glitch_only: AudioStreamPlayer2D = $"../../../Sound/Sound_For_Glitch_Only"
 
 # Optionnel : un son pour le Sprite2D lui-même
-@export var sprite_audio: AudioStreamPlayer
+@export var sprite_audio: AudioStreamPlayer2D
 
 func _ready() -> void:
 	# Connexion des signaux visibility_changed pour les trois nœuds
