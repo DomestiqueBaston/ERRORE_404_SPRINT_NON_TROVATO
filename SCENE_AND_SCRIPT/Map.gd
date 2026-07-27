@@ -76,9 +76,9 @@ func build():
 		deco.append([])
 		for y in interior_cell_count:
 			var candidates = deco_options.duplicate()
-			if x > 0:
+			if x > 0 and x-1 != middle_cell:
 				candidates.erase(deco[x-1][y])
-			if y > 0:
+			if y > 0 and y-1 != middle_cell:
 				candidates.erase(deco[x][y-1])
 			deco[x].append(candidates.pick_random())
 			if x == middle_cell and y == middle_cell:
