@@ -4,6 +4,4 @@ A 2D runner where the environment constantly shifts. You race on a grid, with ro
 
 Survive the longest or reach the exit before others. Collect bonuses/maluses while avoiding traps.
 
-1 to 4 player game (Bots replace missing players).
-
-By the way, the game will be in Italian (this time).
+1 vs 3 player game.
