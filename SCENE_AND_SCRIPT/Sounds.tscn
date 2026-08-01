@@ -169,7 +169,7 @@ bus = &"FX_DRY"
 
 [node name="Cell_Pylon_Alarms" type="Node" parent="." unique_id=56068673]
 
-[node name="Cell_Down_Disappearing" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=584849644]
+[node name="Cell_Up_Down" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=584849644]
 stream = ExtResource("14_jeqsl")
 volume_db = -5.0
 bus = &"FX_WET"

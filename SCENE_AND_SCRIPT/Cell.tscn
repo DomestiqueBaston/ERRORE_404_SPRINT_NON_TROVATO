@@ -302,7 +302,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qkut6"]
-size = Vector2(124.56604, 47.564228)
+size = Vector2(131.18256, 129.77548)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6o5ds"]
 shader = ExtResource("29_7mpjj")
@@ -409,7 +409,7 @@ tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"transitions": PackedFloat32Array(1.25, 1, 0.75),
 "update": 0,
 "values": [Vector2(-1, -50), Vector2(-1, -55), Vector2(-1, -50)]
 }
@@ -1380,8 +1380,9 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionShape2D" parent="Column/Cell_Tops/One_Way_Direction/Shadow_Orientation/Direction_Collider" unique_id=636798695]
-position = Vector2(-1, 0)
-rotation = 0.46425754
+position = Vector2(0, -0.5)
+rotation = 0.4537856
+scale = Vector2(1, 0.9999997)
 skew = 0.65973437
 shape = SubResource("RectangleShape2D_qkut6")
 metadata/_edit_lock_ = true
