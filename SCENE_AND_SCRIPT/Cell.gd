@@ -69,3 +69,13 @@ func _ready():
 	assert(_textures.size() == Decoration.keys().size())
 	for i in _textures.size():
 		_textures[i].visible = (i == decoration)
+
+##
+## Plays the cell's Going_Down animation, then, "duration" seconds later, its
+## Going_Up animation.
+##
+func sink(duration: float):
+	$Global_Cell.play("Going_Down")
+	await $Global_Cell.animation_finished
+	await get_tree().create_timer(duration).timeout
+	$Global_Cell.play("Going_Up")

@@ -8,7 +8,13 @@ class_name Map extends Node2D
 			build()
 
 var _cell_scene := preload("res://SCENE_AND_SCRIPT/Cell.tscn")
-var _cell_offset := Vector2(236, 118)
+
+const _cell_offset_x = 236.0
+const _cell_offset_y = 118.0
+const _southeast = 0.5 * Vector2(_cell_offset_x, _cell_offset_y)
+const _northeast = 0.5 * Vector2(_cell_offset_x, -_cell_offset_y)
+
+var _cells = {}
 
 enum EdgeType {
 	NW, NE, SW, SE
@@ -16,43 +22,33 @@ enum EdgeType {
 
 func _ready():
 	build()
+	#$mycam.make_current()
+
+func _input(event: InputEvent):
+	if event is InputEventKey and event.is_pressed():
+		if event.keycode == Key.KEY_1:
+			var uv = Vector2i(2, 1)
+			_cells[uv].sink(5)
 
 func build():
 	var parent: Node2D = self
 
-	for child in parent.get_children():
-		parent.remove_child(child)
-		child.queue_free()
+	for cell in _cells.values():
+		parent.remove_child(cell)
+		cell.queue_free()
 
-	var cell: Cell
+	_cells.clear()
 
 	# center
 
-	cell = _cell_scene.instantiate()
-	cell.decoration = Cell.Decoration.CENTER
-	parent.add_child(cell)
+	_add_cell(parent, Vector2i(0, 0), Cell.Decoration.CENTER)
 
 	# corners
 
-	cell = _cell_scene.instantiate()
-	cell.decoration = Cell.Decoration.N
-	cell.position.y = cell_count * -_cell_offset.y
-	parent.add_child(cell)
-
-	cell = _cell_scene.instantiate()
-	cell.decoration = Cell.Decoration.S
-	cell.position.y = cell_count * _cell_offset.y
-	parent.add_child(cell)
-
-	cell = _cell_scene.instantiate()
-	cell.decoration = Cell.Decoration.W
-	cell.position.x = cell_count * -_cell_offset.x
-	parent.add_child(cell)
-
-	cell = _cell_scene.instantiate()
-	cell.decoration = Cell.Decoration.E
-	cell.position.x = cell_count * _cell_offset.x
-	parent.add_child(cell)
+	_add_cell(parent, Vector2i(-cell_count, cell_count), Cell.Decoration.N)
+	_add_cell(parent, Vector2i(cell_count, -cell_count), Cell.Decoration.S)
+	_add_cell(parent, Vector2i(-cell_count, -cell_count), Cell.Decoration.W)
+	_add_cell(parent, Vector2i(cell_count, cell_count), Cell.Decoration.E)
 
 	# edges
 
@@ -65,58 +61,70 @@ func build():
 
 	var interior_cell_count = 2 * cell_count - 1
 	var middle_cell = cell_count - 1
-	var southeast = 0.5 * Vector2(_cell_offset.x,  _cell_offset.y)
-	var northeast = 0.5 * Vector2(_cell_offset.x, -_cell_offset.y)
-	var basepos = Vector2((cell_count - 1) * -_cell_offset.x, 0)
 	var deco_options = [0, 1, 2, 3, 4, 5, 6, 7]
-	var deco = []
+	var decos = []
 
 	for x in interior_cell_count:
-		var pos0 = basepos + x * southeast
-		deco.append([])
+		decos.append([])
 		for y in interior_cell_count:
 			var candidates = deco_options.duplicate()
 			if x > 0 and x-1 != middle_cell:
-				candidates.erase(deco[x-1][y])
+				candidates.erase(decos[x-1][y])
 			if y > 0 and y-1 != middle_cell:
-				candidates.erase(deco[x][y-1])
-			deco[x].append(candidates.pick_random())
+				candidates.erase(decos[x][y-1])
+			decos[x].append(candidates.pick_random())
 			if x == middle_cell and y == middle_cell:
 				continue
-			cell = _cell_scene.instantiate()
-			cell.decoration = (Cell.Decoration.OTHER1 + deco[x][y]) as Cell.Decoration
-			cell.position = pos0 + y * northeast
-			parent.add_child(cell)
+			var uv = Vector2i(-cell_count + x+1, -cell_count + y+1)
+			var deco = Cell.Decoration.OTHER1 + decos[x][y]
+			_add_cell(parent, uv, deco as Cell.Decoration)
 
 func _build_edge(parent: Node2D, edge: EdgeType):
-	var pos: Vector2
-	var delta: Vector2
+	var uv0: Vector2i
+	var uvd: Vector2i
 	var deco1: Cell.Decoration
 
 	match edge:
 		EdgeType.NW:
-			pos = Vector2(cell_count * -_cell_offset.x, 0)
-			delta = 0.5 * Vector2(_cell_offset.x, -_cell_offset.y)
+			uv0 = Vector2i(-cell_count, -cell_count + 1)
+			uvd = Vector2i(0, 1)
 			deco1 = Cell.Decoration.NW1
 		EdgeType.NE:
-			pos = Vector2(0, cell_count * -_cell_offset.y)
-			delta = 0.5 * _cell_offset
+			uv0 = Vector2i(-cell_count + 1, cell_count)
+			uvd = Vector2i(1, 0)
 			deco1 = Cell.Decoration.NE1
 		EdgeType.SW:
-			pos = Vector2(0, cell_count * _cell_offset.y)
-			delta = 0.5 * -_cell_offset
+			uv0 = Vector2i(cell_count - 1, -cell_count)
+			uvd = Vector2i(-1, 0)
 			deco1 = Cell.Decoration.SW1
 		EdgeType.SE:
-			pos = Vector2(cell_count * _cell_offset.x, 0)
-			delta = 0.5 * Vector2(-_cell_offset.x, _cell_offset.y)
+			uv0 = Vector2i(cell_count, cell_count - 1)
+			uvd = Vector2i(0, -1)
 			deco1 = Cell.Decoration.SE1
 
 	var edge_cell_count = 2 * cell_count - 1
 	var deco_offset = randi() % 3
 
 	for i in edge_cell_count:
-		var cell: Cell = _cell_scene.instantiate()
-		cell.decoration = (deco1 + deco_offset) as Cell.Decoration
-		cell.position = pos + delta * (i+1)
-		parent.add_child(cell)
+		var uv: Vector2i = uv0 + i * uvd
+		var deco = deco1 + deco_offset
 		deco_offset = (deco_offset + randi_range(1, 2)) % 3
+		_add_cell(parent, uv, deco as Cell.Decoration)
+
+#
+# Creates a new cell at the given position and with the given decoration.
+#
+func _add_cell(parent: Node2D, uv: Vector2i, deco: Cell.Decoration):
+	var cell: Cell = _cell_scene.instantiate()
+	cell.position = _get_cell_pos(uv)
+	cell.decoration = deco
+	parent.add_child(cell)
+	_cells[uv] = cell
+
+#
+# Returns the position in XY coordinates of the cell at the given UV index,
+# where U corresponds to the NW-SE axis, V corresponds to the SW-NE axis, and
+# UV (0,0) is the origin of the map.
+#
+func _get_cell_pos(uv: Vector2i) -> Vector2:
+	return uv.x * _southeast + uv.y * _northeast
