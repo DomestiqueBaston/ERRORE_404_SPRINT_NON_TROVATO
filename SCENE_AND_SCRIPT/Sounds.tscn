@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://bes5a835nqime" path="res://SOUND/FX/Woosh.ogg" id="9_20up4"]
 [ext_resource type="AudioStream" uid="uid://vldsf8ak3y4t" path="res://SOUND/FX/Alarm.ogg" id="10_uopt1"]
 [ext_resource type="AudioStream" uid="uid://o0i0pyhy8xon" path="res://SOUND/FX/Glitchy_Sound_E.ogg" id="14_jeqsl"]
+[ext_resource type="AudioStream" uid="uid://d2vhvgdpp71gm" path="res://SOUND/FX/Siren.ogg" id="14_qilh6"]
 [ext_resource type="AudioStream" uid="uid://1u5cnl60ptxf" path="res://SOUND/FX/Glitchy_Sound_F.ogg" id="15_aehec"]
 
 [sub_resource type="Animation" id="Animation_rwgee"]
@@ -175,9 +176,14 @@ volume_db = -5.0
 bus = &"FX_WET"
 parameters/looping = true
 
+[node name="Cell_Disappearing" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=1515636193]
+stream = ExtResource("14_qilh6")
+volume_db = -10.0
+bus = &"FX_WET"
+
 [node name="Pylon_Down_Falling" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=399303785]
 stream = ExtResource("15_aehec")
-volume_db = -15.0
+volume_db = -7.5
 bus = &"FX_WET"
 parameters/looping = true
 
