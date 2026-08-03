@@ -30,11 +30,9 @@ func _input(event: InputEvent):
 	if event is InputEventKey and event.is_pressed():
 		match event.keycode:
 			Key.KEY_1:
-				var uv = Vector2i(2, 1)
-				_cells[uv].lower()
+				_lower_cell(Vector2i(2, 1))
 			Key.KEY_2:
-				var uv = Vector2i(2, 1)
-				_cells[uv].raise()
+				_raise_cell(Vector2i(2, 1))
 			Key.KEY_3:
 				_slide_column(2, 2)
 			Key.KEY_4:
@@ -144,6 +142,18 @@ func _add_cell(parent: Node2D, uv: Vector2i, deco: Cell.Decoration):
 #
 static func _get_cell_pos(uv: Vector2i) -> Vector2:
 	return uv.x * _southeast + uv.y * _northeast
+
+func _lower_cell(uv: Vector2i):
+	Sounds.play_cell_up_down()
+	await get_tree().create_timer(1).timeout
+	await _cells[uv].lower()
+	Sounds.stop_cell_up_down()
+
+func _raise_cell(uv: Vector2i):
+	Sounds.play_cell_up_down()
+	await get_tree().create_timer(1).timeout
+	await _cells[uv].raise()
+	Sounds.stop_cell_up_down()
 
 #
 # Slides the given column (u) the given number of cells to the right (if

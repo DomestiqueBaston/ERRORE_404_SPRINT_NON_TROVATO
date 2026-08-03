@@ -75,6 +75,7 @@ func _ready():
 func lower():
 	_is_down = true
 	$Global_Cell.play("Going_Down")
+	await $Global_Cell.animation_finished
 
 func raise():
 	$Global_Cell.play("Going_Up")
