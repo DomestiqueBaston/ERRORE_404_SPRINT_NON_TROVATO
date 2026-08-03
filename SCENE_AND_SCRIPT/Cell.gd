@@ -82,6 +82,14 @@ func raise():
 	await $Global_Cell.animation_finished
 	_is_down = false
 
+func disappear():
+	$Global_Cell.play("Disappearing")
+	await $Global_Cell.animation_finished
+
+func reappear():
+	$Global_Cell.play("Appearing")
+	await $Global_Cell.animation_finished
+
 func start_sliding():
 	if _is_down:
 		$Global_Cell.play("Low_Sliding_Beginning")

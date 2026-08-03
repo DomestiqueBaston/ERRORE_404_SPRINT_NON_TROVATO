@@ -38,9 +38,9 @@ func _input(event: InputEvent):
 			Key.KEY_4:
 				_slide_column(2, -2)
 			Key.KEY_5:
-				_slide_row(1, 1)
+				_hide_cell(Vector2i(2, 1))
 			Key.KEY_6:
-				_slide_row(1, -1)
+				_show_cell(Vector2i(2, 1))
 
 func _build_map():
 	var parent: Node2D = self
@@ -154,6 +154,16 @@ func _raise_cell(uv: Vector2i):
 	await get_tree().create_timer(1).timeout
 	await _cells[uv].raise()
 	Sounds.stop_cell_up_down()
+
+func _hide_cell(uv: Vector2i):
+	Sounds.play_cell_disappearing()
+	await get_tree().create_timer(1).timeout
+	await _cells[uv].disappear()
+
+func _show_cell(uv: Vector2i):
+	Sounds.play_cell_disappearing()
+	await get_tree().create_timer(1).timeout
+	await _cells[uv].reappear()
 
 #
 # Slides the given column (u) the given number of cells to the right (if

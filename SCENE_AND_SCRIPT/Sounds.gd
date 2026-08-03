@@ -47,3 +47,6 @@ func play_cell_slide():
 
 func stop_cell_slide():
 	$Cell_Pylon_Alarms/Column_Row_Slide.stop()
+
+func play_cell_disappearing():
+	$Cell_Pylon_Alarms/Cell_Disappearing.play()
