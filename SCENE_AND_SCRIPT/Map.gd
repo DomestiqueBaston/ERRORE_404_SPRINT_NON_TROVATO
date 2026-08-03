@@ -7,7 +7,7 @@ class_name Map extends Node2D
 			cell_count = count
 			_build_map()
 
-@export var slide_speed: float = 11.9333
+@export var slide_speed: float = 9
 
 var _cell_scene := preload("res://SCENE_AND_SCRIPT/Cell.tscn")
 
@@ -139,17 +139,31 @@ func _add_cell(parent: Node2D, uv: Vector2i, deco: Cell.Decoration):
 #
 # Returns the position in XY coordinates of the cell at the given UV index,
 # where U corresponds to the NW-SE axis, V corresponds to the SW-NE axis, and
-# UV (0,0) is the origin of the map.
+# UV (0,0) is the origin of the map. The given cell may or may not actually
+# exist.
 #
-func _get_cell_pos(uv: Vector2i) -> Vector2:
+static func _get_cell_pos(uv: Vector2i) -> Vector2:
 	return uv.x * _southeast + uv.y * _northeast
 
+#
+# Slides the given column (u) the given number of cells to the right (if
+# distance is positive) or to the left (if negative).
+#
 func _slide_column(u: int, distance: int):
 	_slide(&"x", u, distance)
 
+#
+# Slides the given row (v) the given number of cells upward (if distance is
+# positive) or downward (if negative).
+#
 func _slide_row(v: int, distance: int):
 	_slide(&"y", v, distance)
 
+#
+# Does the work for _slide_column() and _slide_row(). The axis parameter must
+# be either "x" (for a column) or "y" (for a row), and index is the index of
+# the column or row.
+#
 func _slide(axis: StringName, index: int, distance: int):
 
 	# which cells are affected?
@@ -175,8 +189,9 @@ func _slide(axis: StringName, index: int, distance: int):
 	var pause: float = _cells.values().front().get_sliding_animation_length()
 	await get_tree().create_timer(pause).timeout
 
-	# use a Tween to do the sliding
+	# use a Tween to do the sliding and update cells' locations
 
+	var updated_cells: Dictionary[Vector2i, Cell]
 	var other_axis = &"x" if axis == &"y" else &"y"
 	var duration = absf(slide_speed * distance)
 	var tween: Tween = create_tween().set_parallel()
@@ -186,21 +201,15 @@ func _slide(axis: StringName, index: int, distance: int):
 		var new_key: Vector2i = key
 		new_key[other_axis] += distance
 		tween.tween_property(cell, ^":position", _get_cell_pos(new_key), duration)
-
-	await tween.finished
-
-	# update the cells' locations and stop sound effects
-
-	var updated_cells: Dictionary[Vector2i, Cell]
-
-	for key in column_keys:
-		var cell: Cell = _cells[key]
-		var new_key: Vector2i = key
-		new_key[other_axis] += distance
 		_cells.erase(key)
 		updated_cells[new_key] = cell
-		cell.stop_sliding()
 
+	await tween.finished
 	_cells.merge(updated_cells)
+
+	# stop sound effects
+
+	for cell in updated_cells.values():
+		cell.stop_sliding()
 
 	Sounds.stop_cell_slide()
