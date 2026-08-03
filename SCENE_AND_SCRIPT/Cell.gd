@@ -92,3 +92,6 @@ func stop_sliding():
 		$Global_Cell.play("Low_Sliding_End")
 	else:
 		$Global_Cell.play("High_Sliding_End")
+
+func get_sliding_animation_length() -> float:
+	return $Global_Cell.get_animation("High_Sliding_Beginning").length

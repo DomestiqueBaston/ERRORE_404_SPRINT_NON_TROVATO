@@ -7,6 +7,8 @@ class_name Map extends Node2D
 			cell_count = count
 			_build_map()
 
+@export var slide_speed: float = 11.9333
+
 var _cell_scene := preload("res://SCENE_AND_SCRIPT/Cell.tscn")
 
 const _cell_offset_x = 236.0
@@ -160,20 +162,29 @@ func _slide(axis: StringName, index: int, distance: int):
 	if column_keys.is_empty() or distance == 0:
 		return
 
-	# start sound effects and use a Tween to do the sliding after 1 second
+	# start sound effects
 
 	Sounds.play_cell_slide()
 	await get_tree().create_timer(1).timeout
 
+	for key in column_keys:
+		var cell: Cell = _cells[key]
+		cell.start_sliding()
+
+	var pause: float = _cells.values().front().get_sliding_animation_length()
+	await get_tree().create_timer(pause).timeout
+
+	# use a Tween to do the sliding
+
 	var other_axis = &"x" if axis == &"y" else &"y"
+	var duration = absf(slide_speed * distance)
 	var tween: Tween = create_tween().set_parallel()
 
 	for key in column_keys:
 		var cell: Cell = _cells[key]
 		var new_key: Vector2i = key
 		new_key[other_axis] += distance
-		tween.tween_property(cell, ^":position", _get_cell_pos(new_key), 5)
-		tween.tween_callback(Callable(cell, "start_sliding"))
+		tween.tween_property(cell, ^":position", _get_cell_pos(new_key), duration)
 
 	await tween.finished
 
