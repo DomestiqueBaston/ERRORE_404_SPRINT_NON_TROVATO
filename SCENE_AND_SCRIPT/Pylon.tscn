@@ -645,35 +645,35 @@ metadata/_edit_lock_ = true
 
 [node name="Up_Pylon" type="AudioStreamPlayer2D" parent="Sound" unique_id=1043399072]
 volume_db = 5.0
-max_distance = 750.0
+max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Clang_Start" type="AudioStreamPlayer2D" parent="Sound" unique_id=1901172242]
 volume_db = 5.0
-max_distance = 750.0
+max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Vanishing_Pylon" type="AudioStreamPlayer2D" parent="Sound" unique_id=2079494201]
-max_distance = 750.0
+max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Appearing_Pylon" type="AudioStreamPlayer2D" parent="Sound" unique_id=671662810]
-max_distance = 750.0
+max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Pylon_Boom" type="AudioStreamPlayer2D" parent="Sound" unique_id=519154961]
 volume_db = 10.0
-max_distance = 750.0
+max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Starting_To_Fall_Down" type="AudioStreamPlayer2D" parent="Sound" unique_id=590108877]
 volume_db = -7.5
-max_distance = 750.0
+max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 

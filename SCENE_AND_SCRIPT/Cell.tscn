@@ -1409,56 +1409,56 @@ metadata/_edit_lock_ = true
 
 [node name="Start_Cell" type="AudioStreamPlayer2D" parent="Sound" unique_id=835172659]
 volume_db = 2.5
-max_distance = 750.0
+max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Stop_Cell" type="AudioStreamPlayer2D" parent="Sound" unique_id=1960088510]
 volume_db = 5.0
-max_distance = 750.0
+max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Up_Down_Cell" type="AudioStreamPlayer2D" parent="Sound" unique_id=1738376883]
 volume_db = 5.0
-max_distance = 750.0
+max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Disappearing_Cell" type="AudioStreamPlayer2D" parent="Sound" unique_id=827325829]
 volume_db = 1.5
-max_distance = 750.0
+max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Appearing_Cell" type="AudioStreamPlayer2D" parent="Sound" unique_id=934082188]
-max_distance = 750.0
+max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Sound_For_Screen_Glitch" type="AudioStreamPlayer2D" parent="Sound" unique_id=928365595]
 stream = ExtResource("37_qjqwi")
 volume_db = -2.5
-max_distance = 750.0
+max_distance = 1000.0
 bus = &"FX_DRY"
 metadata/_edit_lock_ = true
 
 [node name="Sound_For_Glitch_Only" type="AudioStreamPlayer2D" parent="Sound" unique_id=1629923130]
 stream = ExtResource("38_5memm")
 volume_db = -15.0
-max_distance = 750.0
+max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Flashing_Cell" type="AudioStreamPlayer2D" parent="Sound" unique_id=1477597599]
 stream = ExtResource("44_fki3o")
 volume_db = -7.5
-max_distance = 750.0
+max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Appearing_Disappearing_One_Way" type="AudioStreamPlayer2D" parent="Sound" unique_id=2105377160]
-max_distance = 750.0
+max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
@@ -1467,26 +1467,26 @@ metadata/_edit_lock_ = true
 
 [node name="Start_Cell" type="AudioStreamPlayer2D" parent="Sound/Cell_Slide_Sounds" unique_id=1306544328]
 volume_db = 2.5
-max_distance = 250.0
+max_distance = 500.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Stop_Cell" type="AudioStreamPlayer2D" parent="Sound/Cell_Slide_Sounds" unique_id=28418727]
 volume_db = 5.0
-max_distance = 250.0
+max_distance = 500.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Up_Down_Cell" type="AudioStreamPlayer2D" parent="Sound/Cell_Slide_Sounds" unique_id=1382158269]
 volume_db = 5.0
-max_distance = 250.0
+max_distance = 500.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Sliding_Cell" type="AudioStreamPlayer2D" parent="Sound/Cell_Slide_Sounds" unique_id=1766037945]
 stream = ExtResource("45_qkut6")
 volume_db = 2.5
-max_distance = 250.0
+max_distance = 500.0
 bus = &"FX_WET"
 parameters/looping = true
 metadata/_edit_lock_ = true
