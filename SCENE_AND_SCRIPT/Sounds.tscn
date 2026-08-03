@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://o0i0pyhy8xon" path="res://SOUND/FX/Glitchy_Sound_E.ogg" id="14_jeqsl"]
 [ext_resource type="AudioStream" uid="uid://d2vhvgdpp71gm" path="res://SOUND/FX/Siren.ogg" id="14_qilh6"]
 [ext_resource type="AudioStream" uid="uid://1u5cnl60ptxf" path="res://SOUND/FX/Glitchy_Sound_F.ogg" id="15_aehec"]
+[ext_resource type="AudioStream" uid="uid://b2k8b5f0m5fty" path="res://SOUND/FX/Crunch.ogg" id="16_sbfjp"]
 
 [sub_resource type="Animation" id="Animation_rwgee"]
 resource_name = "Pitch_Down"
@@ -181,11 +182,16 @@ stream = ExtResource("14_qilh6")
 volume_db = -10.0
 bus = &"FX_WET"
 
-[node name="Pylon_Down_Falling" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=399303785]
+[node name="Pylon_Down" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=399303785]
 stream = ExtResource("15_aehec")
 volume_db = -7.5
 bus = &"FX_WET"
 parameters/looping = true
+
+[node name="Pylon_Crunch" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=2080617115]
+stream = ExtResource("16_sbfjp")
+volume_db = -2.5
+bus = &"FX_WET"
 
 [node name="Column_Row_Slide" type="AudioStreamPlayer" parent="Cell_Pylon_Alarms" unique_id=609901888]
 stream = ExtResource("10_uopt1")

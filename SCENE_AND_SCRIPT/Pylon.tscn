@@ -87,7 +87,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
+tracks/5/path = NodePath("../Shadow/Pylon_Shadow:material:shader_parameter/intensity")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -99,7 +99,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Shadow/Pylone_Shadow:visible")
+tracks/6/path = NodePath("../Shadow/Pylon_Shadow:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -208,7 +208,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Shadow/Pylone_Shadow:visible")
+tracks/6/path = NodePath("../Shadow/Pylon_Shadow:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -220,7 +220,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
+tracks/7/path = NodePath("../Shadow/Pylon_Shadow:material:shader_parameter/intensity")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -337,7 +337,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Shadow/Pylone_Shadow:visible")
+tracks/6/path = NodePath("../Shadow/Pylon_Shadow:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -349,7 +349,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
+tracks/7/path = NodePath("../Shadow/Pylon_Shadow:material:shader_parameter/intensity")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -478,7 +478,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../Shadow/Pylone_Shadow:visible")
+tracks/7/path = NodePath("../Shadow/Pylon_Shadow:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -490,7 +490,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
+tracks/8/path = NodePath("../Shadow/Pylon_Shadow:material:shader_parameter/intensity")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -553,7 +553,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Shadow/Pylone_Shadow:material:shader_parameter/intensity")
+tracks/4/path = NodePath("../Shadow/Pylon_Shadow:material:shader_parameter/intensity")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -565,7 +565,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Shadow/Pylone_Shadow:visible")
+tracks/5/path = NodePath("../Shadow/Pylon_Shadow:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -596,14 +596,14 @@ _data = {
 &"RESET": SubResource("Animation_iotr2")
 }
 
-[node name="Cell" type="Node2D" unique_id=1565454703]
+[node name="Pylon" type="Node2D" unique_id=1565454703]
 metadata/_edit_lock_ = true
 
 [node name="Shadow" type="Node2D" parent="." unique_id=1869682303]
 modulate = Color(1, 1, 1, 0)
 metadata/_edit_lock_ = true
 
-[node name="Pylone_Shadow" type="Sprite2D" parent="Shadow" unique_id=1454845365]
+[node name="Pylon_Shadow" type="Sprite2D" parent="Shadow" unique_id=1454845365]
 visible = false
 material = SubResource("ShaderMaterial_i673b")
 position = Vector2(0, -0.5)
