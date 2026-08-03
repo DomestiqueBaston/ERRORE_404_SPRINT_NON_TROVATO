@@ -65,17 +65,30 @@ enum Decoration {
 	$Column/Cell_Tops/Cell_Textures/Cellule_De_Terrain_08
 ]
 
+var _is_down: bool = false
+
 func _ready():
 	assert(_textures.size() == Decoration.keys().size())
 	for i in _textures.size():
 		_textures[i].visible = (i == decoration)
 
-##
-## Plays the cell's Going_Down animation, then, "duration" seconds later, its
-## Going_Up animation.
-##
-func sink(duration: float):
+func lower():
+	_is_down = true
 	$Global_Cell.play("Going_Down")
-	await $Global_Cell.animation_finished
-	await get_tree().create_timer(duration).timeout
+
+func raise():
 	$Global_Cell.play("Going_Up")
+	await $Global_Cell.animation_finished
+	_is_down = false
+
+func start_sliding():
+	if _is_down:
+		$Global_Cell.play("Low_Sliding_Beginning")
+	else:
+		$Global_Cell.play("High_Sliding_Beginning")
+
+func stop_sliding():
+	if _is_down:
+		$Global_Cell.play("Low_Sliding_End")
+	else:
+		$Global_Cell.play("High_Sliding_End")

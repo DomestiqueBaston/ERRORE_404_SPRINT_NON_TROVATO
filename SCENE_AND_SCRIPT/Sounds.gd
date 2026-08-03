@@ -35,3 +35,9 @@ func play_intro():
 
 func stop_intro():
 	$Music/Intro.stop()
+
+func play_cell_slide():
+	$Cell_Pylon_Alarms/Column_Row_Slide.play()
+
+func stop_cell_slide():
+	$Cell_Pylon_Alarms/Column_Row_Slide.stop()

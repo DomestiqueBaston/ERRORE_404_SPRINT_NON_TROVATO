@@ -5,7 +5,7 @@ class_name Map extends Node2D
 	set(count):
 		if cell_count != count:
 			cell_count = count
-			build()
+			_build_map()
 
 var _cell_scene := preload("res://SCENE_AND_SCRIPT/Cell.tscn")
 
@@ -14,23 +14,35 @@ const _cell_offset_y = 118.0
 const _southeast = 0.5 * Vector2(_cell_offset_x, _cell_offset_y)
 const _northeast = 0.5 * Vector2(_cell_offset_x, -_cell_offset_y)
 
-var _cells = {}
+var _cells: Dictionary[Vector2i, Cell]
 
 enum EdgeType {
 	NW, NE, SW, SE
 }
 
 func _ready():
-	build()
-	#$mycam.make_current()
+	_build_map()
+	set_process_input(not Engine.is_editor_hint())
 
 func _input(event: InputEvent):
 	if event is InputEventKey and event.is_pressed():
-		if event.keycode == Key.KEY_1:
-			var uv = Vector2i(2, 1)
-			_cells[uv].sink(5)
+		match event.keycode:
+			Key.KEY_1:
+				var uv = Vector2i(2, 1)
+				_cells[uv].lower()
+			Key.KEY_2:
+				var uv = Vector2i(2, 1)
+				_cells[uv].raise()
+			Key.KEY_3:
+				_slide_column(2, 3)
+			Key.KEY_4:
+				_slide_column(2, -3)
+			Key.KEY_5:
+				_slide_row(1, 2)
+			Key.KEY_6:
+				_slide_row(1, -2)
 
-func build():
+func _build_map():
 	var parent: Node2D = self
 
 	for cell in _cells.values():
@@ -128,3 +140,55 @@ func _add_cell(parent: Node2D, uv: Vector2i, deco: Cell.Decoration):
 #
 func _get_cell_pos(uv: Vector2i) -> Vector2:
 	return uv.x * _southeast + uv.y * _northeast
+
+func _slide_column(u: int, distance: int):
+	_slide(&"x", u, distance)
+
+func _slide_row(v: int, distance: int):
+	_slide(&"y", v, distance)
+
+func _slide(axis: StringName, index: int, distance: int):
+
+	# which cells are affected?
+
+	var column_keys: Array[Vector2i]
+
+	for uv in _cells:
+		if uv[axis] == index:
+			column_keys.append(uv)
+
+	if column_keys.is_empty() or distance == 0:
+		return
+
+	# start sound effects and use a Tween to do the sliding after 1 second
+
+	Sounds.play_cell_slide()
+	await get_tree().create_timer(1).timeout
+
+	var other_axis = &"x" if axis == &"y" else &"y"
+	var tween: Tween = create_tween().set_parallel()
+
+	for key in column_keys:
+		var cell: Cell = _cells[key]
+		var new_key: Vector2i = key
+		new_key[other_axis] += distance
+		tween.tween_property(cell, ^":position", _get_cell_pos(new_key), 5)
+		tween.tween_callback(Callable(cell, "start_sliding"))
+
+	await tween.finished
+
+	# update the cells' locations and stop sound effects
+
+	var updated_cells: Dictionary[Vector2i, Cell]
+
+	for key in column_keys:
+		var cell: Cell = _cells[key]
+		var new_key: Vector2i = key
+		new_key[other_axis] += distance
+		_cells.erase(key)
+		updated_cells[new_key] = cell
+		cell.stop_sliding()
+
+	_cells.merge(updated_cells)
+
+	Sounds.stop_cell_slide()
