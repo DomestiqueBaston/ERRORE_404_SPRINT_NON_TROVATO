@@ -734,6 +734,51 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sound/Start_Cell")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("27_e50o2")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sound/Cell_Slide_Sounds/Up_Down_Cell")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 2.0713782,
+"start_offset": 0.0,
+"stream": ExtResource("28_7mpjj")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/3/use_blend = true
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sound/Cell_Slide_Sounds/Stop_Cell")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("29_8ohl3")
+}],
+"times": PackedFloat32Array(0.6333333)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_psu53"]
 resource_name = "High_Sliding_End"
@@ -762,6 +807,51 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sound/Cell_Slide_Sounds/Start_Cell")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("27_e50o2")
+}],
+"times": PackedFloat32Array(0.3)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sound/Cell_Slide_Sounds/Up_Down_Cell")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 2.0713782,
+"start_offset": 0.0,
+"stream": ExtResource("28_7mpjj")
+}],
+"times": PackedFloat32Array(0.4)
+}
+tracks/3/use_blend = true
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sound/Cell_Slide_Sounds/Stop_Cell")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("29_8ohl3")
+}],
+"times": PackedFloat32Array(0.9)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_e50o2"]
 resource_name = "Low_Sliding_Beginning"
@@ -790,6 +880,51 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sound/Cell_Slide_Sounds/Start_Cell")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("27_e50o2")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sound/Cell_Slide_Sounds/Up_Down_Cell")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 2.0713782,
+"start_offset": 0.0,
+"stream": ExtResource("28_7mpjj")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/3/use_blend = true
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sound/Cell_Slide_Sounds/Stop_Cell")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("29_8ohl3")
+}],
+"times": PackedFloat32Array(0.6333333)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ej7e8"]
 resource_name = "Low_Sliding_End"
@@ -818,6 +953,51 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sound/Cell_Slide_Sounds/Start_Cell")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("27_e50o2")
+}],
+"times": PackedFloat32Array(0.3)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sound/Cell_Slide_Sounds/Up_Down_Cell")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 2.0713782,
+"start_offset": 0.0,
+"stream": ExtResource("28_7mpjj")
+}],
+"times": PackedFloat32Array(0.4)
+}
+tracks/3/use_blend = true
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sound/Cell_Slide_Sounds/Stop_Cell")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("29_8ohl3")
+}],
+"times": PackedFloat32Array(0.93333334)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_mye8y"]
 length = 0.001
@@ -869,214 +1049,6 @@ _data = {
 &"Low_Sliding_Beginning": SubResource("Animation_e50o2"),
 &"Low_Sliding_End": SubResource("Animation_ej7e8"),
 &"RESET": SubResource("Animation_mye8y")
-}
-
-[sub_resource type="Animation" id="Animation_diigq"]
-resource_name = "High_Sliding_Beginning"
-length = 0.76666665
-tracks/0/type = "audio"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sound/Cell_Slide_Sounds/Start_Cell")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("27_e50o2")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/0/use_blend = true
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sound/Cell_Slide_Sounds/Up_Down_Cell")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 2.0713782,
-"start_offset": 0.0,
-"stream": ExtResource("28_7mpjj")
-}],
-"times": PackedFloat32Array(0.1)
-}
-tracks/1/use_blend = true
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sound/Cell_Slide_Sounds/Stop_Cell")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("29_8ohl3")
-}],
-"times": PackedFloat32Array(0.6333333)
-}
-tracks/2/use_blend = true
-
-[sub_resource type="Animation" id="Animation_aeiba"]
-resource_name = "High_Sliding_End"
-length = 1.0666667
-tracks/0/type = "audio"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sound/Cell_Slide_Sounds/Start_Cell")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("27_e50o2")
-}],
-"times": PackedFloat32Array(0.29999998)
-}
-tracks/0/use_blend = true
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sound/Cell_Slide_Sounds/Up_Down_Cell")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 2.0713782,
-"start_offset": 0.0,
-"stream": ExtResource("28_7mpjj")
-}],
-"times": PackedFloat32Array(0.4)
-}
-tracks/1/use_blend = true
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sound/Cell_Slide_Sounds/Stop_Cell")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("29_8ohl3")
-}],
-"times": PackedFloat32Array(0.93333334)
-}
-tracks/2/use_blend = true
-
-[sub_resource type="Animation" id="Animation_luxsd"]
-resource_name = "Low_Sliding_Beginning"
-length = 0.76666665
-tracks/0/type = "audio"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sound/Cell_Slide_Sounds/Start_Cell")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("27_e50o2")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/0/use_blend = true
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sound/Cell_Slide_Sounds/Up_Down_Cell")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 2.0713782,
-"start_offset": 0.0,
-"stream": ExtResource("28_7mpjj")
-}],
-"times": PackedFloat32Array(0.1)
-}
-tracks/1/use_blend = true
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sound/Cell_Slide_Sounds/Stop_Cell")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("29_8ohl3")
-}],
-"times": PackedFloat32Array(0.6333333)
-}
-tracks/2/use_blend = true
-
-[sub_resource type="Animation" id="Animation_fshuu"]
-resource_name = "Low_Sliding_End"
-length = 1.0666667
-tracks/0/type = "audio"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sound/Cell_Slide_Sounds/Start_Cell")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("27_e50o2")
-}],
-"times": PackedFloat32Array(0.29999998)
-}
-tracks/0/use_blend = true
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sound/Cell_Slide_Sounds/Up_Down_Cell")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 2.0713782,
-"start_offset": 0.0,
-"stream": ExtResource("28_7mpjj")
-}],
-"times": PackedFloat32Array(0.4)
-}
-tracks/1/use_blend = true
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sound/Cell_Slide_Sounds/Stop_Cell")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("29_8ohl3")
-}],
-"times": PackedFloat32Array(0.93333334)
-}
-tracks/2/use_blend = true
-
-[sub_resource type="Animation" id="Animation_ci028"]
-length = 0.001
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8nw48"]
-_data = {
-&"High_Sliding_Beginning": SubResource("Animation_diigq"),
-&"High_Sliding_End": SubResource("Animation_aeiba"),
-&"Low_Sliding_Beginning": SubResource("Animation_luxsd"),
-&"Low_Sliding_End": SubResource("Animation_fshuu"),
-&"RESET": SubResource("Animation_ci028")
 }
 
 [node name="Cell" type="Node2D" unique_id=2120336095]
@@ -1492,10 +1464,6 @@ metadata/_edit_lock_ = true
 
 [node name="Cell_Slide_Sounds" type="Node2D" parent="Sound" unique_id=294055177]
 metadata/_edit_lock_ = true
-
-[node name="Cell_Slide_Sound_Animations" type="AnimationPlayer" parent="Sound/Cell_Slide_Sounds" unique_id=529481152]
-root_node = NodePath("../../..")
-libraries/ = SubResource("AnimationLibrary_8nw48")
 
 [node name="Start_Cell" type="AudioStreamPlayer2D" parent="Sound/Cell_Slide_Sounds" unique_id=1306544328]
 volume_db = 2.5
