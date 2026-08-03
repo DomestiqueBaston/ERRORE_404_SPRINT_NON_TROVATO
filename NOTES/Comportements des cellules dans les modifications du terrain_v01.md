@@ -3,7 +3,7 @@ Description des comportements des cellules dans les modifications du terrain.
 - Petit point important à probablement prévoir pour plus tard si nécessaire : dans la mesure où on va jouer pas mal de sons et avec beaucoup de réverbération (dans les Bus Audio), il serait probablement judicieux de faire en sorte que les sons qui sont au-delà de la détection de l’AudioListener2D du joueur (humain, les autres n’en ont pas besoin) ne soient pas joués.
 
 Glissements de lignes/colonnes :
-- Une cellule prend 358 frames pour se déplacer à la place de la suivante.
+- Une cellule prend 358 frames (11.9333... secondes) pour se déplacer à la place de la suivante.
     • 1 seconde avant un glissement, on commence à jouer une alerte sonore dans Sounds.tscn : Sounds/Cell_Pylon_Alarms/Column_Row_Slide et le son continuera jusqu’à la fin du glissement.
     • Au démarrage du glissement, les cellules (Cell.tscn) qui sont au niveau du sol (par défaut) jouent (dans leur AnimationPlayer Cell/Global_Cell) leur animation High_Sliding_Beginning et les cellules qui sont sous le niveau du sol jouent leur animation Low_Sliding_Beginning. Tout autre cellule dans un autre état ne joue aucune animation à ce stade.
     • Pendant que la ligne/colonne glisse (rappel : 2 pixels à l’horizontale pour 1 pixel à la verticale) chaque cellule qui se déplace joue le son Cell/Sound/Cell_Slide_Sounds/Sliding_Cell.
