@@ -36,13 +36,13 @@ func _input(event: InputEvent):
 				var uv = Vector2i(2, 1)
 				_cells[uv].raise()
 			Key.KEY_3:
-				_slide_column(2, 3)
+				_slide_column(2, 2)
 			Key.KEY_4:
-				_slide_column(2, -3)
+				_slide_column(2, -2)
 			Key.KEY_5:
-				_slide_row(1, 2)
+				_slide_row(1, 1)
 			Key.KEY_6:
-				_slide_row(1, -2)
+				_slide_row(1, -1)
 
 func _build_map():
 	var parent: Node2D = self
@@ -81,17 +81,18 @@ func _build_map():
 	for x in interior_cell_count:
 		decos.append([])
 		for y in interior_cell_count:
-			var candidates = deco_options.duplicate()
-			if x > 0 and x-1 != middle_cell:
-				candidates.erase(decos[x-1][y])
-			if y > 0 and y-1 != middle_cell:
-				candidates.erase(decos[x][y-1])
-			decos[x].append(candidates.pick_random())
 			if x == middle_cell and y == middle_cell:
-				continue
-			var uv = Vector2i(-cell_count + x+1, -cell_count + y+1)
-			var deco = Cell.Decoration.OTHER1 + decos[x][y]
-			_add_cell(parent, uv, deco as Cell.Decoration)
+				decos[x].append(0)
+			else:
+				var candidates = deco_options.duplicate()
+				if x > 0 and x-1 != middle_cell:
+					candidates.erase(decos[x-1][y])
+				if y > 0 and y-1 != middle_cell:
+					candidates.erase(decos[x][y-1])
+				decos[x].append(candidates.pick_random())
+				var uv = Vector2i(-cell_count + x+1, -cell_count + y+1)
+				var deco = Cell.Decoration.OTHER1 + decos[x][y]
+				_add_cell(parent, uv, deco as Cell.Decoration)
 
 func _build_edge(parent: Node2D, edge: EdgeType):
 	var uv0: Vector2i
