@@ -112,3 +112,19 @@ func start_one_way():
 func stop_one_way():
 	$Column/Cell_Tops/One_Way_Direction/Direction_Animation.play("Disappearing")
 	$Sound/Sound_For_Glitch_Only.stop()
+
+func start_bug1():
+	$Sound/Sound_For_Glitch_Only.play()
+	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Glitch_Only_Appearing")
+
+func stop_bug1():
+	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Glitch_Only_Disappearing")
+	$Sound/Sound_For_Glitch_Only.stop()
+
+func start_bug2():
+	$Sound/Sound_For_Screen_Glitch.play()
+	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Screen_Glitch_Appearing")
+
+func stop_bug2():
+	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Screen_Glitch_Disappearing")
+	$Sound/Sound_For_Screen_Glitch.stop()

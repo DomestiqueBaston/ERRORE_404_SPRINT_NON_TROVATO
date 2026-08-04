@@ -45,6 +45,16 @@ func _input(event: InputEvent):
 				_start_cell_one_way(Vector2i(2, 1))
 			Key.KEY_8:
 				_stop_cell_one_way(Vector2i(2, 1))
+			Key.KEY_9:
+				if event.shift_pressed:
+					_start_cell_bug2(Vector2i(2, 1))
+				else:
+					_start_cell_bug1(Vector2i(2, 1))
+			Key.KEY_0:
+				if event.shift_pressed:
+					_stop_cell_bug2(Vector2i(2, 1))
+				else:
+					_stop_cell_bug1(Vector2i(2, 1))
 
 func _build_map():
 	var parent: Node2D = self
@@ -174,6 +184,18 @@ func _start_cell_one_way(uv: Vector2i):
 
 func _stop_cell_one_way(uv: Vector2i):
 	_cells[uv].stop_one_way()
+
+func _start_cell_bug1(uv: Vector2i):
+	_cells[uv].start_bug1()
+
+func _stop_cell_bug1(uv: Vector2i):
+	_cells[uv].stop_bug1()
+
+func _start_cell_bug2(uv: Vector2i):
+	_cells[uv].start_bug2()
+
+func _stop_cell_bug2(uv: Vector2i):
+	_cells[uv].stop_bug2()
 
 #
 # Slides the given column (u) the given number of cells to the right (if
