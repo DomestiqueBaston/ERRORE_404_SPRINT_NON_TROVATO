@@ -41,6 +41,10 @@ func _input(event: InputEvent):
 				_hide_cell(Vector2i(2, 1))
 			Key.KEY_6:
 				_show_cell(Vector2i(2, 1))
+			Key.KEY_7:
+				_start_cell_one_way(Vector2i(2, 1))
+			Key.KEY_8:
+				_stop_cell_one_way(Vector2i(2, 1))
 
 func _build_map():
 	var parent: Node2D = self
@@ -164,6 +168,12 @@ func _show_cell(uv: Vector2i):
 	Sounds.play_cell_disappearing()
 	await get_tree().create_timer(1).timeout
 	await _cells[uv].reappear()
+
+func _start_cell_one_way(uv: Vector2i):
+	_cells[uv].start_one_way()
+
+func _stop_cell_one_way(uv: Vector2i):
+	_cells[uv].stop_one_way()
 
 #
 # Slides the given column (u) the given number of cells to the right (if

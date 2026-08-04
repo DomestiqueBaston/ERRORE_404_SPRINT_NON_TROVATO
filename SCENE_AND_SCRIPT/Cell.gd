@@ -104,3 +104,11 @@ func stop_sliding():
 
 func get_sliding_animation_length() -> float:
 	return $Global_Cell.get_animation("High_Sliding_Beginning").length
+
+func start_one_way():
+	$Sound/Sound_For_Glitch_Only.play()
+	$Column/Cell_Tops/One_Way_Direction/Direction_Animation.play("Appearing")
+
+func stop_one_way():
+	$Column/Cell_Tops/One_Way_Direction/Direction_Animation.play("Disappearing")
+	$Sound/Sound_For_Glitch_Only.stop()
