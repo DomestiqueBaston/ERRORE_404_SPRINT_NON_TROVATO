@@ -50,3 +50,12 @@ func stop_cell_slide():
 
 func play_cell_disappearing():
 	$Cell_Pylon_Alarms/Cell_Disappearing.play()
+
+func play_pylon_down():
+	$Cell_Pylon_Alarms/Pylon_Down.play()
+
+func stop_pylon_down():
+	$Cell_Pylon_Alarms/Pylon_Down.stop()
+
+func play_pylon_crunch():
+	$Cell_Pylon_Alarms/Pylon_Crunch.play()

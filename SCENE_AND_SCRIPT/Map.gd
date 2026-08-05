@@ -51,6 +51,11 @@ func _input(event: InputEvent):
 					_stop_cell_bug2(Vector2i(2, 1))
 				else:
 					_stop_cell_bug1(Vector2i(2, 1))
+			Key.KEY_P:
+				if event.shift_pressed:
+					_undrop_pylon(Vector2i(2, 2))
+				else:
+					_drop_pylon(Vector2i(2, 2))
 
 func _build_map():
 	var parent: Node2D = self
@@ -265,3 +270,29 @@ func _slide(axis: StringName, index: int, distance: int):
 	await get_tree().create_timer(pause).timeout
 
 	Sounds.stop_cell_slide()
+
+func _lower_pylon(uv: Vector2i):
+	var cell: Cell = _cells[uv]
+	var pylon: Pylon = cell.add_pylon()
+	if pylon:
+		await pylon.lower()
+
+func _raise_pylon(uv: Vector2i):
+	var cell: Cell = _cells[uv]
+	var pylon: Pylon = cell.get_pylon()
+	if pylon:
+		await pylon.raise()
+		cell.remove_pylon()
+
+func _drop_pylon(uv: Vector2i):
+	var cell: Cell = _cells[uv]
+	var pylon: Pylon = cell.add_pylon()
+	if pylon:
+		await pylon.drop()
+
+func _undrop_pylon(uv: Vector2i):
+	var cell: Cell = _cells[uv]
+	var pylon: Pylon = cell.get_pylon()
+	if pylon:
+		await pylon.undrop()
+		cell.remove_pylon()

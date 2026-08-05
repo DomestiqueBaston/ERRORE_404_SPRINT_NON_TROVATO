@@ -65,6 +65,9 @@ enum Decoration {
 	$Column/Cell_Tops/Cell_Textures/Cellule_De_Terrain_08
 ]
 
+var _pylon_scene = preload("res://SCENE_AND_SCRIPT/Pylon.tscn")
+var _pylon: Pylon
+
 var _is_down: bool = false
 
 func _ready():
@@ -134,3 +137,19 @@ func start_bug2():
 func stop_bug2():
 	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Screen_Glitch_Disappearing")
 	$Sound/Sound_For_Screen_Glitch.stop()
+
+func add_pylon() -> Pylon:
+	if _pylon:
+		return null
+	_pylon = _pylon_scene.instantiate()
+	add_child(_pylon)
+	return _pylon
+
+func remove_pylon():
+	if _pylon:
+		remove_child(_pylon)
+		_pylon.queue_free()
+		_pylon = null
+
+func get_pylon() -> Pylon:
+	return _pylon
