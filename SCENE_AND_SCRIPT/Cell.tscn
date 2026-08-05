@@ -1055,40 +1055,6 @@ _data = {
 script = ExtResource("1_psu53")
 metadata/_edit_lock_ = true
 
-[node name="ATTENTION (à lire)" type="Label" parent="." unique_id=1347624169]
-visible = false
-offset_left = 124.0
-offset_right = 497.0
-offset_bottom = 621.0
-text = "Lorsqu' une colonne ou une ligne glisse,
-on joue les sons pour UNE SEULE Cell.
-Ils sont dans Sounds.tscn. Dans cette scène,
-il y a un AnimationPlayer à cet effet qui
-reprend les animations de Cell.tscn avec
-uniquement les sons. Les animations de
-position, etc. sont dans Cell.tscn
-On prendra soin de les synchroniser à la
-lecture.
-
-Pour faire glisser les Cells (en colonne
-ou ligne), On joue d'abord
-(High or Low)_Sliding_Beginning
-puis on fait un Tween de déplacement
-en jouant le son Sliding_Cell dans Sounds.tscn
-puis on finit en jouant l'animation
-(High/Low)_Sliding_End.
-(\"High\" pour une Cell au niveau du sol.
-\"Low\" pour une Cell basse.)
-
-Tout cela ne vaut QUE pour les glissements,
-pas pour les montées et descentes de Cell
-qui se font une par une et non par groupe.
-
-Et concernant le collider de direction,
-ce qui est en place ne va probablement pas,
-je sais pas trop..."
-metadata/_edit_lock_ = true
-
 [node name="Column" type="Node2D" parent="." unique_id=294314283]
 metadata/_edit_lock_ = true
 
@@ -1484,7 +1450,7 @@ metadata/_edit_lock_ = true
 
 [node name="Sliding_Cell" type="AudioStreamPlayer2D" parent="Sound/Cell_Slide_Sounds" unique_id=1766037945]
 stream = ExtResource("45_qkut6")
-volume_db = 2.5
+volume_db = 15.0
 max_distance = 500.0
 bus = &"FX_WET"
 parameters/looping = true
