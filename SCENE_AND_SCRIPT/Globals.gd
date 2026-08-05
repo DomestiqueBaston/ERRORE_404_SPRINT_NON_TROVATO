@@ -1,5 +1,12 @@
 extends Node
 
+enum Axis {
+	NW,
+	NE,
+	SW,
+	SE
+}
+
 const master_bus: int = 0
 const music_bus: int = 3
 

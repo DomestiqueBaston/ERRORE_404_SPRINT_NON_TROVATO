@@ -110,8 +110,9 @@ func get_sliding_animation_start_length() -> float:
 func get_sliding_animation_stop_length() -> float:
 	return $Global_Cell.get_animation("High_Sliding_End").length
 
-func start_one_way():
+func start_one_way(dir: Globals.Axis):
 	$Sound/Sound_For_Glitch_Only.play()
+	$Column/Cell_Tops/One_Way_Direction.set_direction(dir)
 	$Column/Cell_Tops/One_Way_Direction/Direction_Animation.play("Appearing")
 
 func stop_one_way():

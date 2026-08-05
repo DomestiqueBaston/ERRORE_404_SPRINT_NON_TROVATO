@@ -18,10 +18,6 @@ const _northeast = 0.5 * Vector2(_cell_offset_x, -_cell_offset_y)
 
 var _cells: Dictionary[Vector2i, Cell]
 
-enum EdgeType {
-	NW, NE, SW, SE
-}
-
 func _ready():
 	_build_map()
 	set_process_input(not Engine.is_editor_hint())
@@ -42,7 +38,7 @@ func _input(event: InputEvent):
 			Key.KEY_6:
 				_show_cell(Vector2i(2, 1))
 			Key.KEY_7:
-				_start_cell_one_way(Vector2i(2, 1))
+				_start_cell_one_way(Vector2i(2, 1), Globals.Axis.NE)
 			Key.KEY_8:
 				_stop_cell_one_way(Vector2i(2, 1))
 			Key.KEY_9:
@@ -78,10 +74,10 @@ func _build_map():
 
 	# edges
 
-	_build_edge(parent, EdgeType.NW)
-	_build_edge(parent, EdgeType.NE)
-	_build_edge(parent, EdgeType.SW)
-	_build_edge(parent, EdgeType.SE)
+	_build_edge(parent, Globals.Axis.NW)
+	_build_edge(parent, Globals.Axis.NE)
+	_build_edge(parent, Globals.Axis.SW)
+	_build_edge(parent, Globals.Axis.SE)
 
 	# interior
 
@@ -106,25 +102,25 @@ func _build_map():
 				var deco = Cell.Decoration.OTHER1 + decos[x][y]
 				_add_cell(parent, uv, deco as Cell.Decoration)
 
-func _build_edge(parent: Node2D, edge: EdgeType):
+func _build_edge(parent: Node2D, edge: Globals.Axis):
 	var uv0: Vector2i
 	var uvd: Vector2i
 	var deco1: Cell.Decoration
 
 	match edge:
-		EdgeType.NW:
+		Globals.Axis.NW:
 			uv0 = Vector2i(-cell_count, -cell_count + 1)
 			uvd = Vector2i(0, 1)
 			deco1 = Cell.Decoration.NW1
-		EdgeType.NE:
+		Globals.Axis.NE:
 			uv0 = Vector2i(-cell_count + 1, cell_count)
 			uvd = Vector2i(1, 0)
 			deco1 = Cell.Decoration.NE1
-		EdgeType.SW:
+		Globals.Axis.SW:
 			uv0 = Vector2i(cell_count - 1, -cell_count)
 			uvd = Vector2i(-1, 0)
 			deco1 = Cell.Decoration.SW1
-		EdgeType.SE:
+		Globals.Axis.SE:
 			uv0 = Vector2i(cell_count, cell_count - 1)
 			uvd = Vector2i(0, -1)
 			deco1 = Cell.Decoration.SE1
@@ -179,8 +175,8 @@ func _show_cell(uv: Vector2i):
 	await get_tree().create_timer(1).timeout
 	await _cells[uv].reappear()
 
-func _start_cell_one_way(uv: Vector2i):
-	_cells[uv].start_one_way()
+func _start_cell_one_way(uv: Vector2i, dir: Globals.Axis):
+	_cells[uv].start_one_way(dir)
 
 func _stop_cell_one_way(uv: Vector2i):
 	_cells[uv].stop_one_way()
