@@ -5,7 +5,6 @@
 [node name="Map" type="Node2D" unique_id=839120789]
 y_sort_enabled = true
 script = ExtResource("1_jwotm")
-slide_speed = 11.9333
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1228145428]
 zoom = Vector2(0.5, 0.5)
