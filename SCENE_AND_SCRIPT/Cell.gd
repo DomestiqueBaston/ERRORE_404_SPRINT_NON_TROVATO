@@ -91,6 +91,7 @@ func reappear():
 	await $Global_Cell.animation_finished
 
 func start_sliding():
+	$Sound/Cell_Slide_Sounds/Sliding_Cell.play()
 	if _is_down:
 		$Global_Cell.play("Low_Sliding_Beginning")
 	else:
@@ -101,6 +102,7 @@ func stop_sliding():
 		$Global_Cell.play("Low_Sliding_End")
 	else:
 		$Global_Cell.play("High_Sliding_End")
+	$Sound/Cell_Slide_Sounds/Sliding_Cell.stop()
 
 func get_sliding_animation_start_length() -> float:
 	return $Global_Cell.get_animation("High_Sliding_Beginning").length
