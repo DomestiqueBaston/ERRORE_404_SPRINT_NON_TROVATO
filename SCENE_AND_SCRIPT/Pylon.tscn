@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://dmedkgtjj7r3t" path="res://IMAGE/ENVIRONMENT/CELL/Pylone_Shadow.png" id="1_4ropo"]
 [ext_resource type="Script" uid="uid://bv2olxu1rfa5l" path="res://SCENE_AND_SCRIPT/Pylon.gd" id="1_llfy2"]
 [ext_resource type="Shader" uid="uid://cv2sbt316r24a" path="res://SHADER/Pylone_Shadow_Compositing.gdshader" id="2_llfy2"]
+[ext_resource type="AudioStream" uid="uid://bifaoucknr7f5" path="res://SOUND/FX/Sliding_Cell.ogg" id="6_2xhvp"]
+[ext_resource type="AudioStream" uid="uid://dek1co7fuef8g" path="res://SOUND/FX/Clang_Stop_Cell.ogg" id="9_km60y"]
 [ext_resource type="Texture2D" uid="uid://w0y6jf5wx4px" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de pylone.png" id="27_i1aus"]
 [ext_resource type="Texture2D" uid="uid://br32hmm1061" path="res://IMAGE/ENVIRONMENT/CELL/Extension de pylone.png" id="28_cedp7"]
 [ext_resource type="AudioStream" uid="uid://qnjr5b74yyt8" path="res://SOUND/FX/Door_Appearing.ogg" id="29_4avwy"]
@@ -503,6 +505,140 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fu6cl"]
+resource_name = "Sliding_Beginning"
+length = 0.7666700399849564
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.16666667, 0.23333333, 0.3, 0.36666667, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -1), Vector2(0, -2), Vector2(0, -3), Vector2(0, -4), Vector2(0, -4)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sound/Cell_Slide_Sounds/Start_Cell")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("32_qfph7")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sound/Cell_Slide_Sounds/Up_Down_Cell")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 2.0709827,
+"start_offset": 0.0,
+"stream": ExtResource("33_lcffa")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Sound/Cell_Slide_Sounds/Stop_Cell")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_km60y")
+}],
+"times": PackedFloat32Array(0.6333333)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="Animation" id="Animation_qt7q4"]
+resource_name = "Sliding_End"
+length = 1.0666700556311757
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.46666667, 0.53333336, 0.6, 0.6666667, 1.0666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -4), Vector2(0, -4), Vector2(0, -3), Vector2(0, -2), Vector2(0, -1), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sound/Cell_Slide_Sounds/Start_Cell")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("32_qfph7")
+}],
+"times": PackedFloat32Array(0.3)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sound/Cell_Slide_Sounds/Up_Down_Cell")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 2.0709827,
+"start_offset": 0.0,
+"stream": ExtResource("33_lcffa")
+}],
+"times": PackedFloat32Array(0.4)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Sound/Cell_Slide_Sounds/Stop_Cell")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_km60y")
+}],
+"times": PackedFloat32Array(0.9)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u038b"]
 _data = {
@@ -510,7 +646,9 @@ _data = {
 &"Going_Down_Falling": SubResource("Animation_6o5ds"),
 &"Going_Up": SubResource("Animation_4ropo"),
 &"Going_Up_Falling": SubResource("Animation_5memm"),
-&"RESET": SubResource("Animation_iotr2")
+&"RESET": SubResource("Animation_iotr2"),
+&"Sliding_Beginning": SubResource("Animation_fu6cl"),
+&"Sliding_End": SubResource("Animation_qt7q4")
 }
 
 [node name="Pylon" type="Node2D" unique_id=1565454703]
@@ -592,6 +730,35 @@ metadata/_edit_lock_ = true
 volume_db = -7.5
 max_distance = 1000.0
 bus = &"FX_WET"
+metadata/_edit_lock_ = true
+
+[node name="Cell_Slide_Sounds" type="Node2D" parent="Sound" unique_id=104576403]
+metadata/_edit_lock_ = true
+
+[node name="Start_Cell" type="AudioStreamPlayer2D" parent="Sound/Cell_Slide_Sounds" unique_id=2056791470]
+volume_db = 2.5
+max_distance = 500.0
+bus = &"FX_WET"
+metadata/_edit_lock_ = true
+
+[node name="Stop_Cell" type="AudioStreamPlayer2D" parent="Sound/Cell_Slide_Sounds" unique_id=1632492022]
+volume_db = 5.0
+max_distance = 500.0
+bus = &"FX_WET"
+metadata/_edit_lock_ = true
+
+[node name="Up_Down_Cell" type="AudioStreamPlayer2D" parent="Sound/Cell_Slide_Sounds" unique_id=1600382501]
+volume_db = 5.0
+max_distance = 500.0
+bus = &"FX_WET"
+metadata/_edit_lock_ = true
+
+[node name="Sliding_Cell" type="AudioStreamPlayer2D" parent="Sound/Cell_Slide_Sounds" unique_id=978980904]
+stream = ExtResource("6_2xhvp")
+volume_db = 2.5
+max_distance = 500.0
+bus = &"FX_WET"
+parameters/looping = true
 metadata/_edit_lock_ = true
 
 [node name="Pylon_Animation" type="AnimationPlayer" parent="." unique_id=1911472662]
