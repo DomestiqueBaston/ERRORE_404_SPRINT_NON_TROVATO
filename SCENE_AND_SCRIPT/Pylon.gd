@@ -5,12 +5,12 @@ func lower():
 	await get_tree().create_timer(1).timeout
 	$Pylon_Animation.play("Going_Down")
 	await $Pylon_Animation.animation_finished
+	Sounds.stop_pylon_down()
 
 func raise():
 	await get_tree().create_timer(1).timeout
 	$Pylon_Animation.play("Going_Up")
 	await $Pylon_Animation.animation_finished
-	Sounds.stop_pylon_down()
 
 func drop():
 	Sounds.play_pylon_crunch()
