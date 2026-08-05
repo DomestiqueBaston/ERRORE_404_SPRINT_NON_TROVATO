@@ -1450,7 +1450,7 @@ metadata/_edit_lock_ = true
 
 [node name="Sliding_Cell" type="AudioStreamPlayer2D" parent="Sound/Cell_Slide_Sounds" unique_id=1766037945]
 stream = ExtResource("45_qkut6")
-volume_db = 15.0
+volume_db = 2.5
 max_distance = 500.0
 bus = &"FX_WET"
 parameters/looping = true
