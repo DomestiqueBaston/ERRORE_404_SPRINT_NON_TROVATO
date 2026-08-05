@@ -18,7 +18,6 @@ Cellules disparaissantes (uniquement depuis la position.y = 0, donc par défaut
     • Dans Cell.tscn, on joue l’animation Disappearing dans Cell/Global_Cell.
 
 Cellules (ré)apparaissantes (uniquement après avoir précédemment disparu):
-    • 1 seconde avant la réapparition, on joue le son Sounds/Cell_Pylon_Alarms/Cell_Disappearing (ce son n’est pas une boucle).
     • Dans Cell.tscn, on joue l’animation Appearing dans Cell/Global_Cell.
 
 Cellules descendantes (uniquement depuis la position.y = 0, donc par défaut) :
@@ -27,7 +26,6 @@ Cellules descendantes (uniquement depuis la position.y = 0, donc par défaut) 
     • On stoppe enfin le son  Sounds/Cell_Pylon_Alarms/Cell_Up_Down dans Sounds.tscn.
 
 Cellules (re)montantes (uniquement en remontée après être précédemment descendue) :
-    • 1 seconde avant la remontée, on commence à jouer une alerte sonore dans Sounds.tscn : Sounds/Cell_Pylon_Alarms/Cell_Down et le son continuera jusqu’à la fin de la montée.
     • Dans Cell.tscn, on joue l’animation Going_Down dans Cell/Global_Cell.
     • On stoppe enfin le son  Sounds/Cell_Pylon_Alarms/Cell_Up_Down dans Sounds.tscn.
 
@@ -56,7 +54,6 @@ Pylônes-obstacles (descente) :
     • On coupe le son  Sounds/Cell_Pylon_Alarms/Pylon_Down dans Sounds.tscn.
 
 Pylônes-obstacles (remontée) :
-    • 1 seconde avant la remontée d’un pylône-obstacle, on commence à jouer une alerte sonore dans Sounds.tscn : Sounds/Cell_Pylon_Alarms/Pylon_Down et le son continuera jusqu’à la fin de la remontée.
     • Pour faire remonter le pylône, dans la scène Pylon.tscn, on joue l’animation Going_Up dans Pylon/Pylon_Animation.
     • On coupe le son Sounds/Cell_Pylon_Alarms/Pylon_Down dans Sounds.tscn.
 
@@ -65,5 +62,4 @@ Pylônes-écraseur (chute):
     • Pour faire descendre le pylône, dans la scène Pylon.tscn, on joue l’animation Going_Down_Falling dans Pylon/Pylon_Animation.
 
 Pylônes-écraseur (remontée):
-    • 1 seconde avant la remontée d’un pylône-écraseur, on joue une alerte sonore dans Sounds.tscn : Sounds/Cell_Pylon_Alarms/Pylon_Crunch (ce son n’est pas une boucle).
     • Pour faire remonter le pylône, dans la scène Pylon.tscn, on joue l’animation Going_Up_Falling dans Pylon/Pylon_Animation.

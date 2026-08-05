@@ -13,7 +13,8 @@ Une partie oppose toujours 4 concurrents (1 joueur et 3 Bots par défaut). Les c
 - Un jeu pour 1 joueur mais il y aura toujours 4 concurrents en piste. Les 3 autres concurrents manquants seront pris en charge par l’IA (Bots). Il y a toujours 2 hommes et 2 femmes en course.
 - L’écran est divisé en 4 avec les vues de chaque concurrent. Le joueur sera toujours dans le quart supérieur gauche.
 - À chaque fois que le jeu va bouger une ligne/colonne ou baisser un pylône (qui n’écrase pas et laisse passer dessous) ou baisser une cellule ou lâcher un pylône ou faire disparaître une cellule, une alarme (Cell_Pylon_Alarms/ dans Sounds.tscn) se fera d’abord entendre pendant 1’’ ET jusqu’à la fin de l’animation.
-- Une cellule baissée ou disparue ou un pylône (baissé ou arrivé au sol) reste dans cette position 10 à 20’’. S’il font partie d’une ligne/colonne qui glisse pendant qu’ils sont dans l’état évoqué ici, alors ils suivent le mouvement de la ligne/colonne. On ne joue pas les alarmes pour le retour à l’état normal.
+- Une cellule baissée ou disparue ou un pylône (baissé ou arrivé au sol) reste dans cette position 10 à 20’’. S’il font partie d’une ligne/colonne qui glisse pendant qu’ils sont dans l’état évoqué ici, alors ils suivent le mouvement de la ligne/colonne.
+- On ne fait pas tomber/descendre de pylône sur une cellule disparue ou descendue.
 - Sur le terrain, au centre, une case est levée (colonne verticale, cette fois). C’est sur cette case, une fois la colonne redescendue qu’apparaîtra la porte de sortie de la zone au bout de (Taille de la map + (2 × Difficulté)) / 10 minutes. Il pourra arriver que la porte ne soit plus accessible à cause de mouvements de terrain.
 - Pour les concurrents, 4 directions de mouvement (les diagonales).
 - Les concurrents ne peuvent pas faire directement demi-tour (à cause du mur qu’ils tracent).
