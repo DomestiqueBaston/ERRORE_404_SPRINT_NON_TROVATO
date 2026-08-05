@@ -1,10 +1,10 @@
 @tool
 class_name Map extends Node2D
 
-@export_range(4, 10) var cell_count: int = 4:
-	set(count):
-		if cell_count != count:
-			cell_count = count
+@export_range(1, 10) var map_size: int = 4:
+	set(size):
+		if map_size != size:
+			map_size = size
 			_build_map()
 
 @export var slide_speed: float = 9
@@ -67,10 +67,10 @@ func _build_map():
 
 	# corners
 
-	_add_cell(parent, Vector2i(-cell_count, cell_count), Cell.Decoration.N)
-	_add_cell(parent, Vector2i(cell_count, -cell_count), Cell.Decoration.S)
-	_add_cell(parent, Vector2i(-cell_count, -cell_count), Cell.Decoration.W)
-	_add_cell(parent, Vector2i(cell_count, cell_count), Cell.Decoration.E)
+	_add_cell(parent, Vector2i(-map_size, map_size), Cell.Decoration.N)
+	_add_cell(parent, Vector2i(map_size, -map_size), Cell.Decoration.S)
+	_add_cell(parent, Vector2i(-map_size, -map_size), Cell.Decoration.W)
+	_add_cell(parent, Vector2i(map_size, map_size), Cell.Decoration.E)
 
 	# edges
 
@@ -81,8 +81,8 @@ func _build_map():
 
 	# interior
 
-	var interior_cell_count = 2 * cell_count - 1
-	var middle_cell = cell_count - 1
+	var interior_cell_count = 2 * map_size - 1
+	var middle_cell = map_size - 1
 	var deco_options = [0, 1, 2, 3, 4, 5, 6, 7]
 	var decos = []
 
@@ -98,7 +98,7 @@ func _build_map():
 				if y > 0 and y-1 != middle_cell:
 					candidates.erase(decos[x][y-1])
 				decos[x].append(candidates.pick_random())
-				var uv = Vector2i(-cell_count + x+1, -cell_count + y+1)
+				var uv = Vector2i(-map_size + x+1, -map_size + y+1)
 				var deco = Cell.Decoration.OTHER1 + decos[x][y]
 				_add_cell(parent, uv, deco as Cell.Decoration)
 
@@ -109,23 +109,23 @@ func _build_edge(parent: Node2D, edge: Globals.Axis):
 
 	match edge:
 		Globals.Axis.NW:
-			uv0 = Vector2i(-cell_count, -cell_count + 1)
+			uv0 = Vector2i(-map_size, -map_size + 1)
 			uvd = Vector2i(0, 1)
 			deco1 = Cell.Decoration.NW1
 		Globals.Axis.NE:
-			uv0 = Vector2i(-cell_count + 1, cell_count)
+			uv0 = Vector2i(-map_size + 1, map_size)
 			uvd = Vector2i(1, 0)
 			deco1 = Cell.Decoration.NE1
 		Globals.Axis.SW:
-			uv0 = Vector2i(cell_count - 1, -cell_count)
+			uv0 = Vector2i(map_size - 1, -map_size)
 			uvd = Vector2i(-1, 0)
 			deco1 = Cell.Decoration.SW1
 		Globals.Axis.SE:
-			uv0 = Vector2i(cell_count, cell_count - 1)
+			uv0 = Vector2i(map_size, map_size - 1)
 			uvd = Vector2i(0, -1)
 			deco1 = Cell.Decoration.SE1
 
-	var edge_cell_count = 2 * cell_count - 1
+	var edge_cell_count = 2 * map_size - 1
 	var deco_offset = randi() % 3
 
 	for i in edge_cell_count:
