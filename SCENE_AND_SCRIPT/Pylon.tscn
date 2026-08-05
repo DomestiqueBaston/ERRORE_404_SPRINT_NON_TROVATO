@@ -186,7 +186,7 @@ tracks/4/keys = {
 tracks/4/use_blend = true
 tracks/5/type = "value"
 tracks/5/imported = false
-tracks/5/enabled = false
+tracks/5/enabled = true
 tracks/5/path = NodePath("../Collider_Obstacle:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
@@ -218,7 +218,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.26666668, 0.6333333, 0.6666667, 1.1666666),
 "transitions": PackedFloat32Array(1, 2, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 0.8402778, 0.0, 0.0]
+"values": [0.0, 0.0, 0.250000011875, 0.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_4ropo"]
@@ -449,10 +449,10 @@ tracks/7/path = NodePath("../Shadow/Pylon_Shadow:material:shader_parameter/inten
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.1, 1, 4.8, 5.0333333),
+"times": PackedFloat32Array(0, 0.1, 1, 4, 5.0333333),
 "transitions": PackedFloat32Array(1, 1, 2, 1, 1),
 "update": 0,
-"values": [1.0, 0.250000011875, 0.250000011875, 0.0, 0.0]
+"values": [0.0, 0.250000011875, 0.250000011875, 0.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_iotr2"]
