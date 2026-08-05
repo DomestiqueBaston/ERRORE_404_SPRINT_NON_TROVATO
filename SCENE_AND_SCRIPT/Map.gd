@@ -53,6 +53,11 @@ func _input(event: InputEvent):
 					_stop_cell_bug1(Vector2i(2, 1))
 			Key.KEY_P:
 				if event.shift_pressed:
+					_raise_pylon(Vector2i(2, 2))
+				else:
+					_lower_pylon(Vector2i(2, 2))
+			Key.KEY_Q:
+				if event.shift_pressed:
 					_undrop_pylon(Vector2i(2, 2))
 				else:
 					_drop_pylon(Vector2i(2, 2))
