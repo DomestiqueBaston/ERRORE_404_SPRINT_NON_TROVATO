@@ -238,7 +238,8 @@ func _slide(axis: StringName, index: int, distance: int):
 		var cell: Cell = _cells[key]
 		cell.start_sliding()
 
-	var pause: float = _cells.values().front().get_sliding_animation_length()
+	var any_cell: Cell = _cells.values().front()
+	var pause: float = any_cell.get_sliding_animation_start_length()
 	await get_tree().create_timer(pause).timeout
 
 	# use a Tween to do the sliding and update cells' locations
@@ -263,5 +264,8 @@ func _slide(axis: StringName, index: int, distance: int):
 
 	for cell in updated_cells.values():
 		cell.stop_sliding()
+
+	pause = any_cell.get_sliding_animation_stop_length()
+	await get_tree().create_timer(pause).timeout
 
 	Sounds.stop_cell_slide()
