@@ -690,12 +690,12 @@ metadata/_edit_lock_ = true
 
 [node name="Extension_De_Pylone" type="Sprite2D" parent="Pylon/Pylon_Walls/Images" unique_id=548903508]
 texture = ExtResource("28_cedp7")
-offset = Vector2(0, -1215)
+offset = Vector2(0, -1217)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Pylone" type="Sprite2D" parent="Pylon/Pylon_Walls/Images" unique_id=2097598160]
 texture = ExtResource("27_i1aus")
-offset = Vector2(0, -202.5)
+offset = Vector2(0, -205)
 metadata/_edit_lock_ = true
 
 [node name="Collider_Obstacle" type="Area2D" parent="." unique_id=505806384]
