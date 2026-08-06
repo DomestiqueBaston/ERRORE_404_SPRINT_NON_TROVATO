@@ -686,7 +686,6 @@ position = Vector2(0, -120)
 metadata/_edit_lock_ = true
 
 [node name="Images" type="Node2D" parent="Pylon/Pylon_Walls" unique_id=1224975738]
-position = Vector2(0, -2)
 metadata/_edit_lock_ = true
 
 [node name="Extension_De_Pylone" type="Sprite2D" parent="Pylon/Pylon_Walls/Images" unique_id=548903508]
