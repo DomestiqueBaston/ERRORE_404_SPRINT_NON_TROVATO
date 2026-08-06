@@ -7,4 +7,3 @@ y_sort_enabled = true
 script = ExtResource("1_jwotm")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1228145428]
-zoom = Vector2(0.5, 0.5)

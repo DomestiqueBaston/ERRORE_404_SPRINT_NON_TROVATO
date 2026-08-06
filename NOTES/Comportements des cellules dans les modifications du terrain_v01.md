@@ -23,11 +23,10 @@ Cellules (ré)apparaissantes (uniquement après avoir précédemment disparu):
 Cellules descendantes (uniquement depuis la position.y = 0, donc par défaut) :
     • 1 seconde avant la descente, on commence à jouer une alerte sonore dans Sounds.tscn : Sounds/Cell_Pylon_Alarms/Cell_Down et le son continuera jusqu’à la fin de la descente.
     • Dans Cell.tscn, on joue l’animation Going_Down dans Cell/Global_Cell.
-    • On stoppe enfin le son  Sounds/Cell_Pylon_Alarms/Cell_Up_Down dans Sounds.tscn.
+    • On stoppe enfin le son  Sounds/Cell_Pylon_Alarms/Cell_Down dans Sounds.tscn.
 
 Cellules (re)montantes (uniquement en remontée après être précédemment descendue) :
     • Dans Cell.tscn, on joue l’animation Going_Down dans Cell/Global_Cell.
-    • On stoppe enfin le son  Sounds/Cell_Pylon_Alarms/Cell_Up_Down dans Sounds.tscn.
 
 
 Description des autres comportements des cellules.
@@ -55,7 +54,6 @@ Pylônes-obstacles (descente) :
 
 Pylônes-obstacles (remontée) :
     • Pour faire remonter le pylône, dans la scène Pylon.tscn, on joue l’animation Going_Up dans Pylon/Pylon_Animation.
-    • On coupe le son Sounds/Cell_Pylon_Alarms/Pylon_Down dans Sounds.tscn.
 
 Pylônes-écraseur (chute):
     • 1 seconde avant la chute (du « plafond ») d’un pylône-écraseur, on joue une alerte sonore dans Sounds.tscn : Sounds/Cell_Pylon_Alarms/Pylon_Crunch (ce son n’est pas une boucle).
