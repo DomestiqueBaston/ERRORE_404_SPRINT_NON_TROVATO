@@ -170,10 +170,8 @@ func _lower_cell(uv: Vector2i):
 	Sounds.stop_cell_up_down()
 
 func _raise_cell(uv: Vector2i):
-	Sounds.play_cell_up_down()
 	await get_tree().create_timer(1).timeout
 	await _cells[uv].raise()
-	Sounds.stop_cell_up_down()
 
 func _hide_cell(uv: Vector2i):
 	Sounds.play_cell_disappearing()
@@ -181,7 +179,6 @@ func _hide_cell(uv: Vector2i):
 	await _cells[uv].disappear()
 
 func _show_cell(uv: Vector2i):
-	Sounds.play_cell_disappearing()
 	await get_tree().create_timer(1).timeout
 	await _cells[uv].reappear()
 

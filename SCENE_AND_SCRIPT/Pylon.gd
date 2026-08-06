@@ -19,7 +19,6 @@ func drop():
 	await $Pylon_Animation.animation_finished
 
 func undrop():
-	Sounds.play_pylon_crunch()
 	await get_tree().create_timer(1).timeout
 	$Pylon_Animation.play("Going_Up_Falling")
 	await $Pylon_Animation.animation_finished
