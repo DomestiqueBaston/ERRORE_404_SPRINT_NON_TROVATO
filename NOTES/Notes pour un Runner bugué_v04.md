@@ -16,14 +16,15 @@ Une partie oppose toujours 4 concurrents (1 joueur et 3 Bots). Les concurrents c
 - À chaque fois que le jeu va bouger une ligne/colonne ou baisser un pylône (qui n’écrase pas et laisse passer dessous) ou baisser une cellule ou lâcher un pylône ou faire disparaître une cellule, une alarme (Cell_Pylon_Alarms/ dans Sounds.tscn) se fera d’abord entendre pendant 1’’ ET jusqu’à la fin de l’animation (sauf exceptions).
 - Une cellule baissée ou disparue ou un pylône (baissé ou arrivé au sol) reste dans cette position 10 à 20’’. S’il font partie d’une ligne/colonne qui glisse pendant qu’ils sont dans l’état évoqué ici, alors ils suivent le mouvement de la ligne/colonne.
 - On ne fait pas tomber/descendre de pylône sur une cellule disparue ou descendue.
-- Sur le terrain, au centre, une case est levée (colonne verticale, cette fois). C’est sur cette case, une fois la colonne redescendue qu’apparaîtra la porte de sortie de la zone au bout de (Taille de la map + (2 × Difficulté)) / 10 minutes. - - Il pourra arriver que la porte ne soit plus accessible à cause de mouvements de terrain.
+- Dès le début, sur le terrain, au centre, la cellule 404 est levée. C’est sur cette case, une fois la cellule redescendue au bout de (Taille de la map + (2 × Difficulté)) / 10 minutes qu’apparaîtra la porte de sortie de la zone. Une fois la cellule centrale 404 descendue, la porte de sortie apparaîtra au bout de (2 × Difficulté) secondes. Il pourra malgré tout arriver que la porte ne soit plus accessible à cause de mouvements de terrain.
+- La case centrale 404 ne subit QUE des glissements (pas de bug, de disparition, de pylone, etc.).
 - Pour les concurrents, 4 directions de mouvement (les diagonales).
 - Les concurrents ne peuvent pas faire directement demi-tour (à cause du mur qu’ils tracent).
 - Les concurrents ne peuvent tourner qu’à 90°.
 - Les concurrents ne peuvent pas arrêter de courir !
 - Ils tracent un mur temporaire derrière eux (qui s’efface au fur et à mesure par tronçons en fonction du niveau de difficulté et de la taille de la map – voir plus loin).
 - Un tronçon de mur est la partie du mur sur une case du terrain.
-- Le but du jeu est de tenir le plus longtemps possible et être le dernier survivant ou être le premier à passer la porte de sortie qui se manifestera aléatoirement au bout d’un certain temps. Cette porte se trouvera toujours sur la cellule 404 centrale. Elle apparaîtra une fois la cellule descendue et après [niveau de difficulté] secondes.
+- Le but du jeu est de tenir le plus longtemps possible et être le dernier survivant ou être le premier à passer la porte de sortie.
 
 Un runner bugué :
 -  Chaque vue de concurrent a un timer de bug indépendant des autres vues.
