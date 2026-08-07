@@ -30,9 +30,9 @@ func _input(event: InputEvent):
 			Key.KEY_2:
 				_raise_cell(Vector2i(2, 1))
 			Key.KEY_3:
-				_slide_column(2, 2)
+				_slide_column(0, 1)
 			Key.KEY_4:
-				_slide_column(2, -2)
+				_slide_column(0, -1)
 			Key.KEY_5:
 				_hide_cell(Vector2i(2, 1))
 			Key.KEY_6:
