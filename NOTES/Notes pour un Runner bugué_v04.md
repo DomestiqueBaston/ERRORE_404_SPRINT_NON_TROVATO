@@ -1,7 +1,8 @@
 Errore 404: Sprint Non Trovato! (un jeu qui bugue)
 
 Tentative de description du jeu plus claire :
-Une partie oppose toujours 4 concurrents (1 joueur et 3 Bots par défaut). Les concurrents courent en permanence, ne peuvent pas s'arrêter et tracent un mur temporaire derrière eux. Le terrain se transforme continuellement (glissements de portions de terrain, cellules qui s'abaissent ou disparaissent, colonnes, etc.), modifiant les trajets possibles pendant toute la course. Des Bonus/Malus apparaissent régulièrement ; chaque couleur est associée à un Bonus et à un Malus, le joueur ne sait donc jamais lequel il ramasse. Des "bugs" viennent également perturber l'affichage pendant la partie. La course prend fin lorsqu'il ne reste plus qu'un seul concurrent vivant ou lorsqu'un concurrent atteint la porte de sortie après son apparition. 
+Une partie oppose toujours 4 concurrents (1 joueur et 3 Bots). Les concurrents courent en permanence, ne peuvent pas s'arrêter et tracent un mur temporaire derrière eux. Le terrain se transforme continuellement (glissements de portions de terrain, cellules qui s'abaissent ou disparaissent, colonnes, etc.), modifiant les trajets possibles pendant toute la course. Des Bonus/Malus apparaissent régulièrement ; chaque couleur est associée à un Bonus et à un Malus, le joueur ne sait donc jamais lequel il ramasse. Des "bugs" viennent également perturber l'affichage pendant la partie. La course prend fin lorsqu'il ne reste plus qu'un seul concurrent vivant ou lorsqu'un concurrent passe la porte de sortie que celle-ci est apparue.
+
 
 - Ce « Runner » va se « rapprocher » de la (fameuse) séquence de course de moto dans Tron (1982) qu’on va mélanger avec un peu du film Cube (les connexions entre les salles changent régulièrement comme un Rubik’s Cube).
 
@@ -10,25 +11,26 @@ Une partie oppose toujours 4 concurrents (1 joueur et 3 Bots par défaut). Les c
 - Le champ de course se structurera sous forme de grille dont les lignes et colonnes (complètes, même s’il y a des trous dans une ligne/colonne) vont être poussées ou tirées par le jeu transformant ainsi le terrain en permanence.
 - Des cases s’élèveront et/ou se baisseront également.
 - L’aire de course sera composée, au choix du joueur, de base de 9x9 à 21x21 (uniquement impaires pour avoir la case « 404 » au centre) cellules de terrain (ou plus ?).
-- Un jeu pour 1 joueur mais il y aura toujours 4 concurrents en piste. Les 3 autres concurrents manquants seront pris en charge par l’IA (Bots). Il y a toujours 2 hommes et 2 femmes en course.
+- Un jeu pour 1 joueur mais il y aura toujours 4 concurrents en piste. Les 3  concurrents non-humains seront pris en charge par l’IA (Bots). Il y a toujours 2 hommes et 2 femmes en course.
 - L’écran est divisé en 4 avec les vues de chaque concurrent. Le joueur sera toujours dans le quart supérieur gauche.
-- À chaque fois que le jeu va bouger une ligne/colonne ou baisser un pylône (qui n’écrase pas et laisse passer dessous) ou baisser une cellule ou lâcher un pylône ou faire disparaître une cellule, une alarme (Cell_Pylon_Alarms/ dans Sounds.tscn) se fera d’abord entendre pendant 1’’ ET jusqu’à la fin de l’animation.
+- À chaque fois que le jeu va bouger une ligne/colonne ou baisser un pylône (qui n’écrase pas et laisse passer dessous) ou baisser une cellule ou lâcher un pylône ou faire disparaître une cellule, une alarme (Cell_Pylon_Alarms/ dans Sounds.tscn) se fera d’abord entendre pendant 1’’ ET jusqu’à la fin de l’animation (sauf exceptions).
 - Une cellule baissée ou disparue ou un pylône (baissé ou arrivé au sol) reste dans cette position 10 à 20’’. S’il font partie d’une ligne/colonne qui glisse pendant qu’ils sont dans l’état évoqué ici, alors ils suivent le mouvement de la ligne/colonne.
 - On ne fait pas tomber/descendre de pylône sur une cellule disparue ou descendue.
-- Sur le terrain, au centre, une case est levée (colonne verticale, cette fois). C’est sur cette case, une fois la colonne redescendue qu’apparaîtra la porte de sortie de la zone au bout de (Taille de la map + (2 × Difficulté)) / 10 minutes. Il pourra arriver que la porte ne soit plus accessible à cause de mouvements de terrain.
+- Sur le terrain, au centre, une case est levée (colonne verticale, cette fois). C’est sur cette case, une fois la colonne redescendue qu’apparaîtra la porte de sortie de la zone au bout de (Taille de la map + (2 × Difficulté)) / 10 minutes. - - Il pourra arriver que la porte ne soit plus accessible à cause de mouvements de terrain.
 - Pour les concurrents, 4 directions de mouvement (les diagonales).
 - Les concurrents ne peuvent pas faire directement demi-tour (à cause du mur qu’ils tracent).
 - Les concurrents ne peuvent tourner qu’à 90°.
 - Les concurrents ne peuvent pas arrêter de courir !
 - Ils tracent un mur temporaire derrière eux (qui s’efface au fur et à mesure par tronçons en fonction du niveau de difficulté et de la taille de la map – voir plus loin).
 - Un tronçon de mur est la partie du mur sur une case du terrain.
-- Le but du jeu est de tenir le plus longtemps possible et être le dernier survivant ou être le premier à atteindre la porte de sortie qui se manifestera aléatoirement au bout d’un certain temps.
+- Le but du jeu est de tenir le plus longtemps possible et être le dernier survivant ou être le premier à passer la porte de sortie qui se manifestera aléatoirement au bout d’un certain temps. Cette porte se trouvera toujours sur la cellule 404 centrale. Elle apparaîtra une fois la cellule descendue et après [niveau de difficulté] secondes.
 
 Un runner bugué :
+-  Chaque vue de concurrent a un timer de bug indépendant des autres vues.
 - Les bugs durent de 5’’ en difficulté 1 à 20’’ en difficulté 5.
-- Après chaque bug, on attend 10’’ avant d’avoir 1/5 chance d’en déclencher un nouveau.
+- Après chaque bug, on attend 10’’ en difficulté 1 à  5’’ en difficulté 5 avant d’avoir 1/5 chance d’en déclencher un nouveau.
 - Au lancement des bugs, on joue le son Frames/Bug_Sound (dans The_Game.tscn) et on le coupe à la fin du bug. Pas d’intro/outro, effets directs !
-    1. L’image globale se décale dans la vue du joueur (la caméra se recentre sur le joueur) → Ça se fait : ✔
+    1. L’image globale se décale dans la vue du joueur (la caméra se centre sur le joueur) → Ça se fait : ✔
     2. La palette de couleurs change → ✔
     3. Image floue → Ça se fait : ✔
     4. La caméra vibre → ✔
@@ -40,14 +42,14 @@ Un runner bugué :
     1. Texture de sol change (sauf les 4 cases de coins et la case 404) – (permanent)→ ✔
 
 Les bonus et malus en jeu (Cube.tscn) :
-- En jeu, il n’y aura que 2 exemplaires de chaque Bonus/Malus (y compris en possession d’un joueur).
-- Chaque concurrent ne peut porter qu’1 Bonus/Malus. On ne peut pas ramasser de nouveau bonus/malus tant qu’un est en cours d’utilisation.
-- Les Bonus/Malus apparaissent en jeu toutes les 8 à 12 secondes.
+- En jeu, il n’y aura que 2 exemplaires max. de chaque Bonus/Malus (y compris en possession d’un joueur).
+- Chaque concurrent ne peut porter qu’1 Bonus/Malus. On peut ramasser un Bonus/Malus si on en porte déjà un mais le nouveau remplace le précédent. On ne peut pas ramasser de nouveau Bonus/Malus tant qu’un est en cours d’utilisation.
+- Les Bonus/Malus apparaissent en jeu toutes les 5 à 10 secondes.
 - Il ne peut pas y avoir plus de 5 Bonus/Malus simultanément à ramasser → le 6ème supprime d’abord automatiquement le plus ancien restant pendant qu’il apparaît.
 - Pour chaque couleur correspondent un bonus et un malus (le joueur ne sait donc pas s’il voit un bonus ou un malus).
-- Au ramassage d’un Bonus/Malus, on joue le son correspondant et on joue le clignotement du concurrent (Animation_Bonus_Malus).
-- À l’activation (automatique ou au déclenchement du joueur) on joue également le son correspondant et on joue le clignotement du concurrent.
-- Si le ramassage et l’activation se font en même temps, on ne joue qu’une fois le son correspondant et le clignotement du concurrent.
+- Au ramassage d’un Bonus/Malus, on joue le son correspondant au Bonus/Malus et on joue le clignotement du concurrent (Animation_Bonus_Malus).
+- À l’activation (automatique ou au déclenchement du joueur) du Bonus/Malus on joue également le son correspondant et on joue le clignotement du concurrent.
+- Si le ramassage et l’activation se font en même temps, on ne joue qu’une fois le son correspondant et pareil pour le clignotement du concurrent.
 
 Les bonus :
     1. Invulnérabilité – Rouge (annule le prochain malus récolté) – dure (5 ÷ difficulté)’’ → ✔ Invincible – Automatique !
@@ -62,14 +64,13 @@ Les malus (applications automatiques) :
     1. Inversion de commandes – Rouge – dure (difficulté)’’ → ✔ Invert
     2. Lenteur de réaction (on ajoute un délai d’1/10’’ (à préciser) dans les commandes du concurrent) – Noir – dure (2 × difficulté)’’ → ✔ Slow
     3. Les murs tracés par les concurrents durent plus longtemps – Blanc – (durée des tronçons de mur × 2) → ✔ Last_Shorter – Au bout de (durée des tronçons de mur × 1), l’effet du malus disparaît et la durée de vie normale de chaque tronçon reprend sa valeur normale et tous les tronçons qui ont vécu ce temps ou plus disparaissent !
-    4. 
-    5. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1 seconde) – Vert – dure ((2 × difficulté) + 3)’’ → ✔ Anti_Dash
-    6. « Hors phase » (shader) – Bleu – dure (2 × difficulté)’’ → ✔ Phase
-    7. Virus (envoie automatiquement le prochain Bonus (pas malus) récolté à un adversaire aléatoire, quitte à remplacer celui qu’il porte – Violet → ✔ Anti_Virus
-    8. Téléportation (instantané et destination aléatoire) – Jaune → ✔ Anti_Teleport
+    4. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1 seconde) – Vert – dure ((2 × difficulté) + 3)’’ → ✔ Anti_Dash
+    5. « Hors phase » (shader) – Bleu – dure (2 × difficulté)’’ → ✔ Phase
+    6. Virus (envoie automatiquement le prochain Bonus (pas malus) récolté à un adversaire aléatoire, quitte à remplacer celui qu’il porte – Violet → ✔ Anti_Virus
+    7. Téléportation (instantané et destination aléatoire) – Jaune → ✔ Anti_Teleport
 
 Les obstacles :
-- Toutes les X secondes (voir Options nécessaires dans Settings) un des obstacles est déclenché. 1 sur 4 est un glissement de Ligne/Colonne. La « quantité » de glissement des Ligne/Colonne se font aléatoirement d’1 à (longueur d’un côté au départ/3) cases (pour ne pas dire cellule qui pourrait être perturbant). On fait TOUJOURS glisser une ligne/colonne complète (« trous » inclus).
+- Toutes les X secondes (voir Options nécessaires dans Settings) un des obstacles est déclenché. 25% du temps, il s’agira d’1 glissement de Ligne/Colonne. La « quantité » de glissement des Ligne/Colonne se font aléatoirement d’1 à (longueur d’un côté au départ/3) cases (pour ne pas dire cellule qui pourrait être perturbant). On fait TOUJOURS glisser une ligne/colonne complète (« trous » inclus).
     1. Ligne/Colonne (de cellules) qui glisse – Permanent → ✔ (1’’ avant, on joue Cell_Pylon_Alarms/Cell_Slide dans Sounds.tscn ET jusqu’à la fin de l’animation)
     2. Trous (cellules qui descendent) – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     3. Murs des concurrents – (Durée : comme précisé plus loin) → ✔ (voir avec Geoff comment faire)
@@ -77,8 +78,7 @@ Les obstacles :
     5. Colonne descendante – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     6. Colonne écrasante – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     7. Cellule « disparaissante » – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
-    8. 1 Cellule à sens unique – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
-    9. 1 Cellule hors phase – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔ (Screen_Glitch : Fait tourner aléatoirement à droite, Glitch_Only : fait tourner à gauche)
+    8. 1 Cellule hors phase – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔ (Screen_Glitch : Fait tourner à droite ou Glitch_Only : fait tourner à gauche)
 
 Liste des animations des personnages :
     1. Courir ✔ ✔ ✔ ✔
@@ -99,16 +99,16 @@ Notes de fabrication :
     • Position de caméra par rapport au root d’un concurrent tourné vers le bas à gauche : px = -360, py = -110.
     • Position de caméra par rapport au root d’un concurrent tourné vers le haut à gauche : px = -360, py = -230.
     • Position de caméra par rapport au root d’un concurrent tourné vers le haut à droite : px = -120, py = -230.
-- Le mur tracé derrière un concurrent lorsqu’il se déplace est Light_Wall.tscn. À chaque entrée d’un concurrent sur une Cell ou virage, on commence le tracé d’un nouveau Light_Wall.tscn qui sera raccord avec le précédent. Lorsqu’un concurrent quitte une Cell ou fait un virage sur une Cell, on coupe le précédent Light_Wall.tscn et on en commence un autre raccord également. On ne trace pas de Light_Wall.tscn lorsqu’un concurrent fait autre chose que courir, sauter ou glisser.
+- Le mur tracé derrière un concurrent lorsqu’il se déplace est Light_Wall.tscn. À chaque entrée d’un concurrent sur une Cell ou virage, on commence le tracé d’un nouveau Light_Wall.tscn qui sera raccord avec le précédent. Lorsqu’un concurrent quitte une Cell ou fait un virage sur une Cell, on coupe le précédent Light_Wall.tscn et on en commence un autre raccord également. On ne trace pas de Light_Wall.tscn lorsqu’un concurrent fait autre chose que courir, sauter (sauf lorsqu’il saute au dessus d’un trou) ou glisser.
 - Au démarrage de chaque concurrent (lorsqu’il commence à courir), on joue l’animation Light_Wall_Animations/Appearing dans Light_Wall.tscn pour commencer son mur. On joue également Light_Wall_Sounds/Wall_Hum en boucle (jusqu’à ce que le mur disparaissent complètement).
 - À la mort d’un concurrent, lorsque son mur disparaît, joue l’animation Light_Wall_Animations/Disappearing dans Light_Wall.tscn.
 - À la fin de l’animation de mort d’un concurrent (Death) et que son mur aussi a disparu, on joue l’animation Animation_Disappearing_Death/Disappearing du concurrent afin de faire disparaître son cadavre (c’est dommage mais le laisser, ça risque de trop compliquer les choses).
-- Lorsqu’un concurrent traverse une case (donc en traçant son mur) et que la cellule bouge (horizontalement), alors le concurrent se décale AVEC la cellule. Et le mur qu’il trace également afin que le morceau de mur sur la cellule puisse se déplacer avec la case si celle-ci est amenée à se déplacer de nouveau.
+- Lorsqu’un concurrent traverse une case (donc en traçant son mur) et que la cellule bouge (glissement), alors le concurrent se décale AVEC la cellule. Et le mur qu’il trace également afin que le morceau de mur sur la cellule puisse se déplacer avec la case si celle-ci est amenée à se déplacer de nouveau.
 - Cas particuliers de mort de concurrent : il existe une animation alternative, un AnimationPlayer avec une animation « toute bête » pour ces cas-là (Animation_Disappearing_Death/Disappearing). Si par exemple se présente un cas avec deux colonnes baissées et que le concurrent veut passer dessous à vitesse normale, il ne pourra pas (distance trop grande pour un slide), mourra donc et on utilisera cette animation. Écrasé par une colonne, ce sera pareil ! Etc.
-- Un concurrent ne peut pas courir sur un autre cadavre → Le jeu forcera le concurrent à tourner aléatoirement à droite ou à gauche. On jouera ici aussi l’Animation_Bonus_Malus et le son Alert. Si par vraiment super pas de bol, le concurrent se retrouve coincé entre des cadavres et/ou d’autres concurrents, alors on le fera mourir en jouant son animation de mort à lui aussi (Animation_Disappearing_Death/Disappearing) ! Ça ne sera pas très « joli » mais c’est un cas vraiment peu probable.
+- Un concurrent ne peut pas courir sur un autre cadavre → Le jeu forcera le concurrent à tourner aléatoirement à droite ou à gauche. On jouera ici aussi l’Animation_Bonus_Malus et le son Alert. Si le concurrent se retrouve coincé entre des cadavres et/ou d’autres concurrents (vraiment super pas de bol), alors on le fera mourir en jouant son animation de mort à lui aussi (Animation_Disappearing_Death/Disappearing) ! Ça ne sera pas très « joli » mais c’est un cas vraiment peu probable.
 - À la mort d’un concurrent, ce qui reste de son mur disparaît (on joue l’animation de disparition du mur dès la première frame de l’animation de mort du concurrent)! Pour cela on jouera l’animation Light_Wall_Animations/Disappearing dans Light_Wall.tscn.
-- Seule l’animation de course peut être interrompue (pour changer de direction, sauter, etc.). Toutes les autres doivent finir avant d’enchaîner sur autre chose. Par défaut, à la fin d’une animation d’interruption (saut, glissade, etc.), on retourne toujours à la course.
-- Toutes les 10 à 20’’, chaque coureur va gagner/perdre 4% de vitesse. Et toutes les 10 à 20’’ perdre/récupérer ces 4% de vitesse. Les animations seront également accélérées et ralenties de la même proportion pour que ce soit plus « joli ». On utilisera également un tween d’1/2 seconde pour appliquer la modification (si possible).
+- Seule l’animation de course peut être interrompue (pour changer de direction, sauter, etc.) par le joueur. Toutes les autres doivent finir avant d’enchaîner sur autre chose (on parle toujours d’interruption par le joueur, cela ne concerne pas sa mort, par exemple). Par défaut, à la fin d’une animation d’interruption (saut, glissade, etc.), on retourne toujours à la course.
+- Toutes les 10 à 20’’, chaque coureur va gagner/perdre 4% de vitesse. Et toutes les 10 à 20’’ perdre/récupérer ces 4% de vitesse. Les animations seront également accélérées et ralenties de la même proportion pour que ce soit plus « joli ». On utilisera également un tween d’1/2 seconde pour appliquer la modification (si possible). Chaque concurrent à un timer personnel indépendant de celui des autres.
 - On coupe le son Running dans les AnimationPlayers des bots dans les animations Run_000 et Run_180.
 
 Options (nécessaires) dans Settings:
@@ -119,35 +119,35 @@ Options (nécessaires) dans Settings:
         ◦ Temps avant l’apparition de la porte de sortie : (Taille de la map + (2 × Difficulté)) / 10 minutes.
         ◦ Délai entre les déclenchements d’obstacles : 5.5 - (0.5 × Difficulté) secondes.
         ◦ Délai avant disparition des tronçons de mur : (Difficulté + Taille de la map) / 2 secondes après apparition.
-        ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en gagnant 3 courses en Difficulté 5) qui rend tous les obstacles PERMANENTS (le reste est traîté comme Difficulté 5 !) SAUF les murs des concurrents. Voir également à la fin du doc. : Liste des scènes (et – succinctes – descriptions de leurs contenus).
+        ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en gagnant 3 courses en Difficulté 5) qui rend tous les obstacles PERMANENTS (le reste est traîté comme Difficulté 5 si rien n’est précisé !) SAUF les murs des concurrents. Voir également à la fin du doc. : Liste des scènes (et – succinctes – descriptions de leurs contenus).
 
 Les personnalités des « IA »/Bots :
     1. Par défaut, un Bot tendra bien évidemment à ne pas mourir en évitant les collisions et les chutes. Un Bot essayera également de sortir par la porte lorsqu’elle est présente et accessible (il peut arriver qu’elle ne le soit pas à cause des glissements de lignes/colonnes).
     2. On définira des valeurs « par défaut » pour un bot afin de faire varier ces valeurs en fonction du comportement sélectionné.
-        ◦ Un passage de moins d1/2 case de large n’est pas emprunté par un bot (s’il n’a pas d’alternative, il ira dans l’obstacle et mourra).
+        ◦ Un passage de moins d1/2 case de large n’est pas emprunté par un bot (quitte à en mourir).
         ◦ Temps de réaction de base : 300ms (surlignés en jaune : pas concerné).
     3. Pour former un bot, on combine 3 comportements choisi aléatoirement (1 dans dans chaque catégorie).
 
 Comportements face aux obstacles :
 
     1. Anticipatif : Voit plus loin.
-    2. Fuyant : S’éloigne des concurrents.
-    3. Téméraire : Tente des passage plus étroits (moins d’1/2 case de large).
-    4. Agressif : Essaye de bloquer les concurrents.
+    2. Fuyant : S’éloigne des concurrents (tout concurrent dans son détecteur poussera ce coureur à partir en direction opposée).
+    3. Téméraire : Tente des passage plus étroits (moins d’1/2 case de large mais moins d’1/3).
+    4. Agressif : Essaye de bloquer les concurrents (avec son mur).
 
 Comportements face aux Bonus/malus :
 
-    1. Cupide : Fonce sur les bonus/malus.
+    1. Cupide : Fonce sur les bonus/malus (dès qu’il en voit un accessible dans son détecteur, il devient son objectif).
     2. Sélectif : Ne ramasse que les bonus/malus à 1 case de lui.
     3. Méfiant : Évite les bonus/malus autant que possible.
-    4. Hésitant : Priorise le ramassage d’un bonus aléatoirement (à 50%).
+    4. Hésitant : Priorise le ramassage ou non d’un bonus aléatoirement (à 50%).
 
 Comportements face aux bugs du jeu (continuer tout droit, tourner et/ou utiliser un bonus – pas d’autre option pour le moment, il me semble) :
 
     1. Prudent : Réagit plus tôt (si possible) face aux obstacles.
     2. Inconscient : Collider de vision plus court.
     3. Panique : Réaction totalement aléatoire face à un obstacle.
-    4. Maladroit : Confond les obstacles (saute au lieu de glisser, etc.).
+    4. Maladroit : Confond les obstacles (1/5 fois saute au lieu de glisser, tourne à droite au lieu de tourner à gauche, etc.).
 Script de déroulement d’une partie (depuis le lancement d’Errore_404.exe)
 
 Préambule :
