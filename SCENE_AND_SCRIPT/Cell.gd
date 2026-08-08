@@ -38,6 +38,8 @@ enum Decoration {
 	OTHER8
 }
 
+@onready var _anim_player: AnimationPlayer = $Global_Cell
+
 @onready var _textures = [
 	$Column/Cell_Tops/Cell_Textures/Cellule_De_Terrain_Centre,
 	$Column/Cell_Tops/Cell_Textures/Cellule_De_Terrain_Bord_Haut,
@@ -79,51 +81,51 @@ func _ready():
 func lower():
 	_is_down = true
 	if decoration == Decoration.CENTER:
-		$Global_Cell.play("404_Going_Down")
+		_anim_player.play("404_Going_Down")
 	else:
-		$Global_Cell.play("Going_Down")
-	await $Global_Cell.animation_finished
+		_anim_player.play("Going_Down")
+	await _anim_player.animation_finished
 
 func raise():
-	$Global_Cell.play("Going_Up")
-	await $Global_Cell.animation_finished
+	_anim_player.play("Going_Up")
+	await _anim_player.animation_finished
 	_is_down = false
 
 func disappear():
-	$Global_Cell.play("Disappearing")
-	await $Global_Cell.animation_finished
+	_anim_player.play("Disappearing")
+	await _anim_player.animation_finished
 
 func reappear():
-	$Global_Cell.play("Appearing")
-	await $Global_Cell.animation_finished
+	_anim_player.play("Appearing")
+	await _anim_player.animation_finished
 
 func start_sliding():
 	$Sound/Cell_Slide_Sounds/Sliding_Cell.play()
 	if _is_down:
-		$Global_Cell.play("Low_Sliding_Beginning")
+		_anim_player.play("Low_Sliding_Beginning")
 	elif decoration == Decoration.CENTER:
-		$Global_Cell.play("404_High_Sliding_Beginning")
+		_anim_player.play("404_High_Sliding_Beginning")
 	else:
-		$Global_Cell.play("High_Sliding_Beginning")
+		_anim_player.play("High_Sliding_Beginning")
 	if _pylon:
 		_pylon.start_sliding()
 
 func stop_sliding():
 	if _is_down:
-		$Global_Cell.play("Low_Sliding_End")
+		_anim_player.play("Low_Sliding_End")
 	elif decoration == Decoration.CENTER:
-		$Global_Cell.play("404_High_Sliding_End")
+		_anim_player.play("404_High_Sliding_End")
 	else:
-		$Global_Cell.play("High_Sliding_End")
+		_anim_player.play("High_Sliding_End")
 	if _pylon:
 		_pylon.stop_sliding()
 	$Sound/Cell_Slide_Sounds/Sliding_Cell.stop()
 
 func get_sliding_animation_start_length() -> float:
-	return $Global_Cell.get_animation("High_Sliding_Beginning").length
+	return _anim_player.get_animation("High_Sliding_Beginning").length
 
 func get_sliding_animation_stop_length() -> float:
-	return $Global_Cell.get_animation("High_Sliding_End").length
+	return _anim_player.get_animation("High_Sliding_End").length
 
 func start_one_way(dir: Globals.Axis):
 	$Sound/Sound_For_Glitch_Only.play()
