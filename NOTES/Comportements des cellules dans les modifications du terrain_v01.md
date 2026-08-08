@@ -14,14 +14,14 @@ Glissements de lignes/colonnes :
 Concernant les animations suivantes, il est à noter que les cellules qui subissent ces comportements peuvent glisser mais on n’applique pas ces effets à une cellule qui glisse (ce qui ne devrait pas pouvoir se produire théoriquement d’après ce qui est prévu dans le jeu si je ne m’abuse).
 
 Cellules disparaissantes (uniquement depuis la position.y = 0, donc par défaut) :
-    • 1 seconde avant la disparition, on joue le son Sounds/Cell_Pylon_Alarms/Cell_Disappearing (ce son n’est pas une boucle).
+    • 0,5 seconde avant la disparition, on joue le son Sounds/Cell_Pylon_Alarms/Cell_Disappearing (ce son n’est pas une boucle).
     • Dans Cell.tscn, on joue l’animation Disappearing dans Cell/Global_Cell.
 
 Cellules (ré)apparaissantes (uniquement après avoir précédemment disparu):
     • Dans Cell.tscn, on joue l’animation Appearing dans Cell/Global_Cell.
 
 Cellules descendantes (uniquement depuis la position.y = 0, donc par défaut) :
-    • 1 seconde avant la descente, on commence à jouer une alerte sonore dans Sounds.tscn : Sounds/Cell_Pylon_Alarms/Cell_Down et le son continuera jusqu’à la fin de la descente.
+    • 0,5 seconde avant la descente, on commence à jouer une alerte sonore dans Sounds.tscn : Sounds/Cell_Pylon_Alarms/Cell_Down et le son continuera jusqu’à la fin de la descente.
     • Dans Cell.tscn, on joue l’animation Going_Down dans Cell/Global_Cell.
     • On stoppe enfin le son  Sounds/Cell_Pylon_Alarms/Cell_Down dans Sounds.tscn.
 
@@ -48,7 +48,7 @@ Cellules à sens unique (uniquement en position par défaut) :
 Description des autres comportements des pylônes.
 
 Pylônes-obstacles (descente) :
-    • 1 seconde avant la descente (du « plafond ») d’un pylône-obstacle, on commence à jouer une alerte sonore dans Sounds.tscn : Sounds/Cell_Pylon_Alarms/Pylon_Down et le son continuera jusqu’à la fin de la descente.
+    • 0,5 seconde avant la descente (du « plafond ») d’un pylône-obstacle, on commence à jouer une alerte sonore dans Sounds.tscn : Sounds/Cell_Pylon_Alarms/Pylon_Down et le son continuera jusqu’à la fin de la descente.
     • Pour faire descendre le pylône-obstacle, dans la scène Pylon.tscn, on joue l’animation Going_Down dans Pylon/Pylon_Animation.
     • On coupe le son  Sounds/Cell_Pylon_Alarms/Pylon_Down dans Sounds.tscn.
 
@@ -56,8 +56,8 @@ Pylônes-obstacles (remontée) :
     • Pour faire remonter le pylône, dans la scène Pylon.tscn, on joue l’animation Going_Up dans Pylon/Pylon_Animation.
 
 Pylônes-écraseur (chute):
-    • 1 seconde avant la chute (du « plafond ») d’un pylône-écraseur, on joue une alerte sonore dans Sounds.tscn : Sounds/Cell_Pylon_Alarms/Pylon_Crunch (ce son n’est pas une boucle).
-    • Pour faire descendre le pylône, dans la scène Pylon.tscn, on joue l’animation Going_Down_Falling dans Pylon/Pylon_Animation.
+    • 0,25 seconde avant la chute (du « plafond ») d’un pylône-écraseur, on joue une alerte sonore dans Sounds.tscn : Sounds/Cell_Pylon_Alarms/Pylon_Crunch (ce son n’est pas une boucle).
+    • Pour faire choir le pylône, dans la scène Pylon.tscn, on joue l’animation Going_Down_Falling dans Pylon/Pylon_Animation ET on joue une alerte sonore (synchro) dans Sounds.tscn : Sounds/Cell_Pylon_Alarms/Pylon_Crunch (ce son n’est pas une boucle).
 
 Pylônes-écraseur (remontée):
     • Pour faire remonter le pylône, dans la scène Pylon.tscn, on joue l’animation Going_Up_Falling dans Pylon/Pylon_Animation.
