@@ -8,6 +8,7 @@ class_name Cell extends Node2D
 				_textures[decoration].hide()
 				_textures[deco].show()
 			decoration = deco
+			$Column/Cell_Tops.position.y = -480 if deco == Decoration.CENTER else 0
 
 enum Decoration {
 	CENTER,
