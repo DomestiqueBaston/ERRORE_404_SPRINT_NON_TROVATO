@@ -11,7 +11,7 @@ Glissements de lignes/colonnes :
     • On stoppe le son  Sounds/Cell_Pylon_Alarms/Column_Row_Slide dans Sounds.tscn.
 
 
-Concernant les animations suivantes, il est à noter que les cellules qui subissent ces comportements peuvent glisser mais on n’applique pas ces effets à une cellule qui glisse (ce qui ne devrait pas pouvoir se produire théoriquement d’après ce qui est prévu dans le jeu si je ne m’abuse).
+Concernant les animations suivantes, il est à noter que les cellules qui subissent ces comportements peuvent glisser mais on n’applique pas ces effets à une cellule qui glisse (ce qui ne devrait théoriquement pas pouvoir se produire d’après ce qui est prévu dans le jeu si je ne m’abuse).
 
 Cellules disparaissantes (uniquement depuis la position.y = 0, donc par défaut) :
     • 0,5 seconde avant la disparition, on joue le son Sounds/Cell_Pylon_Alarms/Cell_Disappearing (ce son n’est pas une boucle).
