@@ -8,7 +8,7 @@ var entries := [
 ]
 
 @onready var preloaded_scenes: Dictionary = {
-	"Start_Game": preload("res://SCENE_AND_SCRIPT/TMP/Test_Split_Screen.tscn"),
+	"Start_Game": preload("res://SCENE_AND_SCRIPT/Map_Test.tscn"),
 	"Tutorial":   preload("res://SCENE_AND_SCRIPT/Tutorial.tscn"),
 	"Settings":   preload("res://SCENE_AND_SCRIPT/Settings.tscn"),
 	"Credits":    preload("res://SCENE_AND_SCRIPT/Credits.tscn"),
