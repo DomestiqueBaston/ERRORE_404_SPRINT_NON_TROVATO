@@ -11,6 +11,9 @@ const master_bus: int = 0
 const music_bus: int = 3
 
 var use_diagonals_for_movement: bool = true
+var map_size: int = 4
+var difficulty: int = 1
+var max_difficulty: int = 5
 
 const _settings_path = "user://settings.cfg"
 

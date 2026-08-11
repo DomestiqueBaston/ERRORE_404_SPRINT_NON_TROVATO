@@ -60,8 +60,6 @@ var _highlight_grabbers: Array[Texture2D]
 var _is_updating: bool = false
 
 func _ready():
-	map_slider.value_changed.connect(_on_map_slider_changed)
-	difficulty_slider.value_changed.connect(_on_difficulty_slider_changed)
 	master_slider.value_changed.connect(_on_master_slider_changed)
 	music_slider.value_changed.connect(_on_music_slider_changed)
 
@@ -81,6 +79,16 @@ func update():
 	$Directions/Cardinals.visible = not use_diagonals
 	$Masks/Diagonals.visible = use_diagonals
 	$Masks/Cardinals.visible = not use_diagonals
+
+	map_slider.value = 2 * Globals.map_size + 1
+
+	difficulty_slider.max_value = Globals.max_difficulty
+	difficulty_slider.tick_count = Globals.max_difficulty
+	difficulty_slider.value = Globals.difficulty
+	$Difficulty_1_5.visible = Globals.max_difficulty <= 5
+	$Masks/Difficulty_1_5.visible = Globals.max_difficulty <= 5
+	$Difficulty_1_6.visible = Globals.max_difficulty > 5
+	$Masks/Difficulty_1_6.visible = Globals.max_difficulty > 5
 
 	_master_db_init = AudioServer.get_bus_volume_db(Globals.master_bus)
 	_music_db_init = AudioServer.get_bus_volume_db(Globals.music_bus)
@@ -167,12 +175,6 @@ func _slider_to_db_music(value: float) -> float:
 func _db_to_slider_music(db: float) -> float:
 	return 100.0 * ((db - music_db_min) / (music_db_max - music_db_min))
 
-func _on_map_slider_changed(_value: float):
-	pass
-
-func _on_difficulty_slider_changed(_value: float):
-	pass
-
 func _on_master_slider_changed(value: float):
 	if not _is_updating:
 		AudioServer.set_bus_volume_db(Globals.master_bus, _slider_to_db_master(value))
@@ -183,3 +185,9 @@ func _on_music_slider_changed(value: float):
 
 func get_use_diagonals() -> bool:
 	return $Directions/Diagonals.visible
+
+func get_map_size() -> int:
+	return ((map_slider.value - 1) / 2) as int
+
+func get_difficulty() -> int:
+	return difficulty_slider.value as int

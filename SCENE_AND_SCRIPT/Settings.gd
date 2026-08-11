@@ -1,7 +1,9 @@
 extends Node2D
 
+@onready var _parameters = $Parameters
+
 func _ready():
-	$Parameters.update()
+	_parameters.update()
 
 func _input(event):
 	if event.is_action_pressed("ui_b_button"):
@@ -28,11 +30,13 @@ func _switch_to_menu():
 # player cancels.
 #
 func _update_settings():
-	Globals.use_diagonals_for_movement = $Parameters.get_use_diagonals()
+	Globals.use_diagonals_for_movement = _parameters.get_use_diagonals()
+	Globals.map_size = _parameters.get_map_size()
+	Globals.difficulty = _parameters.get_difficulty()
 	Globals.save_settings()
 
 #
 # Reverts audio settings to their initial state when the player cancels.
 #
 func _reset_settings():
-	$Parameters.reset()
+	_parameters.reset()
