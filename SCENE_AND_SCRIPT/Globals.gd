@@ -8,7 +8,7 @@ enum Axis {
 }
 
 const master_bus: int = 0
-const music_bus: int = 3
+const music_bus: int = 4
 
 var use_diagonals_for_movement: bool = true
 var map_size: int = 4
