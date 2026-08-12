@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://4dvmxbh1hyah"]
 
-[ext_resource type="Script" uid="uid://jda3iip3f7fn" path="res://SCENE_AND_SCRIPT/TMP/Test_Split_Screen.gd" id="1_3iibe"]
+[ext_resource type="Script" uid="uid://b0r1f7ero7oms" path="res://SCENE_AND_SCRIPT/The_Game.gd" id="1_3iibe"]
 [ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="2_jtvwl"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="3_ycojx"]
 [ext_resource type="PackedScene" uid="uid://3u5u3tfo43n" path="res://SCENE_AND_SCRIPT/Portraits.tscn" id="4_lqmhv"]
@@ -2093,11 +2093,17 @@ metadata/_edit_lock_ = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2070283447]
 environment = SubResource("Environment_w5jul")
 
-[node name="BG_SubViewport" type="SubViewport" parent="." unique_id=469166842]
+[node name="BG_SubViewportContainer" type="SubViewportContainer" parent="." unique_id=546695159]
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="BG_SubViewport" type="SubViewport" parent="BG_SubViewportContainer" unique_id=469166842]
 transparent_bg = true
+handle_input_locally = false
 snap_2d_transforms_to_pixel = true
 snap_2d_vertices_to_pixel = true
 size = Vector2i(480, 270)
+render_target_update_mode = 4
 
 [node name="Runners" type="VBoxContainer" parent="." unique_id=1026385380]
 custom_minimum_size = Vector2(960, 540)
