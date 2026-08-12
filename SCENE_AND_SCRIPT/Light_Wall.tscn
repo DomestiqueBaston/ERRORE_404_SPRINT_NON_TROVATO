@@ -160,10 +160,10 @@ tracks/1/path = NodePath("Light_Wall_Collider/Collider:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.16666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [true, true, false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -200,10 +200,10 @@ tracks/1/path = NodePath("Light_Wall_Collider/Collider:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.20000002),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.16666667, 0.20000002),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [false, false, true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -280,7 +280,6 @@ _data = {
 metadata/_edit_lock_ = true
 
 [node name="Light_Wall_Collider" type="Area2D" parent="." unique_id=1434049907]
-visible = false
 rotation = 0.46425757
 metadata/_edit_lock_ = true
 

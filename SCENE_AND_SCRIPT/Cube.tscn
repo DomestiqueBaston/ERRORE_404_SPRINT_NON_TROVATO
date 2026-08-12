@@ -145,14 +145,14 @@ tracks/2/use_blend = true
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Collider_Cube:visible")
+tracks/3/path = NodePath("Collider_Cube/Collider:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true, true]
+"values": [true, false, false]
 }
 
 [sub_resource type="Animation" id="Animation_oh6sb"]
@@ -200,14 +200,14 @@ tracks/2/use_blend = true
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Collider_Cube:visible")
+tracks/3/path = NodePath("Collider_Cube/Collider:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.13333334, 0.16666667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, true, false]
+"values": [false, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_1evg1"]
@@ -239,7 +239,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Collider_Cube:visible")
+tracks/2/path = NodePath("Collider_Cube/Collider:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -260,7 +260,6 @@ _data = {
 script = ExtResource("1_mfqlr")
 
 [node name="Collider_Cube" type="Area2D" parent="." unique_id=1914165954]
-visible = false
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionShape2D" parent="Collider_Cube" unique_id=1339796665]
