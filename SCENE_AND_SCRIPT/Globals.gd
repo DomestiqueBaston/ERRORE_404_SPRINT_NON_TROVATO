@@ -42,4 +42,4 @@ func load_settings():
 	if config.load(_settings_path) == OK:
 		use_diagonals_for_movement = config.get_value("settings", "use_diagonals", true)
 		AudioServer.set_bus_volume_db(master_bus, config.get_value("settings", "master_db", 0.0))
-		AudioServer.set_bus_volume_db(music_bus, config.get_value("settings", "music_db", 0.0))
+		AudioServer.set_bus_volume_db(music_bus, config.get_value("settings", "music_db", -7.5))
