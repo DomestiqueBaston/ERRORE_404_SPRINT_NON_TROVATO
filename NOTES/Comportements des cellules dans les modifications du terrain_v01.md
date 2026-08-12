@@ -53,11 +53,11 @@ Pylônes-obstacles (descente) :
     • On coupe le son  Sounds/Cell_Pylon_Alarms/Pylon_Down dans Sounds.tscn.
 
 Pylônes-obstacles (remontée) :
-    • Pour faire remonter le pylône, dans la scène Pylon.tscn, on joue l’animation Going_Up dans Pylon/Pylon_Animation.
+    • Pour faire remonter le pylône, dans la scène Pylon.tscn, on joue l’animation Going_Up dans Pylon/Pylon_Animation. /!\ ATTENTION /!\ Un pylône-obstacle reste un obstacle un petit temps à la remontée (tant qu’il est trop bas pour qu’un coureur passe dessous).
 
 Pylônes-écraseur (chute):
     • 0,25 seconde avant la chute (du « plafond ») d’un pylône-écraseur, on joue une alerte sonore dans Sounds.tscn : Sounds/Cell_Pylon_Alarms/Pylon_Crunch (ce son n’est pas une boucle).
     • Pour faire choir le pylône, dans la scène Pylon.tscn, on joue l’animation Going_Down_Falling dans Pylon/Pylon_Animation ET on joue une alerte sonore (synchro) dans Sounds.tscn : Sounds/Cell_Pylon_Alarms/Pylon_Crunch (ce son n’est pas une boucle).
 
 Pylônes-écraseur (remontée):
-    • Pour faire remonter le pylône, dans la scène Pylon.tscn, on joue l’animation Going_Up_Falling dans Pylon/Pylon_Animation.
+    • Pour faire remonter le pylône, dans la scène Pylon.tscn, on joue l’animation Going_Up_Falling dans Pylon/Pylon_Animation. /!\ ATTENTION /!\ Un pylône-écraseur reste un obstacle un petit temps à la remontée (tant qu’il est trop bas pour qu’un coureur passe dessous).
