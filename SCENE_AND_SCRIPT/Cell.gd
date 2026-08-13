@@ -9,6 +9,7 @@ class_name Cell extends Node2D
 				_textures[deco].show()
 			decoration = deco
 			$Column/Cell_Tops.position.y = -354 if deco == Decoration.CENTER else 0
+			_is_down = false
 
 enum Decoration {
 	CENTER,
@@ -82,8 +83,13 @@ func _ready():
 func lower():
 	_is_busy = true
 	_is_down = true
-	_anim_player.play("Going_Down")
+	if is_center():
+		_anim_player.play("404_Going_Down")
+	else:
+		_anim_player.play("Going_Down")
 	await _anim_player.animation_finished
+	if is_center():
+		_is_busy = false
 
 func raise():
 	_anim_player.play("Going_Up")

@@ -10,6 +10,7 @@ class_name Map extends Node2D
 @export var slide_speed: float = 9
 
 var _cell_scene := preload("res://SCENE_AND_SCRIPT/Cell.tscn")
+var _door_scene := preload("res://SCENE_AND_SCRIPT/Door.tscn")
 
 const _cell_offset_x = 236.0
 const _cell_offset_y = 118.0
@@ -17,6 +18,7 @@ const _southeast = 0.5 * Vector2(_cell_offset_x, _cell_offset_y)
 const _northeast = 0.5 * Vector2(_cell_offset_x, -_cell_offset_y)
 
 var _cells: Dictionary[Vector2i, Cell]
+var _center_cell: Cell
 
 enum ObstacleType {
 	ROW_SLIDE,
@@ -27,7 +29,8 @@ enum ObstacleType {
 	CELL_BUG1,
 	CELL_BUG2,
 	PYLON_LOWER,
-	PYLON_DROP
+	PYLON_DROP,
+	CENTER_LOWER
 }
 
 class ObstacleEvent extends RefCounted:
@@ -41,11 +44,18 @@ var _timer: Timer
 
 func _ready():
 	_build_map()
-	if not Engine.is_editor_hint():
-		_timer = Timer.new()
-		add_child(_timer)
-		_timer.timeout.connect(_on_obstacle_timer_timeout)
-		_timer.start(5 - (mini(5, Globals.difficulty) - 1) / 2.0)
+
+	if Engine.is_editor_hint():
+		return
+
+	_timer = Timer.new()
+	add_child(_timer)
+	_timer.timeout.connect(_on_obstacle_timer_timeout)
+	_timer.start(5 - (mini(5, Globals.difficulty) - 1) / 2.0)
+
+	var center_time = 6 * (2 * Globals.map_size + 1 + 2 * Globals.difficulty)
+	var center_timer = get_tree().create_timer(center_time)
+	center_timer.timeout.connect(_lower_center_cell)
 
 func _build_map():
 	var parent: Node2D = self
@@ -58,7 +68,7 @@ func _build_map():
 
 	# center
 
-	_add_cell(parent, Vector2i(0, 0), Cell.Decoration.CENTER)
+	_center_cell = _add_cell(parent, Vector2i(0, 0), Cell.Decoration.CENTER)
 
 	# corners
 
@@ -132,12 +142,13 @@ func _build_edge(parent: Node2D, edge: Globals.Axis):
 #
 # Creates a new cell at the given position and with the given decoration.
 #
-func _add_cell(parent: Node2D, uv: Vector2i, deco: Cell.Decoration):
+func _add_cell(parent: Node2D, uv: Vector2i, deco: Cell.Decoration) -> Cell:
 	var cell: Cell = _cell_scene.instantiate()
 	cell.position = _get_cell_pos(uv)
 	cell.decoration = deco
 	parent.add_child(cell)
 	_cells[uv] = cell
+	return cell
 
 #
 # Returns the position in XY coordinates of the cell at the given UV index,
@@ -284,7 +295,7 @@ func _undrop_pylon(cell: Cell):
 # "undo" event; and no new obstacles are generated while the row or column is
 # sliding. (We COULD continue to generate obstacles that are not on the row or
 # column that is sliding, but we don't.) Events that arrive while a slide is in
-# progress (which must be undo events) are blocked until the slide finishes.
+# progress are blocked until the slide finishes.
 #
 func _handle_obstacle_event(event: ObstacleEvent):
 	if _is_sliding:
@@ -359,6 +370,14 @@ func _handle_obstacle_event(event: ObstacleEvent):
 				await _drop_pylon(event.cell)
 				_schedule_undo_event(event)
 
+		ObstacleType.CENTER_LOWER:
+			await _center_cell.lower()
+			await get_tree().create_timer(2 * Globals.difficulty).timeout
+			var door = _door_scene.instantiate()
+			_center_cell.add_child(door)
+			door.show_door()
+			door.show()
+
 #
 # Schedules an obstacle event to undo the creation of an obstacle at the given
 # cell.
@@ -414,5 +433,13 @@ func _pick_random_cell() -> Cell:
 func _on_obstacle_timer_timeout():
 	var event: ObstacleEvent = ObstacleEvent.new()
 	event.type = ObstacleType.values().pick_random()
-	event.is_undo = false
+	_handle_obstacle_event(event)
+
+#
+# Lowers the center (404) cell. We use an ObstacleEvent here, rather than
+# lowering the cell directly, in case a row or column is sliding.
+#
+func _lower_center_cell():
+	var event: ObstacleEvent = ObstacleEvent.new()
+	event.type = ObstacleType.CENTER_LOWER
 	_handle_obstacle_event(event)
