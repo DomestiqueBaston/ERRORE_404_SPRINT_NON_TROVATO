@@ -18,49 +18,34 @@ const _northeast = 0.5 * Vector2(_cell_offset_x, -_cell_offset_y)
 
 var _cells: Dictionary[Vector2i, Cell]
 
+enum ObstacleType {
+	ROW_SLIDE,
+	COLUMN_SLIDE,
+	CELL_LOWER,
+	CELL_HIDE,
+	CELL_ONE_WAY,
+	CELL_BUG1,
+	CELL_BUG2,
+	PYLON_LOWER,
+	PYLON_DROP
+}
+
+class ObstacleEvent extends RefCounted:
+	var type: ObstacleType
+	var is_undo: bool = false
+	var cell: Cell
+
+var _pending_events: Array[ObstacleEvent]
+var _is_sliding: bool = false
+var _timer: Timer
+
 func _ready():
 	_build_map()
-	set_process_input(not Engine.is_editor_hint())
-
-func _input(event: InputEvent):
-	if event is InputEventKey and event.is_pressed():
-		match event.keycode:
-			Key.KEY_1:
-				_lower_cell(Vector2i(2, 1))
-			Key.KEY_2:
-				_raise_cell(Vector2i(2, 1))
-			Key.KEY_3:
-				_slide_column(0, 1)
-			Key.KEY_4:
-				_slide_column(0, -1)
-			Key.KEY_5:
-				_hide_cell(Vector2i(2, 1))
-			Key.KEY_6:
-				_show_cell(Vector2i(2, 1))
-			Key.KEY_7:
-				_start_cell_one_way(Vector2i(2, 1), Globals.Axis.NE)
-			Key.KEY_8:
-				_stop_cell_one_way(Vector2i(2, 1))
-			Key.KEY_9:
-				if event.shift_pressed:
-					_start_cell_bug2(Vector2i(2, 1))
-				else:
-					_start_cell_bug1(Vector2i(2, 1))
-			Key.KEY_0:
-				if event.shift_pressed:
-					_stop_cell_bug2(Vector2i(2, 1))
-				else:
-					_stop_cell_bug1(Vector2i(2, 1))
-			Key.KEY_P:
-				if event.shift_pressed:
-					_raise_pylon(Vector2i(2, 2))
-				else:
-					_lower_pylon(Vector2i(2, 2))
-			Key.KEY_Q:
-				if event.shift_pressed:
-					_undrop_pylon(Vector2i(2, 2))
-				else:
-					_drop_pylon(Vector2i(2, 2))
+	if not Engine.is_editor_hint():
+		_timer = Timer.new()
+		add_child(_timer)
+		_timer.timeout.connect(_on_obstacle_timer_timeout)
+		_timer.start(5 - (mini(5, Globals.difficulty) - 1) / 2.0)
 
 func _build_map():
 	var parent: Node2D = self
@@ -163,54 +148,54 @@ func _add_cell(parent: Node2D, uv: Vector2i, deco: Cell.Decoration):
 static func _get_cell_pos(uv: Vector2i) -> Vector2:
 	return uv.x * _southeast + uv.y * _northeast
 
-func _lower_cell(uv: Vector2i):
+func _lower_cell(cell: Cell):
 	Sounds.play_cell_up_down()
 	await get_tree().create_timer(0.5).timeout
-	await _cells[uv].lower()
+	await cell.lower()
 	Sounds.stop_cell_up_down()
 
-func _raise_cell(uv: Vector2i):
-	await _cells[uv].raise()
+func _raise_cell(cell: Cell):
+	await cell.raise()
 
-func _hide_cell(uv: Vector2i):
+func _hide_cell(cell: Cell):
 	Sounds.play_cell_disappearing()
 	await get_tree().create_timer(0.5).timeout
-	await _cells[uv].disappear()
+	await cell.disappear()
 
-func _show_cell(uv: Vector2i):
-	await _cells[uv].reappear()
+func _show_cell(cell: Cell):
+	await cell.reappear()
 
-func _start_cell_one_way(uv: Vector2i, dir: Globals.Axis):
-	_cells[uv].start_one_way(dir)
+func _start_cell_one_way(cell: Cell, dir: Globals.Axis):
+	cell.start_one_way(dir)
 
-func _stop_cell_one_way(uv: Vector2i):
-	_cells[uv].stop_one_way()
+func _stop_cell_one_way(cell: Cell):
+	cell.stop_one_way()
 
-func _start_cell_bug1(uv: Vector2i):
-	_cells[uv].start_bug1()
+func _start_cell_bug1(cell: Cell):
+	cell.start_bug1()
 
-func _stop_cell_bug1(uv: Vector2i):
-	_cells[uv].stop_bug1()
+func _stop_cell_bug1(cell: Cell):
+	cell.stop_bug1()
 
-func _start_cell_bug2(uv: Vector2i):
-	_cells[uv].start_bug2()
+func _start_cell_bug2(cell: Cell):
+	cell.start_bug2()
 
-func _stop_cell_bug2(uv: Vector2i):
-	_cells[uv].stop_bug2()
+func _stop_cell_bug2(cell: Cell):
+	cell.stop_bug2()
 
 #
 # Slides the given column (u) the given number of cells to the right (if
 # distance is positive) or to the left (if negative).
 #
 func _slide_column(u: int, distance: int):
-	_slide(&"x", u, distance)
+	await _slide(&"x", u, distance)
 
 #
 # Slides the given row (v) the given number of cells upward (if distance is
 # positive) or downward (if negative).
 #
 func _slide_row(v: int, distance: int):
-	_slide(&"y", v, distance)
+	await _slide(&"y", v, distance)
 
 #
 # Does the work for _slide_column() and _slide_row(). The axis parameter must
@@ -271,28 +256,163 @@ func _slide(axis: StringName, index: int, distance: int):
 
 	Sounds.stop_cell_slide()
 
-func _lower_pylon(uv: Vector2i):
-	var cell: Cell = _cells[uv]
+func _lower_pylon(cell: Cell):
 	var pylon: Pylon = cell.add_pylon()
 	if pylon:
 		await pylon.lower()
 
-func _raise_pylon(uv: Vector2i):
-	var cell: Cell = _cells[uv]
+func _raise_pylon(cell: Cell):
 	var pylon: Pylon = cell.get_pylon()
 	if pylon:
 		await pylon.raise()
 		cell.remove_pylon()
 
-func _drop_pylon(uv: Vector2i):
-	var cell: Cell = _cells[uv]
+func _drop_pylon(cell: Cell):
 	var pylon: Pylon = cell.add_pylon()
 	if pylon:
 		await pylon.drop()
 
-func _undrop_pylon(uv: Vector2i):
-	var cell: Cell = _cells[uv]
+func _undrop_pylon(cell: Cell):
 	var pylon: Pylon = cell.get_pylon()
 	if pylon:
 		await pylon.undrop()
 		cell.remove_pylon()
+
+#
+# Handles an ObstacleEvent, which creates or removes an obstacle. Slide events
+# are special in two ways: they are permanent, so there is no corresponding
+# "undo" event; and no new obstacles are generated while the row or column is
+# sliding. (We COULD continue to generate obstacles that are not on the row or
+# column that is sliding, but we don't.) Events that arrive while a slide is in
+# progress (which must be undo events) are blocked until the slide finishes.
+#
+func _handle_obstacle_event(event: ObstacleEvent):
+	if _is_sliding:
+		_pending_events.append(event)
+		return
+
+	match event.type:
+		ObstacleType.ROW_SLIDE, ObstacleType.COLUMN_SLIDE:
+			@warning_ignore("integer_division")
+			var max_dist = (2 * map_size + 1) / 3
+			var dist = randi_range(1, 2 * max_dist)
+			if dist > max_dist:
+				dist = -(dist - max_dist)
+			_timer.paused = true
+			_is_sliding = true
+			if event.type == ObstacleType.ROW_SLIDE:
+				await _slide_row(_pick_random_row(), dist)
+			else:
+				await _slide_column(_pick_random_column(), dist)
+			_is_sliding = false
+			for ev in _pending_events:
+				_handle_obstacle_event(ev)
+			_pending_events.clear()
+			_timer.paused = false
+
+		ObstacleType.CELL_LOWER:
+			if event.is_undo:
+				_raise_cell(event.cell)
+			else:
+				event.cell = _pick_random_cell()
+				await _lower_cell(event.cell)
+				_schedule_undo_event(event)
+
+		ObstacleType.CELL_ONE_WAY:
+			if event.is_undo:
+				_stop_cell_one_way(event.cell)
+			else:
+				var dir = Globals.Axis.values().pick_random()
+				event.cell = _pick_random_cell()
+				_start_cell_one_way(event.cell, dir)
+				_schedule_undo_event(event)
+
+		ObstacleType.CELL_BUG1:
+			if event.is_undo:
+				_stop_cell_bug1(event.cell)
+			else:
+				event.cell = _pick_random_cell()
+				_start_cell_bug1(event.cell)
+				_schedule_undo_event(event)
+
+		ObstacleType.CELL_BUG2:
+			if event.is_undo:
+				_stop_cell_bug2(event.cell)
+			else:
+				event.cell = _pick_random_cell()
+				_start_cell_bug2(event.cell)
+				_schedule_undo_event(event)
+
+		ObstacleType.PYLON_LOWER:
+			if event.is_undo:
+				_raise_pylon(event.cell)
+			else:
+				event.cell = _pick_random_cell()
+				await _lower_pylon(event.cell)
+				_schedule_undo_event(event)
+
+		ObstacleType.PYLON_DROP:
+			if event.is_undo:
+				_undrop_pylon(event.cell)
+			else:
+				event.cell = _pick_random_cell()
+				await _drop_pylon(event.cell)
+				_schedule_undo_event(event)
+
+#
+# Schedules an obstacle event to undo the creation of an obstacle at the given
+# cell.
+#
+func _schedule_undo_event(event: ObstacleEvent):
+	await get_tree().create_timer(_get_obstacle_duration()).timeout
+	var undo_event: ObstacleEvent = ObstacleEvent.new()
+	undo_event.type = event.type
+	undo_event.cell = event.cell
+	undo_event.is_undo = true
+	_handle_obstacle_event(undo_event)
+
+#
+# The duration of an obstacle is between 5 and 20 seconds, depending on the
+# difficulty setting.
+#
+func _get_obstacle_duration() -> float:
+	return 5 + 15 * (mini(5, Globals.difficulty) - 1) / 4.0
+
+#
+# Picks and returns a random row of the map for sliding.
+#
+func _pick_random_row() -> int:
+	var candidates = {}
+	for uv in _cells.keys():
+		candidates[uv.y] = true
+	return candidates.keys().pick_random()
+
+#
+# Picks and returns a random column of the map for sliding.
+#
+func _pick_random_column() -> int:
+	var candidates = {}
+	for uv in _cells.keys():
+		candidates[uv.x] = true
+	return candidates.keys().pick_random()
+
+#
+# Picks a cell at random, except that some cells are excluded: the center cell
+# and any cells that have been lowered, hidden, bugged, etc., or that have
+# pylons on them.
+#
+func _pick_random_cell() -> Cell:
+	var candidates = []
+	for cell in _cells.values():
+		if not (cell.is_center() or cell.is_busy() or cell.get_pylon()):
+			candidates.append(cell)
+	return candidates.pick_random()
+
+#
+# Generates a new obstacle when the timer goes off.
+#
+func _on_obstacle_timer_timeout():
+	var event: ObstacleEvent = ObstacleEvent.new()
+	event.type = ObstacleType.values().pick_random()
+	event.is_undo = false
+	_handle_obstacle_event(event)

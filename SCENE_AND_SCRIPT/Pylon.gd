@@ -20,9 +20,3 @@ func drop():
 func undrop():
 	$Pylon_Animation.play("Going_Up_Falling")
 	await $Pylon_Animation.animation_finished
-
-func start_sliding():
-	$Pylon_Animation.play("Sliding_Beginning")
-
-func stop_sliding():
-	$Pylon_Animation.play("Sliding_End")
