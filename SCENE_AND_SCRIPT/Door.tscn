@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://jeuanuva1v8o"]
 
-[ext_resource type="Script" uid="uid://b3ee2ad2rdstv" path="res://SCENE_AND_SCRIPT/Door.gd" id="1_ecpiw"]
 [ext_resource type="Texture2D" uid="uid://bgq4edmw16b8" path="res://IMAGE/ENVIRONMENT/DOOR/Door_Shadow.png" id="1_w6txa"]
 [ext_resource type="Texture2D" uid="uid://c7ee22rkppja8" path="res://IMAGE/ENVIRONMENT/DOOR/Door_Back_Sprite_Sheet.png" id="2_w6txa"]
 [ext_resource type="Shader" uid="uid://68aobjd54xxo" path="res://SHADER/Outline_And_Color.gdshader" id="3_ecpiw"]
@@ -288,7 +287,6 @@ _data = {
 }
 
 [node name="Door" type="Node2D" unique_id=754266912]
-script = ExtResource("1_ecpiw")
 
 [node name="Collider_Door" type="Area2D" parent="." unique_id=1723708210]
 metadata/_edit_lock_ = true
@@ -347,9 +345,11 @@ metadata/_edit_lock_ = true
 
 [node name="Animation_Door" type="AnimationPlayer" parent="." unique_id=1952673219]
 libraries/ = SubResource("AnimationLibrary_yp78x")
+autoplay = &"Alive"
 
 [node name="Animation_Door_On" type="AnimationPlayer" parent="." unique_id=102206761]
 libraries/ = SubResource("AnimationLibrary_jbtw0")
+autoplay = &"Appearing"
 
 [node name="Door_Sound" type="Node2D" parent="." unique_id=1759494700]
 metadata/_edit_lock_ = true
@@ -357,6 +357,7 @@ metadata/_edit_lock_ = true
 [node name="Door_Hum" type="AudioStreamPlayer2D" parent="Door_Sound" unique_id=1716600636]
 stream = ExtResource("5_jbtw0")
 volume_db = -7.5
+autoplay = true
 max_distance = 1000.0
 bus = &"FX_DRY"
 parameters/looping = true

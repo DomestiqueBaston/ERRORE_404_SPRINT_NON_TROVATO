@@ -373,10 +373,7 @@ func _handle_obstacle_event(event: ObstacleEvent):
 		ObstacleType.CENTER_LOWER:
 			await _center_cell.lower()
 			await get_tree().create_timer(2 * Globals.difficulty).timeout
-			var door = _door_scene.instantiate()
-			_center_cell.add_child(door)
-			door.show_door()
-			door.show()
+			_center_cell.add_child(_door_scene.instantiate())
 
 #
 # Schedules an obstacle event to undo the creation of an obstacle at the given
