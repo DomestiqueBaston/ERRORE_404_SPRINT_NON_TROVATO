@@ -7,8 +7,8 @@ class_name Cell extends Node2D
 			if is_node_ready():
 				_textures[decoration].hide()
 				_textures[deco].show()
+				$Column/Cell_Tops.position.y = -354 if deco == Decoration.CENTER else 0
 			decoration = deco
-			$Column/Cell_Tops.position.y = -354 if deco == Decoration.CENTER else 0
 			_is_down = false
 
 enum Decoration {
@@ -79,6 +79,7 @@ func _ready():
 	assert(_textures.size() == Decoration.keys().size())
 	for i in _textures.size():
 		_textures[i].visible = (i == decoration)
+	$Column/Cell_Tops.position.y = -354 if is_center() else 0
 
 func lower():
 	_is_busy = true
@@ -109,20 +110,28 @@ func reappear():
 
 func start_sliding():
 	$Sound/Cell_Slide_Sounds/Sliding_Cell.play()
-	if _is_down:
-		_anim_player.play("Low_Sliding_Beginning")
-	elif is_center():
-		_anim_player.play("404_High_Sliding_Beginning")
+	if is_center():
+		if _is_down:
+			_anim_player.play("High_Sliding_Beginning")
+		else:
+			_anim_player.play("404_High_Sliding_Beginning")
 	else:
-		_anim_player.play("High_Sliding_Beginning")
+		if _is_down:
+			_anim_player.play("Low_Sliding_Beginning")
+		else:
+			_anim_player.play("High_Sliding_Beginning")
 
 func stop_sliding():
-	if _is_down:
-		_anim_player.play("Low_Sliding_End")
-	elif is_center():
-		_anim_player.play("404_High_Sliding_End")
+	if is_center():
+		if _is_down:
+			_anim_player.play("High_Sliding_End")
+		else:
+			_anim_player.play("404_High_Sliding_End")
 	else:
-		_anim_player.play("High_Sliding_End")
+		if _is_down:
+			_anim_player.play("Low_Sliding_End")
+		else:
+			_anim_player.play("High_Sliding_End")
 	$Sound/Cell_Slide_Sounds/Sliding_Cell.stop()
 
 func get_sliding_animation_start_length() -> float:

@@ -30,6 +30,8 @@ enum ObstacleType {
 	CELL_BUG2,
 	PYLON_LOWER,
 	PYLON_DROP,
+	# only events above this line are generated randomly
+	_RANDOM_,
 	CENTER_LOWER
 }
 
@@ -429,7 +431,7 @@ func _pick_random_cell() -> Cell:
 #
 func _on_obstacle_timer_timeout():
 	var event: ObstacleEvent = ObstacleEvent.new()
-	event.type = ObstacleType.values().pick_random()
+	event.type = (randi() % ObstacleType._RANDOM_) as ObstacleType
 	_handle_obstacle_event(event)
 
 #
