@@ -3214,10 +3214,10 @@ _data = {
 }
 
 [node name="Woman_B" type="Node2D" unique_id=1635856392]
+script = ExtResource("1_b858v")
 metadata/_edit_lock_ = true
 
 [node name="Character" type="Node2D" parent="." unique_id=1360061723]
-script = ExtResource("1_b858v")
 metadata/_edit_lock_ = true
 
 [node name="Papa_Sprite" type="Node2D" parent="Character" unique_id=963002785]
@@ -3247,6 +3247,9 @@ metadata/_edit_lock_ = true
 
 [node name="Collider_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=2058946939]
 visible = false
+collision_mask = 2
+monitoring = false
+monitorable = false
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Collider_Area" unique_id=825152419]
@@ -3265,6 +3268,8 @@ metadata/_edit_lock_ = true
 
 [node name="Vision_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=929364484]
 visible = false
+monitoring = false
+monitorable = false
 metadata/_edit_lock_ = true
 
 [node name="Vision" type="CollisionPolygon2D" parent="Character/Papa_Sprite/Runner_Sprite/Vision_Area" unique_id=1312714900]

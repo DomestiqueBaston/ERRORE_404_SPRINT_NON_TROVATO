@@ -4,8 +4,8 @@ extends Node2D
 ## les trails de Dash non plus vu que là,
 ## c'est juste de la démo...
 
-@onready var sprite: Node2D = $Papa_Sprite
-@onready var animation_player: AnimationPlayer = $"../Animation_Runner"
+@onready var sprite: Node2D = $Character/Papa_Sprite
+@onready var animation_player: AnimationPlayer = $Animation_Runner
 
 @export var move_speed: float = 375.0
 @export var jump_speed: float = 350.0
@@ -27,8 +27,14 @@ var slide_direction: Vector2 = Vector2.ZERO
 
 var _rotation: float = deg_to_rad(18.4)
 
+var _map: Map
+var _curr_cell: Cell
+
 func _ready() -> void:
 	animation_player.animation_finished.connect(_on_animation_finished)
+
+func set_map(map: Map):
+	_map = map
 
 func _process(delta: float) -> void:
 	# États bloquants : plus rien à faire
@@ -128,6 +134,16 @@ func _process(delta: float) -> void:
 			animation_player.play("Run_180")
 			sprite.scale.x = -1.0 if direction.x < 0 else 1.0
 
+	if _map:
+		var next_cell = _map.get_cell_at(position)
+		if _curr_cell != next_cell:
+			if (_curr_cell == null or next_cell == null
+				or _curr_cell.get_state() != next_cell.get_state()):
+				if next_cell:
+					print(Cell.State.keys()[next_cell.get_state()].capitalize())
+				else:
+					print("Empty")
+			_curr_cell = next_cell
 
 # ── FONCTIONS ──
 func _play_jump_animation() -> void:
