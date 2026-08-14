@@ -73,7 +73,6 @@ var _pylon_scene = preload("res://SCENE_AND_SCRIPT/Pylon.tscn")
 var _pylon: Pylon
 
 var _is_down: bool = false
-var _is_busy: bool = false
 
 func _ready():
 	assert(_textures.size() == Decoration.keys().size())
@@ -82,31 +81,25 @@ func _ready():
 	$Column/Cell_Tops.position.y = -354 if is_center() else 0
 
 func lower():
-	_is_busy = true
 	_is_down = true
 	if is_center():
 		_anim_player.play("404_Going_Down")
 	else:
 		_anim_player.play("Going_Down")
 	await _anim_player.animation_finished
-	if is_center():
-		_is_busy = false
 
 func raise():
 	_anim_player.play("Going_Up")
 	await _anim_player.animation_finished
 	_is_down = false
-	_is_busy = false
 
 func disappear():
-	_is_busy = true
 	_anim_player.play("Disappearing")
 	await _anim_player.animation_finished
 
 func reappear():
 	_anim_player.play("Appearing")
 	await _anim_player.animation_finished
-	_is_busy = false
 
 func start_sliding():
 	$Sound/Cell_Slide_Sounds/Sliding_Cell.play()
@@ -141,38 +134,35 @@ func get_sliding_animation_stop_length() -> float:
 	return _anim_player.get_animation("High_Sliding_End").length
 
 func start_one_way(dir: Globals.Axis):
-	_is_busy = true
 	$Sound/Sound_For_Glitch_Only.play()
 	$Column/Cell_Tops/One_Way_Direction.set_direction(dir)
 	$Column/Cell_Tops/One_Way_Direction/Direction_Animation.play("Appearing")
+	await $Column/Cell_Tops/One_Way_Direction/Direction_Animation.animation_finished
 
 func stop_one_way():
 	$Column/Cell_Tops/One_Way_Direction/Direction_Animation.play("Disappearing")
 	$Sound/Sound_For_Glitch_Only.stop()
 	await $Column/Cell_Tops/One_Way_Direction/Direction_Animation.animation_finished
-	_is_busy = false
 
 func start_bug1():
-	_is_busy = true
 	$Sound/Sound_For_Glitch_Only.play()
 	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Glitch_Only_Appearing")
+	await $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.animation_finished
 
 func stop_bug1():
 	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Glitch_Only_Disappearing")
 	$Sound/Sound_For_Glitch_Only.stop()
 	await $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.animation_finished
-	_is_busy = false
 
 func start_bug2():
-	_is_busy = true
 	$Sound/Sound_For_Screen_Glitch.play()
 	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Screen_Glitch_Appearing")
+	await $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.animation_finished
 
 func stop_bug2():
 	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Screen_Glitch_Disappearing")
 	$Sound/Sound_For_Screen_Glitch.stop()
 	await $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.animation_finished
-	_is_busy = false
 
 func add_pylon() -> Pylon:
 	if _pylon:
@@ -196,10 +186,3 @@ func get_pylon() -> Pylon:
 ##
 func is_center() -> bool:
 	return decoration == Decoration.CENTER
-
-##
-## Returns true if the cell has been lowered and not yet raised, hidden and not
-## yet unhidden, etc.
-##
-func is_busy() -> bool:
-	return _is_busy or _pylon

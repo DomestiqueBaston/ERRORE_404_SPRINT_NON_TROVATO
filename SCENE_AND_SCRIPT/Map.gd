@@ -18,6 +18,7 @@ const _southeast = 0.5 * Vector2(_cell_offset_x, _cell_offset_y)
 const _northeast = 0.5 * Vector2(_cell_offset_x, -_cell_offset_y)
 
 var _cells: Dictionary[Vector2i, Cell]
+var _available_cells: Array[Cell]
 var _center_cell: Cell
 
 enum ObstacleType {
@@ -39,6 +40,9 @@ class ObstacleEvent extends RefCounted:
 	var type: ObstacleType
 	var is_undo: bool = false
 	var cell: Cell
+
+	func _init(event_type: ObstacleType):
+		type = event_type
 
 var _pending_events: Array[ObstacleEvent]
 var _is_sliding: bool = false
@@ -108,6 +112,9 @@ func _build_map():
 				var uv = Vector2i(-map_size + x+1, -map_size + y+1)
 				var deco = Cell.Decoration.OTHER1 + decos[x][y]
 				_add_cell(parent, uv, deco as Cell.Decoration)
+
+	_available_cells = _cells.values().duplicate()
+	_available_cells.erase(_center_cell)
 
 func _build_edge(parent: Node2D, edge: Globals.Axis):
 	var uv0: Vector2i
@@ -325,50 +332,72 @@ func _handle_obstacle_event(event: ObstacleEvent):
 
 		ObstacleType.CELL_LOWER:
 			if event.is_undo:
-				_raise_cell(event.cell)
+				await _raise_cell(event.cell)
+				_available_cells.append(event.cell)
 			else:
 				event.cell = _pick_random_cell()
+				_available_cells.erase(event.cell)
 				await _lower_cell(event.cell)
+				_schedule_undo_event(event)
+		
+		ObstacleType.CELL_HIDE:
+			if event.is_undo:
+				await _show_cell(event.cell)
+				_available_cells.append(event.cell)
+			else:
+				event.cell = _pick_random_cell()
+				_available_cells.erase(event.cell)
+				await _hide_cell(event.cell)
 				_schedule_undo_event(event)
 
 		ObstacleType.CELL_ONE_WAY:
 			if event.is_undo:
-				_stop_cell_one_way(event.cell)
+				await _stop_cell_one_way(event.cell)
+				_available_cells.append(event.cell)
 			else:
 				var dir = Globals.Axis.values().pick_random()
 				event.cell = _pick_random_cell()
+				_available_cells.erase(event.cell)
 				_start_cell_one_way(event.cell, dir)
 				_schedule_undo_event(event)
 
 		ObstacleType.CELL_BUG1:
 			if event.is_undo:
-				_stop_cell_bug1(event.cell)
+				await _stop_cell_bug1(event.cell)
+				_available_cells.append(event.cell)
 			else:
 				event.cell = _pick_random_cell()
+				_available_cells.erase(event.cell)
 				_start_cell_bug1(event.cell)
 				_schedule_undo_event(event)
 
 		ObstacleType.CELL_BUG2:
 			if event.is_undo:
-				_stop_cell_bug2(event.cell)
+				await _stop_cell_bug2(event.cell)
+				_available_cells.append(event.cell)
 			else:
 				event.cell = _pick_random_cell()
+				_available_cells.erase(event.cell)
 				_start_cell_bug2(event.cell)
 				_schedule_undo_event(event)
 
 		ObstacleType.PYLON_LOWER:
 			if event.is_undo:
-				_raise_pylon(event.cell)
+				await _raise_pylon(event.cell)
+				_available_cells.append(event.cell)
 			else:
 				event.cell = _pick_random_cell()
+				_available_cells.erase(event.cell)
 				await _lower_pylon(event.cell)
 				_schedule_undo_event(event)
 
 		ObstacleType.PYLON_DROP:
 			if event.is_undo:
-				_undrop_pylon(event.cell)
+				await _undrop_pylon(event.cell)
+				_available_cells.append(event.cell)
 			else:
 				event.cell = _pick_random_cell()
+				_available_cells.erase(event.cell)
 				await _drop_pylon(event.cell)
 				_schedule_undo_event(event)
 
@@ -383,8 +412,7 @@ func _handle_obstacle_event(event: ObstacleEvent):
 #
 func _schedule_undo_event(event: ObstacleEvent):
 	await get_tree().create_timer(_get_obstacle_duration()).timeout
-	var undo_event: ObstacleEvent = ObstacleEvent.new()
-	undo_event.type = event.type
+	var undo_event: ObstacleEvent = ObstacleEvent.new(event.type)
 	undo_event.cell = event.cell
 	undo_event.is_undo = true
 	_handle_obstacle_event(undo_event)
@@ -420,18 +448,14 @@ func _pick_random_column() -> int:
 # pylons on them.
 #
 func _pick_random_cell() -> Cell:
-	var candidates = []
-	for cell in _cells.values():
-		if not (cell.is_center() or cell.is_busy() or cell.get_pylon()):
-			candidates.append(cell)
-	return candidates.pick_random()
+	return _available_cells.pick_random()
 
 #
 # Generates a new obstacle when the timer goes off.
 #
 func _on_obstacle_timer_timeout():
-	var event: ObstacleEvent = ObstacleEvent.new()
-	event.type = (randi() % ObstacleType._RANDOM_) as ObstacleType
+	var type = randi() % ObstacleType._RANDOM_
+	var event = ObstacleEvent.new(type as ObstacleType)
 	_handle_obstacle_event(event)
 
 #
@@ -439,6 +463,5 @@ func _on_obstacle_timer_timeout():
 # lowering the cell directly, in case a row or column is sliding.
 #
 func _lower_center_cell():
-	var event: ObstacleEvent = ObstacleEvent.new()
-	event.type = ObstacleType.CENTER_LOWER
+	var event = ObstacleEvent.new(ObstacleType.CENTER_LOWER)
 	_handle_obstacle_event(event)
