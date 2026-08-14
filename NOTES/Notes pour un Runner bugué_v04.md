@@ -75,7 +75,7 @@ Les obstacles :
     1. Ligne/Colonne (de cellules) qui glisse – Permanent → ✔ (1’’ avant, on joue Cell_Pylon_Alarms/Cell_Slide dans Sounds.tscn ET jusqu’à la fin de l’animation)
     2. Trous (cellules qui descendent) – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     3. Murs des concurrents – (Durée : comme précisé plus loin) → ✔ (voir avec Geoff comment faire)
-    4. Cellule à sens unique – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
+    4. Sens unique – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔ /!\ATTENTION/!\  c’est le collider du panneau qui fait changer de direction, pas la cellule elle-même !
     5. Colonne descendante – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     6. Colonne écrasante – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     7. Cellule « disparaissante » – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
@@ -110,7 +110,7 @@ Notes de fabrication :
 - À la mort d’un concurrent, ce qui reste de son mur disparaît (on joue l’animation de disparition du mur dès la première frame de l’animation de mort du concurrent)! Pour cela on jouera l’animation Light_Wall_Animations/Disappearing dans Light_Wall.tscn.
 - Seule l’animation de course peut être interrompue (pour changer de direction, sauter, etc.) par le joueur. Toutes les autres doivent finir avant d’enchaîner sur autre chose (on parle toujours d’interruption par le joueur, cela ne concerne pas sa mort, par exemple). Par défaut, à la fin d’une animation d’interruption (saut, glissade, etc.), on retourne toujours à la course.
 - Toutes les 10 à 20’’, chaque coureur va gagner/perdre 4% de vitesse. Et toutes les 10 à 20’’ perdre/récupérer ces 4% de vitesse. Les animations seront également accélérées et ralenties de la même proportion pour que ce soit plus « joli ». On utilisera également un tween d’1/2 seconde pour appliquer la modification (si possible). Chaque concurrent à un timer personnel indépendant de celui des autres.
-- On coupe le son Running dans les AnimationPlayers des bots dans les animations Run_000 et Run_180.
+- Passer sur un sens unique qui forcerait à partir un sens inverse fait mourir.
 
 Options (nécessaires) dans Settings:
     1. Taille de la map (de 9 à 21) ✔
