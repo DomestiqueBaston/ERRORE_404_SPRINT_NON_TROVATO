@@ -35,7 +35,8 @@ float trunc2(float v, float num) {
 
 // ──────────────────────────────────────
 void fragment() {
-    vec2 uv = SCREEN_UV; // ← Écran entier
+    vec2 uv = UV;
+    vec2 screen_uv = SCREEN_UV;
 
     float line = floor(uv.y * same_width_lines_count);
     float seed = line + hash11(floor(TIME * same_width_change_per_sec));
@@ -51,10 +52,19 @@ void fragment() {
     n = n * 2.0 - 1.0;
     n = sign(n) * clamp(abs(n) - threshold, 0.0, 1.0) * strength;
 
-    vec4 col = texture(screen_texture, uv);
-    float r = texture(screen_texture, uv + vec2(n, 0.0)).r;
-    float g = texture(screen_texture, uv - vec2(n * 0.8, 0.0)).g;
-    float b = texture(screen_texture, uv).b;
+    vec4 col = texture(screen_texture, screen_uv);
+
+    float r = texture(
+        screen_texture,
+        screen_uv + vec2(n, 0.0)
+    ).r;
+
+    float g = texture(
+        screen_texture,
+        screen_uv - vec2(n * 0.8, 0.0)
+    ).g;
+
+    float b = texture(screen_texture, screen_uv).b;
 
     vec4 glitch = vec4(r, g, b, 1.0);
     COLOR = mix(col, glitch, glitch_blend);
