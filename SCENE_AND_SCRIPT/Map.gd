@@ -358,7 +358,7 @@ func _handle_obstacle_event(event: ObstacleEvent):
 				var dir = Globals.Axis.values().pick_random()
 				event.cell = _pick_random_cell()
 				_available_cells.erase(event.cell)
-				_start_cell_one_way(event.cell, dir)
+				await _start_cell_one_way(event.cell, dir)
 				_schedule_undo_event(event)
 
 		ObstacleType.CELL_BUG1:
@@ -368,7 +368,7 @@ func _handle_obstacle_event(event: ObstacleEvent):
 			else:
 				event.cell = _pick_random_cell()
 				_available_cells.erase(event.cell)
-				_start_cell_bug1(event.cell)
+				await _start_cell_bug1(event.cell)
 				_schedule_undo_event(event)
 
 		ObstacleType.CELL_BUG2:
@@ -378,7 +378,7 @@ func _handle_obstacle_event(event: ObstacleEvent):
 			else:
 				event.cell = _pick_random_cell()
 				_available_cells.erase(event.cell)
-				_start_cell_bug2(event.cell)
+				await _start_cell_bug2(event.cell)
 				_schedule_undo_event(event)
 
 		ObstacleType.PYLON_LOWER:
