@@ -1114,7 +1114,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id="Animation_1s22q"]
 resource_name = "Jump_000"
-length = 0.56666666
+length = 0.53333336
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1134,7 +1134,7 @@ tracks/1/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:position"
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.26666668, 0.43333337, 0.56666666),
+"times": PackedFloat32Array(0, 0.10000001, 0.26666668, 0.43333337, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-7, -1), Vector2(1.9073486e-06, 5), Vector2(-7.0000005, -2), Vector2(-22, -7.9999995), Vector2(-15, -2)]
@@ -1146,7 +1146,7 @@ tracks/2/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:rotation"
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.43333334, 0.56666666),
+"times": PackedFloat32Array(0, 0.10000001, 0.43333334, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.35510013, 0.35510013, 0.35510013, 0.35510013]
@@ -1158,7 +1158,7 @@ tracks/3/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.26666668, 0.43333334, 0.56666666),
+"times": PackedFloat32Array(0, 0.10000001, 0.26666668, 0.43333334, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1.3166783, 1), Vector2(1.3166783, 1), Vector2(0.666, 0.575), Vector2(1, 1), Vector2(1.3166783, 1)]
@@ -1170,7 +1170,7 @@ tracks/4/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.56666666),
+"times": PackedFloat32Array(0, 0.53333336),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, true]
@@ -1182,7 +1182,7 @@ tracks/5/path = NodePath("Papa_Sprite/Runner_Sprite:offset")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.56666666),
+"times": PackedFloat32Array(0, 0.53333336),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-5, -44), Vector2(-5, -44)]
@@ -1194,7 +1194,7 @@ tracks/6/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:self_modu
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.33333334, 0.43333334, 0.56666666),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.33333334, 0.43333334, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.12941177), Color(1, 1, 1, 0.12941177), Color(0.23529412, 0, 1, 0), Color(0.23529412, 0, 1, 0), Color(1, 1, 1, 0.12941177), Color(1, 1, 1, 0.12941177)]
@@ -1277,7 +1277,7 @@ tracks/12/keys = {
 
 [sub_resource type="Animation" id="Animation_ahumo"]
 resource_name = "Jump_180"
-length = 0.56666666
+length = 0.53333336
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1297,7 +1297,7 @@ tracks/1/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:position"
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.26666668, 0.43333337, 0.56666666),
+"times": PackedFloat32Array(0, 0.10000001, 0.26666668, 0.43333337, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-7, -1), Vector2(-17, -5), Vector2(-6, -1), Vector2(7.999999, 5.9999995), Vector2(-1.9999995, 2)]
@@ -1309,7 +1309,7 @@ tracks/2/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:rotation"
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.43333334, 0.56666666),
+"times": PackedFloat32Array(0, 0.10000001, 0.43333334, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.35510013, 0.35510013, 0.35510013, 0.35510013]
@@ -1321,7 +1321,7 @@ tracks/3/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.26666668, 0.43333334, 0.56666666),
+"times": PackedFloat32Array(0, 0.10000001, 0.26666668, 0.43333334, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1.3166783, 1), Vector2(1.3166783, 1), Vector2(0.666, 0.575), Vector2(1, 1), Vector2(1.3166783, 1)]
@@ -1333,7 +1333,7 @@ tracks/4/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.56666666),
+"times": PackedFloat32Array(0, 0.53333336),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, true]
@@ -1345,7 +1345,7 @@ tracks/5/path = NodePath("Papa_Sprite/Runner_Sprite:offset")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.56666666),
+"times": PackedFloat32Array(0, 0.53333336),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(5, -44), Vector2(5, -44)]
@@ -1357,7 +1357,7 @@ tracks/6/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:self_modu
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.33333334, 0.43333334, 0.56666666),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.33333334, 0.43333334, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.12941177), Color(1, 1, 1, 0.12941177), Color(0.23529412, 0, 1, 0), Color(0.23529412, 0, 1, 0), Color(1, 1, 1, 0.12941177), Color(1, 1, 1, 0.12941177)]
