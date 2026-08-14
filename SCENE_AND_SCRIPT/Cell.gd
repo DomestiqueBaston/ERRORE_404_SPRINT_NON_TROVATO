@@ -186,3 +186,10 @@ func get_pylon() -> Pylon:
 ##
 func is_center() -> bool:
 	return decoration == Decoration.CENTER
+
+##
+## Cofunction that blocks as long as the cell's top is moving.
+##
+func wait_until_stationary():
+	if _anim_player.is_playing():
+		await _anim_player.animation_finished

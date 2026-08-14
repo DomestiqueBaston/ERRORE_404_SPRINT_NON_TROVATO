@@ -224,15 +224,16 @@ func _slide_row(v: int, distance: int):
 #
 func _slide(axis: StringName, index: int, distance: int):
 
-	# which cells are affected?
+	# which cells are affected? wait for them to stop moving
 
 	var column_keys: Array[Vector2i]
 
 	for uv in _cells:
 		if uv[axis] == index:
 			column_keys.append(uv)
+			await _cells[uv].wait_until_stationary()
 
-	if column_keys.is_empty() or distance == 0:
+	if column_keys.is_empty():
 		return
 
 	# start sound effects
@@ -336,7 +337,6 @@ func _handle_obstacle_event(event: ObstacleEvent):
 				_available_cells.append(event.cell)
 			else:
 				event.cell = _pick_random_cell()
-				_available_cells.erase(event.cell)
 				await _lower_cell(event.cell)
 				_schedule_undo_event(event)
 		
@@ -346,7 +346,6 @@ func _handle_obstacle_event(event: ObstacleEvent):
 				_available_cells.append(event.cell)
 			else:
 				event.cell = _pick_random_cell()
-				_available_cells.erase(event.cell)
 				await _hide_cell(event.cell)
 				_schedule_undo_event(event)
 
@@ -357,7 +356,6 @@ func _handle_obstacle_event(event: ObstacleEvent):
 			else:
 				var dir = Globals.Axis.values().pick_random()
 				event.cell = _pick_random_cell()
-				_available_cells.erase(event.cell)
 				await _start_cell_one_way(event.cell, dir)
 				_schedule_undo_event(event)
 
@@ -367,7 +365,6 @@ func _handle_obstacle_event(event: ObstacleEvent):
 				_available_cells.append(event.cell)
 			else:
 				event.cell = _pick_random_cell()
-				_available_cells.erase(event.cell)
 				await _start_cell_bug1(event.cell)
 				_schedule_undo_event(event)
 
@@ -377,7 +374,6 @@ func _handle_obstacle_event(event: ObstacleEvent):
 				_available_cells.append(event.cell)
 			else:
 				event.cell = _pick_random_cell()
-				_available_cells.erase(event.cell)
 				await _start_cell_bug2(event.cell)
 				_schedule_undo_event(event)
 
@@ -387,7 +383,6 @@ func _handle_obstacle_event(event: ObstacleEvent):
 				_available_cells.append(event.cell)
 			else:
 				event.cell = _pick_random_cell()
-				_available_cells.erase(event.cell)
 				await _lower_pylon(event.cell)
 				_schedule_undo_event(event)
 
@@ -397,7 +392,6 @@ func _handle_obstacle_event(event: ObstacleEvent):
 				_available_cells.append(event.cell)
 			else:
 				event.cell = _pick_random_cell()
-				_available_cells.erase(event.cell)
 				await _drop_pylon(event.cell)
 				_schedule_undo_event(event)
 
@@ -443,12 +437,13 @@ func _pick_random_column() -> int:
 	return candidates.keys().pick_random()
 
 #
-# Picks a cell at random, except that some cells are excluded: the center cell
-# and any cells that have been lowered, hidden, bugged, etc., or that have
-# pylons on them.
+# Picks an "available" cell at random (a cell that is not the center cell, has
+# not been lowered, hidden, bugged, etc., and does not have a pylon on it). The
+# cell is removed from the array of available cells and returned.
 #
 func _pick_random_cell() -> Cell:
-	return _available_cells.pick_random()
+	var index = randi() % _available_cells.size()
+	return _available_cells.pop_at(index)
 
 #
 # Generates a new obstacle when the timer goes off.
