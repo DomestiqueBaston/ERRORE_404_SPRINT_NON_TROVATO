@@ -3024,10 +3024,10 @@ _data = {
 }
 
 [node name="Man_B" type="Node2D" unique_id=1403848273]
+script = ExtResource("1_ercnf")
 metadata/_edit_lock_ = true
 
 [node name="Character" type="Node2D" parent="." unique_id=1563263395]
-script = ExtResource("1_ercnf")
 metadata/_edit_lock_ = true
 
 [node name="Papa_Sprite" type="Node2D" parent="Character" unique_id=369956299]
@@ -3057,6 +3057,9 @@ metadata/_edit_lock_ = true
 
 [node name="Collider_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=1579218920]
 visible = false
+collision_mask = 2
+monitoring = false
+monitorable = false
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Collider_Area" unique_id=50269794]
@@ -3073,6 +3076,8 @@ metadata/_edit_lock_ = true
 
 [node name="Vision_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=560816304]
 visible = false
+monitoring = false
+monitorable = false
 metadata/_edit_lock_ = true
 
 [node name="Vision" type="CollisionPolygon2D" parent="Character/Papa_Sprite/Runner_Sprite/Vision_Area" unique_id=534655689]

@@ -8,8 +8,8 @@ class_name Cell extends Node2D
 				_textures[decoration].hide()
 				_textures[deco].show()
 				$Column/Cell_Tops.position.y = -354 if deco == Decoration.CENTER else 0
+			_state = State.RAISED if deco == Decoration.CENTER else State.NORMAL
 			decoration = deco
-			_is_down = false
 
 enum Decoration {
 	CENTER,
@@ -37,6 +37,16 @@ enum Decoration {
 	OTHER6,
 	OTHER7,
 	OTHER8
+}
+
+enum State {
+	NORMAL,
+	LOWERED,
+	RAISED,
+	HIDDEN,
+	BUGGY,
+	ONE_WAY,
+	PYLON
 }
 
 @onready var _anim_player: AnimationPlayer = $Global_Cell
@@ -71,8 +81,7 @@ enum Decoration {
 
 var _pylon_scene = preload("res://SCENE_AND_SCRIPT/Pylon.tscn")
 var _pylon: Pylon
-
-var _is_down: bool = false
+var _state: State = State.NORMAL
 
 func _ready():
 	assert(_textures.size() == Decoration.keys().size())
@@ -81,49 +90,45 @@ func _ready():
 	$Column/Cell_Tops.position.y = -354 if is_center() else 0
 
 func lower():
-	_is_down = true
 	if is_center():
 		_anim_player.play("404_Going_Down")
 	else:
 		_anim_player.play("Going_Down")
 	await _anim_player.animation_finished
+	_state = State.NORMAL if is_center() else State.LOWERED
 
 func raise():
+	_state = State.NORMAL
 	_anim_player.play("Going_Up")
 	await _anim_player.animation_finished
-	_is_down = false
 
 func disappear():
 	_anim_player.play("Disappearing")
 	await _anim_player.animation_finished
+	_state = State.HIDDEN
 
 func reappear():
+	_state = State.NORMAL
 	_anim_player.play("Appearing")
 	await _anim_player.animation_finished
 
 func start_sliding():
 	$Sound/Cell_Slide_Sounds/Sliding_Cell.play()
-	if is_center():
-		if _is_down:
-			_anim_player.play("High_Sliding_Beginning")
-		else:
-			_anim_player.play("404_High_Sliding_Beginning")
-	else:
-		if _is_down:
+	match _state:
+		State.LOWERED:
 			_anim_player.play("Low_Sliding_Beginning")
-		else:
+		State.RAISED:
+			_anim_player.play("404_High_Sliding_Beginning")
+		_:
 			_anim_player.play("High_Sliding_Beginning")
 
 func stop_sliding():
-	if is_center():
-		if _is_down:
-			_anim_player.play("High_Sliding_End")
-		else:
-			_anim_player.play("404_High_Sliding_End")
-	else:
-		if _is_down:
+	match _state:
+		State.LOWERED:
 			_anim_player.play("Low_Sliding_End")
-		else:
+		State.RAISED:
+			_anim_player.play("404_High_Sliding_End")
+		_:
 			_anim_player.play("High_Sliding_End")
 	$Sound/Cell_Slide_Sounds/Sliding_Cell.stop()
 
@@ -138,8 +143,10 @@ func start_one_way(dir: Globals.Axis):
 	$Column/Cell_Tops/One_Way_Direction.set_direction(dir)
 	$Column/Cell_Tops/One_Way_Direction/Direction_Animation.play("Appearing")
 	await $Column/Cell_Tops/One_Way_Direction/Direction_Animation.animation_finished
+	_state = State.ONE_WAY
 
 func stop_one_way():
+	_state = State.NORMAL
 	$Column/Cell_Tops/One_Way_Direction/Direction_Animation.play("Disappearing")
 	$Sound/Sound_For_Glitch_Only.stop()
 	await $Column/Cell_Tops/One_Way_Direction/Direction_Animation.animation_finished
@@ -148,8 +155,10 @@ func start_bug1():
 	$Sound/Sound_For_Glitch_Only.play()
 	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Glitch_Only_Appearing")
 	await $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.animation_finished
+	_state = State.BUGGY
 
 func stop_bug1():
+	_state = State.NORMAL
 	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Glitch_Only_Disappearing")
 	$Sound/Sound_For_Glitch_Only.stop()
 	await $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.animation_finished
@@ -158,27 +167,47 @@ func start_bug2():
 	$Sound/Sound_For_Screen_Glitch.play()
 	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Screen_Glitch_Appearing")
 	await $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.animation_finished
+	_state = State.BUGGY
 
 func stop_bug2():
+	_state = State.NORMAL
 	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Screen_Glitch_Disappearing")
 	$Sound/Sound_For_Screen_Glitch.stop()
 	await $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.animation_finished
 
-func add_pylon() -> Pylon:
-	if _pylon:
-		return null
-	_pylon = _pylon_scene.instantiate()
-	add_child(_pylon)
-	return _pylon
+func lower_pylon():
+	_add_pylon()
+	await _pylon.lower()
+	_state = State.PYLON
 
-func remove_pylon():
+func raise_pylon():
+	_state = State.NORMAL
+	await _pylon.raise()
+	_remove_pylon()
+
+func drop_pylon():
+	_add_pylon()
+	await _pylon.drop()
+	_state = State.PYLON
+
+func undrop_pylon():
+	_state = State.NORMAL
+	await _pylon.undrop()
+	_remove_pylon()
+
+func _add_pylon():
+	if _pylon == null:
+		_pylon = _pylon_scene.instantiate()
+		add_child(_pylon)
+
+func _remove_pylon():
 	if _pylon:
 		remove_child(_pylon)
 		_pylon.queue_free()
 		_pylon = null
 
-func get_pylon() -> Pylon:
-	return _pylon
+func get_state() -> State:
+	return _state
 
 ##
 ## Returns true if this is the center cell, that is, if decoration is

@@ -21,6 +21,7 @@ func _ready():
 	_map = _map_scene.instantiate()
 	_map.map_size = Globals.map_size
 	add_child(_map)
+	$Woman_A.set_map(_map)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Détection de la première action du joueur

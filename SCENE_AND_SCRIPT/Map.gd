@@ -14,8 +14,8 @@ var _door_scene := preload("res://SCENE_AND_SCRIPT/Door.tscn")
 
 const _cell_offset_x = 236.0
 const _cell_offset_y = 118.0
-const _southeast = 0.5 * Vector2(_cell_offset_x, _cell_offset_y)
-const _northeast = 0.5 * Vector2(_cell_offset_x, -_cell_offset_y)
+const _cell_step_x = 0.5 * _cell_offset_x
+const _cell_step_y = 0.5 * _cell_offset_y
 
 var _cells: Dictionary[Vector2i, Cell]
 var _available_cells: Array[Cell]
@@ -162,11 +162,27 @@ func _add_cell(parent: Node2D, uv: Vector2i, deco: Cell.Decoration) -> Cell:
 #
 # Returns the position in XY coordinates of the cell at the given UV index,
 # where U corresponds to the NW-SE axis, V corresponds to the SW-NE axis, and
-# UV (0,0) is the origin of the map. The given cell may or may not actually
-# exist.
+# UV (0,0) is the origin of the map. The given cell need not actually exist.
 #
 static func _get_cell_pos(uv: Vector2i) -> Vector2:
-	return uv.x * _southeast + uv.y * _northeast
+	return Vector2(
+		(uv.x + uv.y) * _cell_step_x,
+		(uv.x - uv.y) * _cell_step_y)
+
+#
+# Does the inverse of _get_cell_pos(): returns the UV index of the cell at the
+# given position in XY coordinates. The cell need not actually exist.
+#
+static func _get_cell_index(pos: Vector2) -> Vector2i:
+	return Vector2i(
+		roundi((pos.x + 2.0 * pos.y) / _cell_offset_x),
+		roundi((pos.x - 2.0 * pos.y) / _cell_offset_x))
+
+##
+## Returns the cell found at the given position, or null if there is none.
+##
+func get_cell_at(pos: Vector2) -> Cell:
+	return _cells.get(_get_cell_index(pos))
 
 func _lower_cell(cell: Cell):
 	Sounds.play_cell_up_down()
@@ -278,26 +294,16 @@ func _slide(axis: StringName, index: int, distance: int):
 	Sounds.stop_cell_slide()
 
 func _lower_pylon(cell: Cell):
-	var pylon: Pylon = cell.add_pylon()
-	if pylon:
-		await pylon.lower()
+	await cell.lower_pylon()
 
 func _raise_pylon(cell: Cell):
-	var pylon: Pylon = cell.get_pylon()
-	if pylon:
-		await pylon.raise()
-		cell.remove_pylon()
+	await cell.raise_pylon()
 
 func _drop_pylon(cell: Cell):
-	var pylon: Pylon = cell.add_pylon()
-	if pylon:
-		await pylon.drop()
+	await cell.drop_pylon()
 
 func _undrop_pylon(cell: Cell):
-	var pylon: Pylon = cell.get_pylon()
-	if pylon:
-		await pylon.undrop()
-		cell.remove_pylon()
+	await cell.undrop_pylon()
 
 #
 # Handles an ObstacleEvent, which creates or removes an obstacle. Slide events
