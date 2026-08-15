@@ -356,7 +356,7 @@ metadata/_edit_lock_ = true
 
 [node name="Door_Hum" type="AudioStreamPlayer2D" parent="Door_Sound" unique_id=1716600636]
 stream = ExtResource("5_jbtw0")
-volume_db = -7.5
+volume_db = 5.0
 autoplay = true
 max_distance = 1000.0
 bus = &"FX_DRY"
@@ -364,6 +364,7 @@ parameters/looping = true
 metadata/_edit_lock_ = true
 
 [node name="Door_On" type="AudioStreamPlayer2D" parent="Door_Sound" unique_id=1515377633]
+volume_db = 7.5
 max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true

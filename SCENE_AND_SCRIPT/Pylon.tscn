@@ -72,7 +72,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 1.2333333, 2.3333333),
 "transitions": PackedFloat32Array(1, 2, 1),
 "update": 0,
-"values": [0.0, 0.0, 0.1250000059375]
+"values": [0.0, 0.0, 0.150000007125]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -322,7 +322,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0, 1, 2.8333333, 5.0000005),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.1250000059375, 0.1250000059375, 0.0, 0.0]
+"values": [0.150000007125, 0.150000007125, 0.0, 0.0]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -543,6 +543,7 @@ script = ExtResource("1_llfy2")
 metadata/_edit_lock_ = true
 
 [node name="Shadow" type="Node2D" parent="." unique_id=1869682303]
+scale = Vector2(0.975, 0.975)
 metadata/_edit_lock_ = true
 
 [node name="Pylon_Shadow" type="Sprite2D" parent="Shadow" unique_id=1454845365]
@@ -574,6 +575,7 @@ offset = Vector2(0, -205)
 metadata/_edit_lock_ = true
 
 [node name="Collider_Obstacle" type="Area2D" parent="." unique_id=505806384]
+visible = false
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionPolygon2D" parent="Collider_Obstacle" unique_id=1503758237]
