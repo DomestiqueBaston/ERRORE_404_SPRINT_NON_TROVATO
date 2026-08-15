@@ -16,7 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://dksuojrmaxd27" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Bas_Gauche_1.png" id="9_kr3tr"]
 [ext_resource type="Texture2D" uid="uid://kq6b20r03w14" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Bas_Gauche_2.png" id="10_oaevg"]
 [ext_resource type="Texture2D" uid="uid://0xt8cwfp6wvj" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Bas_Droit_3.png" id="10_usf32"]
+[ext_resource type="Texture2D" uid="uid://dmqbq622se1s4" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_09.png" id="11_8gtq6"]
 [ext_resource type="Texture2D" uid="uid://dudxbf70jeovx" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Droit.png" id="11_tggmm"]
+[ext_resource type="Texture2D" uid="uid://c0le527gml7no" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_10.png" id="12_cr4ld"]
 [ext_resource type="Texture2D" uid="uid://ccg6f438xg40j" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Bas_Gauche_3.png" id="12_mwy7o"]
 [ext_resource type="Texture2D" uid="uid://dpvpusddhl2a7" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Gauche.png" id="12_tvhyd"]
 [ext_resource type="Texture2D" uid="uid://cfkh7vgw68beq" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de terrain_Bord_Haut.png" id="13_b7xif"]
@@ -1408,6 +1410,20 @@ metadata/_edit_lock_ = true
 [node name="Cellule_De_Terrain_08" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=1096034811]
 visible = false
 texture = ExtResource("8_ej7e8")
+centered = false
+offset = Vector2(-118, -60)
+metadata/_edit_lock_ = true
+
+[node name="Cellule_De_Terrain_09" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=699885599]
+visible = false
+texture = ExtResource("11_8gtq6")
+centered = false
+offset = Vector2(-118, -60)
+metadata/_edit_lock_ = true
+
+[node name="Cellule_De_Terrain_10" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=2143479316]
+visible = false
+texture = ExtResource("12_cr4ld")
 centered = false
 offset = Vector2(-118, -60)
 metadata/_edit_lock_ = true

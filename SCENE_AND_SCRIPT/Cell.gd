@@ -36,7 +36,9 @@ enum Decoration {
 	OTHER5,
 	OTHER6,
 	OTHER7,
-	OTHER8
+	OTHER8,
+	OTHER9,
+	OTHER10
 }
 
 enum State {
@@ -76,7 +78,9 @@ enum State {
 	$Column/Cell_Tops/Cell_Textures/Cellule_De_Terrain_05,
 	$Column/Cell_Tops/Cell_Textures/Cellule_De_Terrain_06,
 	$Column/Cell_Tops/Cell_Textures/Cellule_De_Terrain_07,
-	$Column/Cell_Tops/Cell_Textures/Cellule_De_Terrain_08
+	$Column/Cell_Tops/Cell_Textures/Cellule_De_Terrain_08,
+	$Column/Cell_Tops/Cell_Textures/Cellule_De_Terrain_09,
+	$Column/Cell_Tops/Cell_Textures/Cellule_De_Terrain_10
 ]
 
 var _pylon_scene = preload("res://SCENE_AND_SCRIPT/Pylon.tscn")

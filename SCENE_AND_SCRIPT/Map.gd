@@ -94,7 +94,7 @@ func _build_map():
 
 	var interior_cell_count = 2 * map_size - 1
 	var middle_cell = map_size - 1
-	var deco_options = [0, 1, 2, 3, 4, 5, 6, 7]
+	var deco_options = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 	var decos = []
 
 	for x in interior_cell_count:
