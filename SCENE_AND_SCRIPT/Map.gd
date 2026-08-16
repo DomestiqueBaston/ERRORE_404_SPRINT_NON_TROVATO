@@ -45,7 +45,16 @@ class ObstacleEvent extends RefCounted:
 		type = event_type
 
 var _pending_events: Array[ObstacleEvent]
-var _is_sliding: bool = false
+
+enum SlideState {
+	NONE,
+	ROW,
+	COLUMN
+}
+
+var _slide_state: SlideState = SlideState.NONE
+var _slide_index: int
+
 var _timer: Timer
 
 func _ready():
@@ -314,9 +323,23 @@ func _undrop_pylon(cell: Cell):
 # progress are blocked until the slide finishes.
 #
 func _handle_obstacle_event(event: ObstacleEvent):
-	if _is_sliding:
-		_pending_events.append(event)
-		return
+
+	# if a row or column is sliding, block events until the slide finishes,
+	# with one exception: if the event concerns a specific block (undo/remove
+	# an obstacle or lower the center cell), and that block is not affected by
+	# the slide, the event can go on
+
+	if _slide_state != SlideState.NONE:
+		var block = true
+		if event.cell:
+			var uv: Vector2i = _get_cell_index(event.cell.position)
+			if _slide_state == SlideState.ROW:
+				block = (uv.y == _slide_index)
+			else:
+				block = (uv.x == _slide_index)
+		if block:
+			_pending_events.append(event)
+			return
 
 	match event.type:
 		ObstacleType.ROW_SLIDE, ObstacleType.COLUMN_SLIDE:
@@ -326,12 +349,15 @@ func _handle_obstacle_event(event: ObstacleEvent):
 			if dist > max_dist:
 				dist = -(dist - max_dist)
 			_timer.paused = true
-			_is_sliding = true
 			if event.type == ObstacleType.ROW_SLIDE:
-				await _slide_row(_pick_random_row(), dist)
+				_slide_state = SlideState.ROW
+				_slide_index = _pick_random_row()
+				await _slide_row(_slide_index, dist)
 			else:
-				await _slide_column(_pick_random_column(), dist)
-			_is_sliding = false
+				_slide_state = SlideState.COLUMN
+				_slide_index = _pick_random_column()
+				await _slide_column(_slide_index, dist)
+			_slide_state = SlideState.NONE
 			for ev in _pending_events:
 				_handle_obstacle_event(ev)
 			_pending_events.clear()
@@ -465,4 +491,5 @@ func _on_obstacle_timer_timeout():
 #
 func _lower_center_cell():
 	var event = ObstacleEvent.new(ObstacleType.CENTER_LOWER)
+	event.cell = _center_cell
 	_handle_obstacle_event(event)
