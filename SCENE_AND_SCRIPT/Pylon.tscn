@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dmedkgtjj7r3t" path="res://IMAGE/ENVIRONMENT/CELL/Pylone_Shadow.png" id="1_4ropo"]
 [ext_resource type="Script" uid="uid://bv2olxu1rfa5l" path="res://SCENE_AND_SCRIPT/Pylon.gd" id="1_llfy2"]
 [ext_resource type="Shader" uid="uid://cv2sbt316r24a" path="res://SHADER/Pylone_Shadow_Compositing.gdshader" id="2_llfy2"]
+[ext_resource type="Script" uid="uid://bphvp35ilkgkk" path="res://SCENE_AND_SCRIPT/Pylon_Shadow.gd" id="4_2xhvp"]
 [ext_resource type="AudioStream" uid="uid://bifaoucknr7f5" path="res://SOUND/FX/Sliding_Cell.ogg" id="6_2xhvp"]
 [ext_resource type="Texture2D" uid="uid://w0y6jf5wx4px" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de pylone.png" id="27_i1aus"]
 [ext_resource type="Texture2D" uid="uid://br32hmm1061" path="res://IMAGE/ENVIRONMENT/CELL/Extension de pylone.png" id="28_cedp7"]
@@ -551,6 +552,7 @@ visible = false
 material = SubResource("ShaderMaterial_i673b")
 position = Vector2(0, -0.5)
 texture = ExtResource("1_4ropo")
+script = ExtResource("4_2xhvp")
 metadata/_edit_lock_ = true
 
 [node name="Pylon" type="Node2D" parent="." unique_id=1096971533]
