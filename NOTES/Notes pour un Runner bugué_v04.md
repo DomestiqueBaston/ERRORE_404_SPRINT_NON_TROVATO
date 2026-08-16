@@ -40,7 +40,7 @@ Un runner bugué :
     7. Jpeg →  ✔
 
 - Bug permanent : toutes les 3 à 5’’ (on ne joue pas Frames/Bug_Sound mais Sound/Flashing_Cell dans Cell.tscn) :
-    1. Texture de sol change (sauf les 4 cases de coins et la case 404) – (permanent)→ ✔
+    1. Texture de sol change (sauf les 4 cases de coins et la case 404) – (permanent)→ ✔ /!\ ATTENTION /!\ une texture de bord reste tout de même une texture de bord et une texture « normale » reste tout de même une texture « normale ».
 
 Les bonus et malus en jeu (Cube.tscn) :
 - En jeu, il n’y aura que 2 exemplaires max. de chaque Bonus/Malus (y compris en possession d’un joueur).
