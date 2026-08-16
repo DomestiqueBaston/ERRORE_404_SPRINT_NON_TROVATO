@@ -3,7 +3,7 @@ shader_type canvas_item;
 /* ================= SETTINGS ================= */
 
 // Probability of glitch effect happening
-uniform float glitch_chance : hint_range(0.0, 1.0) = 0.2;
+uniform float glitch_chance : hint_range(0.0, 1.0) = 1.0;
 
 // Speed of glitch state changes
 uniform float glitch_speed = 7.0;
@@ -18,19 +18,19 @@ uniform float slice_strength = 0.38;
 uniform float shake_strength = 0.02;
 
 // Chromatic color separation amount
-uniform float chroma_offset = 0.016;
+uniform float chroma_offset = 0.0;
 
 // Digital noise intensity
-uniform float noise_strength = 0.2;
+uniform float noise_strength = 0.01;
 
 // Intensity of color flashes
-uniform float color_flash_strength = 0.4;
+uniform float color_flash_strength = 0.1;
 
 // Intensity of scanline drop effect
 uniform float scanline_strength = 0.18;
 
 // Strength of local warping distortion
-uniform float local_warp_strength = 0.14;
+uniform float local_warp_strength = 1.0;
 
 // Chance for horizontal flip of slices
 uniform float flip_chance : hint_range(0.0,1.0) = 0.0;
