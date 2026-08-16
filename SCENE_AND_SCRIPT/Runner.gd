@@ -109,7 +109,7 @@ func _process(delta: float) -> void:
 		current_speed = lerp(move_speed, slide_speed, progress)
 
 	# === Mouvement (bloqué si mort ou en chute) ===
-	if not is_dead and not is_falling:
+	if not is_dead and not is_falling and direction:
 		position += direction * current_speed * delta
 
 	# === Animations normales (seulement si pas en action spéciale) ===
