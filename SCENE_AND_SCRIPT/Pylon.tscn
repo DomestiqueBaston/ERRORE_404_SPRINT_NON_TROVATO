@@ -15,7 +15,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i673b"]
 shader = ExtResource("2_llfy2")
-shader_parameter/intensity = 0.2
+shader_parameter/intensity = 0.15
 
 [sub_resource type="Animation" id="Animation_mf5kn"]
 resource_name = "Going_Down"
