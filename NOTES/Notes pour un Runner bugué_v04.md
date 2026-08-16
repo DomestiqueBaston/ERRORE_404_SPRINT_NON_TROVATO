@@ -43,10 +43,10 @@ Un runner bugué :
     1. Texture de sol change (sauf les 4 cases de coins et la case 404) – (permanent)→ ✔ /!\ ATTENTION /!\ une texture de bord reste tout de même une texture de bord et une texture « normale » reste tout de même une texture « normale ».
 
 Les bonus et malus en jeu (Cube.tscn) :
-- En jeu, il n’y aura que 2 exemplaires max. de chaque Bonus/Malus (y compris en possession d’un joueur).
+- En jeu, il n’y aura que 1 exemplaire de chaque Bonus et chaque Malus en course (y compris en possession d’un coureur).
 - Chaque concurrent ne peut porter qu’1 Bonus/Malus. On peut ramasser un Bonus/Malus si on en porte déjà un mais le nouveau remplace le précédent. On ne peut pas ramasser de nouveau Bonus/Malus tant qu’un est en cours d’utilisation.
 - Les Bonus/Malus apparaissent en jeu toutes les 5 à 10 secondes.
-- Il ne peut pas y avoir plus de 5 Bonus/Malus simultanément à ramasser → le 6ème supprime d’abord automatiquement le plus ancien restant pendant qu’il apparaît.
+- Il ne peut pas y avoir plus de 5 Bonus/Malus simultanément à ramasser → le 6ème supprime automatiquement le plus ancien restant pendant que le nouveau apparaît.
 - Pour chaque couleur correspondent un bonus et un malus (le joueur ne sait donc pas s’il voit un bonus ou un malus).
 - Au ramassage d’un Bonus/Malus, on joue le son correspondant au Bonus/Malus et on joue le clignotement du concurrent (Animation_Bonus_Malus).
 - À l’activation (automatique ou au déclenchement du joueur) du Bonus/Malus on joue également le son correspondant et on joue le clignotement du concurrent.
@@ -75,7 +75,7 @@ Les obstacles :
     1. Ligne/Colonne (de cellules) qui glisse – Permanent → ✔ (1’’ avant, on joue Cell_Pylon_Alarms/Cell_Slide dans Sounds.tscn ET jusqu’à la fin de l’animation)
     2. Trous (cellules qui descendent) – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     3. Murs des concurrents – (Durée : comme précisé plus loin) → ✔ (voir avec Geoff comment faire)
-    4. Sens unique – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔ /!\ATTENTION/!\  c’est le collider du panneau qui fait changer de direction, pas la cellule elle-même !
+    4. Sens unique – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔ /!\ATTENTION/!\  c’est le collider du panneau qui fait changer de direction, pas la cellule elle-même ! On fait disparaître (avec l’animation Disappearing) le Sens unique dès qu’il est déclenché par un concurrent.
     5. Colonne descendante – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     6. Colonne écrasante – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     7. Cellule « disparaissante » – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
@@ -112,7 +112,7 @@ Notes de fabrication :
 - Un concurrent ne peut pas courir sur un autre cadavre → Le jeu forcera le concurrent à tourner aléatoirement à droite ou à gauche. On jouera ici aussi l’Animation_Bonus_Malus et le son Alert. Si le concurrent se retrouve coincé entre des cadavres et/ou d’autres concurrents (vraiment super pas de bol), alors on le fera mourir en jouant son animation de mort à lui aussi (Animation_Disappearing_Death/Disappearing) ! Ça ne sera pas très « joli » mais c’est un cas vraiment peu probable.
 - À la mort d’un concurrent, ce qui reste de son mur disparaît (on joue l’animation de disparition du mur dès la première frame de l’animation de mort du concurrent)! Pour cela on jouera l’animation Light_Wall_Animations/Disappearing dans Light_Wall.tscn.
 - Seule l’animation de course peut être interrompue (pour changer de direction, sauter, etc.) par le joueur. Toutes les autres doivent finir avant d’enchaîner sur autre chose (on parle toujours d’interruption par le joueur, cela ne concerne pas sa mort, par exemple). Par défaut, à la fin d’une animation d’interruption (saut, glissade, etc.), on retourne toujours à la course.
-- Toutes les 10 à 20’’, chaque coureur va gagner/perdre 4% de vitesse. Et toutes les 10 à 20’’ perdre/récupérer ces 4% de vitesse. Les animations seront également accélérées et ralenties de la même proportion pour que ce soit plus « joli ». On utilisera également un tween d’1/2 seconde pour appliquer la modification (si possible). Chaque concurrent à un timer personnel indépendant de celui des autres.
+- Toutes les 10 à 20’’, chaque coureur va gagner/perdre 4% de vitesse. Et toutes les 10 à 20’’ retour à la vitesse normale. Les animations seront également accélérées et ralenties de la même proportion pour que ce soit plus « joli ». On utilisera également un tween d’1/2 seconde pour appliquer la modification (si possible). Chaque concurrent à un timer personnel indépendant de celui des autres.
 - Passer sur un sens unique qui forcerait à partir un sens inverse fait mourir.
 
 Options (nécessaires) dans Settings:
@@ -122,7 +122,7 @@ Options (nécessaires) dans Settings:
     4. Difficulté (de 1 à 5) ✔
         ◦ Temps avant l’apparition de la porte de sortie : (Taille de la map + (2 × Difficulté)) / 10 minutes.
         ◦ Délai entre les déclenchements d’obstacles : 5.5 - (0.5 × Difficulté) secondes.
-        ◦ Délai avant disparition des tronçons de mur : ((2 × Difficulté) + Taille de la map) / 2 secondes après apparition.
+        ◦ Délai avant disparition des tronçons de mur : (Difficulté + Taille de la map) / 2 secondes après apparition.
         ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en gagnant 3 courses en Difficulté 5) qui rend tous les obstacles PERMANENTS (le reste est traîté comme Difficulté 5 si rien n’est précisé !) SAUF les murs des concurrents. Voir également à la fin du doc. : Liste des scènes (et – succinctes – descriptions de leurs contenus).
 
 Les personnalités des « IA »/Bots :
