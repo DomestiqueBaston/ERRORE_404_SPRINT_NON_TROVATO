@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://dmedkgtjj7r3t" path="res://IMAGE/ENVIRONMENT/CELL/Pylone_Shadow.png" id="1_4ropo"]
 [ext_resource type="Script" uid="uid://bv2olxu1rfa5l" path="res://SCENE_AND_SCRIPT/Pylon.gd" id="1_llfy2"]
 [ext_resource type="Shader" uid="uid://cv2sbt316r24a" path="res://SHADER/Pylone_Shadow_Compositing.gdshader" id="2_llfy2"]
-[ext_resource type="AudioStream" uid="uid://bifaoucknr7f5" path="res://SOUND/FX/Sliding_Cell.ogg" id="6_2xhvp"]
 [ext_resource type="Texture2D" uid="uid://w0y6jf5wx4px" path="res://IMAGE/ENVIRONMENT/CELL/Cellule de pylone.png" id="27_i1aus"]
 [ext_resource type="Texture2D" uid="uid://br32hmm1061" path="res://IMAGE/ENVIRONMENT/CELL/Extension de pylone.png" id="28_cedp7"]
 [ext_resource type="AudioStream" uid="uid://qnjr5b74yyt8" path="res://SOUND/FX/Door_Appearing.ogg" id="29_4avwy"]
@@ -558,35 +557,6 @@ metadata/_edit_lock_ = true
 volume_db = -7.5
 max_distance = 1000.0
 bus = &"FX_WET"
-metadata/_edit_lock_ = true
-
-[node name="Cell_Slide_Sounds" type="Node2D" parent="Sound" unique_id=104576403]
-metadata/_edit_lock_ = true
-
-[node name="Start_Cell" type="AudioStreamPlayer2D" parent="Sound/Cell_Slide_Sounds" unique_id=2056791470]
-volume_db = 2.5
-max_distance = 500.0
-bus = &"FX_WET"
-metadata/_edit_lock_ = true
-
-[node name="Stop_Cell" type="AudioStreamPlayer2D" parent="Sound/Cell_Slide_Sounds" unique_id=1632492022]
-volume_db = 5.0
-max_distance = 500.0
-bus = &"FX_WET"
-metadata/_edit_lock_ = true
-
-[node name="Up_Down_Cell" type="AudioStreamPlayer2D" parent="Sound/Cell_Slide_Sounds" unique_id=1600382501]
-volume_db = 5.0
-max_distance = 500.0
-bus = &"FX_WET"
-metadata/_edit_lock_ = true
-
-[node name="Sliding_Cell" type="AudioStreamPlayer2D" parent="Sound/Cell_Slide_Sounds" unique_id=978980904]
-stream = ExtResource("6_2xhvp")
-volume_db = 2.5
-max_distance = 500.0
-bus = &"FX_WET"
-parameters/looping = true
 metadata/_edit_lock_ = true
 
 [node name="Pylon_Animation" type="AnimationPlayer" parent="." unique_id=1911472662]

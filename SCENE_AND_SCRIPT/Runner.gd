@@ -1,7 +1,6 @@
 extends Node2D
 
 ## La Vision_Area n'est pas gérée par ce script,
-## les trails de Dash non plus vu que là,
 ## c'est juste de la démo...
 
 @onready var sprite: Node2D = $Character/Papa_Sprite
