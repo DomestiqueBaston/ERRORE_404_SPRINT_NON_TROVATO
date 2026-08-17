@@ -188,10 +188,17 @@ static func _get_cell_index(pos: Vector2) -> Vector2i:
 		roundi((pos.x - 2.0 * pos.y) / _cell_offset_x))
 
 ##
-## Returns the cell found at the given position, or null if there is none.
+## Returns the cell that overlaps with the given collider, or null if there is
+## none.
 ##
-func get_cell_at(pos: Vector2) -> Cell:
-	return _cells.get(_get_cell_index(pos))
+func get_cell_at(collider: Area2D) -> Cell:
+	# this doesn't work if for sliding cells!
+	#return _cells.get(_get_cell_index(pos))
+	var areas = collider.get_overlapping_areas()
+	if areas:
+		return Cell.get_cell_from_collider(areas.front())
+	else:
+		return null
 
 func _lower_cell(cell: Cell):
 	Sounds.play_cell_up_down()

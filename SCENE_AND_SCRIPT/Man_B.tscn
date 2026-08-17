@@ -3058,7 +3058,6 @@ metadata/_edit_lock_ = true
 [node name="Collider_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=1579218920]
 visible = false
 collision_mask = 2
-monitoring = false
 monitorable = false
 metadata/_edit_lock_ = true
 

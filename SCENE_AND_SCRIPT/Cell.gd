@@ -226,3 +226,6 @@ func is_center() -> bool:
 func wait_until_stationary():
 	if _anim_player.is_playing():
 		await _anim_player.animation_finished
+
+static func get_cell_from_collider(collider: Area2D) -> Cell:
+	return collider.get_node("../../..")

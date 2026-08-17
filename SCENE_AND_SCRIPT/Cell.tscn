@@ -1324,7 +1324,6 @@ metadata/_edit_lock_ = true
 [node name="Collider_Ground" type="Area2D" parent="Column/Cell_Tops" unique_id=290484024]
 collision_layer = 2
 monitoring = false
-monitorable = false
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionPolygon2D" parent="Column/Cell_Tops/Collider_Ground" unique_id=2120679339]
