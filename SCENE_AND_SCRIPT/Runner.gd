@@ -7,6 +7,10 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $Animation_Runner
 @onready var collider: Area2D = $Character/Papa_Sprite/Runner_Sprite/Collider_Area
 
+@onready var _footstep1 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_01
+@onready var _footstep2 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_02
+@onready var _footstep3 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_03
+
 @export var move_speed: float = 375.0
 @export var jump_speed: float = 350.0
 @export var slide_speed: float = 300.0
@@ -259,3 +263,15 @@ func is_valid_direction(new_direction: Vector2) -> bool:
 	if last_direction == Vector2.ZERO:
 		return true
 	return not is_zero_approx(last_direction.dot(new_direction) + 1.0)
+
+#
+# Methods called by run cycle animation.
+#
+func play_foot_step_01():
+	_footstep1.play()
+
+func play_foot_step_02():
+	_footstep2.play()
+
+func play_foot_step_03():
+	_footstep3.play()

@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://3f2wtq4pn17q" path="res://SHADER/Shadow_Compositing.gdshader" id="4_susyb"]
 [ext_resource type="Script" uid="uid://qc5u6mlkikxg" path="res://SCENE_AND_SCRIPT/Cam.gd" id="5_qxubv"]
 [ext_resource type="Texture2D" uid="uid://brl52e8ox1ue8" path="res://IMAGE/RUNNER/Shadow.png" id="5_rpmb2"]
+[ext_resource type="AudioStream" uid="uid://06kaf7akc8r3" path="res://SOUND/FX/RUNNER/Foot_Step_01.ogg" id="6_38vqc"]
 [ext_resource type="AudioStream" uid="uid://bom677o0xms5i" path="res://SOUND/FX/Disappearing.ogg" id="6_n84pb"]
 [ext_resource type="AudioStream" uid="uid://ccc3vfmvpg54n" path="res://SOUND/FX/RUNNER/Bump_Wall.ogg" id="7_f3in4"]
 [ext_resource type="AudioStream" uid="uid://cijoxlwmmsm7v" path="res://SOUND/FX/RUNNER/Fall_Death.ogg" id="8_2hra7"]
@@ -14,7 +15,6 @@
 [ext_resource type="AudioStream" uid="uid://dj38goj7pln7r" path="res://SOUND/FX/RUNNER/Man_B_Pushing.ogg" id="12_susyb"]
 [ext_resource type="AudioStream" uid="uid://cns80ks0bg3jv" path="res://SOUND/FX/RUNNER/Foot_Step_02.ogg" id="13_5vco3"]
 [ext_resource type="AudioStream" uid="uid://bmd6388im1l7b" path="res://SOUND/FX/RUNNER/Man_B_Running.ogg" id="13_38vqc"]
-[ext_resource type="Script" uid="uid://dujx068vw2hmu" path="res://SCENE_AND_SCRIPT/Animation_Runner.gd" id="16_38vqc"]
 [ext_resource type="AudioStream" uid="uid://b2a03ph6qsmpd" path="res://SOUND/FX/RUNNER/Sliding.ogg" id="17_na7f6"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="18_u5ssp"]
 [ext_resource type="AudioStream" uid="uid://cou5e3uqnnvdj" path="res://SOUND/FX/Crackling_Noise_A.ogg" id="19_s6mgt"]
@@ -1847,7 +1847,7 @@ tracks/12/keys = {
 tracks/13/type = "method"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("../Animation_Runner")
+tracks/13/path = NodePath("..")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -2028,7 +2028,7 @@ tracks/12/keys = {
 tracks/13/type = "method"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("../Animation_Runner")
+tracks/13/path = NodePath("..")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -3093,6 +3093,14 @@ max_distance = 1000.0
 bus = &"RUNNERS"
 metadata/_edit_lock_ = true
 
+[node name="Foot_Step_01" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=1566650561]
+stream = ExtResource("6_38vqc")
+volume_db = 5.0
+pitch_scale = 0.5
+max_distance = 1000.0
+bus = &"RUNNERS"
+metadata/_edit_lock_ = true
+
 [node name="Foot_Step_02" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=17272265]
 stream = ExtResource("13_5vco3")
 volume_db = 5.0
@@ -3275,7 +3283,6 @@ metadata/_edit_lock_ = true
 [node name="Animation_Runner" type="AnimationPlayer" parent="." unique_id=1015872210]
 root_node = NodePath("../Character")
 libraries/ = SubResource("AnimationLibrary_8jbc5")
-script = ExtResource("16_38vqc")
 
 [node name="Animation_Glitch" type="AnimationPlayer" parent="." unique_id=1918896994]
 root_node = NodePath("../Character")
