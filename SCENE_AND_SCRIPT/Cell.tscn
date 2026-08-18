@@ -1320,6 +1320,7 @@ navigation_polygon = SubResource("NavigationPolygon_mwy7o")
 metadata/_edit_lock_ = true
 
 [node name="Collider_Ground" type="Area2D" parent="Column" unique_id=290484024]
+visible = false
 collision_layer = 2
 monitoring = false
 metadata/_edit_lock_ = true
