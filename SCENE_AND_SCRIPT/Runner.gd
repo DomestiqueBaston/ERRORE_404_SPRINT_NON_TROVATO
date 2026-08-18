@@ -137,6 +137,8 @@ func _process(delta: float) -> void:
 		if _curr_cell:
 			_curr_cell_pos = _curr_cell.global_position
 
+	$Character/Cam.update_aim_point(global_position)
+
 	# === Animations normales (seulement si pas en action spéciale) ===
 	if is_jumping or is_sliding:
 		return
