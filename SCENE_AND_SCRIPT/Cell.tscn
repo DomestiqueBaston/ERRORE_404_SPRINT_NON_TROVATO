@@ -1315,6 +1315,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="Navigation_Tile" type="NavigationRegion2D" parent="Column" unique_id=2074369045]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_mwy7o")
 metadata/_edit_lock_ = true
 
