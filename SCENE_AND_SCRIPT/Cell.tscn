@@ -59,13 +59,13 @@ shader = ExtResource("29_7mpjj")
 shader_parameter/same_width_lines_count = 21.726000984485
 shader_parameter/same_width_change_per_sec = 7.665000360827619
 shader_parameter/glitch_change_per_sec = 1.0
-shader_parameter/threshold = 0.3499999921768
-shader_parameter/strength = 0.0790000037525
+shader_parameter/threshold = 0.2999999932944
+shader_parameter/strength = 0.090000004275
 shader_parameter/glitch_blend = 0.8499999810008
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3k4r"]
 shader = ExtResource("28_vso1q")
-shader_parameter/shake_power = 0.005
+shader_parameter/shake_power = 0.009
 shader_parameter/shake_rate = 1.0
 shader_parameter/shake_speed = 5.0
 shader_parameter/shake_block_size = 15.0
@@ -1703,13 +1703,11 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="Start_Cell" type="AudioStreamPlayer2D" parent="Sound/Cell_Slide_Sounds" unique_id=1306544328]
-volume_db = 2.5
 max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Stop_Cell" type="AudioStreamPlayer2D" parent="Sound/Cell_Slide_Sounds" unique_id=28418727]
-volume_db = 5.0
 max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
