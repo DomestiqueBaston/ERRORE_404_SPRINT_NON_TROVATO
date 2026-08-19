@@ -284,19 +284,19 @@ metadata/_edit_lock_ = true
 
 [node name="Disappearing" type="AudioStreamPlayer2D" parent="Light_Wall_Sounds" unique_id=912287199]
 stream = ExtResource("3_jdkuv")
-max_distance = 500.0
+max_distance = 1000.0
 bus = &"FX_DRY"
 metadata/_edit_lock_ = true
 
 [node name="Appearing" type="AudioStreamPlayer2D" parent="Light_Wall_Sounds" unique_id=13574022]
 stream = ExtResource("4_lnn84")
-max_distance = 500.0
+max_distance = 1000.0
 bus = &"FX_DRY"
 metadata/_edit_lock_ = true
 
 [node name="Wall_Hum" type="AudioStreamPlayer2D" parent="Light_Wall_Sounds" unique_id=1186357924]
 stream = ExtResource("5_5tnv1")
-max_distance = 500.0
+max_distance = 1000.0
 bus = &"FX_DRY"
 parameters/looping = true
 metadata/_edit_lock_ = true
