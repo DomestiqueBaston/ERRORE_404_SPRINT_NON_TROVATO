@@ -17,6 +17,8 @@
 [ext_resource type="AudioStream" uid="uid://d2vhvgdpp71gm" path="res://SOUND/FX/Siren.ogg" id="14_qilh6"]
 [ext_resource type="AudioStream" uid="uid://1u5cnl60ptxf" path="res://SOUND/FX/Glitchy_Sound_F.ogg" id="15_aehec"]
 [ext_resource type="AudioStream" uid="uid://b2k8b5f0m5fty" path="res://SOUND/FX/Crunch.ogg" id="16_sbfjp"]
+[ext_resource type="AudioStream" uid="uid://k8hyf5t6sryn" path="res://SOUND/FX/Glitchy_Sound_D.ogg" id="18_ke38t"]
+[ext_resource type="AudioStream" uid="uid://b6ijgf7grh6oy" path="res://SOUND/FX/Glitchy_Sound_A.ogg" id="19_knc1o"]
 
 [sub_resource type="Animation" id="Animation_rwgee"]
 resource_name = "Pitch_Down"
@@ -199,3 +201,15 @@ volume_db = 3.5
 pitch_scale = 2.0
 bus = &"FX_WET"
 parameters/looping = true
+
+[node name="Misc" type="Node" parent="." unique_id=1574457338]
+
+[node name="Useless_Alarm_1" type="AudioStreamPlayer" parent="Misc" unique_id=16056108]
+stream = ExtResource("18_ke38t")
+volume_db = 2.5
+bus = &"FX_WET"
+
+[node name="Useless_Alarm_2" type="AudioStreamPlayer" parent="Misc" unique_id=1400178219]
+stream = ExtResource("19_knc1o")
+volume_db = -7.5
+bus = &"FX_WET"

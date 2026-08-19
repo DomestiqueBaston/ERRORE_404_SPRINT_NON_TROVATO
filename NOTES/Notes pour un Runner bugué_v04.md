@@ -42,6 +42,9 @@ Un runner bugué :
 - Bug permanent : toutes les 3 à 5’’ (on ne joue pas Frames/Bug_Sound mais Sound/Flashing_Cell dans Cell.tscn) :
     1. Texture de sol change (sauf les 4 cases de coins et la case 404) – (permanent)→ ✔ /!\ ATTENTION /!\ une texture de bord reste tout de même une texture de bord et une texture « normale » reste tout de même une texture « normale ».
 
+- Bug inutile (juste pour faire chier) :
+    1. Toutes les 10 secondes, on a 1/10 chance de jouer le son Sounds/Misc/Useless_Alarm_1 ou Sounds/Misc/Useless_Alarm_2 dans Sounds.tscn ! Il est à noter que ces sons ne déclenchent absolument rien !
+
 Les bonus et malus en jeu (Cube.tscn) :
 - En jeu, il n’y aura que 1 exemplaire de chaque Bonus et chaque Malus en course (y compris en possession d’un coureur).
 - Chaque concurrent ne peut porter qu’1 Bonus/Malus. On peut ramasser un Bonus/Malus si on en porte déjà un mais le nouveau remplace le précédent. On ne peut pas ramasser de nouveau Bonus/Malus tant qu’un est en cours d’utilisation.
