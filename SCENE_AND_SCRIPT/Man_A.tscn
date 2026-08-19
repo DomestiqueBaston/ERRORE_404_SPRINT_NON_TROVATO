@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://7rcfji6ehwky" path="res://SCENE_AND_SCRIPT/Runner.gd" id="1_04ypo"]
 [ext_resource type="Texture2D" uid="uid://cvhum1ai0b121" path="res://IMAGE/RUNNER/MAN_A/Man_A_Sprite_Sheet.png" id="3_bs1rt"]
-[ext_resource type="Shader" uid="uid://3f2wtq4pn17q" path="res://SHADER/Shadow_Compositing.gdshader" id="4_laype"]
 [ext_resource type="Texture2D" uid="uid://brl52e8ox1ue8" path="res://IMAGE/RUNNER/Shadow.png" id="5_bsywe"]
 [ext_resource type="Script" uid="uid://qc5u6mlkikxg" path="res://SCENE_AND_SCRIPT/Cam.gd" id="5_o60mx"]
 [ext_resource type="AudioStream" uid="uid://bom677o0xms5i" path="res://SOUND/FX/Disappearing.ogg" id="6_cp16q"]
@@ -151,9 +150,6 @@ shader_parameter/shake_color_rate = 0.00069999998229
 shader_parameter/outline_thickness = 2.0
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/outline_boost_when_glitch = 5.000000074506
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lts44"]
-shader = ExtResource("4_laype")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rjpof"]
 radius = 8.925275
@@ -3188,7 +3184,6 @@ metadata/_edit_lock_ = true
 
 [node name="Shadow" type="Sprite2D" parent="Character/Papa_Sprite/Runner_Sprite/Papa_Shadow" unique_id=1674881042]
 self_modulate = Color(1, 1, 1, 0.12941177)
-material = SubResource("ShaderMaterial_lts44")
 position = Vector2(-7, 1)
 rotation = 0.17453292
 texture = ExtResource("5_bsywe")

@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://c3up1u8ajktas"]
 
 [ext_resource type="Script" uid="uid://h5jc5pkbwwnw" path="res://SCENE_AND_SCRIPT/Cube.gd" id="1_mfqlr"]
-[ext_resource type="Shader" uid="uid://3f2wtq4pn17q" path="res://SHADER/Shadow_Compositing.gdshader" id="2_i7obx"]
-[ext_resource type="Texture2D" uid="uid://c5i7h02ps03t3" path="res://IMAGE/ENVIRONMENT/CUBE/Shadow.png" id="2_yd2d6"]
+[ext_resource type="Texture2D" uid="uid://1lae8g7yk1lw" path="res://IMAGE/ENVIRONMENT/CUBE/Shadow.png" id="2_i7obx"]
 [ext_resource type="Shader" uid="uid://68aobjd54xxo" path="res://SHADER/Outline_And_Color.gdshader" id="3_mfqlr"]
 [ext_resource type="Texture2D" uid="uid://daxlt5o4goj2w" path="res://IMAGE/ENVIRONMENT/CUBE/Cube_Sprite_Sheet.png" id="4_mfqlr"]
 [ext_resource type="AudioStream" uid="uid://cgbxwl13x4oax" path="res://SOUND/FX/Cube_Hum.ogg" id="5_i7obx"]
@@ -10,12 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://1ojf301p0bbg" path="res://SOUND/FX/Disappearing_Cube.ogg" id="8_oh6sb"]
 [ext_resource type="AudioStream" uid="uid://dxm4eey7we1f1" path="res://SOUND/FX/Grab_Cube.ogg" id="9_oh6sb"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i7obx"]
-radius = 15.241224
-height = 30.482449
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oh6sb"]
-shader = ExtResource("2_i7obx")
+[sub_resource type="CircleShape2D" id="CircleShape2D_i7obx"]
+radius = 14.035668
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5c5qk"]
 shader = ExtResource("3_mfqlr")
@@ -263,17 +258,15 @@ script = ExtResource("1_mfqlr")
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionShape2D" parent="Collider_Cube" unique_id=1339796665]
-rotation = -0.3211406
-skew = -0.7644542
-shape = SubResource("CapsuleShape2D_i7obx")
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_i7obx")
 metadata/_edit_lock_ = true
 
 [node name="Cube_Shadow" type="Sprite2D" parent="." unique_id=294353358]
 visible = false
-self_modulate = Color(1, 1, 1, 0.133)
-material = SubResource("ShaderMaterial_oh6sb")
+self_modulate = Color(1, 1, 1, 0.19607843)
 position = Vector2(0, -3)
-texture = ExtResource("2_yd2d6")
+texture = ExtResource("2_i7obx")
 offset = Vector2(0, 6)
 metadata/_edit_lock_ = true
 
