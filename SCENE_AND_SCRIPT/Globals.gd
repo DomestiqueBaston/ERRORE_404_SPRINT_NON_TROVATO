@@ -11,7 +11,7 @@ const master_bus: int = 0
 const music_bus: int = 4
 
 var use_diagonals_for_movement: bool = true
-var map_size: int = 6
+var map_size: int = 7
 var difficulty: int = 3
 var max_difficulty: int = 5
 

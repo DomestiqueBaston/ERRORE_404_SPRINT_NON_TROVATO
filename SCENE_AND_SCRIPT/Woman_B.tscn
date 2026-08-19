@@ -3323,7 +3323,7 @@ bus = &"RUNNERS"
 metadata/_edit_lock_ = true
 
 [node name="Running" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=687729980]
-volume_db = -7.5
+volume_db = -5.0
 max_distance = 1000.0
 bus = &"RUNNERS"
 metadata/_edit_lock_ = true
