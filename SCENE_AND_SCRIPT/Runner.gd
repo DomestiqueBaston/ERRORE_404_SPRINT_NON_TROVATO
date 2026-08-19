@@ -32,6 +32,7 @@ var slide_direction: Vector2 = Vector2.ZERO
 var _rotation: float = deg_to_rad(18.4)
 
 var _map: Map
+var _has_left_center: bool = false
 var _curr_cell: Cell
 var _curr_cell_pos: Vector2
 
@@ -117,15 +118,34 @@ func _process(delta: float) -> void:
 	if not is_dead and not is_falling and direction:
 		position += direction * current_speed * delta
 
-	# Figure out which cell of the map the runner is on, if any. And if the
-	# cell is moving, move the runner along with it.
+	# Figure out which cell of the map the runner is on, if any. If the cell is
+	# moving, move the runner along with it. If it is a teleport cell, then
+	# teleport to the partner cell.
 
 	if _map:
-		var next_cell = _map.get_cell_at(collider)
+
+		# Find the cell underfoot. Note that get_cell_at() returns null if the
+		# runner has not left the center cell yet!
+
+		var next_cell: Cell = _map.get_cell_at(collider)
+		if not _has_left_center:
+			if next_cell == null:
+				next_cell = _map.get_center_cell()
+			else:
+				_has_left_center = true
+
+		# If we haven't moved to a different cell, just add the current cell's
+		# movement to the runner's.
+
 		if _curr_cell == next_cell:
 			if _curr_cell and not is_falling and not is_jumping:
 				var next_cell_pos = _curr_cell.global_position
 				position += next_cell_pos - _curr_cell_pos
+
+		# If we have moved to a different cell (or to empty space), update the
+		# current cell accordingly. And if it happens to be a teleport cell,
+		# teleport the runner to the partner cell.
+
 		else:
 			if (_curr_cell == null or next_cell == null
 				or _curr_cell.get_state() != next_cell.get_state()):
@@ -133,7 +153,14 @@ func _process(delta: float) -> void:
 					print(Cell.State.keys()[next_cell.get_state()].capitalize())
 				else:
 					print("Empty")
+			if next_cell and next_cell.get_state() == Cell.State.TELEPORT:
+				var other_cell = next_cell.get_teleport_partner()
+				global_position = other_cell.global_position
+				next_cell = other_cell
 			_curr_cell = next_cell
+
+		# Note the current position of the current cell for next time.
+
 		if _curr_cell:
 			_curr_cell_pos = _curr_cell.global_position
 

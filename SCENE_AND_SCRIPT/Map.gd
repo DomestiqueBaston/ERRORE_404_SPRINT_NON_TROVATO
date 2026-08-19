@@ -27,8 +27,8 @@ enum ObstacleType {
 	CELL_LOWER,
 	CELL_HIDE,
 	CELL_ONE_WAY,
-	CELL_BUG1,
-	CELL_BUG2,
+	CELL_TELEPORT1,
+	CELL_TELEPORT2,
 	PYLON_LOWER,
 	PYLON_DROP,
 	# only events above this line are generated randomly
@@ -40,6 +40,7 @@ class ObstacleEvent extends RefCounted:
 	var type: ObstacleType
 	var is_undo: bool = false
 	var cell: Cell
+	var cell2: Cell
 
 	func _init(event_type: ObstacleType):
 		type = event_type
@@ -200,6 +201,13 @@ func get_cell_at(collider: Area2D) -> Cell:
 	else:
 		return null
 
+##
+## Returns the cell at the center of the map ("404"). Note that the cell may
+## not actually be at the center anymore, if any rows or columns have slid.
+##
+func get_center_cell() -> Cell:
+	return _center_cell
+
 func _lower_cell(cell: Cell):
 	Sounds.play_cell_up_down()
 	await get_tree().create_timer(0.5).timeout
@@ -218,22 +226,28 @@ func _show_cell(cell: Cell):
 	await cell.reappear()
 
 func _start_cell_one_way(cell: Cell, dir: Globals.Axis):
-	cell.start_one_way(dir)
+	await cell.start_one_way(dir)
 
 func _stop_cell_one_way(cell: Cell):
-	cell.stop_one_way()
+	await cell.stop_one_way()
 
-func _start_cell_bug1(cell: Cell):
-	cell.start_bug1()
+func _start_cell_teleport(event: ObstacleEvent):
+	match event.type:
+		ObstacleType.CELL_TELEPORT1:
+			event.cell.start_()
+			await event.cell2.start_()
+		ObstacleType.CELL_TELEPORT2:
+			event.cell.start_teleport2()
+			await event.cell2.start_teleport2()
 
-func _stop_cell_bug1(cell: Cell):
-	cell.stop_bug1()
-
-func _start_cell_bug2(cell: Cell):
-	cell.start_bug2()
-
-func _stop_cell_bug2(cell: Cell):
-	cell.stop_bug2()
+func _stop_cell_teleport(event: ObstacleEvent):
+	match event.type:
+		ObstacleType.CELL_TELEPORT1:
+			event.cell.stop_()
+			await event.cell2.stop_()
+		ObstacleType.CELL_TELEPORT2:
+			event.cell.stop_teleport2()
+			await event.cell2.stop_teleport2()
 
 #
 # Slides the given column (u) the given number of cells to the right (if
@@ -326,24 +340,35 @@ func _undrop_pylon(cell: Cell):
 # are special in two ways: they are permanent, so there is no corresponding
 # "undo" event; and no new obstacles are generated while the row or column is
 # sliding. (We COULD continue to generate obstacles that are not on the row or
-# column that is sliding, but we don't.) Events that arrive while a slide is in
-# progress are blocked until the slide finishes.
+# column that is sliding, but we don't.) Events that may enter in conflict with
+# the slide in progress are blocked until the slide finishes.
 #
 func _handle_obstacle_event(event: ObstacleEvent):
 
-	# if a row or column is sliding, block events until the slide finishes,
-	# with one exception: if the event concerns a specific block (undo/remove
-	# an obstacle or lower the center cell), and that block is not affected by
-	# the slide, the event can go on
+	# If a row or column is sliding, block events until the slide finishes,
+	# with some exceptions. If the event concerns a specific cell (undo/remove
+	# an obstacle or lower the center cell), and that cell is not affected by
+	# the slide, then the event can go on. Also, there is no need to block the
+	# removal of teleport or one-way obstacles; they do not touch the position
+	# of the top of the cell, so there is no potential conflict with the slide
+	# animation.
 
 	if _slide_state != SlideState.NONE:
-		var block = true
-		if event.cell:
+		var block: bool
+		if event.type in [
+			ObstacleType.CELL_TELEPORT1,
+			ObstacleType.CELL_TELEPORT2,
+			ObstacleType.CELL_ONE_WAY
+		]:
+			block = false
+		elif event.cell:
 			var uv: Vector2i = _get_cell_index(event.cell.position)
 			if _slide_state == SlideState.ROW:
 				block = (uv.y == _slide_index)
 			else:
 				block = (uv.x == _slide_index)
+		else:
+			block = true
 		if block:
 			_pending_events.append(event)
 			return
@@ -398,23 +423,21 @@ func _handle_obstacle_event(event: ObstacleEvent):
 				await _start_cell_one_way(event.cell, dir)
 				_schedule_undo_event(event)
 
-		ObstacleType.CELL_BUG1:
+		ObstacleType.CELL_TELEPORT1, ObstacleType.CELL_TELEPORT2:
 			if event.is_undo:
-				await _stop_cell_bug1(event.cell)
+				await _stop_cell_teleport(event)
+				event.cell.reset_teleport_partner()
 				_available_cells.append(event.cell)
+				_available_cells.append(event.cell2)
 			else:
 				event.cell = _pick_random_cell()
-				await _start_cell_bug1(event.cell)
-				_schedule_undo_event(event)
-
-		ObstacleType.CELL_BUG2:
-			if event.is_undo:
-				await _stop_cell_bug2(event.cell)
-				_available_cells.append(event.cell)
-			else:
-				event.cell = _pick_random_cell()
-				await _start_cell_bug2(event.cell)
-				_schedule_undo_event(event)
+				event.cell2 = _pick_distant_random_cell(event.cell)
+				if event.cell2:
+					event.cell.set_teleport_partner(event.cell2)
+					await _start_cell_teleport(event)
+					_schedule_undo_event(event)
+				else:
+					_available_cells.append(event.cell)
 
 		ObstacleType.PYLON_LOWER:
 			if event.is_undo:
@@ -447,6 +470,7 @@ func _schedule_undo_event(event: ObstacleEvent):
 	await get_tree().create_timer(_get_obstacle_duration()).timeout
 	var undo_event: ObstacleEvent = ObstacleEvent.new(event.type)
 	undo_event.cell = event.cell
+	undo_event.cell2 = event.cell2
 	undo_event.is_undo = true
 	_handle_obstacle_event(undo_event)
 
@@ -477,12 +501,31 @@ func _pick_random_column() -> int:
 
 #
 # Picks an "available" cell at random (a cell that is not the center cell, has
-# not been lowered, hidden, bugged, etc., and does not have a pylon on it). The
-# cell is removed from the array of available cells and returned.
+# not been lowered, hidden, made one-way, etc., and does not have a pylon on
+# it). The cell is removed from the array of available cells and returned.
 #
 func _pick_random_cell() -> Cell:
 	var index = randi() % _available_cells.size()
 	return _available_cells.pop_at(index)
+
+#
+# Like _pick_random_cell(), but picks a cell that is more than a certain
+# distance from cell1.
+#
+func _pick_distant_random_cell(cell1: Cell) -> Cell:
+	var cell2: Cell = null
+	var uv1: Vector2i = _get_cell_index(cell1.position)
+	var mindist: int = map_size * map_size
+	var failures: Array[Cell]
+	while _available_cells and not cell2:
+		var other: Cell = _pick_random_cell()
+		var uv2: Vector2i = _get_cell_index(other.position)
+		if uv2.distance_squared_to(uv1) >= mindist:
+			cell2 = other
+		else:
+			failures.append(other)
+	_available_cells.append_array(failures)
+	return cell2
 
 #
 # Generates a new obstacle when the timer goes off.

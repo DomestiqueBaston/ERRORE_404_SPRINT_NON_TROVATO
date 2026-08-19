@@ -46,7 +46,7 @@ enum State {
 	LOWERED,
 	RAISED,
 	HIDDEN,
-	BUGGY,
+	TELEPORT,
 	ONE_WAY,
 	PYLON
 }
@@ -86,6 +86,7 @@ enum State {
 var _pylon_scene = preload("res://SCENE_AND_SCRIPT/Pylon.tscn")
 var _pylon: Pylon
 var _state: State = State.NORMAL
+var _partner: Cell
 
 func _ready():
 	assert(_textures.size() == Decoration.keys().size())
@@ -155,29 +156,32 @@ func stop_one_way():
 	$Sound/Sound_For_Glitch_Only.stop()
 	await $Column/Cell_Tops/One_Way_Direction/Direction_Animation.animation_finished
 
-func start_bug1():
+func start_():
 	$Sound/Sound_For_Glitch_Only.play()
 	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Glitch_Only_Appearing")
 	await $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.animation_finished
-	_state = State.BUGGY
+	_state = State.TELEPORT
 
-func stop_bug1():
+func stop_():
 	_state = State.NORMAL
 	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Glitch_Only_Disappearing")
 	$Sound/Sound_For_Glitch_Only.stop()
 	await $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.animation_finished
 
-func start_bug2():
+func start_teleport2():
 	$Sound/Sound_For_Screen_Glitch.play()
 	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Screen_Glitch_Appearing")
 	await $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.animation_finished
-	_state = State.BUGGY
+	_state = State.TELEPORT
 
-func stop_bug2():
+func stop_teleport2():
 	_state = State.NORMAL
 	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Screen_Glitch_Disappearing")
 	$Sound/Sound_For_Screen_Glitch.stop()
 	await $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.animation_finished
+
+func get_state() -> State:
+	return _state
 
 func lower_pylon():
 	_add_pylon()
@@ -199,6 +203,9 @@ func undrop_pylon():
 	await _pylon.undrop()
 	_remove_pylon()
 
+func get_pylon() -> Pylon:
+	return _pylon
+
 func _add_pylon():
 	if _pylon == null:
 		_pylon = _pylon_scene.instantiate()
@@ -210,8 +217,17 @@ func _remove_pylon():
 		_pylon.queue_free()
 		_pylon = null
 
-func get_state() -> State:
-	return _state
+func set_teleport_partner(partner: Cell):
+	_partner = partner
+	partner._partner = self
+
+func reset_teleport_partner():
+	if _partner:
+		_partner._partner = null
+		_partner = null
+
+func get_teleport_partner() -> Cell:
+	return _partner
 
 ##
 ## Returns true if this is the center cell, that is, if decoration is
@@ -227,5 +243,8 @@ func wait_until_stationary():
 	if _anim_player.is_playing():
 		await _anim_player.animation_finished
 
+##
+## Given the collider from a Cell, return the Cell itself.
+##
 static func get_cell_from_collider(collider: Area2D) -> Cell:
 	return collider.get_node("../..")
