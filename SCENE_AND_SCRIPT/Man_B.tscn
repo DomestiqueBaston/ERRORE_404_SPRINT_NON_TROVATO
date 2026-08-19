@@ -3227,7 +3227,7 @@ max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
-[node name="Teleport" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1993259572]
+[node name="Freeze" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1993259572]
 stream = ExtResource("33_wtakq")
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
@@ -3293,7 +3293,7 @@ max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
-[node name="Anti_Teleport" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=2050539755]
+[node name="No_Turn" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=2050539755]
 stream = ExtResource("43_m8iob")
 max_distance = 1000.0
 bus = &"BONUS_MALUS"

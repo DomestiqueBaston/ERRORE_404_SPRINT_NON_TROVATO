@@ -60,7 +60,7 @@ Les bonus :
     2. Dash – Vert (course uniquement – dure 1/2’’ – ne peut pas être interrompu ET virage impossible !) : 66% plus rapide (animation aussi). → ✔ Dash – Activable !
     3. Passe-muraille – Bleu (uniquement les murs des concurrents) – 1 seul mur → ✔ Through – Automatique !
     4. Virus – Violet (envoie automatiquement le prochain malus récolté à un adversaire aléatoire) → ✔ Virus – Automatique !
-    5. Téléportation – Jaune (destination aléatoire sur une « cellule saine »)→ ✔ Teleport – Activable !
+    5. Freeze – Jaune (Le coureur est gélé sur place, animation, déplacement, mur, etc. pendant 2 secondes)→ ✔ Freeze – Activable !
     6. Débogueur – Noir (vire un bug actif)→ ✔ Debug – Activable !
     7. Les murs tracés jusqu’à présent par les concurrents disparaissent – Blanc → ✔ Last_Longer – Automatique !
 
@@ -71,7 +71,7 @@ Les malus (applications automatiques) :
     4. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1 seconde) – Vert – dure ((2 × difficulté) + 3)’’ → ✔ Anti_Dash
     5. « Hors phase » (shader) – Bleu – dure (2 × difficulté)’’ → ✔ Phase
     6. Virus (envoie automatiquement le prochain Bonus (pas malus) récolté à un adversaire aléatoire, quitte à remplacer celui qu’il porte – Violet → ✔ Anti_Virus
-    7. Téléportation (instantané et destination aléatoire) – Jaune → ✔ Anti_Teleport
+    7. Tout droit (le coureur ne peut plus tourner pendant (difficulté) secondes) – Jaune → ✔ No_turn
 
 Les obstacles :
 - Toutes les X secondes (voir Options nécessaires dans Settings) un des obstacles est déclenché. 25% du temps, il s’agira d’1 glissement de Ligne/Colonne. La « quantité » de glissement des Ligne/Colonne se font aléatoirement d’1 à (longueur d’un côté au départ/3) cases (pour ne pas dire cellule qui pourrait être perturbant). On fait TOUJOURS glisser une ligne/colonne complète (« trous » inclus).
