@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcy7al7vi5kvs"
-path="res://.godot/imported/Portraits_BG.png-c767eba54520d3299db3a4eea1d189f0.ctex"
+uid="uid://clpf5rux2e351"
+path="res://.godot/imported/Start_Bottom.png-777ff8745c1d9c16cb99dd921313713f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/RUNNER/Portraits_BG.png"
-dest_files=["res://.godot/imported/Portraits_BG.png-c767eba54520d3299db3a4eea1d189f0.ctex"]
+source_file="res://IMAGE/MISC/BUTTON/Start_Bottom.png"
+dest_files=["res://.godot/imported/Start_Bottom.png-777ff8745c1d9c16cb99dd921313713f.ctex"]
 
 [params]
 

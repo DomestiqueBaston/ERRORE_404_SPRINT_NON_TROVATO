@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://3u5u3tfo43n"]
 
 [ext_resource type="Script" uid="uid://b75n6sj0se0gs" path="res://SCENE_AND_SCRIPT/Portraits.gd" id="1_hwl4u"]
-[ext_resource type="Texture2D" uid="uid://bjiu0lx3avcko" path="res://IMAGE/RUNNER/Portraits_Frame.png" id="1_o755c"]
-[ext_resource type="Texture2D" uid="uid://8wciooq34tsb" path="res://IMAGE/RUNNER/Portraits.png" id="1_yaltw"]
+[ext_resource type="Texture2D" uid="uid://bjiu0lx3avcko" path="res://IMAGE/RUNNER/PORTRAIT/Portraits_Frame.png" id="1_o755c"]
+[ext_resource type="Texture2D" uid="uid://8wciooq34tsb" path="res://IMAGE/RUNNER/PORTRAIT/Portraits.png" id="1_yaltw"]
 [ext_resource type="AudioStream" uid="uid://bes5a835nqime" path="res://SOUND/FX/Woosh.ogg" id="2_8y87r"]
-[ext_resource type="Texture2D" uid="uid://bcy7al7vi5kvs" path="res://IMAGE/RUNNER/Portraits_BG.png" id="2_dpf0i"]
+[ext_resource type="Texture2D" uid="uid://bcy7al7vi5kvs" path="res://IMAGE/RUNNER/PORTRAIT/Portraits_BG.png" id="2_dpf0i"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="4_dpf0i"]
-[ext_resource type="Texture2D" uid="uid://2tpjqqwsonk2" path="res://IMAGE/RUNNER/Portrait_Arrows.png" id="4_hwl4u"]
+[ext_resource type="Texture2D" uid="uid://2tpjqqwsonk2" path="res://IMAGE/RUNNER/PORTRAIT/Portrait_Arrows.png" id="4_hwl4u"]
 [ext_resource type="Shader" uid="uid://blic88jwr7a1e" path="res://SHADER/Glitch_Only.gdshader" id="4_q0tq6"]
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="7_gciow"]
 

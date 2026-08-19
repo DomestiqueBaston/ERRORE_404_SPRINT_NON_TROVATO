@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ujwxl1dl6h6y"
-path="res://.godot/imported/Timer.png-9faecde0953df1c4921a79b6bf8743cf.ctex"
+uid="uid://bcy7al7vi5kvs"
+path="res://.godot/imported/Portraits_BG.png-24e80c03410fefcce7af5cb7f99da328.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/MISC/Timer.png"
-dest_files=["res://.godot/imported/Timer.png-9faecde0953df1c4921a79b6bf8743cf.ctex"]
+source_file="res://IMAGE/RUNNER/PORTRAIT/Portraits_BG.png"
+dest_files=["res://.godot/imported/Portraits_BG.png-24e80c03410fefcce7af5cb7f99da328.ctex"]
 
 [params]
 

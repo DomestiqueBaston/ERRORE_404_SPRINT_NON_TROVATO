@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bs6lfs8h7kibb"]
 
-[ext_resource type="Texture2D" uid="uid://dntggrgsj0hck" path="res://IMAGE/MISC/Timer_Bottom.png" id="1_ts8rr"]
-[ext_resource type="Texture2D" uid="uid://cgus6d8llm7p8" path="res://IMAGE/MISC/Timer_Top.png" id="2_888e3"]
-[ext_resource type="Texture2D" uid="uid://ujwxl1dl6h6y" path="res://IMAGE/MISC/Timer.png" id="3_n3c8u"]
+[ext_resource type="Texture2D" uid="uid://dntggrgsj0hck" path="res://IMAGE/MISC/BUTTON/Timer_Bottom.png" id="1_ts8rr"]
+[ext_resource type="Texture2D" uid="uid://cgus6d8llm7p8" path="res://IMAGE/MISC/BUTTON/Timer_Top.png" id="2_888e3"]
+[ext_resource type="Texture2D" uid="uid://ujwxl1dl6h6y" path="res://IMAGE/MISC/BUTTON/Timer.png" id="3_n3c8u"]
 [ext_resource type="Script" uid="uid://bbt0f7cqh233k" path="res://SCENE_AND_SCRIPT/Quit_Button.gd" id="4_lslwb"]
 
 [node name="Quit_Button" type="Control" unique_id=1295710875]

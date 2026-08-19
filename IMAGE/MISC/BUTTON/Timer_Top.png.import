@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j2srdtgi2jky"
-path="res://.godot/imported/Start_Top.png-ce5525b164dec1647256b506a68cf2f5.ctex"
+uid="uid://cgus6d8llm7p8"
+path="res://.godot/imported/Timer_Top.png-9068f2e071a555de7f9a03a6827453ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IMAGE/MISC/Start_Top.png"
-dest_files=["res://.godot/imported/Start_Top.png-ce5525b164dec1647256b506a68cf2f5.ctex"]
+source_file="res://IMAGE/MISC/BUTTON/Timer_Top.png"
+dest_files=["res://.godot/imported/Timer_Top.png-9068f2e071a555de7f9a03a6827453ef.ctex"]
 
 [params]
 
