@@ -3387,6 +3387,12 @@ max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
+[node name="Teleport" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=839747314]
+stream = ExtResource("32_dclff")
+max_distance = 1000.0
+bus = &"BONUS_MALUS"
+metadata/_edit_lock_ = true
+
 [node name="Debug" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1259125296]
 stream = ExtResource("33_kwd4r")
 volume_db = 2.5
