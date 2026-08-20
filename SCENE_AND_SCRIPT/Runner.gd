@@ -24,6 +24,7 @@ var is_jumping: bool = false
 var is_sliding: bool = false
 var is_dead: bool = false
 var is_falling: bool = false
+var is_teleporting: bool = false
 
 # Directions figées
 var jump_direction: Vector2 = Vector2.ZERO
@@ -154,9 +155,7 @@ func _process(delta: float) -> void:
 				else:
 					print("Empty")
 			if next_cell and next_cell.get_state() == Cell.State.TELEPORT:
-				var other_cell = next_cell.get_teleport_partner()
-				global_position = other_cell.global_position
-				next_cell = other_cell
+				_teleport(next_cell.get_teleport_partner())
 			_curr_cell = next_cell
 
 		# Note the current position of the current cell for next time.
@@ -292,6 +291,20 @@ func is_valid_direction(new_direction: Vector2) -> bool:
 	if last_direction == Vector2.ZERO:
 		return true
 	return not is_zero_approx(last_direction.dot(new_direction) + 1.0)
+
+func _teleport(destination: Cell):
+	if is_teleporting:
+		return
+	is_teleporting = true
+	$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Teleport.play()
+	var anim: AnimationPlayer = $Animation_Bonus_Malus
+	anim.play("Bonus_Malus")
+	await anim.animation_finished
+	_curr_cell = destination
+	_curr_cell_pos = destination.global_position
+	global_position = _curr_cell_pos
+	is_teleporting = false
+	anim.play("Bonus_Malus")
 
 #
 # Methods called by run cycle animation.
