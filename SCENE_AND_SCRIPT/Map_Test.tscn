@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://c4s5ivkq1vpas" path="res://SCENE_AND_SCRIPT/Map_Test.gd" id="1_7cuhg"]
 [ext_resource type="PackedScene" uid="uid://bs6lfs8h7kibb" path="res://SCENE_AND_SCRIPT/Quit_Button.tscn" id="2_5js3l"]
-[ext_resource type="PackedScene" uid="uid://brsvllplyc7ih" path="res://SCENE_AND_SCRIPT/Woman_A.tscn" id="3_v7f3u"]
 
 [node name="Map_Test" type="Node2D" unique_id=1968653440]
 script = ExtResource("1_7cuhg")
@@ -15,11 +14,3 @@ offset_left = 435.0
 offset_top = 225.0
 offset_right = 525.0
 offset_bottom = 315.0
-
-[node name="Woman_A" parent="." unique_id=1635856392 instance=ExtResource("3_v7f3u")]
-z_index = 1
-
-[node name="AudioListener2D" parent="Woman_A/Character/Papa_Sprite/Runner_Sprite" parent_id_path=PackedInt32Array(1635856392, 1169504972) index="4" unique_id=612860056]
-current = true
-
-[editable path="Woman_A"]

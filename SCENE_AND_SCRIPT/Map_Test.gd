@@ -1,5 +1,14 @@
 extends Node2D
 
+enum Character {
+	WOMAN_A,
+	WOMAN_B,
+	MAN_A,
+	MAN_B
+}
+
+@export var character: Character = Character.WOMAN_A
+
 const START_ACTIONS := [
 	"ui_a_button",
 	"ui_b_button",
@@ -21,7 +30,20 @@ func _ready():
 	_map = _map_scene.instantiate()
 	_map.map_size = Globals.map_size
 	add_child(_map)
-	$Woman_A.set_map(_map)
+
+	var scene: PackedScene
+	match character:
+		Character.WOMAN_A:
+			scene = load("res://SCENE_AND_SCRIPT/Woman_A.tscn")
+		Character.WOMAN_B:
+			scene = load("res://SCENE_AND_SCRIPT/Woman_B.tscn")
+		Character.MAN_A:
+			scene = load("res://SCENE_AND_SCRIPT/Man_A.tscn")
+		Character.MAN_B:
+			scene = load("res://SCENE_AND_SCRIPT/Man_B.tscn")
+	var runner = scene.instantiate()
+	add_child(runner)
+	runner.set_map(_map)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Détection de la première action du joueur
