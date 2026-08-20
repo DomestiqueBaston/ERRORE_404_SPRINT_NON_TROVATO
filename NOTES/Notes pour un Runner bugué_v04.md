@@ -54,13 +54,14 @@ Les bonus et malus en jeu (Cube.tscn) :
 - Au ramassage d’un Bonus/Malus, on joue le son correspondant au Bonus/Malus et on joue le clignotement du concurrent (Animation_Bonus_Malus).
 - À l’activation (automatique ou au déclenchement du joueur) du Bonus/Malus on joue également le son correspondant et on joue le clignotement du concurrent.
 - Si le ramassage et l’activation se font en même temps, on ne joue qu’une fois le son correspondant et pareil pour le clignotement du concurrent.
+- Lorsque l’effet du Bonus/Malus dure plus longtemps que le son et l’animation du Bonus/Malus, à la fin de l’effet du Bonus/Malus, on rejoue le clignotement du coureur et le son du Bonus/Malus OPPOSÉ (par ex., pour Bonus 1., à la fin, on joue le son Malus 1.).
 
 Les bonus :
     1. Invulnérabilité – Rouge (annule le prochain malus récolté) – dure (5 ÷ difficulté)’’ → ✔ Invincible – Automatique !
     2. Dash – Vert (course uniquement – dure 1/2’’ – ne peut pas être interrompu ET virage impossible !) : 66% plus rapide (animation aussi). → ✔ Dash – Activable !
     3. Passe-muraille – Bleu (uniquement les murs des concurrents) – 1 seul mur → ✔ Through – Automatique !
     4. Virus – Violet (envoie automatiquement le prochain malus récolté à un adversaire aléatoire) → ✔ Virus – Automatique !
-    5. Freeze – Jaune (Le coureur est gélé sur place, animation, déplacement, mur, etc. pendant 2 secondes)→ ✔ Freeze – Activable !
+    5. Auto-dodge – Jaune (les obstacles et trous évitables par glissement ou saut sont évités automatiquement si le joueur ne le fait pas) – dure (2 × difficulté)’’)→ ✔ Auto_Dodge – Activable !
     6. Débogueur – Noir (vire un bug actif)→ ✔ Debug – Activable !
     7. Les murs tracés jusqu’à présent par les concurrents disparaissent – Blanc → ✔ Last_Longer – Automatique !
 
@@ -71,7 +72,7 @@ Les malus (applications automatiques) :
     4. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1 seconde) – Vert – dure ((2 × difficulté) + 3)’’ → ✔ Anti_Dash
     5. « Hors phase » (shader) – Bleu – dure (2 × difficulté)’’ → ✔ Phase
     6. Virus (envoie automatiquement le prochain Bonus (pas malus) récolté à un adversaire aléatoire, quitte à remplacer celui qu’il porte – Violet → ✔ Anti_Virus
-    7. Tout droit (le coureur ne peut plus tourner pendant (difficulté) secondes) – Jaune → ✔ No_turn
+    7. Tout droit (le coureur ne peut plus tourner pendant (difficulté ÷ 2)’’) – Jaune → ✔ No_turn
 
 Les obstacles :
 - Toutes les X secondes (voir Options nécessaires dans Settings) un des obstacles est déclenché. 25% du temps, il s’agira d’1 glissement de Ligne/Colonne. La « quantité » de glissement des Ligne/Colonne se font aléatoirement d’1 à (longueur d’un côté au départ/3) cases (pour ne pas dire cellule qui pourrait être perturbant). On fait TOUJOURS glisser une ligne/colonne complète (« trous » inclus).

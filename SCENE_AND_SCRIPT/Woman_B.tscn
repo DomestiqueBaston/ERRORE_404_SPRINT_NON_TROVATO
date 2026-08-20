@@ -3381,7 +3381,7 @@ max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
-[node name="Freeze" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=756513675]
+[node name="Auto_Dodge" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=756513675]
 stream = ExtResource("32_dclff")
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
