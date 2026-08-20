@@ -291,20 +291,21 @@ libraries/ = SubResource("AnimationLibrary_1e78n")
 metadata/_edit_lock_ = true
 
 [node name="Cube_Hum" type="AudioStreamPlayer2D" parent="Cube_Sound" unique_id=133109709]
-volume_db = -5.0
+volume_db = 5.0
 autoplay = true
 max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Cube_On_Off" type="AudioStreamPlayer2D" parent="Cube_Sound" unique_id=605006399]
+volume_db = 10.0
 max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Grab_Cube" type="AudioStreamPlayer2D" parent="Cube_Sound" unique_id=1610521886]
 stream = ExtResource("9_oh6sb")
-volume_db = -12.5
+volume_db = -5.0
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
