@@ -1,25 +1,41 @@
 @tool
 class_name Map extends Node2D
 
+## The actual length of one side of the map is 2 * map_size + 1 cells.
 @export_range(1, 10) var map_size: int = 4:
 	set(size):
 		if map_size != size:
 			map_size = size
 			_build_map()
 
-@export var slide_speed: float = 9
+## How long it takes for a row or column to slide a distance of one cell, in
+## seconds.
+@export var slide_time: float = 9
 
 var _cell_scene := preload("res://SCENE_AND_SCRIPT/Cell.tscn")
 var _door_scene := preload("res://SCENE_AND_SCRIPT/Door.tscn")
 
 const _cell_offset_x = 236.0
-const _cell_offset_y = 118.0
+const _cell_offset_y = 0.5 * _cell_offset_x
 const _cell_step_x = 0.5 * _cell_offset_x
 const _cell_step_y = 0.5 * _cell_offset_y
 
-var _cells: Dictionary[Vector2i, Cell]
-var _available_cells: Array[Cell]
+# The "404" cell at the center of the map (which may not actually be at the
+# center if rows or columns have been sliding around).
 var _center_cell: Cell
+
+# All cells in the map, with their current locations (except while sliding).
+var _cells: Dictionary[Vector2i, Cell]
+
+# Cells that are available to be turned into obstacles (not the "center" cell
+# or cells that are already obstacles).
+var _available_cells: Array[Cell]
+
+# Cells that are now obstacles: this is necessary because some obstacles can
+# be "canceled" (removed before their time has lapsed), so removing them from
+# this array is the most reliable way of determining whether they are still
+# around or not.
+var _obstacle_cells: Array[Cell]
 
 enum ObstacleType {
 	ROW_SLIDE,
@@ -38,13 +54,17 @@ enum ObstacleType {
 
 class ObstacleEvent extends RefCounted:
 	var type: ObstacleType
+	# false when putting an obstacle in place, true when removing it afterward
 	var is_undo: bool = false
+	# for undo events in particular: the cell containing the obstacle
 	var cell: Cell
+	# for teleport events only: the other cell
 	var cell2: Cell
 
 	func _init(event_type: ObstacleType):
 		type = event_type
 
+# Events that have been blocked until a row or column finishes sliding.
 var _pending_events: Array[ObstacleEvent]
 
 enum SlideState {
@@ -125,6 +145,7 @@ func _build_map():
 
 	_available_cells = _cells.values().duplicate()
 	_available_cells.erase(_center_cell)
+	_obstacle_cells.clear()
 
 func _build_edge(parent: Node2D, edge: Globals.Axis):
 	var uv0: Vector2i
@@ -232,22 +253,13 @@ func _stop_cell_one_way(cell: Cell):
 	await cell.stop_one_way()
 
 func _start_cell_teleport(event: ObstacleEvent):
-	match event.type:
-		ObstacleType.CELL_TELEPORT1:
-			event.cell.start_()
-			await event.cell2.start_()
-		ObstacleType.CELL_TELEPORT2:
-			event.cell.start_teleport2()
-			await event.cell2.start_teleport2()
+	var type = 1 if event.type == ObstacleType.CELL_TELEPORT1 else 2
+	event.cell.start_teleport(type)
+	await event.cell2.start_teleport(type)
 
 func _stop_cell_teleport(event: ObstacleEvent):
-	match event.type:
-		ObstacleType.CELL_TELEPORT1:
-			event.cell.stop_()
-			await event.cell2.stop_()
-		ObstacleType.CELL_TELEPORT2:
-			event.cell.stop_teleport2()
-			await event.cell2.stop_teleport2()
+	event.cell.stop_teleport()
+	await event.cell2.stop_teleport()
 
 #
 # Slides the given column (u) the given number of cells to the right (if
@@ -299,7 +311,7 @@ func _slide(axis: StringName, index: int, distance: int):
 
 	var updated_cells: Dictionary[Vector2i, Cell]
 	var other_axis = &"x" if axis == &"y" else &"y"
-	var duration = absf(slide_speed * distance)
+	var duration = absf(slide_time * distance)
 	var tween: Tween = create_tween().set_parallel()
 
 	for key in column_keys:
@@ -396,69 +408,69 @@ func _handle_obstacle_event(event: ObstacleEvent):
 			_timer.paused = false
 
 		ObstacleType.CELL_LOWER:
-			if event.is_undo:
-				await _raise_cell(event.cell)
-				_available_cells.append(event.cell)
-			else:
+			if not event.is_undo:
 				event.cell = _pick_random_cell()
 				await _lower_cell(event.cell)
 				_schedule_undo_event(event)
-		
-		ObstacleType.CELL_HIDE:
-			if event.is_undo:
-				await _show_cell(event.cell)
+			elif _remove_obstacle(event.cell):
+				await _raise_cell(event.cell)
 				_available_cells.append(event.cell)
-			else:
+
+		ObstacleType.CELL_HIDE:
+			if not event.is_undo:
 				event.cell = _pick_random_cell()
 				await _hide_cell(event.cell)
 				_schedule_undo_event(event)
+			elif _remove_obstacle(event.cell):
+				await _show_cell(event.cell)
+				_available_cells.append(event.cell)
 
 		ObstacleType.CELL_ONE_WAY:
-			if event.is_undo:
-				# the one-way obstacle may have been removed already if a runner
-				# ran into it
-				if event.cell.get_state() == Cell.State.ONE_WAY:
-					await _stop_cell_one_way(event.cell)
-					_available_cells.append(event.cell)
-			else:
+			if not event.is_undo:
 				var dir = Globals.Axis.values().pick_random()
 				event.cell = _pick_random_cell()
 				await _start_cell_one_way(event.cell, dir)
 				_schedule_undo_event(event)
+			# obstacle may have been removed already if a runner ran into it!
+			elif _remove_obstacle(event.cell):
+				await _stop_cell_one_way(event.cell)
+				_available_cells.append(event.cell)
 
 		ObstacleType.CELL_TELEPORT1, ObstacleType.CELL_TELEPORT2:
-			if event.is_undo:
-				await _stop_cell_teleport(event)
-				event.cell.reset_teleport_partner()
-				_available_cells.append(event.cell)
-				_available_cells.append(event.cell2)
-			else:
+			if not event.is_undo:
 				event.cell = _pick_random_cell()
 				event.cell2 = _pick_distant_random_cell(event.cell)
 				if event.cell2:
 					event.cell.set_teleport_partner(event.cell2)
 					await _start_cell_teleport(event)
 					_schedule_undo_event(event)
-				else:
+				elif _remove_obstacle(event.cell):
 					_available_cells.append(event.cell)
+			# obstacle may have been removed already if a runner ran into it!
+			elif _remove_obstacle(event.cell):
+				if _remove_obstacle(event.cell2):
+					await _stop_cell_teleport(event)
+					event.cell.reset_teleport_partner()
+					_available_cells.append(event.cell2)
+				_available_cells.append(event.cell)
 
 		ObstacleType.PYLON_LOWER:
-			if event.is_undo:
-				await _raise_pylon(event.cell)
-				_available_cells.append(event.cell)
-			else:
+			if not event.is_undo:
 				event.cell = _pick_random_cell()
 				await _lower_pylon(event.cell)
 				_schedule_undo_event(event)
+			elif _remove_obstacle(event.cell):
+				await _raise_pylon(event.cell)
+				_available_cells.append(event.cell)
 
 		ObstacleType.PYLON_DROP:
-			if event.is_undo:
-				await _undrop_pylon(event.cell)
-				_available_cells.append(event.cell)
-			else:
+			if not event.is_undo:
 				event.cell = _pick_random_cell()
 				await _drop_pylon(event.cell)
 				_schedule_undo_event(event)
+			elif _remove_obstacle(event.cell):
+				await _undrop_pylon(event.cell)
+				_available_cells.append(event.cell)
 
 		ObstacleType.CENTER_LOWER:
 			await _center_cell.lower()
@@ -505,11 +517,14 @@ func _pick_random_column() -> int:
 #
 # Picks an "available" cell at random (a cell that is not the center cell, has
 # not been lowered, hidden, made one-way, etc., and does not have a pylon on
-# it). The cell is removed from the array of available cells and returned.
+# it). The cell is removed from the array of available cells, added to the
+# array of obstance cells, and returned.
 #
 func _pick_random_cell() -> Cell:
 	var index = randi() % _available_cells.size()
-	return _available_cells.pop_at(index)
+	var cell = _available_cells.pop_at(index)
+	_obstacle_cells.append(cell)
+	return cell
 
 #
 # Like _pick_random_cell(), but picks a cell that is more than a certain
@@ -527,8 +542,18 @@ func _pick_distant_random_cell(cell1: Cell) -> Cell:
 			cell2 = other
 		else:
 			failures.append(other)
-	_available_cells.append_array(failures)
+	for cell in failures:
+		_available_cells.append(cell)
+		_obstacle_cells.erase(cell)
 	return cell2
+
+func _remove_obstacle(cell: Cell) -> bool:
+	var index = _obstacle_cells.find(cell)
+	if index < 0:
+		return false
+	else:
+		_obstacle_cells.remove_at(index)
+		return true
 
 #
 # Generates a new obstacle when the timer goes off.
@@ -548,12 +573,23 @@ func _lower_center_cell():
 	_handle_obstacle_event(event)
 
 ##
-## Removes a one-way cell obstacle immediately, rather than waiting for the
-## duration of the obstacle to lapse.
+## Removes a one-way obstacle immediately, rather than waiting for the duration
+## of the obstacle to lapse.
 ##
 func cancel_one_way(cell: Cell):
-	if cell.get_state() == Cell.State.ONE_WAY:
-		var event = ObstacleEvent.new(ObstacleType.CELL_ONE_WAY)
-		event.cell = cell
-		event.is_undo = true
-		_handle_obstacle_event(event)
+	var event = ObstacleEvent.new(ObstacleType.CELL_ONE_WAY)
+	event.cell = cell
+	event.is_undo = true
+	_handle_obstacle_event(event)
+
+##
+## Removes a teleport obstacle (both cells) immediately, rather than waiting for
+## the duration of the obstacle to lapse.
+##
+func cancel_teleport(cell: Cell):
+	var type = ObstacleType.CELL_TELEPORT1 + (cell.get_teleport_type() - 1)
+	var event = ObstacleEvent.new(type as ObstacleType)
+	event.cell = cell
+	event.cell2 = cell.get_teleport_partner()
+	event.is_undo = true
+	_handle_obstacle_event(event)

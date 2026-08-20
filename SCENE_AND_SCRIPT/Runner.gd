@@ -159,7 +159,7 @@ func _process(delta: float) -> void:
 			if next_cell:
 				match next_cell.get_state():
 					Cell.State.TELEPORT:
-						_check_teleport(next_cell.get_teleport_partner())
+						_check_teleport(next_cell)
 					Cell.State.ONE_WAY:
 						_check_one_way(next_cell)
 			_curr_cell = next_cell
@@ -298,8 +298,9 @@ func is_valid_direction(new_direction: Vector2) -> bool:
 		return true
 	return not is_zero_approx(last_direction.dot(new_direction) + 1.0)
 
-func _check_teleport(destination: Cell):
-	if is_teleporting:
+func _check_teleport(cell: Cell):
+	var destination = cell.get_teleport_partner()
+	if is_teleporting or destination == null:
 		return
 	is_teleporting = true
 	$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Teleport.play()
@@ -311,6 +312,9 @@ func _check_teleport(destination: Cell):
 	global_position = _curr_cell_pos
 	is_teleporting = false
 	anim.play("Bonus_Malus")
+	if _map:
+		await anim.animation_finished
+		_map.cancel_teleport(destination)
 
 func _check_one_way(cell: Cell):
 	if not collider.overlaps_area(cell.get_one_way_collider()):

@@ -55,6 +55,7 @@ enum State {
 @onready var _one_way_direction: Node2D = $Column/Cell_Tops/One_Way_Direction
 @onready var _one_way_animation: AnimationPlayer = $Column/Cell_Tops/One_Way_Direction/Direction_Animation
 @onready var _one_way_collider: Area2D = $Column/Cell_Tops/One_Way_Direction/Shadow_Orientation/Direction_Collider
+@onready var _glitch_anim: AnimationPlayer = $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch
 
 @onready var _textures = [
 	$Column/Cell_Tops/Cell_Textures/Cellule_De_Terrain_Centre,
@@ -90,6 +91,7 @@ var _pylon_scene = preload("res://SCENE_AND_SCRIPT/Pylon.tscn")
 var _pylon: Pylon
 var _state: State = State.NORMAL
 var _partner: Cell
+var _teleport_type: int
 
 func _ready():
 	assert(_textures.size() == Decoration.keys().size())
@@ -159,29 +161,37 @@ func stop_one_way():
 	$Sound/Sound_For_Glitch_Only.stop()
 	await _one_way_animation.animation_finished
 
-func start_():
-	$Sound/Sound_For_Glitch_Only.play()
-	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Glitch_Only_Appearing")
-	await $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.animation_finished
+##
+## Turns the cell into a teleport cell. The type parameter chooses between two
+## glitch types, and should be 1 or 2. Be sure to call start_teleport() for the
+## other teleport cell as well, and to call set_teleport_partner() to associate
+## the two cells.
+##
+func start_teleport(type: int):
+	if type == 1:
+		$Sound/Sound_For_Glitch_Only.play()
+		_glitch_anim.play("Glitch_Only_Appearing")
+	else:
+		$Sound/Sound_For_Screen_Glitch.play()
+		_glitch_anim.play("Screen_Glitch_Appearing")
+	await _glitch_anim.animation_finished
+	_teleport_type = type
 	_state = State.TELEPORT
 
-func stop_():
+##
+## Turns the teleport cell back into a normal cell. Be sure to call
+## stop_teleport() for the other teleport cell as well, and to call
+## reset_teleport_partner() to disassociate the two cells.
+##
+func stop_teleport():
 	_state = State.NORMAL
-	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Glitch_Only_Disappearing")
-	$Sound/Sound_For_Glitch_Only.stop()
-	await $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.animation_finished
-
-func start_teleport2():
-	$Sound/Sound_For_Screen_Glitch.play()
-	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Screen_Glitch_Appearing")
-	await $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.animation_finished
-	_state = State.TELEPORT
-
-func stop_teleport2():
-	_state = State.NORMAL
-	$Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.play("Screen_Glitch_Disappearing")
-	$Sound/Sound_For_Screen_Glitch.stop()
-	await $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch.animation_finished
+	if _teleport_type == 1:
+		_glitch_anim.play("Glitch_Only_Disappearing")
+		$Sound/Sound_For_Glitch_Only.stop()
+	else:
+		_glitch_anim.play("Screen_Glitch_Disappearing")
+		$Sound/Sound_For_Screen_Glitch.stop()
+	await _glitch_anim.animation_finished
 
 func get_state() -> State:
 	return _state
@@ -220,17 +230,37 @@ func _remove_pylon():
 		_pylon.queue_free()
 		_pylon = null
 
+##
+## Tells a new teleport cell which other cell it teleports to/from. This only
+## needs to be called for one of the two cells; it sets the partner cell for
+## the other cell as well.
+##
 func set_teleport_partner(partner: Cell):
 	_partner = partner
 	partner._partner = self
 
+##
+## Resets a teleport cell's "partner" cell when they turn back into normal
+## cells. This only needs to be called for one of the two cells; it resets the
+## partner cell for both.
+##
 func reset_teleport_partner():
 	if _partner:
 		_partner._partner = null
 		_partner = null
 
+##
+## Returns the cell that this teleport cell teleports to/from.
+##
 func get_teleport_partner() -> Cell:
 	return _partner
+
+##
+## For a teleport cell, returns 1 or 2, depending on the parameter that was
+## passed to start_teleport().
+##
+func get_teleport_type() -> int:
+	return _teleport_type
 
 func get_one_way_collider() -> Area2D:
 	return _one_way_collider
