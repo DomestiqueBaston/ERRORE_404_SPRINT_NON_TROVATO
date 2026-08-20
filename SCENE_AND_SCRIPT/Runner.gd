@@ -319,6 +319,9 @@ func _check_teleport(cell: Cell):
 func _check_one_way(cell: Cell):
 	if not collider.overlaps_area(cell.get_one_way_collider()):
 		return
+	var anim: AnimationPlayer = $Animation_Bonus_Malus
+	anim.play("Bonus_Malus")
+	await anim.animation_finished
 	match cell.get_one_way_direction():
 		Globals.Axis.NW:
 			last_direction = _northwest
@@ -329,6 +332,7 @@ func _check_one_way(cell: Cell):
 		Globals.Axis.SE:
 			last_direction = _southeast
 	last_non_zero_direction = last_direction
+	anim.play("Bonus_Malus")
 	if _map:
 		_map.cancel_one_way(cell)
 
