@@ -30,7 +30,11 @@ var is_teleporting: bool = false
 var jump_direction: Vector2 = Vector2.ZERO
 var slide_direction: Vector2 = Vector2.ZERO
 
-var _rotation: float = deg_to_rad(18.4)
+const _rotation: float = deg_to_rad(18.4)
+var _northwest: Vector2 = Vector2(-1, -1).rotated(-_rotation).normalized()
+var _northeast: Vector2 = Vector2(1, -1).rotated(_rotation).normalized()
+var _southwest: Vector2 = Vector2(-1, 1).rotated(_rotation).normalized()
+var _southeast: Vector2 = Vector2(1, 1).rotated(-_rotation).normalized()
 
 var _map: Map
 var _has_left_center: bool = false
@@ -73,29 +77,27 @@ func _process(delta: float) -> void:
 		if Globals.use_diagonals_for_movement:
 			if Input.is_action_pressed("ui_left_button"):
 				if Input.is_action_pressed("ui_down_button"):
-					input_direction = Vector2(-1, 1).rotated(_rotation)
+					input_direction = _southwest
 				elif Input.is_action_pressed("ui_up_button"):
-					input_direction = Vector2(-1, -1).rotated(-_rotation)
+					input_direction = _northwest
 			elif Input.is_action_pressed("ui_right_button"):
 				if Input.is_action_pressed("ui_down_button"):
-					input_direction = Vector2(1, 1).rotated(-_rotation)
+					input_direction = _southeast
 				elif Input.is_action_pressed("ui_up_button"):
-					input_direction = Vector2(1, -1).rotated(_rotation)
+					input_direction = _northeast
 		else:
 			if Input.is_action_pressed("ui_left_button"):
-				input_direction = Vector2(-1, 1).rotated(_rotation)
+				input_direction = _southwest
 			elif Input.is_action_pressed("ui_up_button"):
-				input_direction = Vector2(-1, -1).rotated(-_rotation)
+				input_direction = _northwest
 			elif Input.is_action_pressed("ui_right_button"):
-				input_direction = Vector2(1, -1).rotated(_rotation)
+				input_direction = _northeast
 			elif Input.is_action_pressed("ui_down_button"):
-				input_direction = Vector2(1, 1).rotated(-_rotation)
+				input_direction = _southeast
 
-		if input_direction != Vector2.ZERO:
-			var normdir = input_direction.normalized()
-			if is_valid_direction(normdir):
-				last_direction = normdir
-				last_non_zero_direction = last_direction
+		if input_direction and is_valid_direction(input_direction):
+			last_direction = input_direction
+			last_non_zero_direction = input_direction
 
 	# === Direction actuelle ===
 	if is_jumping:
@@ -154,8 +156,12 @@ func _process(delta: float) -> void:
 					print(Cell.State.keys()[next_cell.get_state()].capitalize())
 				else:
 					print("Empty")
-			if next_cell and next_cell.get_state() == Cell.State.TELEPORT:
-				_teleport(next_cell.get_teleport_partner())
+			if next_cell:
+				match next_cell.get_state():
+					Cell.State.TELEPORT:
+						_check_teleport(next_cell.get_teleport_partner())
+					Cell.State.ONE_WAY:
+						_check_one_way(next_cell)
 			_curr_cell = next_cell
 
 		# Note the current position of the current cell for next time.
@@ -292,7 +298,7 @@ func is_valid_direction(new_direction: Vector2) -> bool:
 		return true
 	return not is_zero_approx(last_direction.dot(new_direction) + 1.0)
 
-func _teleport(destination: Cell):
+func _check_teleport(destination: Cell):
 	if is_teleporting:
 		return
 	is_teleporting = true
@@ -305,6 +311,22 @@ func _teleport(destination: Cell):
 	global_position = _curr_cell_pos
 	is_teleporting = false
 	anim.play("Bonus_Malus")
+
+func _check_one_way(cell: Cell):
+	if not collider.overlaps_area(cell.get_one_way_collider()):
+		return
+	match cell.get_one_way_direction():
+		Globals.Axis.NW:
+			last_direction = _northwest
+		Globals.Axis.NE:
+			last_direction = _northeast
+		Globals.Axis.SW:
+			last_direction = _southwest
+		Globals.Axis.SE:
+			last_direction = _southeast
+	last_non_zero_direction = last_direction
+	if _map:
+		_map.cancel_one_way(cell)
 
 #
 # Methods called by run cycle animation.

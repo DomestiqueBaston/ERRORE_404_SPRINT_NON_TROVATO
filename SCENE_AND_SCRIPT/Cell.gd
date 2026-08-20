@@ -52,6 +52,9 @@ enum State {
 }
 
 @onready var _anim_player: AnimationPlayer = $Global_Cell
+@onready var _one_way_direction: Node2D = $Column/Cell_Tops/One_Way_Direction
+@onready var _one_way_animation: AnimationPlayer = $Column/Cell_Tops/One_Way_Direction/Direction_Animation
+@onready var _one_way_collider: Area2D = $Column/Cell_Tops/One_Way_Direction/Shadow_Orientation/Direction_Collider
 
 @onready var _textures = [
 	$Column/Cell_Tops/Cell_Textures/Cellule_De_Terrain_Centre,
@@ -145,16 +148,16 @@ func get_sliding_animation_stop_length() -> float:
 
 func start_one_way(dir: Globals.Axis):
 	$Sound/Sound_For_Glitch_Only.play()
-	$Column/Cell_Tops/One_Way_Direction.set_direction(dir)
-	$Column/Cell_Tops/One_Way_Direction/Direction_Animation.play("Appearing")
-	await $Column/Cell_Tops/One_Way_Direction/Direction_Animation.animation_finished
+	_one_way_direction.set_direction(dir)
+	_one_way_animation.play("Appearing")
+	await _one_way_animation.animation_finished
 	_state = State.ONE_WAY
 
 func stop_one_way():
 	_state = State.NORMAL
-	$Column/Cell_Tops/One_Way_Direction/Direction_Animation.play("Disappearing")
+	_one_way_animation.play("Disappearing")
 	$Sound/Sound_For_Glitch_Only.stop()
-	await $Column/Cell_Tops/One_Way_Direction/Direction_Animation.animation_finished
+	await _one_way_animation.animation_finished
 
 func start_():
 	$Sound/Sound_For_Glitch_Only.play()
@@ -229,6 +232,12 @@ func reset_teleport_partner():
 func get_teleport_partner() -> Cell:
 	return _partner
 
+func get_one_way_collider() -> Area2D:
+	return _one_way_collider
+
+func get_one_way_direction() -> Globals.Axis:
+	return _one_way_direction.get_direction()
+
 ##
 ## Returns true if this is the center cell, that is, if decoration is
 ## Decoration.CENTER.
@@ -244,7 +253,9 @@ func wait_until_stationary():
 		await _anim_player.animation_finished
 
 ##
-## Given the collider from a Cell, return the Cell itself.
+## Given the collider from a cell, returns the Cell itself. Returns null if the
+## collider does not belong to a cell.
 ##
 static func get_cell_from_collider(collider: Area2D) -> Cell:
-	return collider.get_node("../..")
+	var cell = collider.get_node_or_null("../..")
+	return cell if cell is Cell else null

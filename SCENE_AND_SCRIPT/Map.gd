@@ -195,11 +195,11 @@ static func _get_cell_index(pos: Vector2) -> Vector2i:
 func get_cell_at(collider: Area2D) -> Cell:
 	# this doesn't work if for sliding cells!
 	#return _cells.get(_get_cell_index(pos))
-	var areas = collider.get_overlapping_areas()
-	if areas:
-		return Cell.get_cell_from_collider(areas.front())
-	else:
-		return null
+	for area in collider.get_overlapping_areas():
+		var cell = Cell.get_cell_from_collider(area)
+		if cell:
+			return cell
+	return null
 
 ##
 ## Returns the cell at the center of the map ("404"). Note that the cell may
@@ -415,8 +415,11 @@ func _handle_obstacle_event(event: ObstacleEvent):
 
 		ObstacleType.CELL_ONE_WAY:
 			if event.is_undo:
-				await _stop_cell_one_way(event.cell)
-				_available_cells.append(event.cell)
+				# the one-way obstacle may have been removed already if a runner
+				# ran into it
+				if event.cell.get_state() == Cell.State.ONE_WAY:
+					await _stop_cell_one_way(event.cell)
+					_available_cells.append(event.cell)
 			else:
 				var dir = Globals.Axis.values().pick_random()
 				event.cell = _pick_random_cell()
@@ -543,3 +546,14 @@ func _lower_center_cell():
 	var event = ObstacleEvent.new(ObstacleType.CENTER_LOWER)
 	event.cell = _center_cell
 	_handle_obstacle_event(event)
+
+##
+## Removes a one-way cell obstacle immediately, rather than waiting for the
+## duration of the obstacle to lapse.
+##
+func cancel_one_way(cell: Cell):
+	if cell.get_state() == Cell.State.ONE_WAY:
+		var event = ObstacleEvent.new(ObstacleType.CELL_ONE_WAY)
+		event.cell = cell
+		event.is_undo = true
+		_handle_obstacle_event(event)
