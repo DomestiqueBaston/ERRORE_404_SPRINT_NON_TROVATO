@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://nr37tg36a6ub" path="res://SOUND/FX/RUNNER/Both_Feet_Falling.ogg" id="8_rdls7"]
 [ext_resource type="AudioStream" uid="uid://bom677o0xms5i" path="res://SOUND/FX/Disappearing.ogg" id="10_305es"]
 [ext_resource type="AudioStream" uid="uid://3pw2jkhk3kd7" path="res://SOUND/FX/RUNNER/Woman_B_Falling.ogg" id="11_4pmps"]
+[ext_resource type="AudioStream" uid="uid://b2fomf0xvu37s" path="res://SOUND/FX/RUNNER/Auto_Dodge.ogg" id="11_yl0jf"]
 [ext_resource type="AudioStream" uid="uid://cns80ks0bg3jv" path="res://SOUND/FX/RUNNER/Foot_Step_02.ogg" id="13_ifvtu"]
 [ext_resource type="AudioStream" uid="uid://dbggngg0ot4i0" path="res://SOUND/FX/RUNNER/Woman_B_Ouch.ogg" id="13_lgnag"]
 [ext_resource type="AudioStream" uid="uid://wm0mpe0ypbad" path="res://SOUND/FX/RUNNER/Woman_A_Pushing.ogg" id="14_w2sfk"]
@@ -22,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://dsr0lb7uc7k7s" path="res://SOUND/FX/Crackling_Noise_C.ogg" id="20_ksadg"]
 [ext_resource type="AudioStream" uid="uid://c0wgwx2yy2orr" path="res://SOUND/FX/Crackling_Noise_G.ogg" id="21_4mhuh"]
 [ext_resource type="AudioStream" uid="uid://yh4m1uglx4qt" path="res://SOUND/FX/Crackling_Noise_H.ogg" id="22_3yna3"]
+[ext_resource type="AudioStream" uid="uid://533g3ysiqkaf" path="res://SOUND/FX/RUNNER/No_Turn.ogg" id="22_moomj"]
 [ext_resource type="AudioStream" uid="uid://bu5o3jhmjfi0f" path="res://SOUND/FX/Crackling_Noise_J.ogg" id="23_2aegg"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="24_eme2o"]
 [ext_resource type="AudioStream" uid="uid://bmg2lx0qadmkd" path="res://SOUND/FX/Crackling_Noise_B.ogg" id="25_i1j6b"]
@@ -42,7 +44,6 @@
 [ext_resource type="AudioStream" uid="uid://c6wdc8jhhc7m0" path="res://SOUND/FX/RUNNER/Dash.ogg" id="39_8765u"]
 [ext_resource type="AudioStream" uid="uid://brb24ixtrvqg3" path="res://SOUND/FX/RUNNER/Empty.ogg" id="40_646ki"]
 [ext_resource type="AudioStream" uid="uid://5w55chwkxbr5" path="res://SOUND/FX/RUNNER/Anti_Virus.ogg" id="41_djysl"]
-[ext_resource type="AudioStream" uid="uid://b262xncyf383x" path="res://SOUND/FX/RUNNER/Anti_Teleport.ogg" id="42_su48l"]
 
 [sub_resource type="Shader" id="Shader_ercnf"]
 code = "shader_type canvas_item;
@@ -3382,7 +3383,8 @@ bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="Auto_Dodge" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=756513675]
-stream = ExtResource("32_dclff")
+stream = ExtResource("11_yl0jf")
+volume_db = 1.5
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
@@ -3454,7 +3456,8 @@ bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="No_Turn" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1508776766]
-stream = ExtResource("42_su48l")
+stream = ExtResource("22_moomj")
+volume_db = 1.5
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
