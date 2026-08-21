@@ -54,13 +54,13 @@ Les bonus et malus en jeu (Cube.tscn) :
 - Au ramassage d’un Bonus/Malus, on joue le son correspondant au Bonus/Malus et on joue le clignotement du concurrent (Animation_Bonus_Malus).
 - À l’activation (automatique ou au déclenchement du joueur) du Bonus/Malus on joue également le son correspondant et on joue le clignotement du concurrent.
 - Si le ramassage et l’activation se font en même temps, on ne joue qu’une fois le son correspondant et pareil pour le clignotement du concurrent.
-- Lorsque l’effet du Bonus/Malus dure plus longtemps que le son et l’animation du Bonus/Malus, à la fin de l’effet du Bonus/Malus, on rejoue le clignotement du coureur et le son du Bonus/Malus OPPOSÉ (par ex., pour Bonus 1., à la fin, on joue le son Malus 1.).
+- Lorsque l’effet du Bonus/Malus dure plus longtemps que le son et l’animation du Bonus/Malus, à la fin de l’effet du Bonus/Malus, on rejoue le clignotement du coureur et le son Sound/Bonus_Malus/Bonus_Malus_Over dans la scène du coureur.
 
 Les bonus :
     1. Invulnérabilité – Rouge (annule le prochain malus récolté) – dure (5 ÷ difficulté)’’ → ✔ Invincible – Automatique !
     2. Dash – Vert (course uniquement – dure 1/2’’ – ne peut pas être interrompu ET virage impossible !) : 66% plus rapide (animation aussi). → ✔ Dash – Activable !
     3. Passe-muraille – Bleu (uniquement les murs des concurrents) – 1 seul mur → ✔ Through – Automatique !
-    4. Virus – Violet (envoie automatiquement le prochain malus récolté à un adversaire aléatoire) → ✔ Virus – Automatique !
+    4. Virus – Violet (envoie automatiquement le prochain malus récolté à un adversaire aléatoire au lieu de le jeter en récupérant le suivant) → ✔ Virus – Automatique !
     5. Auto-dodge – Jaune (les obstacles et trous évitables par glissement ou saut sont évités automatiquement si le joueur ne le fait pas) – dure (2 × difficulté)’’)→ ✔ Auto_Dodge – Activable !
     6. Débogueur – Noir (vire un bug actif)→ ✔ Debug – Activable !
     7. Les murs tracés jusqu’à présent par les concurrents disparaissent – Blanc → ✔ Last_Longer – Automatique !
@@ -68,8 +68,8 @@ Les bonus :
 Les malus (applications automatiques) :
     1. Inversion de commandes – Rouge – dure (difficulté)’’ → ✔ Invert
     2. Lenteur de réaction (on ajoute un délai d’1/10’’ (à préciser) dans les commandes du concurrent) – Noir – dure (2 × difficulté)’’ → ✔ Slow
-    3. Les murs tracés par les concurrents durent plus longtemps – Blanc – (durée des tronçons de mur × 2) → ✔ Last_Shorter – Au bout de (durée des tronçons de mur × 1), l’effet du malus disparaît et la durée de vie normale de chaque tronçon reprend sa valeur normale et tous les tronçons qui ont vécu ce temps ou plus disparaissent !
-    4. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1 seconde) – Vert – dure ((2 × difficulté) + 3)’’ → ✔ Anti_Dash
+    3. Les murs tracés par les concurrents durent plus longtemps – Blanc – (durée des tronçons de mur × 1,5) → ✔ Last_Shorter – Au bout de la durée des tronçons de mur normale, l’effet du malus disparaît et la durée de vie normale de chaque tronçon reprend sa valeur normale et tous les tronçons qui ont vécu ce temps ou plus disparaissent ! Ainsi le malus a surtout pour effet de faire durer plus longtemps les tronçons de mur déjà et encore en place avant l’activation du malus.
+    4. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1/2 seconde) – Vert – dure ((2 × difficulté) + 3)’’ → ✔ Anti_Dash
     5. « Hors phase » (shader) – Bleu – dure (2 × difficulté)’’ → ✔ Phase
     6. Virus (envoie automatiquement le prochain Bonus (pas malus) récolté à un adversaire aléatoire, quitte à remplacer celui qu’il porte – Violet → ✔ Anti_Virus
     7. Tout droit (le coureur ne peut plus tourner pendant (difficulté ÷ 2)’’) – Jaune → ✔ No_turn
@@ -83,7 +83,7 @@ Les obstacles :
     5. Colonne descendante – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     6. Colonne écrasante – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     7. Cellule « disparaissante » – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
-    8. 1 Cellule hors phase – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔ (Screen_Glitch : Fait tourner à droite ou Glitch_Only : fait tourner à gauche)
+    8. 2 Cellules « hors phase » (téléporteurs) – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔ Apparaissent par paire et disparaissent après utilisation. La vitesse et la direction du coureur sont conservés pendant la téléportation. On utilise les deux shaders pour pouvoir différencier 2 sets de téléporteurs différents.
 
 Liste des animations des personnages :
     1. Courir ✔ ✔ ✔ ✔

@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://533g3ysiqkaf" path="res://SOUND/FX/RUNNER/No_Turn.ogg" id="21_bs1rt"]
 [ext_resource type="AudioStream" uid="uid://dsr0lb7uc7k7s" path="res://SOUND/FX/Crackling_Noise_C.ogg" id="21_v84wk"]
 [ext_resource type="AudioStream" uid="uid://c0wgwx2yy2orr" path="res://SOUND/FX/Crackling_Noise_G.ogg" id="22_17j5v"]
+[ext_resource type="AudioStream" uid="uid://dm0ju1rel0bjy" path="res://SOUND/FX/RUNNER/Bonus_Malus_Over.ogg" id="22_bs1rt"]
 [ext_resource type="AudioStream" uid="uid://yh4m1uglx4qt" path="res://SOUND/FX/Crackling_Noise_H.ogg" id="23_xrn6p"]
 [ext_resource type="AudioStream" uid="uid://bu5o3jhmjfi0f" path="res://SOUND/FX/Crackling_Noise_J.ogg" id="24_iul6v"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="25_g2v87"]
@@ -3410,6 +3411,13 @@ metadata/_edit_lock_ = true
 [node name="No_Turn" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1883064458]
 stream = ExtResource("21_bs1rt")
 volume_db = 1.5
+max_distance = 1000.0
+bus = &"BONUS_MALUS"
+metadata/_edit_lock_ = true
+
+[node name="Bonus_Malus_Over" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=592818660]
+stream = ExtResource("22_bs1rt")
+volume_db = 7.5
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
