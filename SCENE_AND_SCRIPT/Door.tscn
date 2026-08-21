@@ -289,6 +289,7 @@ _data = {
 [node name="Door" type="Node2D" unique_id=754266912]
 
 [node name="Collider_Door" type="Area2D" parent="." unique_id=1723708210]
+position = Vector2(0, 60)
 metadata/_edit_lock_ = true
 
 [node name="Passage" type="CollisionShape2D" parent="Collider_Door" unique_id=1711003240]
@@ -318,6 +319,7 @@ metadata/_edit_lock_ = true
 [node name="Door_Shadow" type="Sprite2D" parent="." unique_id=864377854]
 visible = false
 self_modulate = Color(1, 1, 1, 0.29411766)
+position = Vector2(0, 60)
 texture = ExtResource("1_w6txa")
 offset = Vector2(0, 6)
 metadata/_edit_lock_ = true
@@ -326,6 +328,7 @@ metadata/_edit_lock_ = true
 visible = false
 light_mask = 3
 material = SubResource("ShaderMaterial_jbtw0")
+position = Vector2(0, 60)
 texture = ExtResource("2_w6txa")
 offset = Vector2(0, -71)
 hframes = 25
@@ -337,6 +340,7 @@ visible = false
 light_mask = 5
 z_index = 1
 material = SubResource("ShaderMaterial_ecpiw")
+position = Vector2(0, 60)
 texture = ExtResource("3_pl358")
 offset = Vector2(0, -71)
 hframes = 25

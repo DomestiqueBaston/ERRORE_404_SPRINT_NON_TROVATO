@@ -1352,11 +1352,13 @@ metadata/_edit_lock_ = true
 
 [node name="Navigation_Tile" type="NavigationRegion2D" parent="Column" unique_id=2074369045]
 visible = false
+position = Vector2(0, 60)
 navigation_polygon = SubResource("NavigationPolygon_mwy7o")
 metadata/_edit_lock_ = true
 
 [node name="Collider_Ground" type="Area2D" parent="Column" unique_id=290484024]
 visible = false
+position = Vector2(0, 60)
 collision_layer = 2
 monitoring = false
 metadata/_edit_lock_ = true
@@ -1399,189 +1401,189 @@ metadata/_edit_lock_ = true
 [node name="Cellule_De_Terrain_01" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=772253429]
 texture = ExtResource("1_ypd1c")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_02" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=33830416]
 visible = false
 texture = ExtResource("2_0chrw")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_03" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=1958794780]
 visible = false
 texture = ExtResource("3_wjuty")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_04" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=1157317517]
 visible = false
 texture = ExtResource("4_7188o")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_05" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=754917339]
 visible = false
 texture = ExtResource("5_vo76y")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_06" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=394130346]
 visible = false
 texture = ExtResource("6_wjuty")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_07" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=1082498549]
 visible = false
 texture = ExtResource("7_8vle5")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_08" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=1096034811]
 visible = false
 texture = ExtResource("8_ej7e8")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_09" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=699885599]
 visible = false
 texture = ExtResource("11_8gtq6")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_10" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=2143479316]
 visible = false
 texture = ExtResource("12_cr4ld")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_Bord_Bas" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=1524729564]
 visible = false
 texture = ExtResource("6_m6nb2")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_Bord_Bas_Droit_1" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=1384151948]
 visible = false
 texture = ExtResource("7_x7s2x")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_Bord_Bas_Droit_2" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=1069514871]
 visible = false
 texture = ExtResource("8_kkq45")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_Bord_Bas_Droit_3" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=512829205]
 visible = false
 texture = ExtResource("10_usf32")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_Bord_Bas_Gauche_1" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=1902751516]
 visible = false
 texture = ExtResource("9_kr3tr")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_Bord_Bas_Gauche_2" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=1922215369]
 visible = false
 texture = ExtResource("10_oaevg")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_Bord_Bas_Gauche_3" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=661070950]
 visible = false
 texture = ExtResource("12_mwy7o")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_Bord_Droit" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=1191560288]
 visible = false
 texture = ExtResource("11_tggmm")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_Bord_Gauche" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=1303682818]
 visible = false
 texture = ExtResource("12_tvhyd")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_Bord_Haut" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=1498649925]
 visible = false
 texture = ExtResource("13_b7xif")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_Bord_Haut_Droit_1" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=2085578862]
 visible = false
 texture = ExtResource("14_mi1bg")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_Bord_Haut_Droit_2" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=834696535]
 visible = false
 texture = ExtResource("15_bx3ju")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_Bord_Haut_Droit_3" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=638853595]
 visible = false
 texture = ExtResource("18_8qjf4")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_Bord_Haut_Gauche_1" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=311507263]
 visible = false
 texture = ExtResource("16_6elyb")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_Bord_Haut_Gauche_2" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=1980497471]
 visible = false
 texture = ExtResource("17_h1n4v")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_Bord_Haut_Gauche_3" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=1827877745]
 visible = false
 texture = ExtResource("20_ao42k")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Terrain_Centre" type="Sprite2D" parent="Column/Cell_Tops/Cell_Textures" unique_id=249001988]
 visible = false
 texture = ExtResource("18_ik60n")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 metadata/_edit_lock_ = true
 
 [node name="Top_Cell_FX_Mask" type="Sprite2D" parent="Column/Cell_Tops" unique_id=1142209556]
@@ -1624,6 +1626,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="Direction_Collider" type="Area2D" parent="Column/Cell_Tops/One_Way_Direction/Shadow_Orientation" unique_id=968516240]
+position = Vector2(0, 60)
 collision_layer = 2
 monitoring = false
 monitorable = false
@@ -1639,6 +1642,7 @@ metadata/_edit_lock_ = true
 
 [node name="Shadow" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Shadow_Orientation" unique_id=1270092676]
 self_modulate = Color(1, 1, 1, 0.078431375)
+position = Vector2(0, 60)
 rotation = 0.4799655
 scale = Vector2(3.22, 0.646)
 skew = 0.61959183
@@ -1649,25 +1653,28 @@ metadata/_edit_lock_ = true
 position = Vector2(11, -45)
 metadata/_edit_lock_ = true
 
-[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation" unique_id=1800194083]
+[node name="Direction_Offset" type="Node2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation" unique_id=1410954637]
+position = Vector2(0, 60)
+
+[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation/Direction_Offset" unique_id=1800194083]
 self_modulate = Color(1, 1, 1, 0.39215687)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
 
-[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation" unique_id=751098843]
+[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation/Direction_Offset" unique_id=751098843]
 clip_children = 2
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
 
-[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation/Direction_Back_Mask" unique_id=865244848]
+[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation/Direction_Offset/Direction_Back_Mask" unique_id=865244848]
 self_modulate = Color(1, 1, 1, 0.49803922)
 material = SubResource("ShaderMaterial_6o5ds")
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
 
-[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation" unique_id=1447955888]
+[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation/Direction_Offset" unique_id=1447955888]
 position = Vector2(11.5, 4.5)
 texture = ExtResource("32_iotr2")
 metadata/_edit_lock_ = true
