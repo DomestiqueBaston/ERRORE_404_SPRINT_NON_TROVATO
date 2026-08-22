@@ -338,7 +338,6 @@ metadata/_edit_lock_ = true
 [node name="Door_Front" type="Sprite2D" parent="." unique_id=1737667010]
 visible = false
 light_mask = 5
-z_index = 1
 material = SubResource("ShaderMaterial_ecpiw")
 position = Vector2(0, 60)
 texture = ExtResource("3_pl358")

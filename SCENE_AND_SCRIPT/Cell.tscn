@@ -1607,6 +1607,7 @@ libraries/ = SubResource("AnimationLibrary_cdabr")
 [node name="One_Way_Direction" type="Node2D" parent="Column/Cell_Tops" unique_id=880013981]
 visible = false
 script = ExtResource("31_qkut6")
+metadata/_edit_lock_ = true
 
 [node name="Shadow_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Direction" unique_id=162548240]
 metadata/_edit_lock_ = true
