@@ -1374,19 +1374,19 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="South_Start_Point" type="Marker2D" parent="Column/Cell_Tops/Corner_Start_Points" unique_id=518218170]
-position = Vector2(0, 25)
+position = Vector2(0, 85)
 metadata/_edit_lock_ = true
 
 [node name="East_Start_Point" type="Marker2D" parent="Column/Cell_Tops/Corner_Start_Points" unique_id=2038243324]
-position = Vector2(50, 0)
+position = Vector2(50, 60)
 metadata/_edit_lock_ = true
 
 [node name="West_Start_Point" type="Marker2D" parent="Column/Cell_Tops/Corner_Start_Points" unique_id=1593584138]
-position = Vector2(-50, 0)
+position = Vector2(-50, 60)
 metadata/_edit_lock_ = true
 
 [node name="North_Start_Point" type="Marker2D" parent="Column/Cell_Tops/Corner_Start_Points" unique_id=366405065]
-position = Vector2(0, -25)
+position = Vector2(0, 35)
 metadata/_edit_lock_ = true
 
 [node name="Cell_Extension" type="Sprite2D" parent="Column/Cell_Tops" unique_id=982586807]
