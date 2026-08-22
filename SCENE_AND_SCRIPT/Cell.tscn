@@ -37,11 +37,11 @@
 [ext_resource type="Shader" uid="uid://blic88jwr7a1e" path="res://SHADER/Glitch_Only.gdshader" id="28_vso1q"]
 [ext_resource type="Shader" uid="uid://b3kqhgudkng41" path="res://SHADER/Screen_Glitch.gdshader" id="29_7mpjj"]
 [ext_resource type="AudioStream" uid="uid://dek1co7fuef8g" path="res://SOUND/FX/Clang_Stop_Cell.ogg" id="29_8ohl3"]
-[ext_resource type="Texture2D" uid="uid://bgdtgiqjmniiq" path="res://IMAGE/ENVIRONMENT/DIRECTION/Direction_Back.png" id="31_5memm"]
+[ext_resource type="Texture2D" uid="uid://gk2si7ygkixn" path="res://IMAGE/ENVIRONMENT/DIRECTION/Direction_Back.png" id="31_5memm"]
 [ext_resource type="Texture2D" uid="uid://brl52e8ox1ue8" path="res://IMAGE/RUNNER/Shadow.png" id="31_fki3o"]
 [ext_resource type="AudioStream" uid="uid://bvr7mwob6g81h" path="res://SOUND/FX/Disappearing_Cell.ogg" id="31_mye8y"]
 [ext_resource type="Script" uid="uid://bx7moxjgc3tcq" path="res://SCENE_AND_SCRIPT/One_Way_Direction.gd" id="31_qkut6"]
-[ext_resource type="Texture2D" uid="uid://bt60360rl2yyk" path="res://IMAGE/ENVIRONMENT/DIRECTION/Direction_Front.png" id="32_iotr2"]
+[ext_resource type="Texture2D" uid="uid://bnish343js5k6" path="res://IMAGE/ENVIRONMENT/DIRECTION/Direction_Front.png" id="32_iotr2"]
 [ext_resource type="AudioStream" uid="uid://b4hci50dsyb6m" path="res://SOUND/FX/Short_Appearing.ogg" id="34_qkut6"]
 [ext_resource type="AudioStream" uid="uid://7d1t448ecpba" path="res://SOUND/FX/Short_Disappearing.ogg" id="35_psu53"]
 [ext_resource type="AudioStream" uid="uid://bm1v8dymi3n0a" path="res://SOUND/FX/Digital_Glitch_B.ogg" id="37_qjqwi"]
@@ -442,53 +442,53 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Direction_Orientation:position")
+tracks/0/path = NodePath("Shadow_Orientation/Shadow:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1.25, 1, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-1, -50), Vector2(-1, -55), Vector2(-1, -50)]
+"values": [Vector2(3.22, 0.646), Vector2(2.275, 0.456), Vector2(3.22, 0.646)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Shadow_Orientation/Shadow:scale")
-tracks/1/interp = 2
+tracks/1/path = NodePath("Floating_Node:position")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 1, 2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(3.22, 0.646), Vector2(2.275, 0.456), Vector2(3.22, 0.646)]
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_l3wtu"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Direction_Orientation:position")
+tracks/0/enabled = false
+tracks/0/path = NodePath("Shadow_Orientation/Shadow:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(11, -45)]
+"values": [Vector2(3.22, 0.646)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Shadow_Orientation/Shadow:scale")
+tracks/1/path = NodePath("Floating_Node:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(3.22, 0.646)]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oyod2"]
@@ -1620,11 +1620,8 @@ libraries/ = SubResource("AnimationLibrary_cdabr")
 [node name="One_Way_Direction" type="Node2D" parent="Column/Cell_Tops" unique_id=880013981]
 visible = false
 script = ExtResource("31_qkut6")
-metadata/_edit_lock_ = true
 
 [node name="Shadow_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Direction" unique_id=162548240]
-position = Vector2(0, 119)
-scale = Vector2(-1, -1)
 metadata/_edit_lock_ = true
 
 [node name="Direction_Collider" type="Area2D" parent="Column/Cell_Tops/One_Way_Direction/Shadow_Orientation" unique_id=968516240]
@@ -1646,38 +1643,41 @@ metadata/_edit_lock_ = true
 self_modulate = Color(1, 1, 1, 0.078431375)
 position = Vector2(0, 60)
 rotation = 0.4799655
-scale = Vector2(3.22, 0.646)
+scale = Vector2(2.305715, 0.46217555)
 skew = 0.61959183
 texture = ExtResource("31_fki3o")
 metadata/_edit_lock_ = true
 
-[node name="Direction_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Direction" unique_id=256302916]
-position = Vector2(11, -45)
-scale = Vector2(-1, -1)
+[node name="Floating_Node" type="Node2D" parent="Column/Cell_Tops/One_Way_Direction" unique_id=933293500]
 metadata/_edit_lock_ = true
 
-[node name="Direction_Offset" type="Node2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation" unique_id=1410954637]
-position = Vector2(0, 60)
+[node name="Direction_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Direction/Floating_Node" unique_id=256302916]
+position = Vector2(-15, -75)
+metadata/_edit_lock_ = true
 
-[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation/Direction_Offset" unique_id=1800194083]
+[node name="Direction_Offset" type="Node2D" parent="Column/Cell_Tops/One_Way_Direction/Floating_Node/Direction_Orientation" unique_id=1410954637]
+position = Vector2(0, 60)
+metadata/_edit_lock_ = true
+
+[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1800194083]
 self_modulate = Color(1, 1, 1, 0.39215687)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
 
-[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation/Direction_Offset" unique_id=751098843]
+[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=751098843]
 clip_children = 2
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
 
-[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation/Direction_Offset/Direction_Back_Mask" unique_id=865244848]
+[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Floating_Node/Direction_Orientation/Direction_Offset/Direction_Back_Mask" unique_id=865244848]
 self_modulate = Color(1, 1, 1, 0.49803922)
 material = SubResource("ShaderMaterial_6o5ds")
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
 
-[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Direction_Orientation/Direction_Offset" unique_id=1447955888]
+[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1447955888]
 position = Vector2(11.5, 4.5)
 texture = ExtResource("32_iotr2")
 metadata/_edit_lock_ = true

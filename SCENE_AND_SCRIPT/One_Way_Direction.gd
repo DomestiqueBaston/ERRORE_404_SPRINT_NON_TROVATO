@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var shadow_orientation: Node2D = $Shadow_Orientation
-@onready var direction_orientation: Node2D = $Direction_Orientation
+@onready var direction_orientation: Node2D = $Floating_Node/Direction_Orientation
 
 var _direction: Globals.Axis
 
