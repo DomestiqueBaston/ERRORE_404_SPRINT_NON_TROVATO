@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dttkq5rw4spvt" path="res://SOUND/FX/Wall_Hum.ogg" id="5_5tnv1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5tnv1"]
-size = Vector2(131.86778, 7.0045767)
+size = Vector2(131.86778, 20.08002)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i5m2m"]
 shader = ExtResource("1_26063")
@@ -260,7 +260,8 @@ rotation = 0.46425757
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionShape2D" parent="Light_Wall_Collider" unique_id=1818071791]
-position = Vector2(-66, 0)
+position = Vector2(-66, 3.8146973e-06)
+scale = Vector2(1, 0.99999994)
 skew = 0.6422812
 shape = SubResource("RectangleShape2D_5tnv1")
 metadata/_edit_lock_ = true
