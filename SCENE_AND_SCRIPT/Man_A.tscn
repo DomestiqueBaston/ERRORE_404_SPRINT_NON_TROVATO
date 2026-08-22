@@ -3204,6 +3204,7 @@ disabled = true
 metadata/_edit_lock_ = true
 
 [node name="Death_Collider" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Collider_Area" unique_id=1050781692]
+visible = false
 position = Vector2(-25, -4)
 rotation = -1.3526301
 shape = SubResource("CapsuleShape2D_04ypo")

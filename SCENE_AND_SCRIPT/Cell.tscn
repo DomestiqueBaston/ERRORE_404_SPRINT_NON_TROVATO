@@ -1579,7 +1579,7 @@ metadata/_edit_lock_ = true
 clip_children = 1
 texture = ExtResource("27_7mpjj")
 centered = false
-offset = Vector2(-118, -60)
+offset = Vector2(-118, 0)
 script = ExtResource("28_n3k4r")
 metadata/_edit_lock_ = true
 
@@ -1587,9 +1587,8 @@ metadata/_edit_lock_ = true
 visible = false
 material = SubResource("ShaderMaterial_vso1q")
 offset_left = -118.0
-offset_top = -60.0
 offset_right = 118.0
-offset_bottom = 59.0
+offset_bottom = 119.0
 color = Color(1, 1, 1, 0.5254902)
 metadata/_edit_lock_ = true
 
@@ -1597,9 +1596,8 @@ metadata/_edit_lock_ = true
 visible = false
 material = SubResource("ShaderMaterial_n3k4r")
 offset_left = -118.0
-offset_top = -60.0
 offset_right = 118.0
-offset_bottom = 59.0
+offset_bottom = 119.0
 color = Color(1, 1, 1, 0.5254902)
 metadata/_edit_lock_ = true
 
@@ -1679,6 +1677,7 @@ libraries/ = SubResource("AnimationLibrary_oyod2")
 autoplay = &"Floating"
 
 [node name="Collider_Ground" type="Area2D" parent="Column" unique_id=290484024]
+visible = false
 position = Vector2(0, 60)
 collision_layer = 2
 monitoring = false
