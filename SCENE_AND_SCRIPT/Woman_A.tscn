@@ -3250,7 +3250,6 @@ metadata/_edit_lock_ = true
 [node name="Collider" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Collider_Area" unique_id=825152419]
 rotation = -1.0471976
 shape = SubResource("CapsuleShape2D_rjpof")
-disabled = true
 metadata/_edit_lock_ = true
 
 [node name="Death_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=646518131]
@@ -3262,7 +3261,6 @@ visible = false
 rotation = -1.2426745
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("CapsuleShape2D_uqsxk")
-disabled = true
 metadata/_edit_lock_ = true
 
 [node name="Vision_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=929364484]
