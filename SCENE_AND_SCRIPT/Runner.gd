@@ -253,15 +253,15 @@ func _check_new_location():
 	if _map == null:
 		return
 
-	# Find the cell underfoot. Note that get_cell_at() returns null if the
-	# runner has not left the center cell yet!
+	# Find the cell underfoot. Note that get_cell_at() sometimes returns null
+	# if the runner has not left the center cell yet!
 
 	var next_cell: Cell = _map.get_cell_at(collider)
 	if not _has_left_center:
-		if next_cell:
-			_has_left_center = true
-		else:
+		if next_cell == null:
 			next_cell = _map.get_center_cell()
+		elif next_cell != _map.get_center_cell():
+			_has_left_center = true
 
 	# If we haven't moved to a different cell, just add the current cell's
 	# movement to the runner's.
