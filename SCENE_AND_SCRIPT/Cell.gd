@@ -284,3 +284,21 @@ func wait_until_stationary():
 static func get_cell_from_collider(collider: Area2D) -> Cell:
 	var cell = collider.get_node_or_null("../..")
 	return cell if cell is Cell else null
+
+##
+## Given that a runner is going to start at the given corner of the map,
+## returns the offset with respect to the origin of the cell at that corner
+## where the runner should be placed initially. This corresponds to the Marker2D
+## nodes found beneath $Column/Cell_Tops/Corner_Start_Points.
+##
+static func get_start_cell_offset(corner: Globals.Corner) -> Vector2:
+	match corner:
+		Globals.Corner.N:
+			return Vector2(0, 35)
+		Globals.Corner.S:
+			return Vector2(0, 85)
+		Globals.Corner.W:
+			return Vector2(-50, 60)
+		Globals.Corner.E:
+			return Vector2(50, 60)
+	return Vector2()

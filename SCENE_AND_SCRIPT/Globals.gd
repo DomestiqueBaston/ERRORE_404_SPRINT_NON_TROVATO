@@ -7,6 +7,13 @@ enum Axis {
 	SE
 }
 
+enum Corner {
+	N,
+	S,
+	W,
+	E
+}
+
 const master_bus: int = 0
 const music_bus: int = 4
 

@@ -37,15 +37,20 @@ var _southwest: Vector2 = Vector2(-1, 1).rotated(_rotation).normalized()
 var _southeast: Vector2 = Vector2(1, 1).rotated(-_rotation).normalized()
 
 var _map: Map
-var _has_left_center: bool = false
+var _start_cell: Cell
+var _has_left_start_cell: bool = false
 var _curr_cell: Cell
 var _curr_cell_pos: Vector2
 
 func _ready() -> void:
 	animation_player.animation_finished.connect(_on_animation_finished)
 
-func set_map(map: Map):
+func set_map(map: Map, start_cell: Cell = null):
 	_map = map
+	if start_cell:
+		_start_cell = start_cell
+	else:
+		_start_cell = map.get_center_cell()
 
 func _process(delta: float) -> void:
 	# États bloquants : plus rien à faire
@@ -253,15 +258,15 @@ func _check_new_location():
 	if _map == null:
 		return
 
-	# Find the cell underfoot. Note that get_cell_at() sometimes returns null
-	# if the runner has not left the center cell yet!
+	# Find the cell underfoot. Note that get_cell_in_area() sometimes returns null
+	# if the runner has not left the start cell yet!
 
-	var next_cell: Cell = _map.get_cell_at(collider)
-	if not _has_left_center:
+	var next_cell: Cell = _map.get_cell_in_area(collider)
+	if not _has_left_start_cell:
 		if next_cell == null:
-			next_cell = _map.get_center_cell()
-		elif next_cell != _map.get_center_cell():
-			_has_left_center = true
+			next_cell = _start_cell
+		elif next_cell != _start_cell:
+			_has_left_start_cell = true
 
 	# If we haven't moved to a different cell, just add the current cell's
 	# movement to the runner's.
@@ -287,7 +292,7 @@ func _check_new_location():
 				Cell.State.LOWERED, Cell.State.HIDDEN:
 					start_falling()
 				Cell.State.RAISED:
-					if _has_left_center:
+					if _has_left_start_cell:
 						die()
 				Cell.State.TELEPORT:
 					_check_teleport(next_cell)

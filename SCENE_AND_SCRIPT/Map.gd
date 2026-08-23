@@ -185,39 +185,47 @@ func _build_edge(parent: Node2D, edge: Globals.Axis):
 #
 func _add_cell(parent: Node2D, uv: Vector2i, deco: Cell.Decoration) -> Cell:
 	var cell: Cell = _cell_scene.instantiate()
-	cell.position = _get_cell_pos(uv)
+	cell.position = get_cell_pos(uv)
 	cell.decoration = deco
 	parent.add_child(cell)
 	_cells[uv] = cell
 	return cell
 
-#
-# Returns the position in XY coordinates of the cell at the given UV index,
-# where U corresponds to the NW-SE axis, V corresponds to the SW-NE axis, and
-# UV (0,0) is the origin of the map. The given cell need not actually exist.
-#
-static func _get_cell_pos(uv: Vector2i) -> Vector2:
+##
+## Returns the position in XY coordinates of the cell at the given UV index,
+## where U corresponds to the NW-SE axis, V corresponds to the SW-NE axis, and
+## UV (0,0) is the origin of the map. The given cell need not actually exist.
+##
+static func get_cell_pos(uv: Vector2i) -> Vector2:
 	return Vector2(
 		(uv.x + uv.y) * _cell_step_x,
 		(uv.x - uv.y) * _cell_step_y - _cell_offset_y)
 
-#
-# Does the inverse of _get_cell_pos(): returns the UV index of the cell at the
-# given position in XY coordinates. The cell need not actually exist.
-#
-static func _get_cell_index(pos: Vector2) -> Vector2i:
+##
+## Does the inverse of get_cell_pos(): returns the UV index of the cell at the
+## given position in XY coordinates. The cell need not actually exist.
+##
+static func get_cell_index(pos: Vector2) -> Vector2i:
 	var y = 2.0 * (pos.y + _cell_offset_y)
 	return Vector2i(
 		roundi((pos.x + y) / _cell_size_x),
 		roundi((pos.x - y) / _cell_size_x))
 
 ##
+## Returns the cell at the given UV index, where U corresponds to the NW-SE
+## axis, V corresponds to the SW-NE axis, and UV (0,0) is the origin of the map.
+## Returns null if there is no cell at the given index.
+##
+func get_cell_at(uv: Vector2i) -> Cell:
+	return _cells.get(uv)
+
+##
 ## Returns the cell that overlaps with the given collider, or null if there is
 ## none.
 ##
-func get_cell_at(collider: Area2D) -> Cell:
+func get_cell_in_area(collider: Area2D) -> Cell:
 	# this doesn't work if for sliding cells!
-	#return _cells.get(_get_cell_index(pos))
+	#return _cells.get(get_cell_index(pos))
 	for area in collider.get_overlapping_areas():
 		var cell = Cell.get_cell_from_collider(area)
 		if cell:
@@ -320,7 +328,7 @@ func _slide(axis: StringName, index: int, distance: int):
 		var cell: Cell = _cells[key]
 		var new_key: Vector2i = key
 		new_key[other_axis] += distance
-		tween.tween_property(cell, ^":position", _get_cell_pos(new_key), duration)
+		tween.tween_property(cell, ^":position", get_cell_pos(new_key), duration)
 		_cells.erase(key)
 		updated_cells[new_key] = cell
 
@@ -376,7 +384,7 @@ func _handle_obstacle_event(event: ObstacleEvent):
 		]:
 			block = false
 		elif event.cell:
-			var uv: Vector2i = _get_cell_index(event.cell.position)
+			var uv: Vector2i = get_cell_index(event.cell.position)
 			if _slide_state == SlideState.ROW:
 				block = (uv.y == _slide_index)
 			else:
@@ -534,12 +542,12 @@ func _pick_random_cell() -> Cell:
 #
 func _pick_distant_random_cell(cell1: Cell) -> Cell:
 	var cell2: Cell = null
-	var uv1: Vector2i = _get_cell_index(cell1.position)
+	var uv1: Vector2i = get_cell_index(cell1.position)
 	var mindist: int = map_size * map_size
 	var failures: Array[Cell]
 	while _available_cells and not cell2:
 		var other: Cell = _pick_random_cell()
-		var uv2: Vector2i = _get_cell_index(other.position)
+		var uv2: Vector2i = get_cell_index(other.position)
 		if uv2.distance_squared_to(uv1) >= mindist:
 			cell2 = other
 		else:

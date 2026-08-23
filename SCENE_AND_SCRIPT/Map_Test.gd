@@ -8,6 +8,7 @@ enum Character {
 }
 
 @export var character: Character = Character.WOMAN_A
+@export var start_corner: Globals.Corner
 
 const START_ACTIONS := [
 	"ui_a_button",
@@ -27,8 +28,9 @@ var _once := true
 var _can_restart := false
 
 func _ready():
+	var sz: int = Globals.map_size
 	_map = _map_scene.instantiate()
-	_map.map_size = Globals.map_size
+	_map.map_size = sz
 	add_child(_map)
 
 	var scene: PackedScene
@@ -41,9 +43,23 @@ func _ready():
 			scene = load("res://SCENE_AND_SCRIPT/Man_A.tscn")
 		Character.MAN_B:
 			scene = load("res://SCENE_AND_SCRIPT/Man_B.tscn")
+
+	var start_cell: Cell
+	match start_corner:
+		Globals.Corner.N:
+			start_cell = _map.get_cell_at(Vector2i(-sz, sz))
+		Globals.Corner.S:
+			start_cell = _map.get_cell_at(Vector2i(sz, -sz))
+		Globals.Corner.W:
+			start_cell = _map.get_cell_at(Vector2i(-sz, -sz))
+		Globals.Corner.E:
+			start_cell = _map.get_cell_at(Vector2i(sz, sz))
+	var start_pos = start_cell.position + Cell.get_start_cell_offset(start_corner)
+
 	var runner = scene.instantiate()
+	runner.position = start_pos
 	add_child(runner)
-	runner.set_map(_map)
+	runner.set_map(_map, start_cell)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Détection de la première action du joueur
