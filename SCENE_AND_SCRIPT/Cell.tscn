@@ -40,9 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://gk2si7ygkixn" path="res://IMAGE/ENVIRONMENT/DIRECTION/Direction_Back.png" id="31_5memm"]
 [ext_resource type="Texture2D" uid="uid://brl52e8ox1ue8" path="res://IMAGE/RUNNER/Shadow.png" id="31_fki3o"]
 [ext_resource type="AudioStream" uid="uid://bvr7mwob6g81h" path="res://SOUND/FX/Disappearing_Cell.ogg" id="31_mye8y"]
-[ext_resource type="Script" uid="uid://bx7moxjgc3tcq" path="res://SCENE_AND_SCRIPT/One_Way_Direction.gd" id="31_qkut6"]
 [ext_resource type="Texture2D" uid="uid://bnish343js5k6" path="res://IMAGE/ENVIRONMENT/DIRECTION/Direction_Front.png" id="32_iotr2"]
-[ext_resource type="AudioStream" uid="uid://b4hci50dsyb6m" path="res://SOUND/FX/Short_Appearing.ogg" id="34_qkut6"]
 [ext_resource type="AudioStream" uid="uid://7d1t448ecpba" path="res://SOUND/FX/Short_Disappearing.ogg" id="35_psu53"]
 [ext_resource type="AudioStream" uid="uid://bm1v8dymi3n0a" path="res://SOUND/FX/Digital_Glitch_B.ogg" id="37_qjqwi"]
 [ext_resource type="AudioStream" uid="uid://bxr32qgishsy8" path="res://SOUND/FX/Digital_Glitch_D.ogg" id="38_5memm"]
@@ -315,90 +313,164 @@ shader_parameter/threshold = 0.12999999709424
 shader_parameter/strength = 0.05600000266
 shader_parameter/glitch_blend = 0.66999998502416
 
-[sub_resource type="Animation" id="Animation_8gtq6"]
-resource_name = "Appearing"
-length = 0.16667001
+[sub_resource type="Animation" id="Animation_gwl88"]
+resource_name = "NE_Appearing"
+length = 0.16667000869251786
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
+tracks/0/path = NodePath("../NE:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666669),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, true, false, true, false, true]
 }
-tracks/1/type = "audio"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../../Sound/Appearing_Disappearing_One_Way")
+tracks/1/path = NodePath("../NE/Shadow_Orientation/Direction_Collider:monitorable")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("34_qkut6")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/1/use_blend = true
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Shadow_Orientation/Direction_Collider:monitorable")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.16667001),
+"times": PackedFloat32Array(0, 0.16666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../Sound/Appearing_Disappearing_One_Way:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
-[sub_resource type="Animation" id="Animation_gwl88"]
-resource_name = "Disappearing"
-length = 0.16667001
+[sub_resource type="Animation" id="Animation_52fcm"]
+resource_name = "NE_Disappearing"
+length = 0.16667000869251786
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
+tracks/0/path = NodePath("../NE:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1, 0.13333334, 0.16666667),
+"times": PackedFloat32Array(0, 0.033333328, 0.06666668, 0.099999994, 0.13333334, 0.16666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [true, false, true, false, true, false]
 }
-tracks/1/type = "audio"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../../Sound/Appearing_Disappearing_One_Way")
+tracks/1/path = NodePath("../NE/Shadow_Orientation/Direction_Collider:monitorable")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("35_psu53")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/1/use_blend = true
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Shadow_Orientation/Direction_Collider:monitorable")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.16667001),
+"times": PackedFloat32Array(0, 0.16666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../Sound/Appearing_Disappearing_One_Way:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_y0ib4"]
+resource_name = "NW_Appearing"
+length = 0.16667000869251786
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../NW:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../NW/Shadow_Orientation/Direction_Collider:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../Sound/Appearing_Disappearing_One_Way:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_aeiba"]
+resource_name = "NW_Disappearing"
+length = 0.16667000869251786
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../NW:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666668, 0.10000001, 0.13333334, 0.16666669),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../NW/Shadow_Orientation/Direction_Collider:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../Sound/Appearing_Disappearing_One_Way:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_cr4ld"]
@@ -427,12 +499,262 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../Sound/Appearing_Disappearing_One_Way:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../NE:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../NE/Shadow_Orientation/Direction_Collider:monitorable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../SW:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../SW/Shadow_Orientation/Direction_Collider:monitorable")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../NW:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../NW/Shadow_Orientation/Direction_Collider:monitorable")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_8gtq6"]
+resource_name = "SE_Appearing"
+length = 0.16667001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666669),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow_Orientation/Direction_Collider:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16667001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../Sound/Appearing_Disappearing_One_Way:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_luxsd"]
+resource_name = "SE_Disappearing"
+length = 0.16667001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.032874692, 0.06666668, 0.09954135, 0.13287471, 0.16620803),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow_Orientation/Direction_Collider:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../Sound/Appearing_Disappearing_One_Way:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_fshuu"]
+resource_name = "SW_Appearing"
+length = 0.16667000869251786
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SW:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SW/Shadow_Orientation/Direction_Collider:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../Sound/Appearing_Disappearing_One_Way:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ci028"]
+resource_name = "SW_Disappearing"
+length = 0.16667000869251786
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SW:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333328, 0.06666668, 0.099999994, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SW/Shadow_Orientation/Direction_Collider:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../Sound/Appearing_Disappearing_One_Way:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vwuvy"]
 _data = {
-&"Appearing": SubResource("Animation_8gtq6"),
-&"Disappearing": SubResource("Animation_gwl88"),
-&"RESET": SubResource("Animation_cr4ld")
+&"NE_Appearing": SubResource("Animation_gwl88"),
+&"NE_Disappearing": SubResource("Animation_52fcm"),
+&"NW_Appearing": SubResource("Animation_y0ib4"),
+&"NW_Disappearing": SubResource("Animation_aeiba"),
+&"RESET": SubResource("Animation_cr4ld"),
+&"SE_Appearing": SubResource("Animation_8gtq6"),
+&"SE_Disappearing": SubResource("Animation_luxsd"),
+&"SW_Appearing": SubResource("Animation_fshuu"),
+&"SW_Disappearing": SubResource("Animation_ci028")
 }
 
 [sub_resource type="Animation" id="Animation_82ru8"]
@@ -454,21 +776,93 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Floating_Node:position")
-tracks/1/interp = 1
+tracks/1/path = NodePath("../NE/Shadow_Orientation/Shadow:scale")
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 1, 2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
+"values": [Vector2(3.22, 0.646), Vector2(2.275, 0.456), Vector2(3.22, 0.646)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../SW/Shadow_Orientation/Shadow:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(3.22, 0.646), Vector2(2.275, 0.456), Vector2(3.22, 0.646)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../NW/Shadow_Orientation/Shadow:scale")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(3.22, 0.646), Vector2(2.275, 0.456), Vector2(3.22, 0.646)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../NW/Floating_Node:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
 "values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../SW/Floating_Node:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 15), Vector2(0, 10), Vector2(0, 15)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../NE/Floating_Node:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Floating_Node:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 15), Vector2(0, 10), Vector2(0, 15)]
 }
 
 [sub_resource type="Animation" id="Animation_l3wtu"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Shadow_Orientation/Shadow:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -481,10 +875,82 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Floating_Node:position")
+tracks/1/path = NodePath("../NE/Shadow_Orientation/Shadow:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3.22, 0.646)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../SW/Shadow_Orientation/Shadow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3.22, 0.646)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../NW/Shadow_Orientation/Shadow:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3.22, 0.646)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../NW/Floating_Node:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../SW/Floating_Node:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 15)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../NE/Floating_Node:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Floating_Node:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -1604,22 +2070,25 @@ metadata/_edit_lock_ = true
 [node name="Glitch" type="AnimationPlayer" parent="Column/Cell_Tops/Top_Cell_FX_Mask" unique_id=1010142019]
 libraries/ = SubResource("AnimationLibrary_cdabr")
 
-[node name="One_Way_Direction" type="Node2D" parent="Column/Cell_Tops" unique_id=880013981]
+[node name="One_Way_Directions" type="Node2D" parent="Column/Cell_Tops" unique_id=976730571]
+metadata/_edit_lock_ = true
+
+[node name="SE" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions" unique_id=880013981]
 visible = false
-script = ExtResource("31_qkut6")
 metadata/_edit_lock_ = true
 
-[node name="Shadow_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Direction" unique_id=162548240]
+[node name="Shadow_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/SE" unique_id=162548240]
 metadata/_edit_lock_ = true
 
-[node name="Direction_Collider" type="Area2D" parent="Column/Cell_Tops/One_Way_Direction/Shadow_Orientation" unique_id=968516240]
+[node name="Direction_Collider" type="Area2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Shadow_Orientation" unique_id=968516240]
+visible = false
 position = Vector2(0, 60)
 collision_layer = 2
 monitoring = false
 monitorable = false
 metadata/_edit_lock_ = true
 
-[node name="Collider" type="CollisionShape2D" parent="Column/Cell_Tops/One_Way_Direction/Shadow_Orientation/Direction_Collider" unique_id=636798695]
+[node name="Collider" type="CollisionShape2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Shadow_Orientation/Direction_Collider" unique_id=636798695]
 position = Vector2(-0.63485146, -0.30963898)
 rotation = 0.4537856
 scale = Vector2(1, 0.9999997)
@@ -1627,53 +2096,262 @@ skew = 0.6579889
 shape = SubResource("RectangleShape2D_qkut6")
 metadata/_edit_lock_ = true
 
-[node name="Shadow" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Shadow_Orientation" unique_id=1270092676]
+[node name="Shadow" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Shadow_Orientation" unique_id=1270092676]
 self_modulate = Color(1, 1, 1, 0.078431375)
 position = Vector2(0, 60)
 rotation = 0.4799655
-scale = Vector2(2.305715, 0.46217555)
+scale = Vector2(3.22, 0.646)
 skew = 0.61959183
 texture = ExtResource("31_fki3o")
 metadata/_edit_lock_ = true
 
-[node name="Floating_Node" type="Node2D" parent="Column/Cell_Tops/One_Way_Direction" unique_id=933293500]
+[node name="Floating_Node" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/SE" unique_id=933293500]
 metadata/_edit_lock_ = true
 
-[node name="Direction_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Direction/Floating_Node" unique_id=256302916]
+[node name="Direction_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node" unique_id=256302916]
 position = Vector2(-15, -75)
 metadata/_edit_lock_ = true
 
-[node name="Direction_Offset" type="Node2D" parent="Column/Cell_Tops/One_Way_Direction/Floating_Node/Direction_Orientation" unique_id=1410954637]
+[node name="Direction_Offset" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation" unique_id=1410954637]
 position = Vector2(0, 60)
 metadata/_edit_lock_ = true
 
-[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1800194083]
+[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1800194083]
 self_modulate = Color(1, 1, 1, 0.39215687)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
 
-[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=751098843]
+[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=751098843]
 clip_children = 2
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
 
-[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Floating_Node/Direction_Orientation/Direction_Offset/Direction_Back_Mask" unique_id=865244848]
+[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation/Direction_Offset/Direction_Back_Mask" unique_id=865244848]
 self_modulate = Color(1, 1, 1, 0.49803922)
 material = SubResource("ShaderMaterial_6o5ds")
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
 
-[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Direction/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1447955888]
+[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1447955888]
 position = Vector2(11.5, 4.5)
 texture = ExtResource("32_iotr2")
 metadata/_edit_lock_ = true
 
-[node name="Direction_Animation" type="AnimationPlayer" parent="Column/Cell_Tops/One_Way_Direction" unique_id=998299477]
+[node name="NE" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions" unique_id=906887000]
+visible = false
+metadata/_edit_lock_ = true
+
+[node name="Shadow_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/NE" unique_id=788935419]
+position = Vector2(0, 119)
+scale = Vector2(1, -1)
+metadata/_edit_lock_ = true
+
+[node name="Direction_Collider" type="Area2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Shadow_Orientation" unique_id=1491664933]
+visible = false
+position = Vector2(0, 60)
+collision_layer = 2
+monitoring = false
+monitorable = false
+metadata/_edit_lock_ = true
+
+[node name="Collider" type="CollisionShape2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Shadow_Orientation/Direction_Collider" unique_id=551337727]
+position = Vector2(-0.63485146, -0.30963898)
+rotation = 0.4537856
+scale = Vector2(1, 0.9999997)
+skew = 0.6579889
+shape = SubResource("RectangleShape2D_qkut6")
+metadata/_edit_lock_ = true
+
+[node name="Shadow" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Shadow_Orientation" unique_id=287725790]
+self_modulate = Color(1, 1, 1, 0.078431375)
+position = Vector2(0, 60)
+rotation = 0.4799655
+scale = Vector2(3.22, 0.646)
+skew = 0.61959183
+texture = ExtResource("31_fki3o")
+metadata/_edit_lock_ = true
+
+[node name="Floating_Node" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/NE" unique_id=2143617453]
+scale = Vector2(1, -1)
+metadata/_edit_lock_ = true
+
+[node name="Direction_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node" unique_id=1695288727]
+position = Vector2(-15, -75)
+metadata/_edit_lock_ = true
+
+[node name="Direction_Offset" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node/Direction_Orientation" unique_id=660659923]
+position = Vector2(0, 60)
+metadata/_edit_lock_ = true
+
+[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1366458068]
+self_modulate = Color(1, 1, 1, 0.39215687)
+position = Vector2(11.5, 4.5)
+texture = ExtResource("31_5memm")
+metadata/_edit_lock_ = true
+
+[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1243327540]
+clip_children = 2
+position = Vector2(11.5, 4.5)
+texture = ExtResource("31_5memm")
+metadata/_edit_lock_ = true
+
+[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node/Direction_Orientation/Direction_Offset/Direction_Back_Mask" unique_id=1836755425]
+self_modulate = Color(1, 1, 1, 0.49803922)
+material = SubResource("ShaderMaterial_6o5ds")
+texture = ExtResource("31_5memm")
+metadata/_edit_lock_ = true
+
+[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=457671021]
+position = Vector2(11.5, 4.5)
+texture = ExtResource("32_iotr2")
+metadata/_edit_lock_ = true
+
+[node name="SW" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions" unique_id=230324016]
+visible = false
+metadata/_edit_lock_ = true
+
+[node name="Shadow_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/SW" unique_id=515130899]
+scale = Vector2(-1, 1)
+metadata/_edit_lock_ = true
+
+[node name="Direction_Collider" type="Area2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Shadow_Orientation" unique_id=464866018]
+visible = false
+position = Vector2(0, 60)
+collision_layer = 2
+monitoring = false
+monitorable = false
+metadata/_edit_lock_ = true
+
+[node name="Collider" type="CollisionShape2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Shadow_Orientation/Direction_Collider" unique_id=330354886]
+position = Vector2(-0.63485146, -0.30963898)
+rotation = 0.4537856
+scale = Vector2(1, 0.9999997)
+skew = 0.6579889
+shape = SubResource("RectangleShape2D_qkut6")
+metadata/_edit_lock_ = true
+
+[node name="Shadow" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Shadow_Orientation" unique_id=1730865664]
+self_modulate = Color(1, 1, 1, 0.078431375)
+position = Vector2(0, 60)
+rotation = 0.4799655
+scale = Vector2(3.22, 0.646)
+skew = 0.61959183
+texture = ExtResource("31_fki3o")
+metadata/_edit_lock_ = true
+
+[node name="Floating_Node" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/SW" unique_id=307618187]
+position = Vector2(0, 15)
+scale = Vector2(-1, 1)
+metadata/_edit_lock_ = true
+
+[node name="Direction_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node" unique_id=112315711]
+position = Vector2(-15, -75)
+metadata/_edit_lock_ = true
+
+[node name="Direction_Offset" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node/Direction_Orientation" unique_id=1063350203]
+position = Vector2(0, 60)
+metadata/_edit_lock_ = true
+
+[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=108989442]
+self_modulate = Color(1, 1, 1, 0.39215687)
+position = Vector2(11.5, 4.5)
+texture = ExtResource("31_5memm")
+metadata/_edit_lock_ = true
+
+[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1818927078]
+clip_children = 2
+position = Vector2(11.5, 4.5)
+texture = ExtResource("31_5memm")
+metadata/_edit_lock_ = true
+
+[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node/Direction_Orientation/Direction_Offset/Direction_Back_Mask" unique_id=548720252]
+self_modulate = Color(1, 1, 1, 0.49803922)
+material = SubResource("ShaderMaterial_6o5ds")
+texture = ExtResource("31_5memm")
+metadata/_edit_lock_ = true
+
+[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=2079232239]
+position = Vector2(11.5, 4.5)
+texture = ExtResource("32_iotr2")
+metadata/_edit_lock_ = true
+
+[node name="NW" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions" unique_id=1724653404]
+visible = false
+metadata/_edit_lock_ = true
+
+[node name="Shadow_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/NW" unique_id=963247969]
+position = Vector2(0, 119)
+scale = Vector2(-1, -1)
+metadata/_edit_lock_ = true
+
+[node name="Direction_Collider" type="Area2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Shadow_Orientation" unique_id=1699495237]
+visible = false
+position = Vector2(0, 60)
+collision_layer = 2
+monitoring = false
+monitorable = false
+metadata/_edit_lock_ = true
+
+[node name="Collider" type="CollisionShape2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Shadow_Orientation/Direction_Collider" unique_id=1200447083]
+position = Vector2(-0.63485146, -0.30963898)
+rotation = 0.4537856
+scale = Vector2(1, 0.9999997)
+skew = 0.6579889
+shape = SubResource("RectangleShape2D_qkut6")
+metadata/_edit_lock_ = true
+
+[node name="Shadow" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Shadow_Orientation" unique_id=87270210]
+self_modulate = Color(1, 1, 1, 0.078431375)
+position = Vector2(0, 60)
+rotation = 0.4799655
+scale = Vector2(3.22, 0.646)
+skew = 0.61959183
+texture = ExtResource("31_fki3o")
+metadata/_edit_lock_ = true
+
+[node name="Floating_Node" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/NW" unique_id=2001430200]
+scale = Vector2(-1, -1)
+metadata/_edit_lock_ = true
+
+[node name="Direction_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node" unique_id=1465388486]
+position = Vector2(-15, -75)
+metadata/_edit_lock_ = true
+
+[node name="Direction_Offset" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node/Direction_Orientation" unique_id=116174809]
+position = Vector2(0, 60)
+metadata/_edit_lock_ = true
+
+[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=714310253]
+self_modulate = Color(1, 1, 1, 0.39215687)
+position = Vector2(11.5, 4.5)
+texture = ExtResource("31_5memm")
+metadata/_edit_lock_ = true
+
+[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1067264681]
+clip_children = 2
+position = Vector2(11.5, 4.5)
+texture = ExtResource("31_5memm")
+metadata/_edit_lock_ = true
+
+[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node/Direction_Orientation/Direction_Offset/Direction_Back_Mask" unique_id=759665352]
+self_modulate = Color(1, 1, 1, 0.49803922)
+material = SubResource("ShaderMaterial_6o5ds")
+texture = ExtResource("31_5memm")
+metadata/_edit_lock_ = true
+
+[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=224645697]
+position = Vector2(11.5, 4.5)
+texture = ExtResource("32_iotr2")
+metadata/_edit_lock_ = true
+
+[node name="Direction_Animation" type="AnimationPlayer" parent="Column/Cell_Tops/One_Way_Directions" unique_id=998299477]
+root_node = NodePath("../SE")
 libraries/ = SubResource("AnimationLibrary_vwuvy")
 
-[node name="Direction_Floating" type="AnimationPlayer" parent="Column/Cell_Tops/One_Way_Direction" unique_id=74783843]
+[node name="Direction_Floating" type="AnimationPlayer" parent="Column/Cell_Tops/One_Way_Directions" unique_id=74783843]
+root_node = NodePath("../SE")
 libraries/ = SubResource("AnimationLibrary_oyod2")
 autoplay = &"Floating"
 
@@ -1744,6 +2422,7 @@ bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Appearing_Disappearing_One_Way" type="AudioStreamPlayer2D" parent="Sound" unique_id=2105377160]
+stream = ExtResource("35_psu53")
 max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
