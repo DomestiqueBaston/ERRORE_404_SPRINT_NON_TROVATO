@@ -41,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://brl52e8ox1ue8" path="res://IMAGE/RUNNER/Shadow.png" id="31_fki3o"]
 [ext_resource type="AudioStream" uid="uid://bvr7mwob6g81h" path="res://SOUND/FX/Disappearing_Cell.ogg" id="31_mye8y"]
 [ext_resource type="Texture2D" uid="uid://bnish343js5k6" path="res://IMAGE/ENVIRONMENT/DIRECTION/Direction_Front.png" id="32_iotr2"]
+[ext_resource type="Script" uid="uid://cgco82tghryy7" path="res://SCENE_AND_SCRIPT/One_Way_Directions.gd" id="34_pnhl5"]
 [ext_resource type="AudioStream" uid="uid://7d1t448ecpba" path="res://SOUND/FX/Short_Disappearing.ogg" id="35_psu53"]
 [ext_resource type="AudioStream" uid="uid://bm1v8dymi3n0a" path="res://SOUND/FX/Digital_Glitch_B.ogg" id="37_qjqwi"]
 [ext_resource type="AudioStream" uid="uid://bxr32qgishsy8" path="res://SOUND/FX/Digital_Glitch_D.ogg" id="38_5memm"]
@@ -2071,6 +2072,7 @@ metadata/_edit_lock_ = true
 libraries/ = SubResource("AnimationLibrary_cdabr")
 
 [node name="One_Way_Directions" type="Node2D" parent="Column/Cell_Tops" unique_id=976730571]
+script = ExtResource("34_pnhl5")
 metadata/_edit_lock_ = true
 
 [node name="SE" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions" unique_id=880013981]
@@ -2353,7 +2355,6 @@ libraries/ = SubResource("AnimationLibrary_vwuvy")
 [node name="Direction_Floating" type="AnimationPlayer" parent="Column/Cell_Tops/One_Way_Directions" unique_id=74783843]
 root_node = NodePath("../SE")
 libraries/ = SubResource("AnimationLibrary_oyod2")
-autoplay = &"Floating"
 
 [node name="Collider_Ground" type="Area2D" parent="Column" unique_id=290484024]
 visible = false

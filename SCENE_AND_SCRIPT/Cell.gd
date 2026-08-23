@@ -52,9 +52,7 @@ enum State {
 }
 
 @onready var _anim_player: AnimationPlayer = $Global_Cell
-@onready var _one_way_direction: Node2D = $Column/Cell_Tops/One_Way_Direction
-@onready var _one_way_animation: AnimationPlayer = $Column/Cell_Tops/One_Way_Direction/Direction_Animation
-@onready var _one_way_collider: Area2D = $Column/Cell_Tops/One_Way_Direction/Shadow_Orientation/Direction_Collider
+@onready var _one_way_directions: Node2D = $Column/Cell_Tops/One_Way_Directions
 @onready var _glitch_anim: AnimationPlayer = $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch
 
 @onready var _textures = [
@@ -150,16 +148,13 @@ func get_sliding_animation_stop_length() -> float:
 
 func start_one_way(dir: Globals.Axis):
 	$Sound/Sound_For_Glitch_Only.play()
-	_one_way_direction.set_direction(dir)
-	_one_way_animation.play("Appearing")
-	await _one_way_animation.animation_finished
+	await _one_way_directions.start(dir)
 	_state = State.ONE_WAY
 
 func stop_one_way():
 	_state = State.NORMAL
-	_one_way_animation.play("Disappearing")
+	await _one_way_directions.stop()
 	$Sound/Sound_For_Glitch_Only.stop()
-	await _one_way_animation.animation_finished
 
 ##
 ## Turns the cell into a teleport cell. The type parameter chooses between two
@@ -263,10 +258,10 @@ func get_teleport_type() -> int:
 	return _teleport_type
 
 func get_one_way_collider() -> Area2D:
-	return _one_way_collider
+	return _one_way_directions.get_collider()
 
 func get_one_way_direction() -> Globals.Axis:
-	return _one_way_direction.get_direction()
+	return _one_way_directions.get_direction()
 
 ##
 ## Returns true if this is the center cell, that is, if decoration is
