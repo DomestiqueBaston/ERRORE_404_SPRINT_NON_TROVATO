@@ -1,5 +1,9 @@
 extends Node
 
+func stop_all():
+	for sound in find_children("*", "AudioStreamPlayer"):
+		sound.stop()
+
 func play_validation():
 	$UI_Sounds/Validation.play()
 	
