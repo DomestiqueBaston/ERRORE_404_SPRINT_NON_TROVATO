@@ -590,7 +590,6 @@ metadata/_edit_lock_ = true
 [node name="Collider" type="CollisionPolygon2D" parent="Collider_Obstacle" unique_id=1503758237]
 position = Vector2(0, -40)
 polygon = PackedVector2Array(0, -20, 118, 39, 118, 40, 0, 99, -118, 40, -118, 39)
-disabled = true
 metadata/_edit_lock_ = true
 
 [node name="Pylon_Animation" type="AnimationPlayer" parent="." unique_id=1911472662]

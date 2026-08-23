@@ -241,7 +241,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1e78n"]
@@ -255,12 +255,12 @@ _data = {
 script = ExtResource("1_mfqlr")
 
 [node name="Collider_Cube" type="Area2D" parent="." unique_id=1914165954]
+monitorable = false
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionShape2D" parent="Collider_Cube" unique_id=1339796665]
 scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_i7obx")
-disabled = true
 metadata/_edit_lock_ = true
 
 [node name="Cube_Shadow" type="Sprite2D" parent="." unique_id=294353358]
