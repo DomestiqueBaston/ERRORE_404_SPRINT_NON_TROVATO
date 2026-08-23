@@ -1034,27 +1034,15 @@ tracks/3/keys = {
 tracks/3/use_blend = true
 tracks/4/type = "value"
 tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Column/Collider_Ground:visible")
+tracks/4/enabled = false
+tracks/4/path = NodePath("Column/Collider_Ground:monitorable")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = false
-tracks/5/path = NodePath("Column/Collider_Ground/Collider:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0, 7.933334, 7.966667, 8.066667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [false, false, true, true]
+"values": [true, true, false, false]
 }
 
 [sub_resource type="Animation" id="Animation_5ypka"]
@@ -1120,14 +1108,14 @@ tracks/3/use_blend = true
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = false
-tracks/4/path = NodePath("Column/Collider_Ground/Collider:disabled")
+tracks/4/path = NodePath("Column/Collider_Ground:monitorable")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.76666665),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, false]
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_diigq"]
@@ -1193,14 +1181,14 @@ tracks/3/use_blend = true
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = false
-tracks/4/path = NodePath("Column/Collider_Ground/Collider:disabled")
+tracks/4/path = NodePath("Column/Collider_Ground:monitorable")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 1.0666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, false]
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_vso1q"]
@@ -1236,14 +1224,14 @@ tracks/1/use_blend = true
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = false
-tracks/2/path = NodePath("Column/Collider_Ground/Collider:disabled")
+tracks/2/path = NodePath("Column/Collider_Ground:monitorable")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.06666667, 0.099999994, 0.40000004),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [true, true, false, false]
+"values": [false, false, true, true]
 }
 
 [sub_resource type="Animation" id="Animation_7mpjj"]
@@ -1279,14 +1267,14 @@ tracks/1/use_blend = true
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = false
-tracks/2/path = NodePath("Column/Collider_Ground/Collider:disabled")
+tracks/2/path = NodePath("Column/Collider_Ground:monitorable")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.5, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, false, true]
+"values": [true, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_5dg73"]
@@ -1359,27 +1347,15 @@ tracks/3/keys = {
 tracks/3/use_blend = true
 tracks/4/type = "value"
 tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Column/Collider_Ground:visible")
+tracks/4/enabled = false
+tracks/4/path = NodePath("Column/Collider_Ground:monitorable")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = false
-tracks/5/path = NodePath("Column/Collider_Ground/Collider:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.9666667, 1, 7.4666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [false, false, true, true]
+"values": [true, true, false, false]
 }
 
 [sub_resource type="Animation" id="Animation_6vv1n"]
@@ -1453,14 +1429,14 @@ tracks/3/use_blend = true
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = false
-tracks/4/path = NodePath("Column/Collider_Ground/Collider:disabled")
+tracks/4/path = NodePath("Column/Collider_Ground:monitorable")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 7.3, 7.3333335, 7.4666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [false, false, true, true]
+"values": [true, true, false, false]
 }
 
 [sub_resource type="Animation" id="Animation_qkut6"]
@@ -1526,14 +1502,14 @@ tracks/3/use_blend = true
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = false
-tracks/4/path = NodePath("Column/Collider_Ground/Collider:disabled")
+tracks/4/path = NodePath("Column/Collider_Ground:monitorable")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.76666665),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, true]
+"values": [false, false]
 }
 
 [sub_resource type="Animation" id="Animation_psu53"]
@@ -1599,14 +1575,14 @@ tracks/3/use_blend = true
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = false
-tracks/4/path = NodePath("Column/Collider_Ground/Collider:disabled")
+tracks/4/path = NodePath("Column/Collider_Ground:monitorable")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 1.0666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, true]
+"values": [false, false]
 }
 
 [sub_resource type="Animation" id="Animation_e50o2"]
@@ -1672,14 +1648,14 @@ tracks/3/use_blend = true
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = false
-tracks/4/path = NodePath("Column/Collider_Ground/Collider:disabled")
+tracks/4/path = NodePath("Column/Collider_Ground:monitorable")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.76666665),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, true]
+"values": [false, false]
 }
 
 [sub_resource type="Animation" id="Animation_ej7e8"]
@@ -1745,14 +1721,14 @@ tracks/3/use_blend = true
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = false
-tracks/4/path = NodePath("Column/Collider_Ground/Collider:disabled")
+tracks/4/path = NodePath("Column/Collider_Ground:monitorable")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 1.0666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, true]
+"values": [false, false]
 }
 
 [sub_resource type="Animation" id="Animation_mye8y"]
@@ -1784,7 +1760,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = false
-tracks/2/path = NodePath("Column/Collider_Ground/Collider:disabled")
+tracks/2/path = NodePath("Column/Collider_Ground:monitorable")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -2357,15 +2333,16 @@ root_node = NodePath("../SE")
 libraries/ = SubResource("AnimationLibrary_oyod2")
 
 [node name="Collider_Ground" type="Area2D" parent="Column" unique_id=290484024]
-visible = false
 position = Vector2(0, 60)
 collision_layer = 2
 monitoring = false
+monitorable = false
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionPolygon2D" parent="Column/Collider_Ground" unique_id=2120679339]
 visible = false
 polygon = PackedVector2Array(-118, -1, 0, -60, 118, -1, 118, 0, 0, 59, -118, 0)
+disabled = true
 metadata/_edit_lock_ = true
 
 [node name="Global_Cell" type="AnimationPlayer" parent="." unique_id=1288134592]
