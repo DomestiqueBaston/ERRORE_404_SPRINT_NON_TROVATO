@@ -171,38 +171,14 @@ tracks/3/use_blend = true
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Collider_Door/Passage:disabled")
+tracks/4/path = NodePath("Collider_Door:monitorable")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.033333335, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false, false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Collider_Door/Leg_D:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Collider_Door/Leg_G:disabled")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, false]
+"values": [false, true, true]
 }
 
 [sub_resource type="Animation" id="Animation_pl358"]
@@ -246,38 +222,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Collider_Door/Passage:disabled")
+tracks/3/path = NodePath("Collider_Door:monitorable")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Collider_Door/Leg_D:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Collider_Door/Leg_G:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jbtw0"]
@@ -290,6 +242,7 @@ _data = {
 
 [node name="Collider_Door" type="Area2D" parent="." unique_id=1723708210]
 position = Vector2(0, 60)
+monitorable = false
 metadata/_edit_lock_ = true
 
 [node name="Passage" type="CollisionShape2D" parent="Collider_Door" unique_id=1711003240]
@@ -297,7 +250,6 @@ position = Vector2(2.6447163, -1.0161018)
 rotation = 0.42760566
 skew = 0.6283184
 shape = SubResource("RectangleShape2D_ecpiw")
-disabled = true
 metadata/_edit_lock_ = true
 
 [node name="Leg_D" type="CollisionShape2D" parent="Collider_Door" unique_id=1502495294]
@@ -305,7 +257,6 @@ position = Vector2(47, 19)
 rotation = 0.42760566
 skew = 0.6283184
 shape = SubResource("RectangleShape2D_t7lr0")
-disabled = true
 metadata/_edit_lock_ = true
 
 [node name="Leg_G" type="CollisionShape2D" parent="Collider_Door" unique_id=88603420]
@@ -313,7 +264,6 @@ position = Vector2(-41.000004, -21.000004)
 rotation = 0.42760566
 skew = 0.6283184
 shape = SubResource("RectangleShape2D_mhnl0")
-disabled = true
 metadata/_edit_lock_ = true
 
 [node name="Door_Shadow" type="Sprite2D" parent="." unique_id=864377854]
