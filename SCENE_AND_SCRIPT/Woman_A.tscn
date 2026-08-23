@@ -265,91 +265,91 @@ tracks/6/use_blend = true
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 1.4333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
+tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1.4333334),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [-1.0471976, -1.0471976]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
+tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1.4333334),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-1.0471976]
+"values": [Vector2(1, 1), Vector2(1, 1)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
+tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1.4333334),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [0.0, 0.0]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
+tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite:offset")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite:offset")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
 "times": PackedFloat32Array(0, 1.4333334),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-29, -58), Vector2(-29, -58)]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area/Death_Collider:shape:height")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.6333334, 1.0333333, 1.4333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [58.53, 64.33096, 111.038605, 111.038605]
+}
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:position")
+tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area/Death_Collider:shape:radius")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
 "times": PackedFloat32Array(0, 0.33333334, 0.6333334, 1.0333333, 1.4333334),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-7, -13), Vector2(-21.758354, -16.379177), Vector2(-7.000001, -9.000001), Vector2(-25, -15), Vector2(-25, -15)]
+"values": [17.492554, 19.224386, 26.09468, 21.92972, 21.92972]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:rotation")
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area/Death_Collider:rotation")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -361,38 +361,38 @@ tracks/14/keys = {
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/15/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area/Death_Collider:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"times": PackedFloat32Array(0, 0.33333334, 0.6333334, 1.0333333, 1.4333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-7, -13), Vector2(-21.758354, -16.379177), Vector2(-7.000001, -9.000001), Vector2(-25, -15), Vector2(-25, -15)]
 }
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:shape:radius")
+tracks/16/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area:monitorable")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(0, 0.33333334, 0.6333334, 1.0333333, 1.4333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [17.492554, 19.224386, 26.09468, 21.92972, 21.92972]
+"times": PackedFloat32Array(0, 1.4333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:shape:height")
+tracks/17/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area:monitorable")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
-"times": PackedFloat32Array(0, 0.6333334, 1.0333333, 1.4333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [58.53, 64.33096, 111.038605, 111.038605]
+"times": PackedFloat32Array(0, 1.4333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_6u6kr"]
@@ -499,91 +499,91 @@ tracks/6/use_blend = true
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 1.4333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
+tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1.4333334),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [-1.0471976, -1.0471976]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
+tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1.4333334),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-1.0471976]
+"values": [Vector2(1, 1), Vector2(1, 1)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
+tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1.4333334),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [0.0, 0.0]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
+tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite:offset")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite:offset")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
 "times": PackedFloat32Array(0, 1.4333334),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-29, -58), Vector2(-29, -58)]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area/Death_Collider:shape:height")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.6333334, 0.8, 0.9999999, 1.4333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [58.53, 64.33096, 75.888535, 111.038605, 111.038605]
+}
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:position")
+tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area/Death_Collider:shape:radius")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0, 0.33333334, 0.6333334, 0.8, 1, 1.4333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.33333334, 0.6333334, 0.9999999, 1.4333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-22, -21), Vector2(-21.758354, -16.379177), Vector2(-46, -24), Vector2(-45, -22), Vector2(-27, -15), Vector2(-27, -15)]
+"values": [17.492554, 19.224386, 23.21157, 21.92972, 21.92972]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:rotation")
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area/Death_Collider:rotation")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -595,38 +595,38 @@ tracks/14/keys = {
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/15/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area/Death_Collider:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"times": PackedFloat32Array(0, 0.33333334, 0.6333334, 0.8, 1, 1.4333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-22, -21), Vector2(-21.758354, -16.379177), Vector2(-46, -24), Vector2(-45, -22), Vector2(-27, -15), Vector2(-27, -15)]
 }
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:shape:radius")
+tracks/16/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area:monitorable")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(0, 0.33333334, 0.6333334, 0.9999999, 1.4333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [17.492554, 19.224386, 23.21157, 21.92972, 21.92972]
+"times": PackedFloat32Array(0, 1.4333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:shape:height")
+tracks/17/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area:monitorable")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
-"times": PackedFloat32Array(0, 0.6333334, 0.8, 0.9999999, 1.4333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [58.53, 64.33096, 75.888535, 111.038605, 111.038605]
+"times": PackedFloat32Array(0, 1.4333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_bpqq7"]
@@ -725,122 +725,122 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
+tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [-1.0471976, -1.0471976]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
+tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-1.0471976]
+"values": [Vector2(1, 1), Vector2(1, 1)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
+tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [0.0, 0.0]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
+tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Falling:volume_db")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Falling:volume_db")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
 "times": PackedFloat32Array(0, 0.70000005, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [-10.0, -10.0, -22.5]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:position")
+tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:rotation")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [0.17453292]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:rotation")
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:scale")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.17453292]
+"values": [Vector2(1.5, 1.5)]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:scale")
+tracks/15/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area:monitorable")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1.5, 1.5)]
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
 }
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/16/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area:monitorable")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, false]
 }
 
 [sub_resource type="Animation" id="Animation_axddh"]
@@ -939,122 +939,122 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
+tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [-1.0471976, -1.0471976]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
+tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-1.0471976]
+"values": [Vector2(1, 1), Vector2(1, 1)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
+tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [0.0, 0.0]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
+tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Falling:volume_db")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Falling:volume_db")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
 "times": PackedFloat32Array(0, 0.70000005, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [-10.0, -10.0, -22.5]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:position")
+tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:rotation")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [0.17453292]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:rotation")
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:scale")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.17453292]
+"values": [Vector2(1.5, 1.5)]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:scale")
+tracks/15/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area:monitorable")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1.5, 1.5)]
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
 }
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/16/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area:monitorable")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, false]
 }
 
 [sub_resource type="Animation" id="Animation_0257l"]
@@ -1148,14 +1148,26 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area:monitorable")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 3.0666668),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area:monitorable")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 3.0666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
 }
 
 [sub_resource type="Animation" id="Animation_1s22q"]
@@ -1263,70 +1275,58 @@ tracks/7/use_blend = true
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
+tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [-0.3211406, -0.3211406]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
+tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.3211406]
+"values": [Vector2(1, 1), Vector2(1, 1)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
+tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [-0.7853982, -0.7853982]
 }
-tracks/12/type = "value"
+tracks/12/type = "method"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
+tracks/12/path = NodePath("..")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.7853982]
-}
-tracks/13/type = "method"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("..")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
 "times": PackedFloat32Array(0.36666667, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -1337,17 +1337,29 @@ tracks/13/keys = {
 "method": &"play_foot_step_02"
 }]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area:monitorable")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area:monitorable")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, false]
 }
 
 [sub_resource type="Animation" id="Animation_ahumo"]
@@ -1455,70 +1467,58 @@ tracks/7/use_blend = true
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
+tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [-0.3211406, -0.3211406]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
+tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.3211406]
+"values": [Vector2(1, 1), Vector2(1, 1)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
+tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [-0.7853982, -0.7853982]
 }
-tracks/12/type = "value"
+tracks/12/type = "method"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
+tracks/12/path = NodePath("..")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.7853982]
-}
-tracks/13/type = "method"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("..")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
 "times": PackedFloat32Array(0.36666667, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -1529,17 +1529,29 @@ tracks/13/keys = {
 "method": &"play_foot_step_02"
 }]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area:monitorable")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area:monitorable")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, false]
 }
 
 [sub_resource type="Animation" id="Animation_p514w"]
@@ -1703,86 +1715,86 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Falling:volume_db")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [-5.0]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Sound/Falling:volume_db")
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area/Death_Collider:shape:height")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-5.0]
+"values": [111.038605]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/15/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area/Death_Collider:shape:radius")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [21.92972]
 }
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:position")
+tracks/16/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area/Death_Collider:rotation")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [-1.2426745]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:rotation")
+tracks/17/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area/Death_Collider:position")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-1.2426745]
+"values": [Vector2(0, 0)]
 }
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:shape:radius")
+tracks/18/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area:monitorable")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [21.92972]
+"update": 1,
+"values": [false]
 }
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:shape:height")
+tracks/19/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area:monitorable")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [111.038605]
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_w5jul"]
@@ -1895,10 +1907,10 @@ tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:posit
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -1907,10 +1919,10 @@ tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotat
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.3211406]
+"values": [-0.3211406, -0.3211406]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -1919,10 +1931,10 @@ tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scal
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(1, 1)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -1931,30 +1943,18 @@ tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.7853982]
+"values": [-0.7853982, -0.7853982]
 }
-tracks/12/type = "value"
+tracks/12/type = "method"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/12/path = NodePath("..")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/13/type = "method"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("..")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
 "times": PackedFloat32Array(0.15127686, 0.4493529),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -1965,17 +1965,29 @@ tracks/13/keys = {
 "method": &"play_foot_step_02"
 }]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area:monitorable")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area:monitorable")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, false]
 }
 
 [sub_resource type="Animation" id="Animation_w02lc"]
@@ -2088,10 +2100,10 @@ tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:posit
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -2100,10 +2112,10 @@ tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotat
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.3211406]
+"values": [-0.3211406, -0.3211406]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -2112,10 +2124,10 @@ tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scal
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(1, 1)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -2124,30 +2136,18 @@ tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.7853982]
+"values": [-0.7853982, -0.7853982]
 }
-tracks/12/type = "value"
+tracks/12/type = "method"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/12/path = NodePath("..")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/13/type = "method"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("..")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
 "times": PackedFloat32Array(0.1512865, 0.44936255),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -2158,17 +2158,29 @@ tracks/13/keys = {
 "method": &"play_foot_step_02"
 }]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area:monitorable")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/14/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area:monitorable")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, false]
 }
 
 [sub_resource type="Animation" id="Animation_gjkpv"]
@@ -2252,74 +2264,74 @@ tracks/5/use_blend = true
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/6/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.5333367),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.10000001, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(4, 2), Vector2(-4, -2), Vector2(-4, -2)]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.5333367),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-0.3211406, -0.3211406]
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 1.5), Vector2(1, 1.5)]
 }
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.5333367),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-0.7853982, -0.7853982]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area:monitorable")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area:monitorable")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, false]
 }
 
 [sub_resource type="Animation" id="Animation_kxl5h"]
@@ -2403,74 +2415,74 @@ tracks/5/use_blend = true
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/6/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.5333367),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(4, 2), Vector2(12, 6), Vector2(12, 6)]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.5333367),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-0.3211406, -0.3211406]
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 1.5), Vector2(1, 1.5)]
 }
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.5333367),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-0.7853982, -0.7853982]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area:monitorable")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area:monitorable")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, false]
 }
 
 [sub_resource type="Animation" id="Animation_t3hkb"]
@@ -2564,74 +2576,74 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 0.8333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
+tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.8333334),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [-1.0471976, -1.0471976]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
+tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.8333334),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-1.0471976]
+"values": [Vector2(1, 1), Vector2(1, 1)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
+tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.8333334),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [0.0, 0.0]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
+tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area:monitorable")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"times": PackedFloat32Array(0, 0.8333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area:monitorable")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.8333334),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, false]
 }
 
 [sub_resource type="Animation" id="Animation_ojupx"]
@@ -2725,74 +2737,74 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:disabled")
+tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 0.8333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:position")
+tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.8333334),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [-1.0471976, -1.0471976]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotation")
+tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.8333334),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-1.0471976]
+"values": [Vector2(1, 1), Vector2(1, 1)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale")
+tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.8333334),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [0.0, 0.0]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew")
+tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area:monitorable")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"times": PackedFloat32Array(0, 0.8333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Death_Collider:disabled")
+tracks/12/path = NodePath("Papa_Sprite/Runner_Sprite/Death_Area:monitorable")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.8333334),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8jbc5"]
@@ -3241,9 +3253,14 @@ shape = SubResource("CapsuleShape2D_rjpof")
 disabled = true
 metadata/_edit_lock_ = true
 
-[node name="Death_Collider" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Collider_Area" unique_id=836206826]
+[node name="Death_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=646518131]
+monitorable = false
+metadata/_edit_lock_ = true
+
+[node name="Death_Collider" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Death_Area" unique_id=836206826]
 visible = false
 rotation = -1.2426745
+scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("CapsuleShape2D_uqsxk")
 disabled = true
 metadata/_edit_lock_ = true
