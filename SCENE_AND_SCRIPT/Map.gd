@@ -15,7 +15,6 @@ class_name Map extends Node2D
 var _cell_scene := preload("res://SCENE_AND_SCRIPT/Cell.tscn")
 var _door_scene := preload("res://SCENE_AND_SCRIPT/Door.tscn")
 
-const _cell_offset_y = 60.0
 const _cell_size_x = 236.0
 const _cell_size_y = 0.5 * _cell_size_x
 const _cell_step_x = 0.5 * _cell_size_x
@@ -199,14 +198,14 @@ func _add_cell(parent: Node2D, uv: Vector2i, deco: Cell.Decoration) -> Cell:
 static func get_cell_pos(uv: Vector2i) -> Vector2:
 	return Vector2(
 		(uv.x + uv.y) * _cell_step_x,
-		(uv.x - uv.y) * _cell_step_y - _cell_offset_y)
+		(uv.x - uv.y) * _cell_step_y)
 
 ##
 ## Does the inverse of get_cell_pos(): returns the UV index of the cell at the
 ## given position in XY coordinates. The cell need not actually exist.
 ##
 static func get_cell_index(pos: Vector2) -> Vector2i:
-	var y = 2.0 * (pos.y + _cell_offset_y)
+	var y = 2.0 * pos.y
 	return Vector2i(
 		roundi((pos.x + y) / _cell_size_x),
 		roundi((pos.x - y) / _cell_size_x))

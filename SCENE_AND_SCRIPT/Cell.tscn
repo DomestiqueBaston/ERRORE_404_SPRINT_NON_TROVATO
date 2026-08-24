@@ -1787,10 +1787,12 @@ _data = {
 }
 
 [node name="Cell" type="Node2D" unique_id=2120336095]
+y_sort_enabled = true
 script = ExtResource("1_psu53")
 metadata/_edit_lock_ = true
 
 [node name="Column" type="Node2D" parent="." unique_id=294314283]
+position = Vector2(0, -60)
 metadata/_edit_lock_ = true
 
 [node name="Navigation_Tile" type="NavigationRegion2D" parent="Column" unique_id=2074369045]
