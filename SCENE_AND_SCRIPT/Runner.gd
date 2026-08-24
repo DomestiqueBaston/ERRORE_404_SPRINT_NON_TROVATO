@@ -275,45 +275,37 @@ func _check_new_location():
 	if next_cell != _start_cell:
 		_has_left_start_cell = true
 
-	# If we haven't moved to a different cell, just add the current cell's
-	# movement to the runner's.
+	# If we haven't moved to a different cell, add the current cell's movement
+	# to the runner's.
 
 	if _curr_cell == next_cell:
 		if _curr_cell and not is_falling and not is_jumping:
 			var next_cell_pos = _curr_cell.global_position
 			position += next_cell_pos - _curr_cell_pos
 
-	# If we have moved to a different cell (or to empty space), update the
-	# current cell accordingly and check for obstacles.
+	# Update the current cell accordingly and check for obstacles.
 
-	else:
-		#if (_curr_cell == null or next_cell == null
-		#	or _curr_cell.get_state() != next_cell.get_state()):
-		#	if next_cell:
-		#		print(Cell.State.keys()[next_cell.get_state()].capitalize())
-		#	else:
-		#		print("Empty")
-
-		if next_cell:
-			match next_cell.get_state():
-				Cell.State.LOWERED, Cell.State.HIDDEN:
+	if next_cell:
+		match next_cell.get_state():
+			Cell.State.LOWERED, Cell.State.HIDDEN:
+				if not is_jumping:
 					start_falling()
-				Cell.State.RAISED:
-					if _has_left_start_cell:
-						die()
-				Cell.State.TELEPORT:
-					_check_teleport(next_cell)
-				Cell.State.ONE_WAY:
-					_check_one_way(next_cell)
-				Cell.State.PYLON:
+			Cell.State.RAISED:
+				if _has_left_start_cell:
 					die()
-		else:
+			Cell.State.TELEPORT:
+				_check_teleport(next_cell)
+			Cell.State.ONE_WAY:
+				_check_one_way(next_cell)
+			Cell.State.PYLON:
+				die()
+	else:
+		if not is_jumping:
 			start_falling()
 
-		_curr_cell = next_cell
+	# Note the current cell and position for next time.
 
-	# Note the current position of the current cell for next time.
-
+	_curr_cell = next_cell
 	if _curr_cell:
 		_curr_cell_pos = _curr_cell.global_position
 
