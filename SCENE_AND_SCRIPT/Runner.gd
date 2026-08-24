@@ -37,6 +37,7 @@ var _southwest: Vector2 = Vector2(-1, 1).rotated(_rotation).normalized()
 var _southeast: Vector2 = Vector2(1, 1).rotated(-_rotation).normalized()
 
 var _map: Map
+var _physics_counter: int = 0
 var _start_cell: Cell
 var _has_left_start_cell: bool = false
 var _curr_cell: Cell
@@ -52,7 +53,13 @@ func set_map(map: Map, start_cell: Cell = null):
 	else:
 		_start_cell = map.get_center_cell()
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
+
+	# skip first frame to allow physics server to find initial collisions
+	_physics_counter += 1
+	if _physics_counter == 1:
+		return
+
 	# États bloquants : plus rien à faire
 	if is_dead or is_falling:
 		return
@@ -184,7 +191,7 @@ func die() -> void:
 	is_dead = true
 	
 	# no more movement
-	set_process(false)
+	set_physics_process(false)
 	
 	if last_non_zero_direction == Vector2.ZERO:
 		animation_player.play("Death_180")
@@ -203,7 +210,7 @@ func start_falling() -> void:
 	is_falling = true
 	
 	# no more movement
-	set_process(false)
+	set_physics_process(false)
 	
 	# Animation de chute avec la bonne orientation
 	if last_non_zero_direction == Vector2.ZERO:
@@ -262,15 +269,11 @@ func _check_new_location():
 	if _map == null:
 		return
 
-	# Find the cell underfoot. Note that get_cell_in_area() sometimes returns null
-	# if the runner has not left the start cell yet!
+	# Find the cell underfoot.
 
 	var next_cell: Cell = _map.get_cell_in_area(collider)
-	if not _has_left_start_cell:
-		if next_cell == null:
-			next_cell = _start_cell
-		elif next_cell != _start_cell:
-			_has_left_start_cell = true
+	if next_cell != _start_cell:
+		_has_left_start_cell = true
 
 	# If we haven't moved to a different cell, just add the current cell's
 	# movement to the runner's.
