@@ -125,8 +125,12 @@ func _process(delta: float) -> void:
 	# === Mouvement ===
 	if direction:
 		position += direction * current_speed * delta
-		_check_new_location()
-		$Character/Cam.update_aim_point(global_position)
+
+	# check for obstacles, sliding cells, etc.
+	_check_new_location()
+
+	# keep camera aimed at runner
+	$Character/Cam.update_aim_point(global_position)
 
 	# === Animations normales (seulement si pas en action spéciale) ===
 	if is_jumping or is_sliding or is_dead or is_falling:
