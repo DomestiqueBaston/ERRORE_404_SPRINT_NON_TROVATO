@@ -186,7 +186,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.033333335, 0.13333334, 0.2, 0.33333334, 0.46666667, 0.53333336, 1.5333333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-6, -3), Vector2(0, 0), Vector2(0, 0), Vector2(4.1666665, 2.0833333), Vector2(24.79167, 12.395835), Vector2(45.416664, 22.708332), Vector2(50, 25), Vector2(50, 25)]
+"values": [Vector2(-22, -11), Vector2(-16, -8), Vector2(-16, -8), Vector2(-11.833, -5.917), Vector2(8.792, 4.396), Vector2(29.417, 14.708), Vector2(34, 17), Vector2(34, 17)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -396,7 +396,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.033333335, 0.13333334, 0.2, 0.33333334, 0.46666667, 0.53333336, 1.5333333),
 "transitions": PackedFloat32Array(1, 1, 0.75, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(6, 3), Vector2(0, 0), Vector2(0, 0), Vector2(-5.476914, -2.738457), Vector2(-25.512306, -12.756153), Vector2(-45.547688, -22.773844), Vector2(-50, -25), Vector2(-50, -25)]
+"values": [Vector2(22, 11), Vector2(16, 8), Vector2(16, 8), Vector2(10.523, 5.262), Vector2(-9.512, -4.756), Vector2(-29.548, -14.774), Vector2(-34, -17), Vector2(-34, -17)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1049,6 +1049,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [true, true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Papa_Sprite/Runner_Sprite:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 3.3333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_1s22q"]
 resource_name = "Jump_000"
@@ -1159,10 +1171,10 @@ tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:posit
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -1171,10 +1183,10 @@ tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotat
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.3211406]
+"values": [-0.3211406, -0.3211406]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -1183,10 +1195,10 @@ tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scal
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(1, 0.5), Vector2(1, 0.5)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -1195,10 +1207,10 @@ tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.7853982]
+"values": [-0.7853982, -0.7853982]
 }
 tracks/12/type = "method"
 tracks/12/imported = false
@@ -1216,6 +1228,18 @@ tracks/12/keys = {
 "args": [],
 "method": &"play_foot_step_02"
 }]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ahumo"]
@@ -1327,10 +1351,10 @@ tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:posit
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -1339,10 +1363,10 @@ tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotat
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.3211406]
+"values": [-0.3211406, -0.3211406]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -1351,10 +1375,10 @@ tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scal
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(1, 0.5), Vector2(1, 0.5)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -1363,10 +1387,10 @@ tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.7853982]
+"values": [-0.7853982, -0.7853982]
 }
 tracks/12/type = "method"
 tracks/12/imported = false
@@ -1384,6 +1408,18 @@ tracks/12/keys = {
 "args": [],
 "method": &"play_foot_step_02"
 }]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_p514w"]
@@ -1715,10 +1751,10 @@ tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:posit
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -1727,10 +1763,10 @@ tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotat
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.3211406]
+"values": [-0.3211406, -0.3211406]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -1739,10 +1775,10 @@ tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scal
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(1, 0.5), Vector2(1, 0.5)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -1751,10 +1787,10 @@ tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.7853982]
+"values": [-0.7853982, -0.7853982]
 }
 tracks/12/type = "method"
 tracks/12/imported = false
@@ -1772,6 +1808,18 @@ tracks/12/keys = {
 "args": [],
 "method": &"play_foot_step_02"
 }]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_w02lc"]
@@ -1884,10 +1932,10 @@ tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:posit
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -1896,10 +1944,10 @@ tracks/9/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:rotat
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.3211406]
+"values": [-0.3211406, -0.3211406]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -1908,10 +1956,10 @@ tracks/10/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scal
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(1, 0.5), Vector2(1, 0.5)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -1920,10 +1968,10 @@ tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:skew
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.7853982]
+"values": [-0.7853982, -0.7853982]
 }
 tracks/12/type = "method"
 tracks/12/imported = false
@@ -1941,6 +1989,18 @@ tracks/12/keys = {
 "args": [],
 "method": &"play_foot_step_02"
 }]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Papa_Sprite/Runner_Sprite:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_gjkpv"]
@@ -2052,10 +2112,10 @@ tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.53332996),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1.5), Vector2(1, 1.5)]
+"values": [Vector2(1, 0.5), Vector2(1, 0.666), Vector2(1, 0.666)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -2179,10 +2239,10 @@ tracks/8/path = NodePath("Papa_Sprite/Runner_Sprite/Collider_Area/Collider:scale
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.53333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1.5), Vector2(1, 1.5)]
+"values": [Vector2(1, 0.5), Vector2(1, 0.666), Vector2(1, 0.666)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -2332,6 +2392,18 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Papa_Sprite/Runner_Sprite:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.6666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ojupx"]
