@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	# check for obstacles, sliding cells, etc.
-	_check_new_location()
+	_check_location()
 
 	# États bloquants : plus rien à faire
 	if is_dead or is_falling:
@@ -167,14 +167,16 @@ func _play_slide_animation() -> void:
 
 
 # ── MORT ──
-func die() -> void:
+func die(fast: bool = false) -> void:
 	if is_dead: return
 	is_dead = true
 	
 	# no more movement
 	set_physics_process(false)
 	
-	if last_non_zero_direction == Vector2.ZERO:
+	if fast:
+		$Animation_Disappearing_Death.play("Disappearing")
+	elif last_non_zero_direction == Vector2.ZERO:
 		animation_player.play("Death_180")
 	else:
 		if last_non_zero_direction.y < 0:
@@ -246,7 +248,7 @@ func is_valid_direction(new_direction: Vector2) -> bool:
 # has encountered an obstacle, or a teleport, or fallen off the map, etc. On
 # return, he may be dead or falling.
 #
-func _check_new_location():
+func _check_location():
 	if _map == null:
 		return
 
@@ -268,7 +270,7 @@ func _check_new_location():
 			Cell.State.ONE_WAY:
 				_check_one_way(next_cell)
 			Cell.State.PYLON:
-				die()
+				_check_pylon(next_cell)
 	else:
 		if not is_jumping:
 			start_falling()
@@ -322,6 +324,16 @@ func _check_one_way(cell: Cell):
 	anim.play("Bonus_Malus")
 	if _map:
 		_map.cancel_one_way(cell)
+
+func _check_pylon(cell: Cell):
+	match cell.get_pylon().get_state():
+		Pylon.State.LOWERED:
+			if not is_sliding:
+				die()
+		Pylon.State.DROPPED:
+			# if the runner was on the cell when the pylon dropped, he just
+			# disappears
+			die(cell == _curr_cell)
 
 #
 # Methods called by run cycle animation.
