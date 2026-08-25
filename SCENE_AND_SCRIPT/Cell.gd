@@ -102,12 +102,16 @@ func lower():
 		_anim_player.play("404_Going_Down")
 	else:
 		_anim_player.play("Going_Down")
+		await get_tree().create_timer(1.2).timeout
+		_state = State.LOWERED
 	await _anim_player.animation_finished
-	_state = State.NORMAL if is_center() else State.LOWERED
+	if is_center():
+		_state = State.NORMAL
 
 func raise():
-	_state = State.NORMAL
 	_anim_player.play("Going_Up")
+	await get_tree().create_timer(7.2).timeout
+	_state = State.NORMAL
 	await _anim_player.animation_finished
 
 func disappear():
