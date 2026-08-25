@@ -11,9 +11,9 @@ extends Node2D
 @onready var _footstep2 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_02
 @onready var _footstep3 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_03
 
-@export var move_speed: float = 385.0
-@export var jump_speed: float = 375.0
-@export var slide_speed: float = 365.0
+@export var move_speed: float = 395.0
+@export var jump_speed: float = 385.0
+@export var slide_speed: float = 375.0
 
 var direction: Vector2 = Vector2.ZERO
 var last_direction: Vector2 = Vector2.ZERO

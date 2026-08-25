@@ -2001,10 +2001,10 @@ tracks/1/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:position"
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4666667, 0.53333336),
+"times": PackedFloat32Array(0, 0.13333334, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-15, -5), Vector2(-24.5, -9), Vector2(-25, -9)]
+"values": [Vector2(-21.000002, -7.000001), Vector2(-25, -9), Vector2(-25, -9)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -2025,10 +2025,10 @@ tracks/3/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.33333334, 0.53333336),
+"times": PackedFloat32Array(0, 0.13333334, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(2, 1), Vector2(1.666, 1), Vector2(1.666, 1)]
+"values": [Vector2(1.5, 1), Vector2(1.666, 1), Vector2(1.666, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -2140,10 +2140,10 @@ tracks/1/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:position"
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4666667, 0.53333336),
+"times": PackedFloat32Array(0, 0.13333334, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-15, -5), Vector2(-2.5, 1), Vector2(-2, 2)]
+"values": [Vector2(-3.9999995, 1.0000002), Vector2(-2, 2), Vector2(-2, 2)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -2164,10 +2164,10 @@ tracks/3/path = NodePath("Papa_Sprite/Runner_Sprite/Papa_Shadow/Shadow:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.33333334, 0.53333336),
+"times": PackedFloat32Array(0, 0.13333334, 0.53333336),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(2, 1), Vector2(1.666, 1), Vector2(1.666, 1)]
+"values": [Vector2(1.5, 1), Vector2(1.666, 1), Vector2(1.666, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -2988,7 +2988,6 @@ position = Vector2(-7, 1)
 rotation = 0.17453292
 texture = ExtResource("5_rpmb2")
 offset = Vector2(7, 0)
-metadata/_edit_lock_ = true
 
 [node name="Collider_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=1579218920]
 collision_mask = 2
