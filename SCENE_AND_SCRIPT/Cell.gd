@@ -112,9 +112,16 @@ func raise():
 	_anim_player.play("Going_Up")
 	await _anim_player.animation_finished
 
+#
+# Called by the Going_Down animation when the cell has actually begun going
+# down.
+#
 func _set_state_lowered():
 	_state = State.LOWERED
 
+#
+# Called by the Going_Up animation when the cell is almost back up.
+#
 func _set_state_normal():
 	_state = State.NORMAL
 
