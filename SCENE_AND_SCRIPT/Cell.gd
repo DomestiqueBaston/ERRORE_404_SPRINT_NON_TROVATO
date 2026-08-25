@@ -101,18 +101,22 @@ func lower():
 	if is_center():
 		_anim_player.play("404_Going_Down")
 	else:
+		# the animation will call _set_state_lowered()
 		_anim_player.play("Going_Down")
-		await get_tree().create_timer(1.2).timeout
-		_state = State.LOWERED
 	await _anim_player.animation_finished
 	if is_center():
 		_state = State.NORMAL
 
 func raise():
+	# the animation will call _set_state_normal()
 	_anim_player.play("Going_Up")
-	await get_tree().create_timer(7.2).timeout
-	_state = State.NORMAL
 	await _anim_player.animation_finished
+
+func _set_state_lowered():
+	_state = State.LOWERED
+
+func _set_state_normal():
+	_state = State.NORMAL
 
 func disappear():
 	_anim_player.play("Disappearing")

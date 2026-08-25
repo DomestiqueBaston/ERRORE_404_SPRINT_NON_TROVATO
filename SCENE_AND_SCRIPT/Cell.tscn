@@ -1357,6 +1357,20 @@ tracks/4/keys = {
 "update": 1,
 "values": [true, true, false, false]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_set_state_lowered"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_6vv1n"]
 resource_name = "Going_Up"
@@ -1437,6 +1451,20 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [true, true, false, false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(7.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_set_state_normal"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_qkut6"]
