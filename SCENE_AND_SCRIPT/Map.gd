@@ -223,13 +223,18 @@ func get_cell_at(uv: Vector2i) -> Cell:
 ## none.
 ##
 func get_cell_in_area(collider: Area2D) -> Cell:
-	# this doesn't work if for sliding cells!
-	#return _cells.get(get_cell_index(pos))
+	var first_cell: Cell = null
+
 	for area in collider.get_overlapping_areas():
 		var cell = Cell.get_cell_from_collider(area)
 		if cell:
-			return cell
-	return null
+			# prefer non-normal cells in order to detect obstacles ASAP
+			if cell.get_state() != Cell.State.NORMAL:
+				return cell
+			if first_cell == null:
+				first_cell = cell
+
+	return first_cell
 
 ##
 ## Returns the cell at the center of the map ("404"). Note that the cell may

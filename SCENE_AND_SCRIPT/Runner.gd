@@ -37,9 +37,8 @@ var _southwest: Vector2 = Vector2(-1, 1).rotated(_rotation).normalized()
 var _southeast: Vector2 = Vector2(1, 1).rotated(-_rotation).normalized()
 
 var _map: Map
-var _physics_counter: int = 0
+var _physics_ready: bool = false
 var _start_cell: Cell
-var _has_left_start_cell: bool = false
 var _curr_cell: Cell
 var _curr_cell_pos: Vector2
 
@@ -56,37 +55,25 @@ func set_map(map: Map, start_cell: Cell = null):
 func _physics_process(delta: float) -> void:
 
 	# skip first frame to allow physics server to find initial collisions
-	_physics_counter += 1
-	if _physics_counter == 1:
+	if not _physics_ready:
+		_physics_ready = true
 		return
+
+	# check for obstacles, sliding cells, etc.
+	_check_new_location()
 
 	# États bloquants : plus rien à faire
 	if is_dead or is_falling:
 		return
 
-	var input_direction := Vector2.ZERO
-
-	# ── MORT AVEC X ──
-	if Input.is_action_just_pressed("ui_x_button"):
-		die()
-		return
-
-	# ── CHUTE AVEC Y ──
-	if Input.is_action_just_pressed("ui_y_button"):
-		start_falling()
-		return
-
-	# SAUT (A)
-	if Input.is_action_just_pressed("ui_a_button") and not is_jumping and not is_sliding:
-		_play_jump_animation()
-
-	# SLIDE (B)
-	if Input.is_action_just_pressed("ui_b_button") and not is_jumping and not is_sliding:
-		_play_slide_animation()
-
-	# === Entrées de déplacement ===
 	if not is_jumping and not is_sliding:
-		if Globals.use_diagonals_for_movement:
+		var input_direction := Vector2.ZERO
+
+		if Input.is_action_just_pressed("ui_a_button") :
+			_play_jump_animation()
+		elif Input.is_action_just_pressed("ui_b_button"):
+			_play_slide_animation()
+		elif Globals.use_diagonals_for_movement:
 			if Input.is_action_pressed("ui_left_button"):
 				if Input.is_action_pressed("ui_down_button"):
 					input_direction = _southwest
@@ -130,36 +117,30 @@ func _physics_process(delta: float) -> void:
 		current_speed = lerp(move_speed, slide_speed, progress)
 
 	# === Mouvement ===
-	if direction:
-		position += direction * current_speed * delta
-
-	# check for obstacles, sliding cells, etc.
-	_check_new_location()
+	position += direction * current_speed * delta
 
 	# keep camera aimed at runner
 	$Character/Cam.update_aim_point(global_position)
 
 	# === Animations normales (seulement si pas en action spéciale) ===
-	if is_jumping or is_sliding or is_dead or is_falling:
-		return
-
-	if direction == Vector2.ZERO:
-		if last_non_zero_direction == Vector2.ZERO:
-			animation_player.play("Intro")
-		else:
-			if last_non_zero_direction.y < 0:
-				animation_player.play("Start_000")
-				sprite.scale.x = 1.0 if last_non_zero_direction.x < 0 else -1.0
+	if not is_jumping and not is_sliding:
+		if direction == Vector2.ZERO:
+			if last_non_zero_direction == Vector2.ZERO:
+				animation_player.play("Intro")
 			else:
-				animation_player.play("Start_180")
-				sprite.scale.x = -1.0 if last_non_zero_direction.x < 0 else 1.0
-	else:
-		if direction.y < 0:
-			animation_player.play("Run_000")
-			sprite.scale.x = 1.0 if direction.x < 0 else -1.0
+				if last_non_zero_direction.y < 0:
+					animation_player.play("Start_000")
+					sprite.scale.x = 1.0 if last_non_zero_direction.x < 0 else -1.0
+				else:
+					animation_player.play("Start_180")
+					sprite.scale.x = -1.0 if last_non_zero_direction.x < 0 else 1.0
 		else:
-			animation_player.play("Run_180")
-			sprite.scale.x = -1.0 if direction.x < 0 else 1.0
+			if direction.y < 0:
+				animation_player.play("Run_000")
+				sprite.scale.x = 1.0 if direction.x < 0 else -1.0
+			else:
+				animation_player.play("Run_180")
+				sprite.scale.x = -1.0 if direction.x < 0 else 1.0
 
 # ── FONCTIONS ──
 func _play_jump_animation() -> void:
@@ -272,16 +253,6 @@ func _check_new_location():
 	# Find the cell underfoot.
 
 	var next_cell: Cell = _map.get_cell_in_area(collider)
-	if next_cell != _start_cell:
-		_has_left_start_cell = true
-
-	# If we haven't moved to a different cell, add the current cell's movement
-	# to the runner's.
-
-	if _curr_cell == next_cell:
-		if _curr_cell and not is_falling and not is_jumping:
-			var next_cell_pos = _curr_cell.global_position
-			position += next_cell_pos - _curr_cell_pos
 
 	# Update the current cell accordingly and check for obstacles.
 
@@ -291,8 +262,7 @@ func _check_new_location():
 				if not is_jumping:
 					start_falling()
 			Cell.State.RAISED:
-				if _has_left_start_cell:
-					die()
+				die()
 			Cell.State.TELEPORT:
 				_check_teleport(next_cell)
 			Cell.State.ONE_WAY:
@@ -302,6 +272,12 @@ func _check_new_location():
 	else:
 		if not is_jumping:
 			start_falling()
+
+	# If the runner hasn't moved to a different cell and the cell is moving,
+	# move the runner with it.
+
+	if _curr_cell and _curr_cell == next_cell and not (is_falling or is_jumping):
+		position += _curr_cell.global_position - _curr_cell_pos
 
 	# Note the current cell and position for next time.
 
