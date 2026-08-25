@@ -294,11 +294,11 @@ static func get_cell_from_collider(collider: Area2D) -> Cell:
 static func get_start_cell_offset(corner: Globals.Corner) -> Vector2:
 	match corner:
 		Globals.Corner.N:
-			return Vector2(0, 35)
+			return Vector2(0, -25)
 		Globals.Corner.S:
-			return Vector2(0, 85)
+			return Vector2(0, 25)
 		Globals.Corner.W:
-			return Vector2(-50, 60)
+			return Vector2(-50, 0)
 		Globals.Corner.E:
-			return Vector2(50, 60)
+			return Vector2(50, 0)
 	return Vector2()
