@@ -99,13 +99,12 @@ func _ready():
 
 func lower():
 	if is_center():
+		# the animation will call _set_state_normal()
 		_anim_player.play("404_Going_Down")
 	else:
 		# the animation will call _set_state_lowered()
 		_anim_player.play("Going_Down")
 	await _anim_player.animation_finished
-	if is_center():
-		_state = State.NORMAL
 
 func raise():
 	# the animation will call _set_state_normal()
