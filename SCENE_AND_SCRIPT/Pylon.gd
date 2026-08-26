@@ -6,6 +6,8 @@ enum State {
 	DROPPED
 }
 
+signal state_changed(state: State)
+
 var _state: State = State.RAISED
 
 func lower():
@@ -35,3 +37,25 @@ func undrop():
 
 func get_state() -> State:
 	return _state
+
+#
+# Called by animations when the lowered or dropped pylon has been raised again.
+#
+func _set_raised_state():
+	_state = State.RAISED
+	state_changed.emit(_state)
+
+#
+# Called by the Going_Down animation when the pylon has actually been lowered.
+#
+func _set_lowered_state():
+	_state = State.LOWERED
+	state_changed.emit(_state)
+
+#
+# Called by the Going_Down_Falling animation when the pylon has actually been
+# dropped.
+#
+func _set_dropped_state():
+	_state = State.DROPPED
+	state_changed.emit(_state)

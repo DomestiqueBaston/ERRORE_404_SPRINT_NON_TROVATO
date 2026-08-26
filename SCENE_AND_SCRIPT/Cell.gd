@@ -208,21 +208,21 @@ func get_state() -> State:
 
 func lower_pylon():
 	_add_pylon()
+	# _on_pylon_state() is called when the pylon has actually been lowered
 	await _pylon.lower()
-	_state = State.PYLON
 
 func raise_pylon():
-	_state = State.NORMAL
+	# _on_pylon_state() is called when the pylon has actually been raised
 	await _pylon.raise()
 	_remove_pylon()
 
 func drop_pylon():
 	_add_pylon()
+	# _on_pylon_state() is called when the pylon has actually been dropped
 	await _pylon.drop()
-	_state = State.PYLON
 
 func undrop_pylon():
-	_state = State.NORMAL
+	# _on_pylon_state() is called when the pylon has actually been raised
 	await _pylon.undrop()
 	_remove_pylon()
 
@@ -232,6 +232,7 @@ func get_pylon() -> Pylon:
 func _add_pylon():
 	if _pylon == null:
 		_pylon = _pylon_scene.instantiate()
+		_pylon.state_changed.connect(_on_pylon_state_changed)
 		add_child(_pylon)
 
 func _remove_pylon():
@@ -239,6 +240,9 @@ func _remove_pylon():
 		remove_child(_pylon)
 		_pylon.queue_free()
 		_pylon = null
+
+func _on_pylon_state_changed(state: Pylon.State):
+	_state = State.NORMAL if state == Pylon.State.RAISED else State.PYLON
 
 ##
 ## Tells a new teleport cell which other cell it teleports to/from. This only
