@@ -87,13 +87,13 @@ func _physics_process(delta: float) -> void:
 					input_direction = _northeast
 		else:
 			if Input.is_action_pressed("ui_left_button"):
-				input_direction = _southwest
-			elif Input.is_action_pressed("ui_up_button"):
 				input_direction = _northwest
-			elif Input.is_action_pressed("ui_right_button"):
+			elif Input.is_action_pressed("ui_up_button"):
 				input_direction = _northeast
-			elif Input.is_action_pressed("ui_down_button"):
+			elif Input.is_action_pressed("ui_right_button"):
 				input_direction = _southeast
+			elif Input.is_action_pressed("ui_down_button"):
+				input_direction = _southwest
 
 		if input_direction and is_valid_direction(input_direction):
 			last_direction = input_direction
