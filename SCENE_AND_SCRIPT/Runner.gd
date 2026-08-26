@@ -59,7 +59,9 @@ func _physics_process(delta: float) -> void:
 		return
 
 	# check for obstacles, sliding cells, etc.
-	_check_location()
+	if _check_location():
+		# back up if the runner hit a pylon or the raised central cell
+		position += direction * _get_current_speed() * -delta
 
 	# États bloquants : plus rien à faire
 	if is_dead or is_falling:
@@ -104,18 +106,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		direction = last_direction
 
-	# === Vitesse dynamique ===
-	var current_speed: float = move_speed
-	var anim := animation_player.current_animation
-	if anim.begins_with("Jump_"):
-		var progress := animation_player.current_animation_position / animation_player.current_animation_length
-		current_speed = lerp(move_speed, jump_speed, progress)
-	elif anim.begins_with("Sliding_"):
-		var progress := animation_player.current_animation_position / animation_player.current_animation_length
-		current_speed = lerp(move_speed, slide_speed, progress)
-
 	# === Mouvement ===
-	position += direction * current_speed * delta
+	position += direction * _get_current_speed() * delta
 
 	# keep camera aimed at runner
 	$Character/Cam.update_aim_point(global_position)
@@ -140,7 +132,18 @@ func _physics_process(delta: float) -> void:
 				animation_player.play("Run_180")
 				sprite.scale.x = -1.0 if direction.x < 0 else 1.0
 
-# ── FONCTIONS ──
+func _get_current_speed() -> float:
+	if is_jumping and animation_player.current_animation.begins_with("Jump_"):
+		var progress = (animation_player.current_animation_position /
+						animation_player.current_animation_length)
+		return lerp(move_speed, jump_speed, progress)
+	elif is_sliding and animation_player.current_animation.begins_with("Sliding_"):
+		var progress = (animation_player.current_animation_position /
+						animation_player.current_animation_length)
+		return lerp(move_speed, slide_speed, progress)
+	else:
+		return move_speed
+
 func _play_jump_animation() -> void:
 	if last_direction == Vector2.ZERO or is_dead or is_falling: return
 	is_jumping = true
@@ -246,15 +249,18 @@ func is_valid_direction(new_direction: Vector2) -> bool:
 # has encountered an obstacle, or a teleport, or fallen off the map, etc. On
 # return, he may be dead or falling.
 #
-func _check_location():
+# Returns true if the runner died after running into a pylon or the raised
+# central cell.
+#
+func _check_location() -> bool:
 	if _map == null:
-		return
+		return false
 
-	# Find the cell underfoot.
+	# find the cell underfoot
 
 	var next_cell: Cell = _map.get_cell_in_area(collider)
 
-	# Update the current cell accordingly and check for obstacles.
+	# update the current cell accordingly and check for obstacles
 
 	if next_cell:
 		match next_cell.get_state():
@@ -273,17 +279,23 @@ func _check_location():
 		if not is_jumping:
 			start_falling()
 
-	# If the runner hasn't moved to a different cell and the cell is moving,
-	# move the runner with it.
+	# did the runner run into a pylon or the raised central cell?
+
+	var backup = is_dead and _curr_cell != next_cell
+
+	# if the runner hasn't moved to a different cell and the cell is moving,
+	# move the runner with it
 
 	if _curr_cell and _curr_cell == next_cell and not (is_falling or is_jumping):
 		position += _curr_cell.global_position - _curr_cell_pos
 
-	# Note the current cell and position for next time.
+	# note the current cell and position for next time
 
 	_curr_cell = next_cell
 	if _curr_cell:
 		_curr_cell_pos = _curr_cell.global_position
+
+	return backup
 
 func _check_teleport(cell: Cell):
 	var destination = cell.get_teleport_partner()
