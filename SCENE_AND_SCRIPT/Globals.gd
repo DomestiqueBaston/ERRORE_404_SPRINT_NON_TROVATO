@@ -40,6 +40,8 @@ func _input(event):
 func save_settings():
 	var config = ConfigFile.new()
 	config.set_value("settings", "use_diagonals", use_diagonals_for_movement)
+	config.set_value("settings", "map_size", map_size)
+	config.set_value("settings", "difficulty", difficulty)
 	config.set_value("settings", "master_db", AudioServer.get_bus_volume_db(master_bus))
 	config.set_value("settings", "music_db", AudioServer.get_bus_volume_db(music_bus))
 	config.save(_settings_path)
@@ -48,5 +50,7 @@ func load_settings():
 	var config = ConfigFile.new()
 	if config.load(_settings_path) == OK:
 		use_diagonals_for_movement = config.get_value("settings", "use_diagonals", true)
+		map_size = config.get_value("settings", "map_size", 7)
+		difficulty = config.get_value("settings", "difficulty", 3)
 		AudioServer.set_bus_volume_db(master_bus, config.get_value("settings", "master_db", 0.0))
 		AudioServer.set_bus_volume_db(music_bus, config.get_value("settings", "music_db", -7.5))
