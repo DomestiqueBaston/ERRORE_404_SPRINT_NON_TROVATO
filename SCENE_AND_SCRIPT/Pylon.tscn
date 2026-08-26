@@ -159,7 +159,7 @@ tracks/3/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("30_1s2ej")
 }],
-"times": PackedFloat32Array(0.6666667)
+"times": PackedFloat32Array(0.65140116)
 }
 tracks/3/use_blend = true
 tracks/4/type = "audio"
