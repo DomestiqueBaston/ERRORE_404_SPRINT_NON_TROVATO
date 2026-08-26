@@ -3213,6 +3213,7 @@ metadata/_edit_lock_ = true
 [node name="Cam" type="Camera2D" parent="Character" unique_id=1828297682]
 position = Vector2(-480, -270)
 offset = Vector2(480, 235)
+process_callback = 0
 script = ExtResource("5_yl0jf")
 metadata/_edit_lock_ = true
 
