@@ -17,7 +17,6 @@ extends Node2D
 
 var direction: Vector2 = Vector2.ZERO
 var last_direction: Vector2 = Vector2.ZERO
-var last_non_zero_direction: Vector2 = Vector2.ZERO
 
 # États
 var is_jumping: bool = false
@@ -96,7 +95,6 @@ func _physics_process(delta: float) -> void:
 
 		if input_direction and is_valid_direction(input_direction):
 			last_direction = input_direction
-			last_non_zero_direction = input_direction
 
 	# === Direction actuelle ===
 	if is_jumping:
@@ -125,15 +123,15 @@ func _physics_process(delta: float) -> void:
 	# === Animations normales (seulement si pas en action spéciale) ===
 	if not is_jumping and not is_sliding:
 		if direction == Vector2.ZERO:
-			if last_non_zero_direction == Vector2.ZERO:
+			if last_direction == Vector2.ZERO:
 				animation_player.play("Intro")
 			else:
-				if last_non_zero_direction.y < 0:
+				if last_direction.y < 0:
 					animation_player.play("Start_000")
-					sprite.scale.x = 1.0 if last_non_zero_direction.x < 0 else -1.0
+					sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
 				else:
 					animation_player.play("Start_180")
-					sprite.scale.x = -1.0 if last_non_zero_direction.x < 0 else 1.0
+					sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
 		else:
 			if direction.y < 0:
 				animation_player.play("Run_000")
@@ -144,30 +142,30 @@ func _physics_process(delta: float) -> void:
 
 # ── FONCTIONS ──
 func _play_jump_animation() -> void:
-	if last_non_zero_direction == Vector2.ZERO or is_dead or is_falling: return
+	if last_direction == Vector2.ZERO or is_dead or is_falling: return
 	is_jumping = true
-	jump_direction = last_non_zero_direction
-	if last_non_zero_direction.y < 0:
+	jump_direction = last_direction
+	if last_direction.y < 0:
 		animation_player.play("Jump_000")
-		sprite.scale.x = 1.0 if last_non_zero_direction.x < 0 else -1.0
+		sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
 	else:
 		animation_player.play("Jump_180")
-		sprite.scale.x = -1.0 if last_non_zero_direction.x < 0 else 1.0
+		sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
 
 func _play_slide_animation() -> void:
-	if last_non_zero_direction == Vector2.ZERO or is_dead or is_falling: return
+	if last_direction == Vector2.ZERO or is_dead or is_falling: return
 	is_sliding = true
-	slide_direction = last_non_zero_direction
-	if last_non_zero_direction.y < 0:
+	slide_direction = last_direction
+	if last_direction.y < 0:
 		animation_player.play("Sliding_000")
-		sprite.scale.x = 1.0 if last_non_zero_direction.x < 0 else -1.0
+		sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
 	else:
 		animation_player.play("Sliding_180")
-		sprite.scale.x = -1.0 if last_non_zero_direction.x < 0 else 1.0
+		sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
 
 
 # ── MORT ──
-func die(fast: bool = false) -> void:
+func die(fast: bool) -> void:
 	if is_dead: return
 	is_dead = true
 	
@@ -176,15 +174,15 @@ func die(fast: bool = false) -> void:
 	
 	if fast:
 		$Animation_Disappearing_Death.play("Disappearing")
-	elif last_non_zero_direction == Vector2.ZERO:
+	elif last_direction == Vector2.ZERO:
 		animation_player.play("Death_180")
 	else:
-		if last_non_zero_direction.y < 0:
+		if last_direction.y < 0:
 			animation_player.play("Death_000")
-			sprite.scale.x = 1.0 if last_non_zero_direction.x < 0 else -1.0
+			sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
 		else:
 			animation_player.play("Death_180")
-			sprite.scale.x = -1.0 if last_non_zero_direction.x < 0 else 1.0
+			sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
 
 
 # ── CHUTE (nouvelle fonction) ──
@@ -196,15 +194,15 @@ func start_falling() -> void:
 	set_physics_process(false)
 	
 	# Animation de chute avec la bonne orientation
-	if last_non_zero_direction == Vector2.ZERO:
+	if last_direction == Vector2.ZERO:
 		animation_player.play("Falling_180")
 	else:
-		if last_non_zero_direction.y < 0:
+		if last_direction.y < 0:
 			animation_player.play("Falling_000")
-			sprite.scale.x = 1.0 if last_non_zero_direction.x < 0 else -1.0
+			sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
 		else:
 			animation_player.play("Falling_180")
-			sprite.scale.x = -1.0 if last_non_zero_direction.x < 0 else 1.0
+			sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
 
 
 func _on_animation_finished(anim_name: String) -> void:
@@ -229,14 +227,14 @@ func _on_animation_finished(anim_name: String) -> void:
 			animation_player.play("Run_180")
 			sprite.scale.x = -1.0 if direction.x < 0 else 1.0
 	else:
-		if last_non_zero_direction == Vector2.ZERO:
+		if last_direction == Vector2.ZERO:
 			animation_player.play("Intro")
-		elif last_non_zero_direction.y < 0:
+		elif last_direction.y < 0:
 			animation_player.play("Start_000")
-			sprite.scale.x = 1.0 if last_non_zero_direction.x < 0 else -1.0
+			sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
 		else:
 			animation_player.play("Start_180")
-			sprite.scale.x = -1.0 if last_non_zero_direction.x < 0 else 1.0
+			sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
 
 func is_valid_direction(new_direction: Vector2) -> bool:
 	if last_direction == Vector2.ZERO:
@@ -264,7 +262,7 @@ func _check_location():
 				if not is_jumping:
 					start_falling()
 			Cell.State.RAISED:
-				die()
+				die(false)
 			Cell.State.TELEPORT:
 				_check_teleport(next_cell)
 			Cell.State.ONE_WAY:
@@ -320,19 +318,18 @@ func _check_one_way(cell: Cell):
 			last_direction = _southwest
 		Globals.Axis.SE:
 			last_direction = _southeast
-	last_non_zero_direction = last_direction
 	anim.play("Bonus_Malus")
 	if _map:
 		_map.cancel_one_way(cell)
 
 func _check_pylon(cell: Cell):
+	# if the runner was already on the cell when the pylon is lowered or
+	# dropped, he just disappears: see die()
 	match cell.get_pylon().get_state():
 		Pylon.State.LOWERED:
 			if not is_sliding:
-				die()
+				die(cell == _curr_cell)
 		Pylon.State.DROPPED:
-			# if the runner was on the cell when the pylon dropped, he just
-			# disappears
 			die(cell == _curr_cell)
 
 #
