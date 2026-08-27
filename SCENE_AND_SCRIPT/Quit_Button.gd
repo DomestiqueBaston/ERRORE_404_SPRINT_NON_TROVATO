@@ -1,7 +1,7 @@
 extends Control
 
 @export var initial_press_duration := 0.25
-@export var fill_duration := 0.75
+@export var fill_duration := 0.666
 @export var pause_duration := 0.333
 
 ## Signal emitted when the progress bar is shown or hidden.
