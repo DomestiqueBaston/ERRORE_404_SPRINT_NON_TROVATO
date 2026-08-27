@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cxh4hqe3blrm8" path="res://IMAGE/ENVIRONMENT/ARTEFACT/Shadow.png" id="2_jotvq"]
 [ext_resource type="Texture2D" uid="uid://diis004syylgs" path="res://IMAGE/ENVIRONMENT/ARTEFACT/Bottom_Part.png" id="3_2mbeg"]
-[ext_resource type="Texture2D" uid="uid://vouff1tgf5qn" path="res://IMAGE/ENVIRONMENT/ARTEFACT/Top_Part.png" id="4_48cf2"]
+[ext_resource type="Texture2D" uid="uid://vouff1tgf5qn" path="res://IMAGE/ENVIRONMENT/ARTEFACT/Top_Part.png" id="3_w0ye1"]
 [ext_resource type="AudioStream" uid="uid://qnjr5b74yyt8" path="res://SOUND/FX/Door_Appearing.ogg" id="5_wm8kb"]
 [ext_resource type="AudioStream" uid="uid://hykxljawaiom" path="res://SOUND/FX/Artefact_Hum.ogg" id="6_kn7xm"]
 
@@ -238,7 +238,7 @@ metadata/_edit_lock_ = true
 
 [node name="Top_Part" type="Sprite2D" parent="Images" unique_id=1570529136]
 position = Vector2(0, -111)
-texture = ExtResource("4_48cf2")
+texture = ExtResource("3_w0ye1")
 metadata/_edit_lock_ = true
 
 [node name="Collider_Artefact" type="Area2D" parent="." unique_id=1723708210]
