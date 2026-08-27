@@ -1,0 +1,276 @@
+[gd_scene format=3 uid="uid://c8pxqoajbox8d"]
+
+[ext_resource type="Texture2D" uid="uid://cxh4hqe3blrm8" path="res://IMAGE/ENVIRONMENT/ARTEFACT/Shadow.png" id="2_jotvq"]
+[ext_resource type="Texture2D" uid="uid://diis004syylgs" path="res://IMAGE/ENVIRONMENT/ARTEFACT/Bottom_Part.png" id="3_2mbeg"]
+[ext_resource type="Texture2D" uid="uid://vouff1tgf5qn" path="res://IMAGE/ENVIRONMENT/ARTEFACT/Top_Part.png" id="4_48cf2"]
+[ext_resource type="AudioStream" uid="uid://qnjr5b74yyt8" path="res://SOUND/FX/Door_Appearing.ogg" id="5_wm8kb"]
+[ext_resource type="AudioStream" uid="uid://hykxljawaiom" path="res://SOUND/FX/Artefact_Hum.ogg" id="6_kn7xm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ecpiw"]
+size = Vector2(129.41849, 128.97292)
+
+[sub_resource type="Animation" id="Animation_vso1q"]
+resource_name = "Alive"
+length = 6.600003677550331
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.6666666, 3.3, 5, 6.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.09803922), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 0.09803922), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 0.09803922)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Images/Top_Part:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.43333334, 2.1000001, 3.766667, 5.433334, 6.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -108.020836), Vector2(0, -111), Vector2(0, -100), Vector2(0, -111), Vector2(0, -100), Vector2(0, -108.02081)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Images/Bottom_Part:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8333333, 2.5, 4.166667, 5.833334, 6.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -116.20832), Vector2(0, -111), Vector2(0, -121), Vector2(0, -111), Vector2(0, -121), Vector2(0, -116.20834)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Images:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.6666667, 3.3333335, 5.0000005, 6.5999994),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 15), Vector2(0, 0), Vector2(0, 15), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_oyod2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.29411766)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Images/Top_Part:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -111)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Images/Bottom_Part:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -111)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Images:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yp78x"]
+_data = {
+&"Alive": SubResource("Animation_vso1q"),
+&"RESET": SubResource("Animation_oyod2")
+}
+
+[sub_resource type="Animation" id="Animation_w6txa"]
+resource_name = "Disappearing"
+length = 0.30000335
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333328, 0.06666668, 0.10000001, 0.13333336, 0.16666667, 0.20000002, 0.23333335, 0.2666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Artefact_Sound/Artefact_Off")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_wm8kb")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("Collider_Artefact:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Images:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.033333328, 0.06666668, 0.10000001, 0.13333336, 0.16666667, 0.20000002, 0.23333335, 0.2666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_pl358"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Collider_Artefact:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Images:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jbtw0"]
+_data = {
+&"Disappearing": SubResource("Animation_w6txa"),
+&"RESET": SubResource("Animation_pl358")
+}
+
+[node name="Artefact" type="Node2D" unique_id=754266912]
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=864377854]
+self_modulate = Color(1, 1, 1, 0.29411766)
+position = Vector2(0, 59)
+texture = ExtResource("2_jotvq")
+metadata/_edit_lock_ = true
+
+[node name="Images" type="Node2D" parent="." unique_id=1272061414]
+
+[node name="Bottom_Part" type="Sprite2D" parent="Images" unique_id=2118017220]
+position = Vector2(0, -111)
+texture = ExtResource("3_2mbeg")
+
+[node name="Top_Part" type="Sprite2D" parent="Images" unique_id=1570529136]
+position = Vector2(0, -111)
+texture = ExtResource("4_48cf2")
+
+[node name="Collider_Artefact" type="Area2D" parent="." unique_id=1723708210]
+position = Vector2(0, 60)
+metadata/_edit_lock_ = true
+
+[node name="Artefact" type="CollisionShape2D" parent="Collider_Artefact" unique_id=1711003240]
+visible = false
+position = Vector2(-0.25934565, -0.6226196)
+rotation = 0.4712389
+skew = 0.6283184
+shape = SubResource("RectangleShape2D_ecpiw")
+metadata/_edit_lock_ = true
+
+[node name="Animation_Artefact" type="AnimationPlayer" parent="." unique_id=1952673219]
+libraries/ = SubResource("AnimationLibrary_yp78x")
+autoplay = &"Alive"
+
+[node name="Animation_Artefact_Off" type="AnimationPlayer" parent="." unique_id=102206761]
+libraries/ = SubResource("AnimationLibrary_jbtw0")
+
+[node name="Artefact_Sound" type="Node2D" parent="." unique_id=1759494700]
+metadata/_edit_lock_ = true
+
+[node name="Artefact_Hum" type="AudioStreamPlayer2D" parent="Artefact_Sound" unique_id=1716600636]
+stream = ExtResource("6_kn7xm")
+volume_db = 20.0
+autoplay = true
+max_distance = 1000.0
+bus = &"FX_DRY"
+parameters/looping = true
+metadata/_edit_lock_ = true
+
+[node name="Artefact_Off" type="AudioStreamPlayer2D" parent="Artefact_Sound" unique_id=1515377633]
+volume_db = 10.0
+pitch_scale = 1.33
+max_distance = 1000.0
+bus = &"FX_WET"
+metadata/_edit_lock_ = true
