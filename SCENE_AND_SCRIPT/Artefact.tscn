@@ -220,6 +220,7 @@ _data = {
 }
 
 [node name="Artefact" type="Node2D" unique_id=754266912]
+metadata/_edit_lock_ = true
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=864377854]
 self_modulate = Color(1, 1, 1, 0.29411766)
@@ -228,14 +229,17 @@ texture = ExtResource("2_jotvq")
 metadata/_edit_lock_ = true
 
 [node name="Images" type="Node2D" parent="." unique_id=1272061414]
+metadata/_edit_lock_ = true
 
 [node name="Bottom_Part" type="Sprite2D" parent="Images" unique_id=2118017220]
 position = Vector2(0, -111)
 texture = ExtResource("3_2mbeg")
+metadata/_edit_lock_ = true
 
 [node name="Top_Part" type="Sprite2D" parent="Images" unique_id=1570529136]
 position = Vector2(0, -111)
 texture = ExtResource("4_48cf2")
+metadata/_edit_lock_ = true
 
 [node name="Collider_Artefact" type="Area2D" parent="." unique_id=1723708210]
 position = Vector2(0, 60)
