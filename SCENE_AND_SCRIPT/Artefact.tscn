@@ -4,10 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://cxh4hqe3blrm8" path="res://IMAGE/ENVIRONMENT/ARTEFACT/Shadow.png" id="2_jotvq"]
 [ext_resource type="Texture2D" uid="uid://diis004syylgs" path="res://IMAGE/ENVIRONMENT/ARTEFACT/Bottom_Part.png" id="3_2mbeg"]
 [ext_resource type="Texture2D" uid="uid://vouff1tgf5qn" path="res://IMAGE/ENVIRONMENT/ARTEFACT/Top_Part.png" id="3_w0ye1"]
+[ext_resource type="Texture2D" uid="uid://ruxdahapcaji" path="res://IMAGE/ENVIRONMENT/ARTEFACT/Stupid_Text_3.png" id="5_48cf2"]
 [ext_resource type="Texture2D" uid="uid://db6m5g8avvbpr" path="res://IMAGE/ENVIRONMENT/ARTEFACT/Stupid_Text_1.png" id="5_jotvq"]
 [ext_resource type="AudioStream" uid="uid://qnjr5b74yyt8" path="res://SOUND/FX/Door_Appearing.ogg" id="5_wm8kb"]
 [ext_resource type="Texture2D" uid="uid://bju4rmid4k54r" path="res://IMAGE/ENVIRONMENT/ARTEFACT/Stupid_Text_2.png" id="6_2mbeg"]
 [ext_resource type="AudioStream" uid="uid://hykxljawaiom" path="res://SOUND/FX/Artefact_Hum.ogg" id="6_kn7xm"]
+[ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="9_dewty"]
+[ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="10_wfqpw"]
+[ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="11_g041v"]
+[ext_resource type="AudioStream" uid="uid://c0wgwx2yy2orr" path="res://SOUND/FX/Crackling_Noise_G.ogg" id="12_07bk4"]
+[ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="13_skraa"]
+[ext_resource type="AudioStream" uid="uid://dsr0lb7uc7k7s" path="res://SOUND/FX/Crackling_Noise_C.ogg" id="14_imcjl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecpiw"]
 size = Vector2(129.41849, 128.97292)
@@ -107,7 +114,7 @@ tracks/7/path = NodePath("Y_Offset/Images/Stupid_Text_2:self_modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.8333333, 1.5666667, 2.4333334, 3.2666667, 4.1, 4.9, 5.7666664, 6.6),
+"times": PackedFloat32Array(0, 0.8333333, 1.6666666, 2.5, 3.3, 4.1666665, 5, 5.8333335, 6.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.79607844), Color(1, 1, 1, 1), Color(1, 1, 1, 0.9254902), Color(1, 1, 1, 1), Color(1, 1, 1, 0.8980392), Color(1, 1, 1, 1), Color(1, 1, 1, 0.8392157), Color(1, 1, 1, 1)]
@@ -318,6 +325,83 @@ _data = {
 &"RESET": SubResource("Animation_pl358")
 }
 
+[sub_resource type="Animation" id="Animation_wm8kb"]
+resource_name = "Blink"
+length = 5.000003594103828
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Y_Offset/Images/Top_Part/Stupid_Text_3:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333337, 0.39999998, 0.43333328, 0.5333334, 0.5666667, 0.6, 0.6333333, 0.70000017, 0.9666668, 1.0000001, 1.0333334, 1.3666667, 1.4, 1.4333333, 1.5000001, 1.5333334, 1.6, 1.6333336, 2.7000003, 2.766667, 2.8666668, 5.0000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.5803922), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0.4509804), Color(1, 1, 1, 0.6509804), Color(1, 1, 1, 0.34901962), Color(1, 1, 1, 0.7500012), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.7294118), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Artefact_Sound/Glitch_Sound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_dewty")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_wfqpw")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_g041v")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_07bk4")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_skraa")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_07bk4")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("14_imcjl")
+}],
+"times": PackedFloat32Array(0.3753244, 0.545839, 0.6198657, 0.95005924, 1.382238, 1.4573376, 2.7333333)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_s8a1k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Y_Offset/Images/Top_Part/Stupid_Text_3:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tmeqk"]
+_data = {
+&"Blink": SubResource("Animation_wm8kb"),
+&"RESET": SubResource("Animation_s8a1k")
+}
+
 [node name="Artefact" type="Node2D" unique_id=754266912]
 script = ExtResource("1_kn7xm")
 metadata/_edit_lock_ = true
@@ -344,13 +428,21 @@ position = Vector2(0, -111)
 texture = ExtResource("3_w0ye1")
 metadata/_edit_lock_ = true
 
+[node name="Stupid_Text_3" type="Sprite2D" parent="Y_Offset/Images/Top_Part" unique_id=1969083962]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -0.39761353)
+texture = ExtResource("5_48cf2")
+metadata/_edit_lock_ = true
+
 [node name="Stupid_Text_1" type="Sprite2D" parent="Y_Offset/Images" unique_id=1134899622]
 position = Vector2(0, -110)
 texture = ExtResource("5_jotvq")
+metadata/_edit_lock_ = true
 
 [node name="Stupid_Text_2" type="Sprite2D" parent="Y_Offset/Images" unique_id=716473979]
 position = Vector2(0, -110)
 texture = ExtResource("6_2mbeg")
+metadata/_edit_lock_ = true
 
 [node name="Collider_Artefact" type="Area2D" parent="Y_Offset" unique_id=1723708210]
 position = Vector2(0, 60)
@@ -373,6 +465,11 @@ autoplay = &"Alive"
 [node name="Animation_Artefact_Off" type="AnimationPlayer" parent="." unique_id=102206761]
 libraries/ = SubResource("AnimationLibrary_jbtw0")
 
+[node name="Animation_Job_Application" type="AnimationPlayer" parent="." unique_id=1677884806]
+root_node = NodePath("../Animation_Artefact")
+libraries/ = SubResource("AnimationLibrary_tmeqk")
+autoplay = &"Blink"
+
 [node name="Artefact_Sound" type="Node2D" parent="." unique_id=1759494700]
 metadata/_edit_lock_ = true
 
@@ -390,4 +487,10 @@ volume_db = 10.0
 pitch_scale = 1.33
 max_distance = 1000.0
 bus = &"FX_WET"
+metadata/_edit_lock_ = true
+
+[node name="Glitch_Sound" type="AudioStreamPlayer2D" parent="Artefact_Sound" unique_id=912197409]
+volume_db = -7.5
+max_distance = 1000.0
+bus = &"RUNNERS"
 metadata/_edit_lock_ = true

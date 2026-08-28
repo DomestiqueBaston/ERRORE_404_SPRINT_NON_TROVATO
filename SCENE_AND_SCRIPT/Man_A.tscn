@@ -3005,7 +3005,7 @@ bus = &"RUNNERS"
 metadata/_edit_lock_ = true
 
 [node name="Glitch_Sound" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=743315435]
-volume_db = -15.0
+volume_db = -7.5
 max_distance = 1000.0
 bus = &"RUNNERS"
 metadata/_edit_lock_ = true

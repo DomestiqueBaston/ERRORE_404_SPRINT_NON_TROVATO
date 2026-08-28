@@ -3000,6 +3000,7 @@ position = Vector2(-7, 1)
 rotation = 0.17453292
 texture = ExtResource("5_1s22q")
 offset = Vector2(7, 0)
+metadata/_edit_lock_ = true
 
 [node name="Collider_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=2058946939]
 collision_mask = 2
@@ -3067,7 +3068,7 @@ bus = &"RUNNERS"
 metadata/_edit_lock_ = true
 
 [node name="Glitch_Sound" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound" unique_id=171740772]
-volume_db = -15.0
+volume_db = -7.5
 max_distance = 1000.0
 bus = &"RUNNERS"
 metadata/_edit_lock_ = true
