@@ -48,8 +48,7 @@ enum ObstacleType {
 	PYLON_LOWER,
 	PYLON_DROP,
 	# only events above this line are generated randomly
-	_RANDOM_,
-	CENTER_LOWER
+	_RANDOM_
 }
 
 class ObstacleEvent extends RefCounted:
@@ -91,7 +90,7 @@ func _ready():
 
 	var center_time = 6 * (2 * Globals.map_size + 1 + 2 * Globals.difficulty)
 	var center_timer = get_tree().create_timer(center_time)
-	center_timer.timeout.connect(_lower_center_cell)
+	center_timer.timeout.connect(_remove_artefact)
 
 func _build_map():
 	var parent: Node2D = self
@@ -146,6 +145,10 @@ func _build_map():
 	_available_cells = _cells.values().duplicate()
 	_available_cells.erase(_center_cell)
 	_obstacle_cells.clear()
+
+	# artefact above central cell
+
+	_center_cell.add_artefact()
 
 func _build_edge(parent: Node2D, edge: Globals.Axis):
 	var uv0: Vector2i
@@ -486,11 +489,6 @@ func _handle_obstacle_event(event: ObstacleEvent):
 				await _undrop_pylon(event.cell)
 				_available_cells.append(event.cell)
 
-		ObstacleType.CENTER_LOWER:
-			await _center_cell.lower()
-			await get_tree().create_timer(2 * Globals.difficulty).timeout
-			_center_cell.add_child(_door_scene.instantiate())
-
 #
 # Schedules an obstacle event to undo the creation of an obstacle at the given
 # cell.
@@ -578,13 +576,13 @@ func _on_obstacle_timer_timeout():
 	_handle_obstacle_event(event)
 
 #
-# Lowers the center (404) cell. We use an ObstacleEvent here, rather than
-# lowering the cell directly, in case a row or column is sliding.
+# Removes the artefact above the central cell and, after a pause, creates the
+# exit door.
 #
-func _lower_center_cell():
-	var event = ObstacleEvent.new(ObstacleType.CENTER_LOWER)
-	event.cell = _center_cell
-	_handle_obstacle_event(event)
+func _remove_artefact():
+	await _center_cell.remove_artefact()
+	await get_tree().create_timer(2 * Globals.difficulty).timeout
+	_center_cell.add_child(_door_scene.instantiate())
 
 ##
 ## Removes a one-way obstacle immediately, rather than waiting for the duration

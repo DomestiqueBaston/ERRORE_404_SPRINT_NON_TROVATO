@@ -267,7 +267,7 @@ func _check_location() -> bool:
 			Cell.State.LOWERED, Cell.State.HIDDEN:
 				if not is_jumping:
 					start_falling()
-			Cell.State.RAISED:
+			Cell.State.ARTEFACT:
 				die(false)
 			Cell.State.TELEPORT:
 				_check_teleport(next_cell)

@@ -7,8 +7,6 @@ class_name Cell extends Node2D
 			if is_node_ready():
 				_textures[decoration].hide()
 				_textures[deco].show()
-				$Column/Cell_Tops.position.y = -354 if deco == Decoration.CENTER else 0
-			_state = State.RAISED if deco == Decoration.CENTER else State.NORMAL
 			decoration = deco
 
 enum Decoration {
@@ -44,7 +42,7 @@ enum Decoration {
 enum State {
 	NORMAL,
 	LOWERED,
-	RAISED,
+	ARTEFACT,
 	HIDDEN,
 	TELEPORT,
 	ONE_WAY,
@@ -86,7 +84,10 @@ enum State {
 ]
 
 var _pylon_scene = preload("res://SCENE_AND_SCRIPT/Pylon.tscn")
+var _artefact_scene = preload("res://SCENE_AND_SCRIPT/Artefact.tscn")
+
 var _pylon: Pylon
+var _artefact: Artefact
 var _state: State = State.NORMAL
 var _partner: Cell
 var _teleport_type: int
@@ -95,15 +96,10 @@ func _ready():
 	assert(_textures.size() == Decoration.keys().size())
 	for i in _textures.size():
 		_textures[i].visible = (i == decoration)
-	$Column/Cell_Tops.position.y = -354 if is_center() else 0
 
 func lower():
-	if is_center():
-		# the animation will call _set_state_normal()
-		_anim_player.play("404_Going_Down")
-	else:
-		# the animation will call _set_state_lowered()
-		_anim_player.play("Going_Down")
+	# the animation will call _set_state_lowered()
+	_anim_player.play("Going_Down")
 	await _anim_player.animation_finished
 
 func raise():
@@ -136,22 +132,16 @@ func reappear():
 
 func start_sliding():
 	$Sound/Cell_Slide_Sounds/Sliding_Cell.play()
-	match _state:
-		State.LOWERED:
-			_anim_player.play("Low_Sliding_Beginning")
-		State.RAISED:
-			_anim_player.play("404_High_Sliding_Beginning")
-		_:
-			_anim_player.play("High_Sliding_Beginning")
+	if _state == State.LOWERED:
+		_anim_player.play("Low_Sliding_Beginning")
+	else:
+		_anim_player.play("High_Sliding_Beginning")
 
 func stop_sliding():
-	match _state:
-		State.LOWERED:
-			_anim_player.play("Low_Sliding_End")
-		State.RAISED:
-			_anim_player.play("404_High_Sliding_End")
-		_:
-			_anim_player.play("High_Sliding_End")
+	if _state == State.LOWERED:
+		_anim_player.play("Low_Sliding_End")
+	else:
+		_anim_player.play("High_Sliding_End")
 	$Sound/Cell_Slide_Sounds/Sliding_Cell.stop()
 
 func get_sliding_animation_start_length() -> float:
@@ -242,6 +232,20 @@ func _remove_pylon():
 
 func _on_pylon_state_changed(state: Pylon.State):
 	_state = State.NORMAL if state == Pylon.State.RAISED else State.PYLON
+
+func add_artefact():
+	if _artefact == null:
+		_artefact = _artefact_scene.instantiate()
+		add_child(_artefact)
+		_state = State.ARTEFACT
+
+func remove_artefact():
+	if _artefact:
+		await _artefact.disappear()
+		_state = State.NORMAL
+		remove_child(_artefact)
+		_artefact.queue_free()
+		_artefact = null
 
 ##
 ## Tells a new teleport cell which other cell it teleports to/from. This only
