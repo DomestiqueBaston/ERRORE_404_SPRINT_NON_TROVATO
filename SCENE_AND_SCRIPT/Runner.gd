@@ -5,6 +5,7 @@ extends Node2D
 
 @onready var sprite: Node2D = $Character/Papa_Sprite
 @onready var animation_player: AnimationPlayer = $Animation_Runner
+@onready var disappear_player: AnimationPlayer = $Animation_Disappearing_Death
 @onready var collider: Area2D = $Character/Papa_Sprite/Runner_Sprite/Collider_Area
 
 @onready var _footstep1 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_01
@@ -43,6 +44,7 @@ var _curr_cell_pos: Vector2
 
 func _ready() -> void:
 	animation_player.animation_finished.connect(_on_animation_finished)
+	disappear_player.animation_finished.connect(_on_disappear_finished)
 
 func set_map(map: Map, start_cell: Cell = null):
 	_map = map
@@ -172,11 +174,8 @@ func die(fast: bool) -> void:
 	if is_dead: return
 	is_dead = true
 	
-	# no more movement
-	set_physics_process(false)
-	
 	if fast:
-		$Animation_Disappearing_Death.play("Disappearing")
+		disappear_player.play("Disappearing")
 	elif last_direction == Vector2.ZERO:
 		animation_player.play("Death_180")
 	else:
@@ -207,7 +206,6 @@ func start_falling() -> void:
 			animation_player.play("Falling_180")
 			sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
 
-
 func _on_animation_finished(anim_name: String) -> void:
 	if anim_name.begins_with("Jump_"):
 		is_jumping = false
@@ -216,7 +214,7 @@ func _on_animation_finished(anim_name: String) -> void:
 		is_sliding = false
 		slide_direction = Vector2.ZERO
 	elif anim_name.begins_with("Death_"):
-		$Animation_Disappearing_Death.play("Disappearing")
+		disappear_player.play("Disappearing")
 
 	# Rien à faire si mort ou en chute (on reste sur l’animation)
 	if is_dead or is_falling:
@@ -238,6 +236,9 @@ func _on_animation_finished(anim_name: String) -> void:
 		else:
 			animation_player.play("Start_180")
 			sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
+
+func _on_disappear_finished(_anim_name: String):
+	set_physics_process(false)
 
 func is_valid_direction(new_direction: Vector2) -> bool:
 	if last_direction == Vector2.ZERO:
