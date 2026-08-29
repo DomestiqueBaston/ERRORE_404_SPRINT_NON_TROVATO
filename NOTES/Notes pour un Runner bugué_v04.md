@@ -16,7 +16,7 @@ Une partie oppose toujours 4 concurrents (1 joueur et 3 Bots). Les concurrents c
 - À chaque fois que le jeu va bouger une ligne/colonne ou baisser un pylône (qui n’écrase pas et laisse passer dessous) ou baisser une cellule ou lâcher un pylône ou faire disparaître une cellule, une alarme (Cell_Pylon_Alarms/ dans Sounds.tscn) se fera d’abord entendre pendant 1’’ ET jusqu’à la fin de l’animation (sauf exceptions).
 - Une cellule baissée ou disparue ou un pylône (baissé ou arrivé au sol) reste dans cette position 10 à 20’’. S’il font partie d’une ligne/colonne qui glisse pendant qu’ils sont dans l’état évoqué ici, alors ils suivent le mouvement de la ligne/colonne.
 - On ne fait pas tomber/descendre de pylône sur une cellule disparue ou descendue.
-- Dès le début, sur le terrain, au centre, la cellule 404 est levée. C’est sur cette case, une fois la cellule redescendue au bout de (Taille de la map + (2 × Difficulté)) / 10 minutes qu’apparaîtra la porte de sortie de la zone. Une fois la cellule centrale 404 descendue, la porte de sortie apparaîtra au bout de (2 × Difficulté) secondes. Il pourra malgré tout arriver que la porte ne soit plus accessible à cause de mouvements de terrain.
+- Dès le début, sur le terrain, au centre, on a Artefact.tscn. C’est sur cette case, une fois l’artefact disparu au bout de (Taille de la map + (2 × Difficulté)) / 10 minutes qu’apparaîtra la porte de sortie de la zone. Une fois l’artefact disparu, la porte de sortie apparaîtra au bout de (2 × Difficulté) secondes. Il pourra malgré tout arriver que la porte ne soit plus accessible à cause de mouvements de terrain.
 - La case centrale 404 ne subit QUE des glissements (pas de bug, de disparition, de pylone, etc.).
 - Pour les concurrents, 4 directions de mouvement (les diagonales).
 - Les concurrents ne peuvent pas faire directement demi-tour (à cause du mur qu’ils tracent).
@@ -124,7 +124,8 @@ Options (nécessaires) dans Settings:
     2. Volume sonore général (de 50% à 100%) ✔
     3. Volume de la musique (de 50% à 100%) ✔
     4. Difficulté (de 1 à 5) ✔
-        ◦ Temps avant l’apparition de la porte de sortie : (Taille de la map + (2 × Difficulté)) / 10 minutes.
+        ◦ Temps avant la disparition de l’artefact : (Taille de la map + (2 × Difficulté)) / 10 minutes.
+        ◦ Temps avant l’appartion de la porte de sortie après la disparition de l’artefact : (5 + (Difficulté − 1) × 1,25 ) secondes
         ◦ Délai entre les déclenchements d’obstacles : 5.5 - (0.5 × Difficulté) secondes.
         ◦ Délai avant disparition des tronçons de mur : (Difficulté + Taille de la map) / 2 secondes après apparition.
         ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en gagnant 3 courses en Difficulté 5) qui rend tous les obstacles PERMANENTS (le reste est traîté comme Difficulté 5 si rien n’est précisé !) SAUF les murs des concurrents. Voir également à la fin du doc. : Liste des scènes (et – succinctes – descriptions de leurs contenus).

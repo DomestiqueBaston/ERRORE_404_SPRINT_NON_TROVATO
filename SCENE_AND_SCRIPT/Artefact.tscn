@@ -38,7 +38,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Y_Offset/Images/Top_Part:position")
+tracks/1/path = NodePath("Y_Offset/Images/Tampon/Top_Part:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -50,7 +50,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Y_Offset/Images/Bottom_Part:position")
+tracks/2/path = NodePath("Y_Offset/Images/Tampon/Bottom_Part:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -74,7 +74,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Y_Offset/Images/Stupid_Text_1:self_modulate")
+tracks/4/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_1:self_modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -86,7 +86,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Y_Offset/Images/Stupid_Text_1:position")
+tracks/5/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_1:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -98,7 +98,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Y_Offset/Images/Stupid_Text_2:position")
+tracks/6/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_2:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -110,7 +110,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Y_Offset/Images/Stupid_Text_2:self_modulate")
+tracks/7/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_2:self_modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -137,7 +137,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Y_Offset/Images/Top_Part:position")
+tracks/1/path = NodePath("Y_Offset/Images/Tampon/Top_Part:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -149,7 +149,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Y_Offset/Images/Bottom_Part:position")
+tracks/2/path = NodePath("Y_Offset/Images/Tampon/Bottom_Part:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -173,7 +173,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Y_Offset/Images/Stupid_Text_1:self_modulate")
+tracks/4/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_1:self_modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -185,7 +185,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Y_Offset/Images/Stupid_Text_1:position")
+tracks/5/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_1:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -197,7 +197,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Y_Offset/Images/Stupid_Text_2:self_modulate")
+tracks/6/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_2:self_modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -209,7 +209,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Y_Offset/Images/Stupid_Text_2:position")
+tracks/7/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_2:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -332,7 +332,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Y_Offset/Images/Top_Part/Stupid_Text_3:self_modulate")
+tracks/0/path = NodePath("../Y_Offset/Images/Tampon/Top_Part/Stupid_Text_3:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -386,7 +386,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Y_Offset/Images/Top_Part/Stupid_Text_3:self_modulate")
+tracks/0/path = NodePath("../Y_Offset/Images/Tampon/Top_Part/Stupid_Text_3:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -400,6 +400,45 @@ tracks/0/keys = {
 _data = {
 &"Blink": SubResource("Animation_wm8kb"),
 &"RESET": SubResource("Animation_s8a1k")
+}
+
+[sub_resource type="Animation" id="Animation_dewty"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Y_Offset/Images/Tampon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wfqpw"]
+resource_name = "Shake"
+length = 0.25000167970526965
+loop_mode = 1
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Y_Offset/Images/Tampon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.016666668, 0.033333335, 0.05, 0.06666667, 0.083333336, 0.1, 0.11666667, 0.13333334, 0.15, 0.16666667, 0.18333334, 0.2, 0.21666667, 0.23333333, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0.5, 0.25), Vector2(-0.25, -0.5), Vector2(0.25, 0.5), Vector2(-0.5, -0.25), Vector2(0.5, 0.25), Vector2(0, -0.5), Vector2(0.25, 0.5), Vector2(-0.5, 0), Vector2(0.5, 0.25), Vector2(-0.25, -0.5), Vector2(0.25, 0.5), Vector2(-0.5, -0.25), Vector2(0.5, 0.25), Vector2(-0.25, -0.5), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g041v"]
+_data = {
+&"RESET": SubResource("Animation_dewty"),
+&"Shake": SubResource("Animation_wfqpw")
 }
 
 [node name="Artefact" type="Node2D" unique_id=754266912]
@@ -418,28 +457,31 @@ metadata/_edit_lock_ = true
 [node name="Images" type="Node2D" parent="Y_Offset" unique_id=1272061414]
 metadata/_edit_lock_ = true
 
-[node name="Bottom_Part" type="Sprite2D" parent="Y_Offset/Images" unique_id=2118017220]
+[node name="Tampon" type="Node2D" parent="Y_Offset/Images" unique_id=1113924365]
+
+[node name="Bottom_Part" type="Sprite2D" parent="Y_Offset/Images/Tampon" unique_id=2118017220]
 position = Vector2(0, -111)
 texture = ExtResource("3_2mbeg")
 metadata/_edit_lock_ = true
 
-[node name="Top_Part" type="Sprite2D" parent="Y_Offset/Images" unique_id=1570529136]
+[node name="Top_Part" type="Sprite2D" parent="Y_Offset/Images/Tampon" unique_id=1570529136]
 position = Vector2(0, -111)
 texture = ExtResource("3_w0ye1")
 metadata/_edit_lock_ = true
 
-[node name="Stupid_Text_3" type="Sprite2D" parent="Y_Offset/Images/Top_Part" unique_id=1969083962]
+[node name="Stupid_Text_3" type="Sprite2D" parent="Y_Offset/Images/Tampon/Top_Part" unique_id=1969083962]
 self_modulate = Color(1, 1, 1, 0)
+clip_children = 2
 position = Vector2(0, -0.39761353)
 texture = ExtResource("5_48cf2")
 metadata/_edit_lock_ = true
 
-[node name="Stupid_Text_1" type="Sprite2D" parent="Y_Offset/Images" unique_id=1134899622]
+[node name="Stupid_Text_1" type="Sprite2D" parent="Y_Offset/Images/Tampon" unique_id=1134899622]
 position = Vector2(0, -110)
 texture = ExtResource("5_jotvq")
 metadata/_edit_lock_ = true
 
-[node name="Stupid_Text_2" type="Sprite2D" parent="Y_Offset/Images" unique_id=716473979]
+[node name="Stupid_Text_2" type="Sprite2D" parent="Y_Offset/Images/Tampon" unique_id=716473979]
 position = Vector2(0, -110)
 texture = ExtResource("6_2mbeg")
 metadata/_edit_lock_ = true
@@ -469,6 +511,10 @@ libraries/ = SubResource("AnimationLibrary_jbtw0")
 root_node = NodePath("../Animation_Artefact")
 libraries/ = SubResource("AnimationLibrary_tmeqk")
 autoplay = &"Blink"
+
+[node name="Animation_Shake" type="AnimationPlayer" parent="." unique_id=26319740]
+libraries/ = SubResource("AnimationLibrary_g041v")
+autoplay = &"Shake"
 
 [node name="Artefact_Sound" type="Node2D" parent="." unique_id=1759494700]
 metadata/_edit_lock_ = true
