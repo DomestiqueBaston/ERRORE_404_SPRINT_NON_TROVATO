@@ -600,6 +600,7 @@ metadata/_edit_lock_ = true
 visible = false
 self_modulate = Color(1, 1, 1, 0)
 position = Vector2(0, -0.5)
+scale = Vector2(0.975, 0.975)
 texture = ExtResource("2_yrggj")
 metadata/_edit_lock_ = true
 

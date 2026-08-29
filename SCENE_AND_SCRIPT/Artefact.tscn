@@ -447,10 +447,12 @@ metadata/_edit_lock_ = true
 
 [node name="Y_Offset" type="Node2D" parent="." unique_id=1784279055]
 position = Vector2(0, -60)
+metadata/_edit_lock_ = true
 
 [node name="Shadow" type="Sprite2D" parent="Y_Offset" unique_id=864377854]
 self_modulate = Color(1, 1, 1, 0.29411766)
 position = Vector2(0, 59)
+scale = Vector2(0.975, 0.975)
 texture = ExtResource("2_jotvq")
 metadata/_edit_lock_ = true
 
@@ -458,6 +460,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="Tampon" type="Node2D" parent="Y_Offset/Images" unique_id=1113924365]
+metadata/_edit_lock_ = true
 
 [node name="Bottom_Part" type="Sprite2D" parent="Y_Offset/Images/Tampon" unique_id=2118017220]
 position = Vector2(0, -111)
