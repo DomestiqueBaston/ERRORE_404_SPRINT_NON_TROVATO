@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://c8pxqoajbox8d"]
 
 [ext_resource type="Script" uid="uid://du86gw158y8t4" path="res://SCENE_AND_SCRIPT/Artefact.gd" id="1_kn7xm"]
-[ext_resource type="Texture2D" uid="uid://cxh4hqe3blrm8" path="res://IMAGE/ENVIRONMENT/ARTEFACT/Shadow.png" id="2_jotvq"]
 [ext_resource type="Texture2D" uid="uid://diis004syylgs" path="res://IMAGE/ENVIRONMENT/ARTEFACT/Bottom_Part.png" id="3_2mbeg"]
 [ext_resource type="Texture2D" uid="uid://vouff1tgf5qn" path="res://IMAGE/ENVIRONMENT/ARTEFACT/Top_Part.png" id="3_w0ye1"]
 [ext_resource type="Texture2D" uid="uid://ruxdahapcaji" path="res://IMAGE/ENVIRONMENT/ARTEFACT/Stupid_Text_3.png" id="5_48cf2"]
@@ -26,94 +25,82 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Y_Offset/Shadow:self_modulate")
+tracks/0/path = NodePath("Y_Offset/Images/Tampon/Top_Part:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.6666666, 3.3, 5, 6.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.09803922), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 0.09803922), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 0.09803922)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Y_Offset/Images/Tampon/Top_Part:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.43333334, 2.1000001, 3.766667, 5.433334, 6.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, -108.020836), Vector2(0, -111), Vector2(0, -100), Vector2(0, -111), Vector2(0, -100), Vector2(0, -108.02081)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Y_Offset/Images/Tampon/Bottom_Part:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Y_Offset/Images/Tampon/Bottom_Part:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.8333333, 2.5, 4.166667, 5.833334, 6.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, -116.20832), Vector2(0, -111), Vector2(0, -121), Vector2(0, -111), Vector2(0, -121), Vector2(0, -116.20834)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Y_Offset/Images:position")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Y_Offset/Images:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 1.6666667, 3.3, 5.0000005, 6.5999994),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 15), Vector2(0, 0), Vector2(0, 15), Vector2(0, 0)]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_1:self_modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_1:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.8333333, 1.6666666, 2.5, 3.3, 4.1666665, 5, 5.8333335, 6.6000004),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.9254902), Color(1, 1, 1, 1), Color(1, 1, 1, 0.8980392), Color(1, 1, 1, 1), Color(1, 1, 1, 0.8392157), Color(1, 1, 1, 1), Color(1, 1, 1, 0.79607844), Color(1, 1, 1, 1)]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_1:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_1:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 3.3000002, 6.6000004),
 "transitions": PackedFloat32Array(2, 2, 2),
 "update": 0,
 "values": [Vector2(0, -108), Vector2(0, -112), Vector2(0, -108)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_2:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_2:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0, 3.3000002, 6.6000004),
 "transitions": PackedFloat32Array(1, 2, 2),
 "update": 0,
 "values": [Vector2(0, -112), Vector2(0, -108), Vector2(0, -112)]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_2:self_modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_2:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.8333333, 1.6666666, 2.5, 3.3, 4.1666665, 5, 5.8333335, 6.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
@@ -125,19 +112,19 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Y_Offset/Shadow:self_modulate")
+tracks/0/path = NodePath("Y_Offset/Images/Tampon/Top_Part:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.29411766)]
+"values": [Vector2(0, -111)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Y_Offset/Images/Tampon/Top_Part:position")
+tracks/1/path = NodePath("Y_Offset/Images/Tampon/Bottom_Part:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -149,70 +136,58 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Y_Offset/Images/Tampon/Bottom_Part:position")
+tracks/2/path = NodePath("Y_Offset/Images:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -111)]
+"values": [Vector2(0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Y_Offset/Images:position")
+tracks/3/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_1:self_modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_1:self_modulate")
+tracks/4/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_1:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Vector2(0, -110)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_1:position")
+tracks/5/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_2:self_modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -110)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_2:self_modulate")
+tracks/6/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_2:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Y_Offset/Images/Tampon/Stupid_Text_2:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -228,25 +203,13 @@ _data = {
 [sub_resource type="Animation" id="Animation_w6txa"]
 resource_name = "Disappearing"
 length = 0.30000335
-tracks/0/type = "value"
+tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Y_Offset/Shadow:visible")
+tracks/0/path = NodePath("Artefact_Sound/Artefact_Off")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333328, 0.06666668, 0.10000001, 0.13333336, 0.16666667, 0.20000002, 0.23333335, 0.2666667, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [true, false, true, false, true, false, true, false, true, false]
-}
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Artefact_Sound/Artefact_Off")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -254,26 +217,26 @@ tracks/1/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/1/use_blend = true
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("Y_Offset/Collider_Artefact:monitorable")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Y_Offset/Collider_Artefact:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.26666668, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, true, false]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Y_Offset/Images:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Y_Offset/Images:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.033333328, 0.06666668, 0.10000001, 0.13333336, 0.16666667, 0.20000002, 0.23333335, 0.2666667, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
@@ -284,8 +247,8 @@ tracks/3/keys = {
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Y_Offset/Shadow:visible")
+tracks/0/enabled = false
+tracks/0/path = NodePath("Y_Offset/Collider_Artefact:monitorable")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -296,23 +259,11 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("Y_Offset/Collider_Artefact:monitorable")
+tracks/1/enabled = true
+tracks/1/path = NodePath("Y_Offset/Images:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Y_Offset/Images:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -447,13 +398,6 @@ metadata/_edit_lock_ = true
 
 [node name="Y_Offset" type="Node2D" parent="." unique_id=1784279055]
 position = Vector2(0, -60)
-metadata/_edit_lock_ = true
-
-[node name="Shadow" type="Sprite2D" parent="Y_Offset" unique_id=864377854]
-self_modulate = Color(1, 1, 1, 0.29411766)
-position = Vector2(0, 59)
-scale = Vector2(0.975, 0.975)
-texture = ExtResource("2_jotvq")
 metadata/_edit_lock_ = true
 
 [node name="Images" type="Node2D" parent="Y_Offset" unique_id=1272061414]
