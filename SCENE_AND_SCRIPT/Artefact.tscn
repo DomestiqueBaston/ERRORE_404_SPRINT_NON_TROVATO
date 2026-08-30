@@ -16,7 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://dsr0lb7uc7k7s" path="res://SOUND/FX/Crackling_Noise_C.ogg" id="14_imcjl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecpiw"]
-size = Vector2(129.41849, 128.97292)
+size = Vector2(134, 134)
 
 [sub_resource type="Animation" id="Animation_vso1q"]
 resource_name = "Alive"
@@ -442,9 +442,9 @@ metadata/_edit_lock_ = true
 
 [node name="Artefact" type="CollisionShape2D" parent="Y_Offset/Collider_Artefact" unique_id=1711003240]
 visible = false
-position = Vector2(-0.25934565, -0.6226196)
-rotation = 0.4712389
-skew = 0.6283184
+rotation = 0.46774822
+scale = Vector2(1.02, 1.02)
+skew = 0.6370452
 shape = SubResource("RectangleShape2D_ecpiw")
 metadata/_edit_lock_ = true
 
