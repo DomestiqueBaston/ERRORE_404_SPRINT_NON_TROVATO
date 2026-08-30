@@ -86,6 +86,8 @@ func _ready():
 	_timer.timeout.connect(_on_obstacle_timer_timeout)
 	_timer.start(5 - (mini(5, Globals.difficulty) - 1) / 2.0)
 
+	_center_cell.lower(true)
+
 	var center_time = 6 * (2 * Globals.map_size + 1 + 2 * Globals.difficulty)
 	var center_timer = get_tree().create_timer(center_time)
 	center_timer.timeout.connect(_remove_artefact)
@@ -577,12 +579,15 @@ func _on_obstacle_timer_timeout():
 	_handle_obstacle_event(event)
 
 #
-# Removes the artefact above the central cell and, after a pause, creates the
-# exit door.
+# Removes the artefact above the central cell, raises the central cell after a
+# pause, then creates the exit door after another pause.
 #
 func _remove_artefact():
 	await _center_cell.remove_artefact()
-	await get_tree().create_timer(2 * Globals.difficulty).timeout
+	var pause_length = 2 * Globals.difficulty
+	await get_tree().create_timer(pause_length).timeout
+	await _center_cell.raise()
+	await get_tree().create_timer(pause_length).timeout
 	_center_cell.add_child(_door_scene.instantiate())
 
 ##

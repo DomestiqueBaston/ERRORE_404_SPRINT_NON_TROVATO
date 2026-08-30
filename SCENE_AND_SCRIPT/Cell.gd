@@ -100,10 +100,14 @@ func _ready():
 	for i in _textures.size():
 		_textures[i].visible = (i == decoration)
 
-func lower():
-	# the animation will call _set_state_lowered()
-	_anim_player.play("Going_Down")
-	await _anim_player.animation_finished
+func lower(immediate: bool = false):
+	if immediate:
+		$Column/Cell_Tops.position.y = 250
+		_state = State.LOWERED
+	else:
+		# the animation will call _set_state_lowered()
+		_anim_player.play("Going_Down")
+		await _anim_player.animation_finished
 
 func raise():
 	# the animation will call _set_state_normal()
