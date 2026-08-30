@@ -15,10 +15,8 @@ class_name Map extends Node2D
 var _cell_scene := preload("res://SCENE_AND_SCRIPT/Cell.tscn")
 var _door_scene := preload("res://SCENE_AND_SCRIPT/Door.tscn")
 
-const _cell_size_x = 236.0
-const _cell_size_y = 0.5 * _cell_size_x
-const _cell_step_x = 0.5 * _cell_size_x
-const _cell_step_y = 0.5 * _cell_size_y
+const _cell_step_x = 0.5 * Cell.width
+const _cell_step_y = 0.5 * Cell.height
 
 # The "404" cell at the center of the map (which may not actually be at the
 # center if rows or columns have been sliding around).
@@ -188,6 +186,7 @@ func _build_edge(parent: Node2D, edge: Globals.Axis):
 func _add_cell(parent: Node2D, uv: Vector2i, deco: Cell.Decoration) -> Cell:
 	var cell: Cell = _cell_scene.instantiate()
 	cell.position = get_cell_pos(uv)
+	cell.z_index = roundi(cell.position.y)
 	cell.decoration = deco
 	parent.add_child(cell)
 	_cells[uv] = cell
@@ -210,8 +209,8 @@ static func get_cell_pos(uv: Vector2i) -> Vector2:
 static func get_cell_index(pos: Vector2) -> Vector2i:
 	var y = 2.0 * pos.y
 	return Vector2i(
-		roundi((pos.x + y) / _cell_size_x),
-		roundi((pos.x - y) / _cell_size_x))
+		roundi((pos.x + y) / Cell.width),
+		roundi((pos.x - y) / Cell.width))
 
 ##
 ## Returns the cell at the given UV index, where U corresponds to the NW-SE
@@ -335,7 +334,9 @@ func _slide(axis: StringName, index: int, distance: int):
 		var cell: Cell = _cells[key]
 		var new_key: Vector2i = key
 		new_key[other_axis] += distance
-		tween.tween_property(cell, ^":position", get_cell_pos(new_key), duration)
+		var new_pos: Vector2 = get_cell_pos(new_key)
+		tween.tween_property(cell, ^":position", new_pos, duration)
+		tween.tween_property(cell, ^":z_index", roundi(new_pos.y), duration)
 		_cells.erase(key)
 		updated_cells[new_key] = cell
 

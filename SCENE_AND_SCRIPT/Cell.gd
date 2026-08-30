@@ -49,6 +49,9 @@ enum State {
 	PYLON
 }
 
+const width: float = 236.0
+const height: float = width * 0.5
+
 @onready var _anim_player: AnimationPlayer = $Global_Cell
 @onready var _one_way_directions: Node2D = $Column/Cell_Tops/One_Way_Directions
 @onready var _glitch_anim: AnimationPlayer = $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch

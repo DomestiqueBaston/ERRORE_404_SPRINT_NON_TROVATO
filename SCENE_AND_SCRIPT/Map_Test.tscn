@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bs6lfs8h7kibb" path="res://SCENE_AND_SCRIPT/Quit_Button.tscn" id="2_5js3l"]
 
 [node name="Map_Test" type="Node2D" unique_id=1968653440]
-y_sort_enabled = true
 script = ExtResource("1_7cuhg")
 
 [node name="Frames" type="CanvasLayer" parent="." unique_id=1367928238]

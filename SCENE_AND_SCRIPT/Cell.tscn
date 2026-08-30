@@ -1829,7 +1829,6 @@ _data = {
 }
 
 [node name="Cell" type="Node2D" unique_id=2120336095]
-y_sort_enabled = true
 script = ExtResource("1_psu53")
 metadata/_edit_lock_ = true
 
