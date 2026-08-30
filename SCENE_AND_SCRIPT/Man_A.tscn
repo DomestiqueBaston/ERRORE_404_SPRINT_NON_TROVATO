@@ -531,10 +531,10 @@ tracks/1/path = NodePath("Papa_Sprite/Runner_Sprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.36666667, 0.5, 0.73333335),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.26666668, 0.36666667, 0.5, 0.73333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-67, -55), Vector2(-86, -26), Vector2(-103, -8), Vector2(-134, 59), Vector2(-155, 173)]
+"values": [Vector2(0, 0), Vector2(-27, -10), Vector2(-67, -55), Vector2(-86, -26), Vector2(-103, -8), Vector2(-134, 63), Vector2(-155, 193)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -570,10 +570,10 @@ tracks/4/path = NodePath("Papa_Sprite/Runner_Sprite:offset")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.36666667, 0.5, 0.73333335),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.26666668, 0.36666667, 0.5, 0.73333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-29, -58), Vector2(5, -4), Vector2(2, -27), Vector2(5, -40), Vector2(15, -56), Vector2(13, -70)]
+"values": [Vector2(-29, -58), Vector2(-19, -48), Vector2(5, -4), Vector2(2, -27), Vector2(5, -40), Vector2(15, -56), Vector2(13, -70)]
 }
 tracks/5/type = "audio"
 tracks/5/imported = false
@@ -721,10 +721,10 @@ tracks/1/path = NodePath("Papa_Sprite/Runner_Sprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.36666667, 0.5, 0.73333335),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.26666668, 0.36666667, 0.5, 0.73333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(74, 15), Vector2(88, -15), Vector2(60, 7), Vector2(79, 77), Vector2(159, 220)]
+"values": [Vector2(0, 0), Vector2(65, 15), Vector2(74, 15), Vector2(88, -15), Vector2(60, 7), Vector2(79, 81), Vector2(159, 240)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -760,10 +760,10 @@ tracks/4/path = NodePath("Papa_Sprite/Runner_Sprite:offset")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.36666667, 0.5, 0.73333335),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.26666668, 0.36666667, 0.5, 0.73333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(29, -28), Vector2(-13, -43), Vector2(-4, -9), Vector2(38, -24), Vector2(39, -44), Vector2(-18, -87)]
+"values": [Vector2(29, -28), Vector2(-20, -43), Vector2(-13, -43), Vector2(-4, -9), Vector2(38, -24), Vector2(39, -44), Vector2(-18, -87)]
 }
 tracks/5/type = "audio"
 tracks/5/imported = false
