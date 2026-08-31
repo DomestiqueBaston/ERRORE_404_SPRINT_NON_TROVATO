@@ -52,9 +52,9 @@ Les bonus et malus en jeu (Cube.tscn) :
 - Il ne peut pas y avoir plus de 5 Bonus/Malus simultanément à ramasser → le 6ème supprime automatiquement le plus ancien restant pendant que le nouveau apparaît.
 - Pour chaque couleur correspondent un bonus et un malus (le joueur ne sait donc pas s’il voit un bonus ou un malus).
 - Au ramassage d’un Bonus/Malus, on joue le son correspondant au Bonus/Malus et on joue le clignotement du concurrent (Animation_Bonus_Malus).
-- À l’activation (automatique ou au déclenchement du joueur) du Bonus/Malus on joue également le son correspondant et on joue le clignotement du concurrent.
-- Si le ramassage et l’activation se font en même temps, on ne joue qu’une fois le son correspondant et pareil pour le clignotement du concurrent.
-- Lorsque l’effet du Bonus/Malus dure plus longtemps que le son et l’animation du Bonus/Malus, à la fin de l’effet du Bonus/Malus, on rejoue le clignotement du coureur et le son Sound/Bonus_Malus/Bonus_Malus_Over dans la scène du coureur.
+- À l’activation (automatique ou au déclenchement du joueur) du Bonus/Malus, on changera la couleur de l’outline du joueur pour la durée de l’effet (voir codes couleur juste en dessous), on joue également le son correspondant (sous Sound/Bonus_Malus) et on joue le clignotement du concurrent (Animation_Bonus_Malus/Bonus_Malus).
+- Si le ramassage et l’activation se font en même temps, on ne joue qu’une fois le son correspondant et pareil pour le clignotement du concurrent et on change la couleur de l’outline uniquement pour le temps de jouer le clignotement.
+- Lorsque l’effet du Bonus/Malus dure plus longtemps que le son et l’animation du Bonus/Malus, à la fin de l’effet du Bonus/Malus, on rejoue le clignotement du coureur et le son Sound/Bonus_Malus/Bonus_Malus_Over dans la scène du coureur et l’outline retrouve sa couleur par défaut (noir) à la fin du clignotement.
 
 Les bonus :
     1. Invulnérabilité – Rouge (annule le prochain malus récolté) – dure (5 ÷ difficulté)’’ → ✔ Invincible – Automatique !
@@ -62,17 +62,35 @@ Les bonus :
     3. Passe-muraille – Bleu (uniquement les murs des concurrents) – 1 seul mur → ✔ Through – Automatique !
     4. Virus – Violet (envoie automatiquement le prochain malus récolté à un adversaire aléatoire au lieu de le jeter en récupérant le suivant) → ✔ Virus – Automatique !
     5. Auto-dodge – Jaune (les obstacles et trous évitables par glissement ou saut sont évités automatiquement si le joueur ne le fait pas) – dure (2 × difficulté)’’)→ ✔ Auto_Dodge – Activable !
-    6. Débogueur – Noir (vire un bug actif)→ ✔ Debug – Activable !
+    6. Débogueur – Gris (vire un bug actif)→ ✔ Debug – Activable !
     7. Les murs tracés jusqu’à présent par les concurrents disparaissent – Blanc → ✔ Last_Longer – Automatique !
 
 Les malus (applications automatiques) :
     1. Inversion de commandes – Rouge – dure (difficulté)’’ → ✔ Invert
-    2. Lenteur de réaction (on ajoute un délai d’1/10’’ (à préciser) dans les commandes du concurrent) – Noir – dure (2 × difficulté)’’ → ✔ Slow
+    2. Lenteur de réaction (on ajoute un délai d’1/10’’ (à préciser) dans les commandes du concurrent) – Gris – dure (2 × difficulté)’’ → ✔ Slow
     3. Les murs tracés par les concurrents durent plus longtemps – Blanc – (durée des tronçons de mur × 1,5) → ✔ Last_Shorter – Au bout de la durée des tronçons de mur normale, l’effet du malus disparaît et la durée de vie normale de chaque tronçon reprend sa valeur normale et tous les tronçons qui ont vécu ce temps ou plus disparaissent ! Ainsi le malus a surtout pour effet de faire durer plus longtemps les tronçons de mur déjà et encore en place avant l’activation du malus.
     4. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1/2 seconde) – Vert – dure ((2 × difficulté) + 3)’’ → ✔ Anti_Dash
     5. « Hors phase » (shader) – Bleu – dure (2 × difficulté)’’ → ✔ Phase
     6. Virus (envoie automatiquement le prochain Bonus (pas malus) récolté à un adversaire aléatoire, quitte à remplacer celui qu’il porte – Violet → ✔ Anti_Virus
     7. Tout droit (le coureur ne peut plus tourner pendant (difficulté ÷ 2)’’) – Jaune → ✔ No_turn
+
+Codes couleurs à appliquer à l’outline du joueur :
+    • Rouge : Color(0.66, 0.0, 0.0)
+    • Vert : Color(0.0, 0.66, 0.0)
+    • Bleu : Color(0.0, 0.0, 0.66)
+    • Gris : Color(0.25, 0.25, 0.25)
+    • Blanc : Color(0.75, 0.75, 0.75)
+    • Violet : Color(0.5, 0.0, 0.5)
+    • Jaune : Color(0.55, 0.55, 0.0)
+    • Noir (couleur par défaut) : Color(0.0, 0.0, 0.0)
+Codes couleurs à appliquer aux Bonus/Malus (Cube.tscn et voir ’’sprite_color’’) :
+    • Rouge : Color(1.523, 0.865, 0.865)
+    • Vert : Color(0.748, 1.164, 0.621)
+    • Bleu : Color(0.783, 0.883, 1.382)
+    • Gris : Color(0.666, 0.666, 0.666)
+    • Blanc : Color(1.0, 1.0, 1.0) (par défaut)
+    • Violet : Color(1.037, 0.775, 1.523)
+    • Jaune : Color(1.231, 1.269, 0.698)
 
 Les obstacles :
 - Toutes les X secondes (voir Options nécessaires dans Settings) un des obstacles est déclenché. 25% du temps, il s’agira d’1 glissement de Ligne/Colonne. La « quantité » de glissement des Ligne/Colonne se font aléatoirement d’1 à (longueur d’un côté au départ/3) cases (pour ne pas dire cellule qui pourrait être perturbant). On fait TOUJOURS glisser une ligne/colonne complète (« trous » inclus).
