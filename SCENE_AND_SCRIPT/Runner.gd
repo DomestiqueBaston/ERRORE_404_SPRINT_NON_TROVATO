@@ -25,6 +25,7 @@ var is_sliding: bool = false
 var is_dead: bool = false
 var is_falling: bool = false
 var is_teleporting: bool = false
+var is_one_way: bool = false
 
 # Directions figées
 var jump_direction: Vector2 = Vector2.ZERO
@@ -62,7 +63,7 @@ func _physics_process(delta: float) -> void:
 
 	# check for obstacles, sliding cells, etc.
 	if _check_location():
-		# back up if the runner hit a pylon or the raised central cell
+		# back up if the runner hit an obstacle and died
 		position += direction * _get_current_speed() * -delta
 		z_index = roundi(position.y + 0.5 * Cell.height)
 
@@ -70,7 +71,8 @@ func _physics_process(delta: float) -> void:
 	if is_dead or is_falling:
 		return
 
-	if not is_jumping and not is_sliding:
+	# check user input, if he is in control
+	if not (is_jumping or is_sliding or is_one_way):
 		var input_direction := Vector2.ZERO
 
 		if Input.is_action_just_pressed("ui_a_button") :
@@ -250,10 +252,11 @@ func is_valid_direction(new_direction: Vector2) -> bool:
 #
 # Checks whether the runner's location (current cell) has changed, and if he
 # has encountered an obstacle, or a teleport, or fallen off the map, etc. On
-# return, he may be dead or falling.
+# return, he may be dead or falling (it is assumed that he is not, at the time
+# when the function is called).
 #
-# Returns true if the runner died after running into a pylon or the raised
-# central cell.
+# Returns true if the runner died after running into something, in which case
+# he should bounce back in the direction he was moving.
 #
 func _check_location() -> bool:
 	if _map == null:
@@ -262,6 +265,15 @@ func _check_location() -> bool:
 	# find the cell underfoot
 
 	var next_cell: Cell = _map.get_cell_in_area(collider)
+
+	# Turn one-way off after leaving the one-way cell. Normally one-way is
+	# turned off by _check_one_way() when the runner is no longer in contact
+	# with the one-way sign's collider. But if the runner steps directly from
+	# that collider to a neighboring cell, or to a space where there is no cell,
+	# _check_one_way() will not be called.
+
+	if is_one_way and next_cell != _curr_cell:
+		is_one_way = false
 
 	# update the current cell accordingly and check for obstacles
 
@@ -283,7 +295,7 @@ func _check_location() -> bool:
 		if not is_jumping:
 			start_falling()
 
-	# did the runner run into a pylon or the raised central cell?
+	# did the runner run into something, in which case he has to bounce back?
 
 	var backup = is_dead and _curr_cell != next_cell
 
@@ -320,20 +332,50 @@ func _check_teleport(cell: Cell):
 		_map.cancel_teleport(destination)
 
 func _check_one_way(cell: Cell):
+
+	# no overlap with one-way collider: turn one-way off, if it is on, and do
+	# nothing
+
 	if not collider.overlaps_area(cell.get_one_way_collider()):
+		is_one_way = false
 		return
+
+	# one-way is already on: do nothing
+
+	if is_one_way:
+		return
+
+	# runner just ran into the one-way sign: choose his new direction
+
+	var new_direction: Vector2
+	match cell.get_one_way_direction():
+		Globals.Axis.NW:
+			new_direction = _northwest
+		Globals.Axis.NE:
+			new_direction = _northeast
+		Globals.Axis.SW:
+			new_direction = _southwest
+		Globals.Axis.SE:
+			new_direction = _southeast
+
+	# if the runner is going the opposite direction, kill him
+
+	if is_equal_approx(direction.dot(new_direction), -1.0):
+		die(false)
+		return
+
+	# play the Bonus_Malus animation before actually changing the runner's
+	# direction, then again, and finally remove the one-way obstacle
+
 	var anim: AnimationPlayer = $Animation_Bonus_Malus
 	anim.play("Bonus_Malus")
 	await anim.animation_finished
-	match cell.get_one_way_direction():
-		Globals.Axis.NW:
-			last_direction = _northwest
-		Globals.Axis.NE:
-			last_direction = _northeast
-		Globals.Axis.SW:
-			last_direction = _southwest
-		Globals.Axis.SE:
-			last_direction = _southeast
+	last_direction = new_direction
+	if is_jumping:
+		jump_direction = new_direction
+	elif is_sliding:
+		slide_direction = new_direction
+	is_one_way = true
 	anim.play("Bonus_Malus")
 	if _map:
 		_map.cancel_one_way(cell)
