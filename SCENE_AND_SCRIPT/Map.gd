@@ -86,8 +86,6 @@ func _ready():
 	_timer.timeout.connect(_on_obstacle_timer_timeout)
 	_timer.start(5 - (mini(5, Globals.difficulty) - 1) / 2.0)
 
-	_center_cell.lower(true)
-
 	var center_time = 6 * (2 * Globals.map_size + 1 + 2 * Globals.difficulty)
 	var center_timer = get_tree().create_timer(center_time)
 	center_timer.timeout.connect(_remove_artefact)
@@ -146,8 +144,9 @@ func _build_map():
 	_available_cells.erase(_center_cell)
 	_obstacle_cells.clear()
 
-	# artefact above central cell
+	# lower central cell and add artefact above it
 
+	_center_cell.lower(true)
 	_center_cell.add_artefact()
 
 func _build_edge(parent: Node2D, edge: Globals.Axis):

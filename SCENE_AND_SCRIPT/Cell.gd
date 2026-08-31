@@ -200,7 +200,7 @@ func stop_teleport():
 	await _glitch_anim.animation_finished
 
 func get_state() -> State:
-	return _state
+	return State.ARTEFACT if _artefact else _state
 
 func lower_pylon():
 	_add_pylon()
@@ -240,16 +240,20 @@ func _remove_pylon():
 func _on_pylon_state_changed(state: Pylon.State):
 	_state = State.NORMAL if state == Pylon.State.RAISED else State.PYLON
 
+#
+# Note that, because the artefact may be combined with a lowered central cell,
+# add_artefact() and remove_artefact() do not change the cell's state
+# explicitly. Instead, get_state() checks whether an artefact is present and
+# returns State.ARTEFACT in that case.
+#
 func add_artefact():
 	if _artefact == null:
 		_artefact = _artefact_scene.instantiate()
 		add_child(_artefact)
-		_state = State.ARTEFACT
 
 func remove_artefact():
 	if _artefact:
 		await _artefact.disappear()
-		_state = State.NORMAL
 		remove_child(_artefact)
 		_artefact.queue_free()
 		_artefact = null
