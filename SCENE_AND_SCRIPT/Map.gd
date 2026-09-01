@@ -18,6 +18,9 @@ var _door_scene := preload("res://SCENE_AND_SCRIPT/Door.tscn")
 const _cell_step_x = 0.5 * Cell.width
 const _cell_step_y = 0.5 * Cell.height
 
+# The X coordinate of the rightmost cell (the eastern corner).
+var _xmax: float
+
 # The "404" cell at the center of the map (which may not actually be at the
 # center if rows or columns have been sliding around).
 var _center_cell: Cell
@@ -108,7 +111,9 @@ func _build_map():
 	_add_cell(parent, Vector2i(-map_size, map_size), Cell.Decoration.N)
 	_add_cell(parent, Vector2i(map_size, -map_size), Cell.Decoration.S)
 	_add_cell(parent, Vector2i(-map_size, -map_size), Cell.Decoration.W)
-	_add_cell(parent, Vector2i(map_size, map_size), Cell.Decoration.E)
+	var east_corner: Cell = \
+		_add_cell(parent, Vector2i(map_size, map_size), Cell.Decoration.E)
+	_xmax = east_corner.position.x
 
 	# edges
 
@@ -220,8 +225,17 @@ static func get_cell_index(pos: Vector2) -> Vector2i:
 ## Returns the correct Z-index value for the cell at the given position. The
 ## cell need not actually exist.
 ##
-static func compute_cell_depth(pos: Vector2) -> int:
-	return roundi(pos.y)
+## The Z-index is computed in such a way that:
+## - When the Y coordinates of two cells differ, the cell with a greater Y is
+##   always displayed in front.
+## - When two cells have the same Y coordinates, those with a smaller value of
+##   X are displayed in front.
+## - The Z-index of two cells is guaranteed to differ by at least the constant
+##   Globals.MAX_Z_OFFSET, so that we can add a small offset to a cell's Z-index
+##   to determine the display order of things within that cell.
+##
+func compute_cell_depth(pos: Vector2) -> int:
+	return roundi(pos.y + Globals.MAX_Z_OFFSET * (_xmax - pos.x) / Cell.width)
 
 ##
 ## Returns the cell at the given UV index, where U corresponds to the NW-SE

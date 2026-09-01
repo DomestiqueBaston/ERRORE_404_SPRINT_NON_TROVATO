@@ -21,6 +21,7 @@ const RUNNER_Z_OFFSET: int = 2
 const PYLON_Z_OFFSET: int = 3
 const DOOR_BACK_Z_OFFSET: int = 1
 const DOOR_FRONT_Z_OFFSET: int = 3
+const MAX_Z_OFFSET: int = 4
 
 var use_diagonals_for_movement: bool = true
 var map_size: int = 7

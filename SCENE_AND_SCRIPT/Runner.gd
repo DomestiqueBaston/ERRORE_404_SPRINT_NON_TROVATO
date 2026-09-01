@@ -292,7 +292,7 @@ func _check_location() -> bool:
 	else:
 		var uv = Map.get_cell_index(global_position)
 		var pos = Map.get_cell_pos(uv)
-		z_index = Map.compute_cell_depth(pos) + Globals.RUNNER_Z_OFFSET
+		z_index = _map.compute_cell_depth(pos) + Globals.RUNNER_Z_OFFSET
 		if not is_jumping:
 			start_falling()
 
