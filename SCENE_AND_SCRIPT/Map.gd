@@ -187,7 +187,7 @@ func _build_edge(parent: Node2D, edge: Globals.Axis):
 func _add_cell(parent: Node2D, uv: Vector2i, deco: Cell.Decoration) -> Cell:
 	var cell: Cell = _cell_scene.instantiate()
 	cell.position = get_cell_pos(uv)
-	cell.z_index = roundi(cell.position.y)
+	cell.z_index = compute_cell_depth(cell.position)
 	cell.decoration = deco
 	parent.add_child(cell)
 	_cells[uv] = cell
@@ -197,6 +197,9 @@ func _add_cell(parent: Node2D, uv: Vector2i, deco: Cell.Decoration) -> Cell:
 ## Returns the position in XY coordinates of the cell at the given UV index,
 ## where U corresponds to the NW-SE axis, V corresponds to the SW-NE axis, and
 ## UV (0,0) is the origin of the map. The given cell need not actually exist.
+##
+## Note that this position is not valid while a cell is sliding from one
+## location to another.
 ##
 static func get_cell_pos(uv: Vector2i) -> Vector2:
 	return Vector2(
@@ -212,6 +215,13 @@ static func get_cell_index(pos: Vector2) -> Vector2i:
 	return Vector2i(
 		roundi((pos.x + y) / Cell.width),
 		roundi((pos.x - y) / Cell.width))
+
+##
+## Returns the correct Z-index value for the cell at the given position. The
+## cell need not actually exist.
+##
+static func compute_cell_depth(pos: Vector2) -> int:
+	return roundi(pos.y)
 
 ##
 ## Returns the cell at the given UV index, where U corresponds to the NW-SE
@@ -337,7 +347,7 @@ func _slide(axis: StringName, index: int, distance: int):
 		new_key[other_axis] += distance
 		var new_pos: Vector2 = get_cell_pos(new_key)
 		tween.tween_property(cell, ^":position", new_pos, duration)
-		tween.tween_property(cell, ^":z_index", roundi(new_pos.y), duration)
+		tween.tween_property(cell, ^":z_index", compute_cell_depth(new_pos), duration)
 		_cells.erase(key)
 		updated_cells[new_key] = cell
 

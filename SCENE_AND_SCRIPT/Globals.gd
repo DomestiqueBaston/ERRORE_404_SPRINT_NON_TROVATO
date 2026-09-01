@@ -14,8 +14,13 @@ enum Corner {
 	E
 }
 
-const master_bus: int = 0
-const music_bus: int = 4
+const MASTER_BUS: int = 0
+const MUSIC_BUS: int = 4
+
+const RUNNER_Z_OFFSET: int = 2
+const PYLON_Z_OFFSET: int = 3
+const DOOR_BACK_Z_OFFSET: int = 1
+const DOOR_FRONT_Z_OFFSET: int = 3
 
 var use_diagonals_for_movement: bool = true
 var map_size: int = 7
@@ -42,8 +47,8 @@ func save_settings():
 	config.set_value("settings", "use_diagonals", use_diagonals_for_movement)
 	config.set_value("settings", "map_size", map_size)
 	config.set_value("settings", "difficulty", difficulty)
-	config.set_value("settings", "master_db", AudioServer.get_bus_volume_db(master_bus))
-	config.set_value("settings", "music_db", AudioServer.get_bus_volume_db(music_bus))
+	config.set_value("settings", "master_db", AudioServer.get_bus_volume_db(MASTER_BUS))
+	config.set_value("settings", "music_db", AudioServer.get_bus_volume_db(MUSIC_BUS))
 	config.save(_settings_path)
 
 func load_settings():
@@ -52,5 +57,5 @@ func load_settings():
 		use_diagonals_for_movement = config.get_value("settings", "use_diagonals", true)
 		map_size = config.get_value("settings", "map_size", 7)
 		difficulty = config.get_value("settings", "difficulty", 3)
-		AudioServer.set_bus_volume_db(master_bus, config.get_value("settings", "master_db", 0.0))
-		AudioServer.set_bus_volume_db(music_bus, config.get_value("settings", "music_db", -7.5))
+		AudioServer.set_bus_volume_db(MASTER_BUS, config.get_value("settings", "master_db", 0.0))
+		AudioServer.set_bus_volume_db(MUSIC_BUS, config.get_value("settings", "music_db", -7.5))

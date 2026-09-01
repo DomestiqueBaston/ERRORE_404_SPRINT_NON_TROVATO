@@ -10,6 +10,10 @@ signal state_changed(state: State)
 
 var _state: State = State.RAISED
 
+func _ready():
+	# Z index is relative to the parent cell's
+	z_index = Globals.PYLON_Z_OFFSET
+
 func lower():
 	Sounds.play_pylon_down()
 	await get_tree().create_timer(0.75).timeout

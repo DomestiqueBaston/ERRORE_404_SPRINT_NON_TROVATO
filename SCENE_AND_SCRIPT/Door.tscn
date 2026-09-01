@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://jeuanuva1v8o"]
 
+[ext_resource type="Script" uid="uid://di3ip3ppipa7k" path="res://SCENE_AND_SCRIPT/Door.gd" id="1_ecpiw"]
 [ext_resource type="Texture2D" uid="uid://bgq4edmw16b8" path="res://IMAGE/ENVIRONMENT/DOOR/Door_Shadow.png" id="1_w6txa"]
 [ext_resource type="Texture2D" uid="uid://c7ee22rkppja8" path="res://IMAGE/ENVIRONMENT/DOOR/Door_Back_Sprite_Sheet.png" id="2_w6txa"]
 [ext_resource type="Shader" uid="uid://68aobjd54xxo" path="res://SHADER/Outline_And_Color.gdshader" id="3_ecpiw"]
@@ -239,6 +240,7 @@ _data = {
 }
 
 [node name="Door" type="Node2D" unique_id=754266912]
+script = ExtResource("1_ecpiw")
 
 [node name="Collider_Door" type="Area2D" parent="." unique_id=1723708210]
 monitorable = false
@@ -268,7 +270,6 @@ metadata/_edit_lock_ = true
 [node name="Door_Shadow" type="Sprite2D" parent="." unique_id=864377854]
 visible = false
 self_modulate = Color(1, 1, 1, 0.29411766)
-z_index = 60
 texture = ExtResource("1_w6txa")
 offset = Vector2(0, 6)
 metadata/_edit_lock_ = true
@@ -276,7 +277,6 @@ metadata/_edit_lock_ = true
 [node name="Door_Back" type="Sprite2D" parent="." unique_id=780878611]
 visible = false
 light_mask = 3
-z_index = 30
 material = SubResource("ShaderMaterial_jbtw0")
 texture = ExtResource("2_w6txa")
 offset = Vector2(0, -71)
@@ -287,7 +287,6 @@ metadata/_edit_lock_ = true
 [node name="Door_Front" type="Sprite2D" parent="." unique_id=1737667010]
 visible = false
 light_mask = 5
-z_index = 90
 material = SubResource("ShaderMaterial_ecpiw")
 texture = ExtResource("3_pl358")
 offset = Vector2(0, -71)

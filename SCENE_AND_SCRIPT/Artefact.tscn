@@ -393,7 +393,6 @@ _data = {
 }
 
 [node name="Artefact" type="Node2D" unique_id=754266912]
-z_index = 90
 script = ExtResource("1_kn7xm")
 metadata/_edit_lock_ = true
 

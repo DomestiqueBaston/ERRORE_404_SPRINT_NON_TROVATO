@@ -65,7 +65,6 @@ func _physics_process(delta: float) -> void:
 	if _check_location():
 		# back up if the runner hit an obstacle and died
 		position += direction * _get_current_speed() * -delta
-		z_index = roundi(position.y + 0.5 * Cell.height)
 
 	# États bloquants : plus rien à faire
 	if is_dead or is_falling:
@@ -113,7 +112,6 @@ func _physics_process(delta: float) -> void:
 
 	# === Mouvement ===
 	position += direction * _get_current_speed() * delta
-	z_index = roundi(position.y + 0.5 * Cell.height)
 
 	# keep camera aimed at runner
 	$Character/Cam.update_aim_point(global_position)
@@ -278,11 +276,11 @@ func _check_location() -> bool:
 	# update the current cell accordingly and check for obstacles
 
 	if next_cell:
+		z_index = next_cell.z_index + Globals.RUNNER_Z_OFFSET
 		match next_cell.get_state():
 			Cell.State.LOWERED, Cell.State.HIDDEN:
 				if not is_jumping:
 					start_falling()
-					z_index = next_cell.z_index
 			Cell.State.ARTEFACT:
 				die(false)
 			Cell.State.TELEPORT:
@@ -292,6 +290,9 @@ func _check_location() -> bool:
 			Cell.State.PYLON:
 				_check_pylon(next_cell)
 	else:
+		var uv = Map.get_cell_index(global_position)
+		var pos = Map.get_cell_pos(uv)
+		z_index = Map.compute_cell_depth(pos) + Globals.RUNNER_Z_OFFSET
 		if not is_jumping:
 			start_falling()
 

@@ -589,7 +589,6 @@ _data = {
 }
 
 [node name="Pylon" type="Node2D" unique_id=1565454703]
-z_index = 90
 script = ExtResource("1_llfy2")
 metadata/_edit_lock_ = true
 

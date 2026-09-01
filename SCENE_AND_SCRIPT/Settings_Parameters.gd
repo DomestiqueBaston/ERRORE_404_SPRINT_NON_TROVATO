@@ -90,8 +90,8 @@ func update():
 	$Difficulty_1_6.visible = Globals.max_difficulty > 5
 	$Masks/Difficulty_1_6.visible = Globals.max_difficulty > 5
 
-	_master_db_init = AudioServer.get_bus_volume_db(Globals.master_bus)
-	_music_db_init = AudioServer.get_bus_volume_db(Globals.music_bus)
+	_master_db_init = AudioServer.get_bus_volume_db(Globals.MASTER_BUS)
+	_music_db_init = AudioServer.get_bus_volume_db(Globals.MUSIC_BUS)
 
 	_is_updating = true
 	master_slider.value = _db_to_slider_master(_master_db_init)
@@ -101,8 +101,8 @@ func update():
 	_update_slider_visuals()
 
 func reset():
-	AudioServer.set_bus_volume_db(Globals.master_bus, _master_db_init)
-	AudioServer.set_bus_volume_db(Globals.music_bus, _music_db_init)
+	AudioServer.set_bus_volume_db(Globals.MASTER_BUS, _master_db_init)
+	AudioServer.set_bus_volume_db(Globals.MUSIC_BUS, _music_db_init)
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("ui_up_button"):
@@ -177,11 +177,11 @@ func _db_to_slider_music(db: float) -> float:
 
 func _on_master_slider_changed(value: float):
 	if not _is_updating:
-		AudioServer.set_bus_volume_db(Globals.master_bus, _slider_to_db_master(value))
+		AudioServer.set_bus_volume_db(Globals.MASTER_BUS, _slider_to_db_master(value))
 
 func _on_music_slider_changed(value: float):
 	if not _is_updating:
-		AudioServer.set_bus_volume_db(Globals.music_bus, _slider_to_db_music(value))
+		AudioServer.set_bus_volume_db(Globals.MUSIC_BUS, _slider_to_db_music(value))
 
 func get_use_diagonals() -> bool:
 	return $Directions/Diagonals.visible
