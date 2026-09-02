@@ -1,8 +1,7 @@
 class_name Artefact extends Node2D
 
 func _ready():
-	# Z index is relative to the parent cell's
-	z_index = Globals.PYLON_Z_OFFSET
+	z_index = Globals.UPPER_LAYER
 
 func disappear():
 	var anim: AnimationPlayer = $Animation_Artefact_Off

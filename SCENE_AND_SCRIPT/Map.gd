@@ -191,7 +191,6 @@ func _build_edge(parent: Node2D, edge: Globals.Axis):
 func _add_cell(parent: Node2D, uv: Vector2i, deco: Cell.Decoration) -> Cell:
 	var cell: Cell = _cell_scene.instantiate()
 	cell.position = get_cell_pos(uv)
-	cell.z_index = compute_cell_depth(cell.position)
 	cell.decoration = deco
 	parent.add_child(cell)
 	_cells[uv] = cell
@@ -219,25 +218,6 @@ static func get_cell_index(pos: Vector2) -> Vector2i:
 	return Vector2i(
 		roundi((pos.x + y) / Cell.width),
 		roundi((pos.x - y) / Cell.width))
-
-##
-## Returns the correct Z-index value for the cell at the given position. The
-## cell need not actually exist.
-##
-## The Z-index is computed in such a way that:
-## - When the Y coordinates of two cells differ, the cell with a greater Y is
-##   always displayed in front.
-## - When two cells have the same Y coordinates, those with a smaller value of
-##   X are displayed in front.
-## - The Z-index of two cells is guaranteed to differ by at least the constant
-##   Globals.MAX_Z_OFFSET, so that we can add a small offset to a cell's Z-index
-##   to determine the display order of things within that cell.
-##
-func compute_cell_depth(pos: Vector2) -> int:
-	return roundi(pos.y)
-	# I think this was a mistake. Today I can't see any reason to prioritize
-	# cells on the left.
-	#return roundi(pos.y + Globals.MAX_Z_OFFSET * (_xmax - pos.x) / Cell.width)
 
 ##
 ## Returns the cell at the given UV index, where U corresponds to the NW-SE
@@ -363,7 +343,6 @@ func _slide(axis: StringName, index: int, distance: int):
 		new_key[other_axis] += distance
 		var new_pos: Vector2 = get_cell_pos(new_key)
 		tween.tween_property(cell, ^":position", new_pos, duration)
-		tween.tween_property(cell, ^":z_index", compute_cell_depth(new_pos), duration)
 		_cells.erase(key)
 		updated_cells[new_key] = cell
 

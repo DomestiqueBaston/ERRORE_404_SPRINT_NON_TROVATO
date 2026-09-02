@@ -47,6 +47,7 @@ var _curr_cell_pos: Vector2
 func _ready() -> void:
 	animation_player.animation_finished.connect(_on_animation_finished)
 	disappear_player.animation_finished.connect(_on_disappear_finished)
+	z_index = Globals.UPPER_LAYER
 
 func set_map(map: Map, start_cell: Cell = null):
 	_map = map
@@ -197,7 +198,9 @@ func start_falling() -> void:
 	
 	# no more movement
 	set_physics_process(false)
-	
+
+	z_index = Globals.LOWER_LAYER
+
 	# Animation de chute avec la bonne orientation
 	if last_direction == Vector2.ZERO:
 		animation_player.play("Falling_180")
@@ -278,21 +281,23 @@ func _check_location() -> bool:
 
 	var hit_door = false
 
-	if next_cell:
-		z_index = next_cell.z_index + Globals.RUNNER_Z_OFFSET
-		match next_cell.get_state():
-			Cell.State.NORMAL:
-				if next_cell.is_center() and  not (is_dead or is_exiting):
-					if next_cell.get_artefact():
+	if next_cell == null:
+		if not is_jumping:
+			start_falling()
+	elif next_cell.is_center():
+		if not (is_dead or is_exiting):
+			if next_cell.get_artefact():
+				die(false)
+			elif next_cell.get_door():
+				match next_cell.get_door().get_overlap(collider):
+					Door.HitArea.DOOR:
 						die(false)
-					elif next_cell.get_door():
-						match next_cell.get_door().get_overlap(collider):
-							Door.HitArea.DOOR:
-								die(false)
-								hit_door = true
-							Door.HitArea.PASSAGE:
-								print("we're out!")
-								is_exiting = true
+						hit_door = true
+					Door.HitArea.PASSAGE:
+						print("we're out!")
+						is_exiting = true
+	else:
+		match next_cell.get_state():
 			Cell.State.LOWERED, Cell.State.HIDDEN:
 				if not is_jumping:
 					start_falling()
@@ -302,12 +307,6 @@ func _check_location() -> bool:
 				_check_one_way(next_cell)
 			Cell.State.PYLON:
 				_check_pylon(next_cell)
-	else:
-		var uv = Map.get_cell_index(global_position)
-		var pos = Map.get_cell_pos(uv)
-		z_index = _map.compute_cell_depth(pos) + Globals.RUNNER_Z_OFFSET
-		if not is_jumping:
-			start_falling()
 
 	# Did the runner run into something, in which case he has to bounce back?
 	# The check whether the runner has just moved to a different cell is to

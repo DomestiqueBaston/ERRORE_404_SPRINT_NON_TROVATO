@@ -11,8 +11,7 @@ signal state_changed(state: State)
 var _state: State = State.RAISED
 
 func _ready():
-	# Z index is relative to the parent cell's
-	z_index = Globals.PYLON_Z_OFFSET
+	z_index = Globals.UPPER_LAYER
 
 func lower():
 	Sounds.play_pylon_down()

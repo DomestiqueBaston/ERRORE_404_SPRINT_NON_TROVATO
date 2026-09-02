@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://dppb7eofftlky" path="res://SCENE_AND_SCRIPT/Map.gd" id="1_jwotm"]
 
 [node name="Map" type="Node2D" unique_id=839120789]
+y_sort_enabled = true
 script = ExtResource("1_jwotm")

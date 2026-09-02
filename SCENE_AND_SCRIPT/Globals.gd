@@ -17,11 +17,8 @@ enum Corner {
 const MASTER_BUS: int = 0
 const MUSIC_BUS: int = 4
 
-const RUNNER_Z_OFFSET: int = 2
-const PYLON_Z_OFFSET: int = 3
-const DOOR_BACK_Z_OFFSET: int = 1
-const DOOR_FRONT_Z_OFFSET: int = 3
-const MAX_Z_OFFSET: int = 4
+const LOWER_LAYER: int = 0
+const UPPER_LAYER: int = 1
 
 var use_diagonals_for_movement: bool = true
 var map_size: int = 7
