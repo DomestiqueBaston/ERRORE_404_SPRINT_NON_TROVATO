@@ -88,8 +88,7 @@ func _ready():
 	_timer.timeout.connect(_on_obstacle_timer_timeout)
 	_timer.start(5 - (mini(5, Globals.difficulty) - 1) / 2.0)
 
-	#var center_time = 6 * (2 * Globals.map_size + 1 + 2 * Globals.difficulty)
-	var center_time = 5
+	var center_time = 6 * (2 * Globals.map_size + 1 + 2 * Globals.difficulty)
 	var center_timer = get_tree().create_timer(center_time)
 	center_timer.timeout.connect(_remove_artefact)
 
