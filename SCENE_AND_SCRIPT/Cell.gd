@@ -42,7 +42,6 @@ enum Decoration {
 enum State {
 	NORMAL,
 	LOWERED,
-	ARTEFACT,
 	HIDDEN,
 	TELEPORT,
 	ONE_WAY,
@@ -88,9 +87,11 @@ const height: float = width * 0.5
 
 var _pylon_scene = preload("res://SCENE_AND_SCRIPT/Pylon.tscn")
 var _artefact_scene = preload("res://SCENE_AND_SCRIPT/Artefact.tscn")
+var _door_scene := preload("res://SCENE_AND_SCRIPT/Door.tscn")
 
 var _pylon: Pylon
 var _artefact: Artefact
+var _door: Door
 var _state: State = State.NORMAL
 var _partner: Cell
 var _teleport_type: int
@@ -200,7 +201,7 @@ func stop_teleport():
 	await _glitch_anim.animation_finished
 
 func get_state() -> State:
-	return State.ARTEFACT if _artefact else _state
+	return _state
 
 func lower_pylon():
 	_add_pylon()
@@ -240,12 +241,6 @@ func _remove_pylon():
 func _on_pylon_state_changed(state: Pylon.State):
 	_state = State.NORMAL if state == Pylon.State.RAISED else State.PYLON
 
-#
-# Note that, because the artefact may be combined with a lowered central cell,
-# add_artefact() and remove_artefact() do not change the cell's state
-# explicitly. Instead, get_state() checks whether an artefact is present and
-# returns State.ARTEFACT in that case.
-#
 func add_artefact():
 	if _artefact == null:
 		_artefact = _artefact_scene.instantiate()
@@ -257,6 +252,17 @@ func remove_artefact():
 		remove_child(_artefact)
 		_artefact.queue_free()
 		_artefact = null
+
+func get_artefact() -> Artefact:
+	return _artefact
+
+func add_door():
+	if _door == null:
+		_door = _door_scene.instantiate()
+		add_child(_door)
+
+func get_door() -> Door:
+	return _door
 
 ##
 ## Tells a new teleport cell which other cell it teleports to/from. This only

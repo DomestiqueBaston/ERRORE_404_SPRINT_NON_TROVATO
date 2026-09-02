@@ -13,7 +13,6 @@ class_name Map extends Node2D
 @export var slide_time: float = 9
 
 var _cell_scene := preload("res://SCENE_AND_SCRIPT/Cell.tscn")
-var _door_scene := preload("res://SCENE_AND_SCRIPT/Door.tscn")
 
 const _cell_step_x = 0.5 * Cell.width
 const _cell_step_y = 0.5 * Cell.height
@@ -89,7 +88,8 @@ func _ready():
 	_timer.timeout.connect(_on_obstacle_timer_timeout)
 	_timer.start(5 - (mini(5, Globals.difficulty) - 1) / 2.0)
 
-	var center_time = 6 * (2 * Globals.map_size + 1 + 2 * Globals.difficulty)
+	#var center_time = 6 * (2 * Globals.map_size + 1 + 2 * Globals.difficulty)
+	var center_time = 5
 	var center_timer = get_tree().create_timer(center_time)
 	center_timer.timeout.connect(_remove_artefact)
 
@@ -614,7 +614,7 @@ func _remove_artefact():
 	await get_tree().create_timer(pause_length).timeout
 	await _center_cell.raise()
 	await get_tree().create_timer(pause_length).timeout
-	_center_cell.add_child(_door_scene.instantiate())
+	_center_cell.add_door()
 
 ##
 ## Removes a one-way obstacle immediately, rather than waiting for the duration

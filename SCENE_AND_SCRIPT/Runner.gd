@@ -26,6 +26,7 @@ var is_dead: bool = false
 var is_falling: bool = false
 var is_teleporting: bool = false
 var is_one_way: bool = false
+var is_exiting: bool = false
 
 # Directions figées
 var jump_direction: Vector2 = Vector2.ZERO
@@ -275,14 +276,26 @@ func _check_location() -> bool:
 
 	# update the current cell accordingly and check for obstacles
 
+	var hit_door = false
+
 	if next_cell:
 		z_index = next_cell.z_index + Globals.RUNNER_Z_OFFSET
 		match next_cell.get_state():
+			Cell.State.NORMAL:
+				if next_cell.is_center() and  not (is_dead or is_exiting):
+					if next_cell.get_artefact():
+						die(false)
+					elif next_cell.get_door():
+						match next_cell.get_door().get_overlap(collider):
+							Door.HitArea.DOOR:
+								die(false)
+								hit_door = true
+							Door.HitArea.PASSAGE:
+								print("we're out!")
+								is_exiting = true
 			Cell.State.LOWERED, Cell.State.HIDDEN:
 				if not is_jumping:
 					start_falling()
-			Cell.State.ARTEFACT:
-				die(false)
 			Cell.State.TELEPORT:
 				_check_teleport(next_cell)
 			Cell.State.ONE_WAY:
@@ -296,9 +309,16 @@ func _check_location() -> bool:
 		if not is_jumping:
 			start_falling()
 
-	# did the runner run into something, in which case he has to bounce back?
+	# Did the runner run into something, in which case he has to bounce back?
+	# The check whether the runner has just moved to a different cell is to
+	# distinguish between cases where he runs into a cell containing a pylon or
+	# an artefact (bounce back), and cases where a pylon falls on him in his
+	# current cell (don't bounce, just die instantly). Running into the frame of
+	# the door in the central cell is different: the door's collider is smaller
+	# than the cell's, so it is likely the runner will hit it after entering the
+	# cell.
 
-	var backup = is_dead and _curr_cell != next_cell
+	var backup = is_dead and (_curr_cell != next_cell or hit_door)
 
 	# if the runner hasn't moved to a different cell and the cell is moving,
 	# move the runner with it

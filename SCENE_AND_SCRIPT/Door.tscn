@@ -222,7 +222,7 @@ tracks/2/keys = {
 }
 tracks/3/type = "value"
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/path = NodePath("Collider_Door:monitorable")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
@@ -243,6 +243,7 @@ _data = {
 script = ExtResource("1_ecpiw")
 
 [node name="Collider_Door" type="Area2D" parent="." unique_id=1723708210]
+collision_layer = 2
 monitorable = false
 metadata/_edit_lock_ = true
 
