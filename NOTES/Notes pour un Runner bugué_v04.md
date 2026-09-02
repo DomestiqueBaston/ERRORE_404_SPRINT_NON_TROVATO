@@ -149,32 +149,47 @@ Options (nécessaires) dans Settings:
         ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en gagnant 3 courses en Difficulté 5) qui rend tous les obstacles PERMANENTS (le reste est traîté comme Difficulté 5 si rien n’est précisé !) SAUF les murs des concurrents. Voir également à la toute fin du doc. : Liste des scènes (et – succinctes – descriptions de leurs contenus) pour les réglages de Difficulté 6.
 
 Les personnalités des « IA »/Bots :
-    1. Par défaut, un Bot tendra bien évidemment à ne pas mourir en évitant les collisions et les chutes. Un Bot essayera également de sortir par la porte lorsqu’elle est présente et accessible (il peut arriver qu’elle ne le soit pas à cause des glissements de lignes/colonnes).
+    1. Par défaut, un Bot tendra bien évidemment à éviter les collisions et les chutes. Un Bot essayera également de sortir par la porte lorsqu’elle est présente et accessible (il peut arriver qu’elle ne le soit pas à cause des glissements de lignes/colonnes).
     2. On définira des valeurs « par défaut » pour un bot afin de faire varier ces valeurs en fonction du comportement sélectionné.
-        ◦ Un passage de moins d1/2 case de large n’est pas emprunté par un bot (quitte à en mourir).
-        ◦ Temps de réaction de base : 300ms (surlignés en jaune : pas concerné).
+        ◦ Temps de réaction de base : 300ms.
+        ◦ Taille du collider Vison de base : scale à 0,5 en x et y.
+        ◦ Une cellule avec plus de 2 light wall est évitée si possible.
+        ◦ Un bot affecté par un bug graphique de sa vue caméra a un temps de réaction augmenté de 50ms.
+        ◦ Un bot n’a pas de raison de changer de direction si rien ne se présente devant lui dans son champs de vision.
     3. Pour former un bot, on combine 3 comportements choisi aléatoirement (1 dans dans chaque catégorie).
+    4. Seuls les coureurs, light walls, colonnes, trous et pylônes sont considérés comme des obstacles.
+    5. Un bot conservera son bonus/malus entre 2 à 15 secondes avant de l’utiliser.
 
-Comportements face aux obstacles :
+Comportements face aux obstacles et coureurs :
 
-    1. Anticipatif : Voit plus loin.
-    2. Fuyant : S’éloigne des concurrents (tout concurrent dans son détecteur poussera ce coureur à partir en direction opposée).
-    3. Téméraire : Tente des passage plus étroits (moins d’1/2 case de large mais moins d’1/3).
-    4. Agressif : Essaye de bloquer les concurrents (avec son mur).
+    1. Fuyant : S’éloigne des coureurs (tout concurrent dans son détecteur plus d’1/4 seconde poussera ce bot à partir en direction opposée).
+    2. Suiveur : Essaye de suivre un coureur qui passe plus d’1/4 de seconde dans son détecteur.
+    3. Téméraire : N’évite plus les cellules sur lesquelles se trouvent au moins 2 light walls distincts – on ne compte pas les virages.
+    4. Jusqu’au-boutiste : Ne prendra jamais la porte de sortie.
+    5. Stupide : Confond les obstacles (1/10 fois saute au lieu de glisser et inversement).
+    6. Bloqueur : Lorsqu’un coureur arrive en sens inverse, tourne vers lui pour lui faire obstacle (avec son mur).
+    7. Distrait : ne voit pas l’obstacle devant lui 1/15 fois.
 
 Comportements face aux Bonus/malus :
 
-    1. Cupide : Fonce sur les bonus/malus (dès qu’il en voit un accessible dans son détecteur, il devient son objectif).
-    2. Sélectif : Ne ramasse que les bonus/malus à 1 case de lui.
-    3. Méfiant : Évite les bonus/malus autant que possible.
-    4. Hésitant : Priorise le ramassage ou non d’un bonus aléatoirement (à 50%).
+    1. Cupide : Fonce sur les bonus/malus dès qu’il en voit un accessible (qu’il en ait déjà un ou pas).
+    2. Sélectif : Ne vise que les bonus/malus à 1 cellule max. de lui.
+    3. Méfiant : Évite les bonus/malus.
+    4. Monomaniaque : ne vise que les bonus/malus d’une couleur (choisie aléatoirement).
+    5. Hésitant : Priorise le ramassage ou non d’un bonus aléatoirement (à 50%).
+    6. Compulsif : utilise toujours son bonus/malus dans les 2 secondes qui suivent son ramassage.
+    7. Conservateur : Ne ramasse un bonus/malus que s’il n’en a pas.
 
-Comportements face aux bugs du jeu (continuer tout droit, tourner et/ou utiliser un bonus – pas d’autre option pour le moment, il me semble) :
+Comportements divers :
 
-    1. Prudent : Réagit plus tôt (si possible) face aux obstacles.
-    2. Inconscient : Collider de vision plus court.
-    3. Panique : Réaction totalement aléatoire face à un obstacle.
-    4. Maladroit : Confond les obstacles (1/5 fois saute au lieu de glisser, tourne à droite au lieu de tourner à gauche, etc.).
+    1. Anticipatif : Voit plus loin. On augmente la taille du collider Vision à scale 0,75.
+    2. Inconscient : Voit moins loin. On réduit la taille du collider Vision à scale 0,333.
+    3. Dyslexique : Confond sa gauche et sa droite (1/15 fois).
+    4. Vif : Temps de réaction réduit de 25ms.
+    5. Lent : Temps de réaction augmenté de 25ms.
+    6. Lunatique : Change de direction sans raison s’il a couru plus de 2 secondes tout droit.
+    7. Épileptique : Saute ou glisse sans raison s’il n’a rien fait de tel depuis 2 secondes.
+    8. Amnésique : Reset sa priorité toutes les 8 secondes.
 Script de déroulement d’une partie (depuis le lancement d’Errore_404.exe)
 
 Préambule :
