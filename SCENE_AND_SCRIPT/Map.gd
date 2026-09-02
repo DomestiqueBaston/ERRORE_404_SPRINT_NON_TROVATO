@@ -235,7 +235,10 @@ static func get_cell_index(pos: Vector2) -> Vector2i:
 ##   to determine the display order of things within that cell.
 ##
 func compute_cell_depth(pos: Vector2) -> int:
-	return roundi(pos.y + Globals.MAX_Z_OFFSET * (_xmax - pos.x) / Cell.width)
+	return roundi(pos.y)
+	# I think this was a mistake. Today I can't see any reason to prioritize
+	# cells on the left.
+	#return roundi(pos.y + Globals.MAX_Z_OFFSET * (_xmax - pos.x) / Cell.width)
 
 ##
 ## Returns the cell at the given UV index, where U corresponds to the NW-SE
