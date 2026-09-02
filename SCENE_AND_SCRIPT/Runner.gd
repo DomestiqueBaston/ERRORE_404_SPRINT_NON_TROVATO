@@ -288,6 +288,9 @@ func _check_location() -> bool:
 		if not (is_dead or is_exiting):
 			if next_cell.get_artefact():
 				die(false)
+			elif next_cell.get_state() == Cell.State.LOWERED:
+				if not is_jumping:
+					start_falling()
 			elif next_cell.get_door():
 				match next_cell.get_door().get_overlap(collider):
 					Door.HitArea.DOOR:
