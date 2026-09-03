@@ -2105,6 +2105,8 @@ snap_2d_vertices_to_pixel = true
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
+[node name="Map_Place Holder" type="Node" parent="BG_SubViewportContainer/BG_SubViewport" unique_id=797268867]
+
 [node name="Runners" type="VBoxContainer" parent="." unique_id=1026385380]
 custom_minimum_size = Vector2(960, 540)
 anchors_preset = 15
@@ -2151,7 +2153,7 @@ grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [node name="Black" type="TextureRect" parent="Runners/Top_Runners/Left_Runner/Runner_SubViewport/Black_BG" unique_id=2127383399]
-z_index = -1000
+z_index = -4096
 layout_mode = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -2160,6 +2162,8 @@ size_flags_vertical = 4
 texture = SubResource("GradientTexture2D_goajs")
 stretch_mode = 4
 metadata/_edit_lock_ = true
+
+[node name="Runner_Place Holder" type="Node" parent="Runners/Top_Runners/Left_Runner/Runner_SubViewport" unique_id=1291239056]
 
 [node name="Right_Runner" type="SubViewportContainer" parent="Runners/Top_Runners" unique_id=1099668457]
 custom_minimum_size = Vector2(480, 270)
@@ -2187,7 +2191,7 @@ grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [node name="Black" type="TextureRect" parent="Runners/Top_Runners/Right_Runner/Runner_SubViewport/Black_BG" unique_id=1048301127]
-z_index = -1000
+z_index = -4096
 layout_mode = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -2196,6 +2200,8 @@ size_flags_vertical = 4
 texture = SubResource("GradientTexture2D_rc2lo")
 stretch_mode = 4
 metadata/_edit_lock_ = true
+
+[node name="Runner_Place Holder" type="Node" parent="Runners/Top_Runners/Right_Runner/Runner_SubViewport" unique_id=1468210884]
 
 [node name="Bottom_Runners" type="HBoxContainer" parent="Runners" unique_id=2103010928]
 layout_mode = 2
@@ -2229,7 +2235,7 @@ grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [node name="Black" type="TextureRect" parent="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport/Black_BG" unique_id=1381348634]
-z_index = -1000
+z_index = -4096
 layout_mode = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -2238,6 +2244,8 @@ size_flags_vertical = 4
 texture = SubResource("GradientTexture2D_sxuop")
 stretch_mode = 4
 metadata/_edit_lock_ = true
+
+[node name="Runner_Place Holder" type="Node" parent="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport" unique_id=638942332]
 
 [node name="Right_Runner" type="SubViewportContainer" parent="Runners/Bottom_Runners" unique_id=2074751218]
 custom_minimum_size = Vector2(480, 270)
@@ -2265,7 +2273,7 @@ grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [node name="Black" type="TextureRect" parent="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport/Black_BG" unique_id=1626146633]
-z_index = -1000
+z_index = -4096
 layout_mode = 0
 offset_right = 480.0
 offset_bottom = 270.0
@@ -2274,6 +2282,8 @@ size_flags_vertical = 4
 texture = SubResource("GradientTexture2D_di76m")
 stretch_mode = 4
 metadata/_edit_lock_ = true
+
+[node name="Runner_Place Holder" type="Node" parent="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport" unique_id=680908834]
 
 [node name="Frames" type="CanvasLayer" parent="." unique_id=778298459]
 metadata/_edit_lock_ = true
