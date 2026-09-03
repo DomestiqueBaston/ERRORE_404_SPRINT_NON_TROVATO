@@ -3,6 +3,7 @@ extends Node2D
 ## La Vision_Area n'est pas gérée par ce script,
 ## c'est juste de la démo...
 
+@onready var character: Node2D = $Character
 @onready var sprite: Node2D = $Character/Papa_Sprite
 @onready var animation_player: AnimationPlayer = $Animation_Runner
 @onready var disappear_player: AnimationPlayer = $Animation_Disappearing_Death
@@ -47,7 +48,7 @@ var _curr_cell_pos: Vector2
 func _ready() -> void:
 	animation_player.animation_finished.connect(_on_animation_finished)
 	disappear_player.animation_finished.connect(_on_disappear_finished)
-	z_index = Globals.UPPER_LAYER
+	z_index = roundi(global_position.y)
 
 func set_map(map: Map, start_cell: Cell = null):
 	_map = map
@@ -67,6 +68,7 @@ func _physics_process(delta: float) -> void:
 	if _check_location():
 		# back up if the runner hit an obstacle and died
 		position += direction * _get_current_speed() * -delta
+		z_index = roundi(global_position.y)
 
 	# États bloquants : plus rien à faire
 	if is_dead or is_falling:
@@ -114,6 +116,7 @@ func _physics_process(delta: float) -> void:
 
 	# === Mouvement ===
 	position += direction * _get_current_speed() * delta
+	z_index = roundi(global_position.y)
 
 	# keep camera aimed at runner
 	$Character/Cam.update_aim_point(global_position)
@@ -199,7 +202,8 @@ func start_falling() -> void:
 	# no more movement
 	set_physics_process(false)
 
-	z_index = Globals.LOWER_LAYER
+	z_index = RenderingServer.CANVAS_ITEM_Z_MIN
+	character.z_index = 0
 
 	# Animation de chute avec la bonne orientation
 	if last_direction == Vector2.ZERO:
@@ -282,6 +286,7 @@ func _check_location() -> bool:
 	var hit_door = false
 
 	if next_cell == null:
+		character.z_index = 0
 		if not is_jumping:
 			start_falling()
 	elif next_cell.is_center():
@@ -292,14 +297,22 @@ func _check_location() -> bool:
 				if not is_jumping:
 					start_falling()
 			elif next_cell.get_door():
-				match next_cell.get_door().get_overlap(collider):
-					Door.HitArea.DOOR:
+				match next_cell.get_door().get_zone_at(collider):
+					Door.Zone.FRAME:
 						die(false)
 						hit_door = true
-					Door.HitArea.PASSAGE:
+					Door.Zone.PASSAGE:
 						print("we're out!")
-						is_exiting = true
+						character.z_index = Door.Depth.MIDDLE
+						#is_exiting = true
+					Door.Zone.BACK:
+						character.z_index = Door.Depth.BACK
+					Door.Zone.MIDDLE:
+						character.z_index = Door.Depth.MIDDLE
+					Door.Zone.FRONT:
+						character.z_index = Door.Depth.FRONT
 	else:
+		character.z_index = 0
 		match next_cell.get_state():
 			Cell.State.LOWERED, Cell.State.HIDDEN:
 				if not is_jumping:
@@ -327,6 +340,7 @@ func _check_location() -> bool:
 
 	if _curr_cell and _curr_cell == next_cell and not (is_falling or is_jumping):
 		position += _curr_cell.global_position - _curr_cell_pos
+		z_index = roundi(global_position.y)
 
 	# note the current cell and position for next time
 
@@ -348,6 +362,7 @@ func _check_teleport(cell: Cell):
 	_curr_cell = destination
 	_curr_cell_pos = destination.global_position
 	global_position = _curr_cell_pos
+	z_index = roundi(global_position.y)
 	is_teleporting = false
 	anim.play("Bonus_Malus")
 	if _map:

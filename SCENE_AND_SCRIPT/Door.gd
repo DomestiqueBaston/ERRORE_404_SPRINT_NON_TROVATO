@@ -1,63 +1,61 @@
 class_name Door extends Node2D
 
-enum HitArea {
-	NONE,
-	DOOR,
-	PASSAGE
+##
+## Cell zones returned by get_zone_at().
+##
+enum Zone {
+	FRAME,
+	PASSAGE,
+	BACK,
+	MIDDLE,
+	FRONT
 }
 
-#
-# This contains, for each runner's collider, an array of 3 booleans indicating
-# whether the collider intersects with each of the 3 collision shapes under
-# Collider_Door. The Door script tracks this itself in order to simplify the
-# code for runners (because the Door's collider contains 3 different shapes).
-# For that to work, Collider_Door must be Monitoring, and runners' colliders
-# must be Monitorable.
-#
-var _collider_shapes_overlap_per_runner: Dictionary
+##
+## Constants for depth ordering (Z-index). The two sides of the door are
+## displayed at depth BACK_DOOR and FRONT_DOOR; a runner can position himself
+## behind both doors (BACK), in front of both (FRONT) ir inbetween (MIDDLE).
+##
+enum Depth {
+	BACK,
+	BACK_DOOR,
+	MIDDLE,
+	FRONT_DOOR,
+	FRONT
+}
+
+@onready var _frame_left: Area2D = $Leg_G
+@onready var _frame_right: Area2D = $Leg_D
+@onready var _passage: Area2D = $Door
+@onready var _back: Area2D = $Leg_G_Faces
+@onready var _front: Area2D = $Leg_D_Faces
+@onready var _middle: Area2D = $Door_Faces
 
 func _ready():
-	z_index = Globals.UPPER_LAYER
+	z_as_relative = false
+	z_index = roundi(global_position.y)
+	set_notify_transform(true)
 
-	# track runners' colliders entering and exiting the door's collider
-	var collider: Area2D = $Collider_Door
-	collider.area_shape_entered.connect(_on_area_shape_entered)
-	collider.area_shape_exited.connect(_on_area_shape_exited)
+	$Door_Back.z_index = Depth.BACK_DOOR
+	$Door_Front.z_index = Depth.FRONT_DOOR
 
-func _on_area_shape_entered(
-	_area_rid: RID, area: Area2D, _area_shape_index: int, local_shape_index: int):
-	var overlaps = _get_shape_overlaps_for(area)
-	overlaps[local_shape_index] = true
+func _notification(what: int):
+	if what == NOTIFICATION_TRANSFORM_CHANGED:
+		z_index = roundi(global_position.y)
 
-func _on_area_shape_exited(
-	_area_rid: RID, area: Area2D, _area_shape_index: int, local_shape_index: int):
-	var overlaps = _get_shape_overlaps_for(area)
-	overlaps[local_shape_index] = false
-
-##
-## Tests the given Area2D for overlap with the door's colliders. Returns:
-## - HitArea.DOOR if it overlaps with either side of the door frame,
-## - HitArea.PASSAGE if it overlaps with the passageway through the middle, or
-## - HitArea.NONE otherwise.
-##
-func get_overlap(area: Area2D) -> HitArea:
-	var overlaps = _get_shape_overlaps_for(area)
-	if overlaps[1] or overlaps[2]:
-		return HitArea.DOOR
-	elif overlaps[0]:
-		return HitArea.PASSAGE
-	else:
-		return HitArea.NONE
-
-#
-# Returns an array of 3 booleans for the given collider (which presumably
-# belongs to a runner), creating the array if necessary.
-#
-func _get_shape_overlaps_for(area: Area2D) -> Array[bool]:
-	var overlaps: Array[bool]
-	if _collider_shapes_overlap_per_runner.has(area):
-		overlaps = _collider_shapes_overlap_per_runner[area]
-	else:
-		overlaps.resize(3)
-		_collider_shapes_overlap_per_runner[area] = overlaps
-	return overlaps
+func get_zone_at(collider: Area2D) -> Zone:
+	var zones = collider.get_overlapping_areas()
+	for zone in zones:
+		if zone.get_parent() == self:
+			match zone:
+				_frame_left, _frame_right:
+					return Zone.FRAME
+				_passage:
+					return Zone.PASSAGE
+				_back:
+					return Zone.BACK
+				_middle:
+					return Zone.MIDDLE
+				_front:
+					return Zone.FRONT
+	return Zone.MIDDLE

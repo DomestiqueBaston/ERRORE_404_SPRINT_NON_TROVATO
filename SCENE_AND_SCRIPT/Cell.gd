@@ -100,7 +100,7 @@ func _ready():
 	assert(_textures.size() == Decoration.keys().size())
 	for i in _textures.size():
 		_textures[i].visible = (i == decoration)
-	z_index = Globals.LOWER_LAYER
+	z_index = RenderingServer.CANVAS_ITEM_Z_MIN
 
 func lower(immediate: bool = false):
 	if immediate:
