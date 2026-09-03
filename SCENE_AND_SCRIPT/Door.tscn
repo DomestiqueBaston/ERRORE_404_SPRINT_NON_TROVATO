@@ -9,31 +9,13 @@
 [ext_resource type="AudioStream" uid="uid://qnjr5b74yyt8" path="res://SOUND/FX/Door_Appearing.ogg" id="6_ecpiw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecpiw"]
-size = Vector2(79.20189, 61.14499)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1sgun"]
-size = Vector2(79.14973, 33.103214)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlx1d"]
-size = Vector2(77.88934, 32.474693)
+size = Vector2(73.47995, 62.269737)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t7lr0"]
-size = Vector2(25.675545, 61.14811)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7hxo"]
-size = Vector2(25.780834, 33.570786)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v33sy"]
-size = Vector2(25.645485, 32.358246)
+size = Vector2(22.54161, 62.341305)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhnl0"]
-size = Vector2(23.998238, 60.5875)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hol63"]
-size = Vector2(22.96236, 33.8935)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u3vd7"]
-size = Vector2(23.52084, 32.43981)
+size = Vector2(22.464415, 62.547802)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jbtw0"]
 shader = ExtResource("3_ecpiw")
@@ -265,71 +247,25 @@ collision_layer = 2
 monitorable = false
 metadata/_edit_lock_ = true
 
-[node name="Door" type="CollisionShape2D" parent="Collider_Door" unique_id=1711003240]
-position = Vector2(-0.50043976, -1.4997826)
-rotation = 0.45727625
-scale = Vector2(1, 0.9999998)
-skew = 0.65449846
+[node name="Passage" type="CollisionShape2D" parent="Collider_Door" unique_id=1711003240]
+position = Vector2(2.6447163, -1.0161018)
+rotation = 0.42760566
+skew = 0.6283184
 shape = SubResource("RectangleShape2D_ecpiw")
 metadata/_edit_lock_ = true
 
-[node name="Door_Front" type="CollisionShape2D" parent="Collider_Door" unique_id=638157229]
-position = Vector2(-44.60423, 20.06882)
-rotation = 0.45727625
-scale = Vector2(1, 0.9999997)
-skew = 0.65449846
-shape = SubResource("RectangleShape2D_1sgun")
-metadata/_edit_lock_ = true
-
-[node name="Door_Back" type="CollisionShape2D" parent="Collider_Door" unique_id=1264297959]
-position = Vector2(42.5, -23.000002)
-rotation = 0.45727625
-skew = 0.65449846
-shape = SubResource("RectangleShape2D_dlx1d")
-metadata/_edit_lock_ = true
-
 [node name="Leg_D" type="CollisionShape2D" parent="Collider_Door" unique_id=1502495294]
-position = Vector2(47.742863, 22.621317)
-rotation = 0.45727625
-scale = Vector2(1, 0.9999998)
-skew = 0.65449846
+position = Vector2(47, 19)
+rotation = 0.42760566
+skew = 0.6283184
 shape = SubResource("RectangleShape2D_t7lr0")
 metadata/_edit_lock_ = true
 
-[node name="Leg_D_Front" type="CollisionShape2D" parent="Collider_Door" unique_id=585573597]
-position = Vector2(3.5104394, 44.282547)
-rotation = 0.45727625
-skew = 0.65449846
-shape = SubResource("RectangleShape2D_y7hxo")
-metadata/_edit_lock_ = true
-
-[node name="Leg_D_Back" type="CollisionShape2D" parent="Collider_Door" unique_id=295200806]
-position = Vector2(91.49905, 1.1701818)
-rotation = 0.45727625
-skew = 0.65449846
-shape = SubResource("RectangleShape2D_v33sy")
-metadata/_edit_lock_ = true
-
 [node name="Leg_G" type="CollisionShape2D" parent="Collider_Door" unique_id=88603420]
-position = Vector2(-48.262245, -24.629042)
-rotation = 0.45727625
-scale = Vector2(1, 0.9999998)
-skew = 0.65449846
+position = Vector2(-41.000004, -21.000004)
+rotation = 0.42760566
+skew = 0.6283184
 shape = SubResource("RectangleShape2D_mhnl0")
-metadata/_edit_lock_ = true
-
-[node name="Leg_G_Front" type="CollisionShape2D" parent="Collider_Door" unique_id=1340131656]
-position = Vector2(-91.59784, -3.1987581)
-rotation = 0.45727625
-skew = 0.65449846
-shape = SubResource("RectangleShape2D_hol63")
-metadata/_edit_lock_ = true
-
-[node name="Leg_G_Back" type="CollisionShape2D" parent="Collider_Door" unique_id=669282548]
-position = Vector2(-3.9965098, -46.4669)
-rotation = 0.45727625
-skew = 0.65449846
-shape = SubResource("RectangleShape2D_u3vd7")
 metadata/_edit_lock_ = true
 
 [node name="Door_Shadow" type="Sprite2D" parent="." unique_id=864377854]
