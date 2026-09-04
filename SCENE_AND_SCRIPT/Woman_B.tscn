@@ -50,17 +50,12 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rdls7"]
 shader = ExtResource("2_lgnag")
-shader_parameter/glitch_chance = 1.0
 shader_parameter/glitch_speed = 7.0
-shader_parameter/slice_density = 14.0
+shader_parameter/slice_density = 50.0
 shader_parameter/slice_strength = 0.38
-shader_parameter/shake_strength = 0.02
-shader_parameter/chroma_offset = 0.0
-shader_parameter/noise_strength = 0.01
-shader_parameter/color_flash_strength = 0.1
-shader_parameter/scanline_strength = 0.18
-shader_parameter/local_warp_strength = 1.0
-shader_parameter/flip_chance = 0.0
+shader_parameter/shake_strength = 0.0
+shader_parameter/scanline_strength = 1.0
+shader_parameter/local_warp_strength = 0.666
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_6yq0o"]
 gradient = ExtResource("3_npanl")

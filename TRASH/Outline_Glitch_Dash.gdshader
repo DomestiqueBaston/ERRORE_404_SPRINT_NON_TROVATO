@@ -1,125 +1,223 @@
 shader_type canvas_item;
 
-// Uniforms du tremblement
-uniform bool shake_enabled = false;
-uniform float shake_power : hint_range(0.0, 0.01, 0.0001) = 0.001;
-uniform float shake_speed : hint_range(0.0, 100.0, 0.1) = 10.0;
-uniform float shake_block_size = 150.0;
-uniform float shake_color_rate : hint_range(0.0, 0.02, 0.0001) = 0.0007;
+/* ================= SETTINGS ================= */
 
-// Uniforms de l'outline
-uniform float outline_thickness : hint_range(0.0, 5.0, 1.0) = 2.0;
-uniform vec4 outline_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
-uniform float outline_boost_when_glitch : hint_range(0.0, 100.0, 0.1) = 100.0;
+uniform float glitch_speed = 7.0;
 
-// Uniforms des trails
-uniform float strength : hint_range(0.0, 0.03) = 0.015;
-uniform vec2 direction = vec2(-200.0, -333.0);
-uniform int samples : hint_range(1, 8) = 4;
-uniform float trail_opacity : hint_range(0.0, 1.0) = 1.0;
-uniform vec4 couleur_finale;
+uniform float slice_density = 50.0;
+uniform float slice_strength = 0.38;
+
+uniform float shake_strength = 0.00;
+
+uniform float scanline_strength : hint_range(0.0, 1.0) = 1.0;
+
+uniform float local_warp_strength = 0.666;
 
 
-bool is_inside_usquare(vec2 x) {
-    return x == clamp(x, vec2(0.0), vec2(1.0));
+/* ================= BLOCK GLITCH ================= */
+
+// Intensité du déplacement en blocs
+uniform float block_glitch_power : hint_range(0.0, 0.01, 0.0001) = 0.001;
+
+// Vitesse du déplacement des blocs
+uniform float block_glitch_speed : hint_range(0.0, 100.0, 0.1) = 10.0;
+
+// Taille des blocs
+uniform float block_size = 150.0;
+
+// Intensité du RGB split
+uniform float block_chroma : hint_range(0.0, 0.02, 0.0001) = 0.0007;
+
+
+/* ================= RANDOM ================= */
+
+float rand(float x)
+{
+	return fract(sin(x * 143758.5453) * 43758.5453);
 }
 
-vec4 blend(vec4 bottom, vec4 top) {
-    float alpha = top.a + bottom.a * (1.0 - top.a);
-    if (alpha < 0.0001) return vec4(0.0);
-    vec3 color = mix(bottom.rgb * bottom.a, top.rgb, top.a) / alpha;
-    return vec4(color, alpha);
+float rand2(vec2 p)
+{
+	return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
 }
 
-void fragment() {
-    float enable_shift = float(shake_enabled);
 
-    vec2 base_uv = UV;
-    base_uv.x += enable_shift * shake_power * sign(sin(trunc(UV.y * shake_block_size) * 5.0 + TIME * shake_speed));
-    base_uv.y += enable_shift * shake_power * sign(cos(trunc(UV.x * shake_block_size) * 2.0 + TIME * shake_speed));
+/* ================= FRAGMENT ================= */
 
-    vec4 original_color = texture(TEXTURE, base_uv);
+void fragment()
+{
+	vec2 uv = UV;
 
-    // ─── Outline sur l’image NON glitchée ───────────────────────────────
-    float outline_alpha = 0.0;
+	float frame = floor(TIME * glitch_speed);
 
-    if (outline_thickness > 0.0 && outline_color.a > 0.0) {
-        vec2 pos = base_uv;
 
-        for (float y = 1.0; y <= outline_thickness; y += 1.0) {
-            for (float x = 0.0; x <= y; x += 1.0) {
-                if (length(vec2(x, y - 0.5)) > outline_thickness) continue;
+	/* ================= SLICES ================= */
 
-                vec2 dirs[8] = vec2[](
-                    vec2( x,  y), vec2(-x,  y),
-                    vec2( x, -y), vec2(-x, -y),
-                    vec2( y,  x), vec2(-y,  x),
-                    vec2( y, -x), vec2(-y, -x)
-                );
+	float slice_id = floor(
+		uv.y * slice_density
+	);
 
-                for (int i = 0; i < 8; i++) {
-                    vec2 sample_uv = pos + dirs[i] * TEXTURE_PIXEL_SIZE;
-                    if (is_inside_usquare(sample_uv)) {
-                        outline_alpha = max(outline_alpha, texture(TEXTURE, sample_uv).a);
-                    }
-                }
-            }
-        }
+	float slice_random = rand(
+		slice_id + frame * 13.37
+	);
 
-        // Boost d’intensité quand glitch actif
-        float outline_boost = 1.0 + (outline_boost_when_glitch - 1.0) * enable_shift;
-        outline_alpha = clamp(outline_alpha * outline_boost, 0.0, 1.0);
-    }
+	float slice_active = step(
+		0.5,
+		slice_random
+	);
 
-    vec4 outline_layer = vec4(outline_color.rgb, outline_alpha * outline_color.a);
-    vec4 color_with_outline = blend(outline_layer, original_color);
+	float displacement =
+		(slice_random - 0.5)
+		* slice_strength;
 
-    // ─── Glitch RGB split ───────────────────────────────────────────────
-    vec4 final_color = color_with_outline;
+	uv.x += displacement * slice_active;
 
-    if (enable_shift > 0.5) {
-        vec2 uv_r = base_uv + vec2( shake_color_rate * 1.5,  0.002);
-        vec2 uv_g = base_uv + vec2(-shake_color_rate * 0.8, -shake_color_rate * 0.5);
-        vec2 uv_b = base_uv + vec2( shake_color_rate * 0.4,  shake_color_rate * 0.8);
 
-        float r = texture(TEXTURE, uv_r).r;
-        float g = texture(TEXTURE, uv_g).g;
-        float b = texture(TEXTURE, uv_b).b;
+	/* ================= MICRO JITTER ================= */
 
-        // Alpha plus conservateur pour ne pas trop affaiblir les bords
-        float a_sampled  = 0.45 * texture(TEXTURE, uv_r).a
-                         + 0.35 * texture(TEXTURE, uv_g).a
-                         + 0.20 * texture(TEXTURE, uv_b).a;
+	float jitter = step(
+		0.8,
+		rand(frame * 3.17)
+	);
 
-        float glitch_a = mix(color_with_outline.a, a_sampled, 0.45);  // ← mix doux
+	uv.x += (
+		rand(frame * 5.73) - 0.5
+	) * 0.04
+	* jitter;
 
-        final_color = vec4(r, g, b, glitch_a);
-    }
 
-    if (final_color.a < 0.01) discard;
-    couleur_finale = final_color;
-	//COLOR = final_color;
-	
-	vec4 trails = vec4(0.0);
-    vec2 dir = normalize(direction);
-    float weight_sum = 0.0;
-	
-	for (int i = 1; i <= samples; i++) {
-        float t = float(i) / float(samples);
-        float weight = 1.0 - t;
-        vec4 trail = texture(TEXTURE, UV - dir * strength * t);
-        trails.rgb += trail.rgb * weight * trail_opacity;
-        trails.a = max(trails.a, trail.a * weight * trail_opacity);
-        weight_sum += weight;
-    }
-	
-	if (weight_sum > 0.0) {
-        trails.rgb /= weight_sum;
-    }
+	/* ================= LOCAL WARP ================= */
 
-    vec4 sprite = texture(TEXTURE, UV);
+	float warp_random = rand2(
+		vec2(slice_id, frame)
+	);
 
-    COLOR = mix(couleur_finale, trails, sprite, sprite.a);
-	
-	
+	float warp_active = step(
+		0.7,
+		warp_random
+	);
+
+	vec2 warp = vec2(
+		rand2(vec2(slice_id, frame + 1.0)),
+		rand2(vec2(slice_id, frame + 2.0))
+	) - 0.5;
+
+	uv += warp
+		* local_warp_strength
+		* warp_active;
+
+
+	/* ================= GLOBAL SHAKE ================= */
+
+	uv += vec2(
+		rand(frame * 1.37) - 0.5,
+		rand(frame * 1.91) - 0.5
+	) * shake_strength;
+
+
+	/* ================= BLOCK GLITCH ================= */
+
+	// Même principe que ton deuxième shader :
+	// les coordonnées sont décalées suivant des blocs.
+
+	float block_x = trunc(
+		UV.y * block_size
+	);
+
+	float block_y = trunc(
+		UV.x * block_size
+	);
+
+	uv.x += block_glitch_power
+		* sign(
+			sin(
+				block_x * 5.0
+				+ TIME * block_glitch_speed
+			)
+		);
+
+	uv.y += block_glitch_power
+		* sign(
+			cos(
+				block_y * 2.0
+				+ TIME * block_glitch_speed
+			)
+		);
+
+
+	/* ================= TEXTURE ================= */
+
+	vec4 base = texture(
+		TEXTURE,
+		uv
+	);
+
+
+	/* ================= RGB GLITCH ================= */
+
+	vec2 uv_r = uv + vec2(
+		block_chroma * 1.5,
+		0.002
+	);
+
+	vec2 uv_g = uv + vec2(
+		-block_chroma * 0.8,
+		-block_chroma * 0.5
+	);
+
+	vec2 uv_b = uv + vec2(
+		block_chroma * 0.4,
+		block_chroma * 0.8
+	);
+
+	float r = texture(
+		TEXTURE,
+		uv_r
+	).r;
+
+	float g = texture(
+		TEXTURE,
+		uv_g
+	).g;
+
+	float b = texture(
+		TEXTURE,
+		uv_b
+	).b;
+
+	vec3 color = vec3(
+		r,
+		g,
+		b
+	);
+
+
+	/* ================= ALPHA ================= */
+
+	float alpha = base.a;
+
+
+	/* ================= SCANLINES ================= */
+
+	float scan = sin(
+		uv.y * 800.0
+	) * 0.5 + 0.5;
+
+	float scan_mask = smoothstep(
+		0.92,
+		1.0,
+		scan
+	);
+
+	color *= 1.0
+		- scan_mask
+		* scanline_strength;
+
+
+	/* ================= OUTPUT ================= */
+
+	COLOR = vec4(
+		color,
+		alpha
+	);
 }
