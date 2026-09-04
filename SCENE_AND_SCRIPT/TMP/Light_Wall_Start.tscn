@@ -8,17 +8,11 @@ size = Vector2(66.98532, 7.0045767)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i5m2m"]
 shader = ExtResource("1_hkxm2")
-shader_parameter/glitch_chance = 1.0
 shader_parameter/glitch_speed = 7.0
-shader_parameter/slice_density = 14.0
+shader_parameter/slice_density = 50.0
 shader_parameter/slice_strength = 0.38
-shader_parameter/shake_strength = 0.02
-shader_parameter/chroma_offset = 0.0
-shader_parameter/noise_strength = 0.01
-shader_parameter/color_flash_strength = 0.1
-shader_parameter/scanline_strength = 0.18
-shader_parameter/local_warp_strength = 1.0
-shader_parameter/flip_chance = 0.0
+shader_parameter/shake_strength = 0.0
+shader_parameter/local_warp_strength = 0.666
 
 [sub_resource type="Animation" id="Animation_bjou7"]
 resource_name = "Disappearing"
