@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://p751chhvtga6"]
 
 [ext_resource type="Script" uid="uid://7rcfji6ehwky" path="res://SCENE_AND_SCRIPT/Runner.gd" id="1_04ypo"]
+[ext_resource type="Shader" uid="uid://1uirkyntqux" path="res://SHADER/Light_Wall_Glitch.gdshader" id="2_bsywe"]
 [ext_resource type="Texture2D" uid="uid://cvhum1ai0b121" path="res://IMAGE/RUNNER/MAN_A/Man_A_Sprite_Sheet.png" id="3_bs1rt"]
+[ext_resource type="Gradient" uid="uid://d2yj5gmwpcn0g" path="res://RESOURCE/Runner_Wall_Main_Gradient.tres" id="3_cp16q"]
 [ext_resource type="Texture2D" uid="uid://brl52e8ox1ue8" path="res://IMAGE/RUNNER/Shadow.png" id="5_bsywe"]
 [ext_resource type="Script" uid="uid://qc5u6mlkikxg" path="res://SCENE_AND_SCRIPT/Cam.gd" id="5_o60mx"]
 [ext_resource type="AudioStream" uid="uid://bom677o0xms5i" path="res://SOUND/FX/Disappearing.ogg" id="6_cp16q"]
@@ -45,6 +47,26 @@
 [ext_resource type="AudioStream" uid="uid://c6wdc8jhhc7m0" path="res://SOUND/FX/RUNNER/Dash.ogg" id="40_w6tkd"]
 [ext_resource type="AudioStream" uid="uid://brb24ixtrvqg3" path="res://SOUND/FX/RUNNER/Empty.ogg" id="41_2x0cp"]
 [ext_resource type="AudioStream" uid="uid://5w55chwkxbr5" path="res://SOUND/FX/RUNNER/Anti_Virus.ogg" id="42_ucwfd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1csxd"]
+shader = ExtResource("2_bsywe")
+shader_parameter/glitch_chance = 1.0
+shader_parameter/glitch_speed = 7.0
+shader_parameter/slice_density = 14.0
+shader_parameter/slice_strength = 0.38
+shader_parameter/shake_strength = 0.02
+shader_parameter/chroma_offset = 0.0
+shader_parameter/noise_strength = 0.01
+shader_parameter/color_flash_strength = 0.1
+shader_parameter/scanline_strength = 0.18
+shader_parameter/local_warp_strength = 1.0
+shader_parameter/flip_chance = 0.0
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2ahq6"]
+gradient = ExtResource("3_cp16q")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+metadata/_snap_enabled = true
 
 [sub_resource type="Shader" id="Shader_ercnf"]
 code = "shader_type canvas_item;
@@ -2911,6 +2933,12 @@ _data = {
 
 [node name="Man_A" type="Node2D" unique_id=1403848273]
 script = ExtResource("1_04ypo")
+metadata/_edit_lock_ = true
+
+[node name="Wall" type="MeshInstance2D" parent="." unique_id=1379127961]
+top_level = true
+material = SubResource("ShaderMaterial_1csxd")
+texture = SubResource("GradientTexture2D_2ahq6")
 metadata/_edit_lock_ = true
 
 [node name="Character" type="Node2D" parent="." unique_id=1563263395]

@@ -8,6 +8,7 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $Animation_Runner
 @onready var disappear_player: AnimationPlayer = $Animation_Disappearing_Death
 @onready var collider: Area2D = $Character/Papa_Sprite/Runner_Sprite/Collider_Area
+@onready var wall: MeshInstance2D = $Wall
 
 @onready var _footstep1 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_01
 @onready var _footstep2 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_02
@@ -44,11 +45,14 @@ var _physics_ready: bool = false
 var _start_cell: Cell
 var _curr_cell: Cell
 var _curr_cell_pos: Vector2
+var _history: PackedVector2Array
 
 func _ready() -> void:
 	animation_player.animation_finished.connect(_on_animation_finished)
 	disappear_player.animation_finished.connect(_on_disappear_finished)
 	z_index = roundi(global_position.y)
+	wall.z_index = RenderingServer.CANVAS_ITEM_Z_MIN
+	_init_wall()
 
 func set_map(map: Map, start_cell: Cell = null):
 	_map = map
@@ -115,8 +119,10 @@ func _physics_process(delta: float) -> void:
 		direction = last_direction
 
 	# === Mouvement ===
-	position += direction * _get_current_speed() * delta
-	z_index = roundi(global_position.y)
+	if direction:
+		position += direction * _get_current_speed() * delta
+		z_index = roundi(global_position.y)
+		_add_to_wall()
 
 	# keep camera aimed at runner
 	$Character/Cam.update_aim_point(global_position)
@@ -285,17 +291,10 @@ func _check_location() -> bool:
 
 	var hit_door = false
 
-	if next_cell == null:
-		character.z_index = 0
-		if not is_jumping:
-			start_falling()
-	elif next_cell.is_center():
-		if not (is_dead or is_exiting):
+	if next_cell and next_cell.is_center():
+		if not is_dead and not is_exiting:
 			if next_cell.get_artefact():
 				die(false)
-			elif next_cell.get_state() == Cell.State.LOWERED:
-				if not is_jumping:
-					start_falling()
 			elif next_cell.get_door():
 				match next_cell.get_door().get_zone_at(collider):
 					Door.Zone.FRAME:
@@ -304,25 +303,33 @@ func _check_location() -> bool:
 					Door.Zone.PASSAGE:
 						print("we're out!")
 						character.z_index = Door.Depth.MIDDLE
-						#is_exiting = true
+						is_exiting = true
 					Door.Zone.BACK:
 						character.z_index = Door.Depth.BACK
 					Door.Zone.MIDDLE:
 						character.z_index = Door.Depth.MIDDLE
 					Door.Zone.FRONT:
 						character.z_index = Door.Depth.FRONT
-	else:
-		character.z_index = 0
-		match next_cell.get_state():
-			Cell.State.LOWERED, Cell.State.HIDDEN:
+			elif next_cell.get_state() == Cell.State.LOWERED:
 				if not is_jumping:
 					start_falling()
-			Cell.State.TELEPORT:
-				_check_teleport(next_cell)
-			Cell.State.ONE_WAY:
-				_check_one_way(next_cell)
-			Cell.State.PYLON:
-				_check_pylon(next_cell)
+	else:
+		character.z_index = 0
+		is_exiting = false
+		if next_cell:
+			match next_cell.get_state():
+				Cell.State.LOWERED, Cell.State.HIDDEN:
+					if not is_jumping:
+						start_falling()
+				Cell.State.TELEPORT:
+					_check_teleport(next_cell)
+				Cell.State.ONE_WAY:
+					_check_one_way(next_cell)
+				Cell.State.PYLON:
+					_check_pylon(next_cell)
+		else:
+			if not is_jumping:
+				start_falling()
 
 	# Did the runner run into something, in which case he has to bounce back?
 	# The check whether the runner has just moved to a different cell is to
@@ -439,3 +446,34 @@ func play_foot_step_02():
 
 func play_foot_step_03():
 	_footstep3.play()
+
+func _init_wall():
+	_history.push_back(global_position)
+
+func _add_to_wall():
+	if _history.size() == 120:
+		_history.remove_at(0)
+	_history.push_back(global_position)
+
+	var xy = PackedVector2Array()
+	var uv = PackedVector2Array()
+	xy.resize(2 * _history.size())
+	uv.resize(2 * _history.size())
+
+	var div = _history.size() as float
+	for i in _history.size():
+		xy[2*i] = _history[i]
+		xy[2*i+1] = _history[i] + Vector2(0, -80)
+		var u = i / div
+		uv[2*i] = Vector2(u, 1)
+		uv[2*i+1] = Vector2(u, 0)
+
+	var arrays = []
+	arrays.resize(Mesh.ARRAY_MAX)
+	arrays[Mesh.ARRAY_VERTEX] = xy
+	arrays[Mesh.ARRAY_TEX_UV] = uv
+
+	var mesh: ArrayMesh = ArrayMesh.new()
+	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLE_STRIP, arrays)
+
+	wall.mesh = mesh
