@@ -6,7 +6,6 @@
 [node name="Map_Test" type="Node2D" unique_id=1968653440]
 y_sort_enabled = true
 script = ExtResource("1_7cuhg")
-character = 3
 
 [node name="Frames" type="CanvasLayer" parent="." unique_id=1367928238]
 metadata/_edit_lock_ = true
