@@ -6,5 +6,5 @@
 gradient = ExtResource("1_ge55l")
 fill = 1
 fill_from = Vector2(0, 1)
-fill_to = Vector2(0.7, 0.3)
+fill_to = Vector2(1, 0.8)
 metadata/_snap_enabled = true
