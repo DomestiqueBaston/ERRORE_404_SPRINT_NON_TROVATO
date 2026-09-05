@@ -13,8 +13,6 @@ b = Vector2(0, 0)
 shader = ExtResource("1_26063")
 shader_parameter/glitch_speed = 7.0
 shader_parameter/slice_density = 50.0
-shader_parameter/slice_strength = 0.38
-shader_parameter/shake_strength = 0.0
 shader_parameter/local_warp_strength = 0.666
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_cwxye"]
