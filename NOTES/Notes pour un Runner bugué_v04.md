@@ -50,6 +50,7 @@ Les bonus et malus en jeu (Cube.tscn) :
 - Chaque concurrent ne peut porter qu’1 Bonus/Malus. On peut ramasser un Bonus/Malus si on en porte déjà un mais le nouveau remplace le précédent. On ne peut pas ramasser de nouveau Bonus/Malus tant qu’un est en cours d’utilisation.
 - Les Bonus/Malus apparaissent en jeu toutes les 5 à 10 secondes.
 - Il ne peut pas y avoir plus de 5 Bonus/Malus simultanément à ramasser → le 6ème supprime automatiquement le plus ancien restant pendant que le nouveau apparaît.
+- On ne fait pas apparaître de Bonus/Malus sur une cellule avec au moins un mur.
 - Pour chaque couleur correspondent un bonus et un malus (le joueur ne sait donc pas s’il voit un bonus ou un malus).
 - Au ramassage d’un Bonus/Malus, on joue le son correspondant au Bonus/Malus et on joue le clignotement du concurrent (Animation_Bonus_Malus).
 - À l’activation (automatique ou au déclenchement du joueur) du Bonus/Malus, on changera la couleur de l’outline du joueur pour la durée de l’effet (voir codes couleur juste en dessous), on joue également le son correspondant (sous Sound/Bonus_Malus) et on joue le clignotement du concurrent (Animation_Bonus_Malus/Bonus_Malus).
