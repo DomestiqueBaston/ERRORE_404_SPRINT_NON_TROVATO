@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c7jmoetchnqc4"]
+
+[ext_resource type="Shader" uid="uid://1uirkyntqux" path="res://SHADER/Light_Wall_Glitch.gdshader" id="1_jwl12"]
+[ext_resource type="Gradient" uid="uid://d2yj5gmwpcn0g" path="res://RESOURCE/Runner_Wall_Main_Gradient.tres" id="2_k10b4"]
+[ext_resource type="Script" uid="uid://cmkdobddddf6r" path="res://SCENE_AND_SCRIPT/Wall.gd" id="3_k10b4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7eock"]
+shader = ExtResource("1_jwl12")
+shader_parameter/glitch_speed = 7.0
+shader_parameter/slice_density = 50.0
+shader_parameter/local_warp_strength = 0.666
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wnvjj"]
+gradient = ExtResource("2_k10b4")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+metadata/_snap_enabled = true
+
+[node name="Wall" type="MeshInstance2D" unique_id=406346556]
+top_level = true
+material = SubResource("ShaderMaterial_7eock")
+texture = SubResource("GradientTexture2D_wnvjj")
+script = ExtResource("3_k10b4")
+metadata/_edit_lock_ = true
