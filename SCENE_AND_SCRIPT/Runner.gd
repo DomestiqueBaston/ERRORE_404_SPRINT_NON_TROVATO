@@ -264,8 +264,7 @@ func is_valid_direction(new_direction: Vector2) -> bool:
 #
 # Checks whether the runner's location (current cell) has changed, and if he
 # has encountered an obstacle, or a teleport, or fallen off the map, etc. On
-# return, he may be dead or falling (it is assumed that he is not, at the time
-# when the function is called).
+# return, he may be dead or falling.
 #
 # Returns true if the runner died after running into something, in which case
 # he should bounce back in the direction he was moving.
@@ -287,12 +286,42 @@ func _check_location() -> bool:
 	if is_one_way and next_cell != _curr_cell:
 		is_one_way = false
 
-	# update the current cell accordingly and check for obstacles
+	# check for new obstacles if the runner is not already dead or falling
 
+	var backup: bool
+	if is_dead or is_falling:
+		backup = false
+	else:
+		backup = _check_for_obstacle(next_cell)
+
+	# if the runner hasn't moved to a different cell and the cell is moving,
+	# move the runner with it (even if he is dead)
+
+	if _curr_cell and _curr_cell == next_cell and not (is_falling or is_jumping):
+		position += _curr_cell.global_position - _curr_cell_pos
+		z_index = roundi(global_position.y)
+
+	# note the current cell and position for next time
+
+	_curr_cell = next_cell
+	if _curr_cell:
+		_curr_cell_pos = _curr_cell.global_position
+
+	return backup
+
+#
+# Checks for a new obstacle in the cell underfoot. It is assumed that the
+# runner is neither dead nor falling when this is called; he may be dead or
+# falling on return.
+#
+# Returns true if the runner died after running into something, in which case
+# he should bounce back in the direction he was moving.
+#
+func _check_for_obstacle(next_cell: Cell) -> bool:
 	var hit_door = false
 
 	if next_cell and next_cell.is_center():
-		if not is_dead and not is_exiting:
+		if not is_exiting:
 			if next_cell.get_artefact():
 				die(false)
 			elif next_cell.get_door():
@@ -340,22 +369,7 @@ func _check_location() -> bool:
 	# than the cell's, so it is likely the runner will hit it after entering the
 	# cell.
 
-	var backup = is_dead and (_curr_cell != next_cell or hit_door)
-
-	# if the runner hasn't moved to a different cell and the cell is moving,
-	# move the runner with it
-
-	if _curr_cell and _curr_cell == next_cell and not (is_falling or is_jumping):
-		position += _curr_cell.global_position - _curr_cell_pos
-		z_index = roundi(global_position.y)
-
-	# note the current cell and position for next time
-
-	_curr_cell = next_cell
-	if _curr_cell:
-		_curr_cell_pos = _curr_cell.global_position
-
-	return backup
+	return is_dead and (_curr_cell != next_cell or hit_door)
 
 func _check_teleport(cell: Cell):
 	var destination = cell.get_teleport_partner()
