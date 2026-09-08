@@ -17,8 +17,6 @@ extends Node2D
 @onready var _footstep2 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_02
 @onready var _footstep3 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_03
 
-var _wall_scene: PackedScene = preload("res://SCENE_AND_SCRIPT/Wall.tscn")
-
 var direction: Vector2 = Vector2.ZERO
 var last_direction: Vector2 = Vector2.ZERO
 
@@ -46,8 +44,7 @@ var _physics_ready: bool = false
 var _start_cell: Cell
 var _curr_cell: Cell
 var _curr_cell_pos: Vector2
-var _walls: Array[MeshInstance2D]
-var _wall_interrupt: bool = false
+var _last_wall: Wall
 
 func _ready() -> void:
 	animation_player.animation_finished.connect(_on_animation_finished)
@@ -279,7 +276,7 @@ func _check_location() -> bool:
 	var next_cell: Cell = _map.get_cell_at_pos(global_position)
 
 	if is_jumping or is_sliding or is_teleporting or is_dead or is_falling:
-		_wall_interrupt = true
+		_last_wall = null
 	elif next_cell and last_direction:
 		_add_to_wall(next_cell)
 
@@ -468,45 +465,31 @@ func play_foot_step_03():
 	_footstep3.play()
 
 func _add_to_wall(cell: Cell):
-	var prev_wall: Wall
 	var wall: Wall
 
-	# add to previous wall or start a new one?
+	# add to previous wall if there is one and we have not left its cell
 
-	if _wall_interrupt:
-		_wall_interrupt = false
-	elif _walls:
-		prev_wall = _walls.back()
-		if prev_wall.cell == cell:
-			wall = prev_wall
+	if _last_wall and _last_wall.cell == cell:
+		wall = _last_wall
 
-	if wall == null:
+	# otherwise create a new wall and attach it to the given cell
 
-		# create a new wall
-
-		wall = _wall_scene.instantiate()
-		wall.cell = cell
-		add_child(wall)
-		move_child(wall, 0)
-
-		wall.gone.connect(_on_wall_gone.bind(wall))
-		_walls.push_back(wall)
+	else:
+		wall = cell.add_wall()
 
 		# finish the previous wall and start the new one with a point at the
 		# intersection of the neighboring cells
 
-		if prev_wall:
-			var intersection = prev_wall.cell.get_exit_point(
-				prev_wall.get_last_point(), last_direction)
+		if _last_wall:
+			var last_cell: Cell = _last_wall.cell
+			var intersection = last_cell.get_exit_point(
+				last_cell.get_last_point_on_wall(_last_wall), last_direction)
 			if intersection:
-				prev_wall.add_point(intersection)
-				wall.add_point(intersection)
+				last_cell.add_point_to_wall(_last_wall, intersection)
+				cell.add_point_to_wall(wall, intersection)
+
+		_last_wall = wall
 
 	# add the current position to the current wall
 
-	wall.add_point(global_position)
-
-func _on_wall_gone(wall: Wall):
-	_walls.erase(wall)
-	remove_child(wall)
-	wall.queue_free()
+	cell.add_point_to_wall(wall, global_position)

@@ -52,6 +52,7 @@ const width: float = 236.0
 const height: float = width * 0.5
 
 @onready var _anim_player: AnimationPlayer = $Global_Cell
+@onready var _cell_tops: Node2D = $Column/Cell_Tops
 @onready var _one_way_directions: Node2D = $Column/Cell_Tops/One_Way_Directions
 @onready var _glitch_anim: AnimationPlayer = $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch
 
@@ -88,6 +89,7 @@ const height: float = width * 0.5
 var _pylon_scene = preload("res://SCENE_AND_SCRIPT/Pylon.tscn")
 var _artefact_scene = preload("res://SCENE_AND_SCRIPT/Artefact.tscn")
 var _door_scene := preload("res://SCENE_AND_SCRIPT/Door.tscn")
+var _wall_scene: PackedScene = preload("res://SCENE_AND_SCRIPT/Wall.tscn")
 
 var _pylon: Pylon
 var _artefact: Artefact
@@ -263,6 +265,40 @@ func add_door():
 
 func get_door() -> Door:
 	return _door
+
+##
+## Adds a wall that is created in a runner's wake and returns it. The wall is
+## parented to the cell in such a way that, if the top of the cell moves, the
+## wall will follow.
+##
+## Points added to the wall must be put in the local coordinate system, so be
+## sure to call add_point_to_wall() and get_last_point_on_wall() rather than
+## accessing the wall directly.
+##
+func add_wall() -> Wall:
+	var wall: Wall = _wall_scene.instantiate()
+	wall.cell = self
+	_cell_tops.add_child(wall)
+	wall.gone.connect(_on_wall_gone.bind(wall))
+	return wall
+
+func _on_wall_gone(wall: Wall):
+	_cell_tops.remove_child(wall)
+	wall.queue_free()
+
+##
+## Adds a point to a wall that has been attached to this cell by add_wall(),
+## converting global coordinates to the local coordinate system.
+##
+func add_point_to_wall(wall: Wall, global_pos: Vector2):
+	wall.add_point(_cell_tops.to_local(global_pos))
+
+##
+## Returns the last point to be added to the given wall, converting it to
+## global coordinates.
+##
+func get_last_point_on_wall(wall: Wall) -> Vector2:
+	return _cell_tops.to_global(wall.get_last_point())
 
 ##
 ## Tells a new teleport cell which other cell it teleports to/from. This only

@@ -17,7 +17,6 @@ fill_to = Vector2(0, 0)
 metadata/_snap_enabled = true
 
 [node name="Wall" type="MeshInstance2D" unique_id=406346556]
-top_level = true
 material = SubResource("ShaderMaterial_7eock")
 texture = SubResource("GradientTexture2D_wnvjj")
 script = ExtResource("3_k10b4")
