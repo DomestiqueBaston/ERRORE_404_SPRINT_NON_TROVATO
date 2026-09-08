@@ -2389,6 +2389,7 @@ libraries/ = SubResource("AnimationLibrary_oyod2")
 position = Vector2(0, 60)
 collision_layer = 2
 monitoring = false
+monitorable = false
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionPolygon2D" parent="Column/Collider_Ground" unique_id=2120679339]

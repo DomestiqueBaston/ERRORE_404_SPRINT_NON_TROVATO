@@ -3,6 +3,10 @@ extends Node2D
 ## La Vision_Area n'est pas gérée par ce script,
 ## c'est juste de la démo...
 
+@export var move_speed: float = 395.0
+@export var jump_speed: float = 385.0
+@export var slide_speed: float = 375.0
+
 @onready var character: Node2D = $Character
 @onready var sprite: Node2D = $Character/Papa_Sprite
 @onready var animation_player: AnimationPlayer = $Animation_Runner
@@ -13,9 +17,7 @@ extends Node2D
 @onready var _footstep2 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_02
 @onready var _footstep3 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_03
 
-@export var move_speed: float = 395.0
-@export var jump_speed: float = 385.0
-@export var slide_speed: float = 375.0
+var _wall_scene: PackedScene = preload("res://SCENE_AND_SCRIPT/Wall.tscn")
 
 var direction: Vector2 = Vector2.ZERO
 var last_direction: Vector2 = Vector2.ZERO
@@ -44,7 +46,8 @@ var _physics_ready: bool = false
 var _start_cell: Cell
 var _curr_cell: Cell
 var _curr_cell_pos: Vector2
-var _wall: MeshInstance2D
+var _walls: Array[MeshInstance2D]
+var _wall_interrupt: bool = false
 
 func _ready() -> void:
 	animation_player.animation_finished.connect(_on_animation_finished)
@@ -106,8 +109,6 @@ func _physics_process(delta: float) -> void:
 
 		if input_direction and is_valid_direction(input_direction):
 			last_direction = input_direction
-			if _wall == null:
-				_start_wall()
 
 	# === Direction actuelle ===
 	if is_jumping:
@@ -121,8 +122,6 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		position += direction * _get_current_speed() * delta
 		z_index = roundi(global_position.y)
-		if _wall:
-			_add_to_wall()
 
 	# keep camera aimed at runner
 	$Character/Cam.update_aim_point(global_position)
@@ -186,9 +185,6 @@ func _play_slide_animation() -> void:
 func die(fast: bool) -> void:
 	if is_dead: return
 	is_dead = true
-
-	if _wall:
-		_wall.remove()
 	
 	if fast:
 		disappear_player.play("Disappearing")
@@ -207,9 +203,6 @@ func die(fast: bool) -> void:
 func start_falling() -> void:
 	if is_falling or is_dead: return
 	is_falling = true
-
-	if _wall:
-		_wall.remove()
 	
 	# no more movement
 	set_physics_process(false)
@@ -270,7 +263,8 @@ func is_valid_direction(new_direction: Vector2) -> bool:
 #
 # Checks whether the runner's location (current cell) has changed, and if he
 # has encountered an obstacle, or a teleport, or fallen off the map, etc. On
-# return, he may be dead or falling.
+# return, he may be dead or falling. And _curr_cell contains the cell where the
+# runner is now located, if any.
 #
 # Returns true if the runner died after running into something, in which case
 # he should bounce back in the direction he was moving.
@@ -281,7 +275,13 @@ func _check_location() -> bool:
 
 	# find the cell underfoot
 
-	var next_cell: Cell = _map.get_cell_in_area(collider)
+	#var next_cell: Cell = _map.get_cell_in_area(collider)
+	var next_cell: Cell = _map.get_cell_at_pos(global_position)
+
+	if is_jumping or is_sliding or is_teleporting or is_dead or is_falling:
+		_wall_interrupt = true
+	elif next_cell and last_direction:
+		_add_to_wall(next_cell)
 
 	# Turn one-way off after leaving the one-way cell. Normally one-way is
 	# turned off by _check_one_way() when the runner is no longer in contact
@@ -467,9 +467,46 @@ func play_foot_step_02():
 func play_foot_step_03():
 	_footstep3.play()
 
-func _start_wall():
-	_wall = $Wall
-	_wall.z_index = RenderingServer.CANVAS_ITEM_Z_MIN
+func _add_to_wall(cell: Cell):
+	var prev_wall: Wall
+	var wall: Wall
 
-func _add_to_wall():
-	_wall.add_point(global_position)
+	# add to previous wall or start a new one?
+
+	if _wall_interrupt:
+		_wall_interrupt = false
+	elif _walls:
+		prev_wall = _walls.back()
+		if prev_wall.cell == cell:
+			wall = prev_wall
+
+	if wall == null:
+
+		# create a new wall
+
+		wall = _wall_scene.instantiate()
+		wall.cell = cell
+		add_child(wall)
+		move_child(wall, 0)
+
+		wall.gone.connect(_on_wall_gone.bind(wall))
+		_walls.push_back(wall)
+
+		# finish the previous wall and start the new one with a point at the
+		# intersection of the neighboring cells
+
+		if prev_wall:
+			var intersection = prev_wall.cell.get_exit_point(
+				prev_wall.get_last_point(), last_direction)
+			if intersection:
+				prev_wall.add_point(intersection)
+				wall.add_point(intersection)
+
+	# add the current position to the current wall
+
+	wall.add_point(global_position)
+
+func _on_wall_gone(wall: Wall):
+	_walls.erase(wall)
+	remove_child(wall)
+	wall.queue_free()

@@ -100,7 +100,6 @@ func _ready():
 	assert(_textures.size() == Decoration.keys().size())
 	for i in _textures.size():
 		_textures[i].visible = (i == decoration)
-	z_index = RenderingServer.CANVAS_ITEM_Z_MIN
 
 func lower(immediate: bool = false):
 	if immediate:
@@ -342,3 +341,32 @@ static func get_start_cell_offset(corner: Globals.Corner) -> Vector2:
 		Globals.Corner.E:
 			return Vector2(50, 0)
 	return Vector2()
+
+##
+## Given a point within the cell and the direction of motion, returns the point
+## on the border of the cell where the runner will leave the cell.
+##
+func get_exit_point(pos: Vector2, dir: Vector2):
+	var edgev1: Vector2
+	var edgev2: Vector2
+
+	if dir.x > 0:
+		if dir.y > 0:
+			# moving SE: look at edge from S to E corners
+			edgev1 = to_global(Vector2(0, height * 0.5))
+			edgev2 = to_global(Vector2(width * 0.5, 0))
+		else:
+			# moving NE: look at edge from N to E corners
+			edgev1 = to_global(Vector2(0, height * -0.5))
+			edgev2 = to_global(Vector2(width * 0.5, 0))
+	else:
+		if dir.y > 0:
+			# moving SW: look at edge from W to S corners
+			edgev1 = to_global(Vector2(width * -0.5, 0))
+			edgev2 = to_global(Vector2(0, height * 0.5))
+		else:
+			# moving NW: look at edge from W to N corners
+			edgev1 = to_global(Vector2(width * -0.5, 0))
+			edgev2 = to_global(Vector2(0, height * -0.5))
+
+	return Geometry2D.line_intersects_line(pos, dir, edgev1, edgev2 - edgev1)

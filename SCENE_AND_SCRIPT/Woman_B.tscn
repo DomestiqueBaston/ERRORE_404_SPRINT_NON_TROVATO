@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cpdmu8glt6s05"]
 
 [ext_resource type="Script" uid="uid://7rcfji6ehwky" path="res://SCENE_AND_SCRIPT/Runner.gd" id="1_b858v"]
-[ext_resource type="PackedScene" uid="uid://c7jmoetchnqc4" path="res://SCENE_AND_SCRIPT/Wall.tscn" id="2_3pclx"]
 [ext_resource type="Texture2D" uid="uid://j2jtb5xwxv25" path="res://IMAGE/RUNNER/WOMAN_B/Woman_B_Sprite_Sheet.png" id="3_b858v"]
 [ext_resource type="Texture2D" uid="uid://brl52e8ox1ue8" path="res://IMAGE/RUNNER/Shadow.png" id="5_3pclx"]
 [ext_resource type="Script" uid="uid://qc5u6mlkikxg" path="res://SCENE_AND_SCRIPT/Cam.gd" id="5_yl0jf"]
@@ -2927,8 +2926,6 @@ _data = {
 [node name="Woman_B" type="Node2D" unique_id=1635856392]
 script = ExtResource("1_b858v")
 metadata/_edit_lock_ = true
-
-[node name="Wall" parent="." unique_id=406346556 instance=ExtResource("2_3pclx")]
 
 [node name="Character" type="Node2D" parent="." unique_id=1360061723]
 metadata/_edit_lock_ = true

@@ -192,6 +192,7 @@ func _add_cell(parent: Node2D, uv: Vector2i, deco: Cell.Decoration) -> Cell:
 	var cell: Cell = _cell_scene.instantiate()
 	cell.position = get_cell_pos(uv)
 	cell.decoration = deco
+	cell.z_index = RenderingServer.CANVAS_ITEM_Z_MIN
 	parent.add_child(cell)
 	_cells[uv] = cell
 	return cell
@@ -229,7 +230,9 @@ func get_cell_at(uv: Vector2i) -> Cell:
 
 ##
 ## Returns the cell that overlaps with the given collider, or null if there is
-## none.
+## none. Note that this works only if cell colliders are monitorable; at the
+## moment they are NOT, because get_cell_as_pos() is used instead of this
+## method, and it doesn't require them to be monitorable.
 ##
 func get_cell_in_area(collider: Area2D) -> Cell:
 	var first_cell: Cell = null
@@ -244,6 +247,25 @@ func get_cell_in_area(collider: Area2D) -> Cell:
 				first_cell = cell
 
 	return first_cell
+
+##
+## Returns the cell found at the given point, in global coordinates, or null if
+## there is none.
+##
+func get_cell_at_pos(pos: Vector2) -> Cell:
+	var params = PhysicsPointQueryParameters2D.new()
+	params.position = pos
+	params.collide_with_areas = true
+	params.collide_with_bodies = false
+	params.collision_mask = Globals.MAP_LAYER
+
+	for result in get_world_2d().direct_space_state.intersect_point(params):
+		if result.collider is Area2D:
+			var cell = Cell.get_cell_from_collider(result.collider)
+			if cell:
+				return cell
+
+	return null
 
 ##
 ## Returns the cell at the center of the map ("404"). Note that the cell may

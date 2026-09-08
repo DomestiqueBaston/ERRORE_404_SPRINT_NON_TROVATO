@@ -17,6 +17,9 @@ enum Corner {
 const MASTER_BUS: int = 0
 const MUSIC_BUS: int = 4
 
+const RUNNER_LAYER: int = 0x01
+const MAP_LAYER: int = 0x02
+
 var use_diagonals_for_movement: bool = true
 var map_size: int = 7
 var difficulty: int = 3

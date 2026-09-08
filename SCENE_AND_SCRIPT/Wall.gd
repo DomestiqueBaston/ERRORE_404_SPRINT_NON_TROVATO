@@ -1,7 +1,13 @@
-extends MeshInstance2D
+class_name Wall extends MeshInstance2D
+
+## Signal emitted when the wall has disappeared.
+signal gone
+
+# Cell the wall is attached to
+var cell: Cell
 
 # delay in msec before a point is made visible
-const _delay: int = 500
+const _delay: int = 100
 
 # how long in msec a point is displayed
 var _duration: int = roundi(333.3 * (Globals.difficulty + (2 * Globals.map_size + 1)))
@@ -12,9 +18,9 @@ var _points: Array[Vector2]
 # time in msec when each point was added
 var _times: Array[int]
 
-#var _cell: Cell
-
 func _ready():
+	# same rendering layer as cells
+	z_index = RenderingServer.CANVAS_ITEM_Z_MIN
 	# don't start processing until there are points to be processed
 	set_physics_process(false)
 
@@ -25,6 +31,9 @@ func add_point(pos: Vector2):
 	_points.push_back(pos)
 	_times.push_back(Time.get_ticks_msec())
 	set_physics_process(true)
+
+func get_last_point():
+	return _points.back() if _points else null
 
 func _update_mesh():
 	var now = Time.get_ticks_msec()
@@ -38,7 +47,7 @@ func _update_mesh():
 	# if no new points have been added in a while, assume we're done
 
 	if _points.is_empty():
-		set_physics_process(false)
+		remove()
 		return
 
 	# count the points that are old enough to be visible
@@ -76,7 +85,8 @@ func _update_mesh():
 	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLE_STRIP, arrays)
 
 func remove():
-	mesh = ArrayMesh.new()
+	mesh = null
 	_points.clear()
 	_times.clear()
 	set_physics_process(false)
+	gone.emit()
