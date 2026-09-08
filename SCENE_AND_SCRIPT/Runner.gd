@@ -390,11 +390,11 @@ func _check_teleport(cell: Cell):
 	_curr_cell_pos = destination.global_position
 	global_position = _curr_cell_pos
 	z_index = roundi(global_position.y)
-	is_teleporting = false
 	anim.play("Bonus_Malus")
 	if _map:
 		await anim.animation_finished
 		_map.cancel_teleport(destination)
+	is_teleporting = false
 
 func _check_one_way(cell: Cell):
 
