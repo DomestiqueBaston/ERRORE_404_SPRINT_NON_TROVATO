@@ -10,7 +10,8 @@ var cell: Cell
 const _delay: int = 100
 
 # how long in msec a point is displayed
-var _duration: int = roundi(333.3 * (Globals.difficulty + (2 * Globals.map_size + 1)))
+var _duration: int = \
+	3000 + roundi(7000 * (Globals.difficulty + (2 * Globals.map_size + 1) - 10) / 16.0)
 
 # points constituting the wall
 var _points: Array[Vector2]
