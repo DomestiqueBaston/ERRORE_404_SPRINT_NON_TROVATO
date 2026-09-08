@@ -1829,6 +1829,7 @@ _data = {
 }
 
 [node name="Cell" type="Node2D" unique_id=2120336095]
+z_index = -4096
 script = ExtResource("1_psu53")
 metadata/_edit_lock_ = true
 
@@ -1864,8 +1865,17 @@ metadata/_edit_lock_ = true
 position = Vector2(0, 35)
 metadata/_edit_lock_ = true
 
-[node name="Cell_Extension" type="Sprite2D" parent="Column/Cell_Tops" unique_id=982586807]
+[node name="Cell_Extensions" type="Node2D" parent="Column/Cell_Tops" unique_id=226650153]
+metadata/_edit_lock_ = true
+
+[node name="Cell_Extension_1" type="Sprite2D" parent="Column/Cell_Tops/Cell_Extensions" unique_id=982586807]
 position = Vector2(0, -81)
+texture = ExtResource("1_e50o2")
+offset = Vector2(0, 1310)
+metadata/_edit_lock_ = true
+
+[node name="Cell_Extension_2" type="Sprite2D" parent="Column/Cell_Tops/Cell_Extensions" unique_id=2120636401]
+position = Vector2(0, 1419)
 texture = ExtResource("1_e50o2")
 offset = Vector2(0, 1310)
 metadata/_edit_lock_ = true

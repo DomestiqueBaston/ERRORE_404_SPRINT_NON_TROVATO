@@ -615,7 +615,13 @@ metadata/_edit_lock_ = true
 [node name="Images" type="Node2D" parent="Pylon/Pylon_Walls" unique_id=1224975738]
 metadata/_edit_lock_ = true
 
-[node name="Extension_De_Pylone" type="Sprite2D" parent="Pylon/Pylon_Walls/Images" unique_id=548903508]
+[node name="Extension_De_Pylone_1" type="Sprite2D" parent="Pylon/Pylon_Walls/Images" unique_id=548903508]
+texture = ExtResource("28_cedp7")
+offset = Vector2(0, -1217)
+metadata/_edit_lock_ = true
+
+[node name="Extension_De_Pylone_2" type="Sprite2D" parent="Pylon/Pylon_Walls/Images" unique_id=1181934625]
+position = Vector2(0, -1500)
 texture = ExtResource("28_cedp7")
 offset = Vector2(0, -1217)
 metadata/_edit_lock_ = true
