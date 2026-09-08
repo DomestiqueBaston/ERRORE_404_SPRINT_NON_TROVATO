@@ -147,7 +147,7 @@ Options (nécessaires) dans Settings:
         ◦ Temps avant la disparition de l’artefact : (Taille de la map + (2 × Difficulté)) / 10 minutes.
         ◦ Temps avant le déclenchement du processus d’apparition de Door.tscn : (5 + (Difficulté − 1) × 1,25 ) secondes
         ◦ Délai entre les déclenchements d’obstacles : 5.5 - (0.5 × Difficulté) secondes.
-        ◦ Délai avant disparition des tronçons de mur : 3 + ((Difficulté + Taille de la map − 10) / 16) × 3 secondes après apparition.
+        ◦ Délai avant disparition des tronçons de mur : 3 + ((Difficulté + Taille de la map − 10) / 16) × 7 secondes après apparition.
         ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en gagnant 3 courses en Difficulté 5) qui rend tous les obstacles PERMANENTS (le reste est traîté comme Difficulté 5 si rien n’est précisé !) SAUF les murs des concurrents. Voir également à la toute fin du doc. : Liste des scènes (et – succinctes – descriptions de leurs contenus) pour les réglages de Difficulté 6. Cette difficulté cachée est sauvegardée afin de pouvoir rejouer dans cette difficulté sans tout recommencer.
 
 Les personnalités des « IA »/Bots :
