@@ -30,8 +30,8 @@ var is_one_way: bool = false
 var is_exiting: bool = false
 
 # Directions figées
-var jump_direction: Vector2 = Vector2.ZERO
-var slide_direction: Vector2 = Vector2.ZERO
+var _jump_direction: Vector2 = Vector2.ZERO
+var _slide_direction: Vector2 = Vector2.ZERO
 
 const _rotation: float = deg_to_rad(18.4)
 var _northwest: Vector2 = Vector2(-1, -1).rotated(-_rotation).normalized()
@@ -109,9 +109,9 @@ func _physics_process(delta: float) -> void:
 
 	# === Direction actuelle ===
 	if is_jumping:
-		direction = jump_direction
+		direction = _jump_direction
 	elif is_sliding:
-		direction = slide_direction
+		direction = _slide_direction
 	else:
 		direction = last_direction
 
@@ -158,18 +158,31 @@ func _get_current_speed() -> float:
 func _play_jump_animation() -> void:
 	if last_direction == Vector2.ZERO or is_dead or is_falling: return
 	is_jumping = true
-	jump_direction = last_direction
+	_jump_direction = last_direction
 	if last_direction.y < 0:
-		animation_player.play("Jump_000")
+		animation_player.play(&"Jump_000")
 		sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
 	else:
-		animation_player.play("Jump_180")
+		animation_player.play(&"Jump_180")
 		sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
+
+func _change_jump_direction(new_direction: Vector2):
+	if new_direction.y < 0:
+		if animation_player.current_animation == &"Jump_180":
+			animation_player.play_section(
+				&"Jump_000", animation_player.current_animation_position)
+		sprite.scale.x = 1.0 if new_direction.x < 0 else -1.0
+	else:
+		if animation_player.current_animation == &"Jump_000":
+			animation_player.play_section(
+				&"Jump_180", animation_player.current_animation_position)
+		sprite.scale.x = -1.0 if new_direction.x < 0 else 1.0
+	_jump_direction = new_direction
 
 func _play_slide_animation() -> void:
 	if last_direction == Vector2.ZERO or is_dead or is_falling: return
 	is_sliding = true
-	slide_direction = last_direction
+	_slide_direction = last_direction
 	if last_direction.y < 0:
 		animation_player.play("Sliding_000")
 		sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
@@ -177,9 +190,20 @@ func _play_slide_animation() -> void:
 		animation_player.play("Sliding_180")
 		sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
 
+func _change_slide_direction(new_direction: Vector2):
+	if new_direction.y < 0:
+		if animation_player.current_animation == &"Sliding_180":
+			animation_player.play_section(
+				&"Sliding_000", animation_player.current_animation_position)
+		sprite.scale.x = 1.0 if new_direction.x < 0 else -1.0
+	else:
+		if animation_player.current_animation == &"Sliding_000":
+			animation_player.play_section(
+				&"Sliding_180", animation_player.current_animation_position)
+		sprite.scale.x = -1.0 if new_direction.x < 0 else 1.0
+	_slide_direction = new_direction
 
-# ── MORT ──
-func die(fast: bool) -> void:
+func _die(fast: bool) -> void:
 	if is_dead: return
 	is_dead = true
 	
@@ -196,8 +220,7 @@ func die(fast: bool) -> void:
 			sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
 
 
-# ── CHUTE (nouvelle fonction) ──
-func start_falling() -> void:
+func _start_falling() -> void:
 	if is_falling or is_dead: return
 	is_falling = true
 	
@@ -221,10 +244,10 @@ func start_falling() -> void:
 func _on_animation_finished(anim_name: String) -> void:
 	if anim_name.begins_with("Jump_"):
 		is_jumping = false
-		jump_direction = Vector2.ZERO
+		_jump_direction = Vector2.ZERO
 	elif anim_name.begins_with("Sliding_"):
 		is_sliding = false
-		slide_direction = Vector2.ZERO
+		_slide_direction = Vector2.ZERO
 	elif anim_name.begins_with("Death_"):
 		disappear_player.play("Disappearing")
 
@@ -326,11 +349,11 @@ func _check_for_obstacle(next_cell: Cell) -> bool:
 	if next_cell and next_cell.is_center():
 		if not is_exiting:
 			if next_cell.get_artefact():
-				die(false)
+				_die(false)
 			elif next_cell.get_door():
 				match next_cell.get_door().get_zone_at(collider):
 					Door.Zone.FRAME:
-						die(false)
+						_die(false)
 						hit_door = true
 					Door.Zone.PASSAGE:
 						print("we're out!")
@@ -344,7 +367,7 @@ func _check_for_obstacle(next_cell: Cell) -> bool:
 						character.z_index = Door.Depth.FRONT
 			elif next_cell.get_state() == Cell.State.LOWERED:
 				if not is_jumping:
-					start_falling()
+					_start_falling()
 	else:
 		character.z_index = 0
 		is_exiting = false
@@ -352,7 +375,7 @@ func _check_for_obstacle(next_cell: Cell) -> bool:
 			match next_cell.get_state():
 				Cell.State.LOWERED, Cell.State.HIDDEN:
 					if not is_jumping:
-						start_falling()
+						_start_falling()
 				Cell.State.TELEPORT:
 					_check_teleport(next_cell)
 				Cell.State.ONE_WAY:
@@ -361,7 +384,7 @@ func _check_for_obstacle(next_cell: Cell) -> bool:
 					_check_pylon(next_cell)
 		else:
 			if not is_jumping:
-				start_falling()
+				_start_falling()
 
 	# Did the runner run into something, in which case he has to bounce back?
 	# The check whether the runner has just moved to a different cell is to
@@ -423,7 +446,7 @@ func _check_one_way(cell: Cell):
 	# if the runner is going the opposite direction, kill him
 
 	if is_equal_approx(direction.dot(new_direction), -1.0):
-		die(false)
+		_die(false)
 		return
 
 	# play the Bonus_Malus animation before actually changing the runner's
@@ -434,9 +457,9 @@ func _check_one_way(cell: Cell):
 	await anim.animation_finished
 	last_direction = new_direction
 	if is_jumping:
-		jump_direction = new_direction
+		_change_jump_direction(new_direction)
 	elif is_sliding:
-		slide_direction = new_direction
+		_change_slide_direction(new_direction)
 	is_one_way = true
 	anim.play("Bonus_Malus")
 	if _map:
@@ -444,13 +467,13 @@ func _check_one_way(cell: Cell):
 
 func _check_pylon(cell: Cell):
 	# if the runner was already on the cell when the pylon is lowered or
-	# dropped, he just disappears: see die()
+	# dropped, he just disappears: see _die()
 	match cell.get_pylon().get_state():
 		Pylon.State.LOWERED:
 			if not is_sliding:
-				die(cell == _curr_cell)
+				_die(cell == _curr_cell)
 		Pylon.State.DROPPED:
-			die(cell == _curr_cell)
+			_die(cell == _curr_cell)
 
 #
 # Methods called by run cycle animation.
