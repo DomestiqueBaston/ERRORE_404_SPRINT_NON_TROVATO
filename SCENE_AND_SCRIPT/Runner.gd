@@ -206,40 +206,36 @@ func _change_slide_direction(new_direction: Vector2):
 func _die(fast: bool) -> void:
 	if is_dead: return
 	is_dead = true
-	
+
+	# if fast is true, the Death and Disappearing animations are played at the
+	# same time, and the runner will disappear before the Death animation
+	# finishes
+
 	if fast:
 		disappear_player.play("Disappearing")
-	elif last_direction == Vector2.ZERO:
-		animation_player.play("Death_180")
-	else:
-		if last_direction.y < 0:
-			animation_player.play("Death_000")
-			sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
-		else:
-			animation_player.play("Death_180")
-			sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
 
+	if last_direction.y < 0:
+		animation_player.play("Death_000")
+		sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
+	else:
+		animation_player.play("Death_180")
+		sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
 
 func _start_falling() -> void:
 	if is_falling or is_dead: return
 	is_falling = true
-	
-	# no more movement
+
 	set_physics_process(false)
 
 	z_index = RenderingServer.CANVAS_ITEM_Z_MIN
 	character.z_index = 0
 
-	# Animation de chute avec la bonne orientation
-	if last_direction == Vector2.ZERO:
-		animation_player.play("Falling_180")
+	if last_direction.y < 0:
+		animation_player.play("Falling_000")
+		sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
 	else:
-		if last_direction.y < 0:
-			animation_player.play("Falling_000")
-			sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
-		else:
-			animation_player.play("Falling_180")
-			sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
+		animation_player.play("Falling_180")
+		sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
 
 func _on_animation_finished(anim_name: String) -> void:
 	if anim_name.begins_with("Jump_"):
@@ -249,7 +245,10 @@ func _on_animation_finished(anim_name: String) -> void:
 		is_sliding = false
 		_slide_direction = Vector2.ZERO
 	elif anim_name.begins_with("Death_"):
-		disappear_player.play("Disappearing")
+		# if _die(true) was called, then Disappearing has already been played,
+		# in which case it will have called set_physics_process(false) already
+		if is_physics_processing():
+			disappear_player.play("Disappearing")
 
 	# Rien à faire si mort ou en chute (on reste sur l’animation)
 	if is_dead or is_falling:
