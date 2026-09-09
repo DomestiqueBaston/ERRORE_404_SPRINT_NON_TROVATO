@@ -279,12 +279,8 @@ func add_wall() -> Wall:
 	var wall: Wall = _wall_scene.instantiate()
 	wall.cell = self
 	_cell_tops.add_child(wall)
-	wall.gone.connect(_on_wall_gone.bind(wall))
+	wall.gone.connect(wall.queue_free)
 	return wall
-
-func _on_wall_gone(wall: Wall):
-	_cell_tops.remove_child(wall)
-	wall.queue_free()
 
 ##
 ## Adds a point to a wall that has been attached to this cell by add_wall(),

@@ -44,6 +44,7 @@ var _physics_ready: bool = false
 var _start_cell: Cell
 var _curr_cell: Cell
 var _curr_cell_pos: Vector2
+var _walls: Array[Wall]
 var _last_wall: Wall
 
 func _ready() -> void:
@@ -207,12 +208,25 @@ func _die(fast: bool) -> void:
 	if is_dead: return
 	is_dead = true
 
-	# if fast is true, the Death and Disappearing animations are played at the
+	# If fast is true, the Death and Disappearing animations are played at the
 	# same time, and the runner will disappear before the Death animation
-	# finishes
+	# finishes.
+	#
+	# Also, if fast is true, the entire wall behind the runner disappears
+	# almost immediately. If false, only the last two segments of wall are
+	# eliminated immediately, to avoid the Death animation overlapping with
+	# the wall; the rest of the wall disappears when the runner has disappeared,
+	# that is, when the Disappearing animation has finished.
 
 	if fast:
 		disappear_player.play("Disappearing")
+		for wall in _walls:
+			wall.disappear()
+	else:
+		if _walls.size() > 0:
+			if _walls.size() > 1:
+				_walls[-2].disappear()
+			_walls[-1].disappear()
 
 	if last_direction.y < 0:
 		animation_player.play("Death_000")
@@ -249,6 +263,11 @@ func _on_animation_finished(anim_name: String) -> void:
 		# in which case it will have called set_physics_process(false) already
 		if is_physics_processing():
 			disappear_player.play("Disappearing")
+			for wall in _walls:
+				wall.disappear()
+	elif anim_name.begins_with("Falling_"):
+		for wall in _walls:
+			wall.disappear()
 
 	# Rien à faire si mort ou en chute (on reste sur l’animation)
 	if is_dead or is_falling:
@@ -498,6 +517,13 @@ func _add_to_wall(cell: Cell):
 
 	else:
 		wall = cell.add_wall()
+		wall.gone.connect(func(): _walls.erase(wall))
+		_walls.push_back(wall)
+
+		# if this is the very first wall, play its Appearing animation
+
+		if _walls.size() == 1:
+			get_tree().create_timer(Wall.delay).timeout.connect(wall.appear)
 
 		# finish the previous wall and start the new one with a point at the
 		# intersection of the neighboring cells
