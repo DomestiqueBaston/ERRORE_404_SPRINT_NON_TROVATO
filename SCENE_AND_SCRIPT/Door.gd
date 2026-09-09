@@ -14,7 +14,7 @@ enum Zone {
 ##
 ## Constants for depth ordering (Z-index). The two sides of the door are
 ## displayed at depth BACK_DOOR and FRONT_DOOR; a runner can position himself
-## behind both doors (BACK), in front of both (FRONT) ir inbetween (MIDDLE).
+## behind both doors (BACK), in front of both (FRONT) or inbetween (MIDDLE).
 ##
 enum Depth {
 	BACK,
