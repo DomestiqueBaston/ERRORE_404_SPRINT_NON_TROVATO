@@ -15,7 +15,7 @@ enum Corner {
 }
 
 const MASTER_BUS: int = 0
-const MUSIC_BUS: int = 4
+const MUSIC_BUS: int = 5
 
 const RUNNER_LAYER: int = 0x01
 const MAP_LAYER: int = 0x02
