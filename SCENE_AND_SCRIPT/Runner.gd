@@ -7,18 +7,27 @@ extends Node2D
 @export var jump_speed: float = 385.0
 @export var slide_speed: float = 375.0
 
-@onready var character: Node2D = $Character
-@onready var sprite: Node2D = $Character/Papa_Sprite
-@onready var animation_player: AnimationPlayer = $Animation_Runner
-@onready var disappear_player: AnimationPlayer = $Animation_Disappearing_Death
-@onready var collider: Area2D = $Character/Papa_Sprite/Runner_Sprite/Collider_Area
+@onready var _sprite: Node2D = $Character/Papa_Sprite
+@onready var _animation: AnimationPlayer = $Animation_Runner
+@onready var _disappear: AnimationPlayer = $Animation_Disappearing_Death
+@onready var _collider: Area2D = $Character/Papa_Sprite/Runner_Sprite/Collider_Area
+@onready var _camera: Camera2D = $Character/Cam
 
 @onready var _footstep1 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_01
 @onready var _footstep2 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_02
 @onready var _footstep3 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_03
 
-var direction: Vector2 = Vector2.ZERO
-var last_direction: Vector2 = Vector2.ZERO
+# which way the runner last moved, be it by running, jumping or sliding
+var _direction: Vector2 = Vector2.ZERO
+
+# which way the runner last indicated he WANTED to move
+var _last_direction: Vector2 = Vector2.ZERO
+
+# if the runner is mid-jump, which way he is jumping
+var _jump_direction: Vector2 = Vector2.ZERO
+
+# if the runner is mid-slide, which way he is sliding
+var _slide_direction: Vector2 = Vector2.ZERO
 
 # États
 var is_jumping: bool = false
@@ -29,28 +38,25 @@ var is_teleporting: bool = false
 var is_one_way: bool = false
 var is_exiting: bool = false
 
-# Directions figées
-var _jump_direction: Vector2 = Vector2.ZERO
-var _slide_direction: Vector2 = Vector2.ZERO
-
 const _rotation: float = deg_to_rad(18.4)
+
 var _northwest: Vector2 = Vector2(-1, -1).rotated(-_rotation).normalized()
 var _northeast: Vector2 = Vector2(1, -1).rotated(_rotation).normalized()
 var _southwest: Vector2 = Vector2(-1, 1).rotated(_rotation).normalized()
 var _southeast: Vector2 = Vector2(1, 1).rotated(-_rotation).normalized()
 
 var _map: Map
-var _physics_ready: bool = false
 var _start_cell: Cell
 var _curr_cell: Cell
 var _curr_cell_pos: Vector2
 var _walls: Array[Wall]
-var _last_wall: Wall
+var _curr_wall: Wall
 
 func _ready() -> void:
-	animation_player.animation_finished.connect(_on_animation_finished)
-	disappear_player.animation_finished.connect(_on_disappear_finished)
+	_animation.animation_finished.connect(_on_animation_finished)
+	_disappear.animation_finished.connect(_on_disappear_finished)
 	z_index = roundi(global_position.y)
+	_camera.update_aim_point(global_position)
 
 func set_map(map: Map, start_cell: Cell = null):
 	_map = map
@@ -59,24 +65,71 @@ func set_map(map: Map, start_cell: Cell = null):
 	else:
 		_start_cell = map.get_center_cell()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta: float):
 
-	# skip first frame to allow physics server to find initial collisions
-	if not _physics_ready:
-		_physics_ready = true
+	# Anything that relies on collision detection is done first, before updating
+	# the runner's position, because the physics server has already performed
+	# collision detection based on the current position.
+	#
+	# Collision detection is used in two cases: to navigate the central cell's
+	# doorway, and for one-way signs. In the first case, we determine where the
+	# runner is positioned relative to the two sides of the door and set his
+	# Z-index so that he is displayed behind, inside or in front of the door, as
+	# appropriate (in addition to determining if he has made his way through
+	# it). In the case of a one-way sign, _check_one_way() uses colliders to
+	# detect when the runner has hit the sign (and not just entered the cell).
+	#
+	# Note that the runner's Z-index is set differently when he is in the
+	# central cell with the door present, as opposed to all other times.
+	# Usually, the runner's Z-index is set to his global position in Y, just
+	# like pylons, the artefact and the door. But in the central cell, when the
+	# door is present, the runner's Z-index is set equal to the door's, plus a
+	# small offset to ensure he is displayed on the right side of the two door
+	# frames.
+
+	if not is_dead:
+		var door: Door = _curr_cell.get_door() if _curr_cell else null
+		if door:
+			match door.get_zone_at(_collider):
+				Door.Zone.FRAME:
+					if not is_exiting:
+						_die(false)
+				Door.Zone.PASSAGE:
+					if not is_exiting:
+						print("we're out!")
+						is_exiting = true
+					z_index = door.z_index + Door.Depth.MIDDLE
+				Door.Zone.BACK:
+					z_index = door.z_index + Door.Depth.BACK
+				Door.Zone.MIDDLE:
+					z_index = door.z_index + Door.Depth.MIDDLE
+				Door.Zone.FRONT:
+					z_index = door.z_index + Door.Depth.FRONT
+		else:
+			z_index = roundi(global_position.y)
+			is_exiting = false
+			if _curr_cell and _curr_cell.get_state() == Cell.State.ONE_WAY:
+				_check_one_way(_curr_cell)
+
+	# If the current cell has moved (slid), move the runner with it. Unless he
+	# is falling or jumping (but if he were falling, _physics_process() would
+	# not have been called).
+
+	if _curr_cell and not is_jumping:
+		_set_position(
+			position + _curr_cell.global_position - _curr_cell_pos, false,
+			_curr_cell)
+
+	# If the runner is dead (but still visible), we're done.
+
+	if is_dead:
 		return
 
-	# check for obstacles, sliding cells, etc.
-	if _check_location():
-		# back up if the runner hit an obstacle and died
-		position += direction * _get_current_speed() * -delta
-		z_index = roundi(global_position.y)
+	# Find the direction of movement and what would be the runner's new location
+	# (cell and position). Note that the cell is determined from the global
+	# position WITHOUT collision detection, so it immediately reflects the new
+	# position; there is no need to wait for the next physics tick.
 
-	# États bloquants : plus rien à faire
-	if is_dead or is_falling:
-		return
-
-	# check user input, if he is in control
 	if not (is_jumping or is_sliding or is_one_way):
 		var input_direction := Vector2.ZERO
 
@@ -106,102 +159,165 @@ func _physics_process(delta: float) -> void:
 				input_direction = _southwest
 
 		if input_direction and is_valid_direction(input_direction):
-			last_direction = input_direction
+			_last_direction = input_direction
 
-	# === Direction actuelle ===
 	if is_jumping:
-		direction = _jump_direction
+		_direction = _jump_direction
 	elif is_sliding:
-		direction = _slide_direction
+		_direction = _slide_direction
 	else:
-		direction = last_direction
+		_direction = _last_direction
 
-	# === Mouvement ===
-	if direction:
-		position += direction * _get_current_speed() * delta
-		z_index = roundi(global_position.y)
+	var new_pos = position + _direction * _get_current_speed() * delta
+	var new_global_pos = get_parent().to_global(new_pos)
+	var new_cell = _map.get_cell_at_pos(new_global_pos)
 
-	# keep camera aimed at runner
-	$Character/Cam.update_aim_point(global_position)
+	# Turn one-way off after leaving the one-way cell. Normally one-way is
+	# turned off by _check_one_way() when the runner is no longer in contact
+	# with the one-way sign's collider. But if the runner steps directly from
+	# that collider to a neighboring cell, or to a space where there is no cell,
+	# _check_one_way() will not be called.
 
-	# === Animations normales (seulement si pas en action spéciale) ===
-	if not is_jumping and not is_sliding:
-		if direction == Vector2.ZERO:
-			if last_direction == Vector2.ZERO:
-				animation_player.play("Intro")
+	if is_one_way and new_cell != _curr_cell:
+		is_one_way = false
+
+	# Check for obstacles at the new location. Note that obstacles may come to
+	# the runner even if he has not moved yet.
+
+	if new_cell == null:
+		if not is_jumping:
+			_start_falling()
+	elif new_cell.get_artefact():
+		_die(false)
+	else:
+		match new_cell.get_state():
+			Cell.State.LOWERED, Cell.State.HIDDEN:
+				if not is_jumping:
+					_start_falling()
+			Cell.State.TELEPORT:
+				_check_teleport(new_cell)
+			Cell.State.ONE_WAY:
+				# this was already handled above
+				pass
+			Cell.State.PYLON:
+				_check_pylon(new_cell)
+
+	# Update the position of the runner and the camera, unless the runner hit
+	# something inpenetrable (a pylon or artefact), or he has not started to run
+	# yet.
+
+	if not (is_dead or is_falling) and _direction:
+		_set_position(new_pos, false, new_cell)
+
+	# Add a point to the runner's wall, unless he is dead, or falling, or
+	# jumping, or sliding, or teleporting...
+
+	if is_jumping or is_sliding or is_teleporting or is_dead or is_falling:
+		_curr_wall = null
+	elif _curr_cell and _direction:
+		_add_to_wall(_curr_cell)
+
+	# Default animation.
+
+	if not (is_jumping or is_sliding or is_dead or is_falling):
+		if _direction == Vector2.ZERO:
+			if _last_direction == Vector2.ZERO:
+				_animation.play("Intro")
 			else:
-				if last_direction.y < 0:
-					animation_player.play("Start_000")
-					sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
+				if _last_direction.y < 0:
+					_animation.play("Start_000")
+					_sprite.scale.x = 1.0 if _last_direction.x < 0 else -1.0
 				else:
-					animation_player.play("Start_180")
-					sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
+					_animation.play("Start_180")
+					_sprite.scale.x = -1.0 if _last_direction.x < 0 else 1.0
 		else:
-			if direction.y < 0:
-				animation_player.play("Run_000")
-				sprite.scale.x = 1.0 if direction.x < 0 else -1.0
+			if _direction.y < 0:
+				_animation.play("Run_000")
+				_sprite.scale.x = 1.0 if _direction.x < 0 else -1.0
 			else:
-				animation_player.play("Run_180")
-				sprite.scale.x = -1.0 if direction.x < 0 else 1.0
+				_animation.play("Run_180")
+				_sprite.scale.x = -1.0 if _direction.x < 0 else 1.0
+
+#
+# Whenever the runner's position changes, a few other things need to be done as
+# well: update his Z-index, update the current cell, remember the cell's current
+# position in case it slides, and update the camera to aim at the new position.
+#
+# Note that the Z-index is NOT updated if the runner is in the central cell and
+# the door is present. In that case only, the Z-index is set differently, in
+# _physics_process(), so that the runner is displayed behind, inside or in front
+# of the door, as appropriate.
+#
+func _set_position(pos: Vector2, is_global: bool, cell: Cell):
+	if is_global:
+		global_position = pos
+	else:
+		position = pos
+	if cell == null or cell.get_door() == null:
+		z_index = roundi(global_position.y)
+	_curr_cell = cell
+	if _curr_cell:
+		_curr_cell_pos = _curr_cell.global_position
+	_camera.update_aim_point(global_position)
 
 func _get_current_speed() -> float:
-	if is_jumping and animation_player.current_animation.begins_with("Jump_"):
-		var progress = (animation_player.current_animation_position /
-						animation_player.current_animation_length)
+	if is_jumping and _animation.current_animation.begins_with("Jump_"):
+		var progress = (_animation.current_animation_position /
+						_animation.current_animation_length)
 		return lerp(move_speed, jump_speed, progress)
-	elif is_sliding and animation_player.current_animation.begins_with("Sliding_"):
-		var progress = (animation_player.current_animation_position /
-						animation_player.current_animation_length)
+	elif is_sliding and _animation.current_animation.begins_with("Sliding_"):
+		var progress = (_animation.current_animation_position /
+						_animation.current_animation_length)
 		return lerp(move_speed, slide_speed, progress)
 	else:
 		return move_speed
 
 func _play_jump_animation() -> void:
-	if last_direction == Vector2.ZERO or is_dead or is_falling: return
+	if _last_direction == Vector2.ZERO or is_dead or is_falling: return
 	is_jumping = true
-	_jump_direction = last_direction
-	if last_direction.y < 0:
-		animation_player.play(&"Jump_000")
-		sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
+	_jump_direction = _last_direction
+	if _last_direction.y < 0:
+		_animation.play(&"Jump_000")
+		_sprite.scale.x = 1.0 if _last_direction.x < 0 else -1.0
 	else:
-		animation_player.play(&"Jump_180")
-		sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
+		_animation.play(&"Jump_180")
+		_sprite.scale.x = -1.0 if _last_direction.x < 0 else 1.0
 
 func _change_jump_direction(new_direction: Vector2):
 	if new_direction.y < 0:
-		if animation_player.current_animation == &"Jump_180":
-			animation_player.play_section(
-				&"Jump_000", animation_player.current_animation_position)
-		sprite.scale.x = 1.0 if new_direction.x < 0 else -1.0
+		if _animation.current_animation == &"Jump_180":
+			_animation.play_section(
+				&"Jump_000", _animation.current_animation_position)
+		_sprite.scale.x = 1.0 if new_direction.x < 0 else -1.0
 	else:
-		if animation_player.current_animation == &"Jump_000":
-			animation_player.play_section(
-				&"Jump_180", animation_player.current_animation_position)
-		sprite.scale.x = -1.0 if new_direction.x < 0 else 1.0
+		if _animation.current_animation == &"Jump_000":
+			_animation.play_section(
+				&"Jump_180", _animation.current_animation_position)
+		_sprite.scale.x = -1.0 if new_direction.x < 0 else 1.0
 	_jump_direction = new_direction
 
 func _play_slide_animation() -> void:
-	if last_direction == Vector2.ZERO or is_dead or is_falling: return
+	if _last_direction == Vector2.ZERO or is_dead or is_falling: return
 	is_sliding = true
-	_slide_direction = last_direction
-	if last_direction.y < 0:
-		animation_player.play("Sliding_000")
-		sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
+	_slide_direction = _last_direction
+	if _last_direction.y < 0:
+		_animation.play("Sliding_000")
+		_sprite.scale.x = 1.0 if _last_direction.x < 0 else -1.0
 	else:
-		animation_player.play("Sliding_180")
-		sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
+		_animation.play("Sliding_180")
+		_sprite.scale.x = -1.0 if _last_direction.x < 0 else 1.0
 
 func _change_slide_direction(new_direction: Vector2):
 	if new_direction.y < 0:
-		if animation_player.current_animation == &"Sliding_180":
-			animation_player.play_section(
-				&"Sliding_000", animation_player.current_animation_position)
-		sprite.scale.x = 1.0 if new_direction.x < 0 else -1.0
+		if _animation.current_animation == &"Sliding_180":
+			_animation.play_section(
+				&"Sliding_000", _animation.current_animation_position)
+		_sprite.scale.x = 1.0 if new_direction.x < 0 else -1.0
 	else:
-		if animation_player.current_animation == &"Sliding_000":
-			animation_player.play_section(
-				&"Sliding_180", animation_player.current_animation_position)
-		sprite.scale.x = -1.0 if new_direction.x < 0 else 1.0
+		if _animation.current_animation == &"Sliding_000":
+			_animation.play_section(
+				&"Sliding_180", _animation.current_animation_position)
+		_sprite.scale.x = -1.0 if new_direction.x < 0 else 1.0
 	_slide_direction = new_direction
 
 func _die(fast: bool) -> void:
@@ -213,27 +329,25 @@ func _die(fast: bool) -> void:
 	# finishes.
 	#
 	# Also, if fast is true, the entire wall behind the runner disappears
-	# almost immediately. If false, only the last two segments of wall are
-	# eliminated immediately, to avoid the Death animation overlapping with
-	# the wall; the rest of the wall disappears when the runner has disappeared,
-	# that is, when the Disappearing animation has finished.
+	# almost immediately. If false, only the last segment of the wall is
+	# eliminated immediately, to avoid the Death animation overlapping with it;
+	# the rest of the wall disappears when the runner has disappeared, that is,
+	# when the Disappearing animation has finished.
 
 	if fast:
-		disappear_player.play("Disappearing")
+		_disappear.play("Disappearing")
 		for wall in _walls:
 			wall.disappear()
 	else:
 		if _walls.size() > 0:
-			if _walls.size() > 1:
-				_walls[-2].disappear()
-			_walls[-1].disappear()
+			_walls.back().disappear()
 
-	if last_direction.y < 0:
-		animation_player.play("Death_000")
-		sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
+	if _direction.y < 0:
+		_animation.play("Death_000")
+		_sprite.scale.x = 1.0 if _direction.x < 0 else -1.0
 	else:
-		animation_player.play("Death_180")
-		sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
+		_animation.play("Death_180")
+		_sprite.scale.x = -1.0 if _direction.x < 0 else 1.0
 
 func _start_falling() -> void:
 	if is_falling or is_dead: return
@@ -242,14 +356,13 @@ func _start_falling() -> void:
 	set_physics_process(false)
 
 	z_index = RenderingServer.CANVAS_ITEM_Z_MIN
-	character.z_index = 0
 
-	if last_direction.y < 0:
-		animation_player.play("Falling_000")
-		sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
+	if _direction.y < 0:
+		_animation.play("Falling_000")
+		_sprite.scale.x = 1.0 if _direction.x < 0 else -1.0
 	else:
-		animation_player.play("Falling_180")
-		sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
+		_animation.play("Falling_180")
+		_sprite.scale.x = -1.0 if _direction.x < 0 else 1.0
 
 func _on_animation_finished(anim_name: String) -> void:
 	if anim_name.begins_with("Jump_"):
@@ -262,7 +375,7 @@ func _on_animation_finished(anim_name: String) -> void:
 		# if _die(true) was called, then Disappearing has already been played,
 		# in which case it will have called set_physics_process(false) already
 		if is_physics_processing():
-			disappear_player.play("Disappearing")
+			_disappear.play("Disappearing")
 			for wall in _walls:
 				wall.disappear()
 	elif anim_name.begins_with("Falling_"):
@@ -273,147 +386,30 @@ func _on_animation_finished(anim_name: String) -> void:
 	if is_dead or is_falling:
 		return
 
-	if direction != Vector2.ZERO:
-		if direction.y < 0:
-			animation_player.play("Run_000")
-			sprite.scale.x = 1.0 if direction.x < 0 else -1.0
+	if _direction != Vector2.ZERO:
+		if _direction.y < 0:
+			_animation.play("Run_000")
+			_sprite.scale.x = 1.0 if _direction.x < 0 else -1.0
 		else:
-			animation_player.play("Run_180")
-			sprite.scale.x = -1.0 if direction.x < 0 else 1.0
+			_animation.play("Run_180")
+			_sprite.scale.x = -1.0 if _direction.x < 0 else 1.0
 	else:
-		if last_direction == Vector2.ZERO:
-			animation_player.play("Intro")
-		elif last_direction.y < 0:
-			animation_player.play("Start_000")
-			sprite.scale.x = 1.0 if last_direction.x < 0 else -1.0
+		if _last_direction == Vector2.ZERO:
+			_animation.play("Intro")
+		elif _last_direction.y < 0:
+			_animation.play("Start_000")
+			_sprite.scale.x = 1.0 if _last_direction.x < 0 else -1.0
 		else:
-			animation_player.play("Start_180")
-			sprite.scale.x = -1.0 if last_direction.x < 0 else 1.0
+			_animation.play("Start_180")
+			_sprite.scale.x = -1.0 if _last_direction.x < 0 else 1.0
 
 func _on_disappear_finished(_anim_name: String):
 	set_physics_process(false)
 
 func is_valid_direction(new_direction: Vector2) -> bool:
-	if last_direction == Vector2.ZERO:
+	if _last_direction == Vector2.ZERO:
 		return true
-	return not is_zero_approx(last_direction.dot(new_direction) + 1.0)
-
-#
-# Checks whether the runner's location (current cell) has changed, and if he
-# has encountered an obstacle, or a teleport, or fallen off the map, etc. On
-# return, he may be dead or falling. And _curr_cell contains the cell where the
-# runner is now located, if any.
-#
-# Returns true if the runner died after running into something, in which case
-# he should bounce back in the direction he was moving.
-#
-func _check_location() -> bool:
-	if _map == null:
-		return false
-
-	# find the cell underfoot
-
-	#var next_cell: Cell = _map.get_cell_in_area(collider)
-	var next_cell: Cell = _map.get_cell_at_pos(global_position)
-
-	if is_jumping or is_sliding or is_teleporting or is_dead or is_falling:
-		_last_wall = null
-	elif next_cell and last_direction:
-		_add_to_wall(next_cell)
-
-	# Turn one-way off after leaving the one-way cell. Normally one-way is
-	# turned off by _check_one_way() when the runner is no longer in contact
-	# with the one-way sign's collider. But if the runner steps directly from
-	# that collider to a neighboring cell, or to a space where there is no cell,
-	# _check_one_way() will not be called.
-
-	if is_one_way and next_cell != _curr_cell:
-		is_one_way = false
-
-	# check for new obstacles if the runner is not already dead or falling
-
-	var backup: bool
-	if is_dead or is_falling:
-		backup = false
-	else:
-		backup = _check_for_obstacle(next_cell)
-
-	# if the runner hasn't moved to a different cell and the cell is moving,
-	# move the runner with it (even if he is dead)
-
-	if _curr_cell and _curr_cell == next_cell and not (is_falling or is_jumping):
-		position += _curr_cell.global_position - _curr_cell_pos
-		z_index = roundi(global_position.y)
-
-	# note the current cell and position for next time
-
-	_curr_cell = next_cell
-	if _curr_cell:
-		_curr_cell_pos = _curr_cell.global_position
-
-	return backup
-
-#
-# Checks for a new obstacle in the cell underfoot. It is assumed that the
-# runner is neither dead nor falling when this is called; he may be dead or
-# falling on return.
-#
-# Returns true if the runner died after running into something, in which case
-# he should bounce back in the direction he was moving.
-#
-func _check_for_obstacle(next_cell: Cell) -> bool:
-	var hit_door = false
-
-	if next_cell and next_cell.is_center():
-		if not is_exiting:
-			if next_cell.get_artefact():
-				_die(false)
-			elif next_cell.get_door():
-				match next_cell.get_door().get_zone_at(collider):
-					Door.Zone.FRAME:
-						_die(false)
-						hit_door = true
-					Door.Zone.PASSAGE:
-						print("we're out!")
-						character.z_index = Door.Depth.MIDDLE
-						is_exiting = true
-					Door.Zone.BACK:
-						character.z_index = Door.Depth.BACK
-					Door.Zone.MIDDLE:
-						character.z_index = Door.Depth.MIDDLE
-					Door.Zone.FRONT:
-						character.z_index = Door.Depth.FRONT
-			elif next_cell.get_state() == Cell.State.LOWERED:
-				if not is_jumping:
-					_start_falling()
-	else:
-		character.z_index = 0
-		is_exiting = false
-		if next_cell:
-			match next_cell.get_state():
-				Cell.State.LOWERED, Cell.State.HIDDEN:
-					if not is_jumping:
-						_start_falling()
-				Cell.State.TELEPORT:
-					_check_teleport(next_cell)
-				Cell.State.ONE_WAY:
-					_check_one_way(next_cell)
-				Cell.State.PYLON:
-					_check_pylon(next_cell)
-		else:
-			if not is_jumping:
-				_start_falling()
-
-	# Did the runner run into something, in which case he has to bounce back?
-	# The check whether the runner has just moved to a different cell is to
-	# distinguish between cases where he runs into a cell containing a pylon or
-	# an artefact (bounce back), and cases where a pylon falls on him in his
-	# current cell (don't bounce, just die instantly). Running into the frame of
-	# the door in the central cell is different: the door's collider is smaller
-	# than the cell's, so it is likely the runner will hit it after entering the
-	# cell.
-
-	return is_dead and (_curr_cell != next_cell or hit_door)
+	return not is_zero_approx(_last_direction.dot(new_direction) + 1.0)
 
 func _check_teleport(cell: Cell):
 	var destination = cell.get_teleport_partner()
@@ -424,10 +420,7 @@ func _check_teleport(cell: Cell):
 	var anim: AnimationPlayer = $Animation_Bonus_Malus
 	anim.play("Bonus_Malus")
 	await anim.animation_finished
-	_curr_cell = destination
-	_curr_cell_pos = destination.global_position
-	global_position = _curr_cell_pos
-	z_index = roundi(global_position.y)
+	_set_position(destination.global_position, true, destination)
 	anim.play("Bonus_Malus")
 	if _map:
 		await anim.animation_finished
@@ -439,7 +432,7 @@ func _check_one_way(cell: Cell):
 	# no overlap with one-way collider: turn one-way off, if it is on, and do
 	# nothing
 
-	if not collider.overlaps_area(cell.get_one_way_collider()):
+	if not _collider.overlaps_area(cell.get_one_way_collider()):
 		is_one_way = false
 		return
 
@@ -463,9 +456,11 @@ func _check_one_way(cell: Cell):
 
 	# if the runner is going the opposite direction, kill him
 
-	if is_equal_approx(direction.dot(new_direction), -1.0):
+	if is_equal_approx(_direction.dot(new_direction), -1.0):
 		_die(false)
 		return
+
+	is_one_way = true
 
 	# play the Bonus_Malus animation before actually changing the runner's
 	# direction, then again, and finally remove the one-way obstacle
@@ -473,12 +468,11 @@ func _check_one_way(cell: Cell):
 	var anim: AnimationPlayer = $Animation_Bonus_Malus
 	anim.play("Bonus_Malus")
 	await anim.animation_finished
-	last_direction = new_direction
+	_last_direction = new_direction
 	if is_jumping:
 		_change_jump_direction(new_direction)
 	elif is_sliding:
 		_change_slide_direction(new_direction)
-	is_one_way = true
 	anim.play("Bonus_Malus")
 	if _map:
 		_map.cancel_one_way(cell)
@@ -510,8 +504,8 @@ func _add_to_wall(cell: Cell):
 
 	# add to previous wall if there is one and we have not left its cell
 
-	if _last_wall and _last_wall.cell == cell:
-		wall = _last_wall
+	if _curr_wall and _curr_wall.cell == cell:
+		wall = _curr_wall
 
 	# otherwise create a new wall and attach it to the given cell
 
@@ -528,15 +522,15 @@ func _add_to_wall(cell: Cell):
 		# finish the previous wall and start the new one with a point at the
 		# intersection of the neighboring cells
 
-		if _last_wall:
-			var last_cell: Cell = _last_wall.cell
+		if _curr_wall:
+			var last_cell: Cell = _curr_wall.cell
 			var intersection = last_cell.get_exit_point(
-				last_cell.get_last_point_on_wall(_last_wall), last_direction)
+				last_cell.get_last_point_on_wall(_curr_wall), _last_direction)
 			if intersection:
-				last_cell.add_point_to_wall(_last_wall, intersection)
+				last_cell.add_point_to_wall(_curr_wall, intersection)
 				cell.add_point_to_wall(wall, intersection)
 
-		_last_wall = wall
+		_curr_wall = wall
 
 	# add the current position to the current wall
 
