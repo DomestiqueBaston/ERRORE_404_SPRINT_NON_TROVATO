@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://djtsckm76aeau"]
 
 [ext_resource type="Shader" uid="uid://1uirkyntqux" path="res://SHADER/Light_Wall_Glitch.gdshader" id="1_26063"]
-[ext_resource type="Gradient" uid="uid://d2yj5gmwpcn0g" path="res://RESOURCE/Runner_Wall_Main_Gradient.tres" id="2_bjou7"]
+[ext_resource type="Gradient" uid="uid://d2yj5gmwpcn0g" path="res://RESOURCE/Runner_Wall_Main_Gradient_4.tres" id="2_bjou7"]
 [ext_resource type="AudioStream" uid="uid://3b3j7ke38t82" path="res://SOUND/FX/Disappearing_Light_Wall.ogg" id="3_jdkuv"]
 [ext_resource type="AudioStream" uid="uid://dhqe43polir8c" path="res://SOUND/FX/Appearing_Light_Wall.ogg" id="4_lnn84"]
 [ext_resource type="AudioStream" uid="uid://dttkq5rw4spvt" path="res://SOUND/FX/Wall_Hum.ogg" id="5_5tnv1"]

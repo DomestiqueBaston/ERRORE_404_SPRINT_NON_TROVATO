@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://c7jmoetchnqc4"]
 
 [ext_resource type="Shader" uid="uid://1uirkyntqux" path="res://SHADER/Light_Wall_Glitch.gdshader" id="1_jwl12"]
-[ext_resource type="Gradient" uid="uid://d2yj5gmwpcn0g" path="res://RESOURCE/Runner_Wall_Main_Gradient.tres" id="2_k10b4"]
+[ext_resource type="Gradient" uid="uid://y1esusxphd5n" path="res://RESOURCE/Runner_Wall_Main_Gradient_1.tres" id="2_k10b4"]
+[ext_resource type="Gradient" uid="uid://hmbxkmock1iq" path="res://RESOURCE/Runner_Wall_Main_Gradient_3.tres" id="3_fwk0l"]
 [ext_resource type="Script" uid="uid://cmkdobddddf6r" path="res://SCENE_AND_SCRIPT/Wall.gd" id="3_k10b4"]
 [ext_resource type="AudioStream" uid="uid://3b3j7ke38t82" path="res://SOUND/FX/Disappearing_Light_Wall.ogg" id="4_fwk0l"]
+[ext_resource type="Gradient" uid="uid://cn6cyxlo1im0r" path="res://RESOURCE/Runner_Wall_Main_Gradient_2.tres" id="4_rptlq"]
 [ext_resource type="AudioStream" uid="uid://dhqe43polir8c" path="res://SOUND/FX/Appearing_Light_Wall.ogg" id="5_pgiuf"]
+[ext_resource type="Gradient" uid="uid://d2yj5gmwpcn0g" path="res://RESOURCE/Runner_Wall_Main_Gradient_4.tres" id="6_ifb55"]
 [ext_resource type="AudioStream" uid="uid://dttkq5rw4spvt" path="res://SOUND/FX/Wall_Hum.ogg" id="6_o83og"]
+[ext_resource type="Gradient" uid="uid://btr74brps8xgm" path="res://RESOURCE/Runner_Wall_Main_Gradient_5.tres" id="7_ifb55"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7eock"]
 shader = ExtResource("1_jwl12")
@@ -121,6 +125,44 @@ _data = {
 &"RESET": SubResource("Animation_2a5rv")
 }
 
+[sub_resource type="Animation" id="Animation_gnvm3"]
+resource_name = "Color"
+length = 0.26666668
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh:texture:gradient")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666666, 0.10000001, 0.13333334, 0.16666666, 0.19999999, 0.23333335, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_k10b4"), ExtResource("4_rptlq"), ExtResource("2_k10b4"), ExtResource("3_fwk0l"), ExtResource("2_k10b4"), ExtResource("6_ifb55"), ExtResource("2_k10b4"), ExtResource("7_ifb55"), ExtResource("2_k10b4")]
+}
+
+[sub_resource type="Animation" id="Animation_8s236"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh:texture:gradient")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_k10b4")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tvr7v"]
+_data = {
+&"Color": SubResource("Animation_gnvm3"),
+&"RESET": SubResource("Animation_8s236")
+}
+
 [node name="Wall" type="Node2D" unique_id=1058577583]
 script = ExtResource("3_k10b4")
 
@@ -137,6 +179,10 @@ monitoring = false
 
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=96980023]
 libraries/ = SubResource("AnimationLibrary_gnvm3")
+
+[node name="Shader_Animation" type="AnimationPlayer" parent="." unique_id=305318187]
+libraries/ = SubResource("AnimationLibrary_tvr7v")
+autoplay = &"Color"
 
 [node name="Sounds" type="Node2D" parent="." unique_id=1766457650]
 metadata/_edit_lock_ = true
