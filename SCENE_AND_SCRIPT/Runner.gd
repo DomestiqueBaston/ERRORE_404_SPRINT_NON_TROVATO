@@ -76,7 +76,9 @@ func _physics_process(delta: float):
 	# - to navigate the central cell's doorway
 	# - for one-way signs
 	#
-	# First check for collisions with wall, which can be found anywhere.
+	# Collision detection is NOT used to determine which cell the runner is on.
+	#
+	# So first check for collisions with walls, which can be found anywhere.
 
 	if not is_dead:
 		for area in _collider.get_overlapping_areas():
@@ -91,7 +93,7 @@ func _physics_process(delta: float):
 	# doorway, as opposed to all other times. Usually, the Z-index is set to the
 	# global position in Y, just like pylons, the artefact and the door itself.
 	# But in the central cell, when the door is present, the runner's Z-index is
-	# setequal to the door's, plus a small offset to ensure he is displayed
+	# set equal to the door's, plus a small offset to ensure he is displayed
 	# behind the door, in front of the door, or inbetween the two door frames.
 
 	if not is_dead:
@@ -357,7 +359,7 @@ func _die(fast: bool) -> void:
 			wall.disappear()
 	else:
 		for wall in _walls:
-			wall.backup(200)
+			wall.backup(225)
 
 	if _direction.y < 0:
 		_animation.play("Death_000")
