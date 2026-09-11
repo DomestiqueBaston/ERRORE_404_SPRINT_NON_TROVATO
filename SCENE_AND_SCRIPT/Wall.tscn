@@ -132,16 +132,19 @@ metadata/_edit_lock_ = true
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=96980023]
 libraries/ = SubResource("AnimationLibrary_gnvm3")
 
-[node name="Sounds" type="Node" parent="." unique_id=1154567853]
+[node name="Sounds" type="Node2D" parent="." unique_id=1766457650]
+metadata/_edit_lock_ = true
 
 [node name="Disappearing" type="AudioStreamPlayer2D" parent="Sounds" unique_id=149831497]
 stream = ExtResource("4_fwk0l")
+volume_db = -7.5
 max_distance = 1000.0
 bus = &"FX_DRY"
 metadata/_edit_lock_ = true
 
 [node name="Appearing" type="AudioStreamPlayer2D" parent="Sounds" unique_id=679119501]
 stream = ExtResource("5_pgiuf")
+volume_db = 5.0
 max_distance = 1000.0
 bus = &"FX_DRY"
 metadata/_edit_lock_ = true

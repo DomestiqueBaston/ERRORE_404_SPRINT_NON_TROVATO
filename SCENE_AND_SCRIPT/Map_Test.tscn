@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" uid="uid://c4s5ivkq1vpas" path="res://SCENE_AND_SCRIPT/Map_Test.gd" id="1_7cuhg"]
 [ext_resource type="PackedScene" uid="uid://bs6lfs8h7kibb" path="res://SCENE_AND_SCRIPT/Quit_Button.tscn" id="2_5js3l"]
-[ext_resource type="FontFile" uid="uid://b6oxbwfgmigfj" path="res://RESOURCE/OCRA.ttf" id="2_v7f3u"]
-[ext_resource type="Script" uid="uid://bhb0bvvkdgdea" path="res://TRASH/Label_to_delete.gd" id="3_dt873"]
 
 [node name="Map_Test" type="Node2D" unique_id=1968653440]
 y_sort_enabled = true
@@ -11,19 +9,6 @@ script = ExtResource("1_7cuhg")
 metadata/_edit_lock_ = true
 
 [node name="Frames" type="CanvasLayer" parent="." unique_id=1367928238]
-metadata/_edit_lock_ = true
-
-[node name="Label_to_delete" type="Label" parent="Frames" unique_id=79902063]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 44.0
-offset_bottom = 27.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_v7f3u")
-theme_override_font_sizes/font_size = 16
-script = ExtResource("3_dt873")
 metadata/_edit_lock_ = true
 
 [node name="Quit_Button" parent="Frames" unique_id=1295710875 instance=ExtResource("2_5js3l")]
