@@ -47,8 +47,7 @@ enum ObstacleType {
 	CELL_TELEPORT2,
 	PYLON_LOWER,
 	PYLON_DROP,
-	# only events above this line are generated randomly
-	_RANDOM_
+	_COUNT_
 }
 
 class ObstacleEvent extends RefCounted:
@@ -600,7 +599,11 @@ func _remove_obstacle(cell: Cell) -> bool:
 # Generates a new obstacle when the timer goes off.
 #
 func _on_obstacle_timer_timeout():
-	var type = randi() % ObstacleType._RANDOM_
+	# we make CELL_ONE_WAY twice as likely to appear as the others, because the
+	# other event types are all in pairs...
+	var type = randi() % (ObstacleType._COUNT_ + 1)
+	if type == ObstacleType._COUNT_:
+		type = ObstacleType.CELL_ONE_WAY
 	var event = ObstacleEvent.new(type as ObstacleType)
 	_handle_obstacle_event(event)
 
