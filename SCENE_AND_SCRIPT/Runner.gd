@@ -71,23 +71,36 @@ func _physics_process(delta: float):
 	# the runner's position, because the physics server has already performed
 	# collision detection based on the current position.
 	#
-	# Collision detection is used in two cases: to navigate the central cell's
-	# doorway, and for one-way signs. In the first case, we determine where the
-	# runner is positioned relative to the two sides of the door and set his
-	# Z-index so that he is displayed behind, inside or in front of the door, as
-	# appropriate (in addition to determining if he has made his way through
-	# it). In the case of a one-way sign, _check_one_way() uses colliders to
-	# detect when the runner has hit the sign (and not just entered the cell).
+	# Collision detection is used in three cases:
+	# - for the walls that arise behind runners
+	# - to navigate the central cell's doorway
+	# - for one-way signs
 	#
-	# Note that the runner's Z-index is set differently when he is in the
-	# central cell with the door present, as opposed to all other times.
-	# Usually, the runner's Z-index is set to his global position in Y, just
-	# like pylons, the artefact and the door. But in the central cell, when the
-	# door is present, the runner's Z-index is set equal to the door's, plus a
-	# small offset to ensure he is displayed on the right side of the two door
-	# frames.
+	# First check for collisions with wall, which can be found anywhere.
 
 	if not is_dead:
+		for area in _collider.get_overlapping_areas():
+			if area.collision_layer & Globals.WALL_LAYER:
+				_die(false)
+
+	# Now handle the doorway and one-way signs (which are mutually exclusive:
+	# there are no one-way signs in the central cell) and at the same time set
+	# the runner's Z-index.
+	#
+	# The Z-index is set differently when the runner is in the cell with the
+	# doorway, as opposed to all other times. Usually, the Z-index is set to the
+	# global position in Y, just like pylons, the artefact and the door itself.
+	# But in the central cell, when the door is present, the runner's Z-index is
+	# setequal to the door's, plus a small offset to ensure he is displayed
+	# behind the door, in front of the door, or inbetween the two door frames.
+
+	if not is_dead:
+
+		# In the central cell with the door present: determine where the runner
+		# is positioned relative to the two sides of the door and set his
+		# Z-index appropriately (in addition to determining if he has made his
+		# way through the door).
+
 		var door: Door = _curr_cell.get_door() if _curr_cell else null
 		if door:
 			match door.get_zone_at(_collider):
@@ -105,6 +118,10 @@ func _physics_process(delta: float):
 					z_index = door.z_index + Door.Depth.MIDDLE
 				Door.Zone.FRONT:
 					z_index = door.z_index + Door.Depth.FRONT
+
+		# Otherwise (NOT in the cell with the doorway): check for collisions
+		# with one-way signs, and set the Z-index as usual.
+
 		else:
 			z_index = roundi(global_position.y)
 			is_exiting = false
@@ -161,6 +178,7 @@ func _physics_process(delta: float):
 		if input_direction and is_valid_direction(input_direction):
 			_last_direction = input_direction
 
+	var prev_direction = _direction
 	if is_jumping:
 		_direction = _jump_direction
 	elif is_sliding:
@@ -215,7 +233,7 @@ func _physics_process(delta: float):
 	if is_jumping or is_sliding or is_teleporting or is_dead or is_falling:
 		_curr_wall = null
 	elif _curr_cell and _direction:
-		_add_to_wall(_curr_cell)
+		_add_to_wall(_curr_cell, _direction == prev_direction)
 
 	# Default animation.
 
@@ -499,12 +517,13 @@ func play_foot_step_02():
 func play_foot_step_03():
 	_footstep3.play()
 
-func _add_to_wall(cell: Cell):
+func _add_to_wall(cell: Cell, is_same_dir: bool):
 	var wall: Wall
 
-	# add to previous wall if there is one and we have not left its cell
+	# add to previous wall if there is one and we have not left its cell or
+	# changed direction
 
-	if _curr_wall and _curr_wall.cell == cell:
+	if _curr_wall and _curr_wall.cell == cell and is_same_dir:
 		wall = _curr_wall
 
 	# otherwise create a new wall and attach it to the given cell
@@ -519,16 +538,24 @@ func _add_to_wall(cell: Cell):
 		if _walls.size() == 1:
 			get_tree().create_timer(Wall.delay).timeout.connect(wall.appear)
 
-		# finish the previous wall and start the new one with a point at the
-		# intersection of the neighboring cells
-
 		if _curr_wall:
-			var last_cell: Cell = _curr_wall.cell
-			var intersection = last_cell.get_exit_point(
-				last_cell.get_last_point_on_wall(_curr_wall), _last_direction)
-			if intersection:
-				last_cell.add_point_to_wall(_curr_wall, intersection)
-				cell.add_point_to_wall(wall, intersection)
+
+			# change of direction: finish the previous wall where the new wall
+			# begins
+
+			if _curr_wall.cell == cell:
+				cell.add_point_to_wall(_curr_wall, global_position)
+
+			# change of cell: finish the previous wall and start the new one
+			# with a point at the intersection of the neighboring cells
+
+			else:
+				var last_cell: Cell = _curr_wall.cell
+				var intersection = last_cell.get_exit_point(
+					last_cell.get_last_point_on_wall(_curr_wall), _last_direction)
+				if intersection:
+					last_cell.add_point_to_wall(_curr_wall, intersection)
+					cell.add_point_to_wall(wall, intersection)
 
 		_curr_wall = wall
 

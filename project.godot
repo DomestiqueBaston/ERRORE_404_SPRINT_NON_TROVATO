@@ -141,6 +141,7 @@ ui_down_button={
 
 2d_physics/layer_1="runners"
 2d_physics/layer_2="map"
+2d_physics/layer_3="walls"
 
 [physics]
 

@@ -7,7 +7,7 @@ signal gone
 var cell: Cell
 
 ## The delay in milliseconds before a point is made visible
-const delay_msec: int = 50
+const delay_msec: int = 100
 
 ## The delay in seconds before a point is made visible
 const delay: float = delay_msec / 1000.0
@@ -18,6 +18,7 @@ var duration_msec: int = \
 
 @onready var _mesh_instance: MeshInstance2D = $Mesh
 @onready var _animation: AnimationPlayer = $Animation
+@onready var _collider_shape: CollisionShape2D = $Collider/Shape
 @onready var _hum: AudioStreamPlayer2D = $Sounds/Wall_Hum
 
 # points constituting the wall
@@ -40,6 +41,10 @@ func _physics_process(_delta: float):
 ## have been added. Points are made visible after a slight delay (see the delay
 ## constant), and become invisible again after a certain amount of time has
 ## elapsed (see duration_msec).
+##
+## It is assumed that the wall is a straight line, i.e. that the points added
+## are all colinear, which greatly simplifies display and collision detection.
+## So if the runner changes direction, start a new wall.
 ##
 func add_point(pos: Vector2):
 	_points.push_back(pos)
@@ -80,20 +85,26 @@ func _update_mesh():
 	if count <= 1:
 		return
 
-	# convert the visible points to a mesh
+	# make a single parallelogram from the first visible point and the last (it
+	# is assumed that the points are all colinear)
 
+	const dy = Vector2(0, -80)
+	var p1 = _points[0]
+	var p2 = _points[count-1]
 	var xy = PackedVector2Array()
 	var uv = PackedVector2Array()
-	xy.resize(2 * count)
-	uv.resize(2 * count)
-	var div = count as float
+	xy.resize(4)
+	uv.resize(4)
 
-	for i in count:
-		xy[2*i] = _points[i]
-		xy[2*i+1] = _points[i] + Vector2(0, -80)
-		var u = i / div
-		uv[2*i] = Vector2(u, 1)
-		uv[2*i+1] = Vector2(u, 0)
+	xy[0] = p1
+	xy[1] = p1 + dy
+	xy[2] = p2
+	xy[3] = p2 + dy
+
+	uv[0] = Vector2(0, 1)
+	uv[1] = Vector2(0, 0)
+	uv[2] = Vector2(1, 1)
+	uv[3] = Vector2(1, 0)
 
 	var arrays = []
 	arrays.resize(Mesh.ARRAY_MAX)
@@ -103,6 +114,22 @@ func _update_mesh():
 	var mesh = ArrayMesh.new()
 	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLE_STRIP, arrays)
 	_mesh_instance.mesh = mesh
+
+	# the collider is a single segment from the first visible point to the last
+
+	var segment = SegmentShape2D.new()
+	segment.a = p1
+	segment.b = p2
+	_collider_shape.shape = segment
+
+	#const thickness = 20
+	#var rect = RectangleShape2D.new()
+	#var vec = p2 - p1
+	#var dist = vec.length()
+	#rect.size = Vector2(dist + thickness, thickness)
+	#_collider_shape.rotation = vec.angle()
+	#_collider_shape.position = (p1 + p2) * 0.5
+	#_collider_shape.shape = rect
 
 	# hum for as long as the wall is visible
 

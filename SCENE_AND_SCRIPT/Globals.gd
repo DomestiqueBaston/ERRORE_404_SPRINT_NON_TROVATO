@@ -19,6 +19,7 @@ const MUSIC_BUS: int = 5
 
 const RUNNER_LAYER: int = 0x01
 const MAP_LAYER: int = 0x02
+const WALL_LAYER: int = 0x04
 
 var use_diagonals_for_movement: bool = true
 var map_size: int = 7

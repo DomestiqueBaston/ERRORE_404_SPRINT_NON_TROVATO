@@ -129,6 +129,12 @@ material = SubResource("ShaderMaterial_7eock")
 texture = SubResource("GradientTexture2D_wnvjj")
 metadata/_edit_lock_ = true
 
+[node name="Collider" type="Area2D" parent="." unique_id=564616757]
+collision_layer = 4
+monitoring = false
+
+[node name="Shape" type="CollisionShape2D" parent="Collider" unique_id=109869238]
+
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=96980023]
 libraries/ = SubResource("AnimationLibrary_gnvm3")
 
