@@ -2,4 +2,4 @@
 
 [resource]
 interpolation_mode = 2
-colors = PackedColorArray(0.36862746, 0, 0, 1, 0.37, 0, 0, 0)
+colors = PackedColorArray(0.45, 0, 0, 1, 0.45, 0, 0, 0)
