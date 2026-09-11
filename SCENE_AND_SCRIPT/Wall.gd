@@ -140,20 +140,36 @@ func _update_mesh():
 		_hum.play()
 
 ##
-## Freezes the wall in its current state by removing any points which have been
-## added but not yet made visible.
+## Disappears the wall if any points have been added to it in the given lapse of
+## time. First, any points that have been added to the wall but not yet made
+## visible are eliminated. Then, if the wall still contains one or more points
+## added recently, disappear() is called. If no points have been added in that
+## time, the wall is unaffected.
 ##
-func freeze():
+func backup(msec: int = delay_msec):
 	if _points.is_empty():
 		return
 
-	var time_limit = Time.get_ticks_msec() - delay_msec
+	# eliminate any points that have not appeared yet
+
+	var now = Time.get_ticks_msec()
+	var time_limit = now - delay_msec
 	var new_size = _times.size()
 	while new_size > 0 and _times[new_size - 1] >= time_limit:
 		new_size -= 1
 
+	if new_size == 0:
+		remove()
+		return
+
 	_points.resize(new_size)
 	_times.resize(new_size)
+
+	# if there are any points left that are younger than msec, make the whole
+	# wall disappear
+
+	if _times.back() >= now - msec:
+		disappear()
 
 ##
 ## Resets the wall and emits a gone signal.
