@@ -63,7 +63,8 @@ func _update_mesh():
 
 	# discard the oldest points
 
-	while not _times.is_empty() and _times[0] + delay_msec + duration_msec < now:
+	var time_limit = now - delay_msec - duration_msec
+	while not _times.is_empty() and _times[0] < time_limit:
 		_points.pop_front()
 		_times.pop_front()
 
@@ -76,9 +77,10 @@ func _update_mesh():
 	# count the points that are old enough to be visible
 
 	var count = 0
+	time_limit = now - delay_msec
 
 	while count < _times.size():
-		if _times[count] + delay_msec >= now:
+		if _times[count] >= time_limit:
 			break
 		count += 1
 
@@ -93,6 +95,7 @@ func _update_mesh():
 	var p2 = _points[count-1]
 	var xy = PackedVector2Array()
 	var uv = PackedVector2Array()
+
 	xy.resize(4)
 	uv.resize(4)
 
@@ -135,6 +138,22 @@ func _update_mesh():
 
 	if not _hum.playing:
 		_hum.play()
+
+##
+## Freezes the wall in its current state by removing any points which have been
+## added but not yet made visible.
+##
+func freeze():
+	if _points.is_empty():
+		return
+
+	var time_limit = Time.get_ticks_msec() - delay_msec
+	var new_size = _times.size()
+	while new_size > 0 and _times[new_size - 1] >= time_limit:
+		new_size -= 1
+
+	_points.resize(new_size)
+	_times.resize(new_size)
 
 ##
 ## Resets the wall and emits a gone signal.

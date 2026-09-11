@@ -347,18 +347,18 @@ func _die(fast: bool) -> void:
 	# finishes.
 	#
 	# Also, if fast is true, the entire wall behind the runner disappears
-	# almost immediately. If false, only the last segment of the wall is
-	# eliminated immediately, to avoid the Death animation overlapping with it;
-	# the rest of the wall disappears when the runner has disappeared, that is,
-	# when the Disappearing animation has finished.
+	# almost immediately. If false, we just stop the wall from growing, to avoid
+	# the Death animation overlapping with it; the wall disappears when the
+	# runner has disappeared, that is, when the Disappearing animation has
+	# finished.
 
 	if fast:
 		_disappear.play("Disappearing")
 		for wall in _walls:
 			wall.disappear()
 	else:
-		if _walls.size() > 0:
-			_walls.back().disappear()
+		for wall in _walls:
+			wall.freeze()
 
 	if _direction.y < 0:
 		_animation.play("Death_000")
