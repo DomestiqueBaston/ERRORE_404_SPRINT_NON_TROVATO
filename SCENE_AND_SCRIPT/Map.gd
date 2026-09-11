@@ -47,7 +47,9 @@ enum ObstacleType {
 	CELL_TELEPORT2,
 	PYLON_LOWER,
 	PYLON_DROP,
-	_COUNT_
+	# only events above this line are generated randomly
+	_RANDOM_,
+	REMOVE_ARTEFACT
 }
 
 class ObstacleEvent extends RefCounted:
@@ -89,7 +91,7 @@ func _ready():
 
 	var center_time = 6 * (2 * Globals.map_size + 1 + 2 * Globals.difficulty)
 	var center_timer = get_tree().create_timer(center_time)
-	center_timer.timeout.connect(_remove_artefact)
+	center_timer.timeout.connect(_on_center_timer_timeout)
 
 func _build_map():
 	var parent: Node2D = self
@@ -517,6 +519,9 @@ func _handle_obstacle_event(event: ObstacleEvent):
 				await _undrop_pylon(event.cell)
 				_available_cells.append(event.cell)
 
+		ObstacleType.REMOVE_ARTEFACT:
+			_remove_artefact()
+
 #
 # Schedules an obstacle event to undo the creation of an obstacle at the given
 # cell.
@@ -601,10 +606,20 @@ func _remove_obstacle(cell: Cell) -> bool:
 func _on_obstacle_timer_timeout():
 	# we make CELL_ONE_WAY twice as likely to appear as the others, because the
 	# other event types are all in pairs...
-	var type = randi() % (ObstacleType._COUNT_ + 1)
-	if type == ObstacleType._COUNT_:
+	var type = randi() % (ObstacleType._RANDOM_ + 1)
+	if type == ObstacleType._RANDOM_:
 		type = ObstacleType.CELL_ONE_WAY
 	var event = ObstacleEvent.new(type as ObstacleType)
+	_handle_obstacle_event(event)
+
+#
+# Removing the artefact and raising the central cell is managed as an event,
+# rather than by calling _remove_artefact() directly, in case the center row or
+# column is sliding (the central cell can't slide and rise at the same time).
+#
+func _on_center_timer_timeout():
+	var event = ObstacleEvent.new(ObstacleType.REMOVE_ARTEFACT)
+	event.cell = _center_cell
 	_handle_obstacle_event(event)
 
 #
