@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 /* ================= SETTINGS ================= */
-uniform float glitch_speed = 7.0;
+uniform float glitch_speed = 10.0;
 uniform float slice_density = 50.0;
 uniform float local_warp_strength = 0.666;
 

@@ -9,7 +9,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7eock"]
 shader = ExtResource("1_jwl12")
-shader_parameter/glitch_speed = 7.0
+shader_parameter/glitch_speed = 10.0
 shader_parameter/slice_density = 50.0
 shader_parameter/local_warp_strength = 0.666
 
