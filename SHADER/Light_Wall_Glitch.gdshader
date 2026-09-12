@@ -6,6 +6,8 @@ uniform float slice_density = 50.0;
 uniform float local_warp_strength = 0.666;
 
 /* ================= RANDOM ================= */
+uniform float noise_intensity = 0.333;
+
 float rand(float x)
 {
 	return fract(sin(x * 143758.5453) * 43758.5453);
@@ -40,4 +42,11 @@ void fragment()
 
 	/* ================= TEXTURE ================= */
 	COLOR = texture(TEXTURE, uv);
+	vec3 noise = vec3(
+		rand2(uv + vec2(frame)),
+		rand2(uv + vec2(frame + 1.0)),
+		rand2(uv + vec2(frame + 2.0))
+	);
+	noise = noise * 2.0 - 1.0;
+	COLOR.rgb += noise * noise_intensity;
 }

@@ -1,6 +1,6 @@
 [gd_resource type="GradientTexture2D" format=3 uid="uid://bmx7k8f1lyd4s"]
 
-[ext_resource type="Gradient" uid="uid://d2yj5gmwpcn0g" path="res://RESOURCE/Runner_Wall_Main_Gradient_4.tres" id="1_ge55l"]
+[ext_resource type="Gradient" uid="uid://d2yj5gmwpcn0g" path="res://TRASH/Runner_Wall_Main_Gradient_4.tres" id="1_ge55l"]
 
 [resource]
 gradient = ExtResource("1_ge55l")
