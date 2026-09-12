@@ -3,10 +3,10 @@ shader_type canvas_item;
 /* ================= SETTINGS ================= */
 uniform float glitch_speed = 10.0;
 uniform float slice_density = 50.0;
-uniform float local_warp_strength = 0.666;
+uniform float local_warp_strength = 0.75;
 
 /* ================= RANDOM ================= */
-uniform float noise_intensity = 0.333;
+uniform float noise_intensity = 0.25;
 
 float rand(float x)
 {

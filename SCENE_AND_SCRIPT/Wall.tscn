@@ -11,7 +11,7 @@
 shader = ExtResource("1_jwl12")
 shader_parameter/glitch_speed = 10.0
 shader_parameter/slice_density = 50.0
-shader_parameter/local_warp_strength = 0.666
+shader_parameter/local_warp_strength = 0.75
 shader_parameter/noise_intensity = 0.25
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_wnvjj"]
