@@ -74,7 +74,7 @@ Les malus (applications automatiques) :
     4. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1/2 seconde) – Vert – dure : ((2 × difficulté) + 3)’’ → ✔ Anti_Dash
     5. « Hors phase » (shader) – Bleu – dure : (2 × difficulté)’’ → ✔ Phase
     6. Virus (envoie automatiquement le prochain Bonus (pas malus) récolté à un adversaire aléatoire, quitte à remplacer celui que porte l’adversaire – Violet – dure : (10 – difficulté)’’ → ✔ Anti_Virus
-    7. Tout droit (le coureur ne peut plus tourner pendant (0.5 + (difficulté ÷ 2))’’ – Jaune → ✔ No_turn
+    7. Tout droit (le coureur ne peut plus tourner pendant (0,5 + (difficulté ÷ 2))’’ – Jaune → ✔ No_turn
 
 Codes couleurs à appliquer à l’outline du joueur :
     • Rouge : Color(0.66, 0.0, 0.0)
@@ -147,21 +147,23 @@ Options (nécessaires) dans Settings:
     4. Difficulté (de 1 à 5) ✔
         ◦ Temps avant la disparition de l’artefact : (Taille de la map + (2 × Difficulté)) / 10 minutes.
         ◦ Temps avant le déclenchement du processus d’apparition de Door.tscn : (5 + (Difficulté − 1) × 1,25 ) secondes
-        ◦ Délai entre les déclenchements d’obstacles : 5.5 - (0.5 × Difficulté) secondes.
+        ◦ Délai entre les déclenchements d’obstacles : 5.5 - (0,5 × Difficulté) secondes.
         ◦ Délai avant disparition des tronçons de mur : 3 + ((Difficulté + Taille de la map − 10) / 16) × 7 secondes après apparition.
         ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en gagnant 3 courses en Difficulté 5) qui rend tous les obstacles PERMANENTS (le reste est traîté comme Difficulté 5 si rien n’est précisé !) SAUF les murs des concurrents. Voir également à la toute fin du doc. : Liste des scènes (et – succinctes – descriptions de leurs contenus) pour les réglages de Difficulté 6. Cette difficulté cachée est sauvegardée afin de pouvoir rejouer dans cette difficulté sans tout recommencer.
 
 Les personnalités des « IA »/Bots :
     1. Par défaut, un Bot tendra bien évidemment à éviter les collisions et les chutes. Un Bot essayera également de sortir par la porte lorsqu’elle est présente et accessible (il peut arriver qu’elle ne le soit pas à cause des glissements de lignes/colonnes).
-    2. On définira des valeurs « par défaut » pour un bot afin de faire varier ces valeurs en fonction du comportement sélectionné.
-        ◦ Temps de réaction de base : 300ms.
-        ◦ Taille du collider Vison de base : scale à 0,5 en x et y.
+    2. Un comportement ne sera donné qu’à 1 seul bot.
+    3. On définira des valeurs « par défaut » pour un bot afin de faire varier ces valeurs en fonction du comportement sélectionné.
+        ◦ Temps de réaction de base face aux obstacles et imprévus : 300ms.
+        ◦ Un bot peut enchaîner au maximum 2 actions en 100ms. Ex. : tourner 2 fois, tourner puis sauter, tourner activer un Bonus/Malus, etc.
+        ◦ Taille du collider Vision de base : scale à 0,5 en x et y.
         ◦ Une cellule avec plus de 2 light wall est évitée si possible.
         ◦ Un bot affecté par un bug graphique de sa vue caméra a un temps de réaction augmenté de 50ms.
         ◦ Un bot n’a pas de raison de changer de direction si rien ne se présente devant lui dans son champs de vision.
-    3. Pour former un bot, on combine 3 comportements choisi aléatoirement (1 dans dans chaque catégorie).
-    4. Seuls les coureurs, light walls, colonnes, trous et pylônes sont considérés comme des obstacles.
-    5. Un bot conservera son bonus/malus entre 2 à 15 secondes avant de l’utiliser.
+    4. Pour former un bot, on combine 3 comportements choisi aléatoirement (1 dans dans chaque catégorie).
+    5. Seuls les coureurs, light walls, colonnes, trous, pylônes et piles de la porte de sortie sont considérés comme des obstacles.
+    6. Un bot conservera son bonus/malus entre 2 à 15 secondes avant de l’utiliser (sauf Automatique, bien entendu).
 
 Comportements face aux obstacles et coureurs :
 
@@ -190,9 +192,9 @@ Comportements divers :
     3. Dyslexique : Confond sa gauche et sa droite (1/15 fois).
     4. Vif : Temps de réaction réduit de 25ms.
     5. Lent : Temps de réaction augmenté de 25ms.
-    6. Lunatique : Change de direction sans raison s’il a couru plus de 2 secondes tout droit.
-    7. Épileptique : Saute ou glisse sans raison s’il n’a rien fait de tel depuis 2 secondes.
-    8. Amnésique : Reset sa priorité toutes les 8 secondes.
+    6. Lunatique : Change de direction sans raison s’il a couru plus de (1 + ((map size +1) ÷ 10)) secondes  tout droit.
+    7. Épileptique : Saute ou glisse sans raison s’il n’a rien fait de tel depuis (1 + ((map size +1) ÷ 10)) secondes.
+    8. Crétin : On ajoute 50ms à sa limite d’enchaînement d’actions (pas son temps de réaction, donc).
 Script de déroulement d’une partie (depuis le lancement d’Errore_404.exe)
 
 Préambule :
