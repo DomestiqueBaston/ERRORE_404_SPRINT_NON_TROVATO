@@ -4,7 +4,7 @@ extends Node2D
 ## c'est juste de la démo...
 
 @export var move_speed: float = 395.0
-@export var jump_speed: float = 385.0
+@export var jump_speed: float = 375.0
 @export var slide_speed: float = 375.0
 
 @onready var _sprite: Node2D = $Character/Papa_Sprite
