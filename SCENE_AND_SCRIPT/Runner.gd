@@ -542,10 +542,9 @@ func _add_to_wall(new_cell: Cell, prev_direction: Vector2):
 		wall.gone.connect(func(): _walls.erase(wall))
 		_walls.push_back(wall)
 
-		# if this is the very first wall, play its Appearing animation
-
-		if _walls.size() == 1:
-			get_tree().create_timer(Wall.delay).timeout.connect(wall.appear)
+		# if there is already a wall in progress, we may need to interrupt it
+		# and create a new one if the runner changes direction or moves to a
+		# different cell
 
 		if _curr_wall:
 			var last_cell: Cell = _curr_wall.cell
@@ -583,6 +582,12 @@ func _add_to_wall(new_cell: Cell, prev_direction: Vector2):
 					last_cell.add_point_to_wall(gap_wall, intersection)
 
 					new_cell.add_point_to_wall(wall, intersection)
+
+		# otherwise, this is the start of a new wall, so play its Appearing
+		# animation
+
+		else:
+			get_tree().create_timer(Wall.delay).timeout.connect(wall.appear)
 
 		_curr_wall = wall
 
