@@ -4,7 +4,9 @@
 [ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="2_jtvwl"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="3_ycojx"]
 [ext_resource type="PackedScene" uid="uid://3u5u3tfo43n" path="res://SCENE_AND_SCRIPT/Portraits.tscn" id="4_lqmhv"]
+[ext_resource type="Theme" uid="uid://ckfheu8oauxys" path="res://RESOURCE/Minimap_Theme.tres" id="4_ycojx"]
 [ext_resource type="Script" uid="uid://dlt25318wok6w" path="res://SCENE_AND_SCRIPT/Win.gd" id="5_4er72"]
+[ext_resource type="Texture2D" uid="uid://bi2ahovq5m34u" path="res://IMAGE/RUNNER/Minimap_Locator.png" id="5_lqmhv"]
 [ext_resource type="FontFile" uid="uid://b6oxbwfgmigfj" path="res://RESOURCE/OCRA.ttf" id="6_0v8rs"]
 [ext_resource type="Texture2D" uid="uid://bg8x247cwwks8" path="res://IMAGE/MISC/BSOD.png" id="7_hqhym"]
 [ext_resource type="Texture2D" uid="uid://ysvcu3wtt5ts" path="res://IMAGE/MISC/BSOD_.png" id="8_ftnwh"]
@@ -1699,6 +1701,116 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 anti_aliasing = false
 
+[sub_resource type="Animation" id="Animation_ycojx"]
+resource_name = "Blink"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Runner_1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.33333328, 0.39999998),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 0.8784314)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Runner_2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.33333328, 0.39999998),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 0.8784314)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Runner_3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.33333328, 0.39999998),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 0.8784314)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Runner_4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.33333328, 0.39999998),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 0.8784314)]
+}
+
+[sub_resource type="Animation" id="Animation_lqmhv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Runner_1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Runner_2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Runner_3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Runner_4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4er72"]
+_data = {
+&"Blink": SubResource("Animation_ycojx"),
+&"RESET": SubResource("Animation_lqmhv")
+}
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aksks"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 15
@@ -2692,6 +2804,69 @@ points = PackedVector2Array(0, 0, 0, 540)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
+
+[node name="Minimap" type="Control" parent="Frames" unique_id=913094380]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 3.0517578e-05
+offset_top = -106.0
+offset_right = 150.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.7853982
+theme = ExtResource("4_ycojx")
+metadata/_edit_lock_ = true
+
+[node name="Minimap_Container" type="PanelContainer" parent="Frames/Minimap" unique_id=1158088216]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Minimap_BG" type="ColorRect" parent="Frames/Minimap/Minimap_Container" unique_id=1650625988]
+layout_mode = 2
+color = Color(1, 1, 1, 0.49803922)
+metadata/_edit_lock_ = true
+
+[node name="Runners" type="Control" parent="Frames/Minimap" unique_id=393524760]
+anchors_preset = 0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 141.0
+offset_bottom = 141.0
+metadata/_edit_lock_ = true
+
+[node name="Runner_1" type="Sprite2D" parent="Frames/Minimap/Runners" unique_id=2144532004]
+texture = ExtResource("5_lqmhv")
+metadata/_edit_lock_ = true
+
+[node name="Runner_2" type="Sprite2D" parent="Frames/Minimap/Runners" unique_id=387187603]
+position = Vector2(0, 132)
+texture = ExtResource("5_lqmhv")
+metadata/_edit_lock_ = true
+
+[node name="Runner_3" type="Sprite2D" parent="Frames/Minimap/Runners" unique_id=1848456848]
+position = Vector2(132, 0)
+texture = ExtResource("5_lqmhv")
+metadata/_edit_lock_ = true
+
+[node name="Runner_4" type="Sprite2D" parent="Frames/Minimap/Runners" unique_id=868117507]
+position = Vector2(132, 132)
+texture = ExtResource("5_lqmhv")
+metadata/_edit_lock_ = true
+
+[node name="Runners_Blink" type="AnimationPlayer" parent="Frames/Minimap/Runners" unique_id=1508071806]
+libraries/ = SubResource("AnimationLibrary_4er72")
+autoplay = &"Blink"
 
 [node name="Portraits" parent="Frames" unique_id=2050210296 instance=ExtResource("4_lqmhv")]
 visible = false
