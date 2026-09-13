@@ -83,6 +83,7 @@ func _physics_process(delta: float):
 	if not is_dead:
 		for area in _collider.get_overlapping_areas():
 			if area.collision_layer & Globals.WALL_LAYER:
+				print("hit a wall")
 				_die(false)
 
 	# Now handle the doorway and one-way signs (which are mutually exclusive:
@@ -108,6 +109,7 @@ func _physics_process(delta: float):
 			match door.get_zone_at(_collider):
 				Door.Zone.FRAME:
 					if not is_exiting:
+						print("hit door frame")
 						_die(false)
 				Door.Zone.PASSAGE:
 					if not is_exiting:
@@ -208,6 +210,7 @@ func _physics_process(delta: float):
 		if not is_jumping:
 			_start_falling()
 	elif new_cell.get_artefact():
+		print("hit artefact")
 		_die(false)
 	else:
 		match new_cell.get_state():
@@ -234,8 +237,8 @@ func _physics_process(delta: float):
 
 	if is_jumping or is_sliding or is_teleporting or is_dead or is_falling:
 		_curr_wall = null
-	elif _curr_cell and _direction:
-		_add_to_wall(_curr_cell, _direction == prev_direction)
+	elif new_cell and _direction:
+		_add_to_wall(new_cell, prev_direction)
 
 	# Default animation.
 
@@ -476,6 +479,7 @@ func _check_one_way(cell: Cell):
 	# if the runner is going the opposite direction, kill him
 
 	if is_equal_approx(_direction.dot(new_direction), -1.0):
+		print("hit one way sign")
 		_die(false)
 		return
 
@@ -502,8 +506,10 @@ func _check_pylon(cell: Cell):
 	match cell.get_pylon().get_state():
 		Pylon.State.LOWERED:
 			if not is_sliding:
+				print("hit lowered pylon")
 				_die(cell == _curr_cell)
 		Pylon.State.DROPPED:
+			print("hit dropped pylon")
 			_die(cell == _curr_cell)
 
 #
@@ -518,19 +524,20 @@ func play_foot_step_02():
 func play_foot_step_03():
 	_footstep3.play()
 
-func _add_to_wall(cell: Cell, is_same_dir: bool):
+func _add_to_wall(new_cell: Cell, prev_direction: Vector2):
+	var is_same_dir = (_direction == prev_direction)
 	var wall: Wall
 
 	# add to previous wall if there is one and we have not left its cell or
 	# changed direction
 
-	if _curr_wall and _curr_wall.cell == cell and is_same_dir:
+	if _curr_wall and _curr_wall.cell == new_cell and is_same_dir:
 		wall = _curr_wall
 
 	# otherwise create a new wall and attach it to the given cell
 
 	else:
-		wall = cell.add_wall()
+		wall = new_cell.add_wall()
 		wall.gone.connect(func(): _walls.erase(wall))
 		_walls.push_back(wall)
 
@@ -540,26 +547,44 @@ func _add_to_wall(cell: Cell, is_same_dir: bool):
 			get_tree().create_timer(Wall.delay).timeout.connect(wall.appear)
 
 		if _curr_wall:
+			var last_cell: Cell = _curr_wall.cell
 
-			# change of direction: finish the previous wall where the new wall
-			# begins
+			# change of direction only: start the new wall where the previous
+			# wall ends
 
-			if _curr_wall.cell == cell:
-				cell.add_point_to_wall(_curr_wall, global_position)
+			if last_cell == new_cell:
+				var pivot_point = last_cell.get_last_point_on_wall(_curr_wall)
+				last_cell.add_point_to_wall(wall, pivot_point)
 
-			# change of cell: finish the previous wall and start the new one
-			# with a point at the intersection of the neighboring cells
+			# change of cell only: finish the previous wall and start the new
+			# one with a point at the intersection of the neighboring cells
 
-			else:
-				var last_cell: Cell = _curr_wall.cell
+			elif is_same_dir:
 				var intersection = last_cell.get_exit_point(
-					last_cell.get_last_point_on_wall(_curr_wall), _last_direction)
+					last_cell.get_last_point_on_wall(_curr_wall), _direction)
 				if intersection:
 					last_cell.add_point_to_wall(_curr_wall, intersection)
-					cell.add_point_to_wall(wall, intersection)
+					new_cell.add_point_to_wall(wall, intersection)
+
+			# change of cell AND direction: we need a tiny, single-segment wall
+			# to go to the edge of the cell
+
+			else:
+				var pivot_point = last_cell.get_last_point_on_wall(_curr_wall)
+				var intersection = last_cell.get_exit_point(
+					pivot_point, _direction)
+
+				if intersection:
+					var gap_wall: Wall = last_cell.add_wall()
+					gap_wall.gone.connect(func(): _walls.erase(gap_wall))
+					_walls.push_back(gap_wall)
+					last_cell.add_point_to_wall(gap_wall, pivot_point)
+					last_cell.add_point_to_wall(gap_wall, intersection)
+
+					new_cell.add_point_to_wall(wall, intersection)
 
 		_curr_wall = wall
 
 	# add the current position to the current wall
 
-	cell.add_point_to_wall(wall, global_position)
+	new_cell.add_point_to_wall(wall, global_position)
