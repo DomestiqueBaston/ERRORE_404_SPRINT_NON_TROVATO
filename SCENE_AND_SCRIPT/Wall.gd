@@ -27,6 +27,9 @@ var _points: Array[Vector2]
 # time in msec when each point was added
 var _times: Array[int]
 
+# how many times add_point() has been called
+var _points_added: int = 0
+
 func _ready():
 	# same rendering layer as cells
 	z_index = RenderingServer.CANVAS_ITEM_Z_MIN
@@ -49,7 +52,19 @@ func _physics_process(_delta: float):
 func add_point(pos: Vector2):
 	_points.push_back(pos)
 	_times.push_back(Time.get_ticks_msec())
-	set_physics_process(true)
+	_points_added += 1
+
+	match _points_added:
+		# Special case when only one point is ever added: after a short time,
+		# assume that no others are going to follow.
+		1:
+			await get_tree().create_timer(1).timeout
+			if _points_added == 1:
+				remove()
+		# Once a second point has been added, start updating the mesh and
+		# collider; updates will be stopped when no points are left.
+		2:
+			set_physics_process(true)
 
 ##
 ## Returns the last point that was added to this wall. Returns null if no
@@ -68,7 +83,7 @@ func _update_mesh():
 		_points.pop_front()
 		_times.pop_front()
 
-	# if no new points have been added in a while, assume we're done
+	# if no points are left, assume no more are going to follow and we're done
 
 	if _points.is_empty():
 		remove()
@@ -85,6 +100,8 @@ func _update_mesh():
 		count += 1
 
 	if count <= 1:
+		_mesh_instance.mesh = null
+		_collider_shape.shape = null
 		return
 
 	# make a single parallelogram from the first visible point and the last (it
@@ -199,3 +216,11 @@ func disappear():
 	_animation.play(&"Disappearing")
 	await _animation.animation_finished
 	remove()
+
+##
+## Given the collider from a wall, returns the Wall itself. Returns null if the
+## collider does not belong to a wall.
+##
+static func get_wall_from_collider(collider: Area2D) -> Wall:
+	var wall = collider.get_node_or_null("..")
+	return wall if wall is Wall else null
