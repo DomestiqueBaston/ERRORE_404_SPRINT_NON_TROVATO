@@ -85,6 +85,7 @@ func _physics_process(delta: float):
 			if area.collision_layer & Globals.WALL_LAYER:
 				print("hit a wall")
 				_die(false)
+				break
 
 	# Now handle the doorway and one-way signs (which are mutually exclusive:
 	# there are no one-way signs in the central cell) and at the same time set
