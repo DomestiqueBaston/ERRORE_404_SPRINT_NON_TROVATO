@@ -606,7 +606,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.3, 0.36666667, 0.5, 0.73333335),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-22, -14), Vector2(-41, -33), Vector2(-49, -36), Vector2(-125, -17), Vector2(-129, 50), Vector2(-144, 161)]
+"values": [Vector2(0, 0), Vector2(-22, -14), Vector2(-41, -33), Vector2(-49, -36), Vector2(-125, -21), Vector2(-127, 44), Vector2(-144, 161)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -796,7 +796,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.26666668, 0.36666667, 0.5, 0.73333335),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(28, 7), Vector2(36, -5), Vector2(117, 12), Vector2(107, 48), Vector2(92, 100), Vector2(143, 195)]
+"values": [Vector2(0, 0), Vector2(28, 7), Vector2(36, -5), Vector2(117, 12), Vector2(107, 44), Vector2(90, 94), Vector2(143, 195)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -2954,6 +2954,7 @@ texture = ExtResource("5_3pclx")
 offset = Vector2(7, 0)
 
 [node name="Collider_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=2058946939]
+visible = false
 collision_mask = 6
 monitorable = false
 metadata/_edit_lock_ = true
@@ -2964,6 +2965,7 @@ shape = SubResource("CapsuleShape2D_rjpof")
 metadata/_edit_lock_ = true
 
 [node name="Death_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=2058996985]
+visible = false
 monitorable = false
 metadata/_edit_lock_ = true
 
