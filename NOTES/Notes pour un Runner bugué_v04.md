@@ -206,7 +206,8 @@ Préambule :
     • Utilisation des boutons :
         ◦ ui_a_button : Valider et Sauter (A)
         ◦ ui_b_button : Annuler et Glisser (B)
-        ◦ ui_x_button ou ui_y_button : Activer le Bonus/Malus
+        ◦ ui_x_button : Activer le Bonus/Malus
+        ◦ ui_y_button : Affiche la Minimap tant que la pression est maintenue
         ◦ ui_left_button, ui_right_button, ui_up_button et ui_down_button : Direction et navigation menu (en course, on n’utilise que les diagonales)
         ◦ ui_fullscreen : Plein écran/Fenêtré
         ◦ ui_quit_button : Quitter (pression longue, voir Quit_Button.tscn)
@@ -221,12 +222,15 @@ Avant le jeu :
         ◦ Ou…
 
 Le jeu :
-    4. Transition brutale vers The_Game.tscn. Les 4 caméras sont centrées sur les 4 coins de la zone de course. L’écran en haut à gauche affiche en overlay la sélection de joueur (Portraits.tscn) qui commence sur la fille et les 3 autres vues affichent aléatoirement les 3 autres personnages : pas de doublons !
+    4. Transition brutale vers The_Game.tscn. Les 4 caméras sont centrées sur les 4 coins de la zone de course. L’écran en haut à gauche affiche TOUJOURS en overlay la sélection de joueur (Portraits.tscn) qui commence sur la fille et les 3 autres vues affichent aléatoirement les 3 autres personnages : pas de doublons !
+        ◦ La vue en haut à gauche est TOUJOURS la vue du joueur humain.
+        ◦ De la même manière, dans la Minimap, le joueur est toujours placé en haut au départ du jeu. Son repère est toujours bleu alors que les autres coureurs sont blancs.
     5. On sélectionne le personnage avec droite et gauche, on valide avec A. Lorsque le joueur change de personnage, à chaque fois, dans les autres quarts d’écran les personnages changent et sont re-sélectionnés aléatoirement. Ils disparaissent/apparaissent en jouant l’animation Animation_Bonus_Malus/Bonus_Malus ET avec le son UI_Sounds/Disappearing (un seul son est joué pour tous). ui_quit_button renvoie à Menu.tscn (transition brutale, pour rappel). Valider fait disparaître l’overlay de sélection des personnages et apparaître le bouton de lancement de la course. Ce bouton ne peut être activé (ui_a_button) que lorsque le joueur a validé son personnage.
         ◦ Ceci est pour la cas où il n’y aurait qu’1 joueur humain et 3 bots mais pour ajouter 1 autre (ou plusieurs autres) joueur humain, il suffira de presser un des boutons d’un autre contrôleur pour que le quart d’écran suivant lui soit attribué. Le reste se fait comme pour le premier joueur… Overlay des portraits, etc. Il ne peut pas avoir de doublons de personnage ! On ne peut plus ajouter de joueur quand il n’y a plus d’overlay de sélection de personnage. C’est seulement à partir du moment ou tous les joueurs (humains) on validé leur choix de personnage que le bouton de lancement de la course apparaîtra.
     6. Tous les Personnages passent alors en animation Start. Au bout d’1/2 seconde, on joue UI_Sounds/3_2_1 puis on coupe Music/Intro, on lance UI_Sounds/Go et Music/Music en boucle (sans Music/Bang cette fois-ci car il est inclus dans la musique) et les coureurs (Bot) partent aléatoirement dans l’une des deux directions qu’il ont de possible dans, au plus tard, la 1/2 de seconde qui suit ! Au pire, 1 seconde après le « top départ », tous les concurrents restants partiront automatiquement avec un décalage de 1/5 de seconde les uns des autres pasque tous synchros, c’est pas joli.
 
 Ici, la course elle-même prend place !
+Petite note concernant la Minimap : elle s’affiche tant qu’on presse le bouton Y. Tant que le bouton est pressé, on joue le son Sounds/UI_Sounds/minimap_Alarm dans Sounds.tscn (qui est par défaut en boucle, pas besoin de l’aider avec le code normalement).
 
     7. Fin de course (humain ou bot, tant qu’il y a au moins 2 concurrents vivants, la course continu) :
         ◦ Lorsque les concurrents meurent et tant que le joueur humain est vivant, pour chaque bot mort, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) et on lance l’animation Blink dans Animation_Overlays (AnimationPlayer), tout ça dans la scène The_Game.tscn. À noter : il n’y en a pas pour le joueur humain en haut à gauche.
