@@ -177,6 +177,7 @@ func backup(msec: int = delay_msec):
 func remove():
 	_hum.stop()
 	_mesh_instance.mesh = null
+	_collider_shape.shape = null
 	_points.clear()
 	_times.clear()
 	set_physics_process(false)
