@@ -13,6 +13,7 @@ shader_parameter/glitch_speed = 10.0
 shader_parameter/slice_density = 50.0
 shader_parameter/local_warp_strength = 0.75
 shader_parameter/noise_intensity = 0.25
+shader_parameter/random_frame_period = 100.0
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_wnvjj"]
 gradient = ExtResource("3_2a5rv")
