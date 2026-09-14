@@ -548,39 +548,38 @@ func _add_to_wall(new_cell: Cell, prev_direction: Vector2):
 
 		if _curr_wall:
 			var last_cell: Cell = _curr_wall.cell
+			var last_point: Vector2 = last_cell.get_last_point_on_wall(_curr_wall)
 
 			# change of direction only: start the new wall where the previous
 			# wall ends
 
 			if last_cell == new_cell:
-				var pivot_point = last_cell.get_last_point_on_wall(_curr_wall)
-				last_cell.add_point_to_wall(wall, pivot_point)
+				last_cell.add_point_to_wall(wall, last_point)
 
 			# change of cell only: finish the previous wall and start the new
 			# one with a point at the intersection of the neighboring cells
 
 			elif is_same_dir:
 				var intersection = last_cell.get_exit_point(
-					last_cell.get_last_point_on_wall(_curr_wall), _direction)
+					last_point, global_position)
 				if intersection:
 					last_cell.add_point_to_wall(_curr_wall, intersection)
 					new_cell.add_point_to_wall(wall, intersection)
+				else:
+					new_cell.add_point_to_wall(wall, last_point)
 
 			# change of cell AND direction: we need a tiny, single-segment wall
 			# to go to the edge of the cell
 
 			else:
-				var pivot_point = last_cell.get_last_point_on_wall(_curr_wall)
 				var intersection = last_cell.get_exit_point(
-					pivot_point, _direction)
-
+					last_point, global_position)
 				if intersection:
 					var gap_wall: Wall = last_cell.add_wall()
 					gap_wall.gone.connect(func(): _walls.erase(gap_wall))
 					_walls.push_back(gap_wall)
-					last_cell.add_point_to_wall(gap_wall, pivot_point)
+					last_cell.add_point_to_wall(gap_wall, last_point)
 					last_cell.add_point_to_wall(gap_wall, intersection)
-
 					new_cell.add_point_to_wall(wall, intersection)
 
 		# otherwise, this is the start of a new wall, so play its Appearing

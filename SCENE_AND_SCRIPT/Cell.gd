@@ -375,10 +375,16 @@ static func get_start_cell_offset(corner: Globals.Corner) -> Vector2:
 	return Vector2()
 
 ##
-## Given a point within the cell and the direction of motion, returns the point
-## on the border of the cell where the runner will leave the cell.
+## Given a starting point within the cell and an ending point in another cell,
+## returns the point on the border of the cell where the runner will leave the
+## cell.
 ##
-func get_exit_point(pos: Vector2, dir: Vector2):
+## Note that if pt1 or pt2 is very close to the cell's border, perhaps even on
+## the other side, no point of intersection will be found. In that case, if pt2
+## is very close to the border, pt2 is returned; otherwise null is returned.
+##
+func get_exit_point(pt1: Vector2, pt2: Vector2):
+	var dir = pt2 - pt1
 	var edgev1: Vector2
 	var edgev2: Vector2
 
@@ -401,4 +407,13 @@ func get_exit_point(pos: Vector2, dir: Vector2):
 			edgev1 = to_global(Vector2(width * -0.5, 0))
 			edgev2 = to_global(Vector2(0, height * -0.5))
 
-	return Geometry2D.line_intersects_line(pos, dir, edgev1, edgev2 - edgev1)
+	var ret = Geometry2D.segment_intersects_segment(pt1, pt2, edgev1, edgev2)
+	if ret:
+		return ret
+
+	const epsilon = 0.5 * 0.5
+	ret = Geometry2D.get_closest_point_to_segment(pt2, edgev1, edgev2)
+	if ret.distance_squared_to(pt2) < epsilon:
+		return ret
+
+	return null
