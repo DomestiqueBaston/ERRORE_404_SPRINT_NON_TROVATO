@@ -60,7 +60,7 @@ shader_parameter/same_width_change_per_sec = 7.665000360827619
 shader_parameter/glitch_change_per_sec = 1.0
 shader_parameter/threshold = 0.2999999932944
 shader_parameter/strength = 0.090000004275
-shader_parameter/glitch_blend = 0.8499999810008
+shader_parameter/glitch_blend = 0.999999977648
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3k4r"]
 shader = ExtResource("28_vso1q")
@@ -2148,7 +2148,7 @@ position = Vector2(0, 60)
 metadata/_edit_lock_ = true
 
 [node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1800194083]
-self_modulate = Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)
+self_modulate = Color(1, 1, 1, 0.49019608)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
@@ -2217,7 +2217,7 @@ position = Vector2(0, 60)
 metadata/_edit_lock_ = true
 
 [node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1366458068]
-self_modulate = Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)
+self_modulate = Color(1, 1, 1, 0.49019608)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
@@ -2286,7 +2286,7 @@ position = Vector2(0, 60)
 metadata/_edit_lock_ = true
 
 [node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=108989442]
-self_modulate = Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)
+self_modulate = Color(1, 1, 1, 0.49019608)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
@@ -2355,7 +2355,7 @@ position = Vector2(0, 60)
 metadata/_edit_lock_ = true
 
 [node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=714310253]
-self_modulate = Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)
+self_modulate = Color(1, 1, 1, 0.49019608)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
