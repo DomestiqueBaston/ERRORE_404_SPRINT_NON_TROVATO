@@ -2088,6 +2088,13 @@ offset_bottom = 119.0
 color = Color(1, 1, 1, 0.5254902)
 metadata/_edit_lock_ = true
 
+[node name="Color_Shade" type="ColorRect" parent="Column/Cell_Tops/Top_Cell_FX_Mask/Screen_Glitch" unique_id=1986830075]
+layout_mode = 0
+offset_right = 236.0
+offset_bottom = 119.0
+color = Color(0.11366666, 0.11, 0.22, 0.1254902)
+metadata/_edit_lock_ = true
+
 [node name="Glitch_Only" type="ColorRect" parent="Column/Cell_Tops/Top_Cell_FX_Mask" unique_id=1514546767]
 visible = false
 material = SubResource("ShaderMaterial_n3k4r")
@@ -2095,6 +2102,13 @@ offset_left = -118.0
 offset_right = 118.0
 offset_bottom = 119.0
 color = Color(1, 1, 1, 0.5254902)
+metadata/_edit_lock_ = true
+
+[node name="Color_Shade" type="ColorRect" parent="Column/Cell_Tops/Top_Cell_FX_Mask/Glitch_Only" unique_id=1635831939]
+layout_mode = 0
+offset_right = 236.0
+offset_bottom = 119.0
+color = Color(0.11366666, 0.11, 0.22, 0.1254902)
 metadata/_edit_lock_ = true
 
 [node name="Glitch" type="AnimationPlayer" parent="Column/Cell_Tops/Top_Cell_FX_Mask" unique_id=1010142019]
@@ -2148,7 +2162,7 @@ position = Vector2(0, 60)
 metadata/_edit_lock_ = true
 
 [node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1800194083]
-self_modulate = Color(1, 1, 1, 0.49019608)
+self_modulate = Color(0.11366666, 0.11, 0.22, 0.39215687)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
@@ -2217,7 +2231,7 @@ position = Vector2(0, 60)
 metadata/_edit_lock_ = true
 
 [node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1366458068]
-self_modulate = Color(1, 1, 1, 0.49019608)
+self_modulate = Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
@@ -2286,7 +2300,7 @@ position = Vector2(0, 60)
 metadata/_edit_lock_ = true
 
 [node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=108989442]
-self_modulate = Color(1, 1, 1, 0.49019608)
+self_modulate = Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
@@ -2355,7 +2369,7 @@ position = Vector2(0, 60)
 metadata/_edit_lock_ = true
 
 [node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=714310253]
-self_modulate = Color(1, 1, 1, 0.49019608)
+self_modulate = Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 metadata/_edit_lock_ = true
