@@ -42,6 +42,8 @@
 [ext_resource type="AudioStream" uid="uid://bvr7mwob6g81h" path="res://SOUND/FX/Disappearing_Cell.ogg" id="31_mye8y"]
 [ext_resource type="Texture2D" uid="uid://bnish343js5k6" path="res://IMAGE/ENVIRONMENT/DIRECTION/Direction_Front.png" id="32_iotr2"]
 [ext_resource type="Script" uid="uid://cgco82tghryy7" path="res://SCENE_AND_SCRIPT/One_Way_Directions.gd" id="34_pnhl5"]
+[ext_resource type="Script" uid="uid://riqcc08x7kdb" path="res://SCENE_AND_SCRIPT/Top_Cell_Teleport.gd" id="35_cr4ld"]
+[ext_resource type="Texture2D" uid="uid://k4r4abv26gpc" path="res://IMAGE/ENVIRONMENT/CELL/Top_Cell_Teleport.png" id="35_gwl88"]
 [ext_resource type="AudioStream" uid="uid://7d1t448ecpba" path="res://SOUND/FX/Short_Disappearing.ogg" id="35_psu53"]
 [ext_resource type="AudioStream" uid="uid://bm1v8dymi3n0a" path="res://SOUND/FX/Digital_Glitch_B.ogg" id="37_qjqwi"]
 [ext_resource type="AudioStream" uid="uid://bxr32qgishsy8" path="res://SOUND/FX/Digital_Glitch_D.ogg" id="38_5memm"]
@@ -962,6 +964,44 @@ tracks/7/keys = {
 _data = {
 &"Floating": SubResource("Animation_82ru8"),
 &"RESET": SubResource("Animation_l3wtu")
+}
+
+[sub_resource type="Animation" id="Animation_8nw48"]
+resource_name = "Blink"
+length = 0.16666667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top_Cell_Teleport:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.11372549, 0.10980392, 0.21960784, 0.39215687), Color(0.11366666, 0.11, 0.22, 0.19607843), Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)]
+}
+
+[sub_resource type="Animation" id="Animation_whsrv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top_Cell_Teleport:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qjtmo"]
+_data = {
+&"Blink": SubResource("Animation_8nw48"),
+&"RESET": SubResource("Animation_whsrv")
 }
 
 [sub_resource type="Animation" id="Animation_cdabr"]
@@ -2088,13 +2128,6 @@ offset_bottom = 119.0
 color = Color(1, 1, 1, 0.5254902)
 metadata/_edit_lock_ = true
 
-[node name="Color_Shade" type="ColorRect" parent="Column/Cell_Tops/Top_Cell_FX_Mask/Screen_Glitch" unique_id=1986830075]
-layout_mode = 0
-offset_right = 236.0
-offset_bottom = 119.0
-color = Color(0.11366666, 0.11, 0.22, 0.1254902)
-metadata/_edit_lock_ = true
-
 [node name="Glitch_Only" type="ColorRect" parent="Column/Cell_Tops/Top_Cell_FX_Mask" unique_id=1514546767]
 visible = false
 material = SubResource("ShaderMaterial_n3k4r")
@@ -2104,15 +2137,19 @@ offset_bottom = 119.0
 color = Color(1, 1, 1, 0.5254902)
 metadata/_edit_lock_ = true
 
-[node name="Color_Shade" type="ColorRect" parent="Column/Cell_Tops/Top_Cell_FX_Mask/Glitch_Only" unique_id=1635831939]
-layout_mode = 0
-offset_right = 236.0
-offset_bottom = 119.0
-color = Color(0.11366666, 0.11, 0.22, 0.1254902)
-metadata/_edit_lock_ = true
-
 [node name="Glitch" type="AnimationPlayer" parent="Column/Cell_Tops/Top_Cell_FX_Mask" unique_id=1010142019]
 libraries/ = SubResource("AnimationLibrary_cdabr")
+
+[node name="Top_Cell_Teleport" type="TextureRect" parent="Column/Cell_Tops" unique_id=1853148833]
+visible = false
+self_modulate = Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)
+offset_left = -118.0
+offset_top = -381.0
+offset_right = 118.0
+offset_bottom = 119.0
+texture = ExtResource("35_gwl88")
+script = ExtResource("35_cr4ld")
+metadata/_edit_lock_ = true
 
 [node name="One_Way_Directions" type="Node2D" parent="Column/Cell_Tops" unique_id=976730571]
 position = Vector2(0, 120)
@@ -2158,7 +2195,7 @@ position = Vector2(-15, -75)
 metadata/_edit_lock_ = true
 
 [node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation" unique_id=1800194083]
-self_modulate = Color(0.11366666, 0.11, 0.22, 0.39215687)
+self_modulate = Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 offset = Vector2(0, 60)
@@ -2368,6 +2405,10 @@ libraries/ = SubResource("AnimationLibrary_vwuvy")
 [node name="Direction_Floating" type="AnimationPlayer" parent="Column/Cell_Tops/One_Way_Directions" unique_id=74783843]
 root_node = NodePath("../SE")
 libraries/ = SubResource("AnimationLibrary_oyod2")
+
+[node name="Animation_Teleport" type="AnimationPlayer" parent="Column/Cell_Tops" unique_id=1966715604]
+libraries/ = SubResource("AnimationLibrary_qjtmo")
+autoplay = &"Blink"
 
 [node name="Collider_Ground" type="Area2D" parent="Column" unique_id=290484024]
 position = Vector2(0, 60)
