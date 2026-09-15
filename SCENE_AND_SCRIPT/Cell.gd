@@ -183,6 +183,7 @@ func start_teleport(type: int):
 	else:
 		$Sound/Sound_For_Screen_Glitch.play()
 		_glitch_anim.play("Screen_Glitch_Appearing")
+	$Column/Cell_Tops/Animation_Teleport.play("Blink")
 	await _glitch_anim.animation_finished
 	_teleport_type = type
 	_state = State.TELEPORT
@@ -194,6 +195,7 @@ func start_teleport(type: int):
 ##
 func stop_teleport():
 	_state = State.NORMAL
+	$Column/Cell_Tops/Animation_Teleport.play("RESET")
 	if _teleport_type == 1:
 		_glitch_anim.play("Glitch_Only_Disappearing")
 		$Sound/Sound_For_Glitch_Only.stop()
