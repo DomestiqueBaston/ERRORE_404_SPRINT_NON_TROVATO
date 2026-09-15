@@ -2115,12 +2115,12 @@ metadata/_edit_lock_ = true
 libraries/ = SubResource("AnimationLibrary_cdabr")
 
 [node name="One_Way_Directions" type="Node2D" parent="Column/Cell_Tops" unique_id=976730571]
+position = Vector2(0, 120)
 script = ExtResource("34_pnhl5")
-metadata/_edit_lock_ = true
 
 [node name="SE" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions" unique_id=880013981]
 visible = false
-metadata/_edit_lock_ = true
+position = Vector2(0, -120)
 
 [node name="Shadow_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/SE" unique_id=162548240]
 metadata/_edit_lock_ = true
@@ -2157,41 +2157,40 @@ metadata/_edit_lock_ = true
 position = Vector2(-15, -75)
 metadata/_edit_lock_ = true
 
-[node name="Direction_Offset" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation" unique_id=1410954637]
-position = Vector2(0, 60)
-metadata/_edit_lock_ = true
-
-[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1800194083]
+[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation" unique_id=1800194083]
 self_modulate = Color(0.11366666, 0.11, 0.22, 0.39215687)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
+offset = Vector2(0, 60)
 metadata/_edit_lock_ = true
 
-[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=751098843]
+[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation" unique_id=751098843]
 clip_children = 2
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
+offset = Vector2(0, 60)
 metadata/_edit_lock_ = true
 
-[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation/Direction_Offset/Direction_Back_Mask" unique_id=865244848]
+[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation/Direction_Back_Mask" unique_id=865244848]
 self_modulate = Color(1, 1, 1, 0.49803922)
 material = SubResource("ShaderMaterial_6o5ds")
 texture = ExtResource("31_5memm")
+offset = Vector2(0, 60)
 metadata/_edit_lock_ = true
 
-[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1447955888]
+[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation" unique_id=1447955888]
 position = Vector2(11.5, 4.5)
 texture = ExtResource("32_iotr2")
+offset = Vector2(0, 60)
 metadata/_edit_lock_ = true
 
 [node name="NE" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions" unique_id=906887000]
 visible = false
-metadata/_edit_lock_ = true
+position = Vector2(0, -120)
 
 [node name="Shadow_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/NE" unique_id=788935419]
 position = Vector2(0, 119)
 scale = Vector2(1, -1)
-metadata/_edit_lock_ = true
 
 [node name="Direction_Collider" type="Area2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Shadow_Orientation" unique_id=1491664933]
 visible = false
@@ -2199,7 +2198,6 @@ position = Vector2(0, 60)
 collision_layer = 2
 monitoring = false
 monitorable = false
-metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionShape2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Shadow_Orientation/Direction_Collider" unique_id=551337727]
 position = Vector2(-0.63485146, -0.30963898)
@@ -2207,7 +2205,6 @@ rotation = 0.4537856
 scale = Vector2(1, 0.9999997)
 skew = 0.6579889
 shape = SubResource("RectangleShape2D_qkut6")
-metadata/_edit_lock_ = true
 
 [node name="Shadow" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Shadow_Orientation" unique_id=287725790]
 self_modulate = Color(1, 1, 1, 0.078431375)
@@ -2216,50 +2213,42 @@ rotation = 0.4799655
 scale = Vector2(3.22, 0.646)
 skew = 0.61959183
 texture = ExtResource("31_fki3o")
-metadata/_edit_lock_ = true
 
 [node name="Floating_Node" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/NE" unique_id=2143617453]
 scale = Vector2(1, -1)
-metadata/_edit_lock_ = true
 
 [node name="Direction_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node" unique_id=1695288727]
 position = Vector2(-15, -75)
-metadata/_edit_lock_ = true
 
-[node name="Direction_Offset" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node/Direction_Orientation" unique_id=660659923]
-position = Vector2(0, 60)
-metadata/_edit_lock_ = true
-
-[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1366458068]
+[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node/Direction_Orientation" unique_id=1366458068]
 self_modulate = Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
-metadata/_edit_lock_ = true
+offset = Vector2(0, 60)
 
-[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1243327540]
+[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node/Direction_Orientation" unique_id=1243327540]
 clip_children = 2
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
-metadata/_edit_lock_ = true
+offset = Vector2(0, 60)
 
-[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node/Direction_Orientation/Direction_Offset/Direction_Back_Mask" unique_id=1836755425]
+[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node/Direction_Orientation/Direction_Back_Mask" unique_id=1836755425]
 self_modulate = Color(1, 1, 1, 0.49803922)
 material = SubResource("ShaderMaterial_6o5ds")
 texture = ExtResource("31_5memm")
-metadata/_edit_lock_ = true
+offset = Vector2(0, 60)
 
-[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=457671021]
+[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node/Direction_Orientation" unique_id=457671021]
 position = Vector2(11.5, 4.5)
 texture = ExtResource("32_iotr2")
-metadata/_edit_lock_ = true
+offset = Vector2(0, 60)
 
 [node name="SW" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions" unique_id=230324016]
 visible = false
-metadata/_edit_lock_ = true
+position = Vector2(0, -120)
 
 [node name="Shadow_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/SW" unique_id=515130899]
 scale = Vector2(-1, 1)
-metadata/_edit_lock_ = true
 
 [node name="Direction_Collider" type="Area2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Shadow_Orientation" unique_id=464866018]
 visible = false
@@ -2267,7 +2256,6 @@ position = Vector2(0, 60)
 collision_layer = 2
 monitoring = false
 monitorable = false
-metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionShape2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Shadow_Orientation/Direction_Collider" unique_id=330354886]
 position = Vector2(-0.63485146, -0.30963898)
@@ -2275,7 +2263,6 @@ rotation = 0.4537856
 scale = Vector2(1, 0.9999997)
 skew = 0.6579889
 shape = SubResource("RectangleShape2D_qkut6")
-metadata/_edit_lock_ = true
 
 [node name="Shadow" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Shadow_Orientation" unique_id=1730865664]
 self_modulate = Color(1, 1, 1, 0.078431375)
@@ -2284,52 +2271,44 @@ rotation = 0.4799655
 scale = Vector2(3.22, 0.646)
 skew = 0.61959183
 texture = ExtResource("31_fki3o")
-metadata/_edit_lock_ = true
 
 [node name="Floating_Node" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/SW" unique_id=307618187]
 position = Vector2(0, 15)
 scale = Vector2(-1, 1)
-metadata/_edit_lock_ = true
 
 [node name="Direction_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node" unique_id=112315711]
 position = Vector2(-15, -75)
-metadata/_edit_lock_ = true
 
-[node name="Direction_Offset" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node/Direction_Orientation" unique_id=1063350203]
-position = Vector2(0, 60)
-metadata/_edit_lock_ = true
-
-[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=108989442]
+[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node/Direction_Orientation" unique_id=108989442]
 self_modulate = Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
-metadata/_edit_lock_ = true
+offset = Vector2(0, 60)
 
-[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1818927078]
+[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node/Direction_Orientation" unique_id=1818927078]
 clip_children = 2
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
-metadata/_edit_lock_ = true
+offset = Vector2(0, 60)
 
-[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node/Direction_Orientation/Direction_Offset/Direction_Back_Mask" unique_id=548720252]
+[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node/Direction_Orientation/Direction_Back_Mask" unique_id=548720252]
 self_modulate = Color(1, 1, 1, 0.49803922)
 material = SubResource("ShaderMaterial_6o5ds")
 texture = ExtResource("31_5memm")
-metadata/_edit_lock_ = true
+offset = Vector2(0, 60)
 
-[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=2079232239]
+[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node/Direction_Orientation" unique_id=2079232239]
 position = Vector2(11.5, 4.5)
 texture = ExtResource("32_iotr2")
-metadata/_edit_lock_ = true
+offset = Vector2(0, 60)
 
 [node name="NW" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions" unique_id=1724653404]
 visible = false
-metadata/_edit_lock_ = true
+position = Vector2(0, -120)
 
 [node name="Shadow_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/NW" unique_id=963247969]
 position = Vector2(0, 119)
 scale = Vector2(-1, -1)
-metadata/_edit_lock_ = true
 
 [node name="Direction_Collider" type="Area2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Shadow_Orientation" unique_id=1699495237]
 visible = false
@@ -2337,7 +2316,6 @@ position = Vector2(0, 60)
 collision_layer = 2
 monitoring = false
 monitorable = false
-metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionShape2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Shadow_Orientation/Direction_Collider" unique_id=1200447083]
 position = Vector2(-0.63485146, -0.30963898)
@@ -2345,7 +2323,6 @@ rotation = 0.4537856
 scale = Vector2(1, 0.9999997)
 skew = 0.6579889
 shape = SubResource("RectangleShape2D_qkut6")
-metadata/_edit_lock_ = true
 
 [node name="Shadow" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Shadow_Orientation" unique_id=87270210]
 self_modulate = Color(1, 1, 1, 0.078431375)
@@ -2354,42 +2331,35 @@ rotation = 0.4799655
 scale = Vector2(3.22, 0.646)
 skew = 0.61959183
 texture = ExtResource("31_fki3o")
-metadata/_edit_lock_ = true
 
 [node name="Floating_Node" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/NW" unique_id=2001430200]
 scale = Vector2(-1, -1)
-metadata/_edit_lock_ = true
 
 [node name="Direction_Orientation" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node" unique_id=1465388486]
 position = Vector2(-15, -75)
-metadata/_edit_lock_ = true
 
-[node name="Direction_Offset" type="Node2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node/Direction_Orientation" unique_id=116174809]
-position = Vector2(0, 60)
-metadata/_edit_lock_ = true
-
-[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=714310253]
+[node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node/Direction_Orientation" unique_id=714310253]
 self_modulate = Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
-metadata/_edit_lock_ = true
+offset = Vector2(0, 60)
 
-[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=1067264681]
+[node name="Direction_Back_Mask" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node/Direction_Orientation" unique_id=1067264681]
 clip_children = 2
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
-metadata/_edit_lock_ = true
+offset = Vector2(0, 60)
 
-[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node/Direction_Orientation/Direction_Offset/Direction_Back_Mask" unique_id=759665352]
+[node name="Direction_Shader" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node/Direction_Orientation/Direction_Back_Mask" unique_id=759665352]
 self_modulate = Color(1, 1, 1, 0.49803922)
 material = SubResource("ShaderMaterial_6o5ds")
 texture = ExtResource("31_5memm")
-metadata/_edit_lock_ = true
+offset = Vector2(0, 60)
 
-[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node/Direction_Orientation/Direction_Offset" unique_id=224645697]
+[node name="Direction_Front" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node/Direction_Orientation" unique_id=224645697]
 position = Vector2(11.5, 4.5)
 texture = ExtResource("32_iotr2")
-metadata/_edit_lock_ = true
+offset = Vector2(0, 60)
 
 [node name="Direction_Animation" type="AnimationPlayer" parent="Column/Cell_Tops/One_Way_Directions" unique_id=998299477]
 root_node = NodePath("../SE")
