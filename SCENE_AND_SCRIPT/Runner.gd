@@ -581,6 +581,8 @@ func _add_to_wall(new_cell: Cell, prev_direction: Vector2):
 					last_cell.add_point_to_wall(gap_wall, last_point)
 					last_cell.add_point_to_wall(gap_wall, intersection)
 					new_cell.add_point_to_wall(wall, intersection)
+				else:
+					new_cell.add_point_to_wall(wall, last_point)
 
 		# otherwise, this is the start of a new wall, so play its Appearing
 		# animation
