@@ -104,16 +104,6 @@ Les obstacles :
     6. Colonne écrasante – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     7. Cellule « disparaissante » – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     8. 2 Cellules « hors phase » (téléporteurs) – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔ Apparaissent par paire et disparaissent après utilisation. La vitesse et la direction du coureur sont conservés pendant la téléportation. On utilise les deux shaders pour pouvoir différencier 2 sets de téléporteurs différents.
-
-Liste des animations des personnages :
-    1. Courir ✔ ✔ ✔ ✔
-    2. Sauter ✔ ✔ ✔ ✔
-    3. Glissade ✔ ✔ ✔ ✔
-    4. Pose de départ ✔ ✔ ✔ ✔
-    5. Intro ✔ ✔ ✔ ✔
-    6. Tomber dans le vide → Mort ! ✔ ✔ ✔ ✔
-    7. Bim ! Dans un mur → Mort ! ✔ ✔ ✔ ✔
-
 Notes de fabrication :
 - Au lancement du jeu, la musique qui joue en boucle en permanence, c’est Intro. Jusqu’au moment dans le jeu proprement dit où le Départ est donné. À cet instant précis, on passe à Music (en boucle). Music ne s’arrête qu’en finissant la partie (soit en relançant une nouvelle partie directement soit en retournant à l’écran de Titre. Au moment de lancer à nouveau Intro, il faudra jouer une fois le son Bang tout en démarrant en même temps Intro.
 - /!\ ATTENTION /!\ On ne joue jamais Bang au lancement de Music car il est intégré dans la musique.
@@ -149,7 +139,10 @@ Options (nécessaires) dans Settings:
         ◦ Temps avant le déclenchement du processus d’apparition de Door.tscn : (5 + (Difficulté − 1) × 1,25 ) secondes
         ◦ Délai entre les déclenchements d’obstacles : 5.5 - (0,5 × Difficulté) secondes.
         ◦ Délai avant disparition des tronçons de mur : 3 + ((Difficulté + Taille de la map − 10) / 16) × 7 secondes après apparition.
-        ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en gagnant 3 courses en Difficulté 5) qui rend tous les obstacles PERMANENTS (le reste est traîté comme Difficulté 5 si rien n’est précisé !) SAUF les murs des concurrents. Voir également à la toute fin du doc. : Liste des scènes (et – succinctes – descriptions de leurs contenus) pour les réglages de Difficulté 6. Cette difficulté cachée est sauvegardée afin de pouvoir rejouer dans cette difficulté sans tout recommencer.
+        ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en gagnant 3 courses en Difficulté 5) qui rend tous les obstacles PERMANENTS (le reste est traîté comme Difficulté 5 si rien n’est précisé !) SAUF les murs des concurrents.
+        ◦ Modifications pour Difficulté 6 dans Settings.tscn :
+            ▪ On change Hslider_Difficulty.tick = 6 (au lieu de 5) et Hslider_Difficulty.max = 6 (au lieu de 5)
+            ▪ On cache les deux nodes Difficulty_1_5 et on affiche les deux nodes Difficulty_1_6
 
 Les personnalités des « IA »/Bots :
     1. Par défaut, un Bot tendra bien évidemment à éviter les collisions et les chutes. Un Bot essayera également de sortir par la porte lorsqu’elle est présente et accessible (il peut arriver qu’elle ne le soit pas à cause des glissements de lignes/colonnes).
@@ -196,6 +189,7 @@ Comportements divers :
     7. Épileptique : Saute ou glisse sans raison s’il n’a rien fait de tel depuis (1 + ((map size +1) ÷ 10)) secondes.
     8. Crétin : On ajoute 50ms à sa limite d’enchaînement d’actions (pas son temps de réaction, donc).
 Script de déroulement d’une partie (depuis le lancement d’Errore_404.exe)
+Il se peut que depuis quelques modifications faites dans le jeu, ce script ne soit plus complètement à jour.
 
 Préambule :
     • À chaque chargement de scène (sauf contre-indication), on joue 1 fois Music/Bang (dans Sounds.tscn).
@@ -224,41 +218,17 @@ Avant le jeu :
 Le jeu :
     4. Transition brutale vers The_Game.tscn. Les 4 caméras sont centrées sur les 4 coins de la zone de course. L’écran en haut à gauche affiche TOUJOURS en overlay la sélection de joueur (Portraits.tscn) qui commence sur la fille et les 3 autres vues affichent aléatoirement les 3 autres personnages : pas de doublons !
         ◦ La vue en haut à gauche est TOUJOURS la vue du joueur humain.
-        ◦ De la même manière, dans la Minimap, le joueur est toujours placé en haut au départ du jeu. Son repère est toujours bleu alors que les autres coureurs sont blancs.
+        ◦ Le joueur partira aléatoirement d’un des 4 coins de la map.
+        ◦ Dans la Minimap, le repère du joueur est bleu alors que les autres coureurs sont blancs.
     5. On sélectionne le personnage avec droite et gauche, on valide avec A. Lorsque le joueur change de personnage, à chaque fois, dans les autres quarts d’écran les personnages changent et sont re-sélectionnés aléatoirement. Ils disparaissent/apparaissent en jouant l’animation Animation_Bonus_Malus/Bonus_Malus ET avec le son UI_Sounds/Disappearing (un seul son est joué pour tous). ui_quit_button renvoie à Menu.tscn (transition brutale, pour rappel). Valider fait disparaître l’overlay de sélection des personnages et apparaître le bouton de lancement de la course. Ce bouton ne peut être activé (ui_a_button) que lorsque le joueur a validé son personnage.
         ◦ Ceci est pour la cas où il n’y aurait qu’1 joueur humain et 3 bots mais pour ajouter 1 autre (ou plusieurs autres) joueur humain, il suffira de presser un des boutons d’un autre contrôleur pour que le quart d’écran suivant lui soit attribué. Le reste se fait comme pour le premier joueur… Overlay des portraits, etc. Il ne peut pas avoir de doublons de personnage ! On ne peut plus ajouter de joueur quand il n’y a plus d’overlay de sélection de personnage. C’est seulement à partir du moment ou tous les joueurs (humains) on validé leur choix de personnage que le bouton de lancement de la course apparaîtra.
     6. Tous les Personnages passent alors en animation Start. Au bout d’1/2 seconde, on joue UI_Sounds/3_2_1 puis on coupe Music/Intro, on lance UI_Sounds/Go et Music/Music en boucle (sans Music/Bang cette fois-ci car il est inclus dans la musique) et les coureurs (Bot) partent aléatoirement dans l’une des deux directions qu’il ont de possible dans, au plus tard, la 1/2 de seconde qui suit ! Au pire, 1 seconde après le « top départ », tous les concurrents restants partiront automatiquement avec un décalage de 1/5 de seconde les uns des autres pasque tous synchros, c’est pas joli.
 
 Ici, la course elle-même prend place !
-Petite note concernant la Minimap : elle s’affiche tant qu’on presse le bouton Y. Tant que le bouton est pressé, on joue le son Sounds/UI_Sounds/minimap_Alarm dans Sounds.tscn (qui est par défaut en boucle, pas besoin de l’aider avec le code normalement).
+Petite note concernant la Minimap : elle s’affiche tant qu’on presse le bouton Y. Quand la minimap est affichée, on joue le son Sounds/UI_Sounds/minimap_Alarm dans Sounds.tscn (qui est par défaut en boucle).
 
     7. Fin de course (humain ou bot, tant qu’il y a au moins 2 concurrents vivants, la course continu) :
         ◦ Lorsque les concurrents meurent et tant que le joueur humain est vivant, pour chaque bot mort, on affiche l’Overlay Frames/Bug_0X/Death (X est le numéro de la zone d’écran concernée) et on lance l’animation Blink dans Animation_Overlays (AnimationPlayer), tout ça dans la scène The_Game.tscn. À noter : il n’y en a pas pour le joueur humain en haut à gauche.
             a) Lorsque le joueur perd, on stoppe le jeu, on coupe les sons, les musiques (même les bus audio sauf Master afin de couper les réverbs et égalisations net), on désactive les glitchs, etc. et on affiche Info_Win_Lose_Overlay/Lose et on joue le son Disconnection et l’animation Blink. Une pression sur « A » relance une partie (avec les mêmes paramètres de jeu, restauration du son, etc.) à partir du point 5 de cette liste et tout autre bouton fait retourner à Menu.tscn (on jouera le Bang, etc.) ! Exceptionnellement, à ce « BSOD », on n’utilise pas Start_Button.tscn ni Quit_Button.tscn !
             b) Lorsque le joueur gagne (soit parce qu’il est le dernier en course ou soit parce qu’il a franchi la porte de sortie), on affiche Frames/Info_Win_Lose/Win, on joue les animations Writing (qui intègre le son Disconnection) puis lorsque c’est fini Final_Blink en boucle (on laisse le son Disconnection jouer) ! /!\ À l’instant où on a un gagnant : Music/Music va voir son Pitch qui va descendre et pour cela on utilisera l’AnimationPlayer Music_Pitch/Pitch_Down. /!\ 
         ◦ Ensuite, n’importe quel bouton (sauf A) retourne brutalement (toujours) à Menu.tscn. On coupe alors Music/Music et on lance Music/Intro avec Music/Bang. Presser A relance une course avec les mêmes paramètres.
-Liste des scènes (et – succinctes – descriptions de leurs contenus) :
-    1. Cell.tscn : contient toutes les cellules de sol, contient également les modificateurs de sens de passage One_Way_Direction (voir Un runner bugué #5), les 2 glitchs de surface Top_Cell_FX_Mask (voir Un runner bugué #6) et les points de départ des 4 concurrents (qu’on n’applique qu’aux 4 coins du terrain).
-    2. Credits.tscn : contient la scène de générique du jeu (intègre également le bouton pour quitter le jeu).
-    3. Cube.tscn : contient les bonus/malus à ramasser en course.
-    4. Door.tscn : contient la porte de sortie du jeu. La porte est scindée en 2 couches (l’avant et l’arrière pour que les concurrents puisse la franchir puisqu’elle ressemble à une arche).
-    5. The_Game.tscn : il s’agit de la scène (théorique) de composition du jeu avec ses 4 vues, ses layers de glitch, etc. (intègre également le bouton pour quitter le jeu ET le bouton pour lancer la course).
-    6. Light_Wall.tscn : contient le (prototype de) mur que tracent les concurrents en courant. Inclus un AnimationPlayer qui sert de démo pour voir à quoi ça doit ressembler. Les sons se trouvent dans Sounds.tscn.
-    7. Man_A.tscn, Man_B.tscn, Woman_A.tscn et Woman_B.tscn : contiennent les 4 concurrents du jeu.
-    8. Menu.tscn : contient le menu principal du jeu (intègre également le bouton pour quitter le jeu).
-    9. Music.tscn : contient les musiques du jeu (et le « bang » nécessaire à certaines transitions entre musiques).
-    10. Portraits.tscn : contient le sélecteur de concurrent pour le joueur (humain).
-    11. Pylon.tscn : contient les pylônes qui tombent et qui peuvent écraser les concurrents (voir Les obstacles #6).
-    12. Quit_Button.tscn : contient le bouton pour quitter le jeu.
-    13. Settings.tscn* : contient la scène permettant de régler la taille du terrain de course, la difficulté du jeu, le volume général du son du jeu et le volume de la musique (intègre également le bouton pour quitter le jeu).
-    14. Sounds.tscn : contient les sons de l’UI du jeu, les musiques du jeu (et le « bang » nécessaire à certaines transitions entre musiques ainsi que Win_Glitchy_Sound pour le son ralenti de victoire) et les alarmes de Cellules/Pylones/Colonnes-Lignes de cellules.
-    15. Start_Button.tscn : contient le bouton pour démarrer la course.
-    16. Tutorial.tscn : contient la scène qui dit comment jouer (intègre également le bouton pour quitter le jeu).
-Dans le dossier TMP, on trouve (dossier à supprimer ultérieurement) :
-    1. Test_Split_Screen.tscn : contient une maquette (très rough) montrant à quoi ressemble le jeu lui-même. Cette scène m’a surtout servi à tester les animations des concurrents, faire des mises en place… C’est pour ça que les 4 personnages sont regroupés et bougent tous avec une seule manette.
-
-* Dans Settings, pour Difficulté 6, on passe :
-    1. Hslider_Difficulty.tick = 6 (au lieu de 5)
-    2. Hslider_Difficulty.max = 6 (au lieu de 5)
-    3. On cache les deux Difficulty_1_5
-    4. On affiche les deux Difficulty_1_6
