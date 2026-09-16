@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://4dvmxbh1hyah"]
 
 [ext_resource type="Script" uid="uid://b0r1f7ero7oms" path="res://SCENE_AND_SCRIPT/The_Game.gd" id="1_3iibe"]
-[ext_resource type="Gradient" uid="uid://d2qtghp87yab5" path="res://RESOURCE/Gradient_BG.tres" id="2_jtvwl"]
+[ext_resource type="Texture2D" uid="uid://dw00m18igqp7t" path="res://RESOURCE/Gradient_BG_Cam.tres" id="2_jtvwl"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="3_ycojx"]
 [ext_resource type="PackedScene" uid="uid://qy0upqf8jc48" path="res://SCENE_AND_SCRIPT/Minimap.tscn" id="4_jtvwl"]
 [ext_resource type="PackedScene" uid="uid://3u5u3tfo43n" path="res://SCENE_AND_SCRIPT/Portraits.tscn" id="4_lqmhv"]
@@ -32,38 +32,6 @@ glow_bloom = 0.5
 glow_hdr_threshold = 1.1
 glow_hdr_scale = 0.0
 glow_hdr_luminance_cap = 0.1
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_goajs"]
-gradient = ExtResource("2_jtvwl")
-width = 480
-height = 270
-use_hdr = true
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rc2lo"]
-gradient = ExtResource("2_jtvwl")
-width = 480
-height = 270
-use_hdr = true
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_sxuop"]
-gradient = ExtResource("2_jtvwl")
-width = 480
-height = 270
-use_hdr = true
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_di76m"]
-gradient = ExtResource("2_jtvwl")
-width = 480
-height = 270
-use_hdr = true
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
 
 [sub_resource type="Shader" id="Shader_4dsww"]
 code = "shader_type canvas_item;
@@ -2144,23 +2112,19 @@ audio_listener_enable_2d = true
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
-[node name="Black_BG" type="Control" parent="Runners/Top_Runners/Left_Runner/Runner_SubViewport" unique_id=1091566010]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
+[node name="Black_BG" type="CanvasLayer" parent="Runners/Top_Runners/Left_Runner/Runner_SubViewport" unique_id=74144709]
+layer = -99999
 
-[node name="Black" type="TextureRect" parent="Runners/Top_Runners/Left_Runner/Runner_SubViewport/Black_BG" unique_id=2127383399]
+[node name="Black" type="TextureRect" parent="Runners/Top_Runners/Left_Runner/Runner_SubViewport/Black_BG" unique_id=1513823162]
 z_index = -4096
-layout_mode = 0
+z_as_relative = false
+custom_maximum_size = Vector2(240, 135)
 offset_right = 480.0
 offset_bottom = 270.0
+scale = Vector2(2, 2)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = SubResource("GradientTexture2D_goajs")
+texture = ExtResource("2_jtvwl")
 stretch_mode = 4
 metadata/_edit_lock_ = true
 
@@ -2182,23 +2146,19 @@ audio_listener_enable_2d = true
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
-[node name="Black_BG" type="Control" parent="Runners/Top_Runners/Right_Runner/Runner_SubViewport" unique_id=326414460]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
+[node name="Black_BG" type="CanvasLayer" parent="Runners/Top_Runners/Right_Runner/Runner_SubViewport" unique_id=1166909226]
+layer = -99999
 
-[node name="Black" type="TextureRect" parent="Runners/Top_Runners/Right_Runner/Runner_SubViewport/Black_BG" unique_id=1048301127]
+[node name="Black" type="TextureRect" parent="Runners/Top_Runners/Right_Runner/Runner_SubViewport/Black_BG" unique_id=1488700209]
 z_index = -4096
-layout_mode = 0
+z_as_relative = false
+custom_maximum_size = Vector2(240, 135)
 offset_right = 480.0
 offset_bottom = 270.0
+scale = Vector2(2, 2)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = SubResource("GradientTexture2D_rc2lo")
+texture = ExtResource("2_jtvwl")
 stretch_mode = 4
 metadata/_edit_lock_ = true
 
@@ -2226,23 +2186,19 @@ audio_listener_enable_2d = true
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
-[node name="Black_BG" type="Control" parent="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport" unique_id=932858742]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
+[node name="Black_BG" type="CanvasLayer" parent="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport" unique_id=1270775486]
+layer = -99999
 
-[node name="Black" type="TextureRect" parent="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport/Black_BG" unique_id=1381348634]
+[node name="Black" type="TextureRect" parent="Runners/Bottom_Runners/Left_Runner/Runner_SubViewport/Black_BG" unique_id=2004757318]
 z_index = -4096
-layout_mode = 0
+z_as_relative = false
+custom_maximum_size = Vector2(240, 135)
 offset_right = 480.0
 offset_bottom = 270.0
+scale = Vector2(2, 2)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = SubResource("GradientTexture2D_sxuop")
+texture = ExtResource("2_jtvwl")
 stretch_mode = 4
 metadata/_edit_lock_ = true
 
@@ -2264,23 +2220,19 @@ audio_listener_enable_2d = true
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
-[node name="Black_BG" type="Control" parent="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport" unique_id=1788339734]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
+[node name="Black_BG" type="CanvasLayer" parent="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport" unique_id=1352582740]
+layer = -99999
 
-[node name="Black" type="TextureRect" parent="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport/Black_BG" unique_id=1626146633]
+[node name="Black" type="TextureRect" parent="Runners/Bottom_Runners/Right_Runner/Runner_SubViewport/Black_BG" unique_id=266917366]
 z_index = -4096
-layout_mode = 0
+z_as_relative = false
+custom_maximum_size = Vector2(240, 135)
 offset_right = 480.0
 offset_bottom = 270.0
+scale = Vector2(2, 2)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = SubResource("GradientTexture2D_di76m")
+texture = ExtResource("2_jtvwl")
 stretch_mode = 4
 metadata/_edit_lock_ = true
 
