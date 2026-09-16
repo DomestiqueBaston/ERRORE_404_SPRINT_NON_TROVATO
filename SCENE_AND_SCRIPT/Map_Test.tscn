@@ -2,12 +2,16 @@
 
 [ext_resource type="Script" uid="uid://c4s5ivkq1vpas" path="res://SCENE_AND_SCRIPT/Map_Test.gd" id="1_7cuhg"]
 [ext_resource type="PackedScene" uid="uid://bs6lfs8h7kibb" path="res://SCENE_AND_SCRIPT/Quit_Button.tscn" id="2_5js3l"]
+[ext_resource type="Environment" uid="uid://dx0qy3vs32lrg" path="res://RESOURCE/Game_Environment.tres" id="2_dt873"]
 [ext_resource type="Texture2D" uid="uid://dw00m18igqp7t" path="res://RESOURCE/Gradient_BG_Cam.tres" id="2_v7f3u"]
 
 [node name="Map_Test" type="Node2D" unique_id=1968653440]
 y_sort_enabled = true
 script = ExtResource("1_7cuhg")
 metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=199438881]
+environment = ExtResource("2_dt873")
 
 [node name="Frames" type="CanvasLayer" parent="." unique_id=1367928238]
 metadata/_edit_lock_ = true
