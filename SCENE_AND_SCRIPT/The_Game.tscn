@@ -464,6 +464,19 @@ shader = SubResource("Shader_w61ia")
 shader_parameter/quality = 25
 shader_parameter/block_size = 12
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1b6uy"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
 [sub_resource type="Shader" id="Shader_a16rd"]
 code = "shader_type canvas_item;
 
@@ -862,19 +875,6 @@ void fragment() {
 shader = SubResource("Shader_7bkog")
 shader_parameter/quality = 25
 shader_parameter/block_size = 14
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1b6uy"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-anti_aliasing = false
 
 [sub_resource type="Shader" id="Shader_woavr"]
 code = "shader_type canvas_item;
@@ -2361,6 +2361,42 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
+[node name="Death" type="Control" parent="Frames/Bugs_01" unique_id=57941608]
+visible = false
+self_modulate = Color(1, 1, 1, 0.43776357)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Message" type="RichTextLabel" parent="Frames/Bugs_01/Death" unique_id=1293296013]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.5
+offset_top = -15.0
+offset_right = 165.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.6431373, 0.63529414, 0.8745098, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("3_ycojx")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_1b6uy")
+bbcode_enabled = true
+text = "F!n[color=#ed7252]e[/color] [color=#70cb10]d[/color]i line@: [color=#ed7252]u[color=#70cb10]7[/color]ènt[/color]e 3L[color=#ed7252]im!na[color=#70cb10]tø[/color][/color]!"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
 [node name="Bugs_02" type="Control" parent="Frames" unique_id=2085830198]
 custom_minimum_size = Vector2(480, 270)
 layout_mode = 3
@@ -2695,13 +2731,40 @@ default_color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="Minimap" parent="Frames" unique_id=922617094 instance=ExtResource("4_jtvwl")]
-
-[node name="Portraits" parent="Frames" unique_id=2050210296 instance=ExtResource("4_lqmhv")]
 visible = false
+
+[node name="Player_Selection" type="Control" parent="Frames" unique_id=1669580988]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Portraits_Top_Left" parent="Frames/Player_Selection" unique_id=2050210296 instance=ExtResource("4_lqmhv")]
+layout_mode = 0
 offset_right = 0.0
 offset_bottom = 0.0
 
+[node name="Portraits_Top_Right" parent="Frames/Player_Selection" unique_id=1679374543 instance=ExtResource("4_lqmhv")]
+layout_mode = 0
+offset_left = 480.0
+offset_bottom = 0.0
+
+[node name="Portraits_Bottom_Left" parent="Frames/Player_Selection" unique_id=147213332 instance=ExtResource("4_lqmhv")]
+layout_mode = 0
+offset_top = 270.0
+offset_right = 0.0
+
+[node name="Portraits_Bottom_Right" parent="Frames/Player_Selection" unique_id=1938864700 instance=ExtResource("4_lqmhv")]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 270.0
+
 [node name="Info_Win_Lose_Overlay" type="Control" parent="Frames" unique_id=880103768]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 960.0
@@ -2799,6 +2862,7 @@ libraries/ = SubResource("AnimationLibrary_g17bh")
 autoplay = &"Blink"
 
 [node name="Quit_Button" parent="Frames" unique_id=1295710875 instance=ExtResource("9_mybf8")]
+visible = false
 offset_left = 435.0
 offset_top = 225.0
 offset_right = 525.0
