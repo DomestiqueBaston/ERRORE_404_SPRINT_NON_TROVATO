@@ -10,7 +10,7 @@ y_sort_enabled = true
 script = ExtResource("1_7cuhg")
 metadata/_edit_lock_ = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=199438881]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1620740784]
 environment = ExtResource("2_dt873")
 
 [node name="Frames" type="CanvasLayer" parent="." unique_id=1367928238]
