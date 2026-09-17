@@ -2698,6 +2698,20 @@ offset_top = 270.0
 [node name="Minimap" parent="Frames" unique_id=922617094 instance=ExtResource("4_jtvwl")]
 visible = false
 
+[node name="Quit_Button" parent="Frames" unique_id=1295710875 instance=ExtResource("9_mybf8")]
+visible = false
+offset_left = 435.0
+offset_top = 225.0
+offset_right = 525.0
+offset_bottom = 315.0
+
+[node name="Start_Button" parent="Frames" unique_id=1285019870 instance=ExtResource("10_5ark0")]
+visible = false
+offset_left = 430.0
+offset_top = 220.0
+offset_right = 530.0
+offset_bottom = 320.0
+
 [node name="Info_Win_Lose_Overlay" type="Control" parent="Frames" unique_id=880103768]
 visible = false
 layout_mode = 3
@@ -2795,20 +2809,6 @@ metadata/_edit_lock_ = true
 [node name="Animation_Blink" type="AnimationPlayer" parent="Frames/Info_Win_Lose_Overlay/Lose" unique_id=1989817027]
 libraries/ = SubResource("AnimationLibrary_g17bh")
 autoplay = &"Blink"
-
-[node name="Quit_Button" parent="Frames" unique_id=1295710875 instance=ExtResource("9_mybf8")]
-visible = false
-offset_left = 435.0
-offset_top = 225.0
-offset_right = 525.0
-offset_bottom = 315.0
-
-[node name="Start_Button" parent="Frames" unique_id=1285019870 instance=ExtResource("10_5ark0")]
-visible = false
-offset_left = 430.0
-offset_top = 220.0
-offset_right = 530.0
-offset_bottom = 320.0
 
 [node name="Sound_Animation" type="AnimationPlayer" parent="Frames" unique_id=1823253475]
 root_node = NodePath("../Info_Win_Lose_Overlay")
