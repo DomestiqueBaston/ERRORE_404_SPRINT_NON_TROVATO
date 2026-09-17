@@ -2665,9 +2665,6 @@ width = 2.0
 default_color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="Minimap" parent="Frames" unique_id=922617094 instance=ExtResource("4_jtvwl")]
-visible = false
-
 [node name="Player_Selection" type="Control" parent="Frames" unique_id=1669580988]
 visible = false
 layout_mode = 3
@@ -2697,6 +2694,9 @@ offset_right = 0.0
 layout_mode = 0
 offset_left = 480.0
 offset_top = 270.0
+
+[node name="Minimap" parent="Frames" unique_id=922617094 instance=ExtResource("4_jtvwl")]
+visible = false
 
 [node name="Info_Win_Lose_Overlay" type="Control" parent="Frames" unique_id=880103768]
 visible = false
@@ -2834,5 +2834,5 @@ parameters/looping = true
 
 [node name="Disconnection" type="AudioStreamPlayer" parent="Frames" unique_id=1183246873]
 stream = ExtResource("17_gwksd")
-volume_db = -25.0
+volume_db = -22.5
 parameters/looping = true
