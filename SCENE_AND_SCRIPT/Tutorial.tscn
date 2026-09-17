@@ -96,7 +96,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.20000002, 0.4666667, 0.6666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(0.79607844, 0.3137255, 0.1882353, 0.627451), Color(0.79607844, 0.3137255, 0.1882353, 0.627451), Color(0.8, 0.31360003, 0.19200002, 0), Color(0.8, 0.31360003, 0.19200002, 0)]
+"values": [Color(0.4392157, 0.79607844, 0.0627451, 0.5019608), Color(0.4392157, 0.79607844, 0.0627451, 0.5019608), Color(0.44426665, 0.8, 0.06399999, 0), Color(0.44426665, 0.8, 0.06399999, 0)]
 }
 tracks/5/type = "audio"
 tracks/5/imported = false
@@ -149,6 +149,42 @@ tracks/8/keys = {
 "update": 1,
 "values": ["Uscita: pressione prolungata su [ | };", "Uscita: pressione prolungata su [ / };", "Uscita: pressione prolungata su [ —  };", "Uscita: pressione prolungata su [ \\ };", "Uscita: pressione prolungata su [ | };"]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Full_Screen:text")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.3333333, 0.5, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": ["Schermo intero attivo / disattivo: [ \\ };", "Schermo intero attivo / disattivo: [ —  };", "Schermo intero attivo / disattivo: [ / };", "Schermo intero attivo / disattivo: [ | };", "Schermo intero attivo / disattivo: [ \\ };"]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Masks/Full_Screen:text")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.3333333, 0.5, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": ["Schermo intero attivo / disattivo: [ \\ };", "Schermo intero attivo / disattivo: [ —  };", "Schermo intero attivo / disattivo: [ / };", "Schermo intero attivo / disattivo: [ | };", "Schermo intero attivo / disattivo: [ \\ };"]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Masks/Full_Screen/Settings_Gradients/Full_Screen_Button_Color:color")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.4666667, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.7960785, 0.3137255, 0.18823536, 0.6274407), Color(0.7960785, 0.3137255, 0.18823536, 0.6274407), Color(0.8, 0.31360003, 0.19200002, 0), Color(0.8, 0.31360003, 0.19200002, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_ckudt"]
 length = 0.001
@@ -174,7 +210,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.79607844, 0.3137255, 0.1882353, 0.627451)]
+"values": [Color(0.4392157, 0.79607844, 0.0627451, 0.5019608)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -247,6 +283,42 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Uscita: pressione prolungata su [_1$};"]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Full_Screen:text")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Schermo intero attivo / disattivo: [ | };"]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Masks/Full_Screen:text")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Schermo intero attivo / disattivo: [ | };"]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Masks/Full_Screen/Settings_Gradients/Full_Screen_Button_Color:color")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.7960785, 0.3137255, 0.18823536, 0.6274407)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fhuq5"]
@@ -477,7 +549,6 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="Talent" type="RichTextLabel" parent="Info" unique_id=127181917]
 layout_mode = 1
@@ -485,9 +556,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -480.0
-offset_top = 205.0
+offset_top = 184.0
 offset_right = 480.0
-offset_bottom = 252.0
+offset_bottom = 231.0
 grow_horizontal = 2
 pivot_offset = Vector2(527, 222)
 theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
@@ -505,7 +576,6 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="Jump_Slide" type="RichTextLabel" parent="Info" unique_id=519578696]
 layout_mode = 1
@@ -513,9 +583,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -480.0
-offset_top = 285.0
+offset_top = 243.0
 offset_right = 480.0
-offset_bottom = 332.0
+offset_bottom = 290.0
 grow_horizontal = 2
 pivot_offset = Vector2(627, 139)
 theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
@@ -533,7 +603,33 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-metadata/_edit_lock_ = true
+
+[node name="Full_Screen" type="RichTextLabel" parent="Info" unique_id=1459520369]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 302.0
+offset_right = 480.0
+offset_bottom = 349.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
+theme_override_constants/shadow_outline_size = 20
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_6mfkc")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1xoj5")
+bbcode_enabled = true
+text = "Schermo intero attivo / disattivo: [ | };"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
 
 [node name="Quit" type="RichTextLabel" parent="Info" unique_id=2041634373]
 layout_mode = 1
@@ -560,7 +656,6 @@ text = "Uscita: pressione prolungata su [_1$};"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
-metadata/_edit_lock_ = true
 
 [node name="Masks" type="Control" parent="Info" unique_id=1994543020]
 anchors_preset = 0
@@ -625,7 +720,6 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="Settings_Gradients" type="TextureRect" parent="Info/Masks/Movements" unique_id=370925034]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
@@ -654,9 +748,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -376.0
-offset_top = 205.0
+offset_top = 184.0
 offset_right = 376.0
-offset_bottom = 252.0
+offset_bottom = 231.0
 grow_horizontal = 2
 pivot_offset = Vector2(527, 222)
 mouse_filter = 2
@@ -670,7 +764,6 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="Settings_Gradients" type="TextureRect" parent="Info/Masks/Talent" unique_id=345322505]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
@@ -708,9 +801,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -392.5
-offset_top = 289.0
+offset_top = 247.0
 offset_right = 390.5
-offset_bottom = 328.0
+offset_bottom = 286.0
 grow_horizontal = 2
 pivot_offset = Vector2(523, 139)
 mouse_filter = 2
@@ -723,7 +816,6 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="Settings_Gradients" type="TextureRect" parent="Info/Masks/Jump_Slide" unique_id=524151685]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
@@ -754,6 +846,48 @@ offset_bottom = 320.0
 color = Color(0.4392157, 0.79607844, 0.0627451, 0.5019608)
 metadata/_edit_lock_ = true
 
+[node name="Full_Screen" type="RichTextLabel" parent="Info/Masks" unique_id=2034637826]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -368.0
+offset_top = 302.0
+offset_right = 367.0
+offset_bottom = 349.0
+grow_horizontal = 2
+pivot_offset = Vector2(527, 222)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/normal_font = ExtResource("3_6mfkc")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bpuh4")
+bbcode_enabled = true
+text = "Schermo intero attivo / disattivo: [ | };"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Settings_Gradients" type="TextureRect" parent="Info/Masks/Full_Screen" unique_id=407132751]
+self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
+layout_mode = 0
+offset_left = -104.0
+offset_top = -142.0
+offset_right = 856.0
+offset_bottom = 398.0
+mouse_filter = 2
+texture = ExtResource("7_2ampn")
+metadata/_edit_lock_ = true
+
+[node name="Full_Screen_Button_Color" type="ColorRect" parent="Info/Masks/Full_Screen/Settings_Gradients" unique_id=1711170115]
+layout_mode = 0
+offset_left = 795.5
+offset_top = 146.0
+offset_right = 863.5
+offset_bottom = 185.0
+color = Color(0.7960785, 0.3137255, 0.18823536, 0.6274407)
+
 [node name="Quit" type="RichTextLabel" parent="Info/Masks" unique_id=1018890447]
 clip_children = 2
 layout_mode = 1
@@ -776,7 +910,6 @@ text = "Uscita: pressione prolungata su [_1$};"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
-metadata/_edit_lock_ = true
 
 [node name="Settings_Gradients" type="TextureRect" parent="Info/Masks/Quit" unique_id=163295015]
 self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
@@ -795,7 +928,7 @@ offset_left = 781.5
 offset_top = 146.0
 offset_right = 880.5
 offset_bottom = 185.0
-color = Color(0.79607844, 0.3137255, 0.1882353, 0.627451)
+color = Color(0.4392157, 0.79607844, 0.0627451, 0.5019608)
 metadata/_edit_lock_ = true
 
 [node name="Button_Animations" type="AnimationPlayer" parent="Info" unique_id=524472346]
