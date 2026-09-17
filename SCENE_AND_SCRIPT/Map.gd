@@ -84,6 +84,17 @@ func _ready():
 	if Engine.is_editor_hint():
 		return
 
+	# all cells except the central cell are available for obstacles initially
+
+	_available_cells = _cells.values().duplicate()
+	_available_cells.erase(_center_cell)
+	_obstacle_cells.clear()
+
+	# lower central cell and add artefact above it
+
+	_center_cell.lower(true)
+	_center_cell.add_artefact()
+
 	_timer = Timer.new()
 	add_child(_timer)
 	_timer.timeout.connect(_on_obstacle_timer_timeout)
@@ -144,15 +155,6 @@ func _build_map():
 				var uv = Vector2i(-map_size + x+1, -map_size + y+1)
 				var deco = Cell.Decoration.OTHER1 + decos[x][y]
 				_add_cell(parent, uv, deco as Cell.Decoration)
-
-	_available_cells = _cells.values().duplicate()
-	_available_cells.erase(_center_cell)
-	_obstacle_cells.clear()
-
-	# lower central cell and add artefact above it
-
-	_center_cell.lower(true)
-	_center_cell.add_artefact()
 
 func _build_edge(parent: Node2D, edge: Globals.Axis):
 	var uv0: Vector2i
