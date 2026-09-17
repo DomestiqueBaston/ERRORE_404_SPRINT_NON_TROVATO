@@ -363,7 +363,7 @@ func _die(fast: bool) -> void:
 			wall.disappear()
 	else:
 		for wall in _walls:
-			wall.backup(225)
+			wall.backup(225.0 / 1000.0)
 
 	if _direction.y < 0:
 		_animation.play("Death_000")
