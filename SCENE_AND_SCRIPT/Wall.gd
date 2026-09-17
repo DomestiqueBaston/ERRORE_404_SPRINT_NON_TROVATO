@@ -1,10 +1,7 @@
-class_name Wall extends Node2D
+class_name Wall extends CellAttachment
 
 ## Signal emitted when the wall has disappeared or been removed.
 signal gone
-
-## Cell the wall is attached to.
-var cell: Cell
 
 ## The delay in milliseconds before a point is made visible
 const delay_msec: int = 100
@@ -31,9 +28,6 @@ var _times: Array[int]
 var _points_added: int = 0
 
 func _ready():
-	# same rendering layer as cells (not great when mixing with pylons, for
-	# example, but essential when the underlying cell is lowered)
-	z_index = RenderingServer.CANVAS_ITEM_Z_MIN
 	# don't start processing until there are points to be processed
 	set_physics_process(false)
 

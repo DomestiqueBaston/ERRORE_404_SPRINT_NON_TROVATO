@@ -55,7 +55,6 @@ const height: float = width * 0.5
 signal position_changed
 
 @onready var _anim_player: AnimationPlayer = $Global_Cell
-@onready var _cell_tops: Node2D = $Column/Cell_Tops
 @onready var _one_way_directions: Node2D = $Column/Cell_Tops/One_Way_Directions
 @onready var _glitch_anim: AnimationPlayer = $Column/Cell_Tops/Top_Cell_FX_Mask/Glitch
 
@@ -100,6 +99,7 @@ var _door: Door
 var _state: State = State.NORMAL
 var _partner: Cell
 var _teleport_type: int
+var _walls: Array[Wall]
 
 func _ready():
 	assert(_textures.size() == Decoration.keys().size())
@@ -112,6 +112,8 @@ func _notification(what: int):
 		position_changed.emit()
 
 func lower(immediate: bool = false):
+	for wall in _walls:
+		wall.disappear()
 	if immediate:
 		$Column/Cell_Tops.position.y = 250
 		_state = State.LOWERED
@@ -139,6 +141,8 @@ func _set_state_normal():
 	_state = State.NORMAL
 
 func disappear():
+	for wall in _walls:
+		wall.disappear()
 	_anim_player.play("Disappearing")
 	await _anim_player.animation_finished
 	_state = State.HIDDEN
@@ -290,24 +294,29 @@ func get_door() -> Door:
 ##
 func add_wall() -> Wall:
 	var wall: Wall = _wall_scene.instantiate()
+	add_child(wall)
 	wall.cell = self
-	_cell_tops.add_child(wall)
-	wall.gone.connect(wall.queue_free)
+	_walls.push_back(wall)
+	wall.gone.connect(_on_wall_gone.bind(wall))
 	return wall
+
+func _on_wall_gone(wall: Wall):
+	_walls.erase(wall)
+	wall.queue_free()
 
 ##
 ## Adds a point to a wall that has been attached to this cell by add_wall(),
 ## converting global coordinates to the local coordinate system.
 ##
 func add_point_to_wall(wall: Wall, global_pos: Vector2):
-	wall.add_point(_cell_tops.to_local(global_pos))
+	wall.add_point(to_local(global_pos))
 
 ##
 ## Returns the last point to be added to the given wall, converting it to
 ## global coordinates.
 ##
 func get_last_point_on_wall(wall: Wall) -> Vector2:
-	return _cell_tops.to_global(wall.get_last_point())
+	return to_global(wall.get_last_point())
 
 ##
 ## Tells a new teleport cell which other cell it teleports to/from. This only
