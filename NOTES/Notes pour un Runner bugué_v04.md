@@ -57,8 +57,9 @@ Les bonus et malus en jeu (Cube.tscn) :
 - Si le ramassage et l’activation se font en même temps (noté Automatique!), on ne jouera qu’une fois le son correspondant et pareil pour le clignotement du concurrent et on changera la couleur de l’outline pour le temps de l’effet du Bonus/Malus.
 - Lorsque l’effet du Bonus/Malus durera plus longtemps que le son et l’animation du Bonus/Malus, à la fin de l’effet du Bonus/Malus, on rejouera le clignotement du coureur et le son Sound/Bonus_Malus/Bonus_Malus_Over dans la scène du coureur et l’outline retrouvera sa couleur par défaut (noir) à la fin du clignotement.
 - Tout Bonus/Malus déclenchable « manuellement » doit être utilisé dans les 15’’ qui suivent son ramassage. Au delà de cette durée, le joueur perd le Bonus/Malus. Alors on jouera le son du Bonus/Malus et le clignotement du joueur.
+- Tout effet sur la vitesse du joueur se répercute sur la vitesse du mur (thanks, Cap’tain Obvious!).
 
-Les bonus :a
+Les bonus :
     1. Invulnérabilité – Rouge (annule le prochain malus récolté) – dure : (6 – difficulté)’’ → ✔ Invincible – Automatique !
     2. Dash – Vert (course uniquement – dure :1/2’’ – ne peut pas être interrompu ET virage impossible !) : 66% plus rapide (animation aussi). → ✔ Dash – Activable !
     3. Passe-muraille – Bleu (uniquement les light walls) – dure : 1 seule utilisation → ✔ Through – Automatique !
@@ -127,7 +128,6 @@ Notes de fabrication :
 - Un concurrent ne peut pas courir sur un autre cadavre → Mort (animation Death).
 - À la mort d’un concurrent, ce qui reste de son mur disparaît (on joue l’animation de disparition du mur dès la première frame de l’animation de mort du concurrent)! Pour cela on jouera l’animation Light_Wall_Animations/Disappearing dans Light_Wall.tscn.
 - Seule l’animation de course peut être interrompue (pour changer de direction, sauter, etc.) par le joueur. Toutes les autres doivent finir avant d’enchaîner sur autre chose (on parle toujours d’interruption par le joueur, cela ne concerne pas sa mort, par exemple). Par défaut, à la fin d’une animation d’interruption (saut, glissade, etc.), on retourne toujours à la course.
-- Toutes les 10 à 20’’, chaque coureur va gagner/perdre 4% de vitesse. Et toutes les 10 à 20’’ retour à la vitesse normale. Les animations seront également accélérées et ralenties de la même proportion pour que ce soit plus « joli ». On utilisera également un tween d’1/2 seconde pour appliquer la modification (si possible). Chaque concurrent à un timer personnel indépendant de celui des autres.
 - Passer sur un sens unique qui forcerait à partir un sens inverse fait mourir.
 
 Options (nécessaires) dans Settings:
@@ -201,7 +201,7 @@ Préambule :
         ◦ ui_a_button : Valider et Sauter (A)
         ◦ ui_b_button : Annuler et Glisser (B)
         ◦ ui_x_button : Activer le Bonus/Malus
-        ◦ ui_y_button : Affiche la Minimap tant que la pression est maintenue
+        ◦ ui_y_button : Affiche la Minimap tant que la pression est maintenue (accessible uniquement en course) 
         ◦ ui_left_button, ui_right_button, ui_up_button et ui_down_button : Direction et navigation menu (en course, on n’utilise que les diagonales)
         ◦ ui_fullscreen : Plein écran/Fenêtré
         ◦ ui_quit_button : Quitter (pression longue, voir Quit_Button.tscn)
@@ -219,7 +219,7 @@ Le jeu :
     4. Transition brutale vers The_Game.tscn. Les 4 caméras sont centrées sur les 4 coins de la zone de course. L’écran en haut à gauche affiche TOUJOURS en overlay la sélection de joueur (Portraits.tscn) qui commence sur la fille et les 3 autres vues affichent aléatoirement les 3 autres personnages : pas de doublons !
         ◦ La vue en haut à gauche est TOUJOURS la vue du joueur humain.
         ◦ Le joueur partira aléatoirement d’un des 4 coins de la map.
-        ◦ Dans la Minimap, le repère du joueur est bleu alors que les autres coureurs sont blancs.
+        ◦ Dans la Minimap, le repère du joueur est bleu alors que les autres coureurs sont blancs. Elle n’est accessible qu’en course !
     5. On sélectionne le personnage avec droite et gauche, on valide avec A. Lorsque le joueur change de personnage, à chaque fois, dans les autres quarts d’écran les personnages changent et sont re-sélectionnés aléatoirement. Ils disparaissent/apparaissent en jouant l’animation Animation_Bonus_Malus/Bonus_Malus ET avec le son UI_Sounds/Disappearing (un seul son est joué pour tous). ui_quit_button renvoie à Menu.tscn (transition brutale, pour rappel). Valider fait disparaître l’overlay de sélection des personnages et apparaître le bouton de lancement de la course. Ce bouton ne peut être activé (ui_a_button) que lorsque le joueur a validé son personnage.
         ◦ Ceci est pour la cas où il n’y aurait qu’1 joueur humain et 3 bots mais pour ajouter 1 autre (ou plusieurs autres) joueur humain, il suffira de presser un des boutons d’un autre contrôleur pour que le quart d’écran suivant lui soit attribué. Le reste se fait comme pour le premier joueur… Overlay des portraits, etc. Il ne peut pas y avoir de doublons de personnages ! On ne peut plus ajouter de joueur quand il n’y a plus d’overlay de sélection de personnage. C’est seulement à partir du moment ou tous les joueurs (humains) on validé leur choix de personnage que le bouton de lancement de la course apparaîtra.
     6. Tous les Personnages passent alors en animation Start. Au bout d’1/2 seconde, on joue UI_Sounds/3_2_1 puis on coupe Music/Intro, on lance UI_Sounds/Go et Music/Music en boucle (sans Music/Bang cette fois-ci car il est inclus dans la musique) et les coureurs (Bot) partent aléatoirement dans l’une des deux directions qu’il ont de possible dans, au plus tard, la 1/2 de seconde qui suit ! Au pire, 1 seconde après le « top départ », tous les concurrents restants partiront automatiquement avec un décalage de 1/5 de seconde les uns des autres pasque tous synchros, c’est pas joli.
