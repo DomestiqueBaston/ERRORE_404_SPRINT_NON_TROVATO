@@ -145,7 +145,7 @@ Options (nécessaires) dans Settings:
             ▪ On cache les deux nodes Difficulty_1_5 et on affiche les deux nodes Difficulty_1_6
 
 Les personnalités des « IA »/Bots :
-    1. Par défaut, un Bot tendra bien évidemment à éviter les collisions et les chutes. Un Bot essayera également de sortir par la porte lorsqu’elle est présente et accessible (il peut arriver qu’elle ne le soit pas à cause des glissements de lignes/colonnes).
+    1. Par défaut, un Bot tendra bien évidemment à éviter les collisions et les chutes. Un Bot essayera également de sortir par la porte lorsqu’elle est présente et accessible (il peut arriver qu’elle ne le soit pas à cause des glissements de lignes/colonnes). Un bot sait toujours où se trouve la porte de sortie (une fois qu’elle est en place).
     2. On définira des valeurs « par défaut » pour un bot afin de faire varier ces valeurs en fonction du comportement sélectionné.
         ◦ Temps de réaction de base face aux obstacles et imprévus : 300ms.
         ◦ Un bot peut enchaîner au maximum 2 actions en 150ms. Ex. : tourner 2 fois, tourner puis sauter, tourner activer un Bonus/Malus, etc.
@@ -159,36 +159,38 @@ Les personnalités des « IA »/Bots :
     6. Seuls les coureurs, light walls, colonnes, trous, pylônes et piles de la porte de sortie sont considérés comme des obstacles.
     7. Un bot conservera son bonus/malus entre 2 à 15 secondes avant de l’utiliser (sauf Automatique, bien entendu).
 
-Comportements face aux obstacles et coureurs :
+Comportements « de base » :
 
-    1. Fuyant : S’éloigne des coureurs (tout concurrent dans son détecteur plus d’1/4 seconde poussera ce bot à partir en direction opposée).
+    1. Fuyant : S’éloigne des coureurs (tout concurrent dans son détecteur plus d’1/4 seconde poussera ce bot à partir en direction opposée – sauf demi-tour).
     2. Suiveur : Essaye de suivre un coureur qui passe plus d’1/4 de seconde dans son détecteur.
-    3. Téméraire : N’évite plus les cellules sur lesquelles se trouvent moins de 3 tronçons de light walls.
+    3. Téméraire : N’évite plus les cellules sur lesquelles se trouvent plus de 2 tronçons de light walls.
     4. Jusqu’au-boutiste : Ne prendra jamais la porte de sortie.
-    5. Stupide : Confond les obstacles (1/15 fois saute au lieu de glisser et inversement).
-    6. Bloqueur : Lorsqu’un coureur arrive en sens inverse (uniquement), tourne vers lui pour lui faire obstacle (avec son mur).
-    7. Distrait : ne voit pas l’obstacle devant lui 1/15 fois.
+    5. Stupide : Confond les obstacles (1/50 fois saute au lieu de glisser et inversement).
+    6. Bloqueur : Lorsqu’un coureur arrive en sens inverse (uniquement) dans son détecteur, tourne devant lui pour faire obstacle (avec son mur).
+    7. Distrait : ne voit pas l’obstacle devant lui 1/50 fois.
+    8. Dyslexique : Confond sa gauche et sa droite 1/50 fois.
+    9. Lunatique : Change de direction sans raison s’il a couru plus de 2 à 3 secondes tout droit.
+    10. Épileptique : Saute ou glisse sans raison s’il n’a rien fait de tel depuis 2 à 3 secondes.
 
 Comportements face aux Bonus/malus :
 
-    1. Cupide : Fonce sur les bonus/malus dès qu’il en voit un accessible (qu’il en ait déjà un ou pas).
-    2. Sélectif : Ne vise que les bonus/malus à 1 cellule max. de lui.
-    3. Méfiant : Évite les bonus/malus.
-    4. Monomaniaque : ne vise que les bonus/malus d’une couleur (choisie aléatoirement).
-    5. Hésitant : Priorise le ramassage ou non d’un bonus aléatoirement (à 50%).
+    1. Cupide : Fonce sur les bonus/malus dès qu’il en voit un accessible (qu’il en ait déjà un ou pas) dans son détecteur.
+    2. Sélectif : Ne vise que les bonus/malus à 1 cellule max. de lui dans son détecteur.
+    3. Méfiant : Évite les bonus/malus (il peut arriver qu’il en ramasse un si l’éviter signifie mourir).
+    4. Monomaniaque : ne vise que les bonus/malus d’une couleur (choisie aléatoirement) dans son détecteur.
+    5. Hésitant : Priorise le ramassage ou non d’un bonus dans son détecteur aléatoirement (à 50%).
     6. Compulsif : utilise toujours son bonus/malus dans les 0 à 5 secondes qui suivent son ramassage.
-    7. Conservateur : Ne ramasse un bonus/malus que s’il n’en a pas.
+    7. Conservateur : Ne ramasse un bonus/malus que s’il n’en a pas déjà un.
 
-Comportements divers :
+Comportements de réaction et perception :
 
     1. Anticipatif : Voit plus loin. On augmente la taille du collider Vision à scale 0,75.
     2. Inconscient : Voit moins loin. On réduit la taille du collider Vision à scale 0,333.
-    3. Dyslexique : Confond sa gauche et sa droite (1/15 fois).
-    4. Vif : Temps de réaction réduit de 25ms.
-    5. Lent : Temps de réaction augmenté de 25ms.
-    6. Lunatique : Change de direction sans raison s’il a couru plus de (1 + ((map size +1) ÷ 10)) secondes  tout droit.
-    7. Épileptique : Saute ou glisse sans raison s’il n’a rien fait de tel depuis (1 + ((map size +1) ÷ 10)) secondes.
-    8. Crétin : On ajoute 50ms à sa limite d’enchaînement d’actions (pas son temps de réaction, donc).
+    3. Vif : Temps de réaction réduit de 25ms.
+    4. Lent : Temps de réaction augmenté de 25ms.
+    5. Empoté : On ajoute 25ms à sa limite d’enchaînement d’actions.
+    6. Dextre : On soustrait 25ms à sa limite d’enchaînement d’actions.
+    7. Normal : On ne change rien.
 
 
 
