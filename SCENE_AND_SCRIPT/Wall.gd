@@ -31,16 +31,11 @@ var _times: Array[int]
 var _points_added: int = 0
 
 func _ready():
-	z_as_relative = false
-	z_index = roundi(global_position.y)
-	set_notify_transform(true)
-
+	# same rendering layer as cells (not great when mixing with pylons, for
+	# example, but essential when the underlying cell is lowered)
+	z_index = RenderingServer.CANVAS_ITEM_Z_MIN
 	# don't start processing until there are points to be processed
 	set_physics_process(false)
-
-func _notification(what: int):
-	if what == NOTIFICATION_TRANSFORM_CHANGED:
-		z_index = roundi(global_position.y)
 
 func _physics_process(_delta: float):
 	_update_mesh()

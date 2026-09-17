@@ -1,4 +1,4 @@
-class_name Pylon extends Node2D
+class_name Pylon extends CellAttachment
 
 enum State {
 	RAISED,
@@ -9,15 +9,6 @@ enum State {
 signal state_changed(state: State)
 
 var _state: State = State.RAISED
-
-func _ready():
-	z_as_relative = false
-	z_index = roundi(global_position.y)
-	set_notify_transform(true)
-
-func _notification(what: int):
-	if what == NOTIFICATION_TRANSFORM_CHANGED:
-		z_index = roundi(global_position.y)
 
 func lower():
 	Sounds.play_pylon_down()

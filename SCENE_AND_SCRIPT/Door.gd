@@ -1,4 +1,4 @@
-class_name Door extends Node2D
+class_name Door extends CellAttachment
 
 ##
 ## Cell zones returned by get_zone_at().
@@ -32,16 +32,8 @@ enum Depth {
 @onready var _middle: Area2D = $Door_Faces
 
 func _ready():
-	z_as_relative = false
-	z_index = roundi(global_position.y)
-	set_notify_transform(true)
-
 	$Door_Back.z_index = Depth.BACK_DOOR
 	$Door_Front.z_index = Depth.FRONT_DOOR
-
-func _notification(what: int):
-	if what == NOTIFICATION_TRANSFORM_CHANGED:
-		z_index = roundi(global_position.y)
 
 func get_zone_at(collider: Area2D) -> Zone:
 	var zones = collider.get_overlapping_areas()

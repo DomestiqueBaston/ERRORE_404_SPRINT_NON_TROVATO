@@ -1,4 +1,4 @@
-extends Node2D
+extends CellAttachment
 
 @onready var _dir_anim: AnimationPlayer = $Direction_Animation
 @onready var _float_anim: AnimationPlayer = $Direction_Floating
@@ -7,13 +7,7 @@ var _direction: Globals.Axis
 var _collider: Area2D
 
 func _ready():
-	z_as_relative = false
-	z_index = roundi(global_position.y)
-	set_notify_transform(true)
-
-func _notification(what: int):
-	if what == NOTIFICATION_TRANSFORM_CHANGED:
-		z_index = roundi(global_position.y)
+	cell = get_node("../../..")
 
 func start(direction: Globals.Axis):
 	_direction = direction

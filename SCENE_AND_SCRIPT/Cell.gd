@@ -51,6 +51,9 @@ enum State {
 const width: float = 236.0
 const height: float = width * 0.5
 
+## Signal emitted whenever the cell's global position has changed.
+signal position_changed
+
 @onready var _anim_player: AnimationPlayer = $Global_Cell
 @onready var _cell_tops: Node2D = $Column/Cell_Tops
 @onready var _one_way_directions: Node2D = $Column/Cell_Tops/One_Way_Directions
@@ -102,6 +105,11 @@ func _ready():
 	assert(_textures.size() == Decoration.keys().size())
 	for i in _textures.size():
 		_textures[i].visible = (i == decoration)
+	set_notify_transform(true)
+
+func _notification(what: int):
+	if what == NOTIFICATION_TRANSFORM_CHANGED:
+		position_changed.emit()
 
 func lower(immediate: bool = false):
 	if immediate:
@@ -235,6 +243,7 @@ func _add_pylon():
 		_pylon = _pylon_scene.instantiate()
 		_pylon.state_changed.connect(_on_pylon_state_changed)
 		add_child(_pylon)
+		_pylon.cell = self
 
 func _remove_pylon():
 	if _pylon:
@@ -249,6 +258,7 @@ func add_artefact():
 	if _artefact == null:
 		_artefact = _artefact_scene.instantiate()
 		add_child(_artefact)
+		_artefact.cell = self
 
 func remove_artefact():
 	if _artefact:
@@ -264,6 +274,7 @@ func add_door():
 	if _door == null:
 		_door = _door_scene.instantiate()
 		add_child(_door)
+		_door.cell = self
 
 func get_door() -> Door:
 	return _door
