@@ -104,7 +104,7 @@ Les obstacles :
     5. Colonne descendante – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     6. Colonne écrasante – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     7. Cellule « disparaissante » – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
-    8. 2 Cellules « hors phase » (téléporteurs) – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔ Apparaissent par paire et disparaissent après utilisation. La vitesse et la direction du coureur sont conservés pendant la téléportation. On utilise les deux shaders pour pouvoir différencier 2 sets de téléporteurs différents.
+    8. 2 Cellules « hors phase » (téléporteurs) – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔ Apparaissent par paire et disparaissent après utilisation. La vitesse et la direction du coureur sont conservés pendant la téléportation pour un des deux types de téléporteurs seulement. L’autre type de téléporteur fait tourner le coureur en sortie de téléportation vers la droite ou la gauche (aléatoirement). On utilise les deux shaders pour pouvoir différencier 2 sets de téléporteurs différents.
 Notes de fabrication :
 - Au lancement du jeu, la musique qui joue en boucle en permanence, c’est Intro. Jusqu’au moment dans le jeu proprement dit où le Départ est donné. À cet instant précis, on passe à Music (en boucle). Music ne s’arrête qu’en finissant la partie (soit en relançant une nouvelle partie directement soit en retournant à l’écran de Titre. Au moment de lancer à nouveau Intro, il faudra jouer une fois le son Bang tout en démarrant en même temps Intro.
 - /!\ ATTENTION /!\ On ne joue jamais Bang au lancement de Music car il est intégré dans la musique.
@@ -155,8 +155,9 @@ Les personnalités des « IA »/Bots :
         ◦ Un bot n’a pas de raison de changer de direction si rien ne se présente devant lui dans son champs de vision.
     3. Pour former un bot, on combine 3 comportements choisi aléatoirement (1 dans dans chaque catégorie).
     4. Un comportement ne sera donné qu’à 1 seul bot.
-    5. Seuls les coureurs, light walls, colonnes, trous, pylônes et piles de la porte de sortie sont considérés comme des obstacles.
-    6. Un bot conservera son bonus/malus entre 2 à 15 secondes avant de l’utiliser (sauf Automatique, bien entendu).
+    5. Les comportements choisis sont prioritaires par rapport à leurs versions du comportement de base (si ils existent).
+    6. Seuls les coureurs, light walls, colonnes, trous, pylônes et piles de la porte de sortie sont considérés comme des obstacles.
+    7. Un bot conservera son bonus/malus entre 2 à 15 secondes avant de l’utiliser (sauf Automatique, bien entendu).
 
 Comportements face aux obstacles et coureurs :
 
@@ -165,7 +166,7 @@ Comportements face aux obstacles et coureurs :
     3. Téméraire : N’évite plus les cellules sur lesquelles se trouvent moins de 3 tronçons de light walls.
     4. Jusqu’au-boutiste : Ne prendra jamais la porte de sortie.
     5. Stupide : Confond les obstacles (1/15 fois saute au lieu de glisser et inversement).
-    6. Bloqueur : Lorsqu’un coureur arrive en sens inverse, tourne vers lui pour lui faire obstacle (avec son mur).
+    6. Bloqueur : Lorsqu’un coureur arrive en sens inverse (uniquement), tourne vers lui pour lui faire obstacle (avec son mur).
     7. Distrait : ne voit pas l’obstacle devant lui 1/15 fois.
 
 Comportements face aux Bonus/malus :
@@ -188,6 +189,10 @@ Comportements divers :
     6. Lunatique : Change de direction sans raison s’il a couru plus de (1 + ((map size +1) ÷ 10)) secondes  tout droit.
     7. Épileptique : Saute ou glisse sans raison s’il n’a rien fait de tel depuis (1 + ((map size +1) ÷ 10)) secondes.
     8. Crétin : On ajoute 50ms à sa limite d’enchaînement d’actions (pas son temps de réaction, donc).
+
+
+
+
 Script de déroulement d’une partie (depuis le lancement d’Errore_404.exe)
 Il se peut que depuis quelques modifications faites dans le jeu, ce script ne soit plus complètement à jour.
 
