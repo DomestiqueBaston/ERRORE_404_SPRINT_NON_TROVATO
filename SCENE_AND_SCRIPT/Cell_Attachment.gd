@@ -18,10 +18,6 @@ var cell: Cell: set = set_cell
 func _init():
 	z_as_relative = false
 
-func _ready():
-	if cell:
-		on_cell_pos_changed()
-
 func set_cell(c: Cell):
 	if cell != c:
 		if cell:

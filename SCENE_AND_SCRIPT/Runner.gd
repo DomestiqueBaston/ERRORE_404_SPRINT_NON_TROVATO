@@ -363,7 +363,7 @@ func _die(fast: bool) -> void:
 			wall.disappear()
 	else:
 		for wall in _walls:
-			wall.backup(225.0 / 1000.0)
+			wall.backup(0.225)
 
 	if _direction.y < 0:
 		_animation.play("Death_000")
@@ -548,13 +548,13 @@ func _add_to_wall(new_cell: Cell, prev_direction: Vector2):
 
 		if _curr_wall:
 			var last_cell: Cell = _curr_wall.cell
-			var last_point: Vector2 = last_cell.get_last_point_on_wall(_curr_wall)
+			var last_point: Vector2 = _curr_wall.get_last_point()
 
 			# change of direction only: start the new wall where the previous
 			# wall ends
 
 			if last_cell == new_cell:
-				last_cell.add_point_to_wall(wall, last_point)
+				wall.add_point(last_point)
 
 			# change of cell only: finish the previous wall and start the new
 			# one with a point at the intersection of the neighboring cells
@@ -563,10 +563,10 @@ func _add_to_wall(new_cell: Cell, prev_direction: Vector2):
 				var intersection = last_cell.get_exit_point(
 					last_point, global_position)
 				if intersection:
-					last_cell.add_point_to_wall(_curr_wall, intersection)
-					new_cell.add_point_to_wall(wall, intersection)
+					_curr_wall.add_point(intersection)
+					wall.add_point(intersection)
 				else:
-					new_cell.add_point_to_wall(wall, last_point)
+					wall.add_point(last_point)
 
 			# change of cell AND direction: we need a tiny, single-segment wall
 			# to go to the edge of the cell
@@ -578,11 +578,11 @@ func _add_to_wall(new_cell: Cell, prev_direction: Vector2):
 					var gap_wall: Wall = last_cell.add_wall()
 					gap_wall.gone.connect(func(): _walls.erase(gap_wall))
 					_walls.push_back(gap_wall)
-					last_cell.add_point_to_wall(gap_wall, last_point)
-					last_cell.add_point_to_wall(gap_wall, intersection)
-					new_cell.add_point_to_wall(wall, intersection)
+					gap_wall.add_point(last_point)
+					gap_wall.add_point(intersection)
+					wall.add_point(intersection)
 				else:
-					new_cell.add_point_to_wall(wall, last_point)
+					wall.add_point(last_point)
 
 		# otherwise, this is the start of a new wall, so play its Appearing
 		# animation
@@ -594,4 +594,4 @@ func _add_to_wall(new_cell: Cell, prev_direction: Vector2):
 
 	# add the current position to the current wall
 
-	new_cell.add_point_to_wall(wall, global_position)
+	wall.add_point(global_position)

@@ -232,26 +232,6 @@ func get_cell_at(uv: Vector2i) -> Cell:
 	return _cells.get(uv)
 
 ##
-## Returns the cell that overlaps with the given collider, or null if there is
-## none. Note that this works only if cell colliders are monitorable; at the
-## moment they are NOT, because get_cell_as_pos() is used instead of this
-## method, and it doesn't require them to be monitorable.
-##
-func get_cell_in_area(collider: Area2D) -> Cell:
-	var first_cell: Cell = null
-
-	for area in collider.get_overlapping_areas():
-		var cell = Cell.get_cell_from_collider(area)
-		if cell:
-			# prefer non-normal cells in order to detect obstacles ASAP
-			if cell.get_state() != Cell.State.NORMAL:
-				return cell
-			if first_cell == null:
-				first_cell = cell
-
-	return first_cell
-
-##
 ## Returns the cell found at the given point, in global coordinates, or null if
 ## there is none.
 ##
@@ -260,7 +240,7 @@ func get_cell_at_pos(pos: Vector2) -> Cell:
 	params.position = pos
 	params.collide_with_areas = true
 	params.collide_with_bodies = false
-	params.collision_mask = Globals.MAP_LAYER
+	params.collision_mask = Globals.GROUND_LAYER
 
 	for result in get_world_2d().direct_space_state.intersect_point(params):
 		if result.collider is Area2D:

@@ -41,8 +41,8 @@ func _physics_process(delta: float):
 ## are all colinear, which greatly simplifies display and collision detection.
 ## So if the runner changes direction, start a new wall.
 ##
-func add_point(pos: Vector2):
-	_points.push_back(pos)
+func add_point(global_pos: Vector2):
+	_points.push_back(cell.to_local(global_pos) if cell else global_pos)
 	_times.push_back(-delay)
 	_points_added += 1
 
@@ -64,7 +64,7 @@ func add_point(pos: Vector2):
 ##
 func get_last_point():
 	if _points:
-		return _points[-1]
+		return cell.to_global(_points[-1]) if cell else _points[-1]
 	else:
 		return null
 

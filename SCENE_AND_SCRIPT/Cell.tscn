@@ -2224,7 +2224,7 @@ metadata/_edit_lock_ = true
 [node name="Direction_Collider" type="Area2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Shadow_Orientation" unique_id=968516240]
 visible = false
 position = Vector2(0, 60)
-collision_layer = 2
+collision_layer = 16
 monitoring = false
 monitorable = false
 metadata/_edit_lock_ = true
@@ -2291,7 +2291,7 @@ scale = Vector2(1, -1)
 [node name="Direction_Collider" type="Area2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Shadow_Orientation" unique_id=1491664933]
 visible = false
 position = Vector2(0, 60)
-collision_layer = 2
+collision_layer = 16
 monitoring = false
 monitorable = false
 
@@ -2349,7 +2349,7 @@ scale = Vector2(-1, 1)
 [node name="Direction_Collider" type="Area2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Shadow_Orientation" unique_id=464866018]
 visible = false
 position = Vector2(0, 60)
-collision_layer = 2
+collision_layer = 16
 monitoring = false
 monitorable = false
 
@@ -2409,7 +2409,7 @@ scale = Vector2(-1, -1)
 [node name="Direction_Collider" type="Area2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Shadow_Orientation" unique_id=1699495237]
 visible = false
 position = Vector2(0, 60)
-collision_layer = 2
+collision_layer = 16
 monitoring = false
 monitorable = false
 

@@ -288,10 +288,6 @@ func get_door() -> Door:
 ## parented to the cell in such a way that, if the top of the cell moves, the
 ## wall will follow.
 ##
-## Points added to the wall must be put in the local coordinate system, so be
-## sure to call add_point_to_wall() and get_last_point_on_wall() rather than
-## accessing the wall directly.
-##
 func add_wall() -> Wall:
 	var wall: Wall = _wall_scene.instantiate()
 	add_child(wall)
@@ -303,20 +299,6 @@ func add_wall() -> Wall:
 func _on_wall_gone(wall: Wall):
 	_walls.erase(wall)
 	wall.queue_free()
-
-##
-## Adds a point to a wall that has been attached to this cell by add_wall(),
-## converting global coordinates to the local coordinate system.
-##
-func add_point_to_wall(wall: Wall, global_pos: Vector2):
-	wall.add_point(to_local(global_pos))
-
-##
-## Returns the last point to be added to the given wall, converting it to
-## global coordinates.
-##
-func get_last_point_on_wall(wall: Wall) -> Vector2:
-	return to_global(wall.get_last_point())
 
 ##
 ## Tells a new teleport cell which other cell it teleports to/from. This only

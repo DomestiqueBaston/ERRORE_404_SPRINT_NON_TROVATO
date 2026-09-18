@@ -140,8 +140,10 @@ ui_down_button={
 [layer_names]
 
 2d_physics/layer_1="runners"
-2d_physics/layer_2="map"
+2d_physics/layer_2="ground"
 2d_physics/layer_3="walls"
+2d_physics/layer_4="door"
+2d_physics/layer_5="one way"
 
 [physics]
 
