@@ -48,7 +48,8 @@ Un runner bugué :
 Les bonus et malus en jeu (Cube.tscn) :
 - En jeu, il n’y aura que 1 exemplaire de chaque Bonus et chaque Malus en course (y compris en possession d’un coureur).
 - Chaque concurrent ne peut porter qu’1 Bonus/Malus. On peut ramasser un Bonus/Malus si on en porte déjà un mais le nouveau remplace le précédent. On ne peut pas ramasser de nouveau Bonus/Malus tant qu’un est en cours d’utilisation d’un autre Bonus/Malus.
-- Les Bonus/Malus apparaissent en jeu toutes les 5 à 10 secondes.
+- Un Bonus/Malus apparaît toutes les 5 à 10 secondes.
+- Un Bonus/Malus disparaît au bout de 5 à 10 secondes.
 - Il ne peut pas y avoir plus de 5 Bonus/Malus simultanément à ramasser → le 6ème supprime automatiquement le plus ancien restant pendant que le nouveau apparaît.
 - On ne fait pas apparaître de Bonus/Malus sur une cellule avec au moins un mur.
 - Pour chaque couleur correspondent un bonus et un malus (le joueur ne sait donc pas s’il voit un bonus ou un malus).
