@@ -626,7 +626,9 @@ func _on_cube_timer_timeout():
 	var cell = _pick_random_cell(false)
 	if cell:
 		cell.add_cube()
-		cell.get_cube().tree_exited.connect(_on_cube_removed.bind(cell))
+		var cube: Cube = cell.get_cube()
+		cube.timeout.connect(cell.remove_cube)
+		cube.tree_exited.connect(_on_cube_removed.bind(cell))
 	_cube_timer.start(randf_range(5, 10))
 
 func _on_cube_removed(cell: Cell):

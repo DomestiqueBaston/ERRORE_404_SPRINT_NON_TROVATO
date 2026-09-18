@@ -9,15 +9,28 @@ class_name Cube extends CellAttachment
 ## Gris : Color(0.666, 0.666, 0.666)
 ## Blanc : Color(1.0, 1.0, 1.0) (par défaut dans le shader)
 
+## Signal emitted after a while if nobody has picked up the cube.
+signal timeout
+
 @onready var _anim_alive: AnimationPlayer = $Animation_Cube
 @onready var _anim_on_off: AnimationPlayer = $Animation_Cube_On_Off
+
+var _timer: Timer
+
+func _ready():
+	_timer = Timer.new()
+	_timer.one_shot = true
+	_timer.timeout.connect(func(): timeout.emit())
+	add_child(_timer)
 
 func appear():
 	_anim_alive.play(&"Alive")
 	_anim_on_off.play(&"Appearing")
 	await _anim_on_off.animation_finished
+	_timer.start(randf_range(5, 10))
 
 func disappear():
+	_timer.stop()
 	_anim_on_off.play(&"Disappearing")
 	await _anim_on_off.animation_finished
 	_anim_alive.play(&"RESET")
