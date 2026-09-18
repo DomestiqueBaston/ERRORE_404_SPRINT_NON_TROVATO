@@ -37,6 +37,12 @@ var _available_cells: Array[Cell]
 # around or not.
 var _obstacle_cells: Array[Cell]
 
+# Cells currently containing a bonus/malus cube.
+var _cube_cells: Array[Cell]
+
+# Maximum number of bonus/malus cubes at any time.
+var _max_cube_count: int
+
 enum ObstacleType {
 	ROW_SLIDE,
 	COLUMN_SLIDE,
@@ -96,6 +102,10 @@ func _ready():
 	_center_cell.lower(true)
 	_center_cell.add_artefact()
 
+	# start timers to generate obstacles and bonus/malus cubes
+
+	var map_side = 2 * Globals.map_size + 1
+
 	_obstacle_timer = Timer.new()
 	add_child(_obstacle_timer)
 	_obstacle_timer.timeout.connect(_on_obstacle_timer_timeout)
@@ -103,11 +113,14 @@ func _ready():
 
 	_cube_timer = Timer.new()
 	add_child(_cube_timer)
-	_cube_timer.one_shot = true
 	_cube_timer.timeout.connect(_on_cube_timer_timeout)
-	_cube_timer.start(randf_range(5, 10))
+	_cube_timer.start(30 - map_side + Globals.difficulty)
 
-	var center_time = 6 * (2 * Globals.map_size + 1 + 2 * Globals.difficulty)
+	_max_cube_count = roundi(map_side / 3.0)
+
+	# and a timer to remove the center artefact and make the exit door appear
+
+	var center_time = 6 * (map_side + 2 * Globals.difficulty)
 	var center_timer = get_tree().create_timer(center_time)
 	center_timer.timeout.connect(_on_center_timer_timeout)
 
@@ -622,16 +635,24 @@ func _on_obstacle_timer_timeout():
 	var event = ObstacleEvent.new(type as ObstacleType)
 	_handle_obstacle_event(event)
 
+#
+# Creates a new bonus/malus cube somewhere where there is no obstacle and no
+# wall. If the maximum number of cubes has been reached, the oldest cube is
+# removed.
+#
 func _on_cube_timer_timeout():
 	var cell = _pick_random_cell(false)
 	if cell:
 		cell.add_cube()
 		var cube: Cube = cell.get_cube()
-		cube.timeout.connect(cell.remove_cube)
 		cube.tree_exited.connect(_on_cube_removed.bind(cell))
-	_cube_timer.start(randf_range(5, 10))
+		_cube_cells.append(cell)
+
+	while _cube_cells.size() > _max_cube_count:
+		_cube_cells.pop_front().remove_cube()
 
 func _on_cube_removed(cell: Cell):
+	_cube_cells.erase(cell)
 	if _remove_obstacle(cell):
 		_available_cells.append(cell)
 
