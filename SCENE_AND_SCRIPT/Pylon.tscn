@@ -599,7 +599,7 @@ metadata/_edit_lock_ = true
 [node name="Pylon_Shadow" type="Sprite2D" parent="Shadow" unique_id=1454845365]
 visible = false
 self_modulate = Color(1, 1, 1, 0)
-position = Vector2(0, -0.5)
+position = Vector2(0, -1)
 scale = Vector2(0.975, 0.975)
 texture = ExtResource("2_yrggj")
 metadata/_edit_lock_ = true
@@ -617,18 +617,18 @@ metadata/_edit_lock_ = true
 
 [node name="Extension_De_Pylone_1" type="Sprite2D" parent="Pylon/Pylon_Walls/Images" unique_id=548903508]
 texture = ExtResource("28_cedp7")
-offset = Vector2(0, -1217)
+offset = Vector2(0, -1216)
 metadata/_edit_lock_ = true
 
 [node name="Extension_De_Pylone_2" type="Sprite2D" parent="Pylon/Pylon_Walls/Images" unique_id=1181934625]
 position = Vector2(0, -1500)
 texture = ExtResource("28_cedp7")
-offset = Vector2(0, -1217)
+offset = Vector2(0, -1216)
 metadata/_edit_lock_ = true
 
 [node name="Cellule_De_Pylone" type="Sprite2D" parent="Pylon/Pylon_Walls/Images" unique_id=2097598160]
 texture = ExtResource("27_i1aus")
-offset = Vector2(0, -205)
+offset = Vector2(0, -204)
 metadata/_edit_lock_ = true
 
 [node name="Collider_Obstacle" type="Area2D" parent="." unique_id=505806384]
