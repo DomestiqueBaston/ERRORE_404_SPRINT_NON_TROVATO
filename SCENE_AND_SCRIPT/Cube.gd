@@ -1,16 +1,39 @@
+@tool
 class_name Cube extends CellAttachment
 
-## Couleurs pour les bonus (voir "sprite_color" sur le Shader Material du node Cube) :
-## Rouge : Color(1.523, 0.865, 0.865)
-## Vert : Color(0.748, 1.164, 0.621)
-## Bleu : Color(0.783, 0.883, 1.382)
-## Violet : Color(1.037, 0.775, 1.523)
-## Jaune : Color(1.231, 1.269, 0.698)
-## Gris : Color(0.666, 0.666, 0.666)
-## Blanc : Color(1.0, 1.0, 1.0) (par défaut dans le shader)
+enum Type {
+	INVINCIBLE,
+	DASH,
+	THROUGH,
+	VIRUS,
+	AUTO_DODGE,
+	DEBUG,
+	WALL_BREAKER,
+	INVERT,
+	SLOW,
+	WALL_EXTENDER,
+	ANTI_DASH,
+	PHASE,
+	ANTI_VIRUS,
+	NO_TURN
+}
+
+@export var type: Type:
+	set(t):
+		type = t
+		if is_node_ready():
+			_update_color()
 
 @onready var _anim_alive: AnimationPlayer = $Animation_Cube
 @onready var _anim_on_off: AnimationPlayer = $Animation_Cube_On_Off
+@onready var _collider: Area2D = $Collider_Cube
+
+func _ready():
+	_update_color()
+
+func _update_color():
+	$Cube.set_instance_shader_parameter(
+		&"sprite_color", Cube.get_sprite_color(type))
 
 func appear():
 	_anim_alive.play(&"Alive")
@@ -23,4 +46,24 @@ func disappear():
 	_anim_alive.play(&"RESET")
 
 func check_for_overlap(collider: Area2D) -> bool:
-	return collider.overlaps_area($Collider_Cube)
+	return collider.overlaps_area(_collider)
+
+static func pick_random_type() -> Type:
+	return (randi() % Type.keys().size()) as Type
+
+static func get_sprite_color(t: Type) -> Color:
+	match t:
+		Type.INVINCIBLE, Type.INVERT:
+			return Color(1.523, 0.865, 0.865)
+		Type.DASH, Type.ANTI_DASH:
+			return Color(0.748, 1.164, 0.621)
+		Type.THROUGH, Type.PHASE:
+			return Color(0.783, 0.883, 1.382)
+		Type.VIRUS, Type.ANTI_VIRUS:
+			return Color(1.037, 0.775, 1.523)
+		Type.AUTO_DODGE, Type.NO_TURN:
+			return Color(1.231, 1.269, 0.698)
+		Type.DEBUG, Type.SLOW:
+			return Color(0.666, 0.666, 0.666)
+		_:
+			return Color(1, 1, 1)

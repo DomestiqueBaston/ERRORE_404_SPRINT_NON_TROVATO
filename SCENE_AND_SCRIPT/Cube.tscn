@@ -16,7 +16,6 @@ radius = 14.035668
 shader = ExtResource("3_mfqlr")
 shader_parameter/outline_thickness = 1.0
 shader_parameter/outline_color = Color(0, 0, 0, 1)
-shader_parameter/sprite_color = Color(1, 1, 1, 1)
 
 [sub_resource type="Animation" id="Animation_i7obx"]
 resource_name = "Alive"
@@ -252,6 +251,7 @@ _data = {
 }
 
 [node name="Cube" type="Node2D" unique_id=981563482]
+z_as_relative = false
 script = ExtResource("1_mfqlr")
 
 [node name="Collider_Cube" type="Area2D" parent="." unique_id=1914165954]
@@ -276,6 +276,7 @@ visible = false
 light_mask = 5
 z_index = 1
 material = SubResource("ShaderMaterial_5c5qk")
+instance_shader_parameters/sprite_color = Color(1.523, 0.865, 0.865, 1)
 texture = ExtResource("4_mfqlr")
 offset = Vector2(0.5, -30)
 hframes = 30

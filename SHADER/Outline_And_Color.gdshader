@@ -5,7 +5,7 @@ uniform float outline_thickness : hint_range(0.0, 3.0, 1.0) = 1.0;
 uniform vec4 outline_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
 
 // Uniforme pour la couleur du sprite (en maintenant l'alpha)
-uniform vec4 sprite_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+instance uniform vec4 sprite_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 
 bool is_inside_usquare(vec2 x) {
     return x == clamp(x, vec2(0.0), vec2(1.0));
