@@ -446,8 +446,9 @@ func _handle_obstacle_event(event: ObstacleEvent):
 		ObstacleType.CELL_LOWER:
 			if not event.is_undo:
 				event.cell = _pick_random_cell()
-				await _lower_cell(event.cell)
-				_schedule_undo_event(event)
+				if event.cell:
+					await _lower_cell(event.cell)
+					_schedule_undo_event(event)
 			elif _remove_obstacle(event.cell):
 				await _raise_cell(event.cell)
 				_available_cells.append(event.cell)
@@ -455,8 +456,9 @@ func _handle_obstacle_event(event: ObstacleEvent):
 		ObstacleType.CELL_HIDE:
 			if not event.is_undo:
 				event.cell = _pick_random_cell()
-				await _hide_cell(event.cell)
-				_schedule_undo_event(event)
+				if event.cell:
+					await _hide_cell(event.cell)
+					_schedule_undo_event(event)
 			elif _remove_obstacle(event.cell):
 				await _show_cell(event.cell)
 				_available_cells.append(event.cell)
@@ -465,8 +467,9 @@ func _handle_obstacle_event(event: ObstacleEvent):
 			if not event.is_undo:
 				var dir = Globals.Axis.values().pick_random()
 				event.cell = _pick_random_cell()
-				await _start_cell_one_way(event.cell, dir)
-				_schedule_undo_event(event)
+				if event.cell:
+					await _start_cell_one_way(event.cell, dir)
+					_schedule_undo_event(event)
 			# obstacle may have been removed already if a runner ran into it!
 			elif _remove_obstacle(event.cell):
 				await _stop_cell_one_way(event.cell)
@@ -475,13 +478,14 @@ func _handle_obstacle_event(event: ObstacleEvent):
 		ObstacleType.CELL_TELEPORT1, ObstacleType.CELL_TELEPORT2:
 			if not event.is_undo:
 				event.cell = _pick_random_cell()
-				event.cell2 = _pick_distant_random_cell(event.cell)
-				if event.cell2:
-					event.cell.set_teleport_partner(event.cell2)
-					await _start_cell_teleport(event)
-					_schedule_undo_event(event)
-				elif _remove_obstacle(event.cell):
-					_available_cells.append(event.cell)
+				if event.cell:
+					event.cell2 = _pick_distant_random_cell(event.cell)
+					if event.cell2:
+						event.cell.set_teleport_partner(event.cell2)
+						await _start_cell_teleport(event)
+						_schedule_undo_event(event)
+					elif _remove_obstacle(event.cell):
+						_available_cells.append(event.cell)
 			# obstacle may have been removed already if a runner ran into it!
 			elif _remove_obstacle(event.cell):
 				if _remove_obstacle(event.cell2):
@@ -493,8 +497,9 @@ func _handle_obstacle_event(event: ObstacleEvent):
 		ObstacleType.PYLON_LOWER:
 			if not event.is_undo:
 				event.cell = _pick_random_cell()
-				await _lower_pylon(event.cell)
-				_schedule_undo_event(event)
+				if event.cell:
+					await _lower_pylon(event.cell)
+					_schedule_undo_event(event)
 			elif _remove_obstacle(event.cell):
 				await _raise_pylon(event.cell)
 				_available_cells.append(event.cell)
@@ -502,8 +507,9 @@ func _handle_obstacle_event(event: ObstacleEvent):
 		ObstacleType.PYLON_DROP:
 			if not event.is_undo:
 				event.cell = _pick_random_cell()
-				await _drop_pylon(event.cell)
-				_schedule_undo_event(event)
+				if event.cell:
+					await _drop_pylon(event.cell)
+					_schedule_undo_event(event)
 			elif _remove_obstacle(event.cell):
 				await _undrop_pylon(event.cell)
 				_available_cells.append(event.cell)
@@ -618,8 +624,9 @@ func _on_obstacle_timer_timeout():
 
 func _on_cube_timer_timeout():
 	var cell = _pick_random_cell(false)
-	cell.add_cube()
-	cell.get_cube().tree_exited.connect(_on_cube_removed.bind(cell))
+	if cell:
+		cell.add_cube()
+		cell.get_cube().tree_exited.connect(_on_cube_removed.bind(cell))
 	_cube_timer.start(randf_range(5, 10))
 
 func _on_cube_removed(cell: Cell):
