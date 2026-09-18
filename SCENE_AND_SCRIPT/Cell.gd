@@ -45,7 +45,8 @@ enum State {
 	HIDDEN,
 	TELEPORT,
 	ONE_WAY,
-	PYLON
+	PYLON,
+	CUBE
 }
 
 const width: float = 236.0
@@ -92,10 +93,12 @@ var _pylon_scene = preload("res://SCENE_AND_SCRIPT/Pylon.tscn")
 var _artefact_scene = preload("res://SCENE_AND_SCRIPT/Artefact.tscn")
 var _door_scene := preload("res://SCENE_AND_SCRIPT/Door.tscn")
 var _wall_scene: PackedScene = preload("res://SCENE_AND_SCRIPT/Wall.tscn")
+var _cube_scene: PackedScene = preload("res://SCENE_AND_SCRIPT/Cube.tscn")
 
 var _pylon: Pylon
 var _artefact: Artefact
 var _door: Door
+var _cube: Cube
 var _state: State = State.NORMAL
 var _partner: Cell
 var _teleport_type: int
@@ -283,6 +286,25 @@ func add_door():
 func get_door() -> Door:
 	return _door
 
+func add_cube():
+	if _cube == null:
+		_cube = _cube_scene.instantiate()
+		add_child(_cube)
+		_cube.cell = self
+		await _cube.appear()
+		_state = State.CUBE
+
+func remove_cube():
+	if _cube:
+		_state = State.NORMAL
+		await _cube.disappear()
+		remove_child(_cube)
+		_cube.queue_free()
+		_cube = null
+
+func get_cube() -> Cube:
+	return _cube
+
 ##
 ## Adds a wall that is created in a runner's wake and returns it. The wall is
 ## parented to the cell in such a way that, if the top of the cell moves, the
@@ -299,6 +321,9 @@ func add_wall() -> Wall:
 func _on_wall_gone(wall: Wall):
 	_walls.erase(wall)
 	wall.queue_free()
+
+func has_wall() -> bool:
+	return not _walls.is_empty()
 
 ##
 ## Tells a new teleport cell which other cell it teleports to/from. This only

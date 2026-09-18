@@ -1,7 +1,4 @@
-extends Node2D
-
-@onready var anim_on_off: AnimationPlayer = $Animation_Cube_On_Off
-@onready var anim_alive:  AnimationPlayer = $Animation_Cube
+class_name Cube extends CellAttachment
 
 ## Couleurs pour les bonus (voir "sprite_color" sur le Shader Material du node Cube) :
 ## Rouge : Color(1.523, 0.865, 0.865)
@@ -12,45 +9,18 @@ extends Node2D
 ## Gris : Color(0.666, 0.666, 0.666)
 ## Blanc : Color(1.0, 1.0, 1.0) (par défaut dans le shader)
 
-var timer: Timer
+@onready var _anim_alive: AnimationPlayer = $Animation_Cube
+@onready var _anim_on_off: AnimationPlayer = $Animation_Cube_On_Off
 
-func _ready() -> void:
-	timer = Timer.new()
-	timer.one_shot = true
-	add_child(timer)
-	timer.timeout.connect(_on_timer_timeout)
-	
-	anim_on_off.animation_finished.connect(_on_on_off_finished)
-	
-	await get_tree().create_timer(randf_range(3.0, 5.0)).timeout
-	_show_cube()
+func appear():
+	_anim_alive.play(&"Alive")
+	_anim_on_off.play(&"Appearing")
+	await _anim_on_off.animation_finished
 
+func disappear():
+	_anim_on_off.play(&"Disappearing")
+	await _anim_on_off.animation_finished
+	_anim_alive.play(&"RESET")
 
-func _show_cube() -> void:
-	anim_on_off.play("Appearing")
-	anim_alive.play("Alive")
-	
-	_timer_start()
-
-
-func _hide_cube() -> void:
-	anim_on_off.play("Disappearing")
-
-func _on_on_off_finished(anim_name: String) -> void:
-	if anim_name == "Appearing":
-		pass
-	
-	elif anim_name == "Disappearing" or anim_name == "Disappering":
-		anim_alive.stop()
-		
-		_timer_start()
-
-
-func _on_timer_timeout() -> void:
-	if anim_on_off.current_animation == "Appearing" or anim_alive.is_playing():
-		_hide_cube()
-	else:
-		_show_cube()
-		
-func _timer_start() -> void:
-	timer.start(randf_range(5.0, 15.0))
+func check_for_overlap(collider: Area2D) -> bool:
+	return collider.overlaps_area($Collider_Cube)

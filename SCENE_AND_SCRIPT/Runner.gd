@@ -71,10 +71,11 @@ func _physics_process(delta: float):
 	# the runner's position, because the physics server has already performed
 	# collision detection based on the current position.
 	#
-	# Collision detection is used in three cases:
+	# Collision detection is used in the following cases:
 	# - for the walls that arise behind runners
 	# - to navigate the central cell's doorway
 	# - for one-way signs
+	# - for bonus/malus cubes
 	#
 	# Collision detection is NOT used to determine which cell the runner is on.
 	#
@@ -125,13 +126,18 @@ func _physics_process(delta: float):
 					z_index = door.z_index + Door.Depth.FRONT
 
 		# Otherwise (NOT in the cell with the doorway): check for collisions
-		# with one-way signs, and set the Z-index as usual.
+		# with one-way signs and bonus/malus cubes, and set the Z-index as
+		# usual.
 
 		else:
 			z_index = roundi(global_position.y)
 			is_exiting = false
-			if _curr_cell and _curr_cell.get_state() == Cell.State.ONE_WAY:
-				_check_one_way(_curr_cell)
+			if _curr_cell:
+				match _curr_cell.get_state():
+					Cell.State.ONE_WAY:
+						_check_one_way(_curr_cell)
+					Cell.State.CUBE:
+						_check_cube(_curr_cell)
 
 	# If the current cell has moved (slid), move the runner with it. Unless he
 	# is falling or jumping (but if he were falling, _physics_process() would
@@ -512,6 +518,11 @@ func _check_pylon(cell: Cell):
 		Pylon.State.DROPPED:
 			print("hit dropped pylon")
 			_die(cell == _curr_cell)
+
+func _check_cube(cell: Cell):
+	var cube: Cube = cell.get_cube()
+	if cube and cube.check_for_overlap(_collider):
+		cell.remove_cube()
 
 #
 # Methods called by run cycle animation.

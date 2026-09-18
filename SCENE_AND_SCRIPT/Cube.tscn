@@ -139,7 +139,7 @@ tracks/2/keys = {
 tracks/2/use_blend = true
 tracks/3/type = "value"
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/path = NodePath("Collider_Cube:monitorable")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
@@ -194,7 +194,7 @@ tracks/2/keys = {
 tracks/2/use_blend = true
 tracks/3/type = "value"
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/path = NodePath("Collider_Cube:monitorable")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
@@ -233,7 +233,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath("Collider_Cube:monitorable")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
@@ -255,11 +255,11 @@ _data = {
 script = ExtResource("1_mfqlr")
 
 [node name="Collider_Cube" type="Area2D" parent="." unique_id=1914165954]
-monitorable = false
+collision_layer = 32
+monitoring = false
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionShape2D" parent="Collider_Cube" unique_id=1339796665]
-visible = false
 scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_i7obx")
 metadata/_edit_lock_ = true

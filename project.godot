@@ -144,6 +144,7 @@ ui_down_button={
 2d_physics/layer_3="walls"
 2d_physics/layer_4="door"
 2d_physics/layer_5="one way"
+2d_physics/layer_6="cubes"
 
 [physics]
 

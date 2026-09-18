@@ -76,7 +76,8 @@ enum SlideState {
 var _slide_state: SlideState = SlideState.NONE
 var _slide_index: int
 
-var _timer: Timer
+var _obstacle_timer: Timer
+var _cube_timer: Timer
 
 func _ready():
 	_build_map()
@@ -95,10 +96,16 @@ func _ready():
 	_center_cell.lower(true)
 	_center_cell.add_artefact()
 
-	_timer = Timer.new()
-	add_child(_timer)
-	_timer.timeout.connect(_on_obstacle_timer_timeout)
-	_timer.start(5 - (mini(5, Globals.difficulty) - 1) / 2.0)
+	_obstacle_timer = Timer.new()
+	add_child(_obstacle_timer)
+	_obstacle_timer.timeout.connect(_on_obstacle_timer_timeout)
+	_obstacle_timer.start(5 - (mini(5, Globals.difficulty) - 1) / 2.0)
+
+	_cube_timer = Timer.new()
+	add_child(_cube_timer)
+	_cube_timer.one_shot = true
+	_cube_timer.timeout.connect(_on_cube_timer_timeout)
+	_cube_timer.start(randf_range(5, 10))
 
 	var center_time = 6 * (2 * Globals.map_size + 1 + 2 * Globals.difficulty)
 	var center_timer = get_tree().create_timer(center_time)
@@ -421,7 +428,7 @@ func _handle_obstacle_event(event: ObstacleEvent):
 			var dist = randi_range(1, 2 * max_dist)
 			if dist > max_dist:
 				dist = -(dist - max_dist)
-			_timer.paused = true
+			_obstacle_timer.paused = true
 			if event.type == ObstacleType.ROW_SLIDE:
 				_slide_state = SlideState.ROW
 				_slide_index = _pick_random_row()
@@ -434,7 +441,7 @@ func _handle_obstacle_event(event: ObstacleEvent):
 			for ev in _pending_events:
 				_handle_obstacle_event(ev)
 			_pending_events.clear()
-			_timer.paused = false
+			_obstacle_timer.paused = false
 
 		ObstacleType.CELL_LOWER:
 			if not event.is_undo:
@@ -547,8 +554,23 @@ func _pick_random_column() -> int:
 # it). The cell is removed from the array of available cells, added to the
 # array of obstance cells, and returned.
 #
-func _pick_random_cell() -> Cell:
-	var index = randi() % _available_cells.size()
+# If wall_ok is false, cells with one or more walls on them are ignored.
+#
+func _pick_random_cell(wall_ok: bool = true) -> Cell:
+	var count = _available_cells.size()
+	var index = randi() % count
+
+	if not wall_ok and _available_cells[index].has_wall():
+		var bad_index = index
+		index = (index + 1) % count
+		while index != bad_index:
+			if _available_cells[index].has_wall():
+				index = (index + 1) % count
+			else:
+				break
+		if index == bad_index:
+			return null
+
 	var cell = _available_cells.pop_at(index)
 	_obstacle_cells.append(cell)
 	return cell
@@ -593,6 +615,16 @@ func _on_obstacle_timer_timeout():
 		type = ObstacleType.CELL_ONE_WAY
 	var event = ObstacleEvent.new(type as ObstacleType)
 	_handle_obstacle_event(event)
+
+func _on_cube_timer_timeout():
+	var cell = _pick_random_cell(false)
+	cell.add_cube()
+	cell.get_cube().tree_exited.connect(_on_cube_removed.bind(cell))
+	_cube_timer.start(randf_range(5, 10))
+
+func _on_cube_removed(cell: Cell):
+	if _remove_obstacle(cell):
+		_available_cells.append(cell)
 
 #
 # Removing the artefact and raising the central cell is managed as an event,
