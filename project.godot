@@ -27,6 +27,7 @@ config/windows_native_icon="res://404.ico"
 [audio]
 
 buses/default_bus_layout="uid://87w0widytofu"
+driver/output_latency=30
 
 [autoload]
 
