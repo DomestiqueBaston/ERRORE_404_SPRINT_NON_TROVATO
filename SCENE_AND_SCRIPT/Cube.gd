@@ -54,16 +54,16 @@ static func pick_random_type() -> Type:
 static func get_sprite_color(t: Type) -> Color:
 	match t:
 		Type.INVINCIBLE, Type.INVERT:
-			return Color(1.523, 0.865, 0.865)
+			return Color(1.0, 0.92, 0.92)
 		Type.DASH, Type.ANTI_DASH:
-			return Color(0.748, 1.164, 0.621)
+			return Color(0.917, 1.0, 0.9)
 		Type.THROUGH, Type.PHASE:
-			return Color(0.783, 0.883, 1.382)
+			return Color(0.9, 0.92, 1.0)
 		Type.VIRUS, Type.ANTI_VIRUS:
-			return Color(1.037, 0.775, 1.523)
+			return Color(0.937, 0.9, 1.0)
 		Type.AUTO_DODGE, Type.NO_TURN:
-			return Color(1.231, 1.269, 0.698)
+			return Color(0.976, 1.0, 0.88)
 		Type.DEBUG, Type.SLOW:
-			return Color(0.666, 0.666, 0.666)
+			return Color(0.92, 0.92, 0.92)
 		_:
 			return Color(1, 1, 1)
