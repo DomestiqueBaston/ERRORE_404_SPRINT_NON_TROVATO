@@ -56,7 +56,7 @@ Les bonus et malus en jeu (Cube.tscn) :
 - À l’activation du Bonus/Malus (automatique ou au déclenchement du joueur), on changera la couleur de l’outline du joueur pour la durée de l’effet (voir codes couleur juste en dessous), on jouera également le son correspondant au bonus/malus (sous Sound/Bonus_Malus) et on jouera le clignotement du concurrent (Animation_Bonus_Malus/Bonus_Malus).
 - Si le ramassage et l’activation se font en même temps (noté Automatique!), on ne jouera qu’une fois le son correspondant et pareil pour le clignotement du concurrent et on changera la couleur de l’outline pour le temps de l’effet du Bonus/Malus.
 - Lorsque l’effet du Bonus/Malus durera plus longtemps que le son et l’animation du Bonus/Malus, à la fin de l’effet du Bonus/Malus, on rejouera le clignotement du coureur et le son Sound/Bonus_Malus/Bonus_Malus_Over dans la scène du coureur et l’outline retrouvera sa couleur par défaut (noir) à la fin du clignotement.
-- Tout Bonus/Malus déclenchable « manuellement » doit être utilisé dans les 15’’ qui suivent son ramassage. Au delà de cette durée, le joueur perd le Bonus/Malus. Alors on jouera le son du Bonus/Malus et le clignotement du joueur.
+- Tout Bonus/Malus déclenchable « manuellement » doit être utilisé dans les 30’’ qui suivent son ramassage. Au delà de cette durée, le joueur perd le Bonus/Malus. Alors on jouera le son du Bonus/Malus et le clignotement du joueur.
 - Tout effet sur la vitesse du joueur se répercute sur la vitesse du mur (thanks, Cap’tain Obvious!).
 
 Les bonus :
@@ -157,7 +157,7 @@ Les personnalités des « IA »/Bots :
     4. Un comportement ne sera donné qu’à 1 seul bot.
     5. Les comportements choisis sont prioritaires par rapport à leurs versions du comportement de base (si ils existent).
     6. Seuls les coureurs, light walls, colonnes, trous, pylônes et piles de la porte de sortie sont considérés comme des obstacles.
-    7. Un bot conservera son bonus/malus entre 2 à 15 secondes avant de l’utiliser (sauf Automatique, bien entendu).
+    7. Un bot conservera son bonus/malus entre 2 à 30 secondes avant de l’utiliser (sauf Automatique, bien entendu).
 
 Comportements « de base » :
 

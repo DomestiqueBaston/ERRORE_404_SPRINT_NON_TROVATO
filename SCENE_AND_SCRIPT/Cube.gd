@@ -58,9 +58,9 @@ static func get_sprite_color(t: Type) -> Color:
 		Type.DASH, Type.ANTI_DASH:
 			return Color(0.917, 1.0, 0.9)
 		Type.THROUGH, Type.PHASE:
-			return Color(0.9, 0.92, 1.0)
+			return Color(0.91, 0.928, 1.0)
 		Type.VIRUS, Type.ANTI_VIRUS:
-			return Color(0.937, 0.9, 1.0)
+			return Color(0.943, 0.91, 1.0)
 		Type.AUTO_DODGE, Type.NO_TURN:
 			return Color(0.976, 1.0, 0.88)
 		Type.DEBUG, Type.SLOW:
