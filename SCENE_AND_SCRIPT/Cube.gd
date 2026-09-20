@@ -45,6 +45,9 @@ func disappear():
 	await _anim_on_off.animation_finished
 	_anim_alive.play(&"RESET")
 
+func grab():
+	$Cube_Sound/Grab_Cube.play()
+
 func check_for_overlap(collider: Area2D) -> bool:
 	return collider.overlaps_area(_collider)
 

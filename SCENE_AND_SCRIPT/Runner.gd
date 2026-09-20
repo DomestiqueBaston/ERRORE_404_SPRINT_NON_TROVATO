@@ -10,6 +10,7 @@ extends Node2D
 @onready var _sprite: Node2D = $Character/Papa_Sprite
 @onready var _animation: AnimationPlayer = $Animation_Runner
 @onready var _disappear: AnimationPlayer = $Animation_Disappearing_Death
+@onready var _bonus_malus_anim: AnimationPlayer = $Animation_Bonus_Malus
 @onready var _collider: Area2D = $Character/Papa_Sprite/Runner_Sprite/Collider_Area
 @onready var _camera: Camera2D = $Character/Cam
 
@@ -446,13 +447,12 @@ func _check_teleport(cell: Cell):
 		return
 	is_teleporting = true
 	$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Teleport.play()
-	var anim: AnimationPlayer = $Animation_Bonus_Malus
-	anim.play("Bonus_Malus")
-	await anim.animation_finished
+	_bonus_malus_anim.play("Bonus_Malus")
+	await _bonus_malus_anim.animation_finished
 	_set_position(destination.global_position, true, destination)
-	anim.play("Bonus_Malus")
+	_bonus_malus_anim.play("Bonus_Malus")
 	if _map:
-		await anim.animation_finished
+		await _bonus_malus_anim.animation_finished
 		_map.cancel_teleport(destination)
 	is_teleporting = false
 
@@ -495,15 +495,14 @@ func _check_one_way(cell: Cell):
 	# play the Bonus_Malus animation before actually changing the runner's
 	# direction, then again, and finally remove the one-way obstacle
 
-	var anim: AnimationPlayer = $Animation_Bonus_Malus
-	anim.play("Bonus_Malus")
-	await anim.animation_finished
+	_bonus_malus_anim.play("Bonus_Malus")
+	await _bonus_malus_anim.animation_finished
 	_last_direction = new_direction
 	if is_jumping:
 		_change_jump_direction(new_direction)
 	elif is_sliding:
 		_change_slide_direction(new_direction)
-	anim.play("Bonus_Malus")
+	_bonus_malus_anim.play("Bonus_Malus")
 	if _map:
 		_map.cancel_one_way(cell)
 
@@ -522,6 +521,8 @@ func _check_pylon(cell: Cell):
 func _check_cube(cell: Cell):
 	var cube: Cube = cell.get_cube()
 	if cube and cube.check_for_overlap(_collider):
+		cube.grab()
+		_bonus_malus_anim.play("Bonus_Malus")
 		cell.remove_cube()
 
 #
