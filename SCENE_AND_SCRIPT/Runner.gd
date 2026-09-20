@@ -7,7 +7,8 @@ extends Node2D
 @export var jump_speed: float = 375.0
 @export var slide_speed: float = 375.0
 
-@onready var _sprite: Node2D = $Character/Papa_Sprite
+@onready var _sprite_node: Node2D = $Character/Papa_Sprite
+@onready var _sprite: Sprite2D = $Character/Papa_Sprite/Runner_Sprite
 @onready var _animation: AnimationPlayer = $Animation_Runner
 @onready var _disappear: AnimationPlayer = $Animation_Disappearing_Death
 @onready var _bonus_malus_anim: AnimationPlayer = $Animation_Bonus_Malus
@@ -257,17 +258,17 @@ func _physics_process(delta: float):
 			else:
 				if _last_direction.y < 0:
 					_animation.play("Start_000")
-					_sprite.scale.x = 1.0 if _last_direction.x < 0 else -1.0
+					_sprite_node.scale.x = 1.0 if _last_direction.x < 0 else -1.0
 				else:
 					_animation.play("Start_180")
-					_sprite.scale.x = -1.0 if _last_direction.x < 0 else 1.0
+					_sprite_node.scale.x = -1.0 if _last_direction.x < 0 else 1.0
 		else:
 			if _direction.y < 0:
 				_animation.play("Run_000")
-				_sprite.scale.x = 1.0 if _direction.x < 0 else -1.0
+				_sprite_node.scale.x = 1.0 if _direction.x < 0 else -1.0
 			else:
 				_animation.play("Run_180")
-				_sprite.scale.x = -1.0 if _direction.x < 0 else 1.0
+				_sprite_node.scale.x = -1.0 if _direction.x < 0 else 1.0
 
 #
 # Whenever the runner's position changes, a few other things need to be done as
@@ -309,22 +310,22 @@ func _play_jump_animation() -> void:
 	_jump_direction = _last_direction
 	if _last_direction.y < 0:
 		_animation.play(&"Jump_000")
-		_sprite.scale.x = 1.0 if _last_direction.x < 0 else -1.0
+		_sprite_node.scale.x = 1.0 if _last_direction.x < 0 else -1.0
 	else:
 		_animation.play(&"Jump_180")
-		_sprite.scale.x = -1.0 if _last_direction.x < 0 else 1.0
+		_sprite_node.scale.x = -1.0 if _last_direction.x < 0 else 1.0
 
 func _change_jump_direction(new_direction: Vector2):
 	if new_direction.y < 0:
 		if _animation.current_animation == &"Jump_180":
 			_animation.play_section(
 				&"Jump_000", _animation.current_animation_position)
-		_sprite.scale.x = 1.0 if new_direction.x < 0 else -1.0
+		_sprite_node.scale.x = 1.0 if new_direction.x < 0 else -1.0
 	else:
 		if _animation.current_animation == &"Jump_000":
 			_animation.play_section(
 				&"Jump_180", _animation.current_animation_position)
-		_sprite.scale.x = -1.0 if new_direction.x < 0 else 1.0
+		_sprite_node.scale.x = -1.0 if new_direction.x < 0 else 1.0
 	_jump_direction = new_direction
 
 func _play_slide_animation() -> void:
@@ -333,22 +334,22 @@ func _play_slide_animation() -> void:
 	_slide_direction = _last_direction
 	if _last_direction.y < 0:
 		_animation.play("Sliding_000")
-		_sprite.scale.x = 1.0 if _last_direction.x < 0 else -1.0
+		_sprite_node.scale.x = 1.0 if _last_direction.x < 0 else -1.0
 	else:
 		_animation.play("Sliding_180")
-		_sprite.scale.x = -1.0 if _last_direction.x < 0 else 1.0
+		_sprite_node.scale.x = -1.0 if _last_direction.x < 0 else 1.0
 
 func _change_slide_direction(new_direction: Vector2):
 	if new_direction.y < 0:
 		if _animation.current_animation == &"Sliding_180":
 			_animation.play_section(
 				&"Sliding_000", _animation.current_animation_position)
-		_sprite.scale.x = 1.0 if new_direction.x < 0 else -1.0
+		_sprite_node.scale.x = 1.0 if new_direction.x < 0 else -1.0
 	else:
 		if _animation.current_animation == &"Sliding_000":
 			_animation.play_section(
 				&"Sliding_180", _animation.current_animation_position)
-		_sprite.scale.x = -1.0 if new_direction.x < 0 else 1.0
+		_sprite_node.scale.x = -1.0 if new_direction.x < 0 else 1.0
 	_slide_direction = new_direction
 
 func _die(fast: bool) -> void:
@@ -374,10 +375,10 @@ func _die(fast: bool) -> void:
 
 	if _direction.y < 0:
 		_animation.play("Death_000")
-		_sprite.scale.x = 1.0 if _direction.x < 0 else -1.0
+		_sprite_node.scale.x = 1.0 if _direction.x < 0 else -1.0
 	else:
 		_animation.play("Death_180")
-		_sprite.scale.x = -1.0 if _direction.x < 0 else 1.0
+		_sprite_node.scale.x = -1.0 if _direction.x < 0 else 1.0
 
 func _start_falling() -> void:
 	if is_falling or is_dead: return
@@ -389,10 +390,10 @@ func _start_falling() -> void:
 
 	if _direction.y < 0:
 		_animation.play("Falling_000")
-		_sprite.scale.x = 1.0 if _direction.x < 0 else -1.0
+		_sprite_node.scale.x = 1.0 if _direction.x < 0 else -1.0
 	else:
 		_animation.play("Falling_180")
-		_sprite.scale.x = -1.0 if _direction.x < 0 else 1.0
+		_sprite_node.scale.x = -1.0 if _direction.x < 0 else 1.0
 
 func _on_animation_finished(anim_name: String) -> void:
 	if anim_name.begins_with("Jump_"):
@@ -419,19 +420,19 @@ func _on_animation_finished(anim_name: String) -> void:
 	if _direction != Vector2.ZERO:
 		if _direction.y < 0:
 			_animation.play("Run_000")
-			_sprite.scale.x = 1.0 if _direction.x < 0 else -1.0
+			_sprite_node.scale.x = 1.0 if _direction.x < 0 else -1.0
 		else:
 			_animation.play("Run_180")
-			_sprite.scale.x = -1.0 if _direction.x < 0 else 1.0
+			_sprite_node.scale.x = -1.0 if _direction.x < 0 else 1.0
 	else:
 		if _last_direction == Vector2.ZERO:
 			_animation.play("Intro")
 		elif _last_direction.y < 0:
 			_animation.play("Start_000")
-			_sprite.scale.x = 1.0 if _last_direction.x < 0 else -1.0
+			_sprite_node.scale.x = 1.0 if _last_direction.x < 0 else -1.0
 		else:
 			_animation.play("Start_180")
-			_sprite.scale.x = -1.0 if _last_direction.x < 0 else 1.0
+			_sprite_node.scale.x = -1.0 if _last_direction.x < 0 else 1.0
 
 func _on_disappear_finished(_anim_name: String):
 	set_physics_process(false)
@@ -523,6 +524,9 @@ func _check_cube(cell: Cell):
 	if cube and cube.check_for_overlap(_collider):
 		cube.grab()
 		_bonus_malus_anim.play("Bonus_Malus")
+		if cube.is_automatic():
+			_sprite.set_instance_shader_parameter(
+				&"outline_color", cube.get_runner_color())
 		cell.remove_cube()
 
 #
