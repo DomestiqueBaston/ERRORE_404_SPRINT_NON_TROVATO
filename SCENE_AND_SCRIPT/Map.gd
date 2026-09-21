@@ -645,11 +645,13 @@ func _on_cube_timer_timeout():
 	if cell:
 		var bonus_type: Bonus.Type
 		#bonus_type = Bonus.pick_random_type()
-		match randi() % 2:
+		match randi() % 3:
 			0:
 				bonus_type = Bonus.Type.THROUGH
 			1:
 				bonus_type = Bonus.Type.AUTO_DODGE
+			2:
+				bonus_type = Bonus.Type.INVERT
 		cell.add_cube(bonus_type)
 		var cube: Cube = cell.get_cube()
 		cube.tree_exited.connect(_on_cube_removed.bind(cell))

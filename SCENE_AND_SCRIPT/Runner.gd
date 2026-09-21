@@ -19,8 +19,10 @@ extends Node2D
 @onready var _footstep2 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_02
 @onready var _footstep3 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_03
 
+@onready var _teleport_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Teleport
 @onready var _through_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Through
 @onready var _auto_dodge_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Auto_Dodge
+@onready var _invert_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Invert
 @onready var _bonus_over_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Bonus_Malus_Over
 
 # which way the runner last moved, be it by running, jumping or sliding
@@ -102,7 +104,8 @@ func _physics_process(delta: float):
 		for area in _collider.get_overlapping_areas():
 			if area.collision_layer & Globals.WALL_LAYER:
 				if _has_bonus(Bonus.Type.THROUGH):
-					_through_sound.play()
+					if not _through_sound.playing:
+						_through_sound.play()
 				else:
 					_die(false)
 				break
@@ -204,8 +207,11 @@ func _physics_process(delta: float):
 			elif Input.is_action_pressed("ui_down_button"):
 				input_direction = _southwest
 
-		if input_direction and is_valid_direction(input_direction):
-			_last_direction = input_direction
+		if input_direction:
+			if _has_bonus(Bonus.Type.INVERT):
+				input_direction *= -1
+			if is_valid_direction(input_direction):
+				_last_direction = input_direction
 
 	var prev_direction = _direction
 	if is_jumping:
@@ -238,7 +244,8 @@ func _physics_process(delta: float):
 			if _has_bonus(Bonus.Type.AUTO_DODGE):
 				auto_dodge = true
 				_play_jump_animation()
-				_auto_dodge_sound.play()
+				if not _auto_dodge_sound.playing:
+					_auto_dodge_sound.play()
 			else:
 				_start_falling()
 	elif new_cell.get_artefact():
@@ -250,7 +257,8 @@ func _physics_process(delta: float):
 					if _has_bonus(Bonus.Type.AUTO_DODGE):
 						auto_dodge = true
 						_play_jump_animation()
-						_auto_dodge_sound.play()
+						if not _auto_dodge_sound.playing:
+							_auto_dodge_sound.play()
 					else:
 						_start_falling()
 			Cell.State.TELEPORT:
@@ -474,7 +482,7 @@ func _check_teleport(cell: Cell):
 	if is_teleporting or destination == null:
 		return
 	is_teleporting = true
-	$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Teleport.play()
+	_teleport_sound.play()
 	_bonus_malus_anim.play("Bonus_Malus")
 	await _bonus_malus_anim.animation_finished
 	_set_position(destination.global_position, true, destination)
@@ -541,7 +549,8 @@ func _check_pylon(cell: Cell) -> bool:
 			if not is_sliding:
 				if _has_bonus(Bonus.Type.AUTO_DODGE):
 					_play_slide_animation()
-					_auto_dodge_sound.play()
+					if not _auto_dodge_sound.playing:
+						_auto_dodge_sound.play()
 					return true
 				_die(cell == _curr_cell)
 		Pylon.State.DROPPED:
@@ -571,26 +580,38 @@ func _check_cube(cell: Cell):
 			_bonus_timer.start(30)
 
 func _activate_bonus():
-	if _bonus && not _bonus.is_activated:
-		print("activate ", Bonus.Type.keys()[_bonus.type].capitalize())
+	if not (_bonus && not _bonus.is_activated):
+		return
 
-		# activate the bonus: set the runner's outline color and make him blink
+	print("activate ", Bonus.Type.keys()[_bonus.type].capitalize())
 
-		_bonus.is_activated = true
-		_sprite.set_instance_shader_parameter(
-			&"outline_color", _get_outline_color())
-		_bonus_malus_anim.play(&"Bonus_Malus")
+	# activate the bonus: set the runner's outline color and make him blink
 
-		# positive duration => bonus will be removed after the time elapses
-		# otherwise => bonus is removed as soon as the runner stops blinking
+	_bonus.is_activated = true
+	_sprite.set_instance_shader_parameter(
+		&"outline_color", _get_outline_color())
+	_bonus_malus_anim.play(&"Bonus_Malus")
 
-		var duration = _bonus.get_duration()
-		if duration > 0:
-			_bonus_timer.start(duration)
-		else:
-			_bonus_timer.stop()
-			await _bonus_malus_anim.animation_finished
-			_remove_bonus()
+	# sound effect
+
+	match _bonus.type:
+		Bonus.Type.THROUGH:
+			_through_sound.play()
+		Bonus.Type.AUTO_DODGE:
+			_auto_dodge_sound.play()
+		Bonus.Type.INVERT:
+			_invert_sound.play()
+
+	# positive duration => bonus will be removed after the time elapses
+	# otherwise => bonus is removed as soon as the runner stops blinking
+
+	var duration = _bonus.get_duration()
+	if duration > 0:
+		_bonus_timer.start(duration)
+	else:
+		_bonus_timer.stop()
+		await _bonus_malus_anim.animation_finished
+		_remove_bonus()
 
 func _has_bonus(type: Bonus.Type) -> bool:
 	return _bonus and _bonus.type == type and _bonus.is_activated
