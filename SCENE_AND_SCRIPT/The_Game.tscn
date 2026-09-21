@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b0r1f7ero7oms" path="res://SCENE_AND_SCRIPT/The_Game.gd" id="1_3iibe"]
 [ext_resource type="Texture2D" uid="uid://dw00m18igqp7t" path="res://RESOURCE/Gradient_BG_Cam.tres" id="2_jtvwl"]
+[ext_resource type="Environment" uid="uid://dx0qy3vs32lrg" path="res://RESOURCE/Game_Environment.tres" id="2_ycojx"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="3_ycojx"]
 [ext_resource type="PackedScene" uid="uid://qy0upqf8jc48" path="res://SCENE_AND_SCRIPT/Minimap.tscn" id="4_jtvwl"]
 [ext_resource type="PackedScene" uid="uid://3u5u3tfo43n" path="res://SCENE_AND_SCRIPT/Portraits.tscn" id="4_lqmhv"]
@@ -2044,6 +2045,9 @@ _data = {
 [node name="The_Game" type="Node2D" unique_id=1997447785]
 script = ExtResource("1_3iibe")
 metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1715763916]
+environment = ExtResource("2_ycojx")
 
 [node name="BG_SubViewportContainer" type="SubViewportContainer" parent="." unique_id=546695159]
 offset_right = 480.0
