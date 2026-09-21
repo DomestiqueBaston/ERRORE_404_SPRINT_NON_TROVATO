@@ -643,7 +643,7 @@ func _on_obstacle_timer_timeout():
 func _on_cube_timer_timeout():
 	var cell = _pick_random_cell(false)
 	if cell:
-		cell.add_cube(Cube.pick_random_type())
+		cell.add_cube(Bonus.pick_random_type())
 		var cube: Cube = cell.get_cube()
 		cube.tree_exited.connect(_on_cube_removed.bind(cell))
 		_cube_cells.append(cell)

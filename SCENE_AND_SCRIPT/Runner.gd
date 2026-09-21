@@ -53,12 +53,19 @@ var _curr_cell: Cell
 var _curr_cell_pos: Vector2
 var _walls: Array[Wall]
 var _curr_wall: Wall
+var _bonus: Bonus
+var _bonus_timer: Timer
 
 func _ready() -> void:
 	_animation.animation_finished.connect(_on_animation_finished)
 	_disappear.animation_finished.connect(_on_disappear_finished)
 	z_index = roundi(global_position.y)
 	_camera.update_aim_point(global_position)
+
+	_bonus_timer = Timer.new()
+	_bonus_timer.one_shot = true
+	_bonus_timer.timeout.connect(_remove_bonus)
+	add_child(_bonus_timer)
 
 func set_map(map: Map, start_cell: Cell = null):
 	_map = map
@@ -522,12 +529,43 @@ func _check_pylon(cell: Cell):
 func _check_cube(cell: Cell):
 	var cube: Cube = cell.get_cube()
 	if cube and cube.check_for_overlap(_collider):
+		print("bonus/malus: ", Bonus.Type.keys()[cube.bonus_type].capitalize())
+		_bonus_timer.stop()
+		_bonus = cube.get_bonus()
 		cube.grab()
 		_bonus_malus_anim.play("Bonus_Malus")
-		if cube.is_automatic():
-			_sprite.set_instance_shader_parameter(
-				&"outline_color", cube.get_runner_color())
 		cell.remove_cube()
+		var color: Color = Color.BLACK
+		if _bonus.is_automatic():
+			var duration = _bonus.get_duration()
+			if duration > 0:
+				color = _get_outline_color()
+				_bonus_timer.start(duration)
+		_sprite.set_instance_shader_parameter(&"outline_color", color)
+
+func _remove_bonus():
+	if _bonus:
+		_sprite.set_instance_shader_parameter(&"outline_color", Color.BLACK)
+		_bonus = null
+
+func _get_outline_color() -> Color:
+	if _bonus:
+		match _bonus.type:
+			Bonus.Type.INVINCIBLE, Bonus.Type.INVERT:
+				return Color(0.66, 0, 0)
+			Bonus.Type.DASH, Bonus.Type.ANTI_DASH:
+				return Color(0, 0.66, 0)
+			Bonus.Type.THROUGH, Bonus.Type.PHASE:
+				return Color(0, 0, 0.66)
+			Bonus.Type.VIRUS, Bonus.Type.ANTI_VIRUS:
+				return Color(0.5, 0.0, 0.5)
+			Bonus.Type.AUTO_DODGE, Bonus.Type.NO_TURN:
+				return Color(0.55, 0.55, 0.0)
+			Bonus.Type.DEBUG, Bonus.Type.SLOW:
+				return Color(0.25, 0.25, 0.25)
+			Bonus.Type.WALL_BREAKER, Bonus.Type.WALL_EXTENDER:
+				return Color(0.75, 0.75, 0.75)
+	return Color.BLACK
 
 #
 # Methods called by run cycle animation.

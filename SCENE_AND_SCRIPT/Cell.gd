@@ -286,12 +286,12 @@ func add_door():
 func get_door() -> Door:
 	return _door
 
-func add_cube(type: Cube.Type):
+func add_cube(type: Bonus.Type):
 	if _cube == null:
 		_cube = _cube_scene.instantiate()
 		add_child(_cube)
 		_cube.cell = self
-		_cube.type = type
+		_cube.bonus_type = type
 		await _cube.appear()
 		_state = State.CUBE
 

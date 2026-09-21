@@ -7,8 +7,7 @@ signal gone
 const delay: float = 0.1
 
 ## How long in seconds a point is displayed after delay.
-var duration: float = \
-	3 + 7 * (Globals.difficulty + (2 * Globals.map_size + 1) - 10) / 16.0
+var duration: float = get_duration()
 
 @onready var _mesh_instance: MeshInstance2D = $Mesh
 @onready var _animation: AnimationPlayer = $Animation
@@ -210,3 +209,10 @@ func disappear():
 static func get_wall_from_collider(collider: Area2D) -> Wall:
 	var wall = collider.get_node_or_null("..")
 	return wall if wall is Wall else null
+
+##
+## Returns how long in seconds wall points are displayed, which depends on the
+## global difficulty level and map size.
+##
+static func get_duration() -> float:
+	return 3 + 7 * (Globals.difficulty + (2 * Globals.map_size + 1) - 10) / 16.0
