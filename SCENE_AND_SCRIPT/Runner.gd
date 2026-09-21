@@ -561,22 +561,21 @@ func _check_cube(cell: Cell):
 		cube.grab()
 		_bonus_malus_anim.play("Bonus_Malus")
 		cell.remove_cube()
-		var color: Color = Color.BLACK
 		if _bonus.is_automatic():
-			var duration = _bonus.get_duration()
-			if duration > 0:
-				color = _get_outline_color()
-				_bonus_timer.start(duration)
-		_sprite.set_instance_shader_parameter(&"outline_color", color)
+			_activate_bonus()
+		else:
+			_sprite.set_instance_shader_parameter(&"outline_color", Color.BLACK)
 
 func _activate_bonus():
-	if _bonus && not (_bonus.is_activated or _bonus.is_automatic()):
+	if _bonus && not _bonus.is_activated:
+		print("activate ", Bonus.Type.keys()[_bonus.type].capitalize())
+		_sprite.set_instance_shader_parameter(
+			&"outline_color", _get_outline_color())
 		var duration = _bonus.get_duration()
 		if duration > 0:
-			_sprite.set_instance_shader_parameter(
-				&"outline_color", _get_outline_color())
 			_bonus_timer.start(duration)
-		print("activate ", Bonus.Type.keys()[_bonus.type].capitalize())
+		_bonus_malus_anim.play(&"Bonus_Malus")
+		# TODO: sound effect?
 		_bonus.is_activated = true
 
 func _remove_bonus():
@@ -588,17 +587,17 @@ func _get_outline_color() -> Color:
 	if _bonus:
 		match _bonus.type:
 			Bonus.Type.INVINCIBLE, Bonus.Type.INVERT:
-				return Color(0.66, 0, 0)
+				return Color(1, 0.25, 0.25)
 			Bonus.Type.DASH, Bonus.Type.ANTI_DASH:
-				return Color(0, 0.66, 0)
+				return Color(0.25, 1, 0.25)
 			Bonus.Type.THROUGH, Bonus.Type.PHASE:
-				return Color(0, 0, 0.66)
+				return Color(0.25, 0.25, 1)
 			Bonus.Type.VIRUS, Bonus.Type.ANTI_VIRUS:
-				return Color(0.5, 0.0, 0.5)
+				return Color(0.71, 0.33, 1)
 			Bonus.Type.AUTO_DODGE, Bonus.Type.NO_TURN:
-				return Color(0.55, 0.55, 0.0)
+				return Color(0.7, 0.68, 0.0)
 			Bonus.Type.DEBUG, Bonus.Type.SLOW:
-				return Color(0.25, 0.25, 0.25)
+				return Color(0.45, 0.45, 0.45)
 			Bonus.Type.WALL_BREAKER, Bonus.Type.WALL_EXTENDER:
 				return Color(0.75, 0.75, 0.75)
 	return Color.BLACK
