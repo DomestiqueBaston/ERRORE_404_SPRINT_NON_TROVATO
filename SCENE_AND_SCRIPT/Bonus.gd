@@ -13,6 +13,7 @@ enum Type {
 	AUTO_DODGE,
 	DEBUG,
 	WALL_BREAKER,
+	# WALL_BREAKER is the last bonus, INVERT is the first malus: see is_bonus()
 	INVERT,
 	SLOW,
 	WALL_EXTENDER,
@@ -25,29 +26,32 @@ enum Type {
 var type: Type
 var is_activated: bool = false
 
-# bonus/malus types that are NOT activated automatically
-var _delayed_types = [Type.DASH, Type.AUTO_DODGE, Type.DEBUG]
+##
+## Returns true for a bonus, false for a malus.
+##
+func is_bonus() -> bool:
+	return type <= Type.WALL_BREAKER
 
 ##
 ## Returns true if this bonus/malus is activated as soon as the player grabs it,
-## false if he has to activate it himself.
+## false if he has to activate it himself. For now, at least, all bonuses must
+## be activated, and all maluses are automatic.
 ##
 func is_automatic() -> bool:
-	return not type in _delayed_types
+	return not is_bonus()
 
 ##
 ## Returns how long (in seconds) the bonus/malus expires after activation. A
-## value of zero means it takes effect and then expires immediately; a negative
-## value means it must be removed explicitly, i.e. once it has been used.
+## value of zero means it expires immediately once it has been used.
 ##
 func get_duration() -> float:
 	match type:
 		Type.INVINCIBLE:
-			return 6 - Globals.difficulty
+			return 10 - Globals.difficulty
 		Type.DASH:
 			return 0.5
 		Type.THROUGH:
-			return -1
+			return 6 - Globals.difficulty
 		Type.VIRUS:
 			return 10 - Globals.difficulty
 		Type.AUTO_DODGE:
@@ -57,7 +61,7 @@ func get_duration() -> float:
 		Type.WALL_BREAKER:
 			return 0
 		Type.INVERT:
-			return Globals.difficulty
+			return 0.5 * Globals.difficulty
 		Type.SLOW:
 			return 2 * Globals.difficulty
 		Type.WALL_EXTENDER:
@@ -69,9 +73,9 @@ func get_duration() -> float:
 		Type.ANTI_VIRUS:
 			return 10 - Globals.difficulty
 		Type.NO_TURN:
-			return 0.5 + 0.5 * Globals.difficulty
+			return 0.5 * Globals.difficulty
 		_:
-			return -1
+			return 0
 
 static func pick_random_type() -> Type:
 	return (randi() % Type.keys().size()) as Type

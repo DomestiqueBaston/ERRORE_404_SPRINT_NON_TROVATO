@@ -34,7 +34,7 @@ func disappear():
 	await _anim_on_off.animation_finished
 	_anim_alive.play(&"RESET")
 
-func grab():
+func play_grab_sound():
 	$Cube_Sound/Grab_Cube.play()
 
 ##

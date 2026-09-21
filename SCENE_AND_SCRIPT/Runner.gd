@@ -19,6 +19,10 @@ extends Node2D
 @onready var _footstep2 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_02
 @onready var _footstep3 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_03
 
+@onready var _through_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Through
+@onready var _auto_dodge_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Auto_Dodge
+@onready var _bonus_over_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Bonus_Malus_Over
+
 # which way the runner last moved, be it by running, jumping or sliding
 var _direction: Vector2 = Vector2.ZERO
 
@@ -39,7 +43,6 @@ var is_falling: bool = false
 var is_teleporting: bool = false
 var is_one_way: bool = false
 var is_exiting: bool = false
-var _is_penetrating_wall: bool = false
 
 const _rotation: float = deg_to_rad(18.4)
 
@@ -96,17 +99,13 @@ func _physics_process(delta: float):
 	# So first check for collisions with walls, which can be found anywhere.
 
 	if not is_dead:
-		var hit = false
 		for area in _collider.get_overlapping_areas():
 			if area.collision_layer & Globals.WALL_LAYER:
-				if _bonus and _bonus.type == Bonus.Type.THROUGH:
-					_is_penetrating_wall = true
+				if _has_bonus(Bonus.Type.THROUGH):
+					_through_sound.play()
 				else:
 					_die(false)
-				hit = true
 				break
-		if _is_penetrating_wall and not hit:
-			_remove_bonus()
 
 	# Now handle the doorway and one-way signs (which are mutually exclusive:
 	# there are no one-way signs in the central cell) and at the same time set
@@ -236,11 +235,10 @@ func _physics_process(delta: float):
 
 	if new_cell == null:
 		if not is_jumping:
-			if (_bonus and _bonus.type == Bonus.Type.AUTO_DODGE
-				and _bonus.is_activated):
+			if _has_bonus(Bonus.Type.AUTO_DODGE):
 				auto_dodge = true
 				_play_jump_animation()
-				_remove_bonus()
+				_auto_dodge_sound.play()
 			else:
 				_start_falling()
 	elif new_cell.get_artefact():
@@ -249,11 +247,10 @@ func _physics_process(delta: float):
 		match new_cell.get_state():
 			Cell.State.LOWERED, Cell.State.HIDDEN:
 				if not is_jumping:
-					if (_bonus and _bonus.type == Bonus.Type.AUTO_DODGE
-						and _bonus.is_activated):
+					if _has_bonus(Bonus.Type.AUTO_DODGE):
 						auto_dodge = true
 						_play_jump_animation()
-						_remove_bonus()
+						_auto_dodge_sound.play()
 					else:
 						_start_falling()
 			Cell.State.TELEPORT:
@@ -542,10 +539,9 @@ func _check_pylon(cell: Cell) -> bool:
 	match cell.get_pylon().get_state():
 		Pylon.State.LOWERED:
 			if not is_sliding:
-				if (_bonus and _bonus.type == Bonus.Type.AUTO_DODGE
-					and _bonus.is_activated):
+				if _has_bonus(Bonus.Type.AUTO_DODGE):
 					_play_slide_animation()
-					_remove_bonus()
+					_auto_dodge_sound.play()
 					return true
 				_die(cell == _curr_cell)
 		Pylon.State.DROPPED:
@@ -556,32 +552,56 @@ func _check_cube(cell: Cell):
 	var cube: Cube = cell.get_cube()
 	if cube and cube.check_for_overlap(_collider):
 		print("bonus/malus: ", Bonus.Type.keys()[cube.bonus_type].capitalize())
+
+		# take the cube's bonus and remove the cube from its cell
+
 		_bonus_timer.stop()
 		_bonus = cube.get_bonus()
-		cube.grab()
 		_bonus_malus_anim.play("Bonus_Malus")
 		cell.remove_cube()
+
+		# automatic => activate the bonus/malus right away
+		# otherwise => give the runner 30 seconds to activate it
+
 		if _bonus.is_automatic():
 			_activate_bonus()
 		else:
+			cube.play_grab_sound()
 			_sprite.set_instance_shader_parameter(&"outline_color", Color.BLACK)
+			_bonus_timer.start(30)
 
 func _activate_bonus():
 	if _bonus && not _bonus.is_activated:
 		print("activate ", Bonus.Type.keys()[_bonus.type].capitalize())
+
+		# activate the bonus: set the runner's outline color and make him blink
+
+		_bonus.is_activated = true
 		_sprite.set_instance_shader_parameter(
 			&"outline_color", _get_outline_color())
+		_bonus_malus_anim.play(&"Bonus_Malus")
+
+		# positive duration => bonus will be removed after the time elapses
+		# otherwise => bonus is removed as soon as the runner stops blinking
+
 		var duration = _bonus.get_duration()
 		if duration > 0:
 			_bonus_timer.start(duration)
-		_bonus_malus_anim.play(&"Bonus_Malus")
-		# TODO: sound effect?
-		_bonus.is_activated = true
+		else:
+			_bonus_timer.stop()
+			await _bonus_malus_anim.animation_finished
+			_remove_bonus()
+
+func _has_bonus(type: Bonus.Type) -> bool:
+	return _bonus and _bonus.type == type and _bonus.is_activated
 
 func _remove_bonus():
 	if _bonus:
-		_sprite.set_instance_shader_parameter(&"outline_color", Color.BLACK)
 		_bonus = null
+		_bonus_over_sound.play()
+		_bonus_malus_anim.play(&"Bonus_Malus")
+		await _bonus_malus_anim.animation_finished
+		_sprite.set_instance_shader_parameter(&"outline_color", Color.BLACK)
 
 func _get_outline_color() -> Color:
 	if _bonus:
