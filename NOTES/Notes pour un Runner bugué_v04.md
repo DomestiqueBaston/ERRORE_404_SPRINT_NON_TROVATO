@@ -80,13 +80,13 @@ Les malus (applications automatiques) :
     7. Tout droit (le coureur ne peut plus tourner pendant (difficulté ÷ 2)’’ – Jaune → ✔ No_turn
 
 Codes couleurs à appliquer à l’outline du joueur :
-    • Rouge : Color(0.66, 0.0, 0.0)
-    • Vert : Color(0.0, 0.66, 0.0)
-    • Bleu : Color(0.0, 0.0, 0.66)
-    • Gris : Color(0.25, 0.25, 0.25)
+    • Rouge : Color(1.0, 0.25, 0.25)
+    • Vert : Color(0.25, 1.0, 0.25)
+    • Bleu : Color(0.25, 0.25, 1.0)
+    • Gris : Color(0.45, 0.45, 0.45)
     • Blanc : Color(0.75, 0.75, 0.75)
-    • Violet : Color(0.5, 0.0, 0.5)
-    • Jaune : Color(0.55, 0.55, 0.0)
+    • Violet : Color(0.71, 0.33, 1.0)
+    • Jaune : Color(0.7, 0.68, 0.0)
     • Noir (couleur par défaut) : Color(0.0, 0.0, 0.0)
 Codes couleurs à appliquer aux Bonus/Malus (Cube.tscn et voir ’’sprite_color’’) :
     • Rouge : Color(1.523, 0.865, 0.865)
