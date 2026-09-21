@@ -52,24 +52,26 @@ Les bonus et malus en jeu (Cube.tscn) :
 - Il ne peut pas y avoir plus de (Taille de la map ÷ 3) Bonus/Malus simultanément à ramasser → celui « en trop » supprime automatiquement le plus ancien restant pendant que le nouveau apparaît.
 - On ne fait pas apparaître de Bonus/Malus sur une cellule avec au moins un mur et/ou tout autre obstacle.
 - Pour chaque couleur correspondent un bonus et un malus (le joueur ne sait donc pas s’il voit un bonus ou un malus).
-- Au ramassage d’un Bonus/Malus, on joue le son Cube_Sound/Grab_Cube dans Cube.tscn et on joue le clignotement du concurrent (Animation_Bonus_Malus). Mais on ne change pas la couleur de l’outline du coureur (hors activation automatique – voir dessous).
+- Ramassage de Bonus/Malus :
+	- Au ramassage d’un Bonus, on joue le son Cube_Sound/Grab_Cube dans Cube.tscn et on joue le clignotement du concurrent (Animation_Bonus_Malus). Mais on ne change pas la couleur de l’outline du coureur (hors activation automatique – voir dessous).
+	- Au ramassage d’un Malus, on ne joue pas le son Cube_Sound/Grab_Cube dans Cube.tscn et on joue le clignotement du concurrent (Animation_Bonus_Malus). Mais on ne change pas la couleur de l’outline du coureur (hors activation automatique – voir dessous).
 - À l’activation du Bonus/Malus (automatique ou au déclenchement du joueur), on changera la couleur de l’outline du joueur pour la durée de l’effet (voir codes couleur juste en dessous), on jouera également le son correspondant au bonus/malus (sous Sound/Bonus_Malus) et on jouera le clignotement du concurrent (Animation_Bonus_Malus/Bonus_Malus).
-- Si le ramassage et l’activation se font en même temps (noté Automatique!), on ne jouera qu’une fois le son correspondant et pareil pour le clignotement du concurrent et on changera la couleur de l’outline pour le temps de l’effet du Bonus/Malus.
+- Si le ramassage et l’activation se font en même temps (noté Automatique!), on ne jouera qu’une fois le son correspondant et pareil pour le clignotement du concurrent et on changera la couleur de l’outline pour le temps de l’effet du Bonus/Malus. RAPPEL : on je joue pas le son Cube_Sound/Grab_Cube.
 - Lorsque l’effet du Bonus/Malus durera plus longtemps que le son et l’animation du Bonus/Malus, à la fin de l’effet du Bonus/Malus, on rejouera le clignotement du coureur et le son Sound/Bonus_Malus/Bonus_Malus_Over dans la scène du coureur et l’outline retrouvera sa couleur par défaut (noir) à la fin du clignotement.
-- Tout Bonus/Malus déclenchable « manuellement » doit être utilisé dans les 30’’ qui suivent son ramassage. Au delà de cette durée, le joueur perd le Bonus/Malus. Alors on jouera le son du Bonus/Malus et le clignotement du joueur.
+- Tout Bonus/Malus déclenchable « manuellement » doit être utilisé dans les 30’’ qui suivent son ramassage. Au delà de cette durée, le joueur perd le Bonus/Malus. Alors on jouera le son Sound/Bonus_Malus/Bonus_Malus_Over et le clignotement du joueur.
 - Tout effet sur la vitesse du joueur se répercute sur la vitesse du mur (thanks, Cap’tain Obvious!).
 
-Les bonus :
-    1. Invulnérabilité – Rouge (annule le prochain malus récolté) – dure : (6 – difficulté)’’ → ✔ Invincible – Automatique !
-    2. Dash – Vert (course uniquement – dure :1/2’’ – ne peut pas être interrompu ET virage impossible !) : 66% plus rapide (animation aussi). → ✔ Dash – Activable !
-    3. Passe-muraille – Bleu (uniquement les light walls) – dure : 1 seule utilisation → ✔ Through – Automatique !
-    4. Virus – Violet (envoie automatiquement le prochain malus récolté à un adversaire aléatoire au lieu de le jeter en récupérant le suivant) – dure : (10 – difficulté)’’  → ✔ Virus – Automatique !
-    5. Auto-dodge – Jaune (les obstacles et trous évitables par glissement ou saut (pas en tournant) sont évités automatiquement si le joueur ne le fait pas) – dure : (6 – difficulté)’’→ ✔ Auto_Dodge – Activable !
-    6. Débogueur – Gris (vire le bug de caméra) – 1 seule utilisation et dure : (10 – difficulté)’’→ ✔ Debug – Activable !
-    7. Les murs tracés jusqu’à présent par les concurrents disparaissent (avec l’animation Disappearing) – dure : Instantané – Blanc → ✔ Last_Longer – Automatique !
+Les bonus (applications activables) :
+    1. Invulnérabilité – Rouge (annule le prochain malus récolté) – dure : (6 – difficulté)’’ → ✔ Invincible – 
+    2. Dash – Vert (course uniquement – dure :1/2’’ – ne peut pas être interrompu ET virage impossible !) : 66% plus rapide (animation aussi). → ✔ Dash
+    3. Passe-muraille – Bleu (uniquement les light walls) – dure : 1 seule utilisation → ✔ Through – 
+    4. Virus – Violet (envoie automatiquement le prochain malus récolté à un adversaire aléatoire au lieu de le jeter en récupérant le suivant) – dure : (10 – difficulté)’’  → ✔ Virus – 
+    5. Auto-dodge – Jaune (les obstacles et trous évitables par glissement ou saut (pas en tournant) sont évités automatiquement si le joueur ne le fait pas) – dure : (6 – difficulté)’’→ ✔ Auto_Dodge – 
+    6. Débogueur – Gris (vire le bug de caméra) – 1 seule utilisation et dure : (10 – difficulté)’’→ ✔ Debug – 
+    7. Les murs tracés jusqu’à présent par les concurrents disparaissent (avec l’animation Disappearing) – dure : Instantané – Blanc → ✔ Last_Longer – 
 
 Les malus (applications automatiques) :
-    1. Inversion de commandes – Rouge – dure : (difficulté)’’ → ✔ Invert – Automatique !
+    1. Inversion de commandes – Rouge – dure : (difficulté)’’ → ✔ Invert
     2. Lenteur de réaction (on ajoute un délai de 15ms (à préciser) dans les commandes du concurrent) – Gris – dure : (2 × difficulté)’’ → ✔ Slow
     3. Les murs tracés par les concurrents durent plus longtemps – Blanc – (durée des tronçons de mur × 1.5) → ✔ Last_Shorter – Au bout de la durée des tronçons de mur normale, l’effet du malus disparaît et la durée de vie normale de chaque tronçon reprend sa valeur normale et tous les tronçons qui ont vécu ce temps ou plus disparaissent (avec l’animation Disappearing) ! Ainsi le malus a surtout pour effet de faire durer plus longtemps les tronçons de mur déjà et encore en place avant l’activation du malus.
     4. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1/2 seconde) – Vert – dure : ((2 × difficulté) + 3)’’ → ✔ Anti_Dash
