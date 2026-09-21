@@ -2973,106 +2973,112 @@ metadata/_edit_lock_ = true
 
 [node name="Dash" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1997126665]
 stream = ExtResource("40_w6tkd")
+volume_db = 3.0
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="Through" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=184399713]
 stream = ExtResource("31_fwjxr")
-volume_db = -1.5
+volume_db = 6.0
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="Virus" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1909419859]
 stream = ExtResource("32_r6ph6")
-volume_db = -2.5
+volume_db = 3.0
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="Auto_Dodge" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1837176455]
 stream = ExtResource("11_o60mx")
+volume_db = 5.0
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="Teleport" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=460000798]
 stream = ExtResource("33_4mt1g")
+volume_db = 6.0
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="Debug" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=2042308028]
 stream = ExtResource("34_qiasf")
-volume_db = 2.5
+volume_db = 9.0
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="Last_Longer" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1310866718]
 stream = ExtResource("35_x6lkg")
+volume_db = 7.0
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="Invincible" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1618834356]
 stream = ExtResource("36_kiruc")
-volume_db = -1.5
+volume_db = 5.0
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="Invert" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1078487403]
 stream = ExtResource("37_q6wey")
-volume_db = -2.5
+volume_db = 4.0
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="Slow" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1511894192]
 stream = ExtResource("38_am40h")
-volume_db = 2.5
+volume_db = 7.5
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="Last_Shorter" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=635161290]
 stream = ExtResource("39_o58ue")
+volume_db = 5.0
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="Anti_Dash" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=248203349]
 stream = ExtResource("40_w6tkd")
+volume_db = 6.0
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="Phase" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1012285453]
 stream = ExtResource("41_2x0cp")
-volume_db = 2.5
+volume_db = 10.0
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="Anti_Virus" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1249781702]
 stream = ExtResource("42_ucwfd")
-volume_db = -2.5
+volume_db = 3.5
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="No_Turn" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1883064458]
 stream = ExtResource("21_bs1rt")
-volume_db = 1.5
+volume_db = 8.5
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="Bonus_Malus_Over" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=592818660]
 stream = ExtResource("22_bs1rt")
-volume_db = 7.5
+volume_db = 7.0
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
