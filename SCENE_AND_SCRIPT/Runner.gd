@@ -630,13 +630,13 @@ func _get_outline_color() -> Color:
 			Bonus.Type.INVINCIBLE, Bonus.Type.INVERT:
 				return Color(1, 0.25, 0.25)
 			Bonus.Type.DASH, Bonus.Type.ANTI_DASH:
-				return Color(0.25, 1, 0.25)
+				return Color(0.15, 0.88, 0.15)
 			Bonus.Type.THROUGH, Bonus.Type.PHASE:
-				return Color(0.25, 0.25, 1)
+				return Color(0.378, 0.378, 0.86)
 			Bonus.Type.VIRUS, Bonus.Type.ANTI_VIRUS:
-				return Color(0.71, 0.33, 1)
+				return Color(0.625, 0.29, 0.88)
 			Bonus.Type.AUTO_DODGE, Bonus.Type.NO_TURN:
-				return Color(0.7, 0.68, 0.0)
+				return Color(0.83, 0.83, 0.0)
 			Bonus.Type.DEBUG, Bonus.Type.SLOW:
 				return Color(0.45, 0.45, 0.45)
 			Bonus.Type.WALL_BREAKER, Bonus.Type.WALL_EXTENDER:
