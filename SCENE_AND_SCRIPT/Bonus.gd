@@ -23,6 +23,7 @@ enum Type {
 }
 
 var type: Type
+var is_activated: bool = false
 
 # bonus/malus types that are NOT activated automatically
 var _delayed_types = [Type.DASH, Type.AUTO_DODGE, Type.DEBUG]

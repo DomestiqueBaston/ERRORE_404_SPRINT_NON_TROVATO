@@ -39,6 +39,7 @@ var is_falling: bool = false
 var is_teleporting: bool = false
 var is_one_way: bool = false
 var is_exiting: bool = false
+var _is_penetrating_wall: bool = false
 
 const _rotation: float = deg_to_rad(18.4)
 
@@ -74,6 +75,10 @@ func set_map(map: Map, start_cell: Cell = null):
 	else:
 		_start_cell = map.get_center_cell()
 
+func _input(event: InputEvent):
+	if event.is_action_pressed("ui_x_button"):
+		_activate_bonus()
+
 func _physics_process(delta: float):
 
 	# Anything that relies on collision detection is done first, before updating
@@ -91,11 +96,17 @@ func _physics_process(delta: float):
 	# So first check for collisions with walls, which can be found anywhere.
 
 	if not is_dead:
+		var hit = false
 		for area in _collider.get_overlapping_areas():
 			if area.collision_layer & Globals.WALL_LAYER:
-				print("hit a wall")
-				_die(false)
+				if _bonus and _bonus.type == Bonus.Type.THROUGH:
+					_is_penetrating_wall = true
+				else:
+					_die(false)
+				hit = true
 				break
+		if _is_penetrating_wall and not hit:
+			_remove_bonus()
 
 	# Now handle the doorway and one-way signs (which are mutually exclusive:
 	# there are no one-way signs in the central cell) and at the same time set
@@ -120,7 +131,6 @@ func _physics_process(delta: float):
 			match door.get_zone_at(_collider):
 				Door.Zone.FRAME:
 					if not is_exiting:
-						print("hit door frame")
 						_die(false)
 				Door.Zone.PASSAGE:
 					if not is_exiting:
@@ -222,30 +232,43 @@ func _physics_process(delta: float):
 	# Check for obstacles at the new location. Note that obstacles may come to
 	# the runner even if he has not moved yet.
 
+	var auto_dodge = false
+
 	if new_cell == null:
 		if not is_jumping:
-			_start_falling()
+			if (_bonus and _bonus.type == Bonus.Type.AUTO_DODGE
+				and _bonus.is_activated):
+				auto_dodge = true
+				_play_jump_animation()
+				_remove_bonus()
+			else:
+				_start_falling()
 	elif new_cell.get_artefact():
-		print("hit artefact")
 		_die(false)
 	else:
 		match new_cell.get_state():
 			Cell.State.LOWERED, Cell.State.HIDDEN:
 				if not is_jumping:
-					_start_falling()
+					if (_bonus and _bonus.type == Bonus.Type.AUTO_DODGE
+						and _bonus.is_activated):
+						auto_dodge = true
+						_play_jump_animation()
+						_remove_bonus()
+					else:
+						_start_falling()
 			Cell.State.TELEPORT:
 				_check_teleport(new_cell)
 			Cell.State.ONE_WAY:
 				# this was already handled above
 				pass
 			Cell.State.PYLON:
-				_check_pylon(new_cell)
+				auto_dodge = _check_pylon(new_cell)
 
 	# Update the position of the runner and the camera, unless the runner hit
 	# something inpenetrable (a pylon or artefact), or he has not started to run
 	# yet.
 
-	if not (is_dead or is_falling) and _direction:
+	if not (is_dead or is_falling or auto_dodge) and _direction:
 		_set_position(new_pos, false, new_cell)
 
 	# Add a point to the runner's wall, unless he is dead, or falling, or
@@ -494,7 +517,6 @@ func _check_one_way(cell: Cell):
 	# if the runner is going the opposite direction, kill him
 
 	if is_equal_approx(_direction.dot(new_direction), -1.0):
-		print("hit one way sign")
 		_die(false)
 		return
 
@@ -514,17 +536,21 @@ func _check_one_way(cell: Cell):
 	if _map:
 		_map.cancel_one_way(cell)
 
-func _check_pylon(cell: Cell):
+func _check_pylon(cell: Cell) -> bool:
 	# if the runner was already on the cell when the pylon is lowered or
 	# dropped, he just disappears: see _die()
 	match cell.get_pylon().get_state():
 		Pylon.State.LOWERED:
 			if not is_sliding:
-				print("hit lowered pylon")
+				if (_bonus and _bonus.type == Bonus.Type.AUTO_DODGE
+					and _bonus.is_activated):
+					_play_slide_animation()
+					_remove_bonus()
+					return true
 				_die(cell == _curr_cell)
 		Pylon.State.DROPPED:
-			print("hit dropped pylon")
 			_die(cell == _curr_cell)
+	return false
 
 func _check_cube(cell: Cell):
 	var cube: Cube = cell.get_cube()
@@ -542,6 +568,16 @@ func _check_cube(cell: Cell):
 				color = _get_outline_color()
 				_bonus_timer.start(duration)
 		_sprite.set_instance_shader_parameter(&"outline_color", color)
+
+func _activate_bonus():
+	if _bonus && not (_bonus.is_activated or _bonus.is_automatic()):
+		var duration = _bonus.get_duration()
+		if duration > 0:
+			_sprite.set_instance_shader_parameter(
+				&"outline_color", _get_outline_color())
+			_bonus_timer.start(duration)
+		print("activate ", Bonus.Type.keys()[_bonus.type].capitalize())
+		_bonus.is_activated = true
 
 func _remove_bonus():
 	if _bonus:

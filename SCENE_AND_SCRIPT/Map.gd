@@ -643,7 +643,14 @@ func _on_obstacle_timer_timeout():
 func _on_cube_timer_timeout():
 	var cell = _pick_random_cell(false)
 	if cell:
-		cell.add_cube(Bonus.pick_random_type())
+		var bonus_type: Bonus.Type
+		#bonus_type = Bonus.pick_random_type()
+		match randi() % 2:
+			0:
+				bonus_type = Bonus.Type.THROUGH
+			1:
+				bonus_type = Bonus.Type.AUTO_DODGE
+		cell.add_cube(bonus_type)
 		var cube: Cube = cell.get_cube()
 		cube.tree_exited.connect(_on_cube_removed.bind(cell))
 		_cube_cells.append(cell)
