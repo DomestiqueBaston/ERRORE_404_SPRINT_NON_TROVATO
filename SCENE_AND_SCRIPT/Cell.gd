@@ -292,6 +292,7 @@ func add_cube(type: Bonus.Type):
 		add_child(_cube)
 		_cube.cell = self
 		_cube.bonus_type = type
+		_cube.position = Vector2(randf_range(-50, 50), randf_range(-25, 25))
 		await _cube.appear()
 		_state = State.CUBE
 
