@@ -650,6 +650,7 @@ func _on_cube_timer_timeout():
 			Bonus.Type.PIERCE_WALLS,
 			Bonus.Type.AUTO_DODGE,
 			Bonus.Type.INVERT,
+			Bonus.Type.PHASE,
 			Bonus.Type.NO_TURN
 		].pick_random()
 		cell.add_cube(bonus_type)

@@ -12,6 +12,7 @@ extends Node2D
 @onready var _animation: AnimationPlayer = $Animation_Runner
 @onready var _disappear: AnimationPlayer = $Animation_Disappearing_Death
 @onready var _bonus_malus_anim: AnimationPlayer = $Animation_Bonus_Malus
+@onready var _glitch_anim: AnimationPlayer = $Animation_Glitch
 @onready var _collider: Area2D = $Character/Papa_Sprite/Runner_Sprite/Collider_Area
 @onready var _camera: Camera2D = $Character/Cam
 
@@ -24,6 +25,7 @@ extends Node2D
 @onready var _pierce_walls_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Pierce_Walls
 @onready var _auto_dodge_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Auto_Dodge
 @onready var _invert_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Invert
+@onready var _phase_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Phase
 @onready var _no_turn_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/No_Turn
 @onready var _bonus_over_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Bonus_Malus_Over
 
@@ -612,12 +614,17 @@ func _activate_bonus():
 	# sound effect
 
 	match _bonus.type:
+		Bonus.Type.DASH:
+			_start_dash()
 		Bonus.Type.PIERCE_WALLS:
 			_pierce_walls_sound.play()
 		Bonus.Type.AUTO_DODGE:
 			_auto_dodge_sound.play()
 		Bonus.Type.INVERT:
 			_invert_sound.play()
+		Bonus.Type.PHASE:
+			_phase_sound.play()
+			_glitch_anim.play(&"Glitch")
 		Bonus.Type.NO_TURN:
 			_no_turn_sound.play()
 
@@ -631,11 +638,6 @@ func _activate_bonus():
 		_bonus_timer.stop()
 		await _bonus_malus_anim.animation_finished
 		_remove_bonus()
-
-	# when Dash is activated, start the first dash automatically
-
-	if _bonus.type == Bonus.Type.DASH:
-		_start_dash()
 
 func _start_dash():
 	if is_dashing or is_jumping or is_falling:
@@ -654,12 +656,18 @@ func _has_bonus(type: Bonus.Type) -> bool:
 	return _bonus and _bonus.type == type and _bonus.is_activated
 
 func _remove_bonus():
-	if _bonus:
-		_bonus = null
-		_bonus_over_sound.play()
-		_bonus_malus_anim.play(&"Bonus_Malus")
-		await _bonus_malus_anim.animation_finished
-		_sprite.set_instance_shader_parameter(&"outline_color", Color.BLACK)
+	if _bonus == null:
+		return
+
+	match _bonus.type:
+		Bonus.Type.PHASE:
+			_glitch_anim.play(&"RESET")
+
+	_bonus = null
+	_bonus_over_sound.play()
+	_bonus_malus_anim.play(&"Bonus_Malus")
+	await _bonus_malus_anim.animation_finished
+	_sprite.set_instance_shader_parameter(&"outline_color", Color.BLACK)
 
 func _get_outline_color() -> Color:
 	if _bonus:
