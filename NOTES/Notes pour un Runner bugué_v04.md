@@ -71,13 +71,13 @@ Les bonus (applications activables) :
     7. Les murs tracés jusqu’à présent par les concurrents disparaissent (avec l’animation Disappearing) – dure : Instantané – Blanc → ✔ Last_Longer – (à la fin de la disparition des murs, les coureurs recommencent à tracer des murs).
 
 Les malus (applications automatiques) :
-    1. Inversion de commandes – Rouge – dure : (difficulté ÷ 2)’’ → ✔ Invert
-    2. Lenteur de réaction (on ajoute un délai de 15ms (à préciser) dans les commandes du concurrent) – Gris – dure : (2 × difficulté)’’ → ✔ Slow
-    3. Les murs tracés par les concurrents durent plus longtemps – Blanc – (durée des tronçons de mur × 1.5) → ✔ Last_Shorter – Au bout de la durée des tronçons de mur normale, l’effet du malus disparaît et la durée de vie normale de chaque tronçon reprend sa valeur normale et tous les tronçons qui ont vécu ce temps ou plus disparaissent (avec l’animation Disappearing) ! Ainsi le malus a surtout pour effet de faire durer plus longtemps les tronçons de mur déjà et encore en place avant l’activation du malus. En difficulté 6, le Malus devient : Inversion des boutons Saut et Glissade – dure : (difficulté ÷ 2)’’ → on garde le même son.
+    1. Inversion de commandes – Rouge – dure : (difficulté)’’ → ✔ Invert
+    2. Lenteur de réaction (on ajoute un délai de 15ms (à préciser) dans les commandes du concurrent) – Gris – dure : (3 × difficulté)’’ → ✔ Slow
+    3. Les murs tracés par les concurrents durent plus longtemps – Blanc – (durée des tronçons de mur × 1.5) → ✔ Last_Shorter – Au bout de la durée des tronçons de mur normale, l’effet du malus disparaît et la durée de vie normale de chaque tronçon reprend sa valeur normale et tous les tronçons qui ont vécu ce temps ou plus disparaissent (avec l’animation Disappearing) ! Ainsi le malus a surtout pour effet de faire durer plus longtemps les tronçons de mur déjà et encore en place avant l’activation du malus. En difficulté 6, le Malus devient : Inversion des boutons Saut et Glissade – dure : (difficulté)’’ → on garde le même son.
     4. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1/2 seconde) – Vert – dure : ((2 × difficulté) + 3)’’ → ✔ Anti_Dash
-    5. « Hors phase » (shader) – Bleu – dure : (2 × difficulté)’’ → ✔ Phase
+    5. « Hors phase » (shader) – Bleu – dure : (3 × difficulté)’’ → ✔ Phase
     6. Virus (envoie automatiquement le prochain Bonus (pas malus) récolté à un adversaire aléatoire, quitte à remplacer celui que porte l’adversaire – Violet – dure : (10 – difficulté)’’ → ✔ Anti_Virus
-    7. Tout droit (le coureur ne peut plus tourner pendant (difficulté ÷ 2)’’ – Jaune → ✔ No_turn
+    7. Tout droit (le coureur ne peut plus tourner pendant (difficulté)’’ – Jaune → ✔ No_turn
 
 Codes couleurs à appliquer à l’outline du joueur :
     • Rouge : Color(1.0, 0.25, 0.25)
