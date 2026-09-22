@@ -2254,7 +2254,7 @@ position = Vector2(-15, -75)
 metadata/_edit_lock_ = true
 
 [node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SE/Floating_Node/Direction_Orientation" unique_id=1800194083]
-self_modulate = Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)
+self_modulate = Color(1, 1, 1, 0.49019608)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 offset = Vector2(0, 60)
@@ -2317,7 +2317,7 @@ scale = Vector2(1, -1)
 position = Vector2(-15, -75)
 
 [node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NE/Floating_Node/Direction_Orientation" unique_id=1366458068]
-self_modulate = Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)
+self_modulate = Color(1, 1, 1, 0.49019608)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 offset = Vector2(0, 60)
@@ -2376,7 +2376,7 @@ scale = Vector2(-1, 1)
 position = Vector2(-15, -75)
 
 [node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/SW/Floating_Node/Direction_Orientation" unique_id=108989442]
-self_modulate = Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)
+self_modulate = Color(1, 1, 1, 0.49019608)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 offset = Vector2(0, 60)
@@ -2435,7 +2435,7 @@ scale = Vector2(-1, -1)
 position = Vector2(-15, -75)
 
 [node name="Direction_Back" type="Sprite2D" parent="Column/Cell_Tops/One_Way_Directions/NW/Floating_Node/Direction_Orientation" unique_id=714310253]
-self_modulate = Color(0.11372549, 0.10980392, 0.21960784, 0.39215687)
+self_modulate = Color(1, 1, 1, 0.49019608)
 position = Vector2(11.5, 4.5)
 texture = ExtResource("31_5memm")
 offset = Vector2(0, 60)
