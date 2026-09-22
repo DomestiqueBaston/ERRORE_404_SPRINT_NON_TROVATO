@@ -34,15 +34,15 @@
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="27_5gakl"]
 [ext_resource type="AudioStream" uid="uid://dn68ist7fukqi" path="res://SOUND/FX/RUNNER/Disappearing_Death.ogg" id="28_0x2bd"]
 [ext_resource type="AudioStream" uid="uid://boubqyiskws1h" path="res://SOUND/FX/RUNNER/Anti_Dash.ogg" id="29_lpk6h"]
-[ext_resource type="AudioStream" uid="uid://c0isopdpo0qnl" path="res://SOUND/FX/RUNNER/Through.ogg" id="30_yf3j5"]
+[ext_resource type="AudioStream" uid="uid://c0isopdpo0qnl" path="res://SOUND/FX/RUNNER/Pierce_Walls.ogg" id="30_yf3j5"]
 [ext_resource type="AudioStream" uid="uid://dv6h02qyq3s4y" path="res://SOUND/FX/RUNNER/Virus.ogg" id="31_5fiyw"]
 [ext_resource type="AudioStream" uid="uid://bwkr0tdf7e1fn" path="res://SOUND/FX/RUNNER/Teleport.ogg" id="32_dclff"]
 [ext_resource type="AudioStream" uid="uid://cbwrcysacpwex" path="res://SOUND/FX/RUNNER/Debug.ogg" id="33_kwd4r"]
-[ext_resource type="AudioStream" uid="uid://c3a5gs8xn7mi1" path="res://SOUND/FX/RUNNER/Last_Longer.ogg" id="34_nmd72"]
+[ext_resource type="AudioStream" uid="uid://c3a5gs8xn7mi1" path="res://SOUND/FX/RUNNER/Vanish_Walls.ogg" id="34_nmd72"]
 [ext_resource type="AudioStream" uid="uid://3yg8o12ftglw" path="res://SOUND/FX/RUNNER/Invincible.ogg" id="35_sp8am"]
 [ext_resource type="AudioStream" uid="uid://bw6mdsblb8ewg" path="res://SOUND/FX/RUNNER/Invert.ogg" id="36_phu4t"]
 [ext_resource type="AudioStream" uid="uid://p755bthurb04" path="res://SOUND/FX/RUNNER/Slow.ogg" id="37_bqex6"]
-[ext_resource type="AudioStream" uid="uid://b6ww4shdn6nj3" path="res://SOUND/FX/RUNNER/Last_Shorter.ogg" id="38_rf28l"]
+[ext_resource type="AudioStream" uid="uid://b6ww4shdn6nj3" path="res://SOUND/FX/RUNNER/Extend_Walls.ogg" id="38_rf28l"]
 [ext_resource type="AudioStream" uid="uid://c6wdc8jhhc7m0" path="res://SOUND/FX/RUNNER/Dash.ogg" id="39_8765u"]
 [ext_resource type="AudioStream" uid="uid://brb24ixtrvqg3" path="res://SOUND/FX/RUNNER/Empty.ogg" id="40_646ki"]
 [ext_resource type="AudioStream" uid="uid://5w55chwkxbr5" path="res://SOUND/FX/RUNNER/Anti_Virus.ogg" id="41_djysl"]
@@ -2989,7 +2989,7 @@ max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
-[node name="Through" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1337984054]
+[node name="Pierce_Walls" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1337984054]
 stream = ExtResource("30_yf3j5")
 volume_db = 6.0
 max_distance = 1000.0
@@ -3024,7 +3024,7 @@ max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
-[node name="Last_Longer" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1039319952]
+[node name="Vanish_Walls" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1039319952]
 stream = ExtResource("34_nmd72")
 volume_db = 7.0
 max_distance = 1000.0
@@ -3052,7 +3052,7 @@ max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
-[node name="Last_Shorter" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1928085426]
+[node name="Extend_Walls" type="AudioStreamPlayer2D" parent="Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus" unique_id=1928085426]
 stream = ExtResource("38_rf28l")
 volume_db = 5.0
 max_distance = 1000.0

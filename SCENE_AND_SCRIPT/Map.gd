@@ -647,7 +647,7 @@ func _on_cube_timer_timeout():
 		#bonus_type = Bonus.pick_random_type()
 		match randi() % 3:
 			0:
-				bonus_type = Bonus.Type.THROUGH
+				bonus_type = Bonus.Type.PIERCE_WALLS
 			1:
 				bonus_type = Bonus.Type.AUTO_DODGE
 			2:

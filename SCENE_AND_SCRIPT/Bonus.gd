@@ -8,15 +8,15 @@ class_name Bonus extends RefCounted
 enum Type {
 	INVINCIBLE,
 	DASH,
-	THROUGH,
+	PIERCE_WALLS,
 	VIRUS,
 	AUTO_DODGE,
 	DEBUG,
-	WALL_BREAKER,
-	# WALL_BREAKER is the last bonus, INVERT is the first malus: see is_bonus()
+	VANISH_WALLS,
+	# VANISH_WALLS is the last bonus, INVERT is the first malus: see is_bonus()
 	INVERT,
 	SLOW,
-	WALL_EXTENDER,
+	EXTEND_WALLS,
 	ANTI_DASH,
 	PHASE,
 	ANTI_VIRUS,
@@ -30,7 +30,7 @@ var is_activated: bool = false
 ## Returns true for a bonus, false for a malus.
 ##
 func is_bonus() -> bool:
-	return type <= Type.WALL_BREAKER
+	return type <= Type.VANISH_WALLS
 
 ##
 ## Returns true if this bonus/malus is activated as soon as the player grabs it,
@@ -50,7 +50,7 @@ func get_duration() -> float:
 			return 10 - Globals.difficulty
 		Type.DASH:
 			return 0.5
-		Type.THROUGH:
+		Type.PIERCE_WALLS:
 			return 6 - Globals.difficulty
 		Type.VIRUS:
 			return 10 - Globals.difficulty
@@ -58,13 +58,13 @@ func get_duration() -> float:
 			return 6 - Globals.difficulty
 		Type.DEBUG:
 			return 10 - Globals.difficulty
-		Type.WALL_BREAKER:
+		Type.VANISH_WALLS:
 			return 0
 		Type.INVERT:
 			return 0.5 * Globals.difficulty
 		Type.SLOW:
 			return 2 * Globals.difficulty
-		Type.WALL_EXTENDER:
+		Type.EXTEND_WALLS:
 			return 1.5 * Wall.get_duration()
 		Type.ANTI_DASH:
 			return 3 + 2 * Globals.difficulty

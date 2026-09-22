@@ -20,7 +20,7 @@ extends Node2D
 @onready var _footstep3 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_03
 
 @onready var _teleport_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Teleport
-@onready var _through_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Through
+@onready var _pierce_walls_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Pierce_Walls
 @onready var _auto_dodge_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Auto_Dodge
 @onready var _invert_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Invert
 @onready var _bonus_over_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Bonus_Malus_Over
@@ -103,9 +103,9 @@ func _physics_process(delta: float):
 	if not is_dead:
 		for area in _collider.get_overlapping_areas():
 			if area.collision_layer & Globals.WALL_LAYER:
-				if _has_bonus(Bonus.Type.THROUGH):
-					if not _through_sound.playing:
-						_through_sound.play()
+				if _has_bonus(Bonus.Type.PIERCE_WALLS):
+					if not _pierce_walls_sound.playing:
+						_pierce_walls_sound.play()
 				else:
 					_die(false)
 				break
@@ -595,8 +595,8 @@ func _activate_bonus():
 	# sound effect
 
 	match _bonus.type:
-		Bonus.Type.THROUGH:
-			_through_sound.play()
+		Bonus.Type.PIERCE_WALLS:
+			_pierce_walls_sound.play()
 		Bonus.Type.AUTO_DODGE:
 			_auto_dodge_sound.play()
 		Bonus.Type.INVERT:
@@ -631,7 +631,7 @@ func _get_outline_color() -> Color:
 				return Color(1, 0.25, 0.25)
 			Bonus.Type.DASH, Bonus.Type.ANTI_DASH:
 				return Color(0.15, 0.88, 0.15)
-			Bonus.Type.THROUGH, Bonus.Type.PHASE:
+			Bonus.Type.PIERCE_WALLS, Bonus.Type.PHASE:
 				return Color(0.378, 0.378, 0.86)
 			Bonus.Type.VIRUS, Bonus.Type.ANTI_VIRUS:
 				return Color(0.625, 0.29, 0.88)
@@ -639,7 +639,7 @@ func _get_outline_color() -> Color:
 				return Color(0.83, 0.83, 0.0)
 			Bonus.Type.DEBUG, Bonus.Type.SLOW:
 				return Color(0.45, 0.45, 0.45)
-			Bonus.Type.WALL_BREAKER, Bonus.Type.WALL_EXTENDER:
+			Bonus.Type.VANISH_WALLS, Bonus.Type.EXTEND_WALLS:
 				return Color(0.75, 0.75, 0.75)
 	return Color.BLACK
 

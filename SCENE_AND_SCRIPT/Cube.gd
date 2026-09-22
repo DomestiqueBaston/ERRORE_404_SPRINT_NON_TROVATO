@@ -51,7 +51,7 @@ func _get_sprite_color() -> Color:
 			return Color(1.0, 0.92, 0.92)
 		Bonus.Type.DASH, Bonus.Type.ANTI_DASH:
 			return Color(0.917, 1.0, 0.9)
-		Bonus.Type.THROUGH, Bonus.Type.PHASE:
+		Bonus.Type.PIERCE_WALLS, Bonus.Type.PHASE:
 			return Color(0.91, 0.928, 1.0)
 		Bonus.Type.VIRUS, Bonus.Type.ANTI_VIRUS:
 			return Color(0.943, 0.91, 1.0)
