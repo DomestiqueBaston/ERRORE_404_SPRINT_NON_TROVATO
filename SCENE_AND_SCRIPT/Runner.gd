@@ -23,6 +23,7 @@ extends Node2D
 @onready var _pierce_walls_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Pierce_Walls
 @onready var _auto_dodge_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Auto_Dodge
 @onready var _invert_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Invert
+@onready var _no_turn_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/No_Turn
 @onready var _bonus_over_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Bonus_Malus_Over
 
 # which way the runner last moved, be it by running, jumping or sliding
@@ -179,7 +180,7 @@ func _physics_process(delta: float):
 	# position WITHOUT collision detection, so it immediately reflects the new
 	# position; there is no need to wait for the next physics tick.
 
-	if not (is_jumping or is_sliding or is_one_way):
+	if not (is_jumping or is_sliding or is_one_way or _has_bonus(Bonus.Type.NO_TURN)):
 		var input_direction := Vector2.ZERO
 
 		if Input.is_action_just_pressed("ui_a_button") :
@@ -601,6 +602,8 @@ func _activate_bonus():
 			_auto_dodge_sound.play()
 		Bonus.Type.INVERT:
 			_invert_sound.play()
+		Bonus.Type.NO_TURN:
+			_no_turn_sound.play()
 
 	# positive duration => bonus will be removed after the time elapses
 	# otherwise => bonus is removed as soon as the runner stops blinking
