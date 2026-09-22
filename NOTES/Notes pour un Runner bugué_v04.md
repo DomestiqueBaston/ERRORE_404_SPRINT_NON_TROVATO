@@ -160,6 +160,7 @@ Les personnalités des « IA »/Bots :
     5. Les comportements choisis sont prioritaires par rapport à leurs versions du comportement de base (si ils existent).
     6. Seuls les coureurs, light walls, colonnes, trous, pylônes et piles de la porte de sortie sont considérés comme des obstacles.
     7. Un bot conservera son bonus/malus entre 2 à 30 secondes avant de l’utiliser (sauf Automatique, bien entendu).
+    8. Les malus qui inversent les directions ou les boutons sont aussi valables pour les bots, ce qui signifie qu’ils vont toujours aller à gauche quand il veulent aller à droite (pareil pour saut/glissade). En revanche, ce malus + les comportements « de base » qui agissent sur les directions vont rendre le bot « normal » en se cumulant et c’est très bien comme ça !
 
 Comportements « de base » :
 
