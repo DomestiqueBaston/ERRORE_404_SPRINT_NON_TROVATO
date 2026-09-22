@@ -1,11 +1,11 @@
 shader_type canvas_item;
 
 // Uniforms du tremblement
-uniform bool shake_enabled = false;
-uniform float shake_power : hint_range(0.0, 0.01, 0.0001) = 0.001;
-uniform float shake_speed : hint_range(0.0, 100.0, 0.1) = 10.0;
-uniform float shake_block_size = 150.0;
-uniform float shake_color_rate : hint_range(0.0, 0.02, 0.0001) = 0.0007;
+instance uniform bool shake_enabled = false;
+instance uniform float shake_power : hint_range(0.0, 0.01, 0.0001) = 0.001;
+instance uniform float shake_speed : hint_range(0.0, 100.0, 0.1) = 10.0;
+instance uniform float shake_block_size = 150.0;
+instance uniform float shake_color_rate : hint_range(0.0, 0.02, 0.0001) = 0.0007;
 
 // Uniforms de l'outline
 uniform float outline_thickness : hint_range(0.0, 5.0, 1.0) = 2.0;
