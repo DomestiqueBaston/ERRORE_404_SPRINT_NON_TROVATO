@@ -672,7 +672,7 @@ bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Pylon_Boom" type="AudioStreamPlayer2D" parent="Sound" unique_id=519154961]
-volume_db = 12.5
+volume_db = 15.0
 max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
