@@ -20,6 +20,7 @@ extends Node2D
 @onready var _footstep3 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_03
 
 @onready var _teleport_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Teleport
+@onready var _dash_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Dash
 @onready var _pierce_walls_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Pierce_Walls
 @onready var _auto_dodge_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Auto_Dodge
 @onready var _invert_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Invert
@@ -46,6 +47,7 @@ var is_falling: bool = false
 var is_teleporting: bool = false
 var is_one_way: bool = false
 var is_exiting: bool = false
+var is_dashing: bool = false
 
 const _rotation: float = deg_to_rad(18.4)
 
@@ -180,7 +182,8 @@ func _physics_process(delta: float):
 	# position WITHOUT collision detection, so it immediately reflects the new
 	# position; there is no need to wait for the next physics tick.
 
-	if not (is_jumping or is_sliding or is_one_way or _has_bonus(Bonus.Type.NO_TURN)):
+	if not (is_jumping or is_sliding or is_one_way or is_dashing
+			or _has_bonus(Bonus.Type.NO_TURN)):
 		var input_direction := Vector2.ZERO
 
 		if Input.is_action_just_pressed("ui_a_button") :
@@ -337,6 +340,8 @@ func _get_current_speed() -> float:
 		var progress = (_animation.current_animation_position /
 						_animation.current_animation_length)
 		return lerp(move_speed, slide_speed, progress)
+	elif is_dashing:
+		return move_speed * 1.66
 	else:
 		return move_speed
 
@@ -392,6 +397,8 @@ func _die(fast: bool) -> void:
 	if is_dead: return
 	is_dead = true
 
+	set_process_input(false)
+
 	# If fast is true, the Death and Disappearing animations are played at the
 	# same time, and the runner will disappear before the Death animation
 	# finishes.
@@ -421,6 +428,7 @@ func _start_falling() -> void:
 	is_falling = true
 
 	set_physics_process(false)
+	set_process_input(false)
 
 	z_index = RenderingServer.CANVAS_ITEM_Z_MIN
 
@@ -581,7 +589,15 @@ func _check_cube(cell: Cell):
 			_bonus_timer.start(30)
 
 func _activate_bonus():
-	if not (_bonus && not _bonus.is_activated):
+	if _bonus == null:
+		return
+
+	# Dash is the only bonus that can be "activated" several times before it
+	# expires
+
+	if _bonus.is_activated:
+		if _bonus.type == Bonus.Type.DASH:
+			_start_dash()
 		return
 
 	print("activate ", Bonus.Type.keys()[_bonus.type].capitalize())
@@ -615,6 +631,24 @@ func _activate_bonus():
 		_bonus_timer.stop()
 		await _bonus_malus_anim.animation_finished
 		_remove_bonus()
+
+	# when Dash is activated, start the first dash automatically
+
+	if _bonus.type == Bonus.Type.DASH:
+		_start_dash()
+
+func _start_dash():
+	if is_dashing or is_jumping or is_falling:
+		return
+	if not _dash_sound.playing:
+		_dash_sound.play()
+	_animation.speed_scale = 1.66
+	is_dashing = true
+	get_tree().create_timer(0.5).timeout.connect(_stop_dash)
+
+func _stop_dash():
+	_animation.speed_scale = 1
+	is_dashing = false
 
 func _has_bonus(type: Bonus.Type) -> bool:
 	return _bonus and _bonus.type == type and _bonus.is_activated

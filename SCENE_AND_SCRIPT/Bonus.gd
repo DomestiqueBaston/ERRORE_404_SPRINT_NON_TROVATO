@@ -49,7 +49,7 @@ func get_duration() -> float:
 		Type.INVINCIBLE:
 			return 10 - Globals.difficulty
 		Type.DASH:
-			return 0.5
+			return 6 - Globals.difficulty
 		Type.PIERCE_WALLS:
 			return 6 - Globals.difficulty
 		Type.VIRUS:
