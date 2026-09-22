@@ -25,6 +25,7 @@ extends Node2D
 @onready var _pierce_walls_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Pierce_Walls
 @onready var _auto_dodge_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Auto_Dodge
 @onready var _invert_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Invert
+@onready var _anti_dash_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Anti_Dash
 @onready var _phase_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Phase
 @onready var _no_turn_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/No_Turn
 @onready var _bonus_over_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Bonus_Malus_Over
@@ -334,18 +335,18 @@ func _set_position(pos: Vector2, is_global: bool, cell: Cell):
 	_camera.update_aim_point(global_position)
 
 func _get_current_speed() -> float:
+	var speed: float
 	if is_jumping and _animation.current_animation.begins_with("Jump_"):
 		var progress = (_animation.current_animation_position /
 						_animation.current_animation_length)
-		return lerp(move_speed, jump_speed, progress)
+		speed = lerp(move_speed, jump_speed, progress)
 	elif is_sliding and _animation.current_animation.begins_with("Sliding_"):
 		var progress = (_animation.current_animation_position /
 						_animation.current_animation_length)
-		return lerp(move_speed, slide_speed, progress)
-	elif is_dashing:
-		return move_speed * 1.66
+		speed = lerp(move_speed, slide_speed, progress)
 	else:
-		return move_speed
+		speed = move_speed
+	return speed * _animation.speed_scale
 
 func _play_jump_animation() -> void:
 	if _last_direction == Vector2.ZERO or is_dead or is_falling: return
@@ -622,6 +623,8 @@ func _activate_bonus():
 			_auto_dodge_sound.play()
 		Bonus.Type.INVERT:
 			_invert_sound.play()
+		Bonus.Type.ANTI_DASH:
+			_start_anti_dash()
 		Bonus.Type.PHASE:
 			_phase_sound.play()
 			_glitch_anim.play(&"Glitch")
@@ -652,6 +655,13 @@ func _stop_dash():
 	_animation.speed_scale = 1
 	is_dashing = false
 
+func _start_anti_dash():
+	_anti_dash_sound.play()
+	create_tween().tween_property(_animation, "speed_scale", 0.96, 0.5)
+
+func _stop_anti_dash():
+	_animation.speed_scale = 1
+
 func _has_bonus(type: Bonus.Type) -> bool:
 	return _bonus and _bonus.type == type and _bonus.is_activated
 
@@ -660,6 +670,10 @@ func _remove_bonus():
 		return
 
 	match _bonus.type:
+		Bonus.Type.DASH:
+			_stop_dash()
+		Bonus.Type.ANTI_DASH:
+			_stop_anti_dash()
 		Bonus.Type.PHASE:
 			_glitch_anim.play(&"RESET")
 
