@@ -53,7 +53,7 @@ func get_duration() -> float:
 		Type.INVERT:
 			return Globals.difficulty
 		Type.SLOW:
-			return 2 * Globals.difficulty
+			return 2 * Globals.difficulty + 10
 		Type.EXTEND_WALLS:
 			return 1.5 * Wall.get_duration()
 		Type.ANTI_DASH:

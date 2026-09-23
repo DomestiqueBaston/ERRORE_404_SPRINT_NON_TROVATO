@@ -59,10 +59,10 @@ Les bonus et malus en jeu (Cube.tscn) :
 
 Les bonus (applications activables) :
     1. Invulnérabilité – Rouge (annule le prochain malus récolté ou renvoyé par le malus Virus) – dure : (11 – difficulté)’’ → ✔ Invincible – 
-    2. Dash – Vert (course uniquement – durée du dash : 1/2’’ et dure (6 – difficulté) + 2’’ – ne peut pas être interrompu ET virage impossible !) : 66% plus rapide (animation aussi). → ✔ Dash
-    3. Passe-muraille – Bleu (uniquement les light walls) – dure : (6 – difficulté) + 2’’ → ✔ Through – 
+    2. Dash – Vert (course uniquement – durée du dash : 1/2’’ et dure ((6 – difficulté) + 2)’’ – ne peut pas être interrompu ET virage impossible !) : 66% plus rapide (animation aussi). → ✔ Dash
+    3. Passe-muraille – Bleu (uniquement les light walls) – dure : ((6 – difficulté) + 2)’’ → ✔ Through – 
     4. Virus – Violet (envoie automatiquement le prochain malus récolté à un adversaire aléatoire) – dure : (11 – difficulté)’’  → ✔ Virus – 
-    5. Auto-dodge – Jaune (les obstacles et trous évitables par glissement ou saut (pas en tournant) sont évités automatiquement si le joueur ne le fait pas) – dure : (6 – difficulté) + 2’’→ ✔ Auto_Dodge – 
+    5. Auto-dodge – Jaune (les obstacles et trous évitables par glissement ou saut (pas en tournant) sont évités automatiquement si le joueur ne le fait pas) – dure : ((6 – difficulté) + 2)’’→ ✔ Auto_Dodge – 
     6. Débogueur – Gris (vire le bug de caméra) – dure : (11 – difficulté)’’→ ✔ Debug – 
     7. Les murs tracés jusqu’à présent par les concurrents disparaissent (avec l’animation Disappearing) – dure : Instantané – Blanc → ✔ Last_Longer – (à la fin de la disparition des murs, les coureurs recommencent à tracer des murs).
 
@@ -71,7 +71,7 @@ Les malus (applications automatiques) :
     2. Lenteur de réaction (on ajoute un délai de 15ms (à préciser) dans les commandes du concurrent) – Gris – dure : (3 × difficulté)’’ → ✔ Slow
     3. Les murs tracés par les concurrents durent plus longtemps – Blanc – (durée des tronçons de mur × 1.5) → ✔ Last_Shorter – Au bout de la durée des tronçons de mur normale, l’effet du malus disparaît et la durée de vie normale de chaque tronçon reprend sa valeur normale et tous les tronçons qui ont vécu ce temps ou plus disparaissent (avec l’animation Disappearing) ! Ainsi le malus a surtout pour effet de faire durer plus longtemps les tronçons de mur déjà et encore en place avant l’activation du malus. En difficulté 6, le Malus devient : Inversion des boutons Saut et Glissade – dure : (difficulté)’’ → on garde le même son.
     4. Course, saut et glissade : 4% plus lent (animation aussi et le tout avec un tween d’1/2 seconde) – Vert – dure : ((2 × difficulté) + 3)’’ → ✔ Anti_Dash
-    5. « Hors phase » (shader) – Bleu – dure : (3 × difficulté)’’ → ✔ Phase
+    5. « Hors phase » (shader) – Bleu – dure : ((2 × difficulté) + 10)’’ → ✔ Phase
     6. Virus (envoie automatiquement le prochain Bonus (pas malus) récolté à un adversaire aléatoire, quitte à remplacer celui que porte l’adversaire – Violet – dure : (10 – difficulté)’’ → ✔ Anti_Virus
     7. Tout droit (le coureur ne peut plus tourner pendant (difficulté)’’ – Jaune → ✔ No_turn
 
