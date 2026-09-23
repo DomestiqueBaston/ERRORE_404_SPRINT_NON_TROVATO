@@ -632,7 +632,7 @@ func _activate_bonus():
 		Bonus.Type.INVINCIBLE:
 			_invincible_sound.play()
 		Bonus.Type.DASH:
-			_start_dash()
+			_dash_sound.play()
 		Bonus.Type.PIERCE_WALLS:
 			_pierce_walls_sound.play()
 		Bonus.Type.AUTO_DODGE:

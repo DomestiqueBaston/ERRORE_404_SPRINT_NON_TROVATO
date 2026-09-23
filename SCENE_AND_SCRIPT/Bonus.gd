@@ -59,7 +59,7 @@ func get_duration() -> float:
 		Type.ANTI_DASH:
 			return 3 + 2 * Globals.difficulty
 		Type.PHASE:
-			return 2 * Globals.difficulty + 10
+			return 10 + 2 * Globals.difficulty
 		Type.ANTI_VIRUS:
 			return 10 - Globals.difficulty
 		Type.NO_TURN:
