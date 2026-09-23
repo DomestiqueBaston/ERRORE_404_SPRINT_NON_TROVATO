@@ -34,9 +34,6 @@ func disappear():
 	await _anim_on_off.animation_finished
 	_anim_alive.play(&"RESET")
 
-func play_grab_sound():
-	$Cube_Sound/Grab_Cube.play()
-
 ##
 ## Returns true if the given collider overlaps with the cube's collider. This is
 ## computed by the physics server at each tick, before calling nodes'

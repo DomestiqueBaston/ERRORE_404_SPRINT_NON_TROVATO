@@ -651,6 +651,7 @@ func _on_cube_timer_timeout():
 			Bonus.Type.PIERCE_WALLS,
 			Bonus.Type.AUTO_DODGE,
 			Bonus.Type.INVERT,
+			Bonus.Type.SLOW,
 			Bonus.Type.ANTI_DASH,
 			Bonus.Type.PHASE,
 			Bonus.Type.NO_TURN

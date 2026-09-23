@@ -26,6 +26,7 @@ extends Node2D
 @onready var _pierce_walls_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Pierce_Walls
 @onready var _auto_dodge_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Auto_Dodge
 @onready var _invert_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Invert
+@onready var _slow_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Slow
 @onready var _anti_dash_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Anti_Dash
 @onready var _phase_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Phase
 @onready var _no_turn_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/No_Turn
@@ -60,6 +61,12 @@ var _northeast: Vector2 = Vector2(1, -1).rotated(_rotation).normalized()
 var _southwest: Vector2 = Vector2(-1, 1).rotated(_rotation).normalized()
 var _southeast: Vector2 = Vector2(1, 1).rotated(-_rotation).normalized()
 
+enum DelayedCmd {
+	NONE,
+	JUMP,
+	SLIDE
+}
+
 var _map: Map
 var _start_cell: Cell
 var _curr_cell: Cell
@@ -68,6 +75,7 @@ var _walls: Array[Wall]
 var _curr_wall: Wall
 var _bonus: Bonus
 var _bonus_timer: Timer
+var _delayed_command: DelayedCmd = DelayedCmd.NONE
 
 func _ready() -> void:
 	_animation.animation_finished.connect(_on_animation_finished)
@@ -88,7 +96,15 @@ func set_map(map: Map, start_cell: Cell = null):
 		_start_cell = map.get_center_cell()
 
 func _input(event: InputEvent):
-	if event.is_action_pressed("ui_x_button"):
+	if event.is_action_pressed(&"ui_a_button"):
+		if _has_bonus(Bonus.Type.SLOW):
+			await get_tree().create_timer(0.15).timeout
+		_delayed_command = DelayedCmd.JUMP
+	elif event.is_action_pressed(&"ui_b_button"):
+		if _has_bonus(Bonus.Type.SLOW):
+			await get_tree().create_timer(0.15).timeout
+		_delayed_command = DelayedCmd.SLIDE
+	elif event.is_action_pressed(&"ui_x_button"):
 		if _has_bonus(Bonus.Type.DASH):
 			_start_dash()
 
@@ -191,9 +207,9 @@ func _physics_process(delta: float):
 			or _has_bonus(Bonus.Type.NO_TURN)):
 		var input_direction := Vector2.ZERO
 
-		if Input.is_action_just_pressed("ui_a_button") :
+		if _delayed_command == DelayedCmd.JUMP:
 			_play_jump_animation()
-		elif Input.is_action_just_pressed("ui_b_button"):
+		elif _delayed_command == DelayedCmd.SLIDE:
 			_play_slide_animation()
 		elif Globals.use_diagonals_for_movement:
 			if Input.is_action_pressed("ui_left_button"):
@@ -221,6 +237,8 @@ func _physics_process(delta: float):
 				input_direction *= -1
 			if is_valid_direction(input_direction):
 				_last_direction = input_direction
+
+	_delayed_command = DelayedCmd.NONE
 
 	var prev_direction = _direction
 	if is_jumping:
@@ -621,6 +639,8 @@ func _activate_bonus():
 			_auto_dodge_sound.play()
 		Bonus.Type.INVERT:
 			_invert_sound.play()
+		Bonus.Type.SLOW:
+			_slow_sound.play()
 		Bonus.Type.ANTI_DASH:
 			_start_anti_dash()
 		Bonus.Type.PHASE:
