@@ -89,7 +89,8 @@ func set_map(map: Map, start_cell: Cell = null):
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("ui_x_button"):
-		_activate_bonus()
+		if _has_bonus(Bonus.Type.DASH):
+			_start_dash()
 
 func _physics_process(delta: float):
 
@@ -586,41 +587,23 @@ func _check_cube(cell: Cell):
 
 		# the invincible bonus cancels out a new malus
 
-		if not new_bonus.is_bonus() and is_invincible:
+		if is_invincible and not new_bonus.is_bonus():
 			_invincible_sound.play()
 
-		# automatic => activate the bonus/malus right away
+		# otherwise activate the bonus/malus right away
 
-		elif new_bonus.is_automatic():
+		else:
 			_bonus = new_bonus
 			_activate_bonus()
 
-		# otherwise => give the runner 30 seconds to activate it
-
-		else:
-			cube.play_grab_sound()
-			_bonus_malus_anim.play(&"Bonus_Malus")
-			_sprite.set_instance_shader_parameter(&"outline_color", Color.BLACK)
-			_bonus = new_bonus
-			_bonus_timer.start(30)
-
 func _activate_bonus():
 	if _bonus == null:
-		return
-
-	# Dash is the only bonus that can be "activated" several times before it
-	# expires
-
-	if _bonus.is_activated:
-		if _bonus.type == Bonus.Type.DASH:
-			_start_dash()
 		return
 
 	print("activate ", Bonus.Type.keys()[_bonus.type].capitalize())
 
 	# activate the bonus: set the runner's outline color and make him blink
 
-	_bonus.is_activated = true
 	_sprite.set_instance_shader_parameter(
 		&"outline_color", _get_outline_color())
 	_bonus_malus_anim.play(&"Bonus_Malus")
@@ -678,7 +661,7 @@ func _stop_anti_dash():
 	_animation.speed_scale = 1
 
 func _has_bonus(type: Bonus.Type) -> bool:
-	return _bonus and _bonus.type == type and _bonus.is_activated
+	return _bonus and _bonus.type == type
 
 func _remove_bonus(with_sound_effect: bool = true):
 	if _bonus == null:

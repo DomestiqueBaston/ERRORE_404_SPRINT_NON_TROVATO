@@ -2,8 +2,7 @@
 class_name Bonus extends RefCounted
 
 ## Bonus represents a bonus/malus picked up by a runner when he comes upon a
-## cube. Usually it activates automatically (is_automatic() returns true), but
-## some must be activated explicitly by the runner.
+## cube.
 
 enum Type {
 	INVINCIBLE,
@@ -24,7 +23,6 @@ enum Type {
 }
 
 var type: Type
-var is_activated: bool = false
 
 ##
 ## Returns true for a bonus, false for a malus.
@@ -33,31 +31,23 @@ func is_bonus() -> bool:
 	return type <= Type.VANISH_WALLS
 
 ##
-## Returns true if this bonus/malus is activated as soon as the player grabs it,
-## false if he has to activate it himself. For now, at least, all bonuses must
-## be activated, and all maluses are automatic.
-##
-func is_automatic() -> bool:
-	return not is_bonus()
-
-##
 ## Returns how long (in seconds) the bonus/malus expires after activation. A
 ## value of zero means it expires immediately once it has been used.
 ##
 func get_duration() -> float:
 	match type:
 		Type.INVINCIBLE:
-			return 10 - Globals.difficulty
+			return 11 - Globals.difficulty
 		Type.DASH:
-			return 6 - Globals.difficulty
+			return 8 - Globals.difficulty
 		Type.PIERCE_WALLS:
-			return 6 - Globals.difficulty
+			return 8 - Globals.difficulty
 		Type.VIRUS:
-			return 10 - Globals.difficulty
+			return 11 - Globals.difficulty
 		Type.AUTO_DODGE:
-			return 6 - Globals.difficulty
+			return 8 - Globals.difficulty
 		Type.DEBUG:
-			return 10 - Globals.difficulty
+			return 11 - Globals.difficulty
 		Type.VANISH_WALLS:
 			return 0
 		Type.INVERT:
