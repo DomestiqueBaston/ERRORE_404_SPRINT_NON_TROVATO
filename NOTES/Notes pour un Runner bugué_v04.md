@@ -53,21 +53,17 @@ Les bonus et malus en jeu (Cube.tscn) :
 - On ne fait pas apparaître de Bonus/Malus sur une cellule avec au moins un mur et/ou tout autre obstacle.
 - Pour chaque couleur correspondent un bonus et un malus (le joueur ne sait donc pas s’il voit un bonus ou un malus).
 - Ramassage de Bonus/Malus :
-	- Au ramassage d’un Bonus, on joue le son Cube_Sound/Grab_Cube dans Cube.tscn et on joue le clignotement du concurrent (Animation_Bonus_Malus). Mais on ne change pas la couleur de l’outline du coureur (hors activation automatique – voir dessous).
-	- Au ramassage d’un Malus, on ne joue pas le son Cube_Sound/Grab_Cube dans Cube.tscn et on joue le clignotement du concurrent (Animation_Bonus_Malus). Mais on ne change pas la couleur de l’outline du coureur (hors activation automatique – voir dessous).
-- À l’activation du Bonus/Malus (automatique ou au déclenchement du joueur), on changera la couleur de l’outline du joueur pour la durée de l’effet (voir codes couleur juste en dessous), on jouera également le son correspondant au bonus/malus (sous Sound/Bonus_Malus) et on jouera le clignotement du concurrent (Animation_Bonus_Malus/Bonus_Malus).
-- Si le ramassage et l’activation se font en même temps (noté Automatique!), on ne jouera qu’une fois le son correspondant et pareil pour le clignotement du concurrent et on changera la couleur de l’outline pour le temps de l’effet du Bonus/Malus. RAPPEL : on je joue pas le son Cube_Sound/Grab_Cube.
+- Au ramassage d’un Bonus ou Malus, on joue le clignotement du concurrent (Animation_Bonus_Malus). Puis à l’activation (automatique) du Bonus/Malus, on change la couleur de l’outline du joueur pour la durée de l’effet (voir codes couleur juste en dessous), on jouera également le son correspondant au bonus/malus (sous Sound/Bonus_Malus). On jouera également le clignotement du concurrent (Animation_Bonus_Malus/Bonus_Malus) à chaque utilisation du bonus (Dash uniquement à ce jour).
 - Lorsque l’effet du Bonus/Malus durera plus longtemps que le son et l’animation du Bonus/Malus, à la fin de l’effet du Bonus/Malus, on rejouera le clignotement du coureur et le son Sound/Bonus_Malus/Bonus_Malus_Over dans la scène du coureur et l’outline retrouvera sa couleur par défaut (noir) à la fin du clignotement.
-- Tout Bonus/Malus déclenchable « manuellement » doit être utilisé dans les 30’’ qui suivent son ramassage. Au delà de cette durée, le joueur perd le Bonus/Malus. Alors on jouera le son Sound/Bonus_Malus/Bonus_Malus_Over et le clignotement du joueur.
 - Tout effet sur la vitesse du joueur se répercute sur la vitesse du mur (thanks, Cap’tain Obvious!).
 
 Les bonus (applications activables) :
-    1. Invulnérabilité – Rouge (annule le prochain malus récolté) – dure : (10 – difficulté)’’ → ✔ Invincible – 
-    2. Dash – Vert (course uniquement – durée du dash : 1/2’’ et dure (6 – difficulté)’’ – ne peut pas être interrompu ET virage impossible !) : 66% plus rapide (animation aussi). → ✔ Dash
-    3. Passe-muraille – Bleu (uniquement les light walls) – dure : (6 – difficulté)’’ → ✔ Through – 
-    4. Virus – Violet (envoie automatiquement le prochain malus récolté à un adversaire aléatoire) – dure : (10 – difficulté)’’  → ✔ Virus – 
-    5. Auto-dodge – Jaune (les obstacles et trous évitables par glissement ou saut (pas en tournant) sont évités automatiquement si le joueur ne le fait pas) – dure : (6 – difficulté)’’→ ✔ Auto_Dodge – 
-    6. Débogueur – Gris (vire le bug de caméra) – dure : (10 – difficulté)’’→ ✔ Debug – 
+    1. Invulnérabilité – Rouge (annule le prochain malus récolté ou renvoyé par le malus Virus) – dure : (11 – difficulté)’’ → ✔ Invincible – 
+    2. Dash – Vert (course uniquement – durée du dash : 1/2’’ et dure (6 – difficulté) + 2’’ – ne peut pas être interrompu ET virage impossible !) : 66% plus rapide (animation aussi). → ✔ Dash
+    3. Passe-muraille – Bleu (uniquement les light walls) – dure : (6 – difficulté) + 2’’ → ✔ Through – 
+    4. Virus – Violet (envoie automatiquement le prochain malus récolté à un adversaire aléatoire) – dure : (11 – difficulté)’’  → ✔ Virus – 
+    5. Auto-dodge – Jaune (les obstacles et trous évitables par glissement ou saut (pas en tournant) sont évités automatiquement si le joueur ne le fait pas) – dure : (6 – difficulté) + 2’’→ ✔ Auto_Dodge – 
+    6. Débogueur – Gris (vire le bug de caméra) – dure : (11 – difficulté)’’→ ✔ Debug – 
     7. Les murs tracés jusqu’à présent par les concurrents disparaissent (avec l’animation Disappearing) – dure : Instantané – Blanc → ✔ Last_Longer – (à la fin de la disparition des murs, les coureurs recommencent à tracer des murs).
 
 Les malus (applications automatiques) :
