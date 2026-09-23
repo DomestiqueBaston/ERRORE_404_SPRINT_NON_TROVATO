@@ -646,6 +646,7 @@ func _on_cube_timer_timeout():
 		var bonus_type: Bonus.Type
 		#bonus_type = Bonus.pick_random_type()
 		bonus_type = [
+			Bonus.Type.INVINCIBLE,
 			Bonus.Type.DASH,
 			Bonus.Type.PIERCE_WALLS,
 			Bonus.Type.AUTO_DODGE,

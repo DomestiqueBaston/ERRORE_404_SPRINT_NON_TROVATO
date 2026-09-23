@@ -21,6 +21,7 @@ extends Node2D
 @onready var _footstep3 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_03
 
 @onready var _teleport_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Teleport
+@onready var _invincible_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Invincible
 @onready var _dash_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Dash
 @onready var _pierce_walls_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Pierce_Walls
 @onready var _auto_dodge_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Auto_Dodge
@@ -88,7 +89,8 @@ func set_map(map: Map, start_cell: Cell = null):
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("ui_x_button"):
-		_activate_bonus()
+		if _has_bonus(Bonus.Type.DASH):
+			_start_dash()
 
 func _physics_process(delta: float):
 
@@ -574,40 +576,34 @@ func _check_cube(cell: Cell):
 	if cube and cube.check_for_overlap(_collider):
 		print("bonus/malus: ", Bonus.Type.keys()[cube.bonus_type].capitalize())
 
-		# take the cube's bonus and remove the cube from its cell
+		# take the cube's bonus, cancel the current bonus (if there is one) and
+		# remove the cube
 
+		var is_invincible = _has_bonus(Bonus.Type.INVINCIBLE)
+		var new_bonus = cube.get_bonus()
 		_bonus_timer.stop()
-		_bonus = cube.get_bonus()
-		_bonus_malus_anim.play("Bonus_Malus")
+		_remove_bonus(false)
 		cell.remove_cube()
 
-		# automatic => activate the bonus/malus right away
-		# otherwise => give the runner 30 seconds to activate it
+		# the invincible bonus cancels out a new malus
 
-		if _bonus.is_automatic():
-			_activate_bonus()
+		if is_invincible and not new_bonus.is_bonus():
+			_invincible_sound.play()
+
+		# otherwise activate the bonus/malus right away
+
 		else:
-			cube.play_grab_sound()
-			_sprite.set_instance_shader_parameter(&"outline_color", Color.BLACK)
-			_bonus_timer.start(30)
+			_bonus = new_bonus
+			_activate_bonus()
 
 func _activate_bonus():
 	if _bonus == null:
-		return
-
-	# Dash is the only bonus that can be "activated" several times before it
-	# expires
-
-	if _bonus.is_activated:
-		if _bonus.type == Bonus.Type.DASH:
-			_start_dash()
 		return
 
 	print("activate ", Bonus.Type.keys()[_bonus.type].capitalize())
 
 	# activate the bonus: set the runner's outline color and make him blink
 
-	_bonus.is_activated = true
 	_sprite.set_instance_shader_parameter(
 		&"outline_color", _get_outline_color())
 	_bonus_malus_anim.play(&"Bonus_Malus")
@@ -615,6 +611,8 @@ func _activate_bonus():
 	# sound effect
 
 	match _bonus.type:
+		Bonus.Type.INVINCIBLE:
+			_invincible_sound.play()
 		Bonus.Type.DASH:
 			_start_dash()
 		Bonus.Type.PIERCE_WALLS:
@@ -663,24 +661,28 @@ func _stop_anti_dash():
 	_animation.speed_scale = 1
 
 func _has_bonus(type: Bonus.Type) -> bool:
-	return _bonus and _bonus.type == type and _bonus.is_activated
+	return _bonus and _bonus.type == type
 
-func _remove_bonus():
+func _remove_bonus(with_sound_effect: bool = true):
 	if _bonus == null:
 		return
 
-	match _bonus.type:
-		Bonus.Type.DASH:
-			_stop_dash()
-		Bonus.Type.ANTI_DASH:
-			_stop_anti_dash()
-		Bonus.Type.PHASE:
-			_glitch_anim.play(&"RESET")
-
+	var bonus_type = _bonus.type
 	_bonus = null
-	_bonus_over_sound.play()
-	_bonus_malus_anim.play(&"Bonus_Malus")
-	await _bonus_malus_anim.animation_finished
+
+	if not (is_dead or is_falling):
+		match bonus_type:
+			Bonus.Type.DASH:
+				_stop_dash()
+			Bonus.Type.ANTI_DASH:
+				_stop_anti_dash()
+			Bonus.Type.PHASE:
+				_glitch_anim.play(&"RESET")
+		if with_sound_effect:
+			_bonus_over_sound.play()
+		_bonus_malus_anim.play(&"Bonus_Malus")
+		await _bonus_malus_anim.animation_finished
+
 	_sprite.set_instance_shader_parameter(&"outline_color", Color.BLACK)
 
 func _get_outline_color() -> Color:
