@@ -61,11 +61,19 @@ var _northeast: Vector2 = Vector2(1, -1).rotated(_rotation).normalized()
 var _southwest: Vector2 = Vector2(-1, 1).rotated(_rotation).normalized()
 var _southeast: Vector2 = Vector2(1, 1).rotated(-_rotation).normalized()
 
+# player commands that are delayed by the slow malus
+
+const _slow_delay: float = 0.15
 enum DelayedCmd {
 	NONE,
 	JUMP,
 	SLIDE
 }
+var _delayed_command: DelayedCmd = DelayedCmd.NONE
+var _is_left_pressed: bool = false
+var _is_right_pressed: bool = false
+var _is_up_pressed: bool = false
+var _is_down_pressed: bool = false
 
 var _map: Map
 var _start_cell: Cell
@@ -75,7 +83,6 @@ var _walls: Array[Wall]
 var _curr_wall: Wall
 var _bonus: Bonus
 var _bonus_timer: Timer
-var _delayed_command: DelayedCmd = DelayedCmd.NONE
 
 func _ready() -> void:
 	_animation.animation_finished.connect(_on_animation_finished)
@@ -96,17 +103,45 @@ func set_map(map: Map, start_cell: Cell = null):
 		_start_cell = map.get_center_cell()
 
 func _input(event: InputEvent):
-	if event.is_action_pressed(&"ui_a_button"):
-		if _has_bonus(Bonus.Type.SLOW):
-			await get_tree().create_timer(0.15).timeout
+	if not event.is_action_type():
+		return
+	if event.is_action_pressed(&"ui_left_button"):
+		await _apply_slow_delay()
+		_is_left_pressed = true
+	elif event.is_action_released(&"ui_left_button"):
+		await _apply_slow_delay()
+		_is_left_pressed = false
+	elif event.is_action_pressed(&"ui_right_button"):
+		await _apply_slow_delay()
+		_is_right_pressed = true
+	elif event.is_action_released(&"ui_right_button"):
+		await _apply_slow_delay()
+		_is_right_pressed = false
+	elif event.is_action_pressed(&"ui_up_button"):
+		await _apply_slow_delay()
+		_is_up_pressed = true
+	elif event.is_action_released(&"ui_up_button"):
+		await _apply_slow_delay()
+		_is_up_pressed = false
+	elif event.is_action_pressed(&"ui_down_button"):
+		await _apply_slow_delay()
+		_is_down_pressed = true
+	elif event.is_action_released(&"ui_down_button"):
+		await _apply_slow_delay()
+		_is_down_pressed = false
+	elif event.is_action_pressed(&"ui_a_button"):
+		await _apply_slow_delay()
 		_delayed_command = DelayedCmd.JUMP
 	elif event.is_action_pressed(&"ui_b_button"):
-		if _has_bonus(Bonus.Type.SLOW):
-			await get_tree().create_timer(0.15).timeout
+		await _apply_slow_delay()
 		_delayed_command = DelayedCmd.SLIDE
 	elif event.is_action_pressed(&"ui_x_button"):
 		if _has_bonus(Bonus.Type.DASH):
 			_start_dash()
+
+func _apply_slow_delay():
+	if _has_bonus(Bonus.Type.SLOW):
+		await get_tree().create_timer(_slow_delay).timeout
 
 func _physics_process(delta: float):
 
@@ -212,24 +247,24 @@ func _physics_process(delta: float):
 		elif _delayed_command == DelayedCmd.SLIDE:
 			_play_slide_animation()
 		elif Globals.use_diagonals_for_movement:
-			if Input.is_action_pressed("ui_left_button"):
-				if Input.is_action_pressed("ui_down_button"):
+			if _is_left_pressed:
+				if _is_down_pressed:
 					input_direction = _southwest
-				elif Input.is_action_pressed("ui_up_button"):
+				elif _is_up_pressed:
 					input_direction = _northwest
-			elif Input.is_action_pressed("ui_right_button"):
-				if Input.is_action_pressed("ui_down_button"):
+			elif _is_right_pressed:
+				if _is_down_pressed:
 					input_direction = _southeast
-				elif Input.is_action_pressed("ui_up_button"):
+				elif _is_up_pressed:
 					input_direction = _northeast
 		else:
-			if Input.is_action_pressed("ui_left_button"):
+			if _is_left_pressed:
 				input_direction = _northwest
-			elif Input.is_action_pressed("ui_up_button"):
+			elif _is_up_pressed:
 				input_direction = _northeast
-			elif Input.is_action_pressed("ui_right_button"):
+			elif _is_right_pressed:
 				input_direction = _southeast
-			elif Input.is_action_pressed("ui_down_button"):
+			elif _is_down_pressed:
 				input_direction = _southwest
 
 		if input_direction:
@@ -316,20 +351,20 @@ func _physics_process(delta: float):
 	if not (is_jumping or is_sliding or is_dead or is_falling):
 		if _direction == Vector2.ZERO:
 			if _last_direction == Vector2.ZERO:
-				_animation.play("Intro")
+				_animation.play(&"Intro")
 			else:
 				if _last_direction.y < 0:
-					_animation.play("Start_000")
+					_animation.play(&"Start_000")
 					_sprite_node.scale.x = 1.0 if _last_direction.x < 0 else -1.0
 				else:
-					_animation.play("Start_180")
+					_animation.play(&"Start_180")
 					_sprite_node.scale.x = -1.0 if _last_direction.x < 0 else 1.0
 		else:
 			if _direction.y < 0:
-				_animation.play("Run_000")
+				_animation.play(&"Run_000")
 				_sprite_node.scale.x = 1.0 if _direction.x < 0 else -1.0
 			else:
-				_animation.play("Run_180")
+				_animation.play(&"Run_180")
 				_sprite_node.scale.x = -1.0 if _direction.x < 0 else 1.0
 
 #
@@ -397,10 +432,10 @@ func _play_slide_animation() -> void:
 	is_sliding = true
 	_slide_direction = _last_direction
 	if _last_direction.y < 0:
-		_animation.play("Sliding_000")
+		_animation.play(&"Sliding_000")
 		_sprite_node.scale.x = 1.0 if _last_direction.x < 0 else -1.0
 	else:
-		_animation.play("Sliding_180")
+		_animation.play(&"Sliding_180")
 		_sprite_node.scale.x = -1.0 if _last_direction.x < 0 else 1.0
 
 func _change_slide_direction(new_direction: Vector2):
@@ -432,7 +467,7 @@ func _die(fast: bool) -> void:
 	# disappeared, that is, when the Disappearing animation has finished.
 
 	if fast:
-		_disappear.play("Disappearing")
+		_disappear.play(&"Disappearing")
 		for wall in _walls:
 			wall.disappear()
 	else:
@@ -440,10 +475,10 @@ func _die(fast: bool) -> void:
 			wall.backup(0.225)
 
 	if _direction.y < 0:
-		_animation.play("Death_000")
+		_animation.play(&"Death_000")
 		_sprite_node.scale.x = 1.0 if _direction.x < 0 else -1.0
 	else:
-		_animation.play("Death_180")
+		_animation.play(&"Death_180")
 		_sprite_node.scale.x = -1.0 if _direction.x < 0 else 1.0
 
 func _start_falling() -> void:
@@ -456,10 +491,10 @@ func _start_falling() -> void:
 	z_index = RenderingServer.CANVAS_ITEM_Z_MIN
 
 	if _direction.y < 0:
-		_animation.play("Falling_000")
+		_animation.play(&"Falling_000")
 		_sprite_node.scale.x = 1.0 if _direction.x < 0 else -1.0
 	else:
-		_animation.play("Falling_180")
+		_animation.play(&"Falling_180")
 		_sprite_node.scale.x = -1.0 if _direction.x < 0 else 1.0
 
 func _on_animation_finished(anim_name: String) -> void:
@@ -473,10 +508,10 @@ func _on_animation_finished(anim_name: String) -> void:
 		# if _die(true) was called, then Disappearing has already been played,
 		# in which case it will have called set_physics_process(false) already
 		if is_physics_processing():
-			_disappear.play("Disappearing")
+			_disappear.play(&"Disappearing")
 			for wall in _walls:
 				wall.disappear()
-	elif anim_name.begins_with("Falling_"):
+	elif anim_name.begins_with(&"Falling_"):
 		for wall in _walls:
 			wall.disappear()
 
@@ -486,19 +521,19 @@ func _on_animation_finished(anim_name: String) -> void:
 
 	if _direction != Vector2.ZERO:
 		if _direction.y < 0:
-			_animation.play("Run_000")
+			_animation.play(&"Run_000")
 			_sprite_node.scale.x = 1.0 if _direction.x < 0 else -1.0
 		else:
-			_animation.play("Run_180")
+			_animation.play(&"Run_180")
 			_sprite_node.scale.x = -1.0 if _direction.x < 0 else 1.0
 	else:
 		if _last_direction == Vector2.ZERO:
-			_animation.play("Intro")
+			_animation.play(&"Intro")
 		elif _last_direction.y < 0:
-			_animation.play("Start_000")
+			_animation.play(&"Start_000")
 			_sprite_node.scale.x = 1.0 if _last_direction.x < 0 else -1.0
 		else:
-			_animation.play("Start_180")
+			_animation.play(&"Start_180")
 			_sprite_node.scale.x = -1.0 if _last_direction.x < 0 else 1.0
 
 func _on_disappear_finished(_anim_name: String):
@@ -515,10 +550,10 @@ func _check_teleport(cell: Cell):
 		return
 	is_teleporting = true
 	_teleport_sound.play()
-	_bonus_malus_anim.play("Bonus_Malus")
+	_bonus_malus_anim.play(&"Bonus_Malus")
 	await _bonus_malus_anim.animation_finished
 	_set_position(destination.global_position, true, destination)
-	_bonus_malus_anim.play("Bonus_Malus")
+	_bonus_malus_anim.play(&"Bonus_Malus")
 	if _map:
 		await _bonus_malus_anim.animation_finished
 		_map.cancel_teleport(destination)
@@ -562,14 +597,14 @@ func _check_one_way(cell: Cell):
 	# play the Bonus_Malus animation before actually changing the runner's
 	# direction, then again, and finally remove the one-way obstacle
 
-	_bonus_malus_anim.play("Bonus_Malus")
+	_bonus_malus_anim.play(&"Bonus_Malus")
 	await _bonus_malus_anim.animation_finished
 	_last_direction = new_direction
 	if is_jumping:
 		_change_jump_direction(new_direction)
 	elif is_sliding:
 		_change_slide_direction(new_direction)
-	_bonus_malus_anim.play("Bonus_Malus")
+	_bonus_malus_anim.play(&"Bonus_Malus")
 	if _map:
 		_map.cancel_one_way(cell)
 
@@ -617,8 +652,6 @@ func _check_cube(cell: Cell):
 func _activate_bonus():
 	if _bonus == null:
 		return
-
-	print("activate ", Bonus.Type.keys()[_bonus.type].capitalize())
 
 	# activate the bonus: set the runner's outline color and make him blink
 
