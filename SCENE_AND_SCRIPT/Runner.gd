@@ -675,7 +675,7 @@ func _stop_dash():
 
 func _start_anti_dash():
 	_anti_dash_sound.play()
-	create_tween().tween_property(_animation, "speed_scale", 0.96, 0.5)
+	create_tween().tween_property(_animation, "speed_scale", 0.85, 0.5)
 
 func _stop_anti_dash():
 	_animation.speed_scale = 1
@@ -719,7 +719,7 @@ func _get_outline_color() -> Color:
 			Bonus.Type.AUTO_DODGE, Bonus.Type.NO_TURN:
 				return Color(0.83, 0.83, 0.0)
 			Bonus.Type.DEBUG, Bonus.Type.SLOW:
-				return Color(0.45, 0.45, 0.45)
+				return Color(0.55, 0.55, 0.55)
 			Bonus.Type.VANISH_WALLS, Bonus.Type.EXTEND_WALLS:
 				return Color(0.75, 0.75, 0.75)
 	return Color.BLACK
