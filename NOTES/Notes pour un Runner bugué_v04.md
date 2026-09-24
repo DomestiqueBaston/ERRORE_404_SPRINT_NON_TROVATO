@@ -46,8 +46,8 @@ Un runner bugué :
     1. Toutes les 10 secondes, on a 1/10 chance de jouer le son Sounds/Misc/Useless_Alarm_1 ou Sounds/Misc/Useless_Alarm_2 dans Sounds.tscn ! Il est à noter que ces sons ne déclenchent absolument rien !
 
 Les bonus et malus en jeu (Cube.tscn) :
-- En course, il n’y aura qu’1 exemplaire de chaque Bonus et 1 exemplaire de chaque Malus (y compris en possession d’un coureur).
-- Chaque concurrent ne peut porter qu’1 Bonus/Malus. On peut ramasser un Bonus/Malus si on en porte déjà un mais le nouveau remplace le précédent. On ne peut pas ramasser de nouveau Bonus/Malus tant qu’un est en cours d’utilisation d’un autre Bonus/Malus.
+- En course, il n’y aura qu’1 exemplaire de chaque Bonus et 1 exemplaire de chaque Malus sur le terrain.
+- Chaque concurrent ne peut porter qu’1 Bonus/Malus. On peut ramasser un Bonus/Malus si on en porte déjà un mais le nouveau remplace le précédent.
 - Un Bonus/Malus apparaît toutes les (30 - taille + difficulté) secondes.
 - Il ne peut pas y avoir plus de (Taille de la map ÷ 3) Bonus/Malus simultanément à ramasser → celui « en trop » supprime automatiquement le plus ancien restant pendant que le nouveau apparaît.
 - On ne fait pas apparaître de Bonus/Malus sur une cellule avec au moins un mur et/ou tout autre obstacle.
