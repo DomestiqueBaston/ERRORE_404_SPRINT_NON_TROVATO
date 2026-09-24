@@ -63,7 +63,6 @@ var _southeast: Vector2 = Vector2(1, 1).rotated(-_rotation).normalized()
 
 # player commands that are delayed by the slow malus
 
-const _slow_delay: float = 0.15
 enum DelayedCmd {
 	NONE,
 	JUMP,
@@ -141,7 +140,7 @@ func _input(event: InputEvent):
 
 func _apply_slow_delay():
 	if _has_bonus(Bonus.Type.SLOW):
-		await get_tree().create_timer(_slow_delay).timeout
+		await get_tree().create_timer(0.15).timeout
 
 func _physics_process(delta: float):
 

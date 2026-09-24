@@ -66,6 +66,3 @@ func get_duration() -> float:
 			return Globals.difficulty
 		_:
 			return 0
-
-static func pick_random_type() -> Type:
-	return (randi() % Type.keys().size()) as Type

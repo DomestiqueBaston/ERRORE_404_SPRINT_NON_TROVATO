@@ -43,6 +43,9 @@ var _cube_cells: Array[Cell]
 # Maximum number of bonus/malus cubes at any time.
 var _max_cube_count: int
 
+# Pool of bonus/malus types available for cubes on the map (max one of each).
+var _available_bonuses: Array[Bonus.Type]
+
 enum ObstacleType {
 	ROW_SLIDE,
 	COLUMN_SLIDE,
@@ -101,6 +104,20 @@ func _ready():
 
 	_center_cell.lower(true)
 	_center_cell.add_artefact()
+
+	# all supported bonus/malus types are available initially
+
+	_available_bonuses = [
+		Bonus.Type.INVINCIBLE,
+		Bonus.Type.DASH,
+		Bonus.Type.PIERCE_WALLS,
+		Bonus.Type.AUTO_DODGE,
+		Bonus.Type.INVERT,
+		Bonus.Type.SLOW,
+		Bonus.Type.ANTI_DASH,
+		Bonus.Type.PHASE,
+		Bonus.Type.NO_TURN
+	]
 
 	# start timers to generate obstacles and bonus/malus cubes
 
@@ -642,20 +659,9 @@ func _on_obstacle_timer_timeout():
 #
 func _on_cube_timer_timeout():
 	var cell = _pick_random_cell(false)
-	if cell:
-		var bonus_type: Bonus.Type
-		#bonus_type = Bonus.pick_random_type()
-		bonus_type = [
-			Bonus.Type.INVINCIBLE,
-			Bonus.Type.DASH,
-			Bonus.Type.PIERCE_WALLS,
-			Bonus.Type.AUTO_DODGE,
-			Bonus.Type.INVERT,
-			Bonus.Type.SLOW,
-			Bonus.Type.ANTI_DASH,
-			Bonus.Type.PHASE,
-			Bonus.Type.NO_TURN
-		].pick_random()
+	if cell and _available_bonuses:
+		var bonus_index = randi() % _available_bonuses.size()
+		var bonus_type = _available_bonuses.pop_at(bonus_index)
 		cell.add_cube(bonus_type)
 		var cube: Cube = cell.get_cube()
 		cube.tree_exited.connect(_on_cube_removed.bind(cell))
@@ -665,6 +671,8 @@ func _on_cube_timer_timeout():
 		_cube_cells.pop_front().remove_cube()
 
 func _on_cube_removed(cell: Cell):
+	var bonus_type = cell.get_cube().bonus_type
+	_available_bonuses.push_back(bonus_type)
 	_cube_cells.erase(cell)
 	if _remove_obstacle(cell):
 		_available_cells.append(cell)
