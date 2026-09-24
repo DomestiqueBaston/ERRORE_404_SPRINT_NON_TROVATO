@@ -127,6 +127,7 @@ Notes de fabrication :
 - À la mort d’un concurrent, ce qui reste de son mur disparaît (on joue l’animation de disparition du mur dès la première frame de l’animation de mort du concurrent)! Pour cela on jouera l’animation Light_Wall_Animations/Disappearing dans Light_Wall.tscn.
 - Seule l’animation de course peut être interrompue (pour changer de direction, sauter, etc.) par le joueur. Toutes les autres doivent finir avant d’enchaîner sur autre chose (on parle toujours d’interruption par le joueur, cela ne concerne pas sa mort, par exemple). Par défaut, à la fin d’une animation d’interruption (saut, glissade, etc.), on retourne toujours à la course.
 - Passer sur un sens unique qui forcerait à partir un sens inverse fait mourir.
+- A propos de spatialisation du son à plus de 2 joueurs humains, mon prendra soin de placer l’AudioListener2D au milieu des joueurs humains. Lorsqu’un joueur humain mourra, le déplacement de l’AudioListener2D à sa nouvelle position se fera à l’aide d’un Tween d’1/2 seconde.
 
 Options (nécessaires) dans Settings:
     1. Taille de la map (de 9 à 21) ✔
@@ -185,10 +186,10 @@ Comportements de réaction et perception :
 
     1. Anticipatif : Voit plus loin. On augmente la taille du collider Vision à scale 0,75.
     2. Inconscient : Voit moins loin. On réduit la taille du collider Vision à scale 0,333.
-    3. Vif : Temps de réaction réduit de 25ms.
-    4. Lent : Temps de réaction augmenté de 25ms.
-    5. Empoté : On ajoute 25ms à sa limite d’enchaînement d’actions.
-    6. Dextre : On soustrait 25ms à sa limite d’enchaînement d’actions.
+    3. Vif : Temps de réaction réduit de 50ms.
+    4. Lent : Temps de réaction augmenté de 50ms.
+    5. Empoté : On ajoute 50ms à sa limite d’enchaînement d’actions.
+    6. Dextre : On soustrait 50ms à sa limite d’enchaînement d’actions.
     7. Normal : On ne change rien.
 
 
