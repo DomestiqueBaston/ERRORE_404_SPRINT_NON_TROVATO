@@ -107,11 +107,17 @@ Notes de fabrication :
 - Au lancement du jeu, la musique qui joue en boucle en permanence, c’est Intro. Jusqu’au moment dans le jeu proprement dit où le Départ est donné. À cet instant précis, on passe à Music (en boucle). Music ne s’arrête qu’en finissant la partie (soit en relançant une nouvelle partie directement soit en retournant à l’écran de Titre. Au moment de lancer à nouveau Intro, il faudra jouer une fois le son Bang tout en démarrant en même temps Intro.
 - /!\ ATTENTION /!\ On ne joue jamais Bang au lancement de Music car il est intégré dans la musique.
 - Sauf pendant la sélection de joueur, par défaut, la caméra de chaque joueur ne montre pas le joueur centré mais se décale afin d’avoir plus de visibilité devant le joueur en fonction de la direction dans laquelle il court. On utilisera systématiquement un tween d’1/4 de seconde pour déplacer la caméra. Au démarrage de la course, dès la première frame de course, la caméra rejoindra sa place avec le tween décrit précédemment.
-    • Position de caméra par défaut par rapport au root d’un coureur : px = -240, py = -170 (afin de centrer le personnage visuellement dans la caméra). Animations concernées : Intro, Start, Death et Falling.
-    • Position de caméra par rapport au root d’un concurrent tourné vers le sud-est : px = -110, py = -120.
-    • Position de caméra par rapport au root d’un concurrent tourné vers le sud-ouest : px = -385, py = -120.
-    • Position de caméra par rapport au root d’un concurrent tourné vers le nord-ouest : px = -385, py = -225.
-    • Position de caméra par rapport au root d’un concurrent tourné vers le nord-est : px = -110, py = -225.
+    • Position de caméra par rapport au root d’un coureur pour l’animation Intro :
+        ◦ Coin nord : py +15.
+        ◦ Coin Sud : py -75.
+        ◦ Coin Ouest : px -120, py -40.
+        ◦ Coin Est : px +120, py -40.
+    • Position de caméra par rapport au root d’un concurrent pour les animations Death et Falling : par défaut.
+Pour les animations Start, Run, Slide et Jump:
+    • Position de caméra par rapport au root d’un concurrent tourné vers le sud-est : px = +115, py = +25.
+    • Position de caméra par rapport au root d’un concurrent tourné vers le sud-ouest : px = -115, py = +25.
+    • Position de caméra par rapport au root d’un concurrent tourné vers le nord-ouest : px = -115, py = -90.
+    • Position de caméra par rapport au root d’un concurrent tourné vers le nord-est : px = -115, py = -90.
 - Le mur tracé derrière un concurrent lorsqu’il se déplace est Light_Wall.tscn. À chaque entrée d’un concurrent sur une Cell ou virage, on commence le tracé d’un nouveau Light_Wall.tscn qui sera raccord avec le précédent. Lorsqu’un concurrent quitte une Cell ou fait un virage sur une Cell, on coupe le précédent Light_Wall.tscn et on en commence un autre qui sera raccord. On ne trace pas de Light_Wall.tscn lorsqu’un concurrent saute au dessus d’un trou ou passe sous un obstacle (sauf s’il saute ou glisse dans toute autre condition).
 - Au démarrage (uniquement) de chaque concurrent (lorsqu’il commence à courir), on joue l’animation Light_Wall_Animations/Appearing dans Light_Wall.tscn pour commencer son mur. On joue également Light_Wall_Sounds/Wall_Hum en boucle (jusqu’à ce que le mur complet disparaisse).
 - Le Light_Wall commence 60px et 30py derrière le coureur pour qu’il ne « tape » pas dedans avec ses pieds. À présent réglé avec un délai de 100ms.
