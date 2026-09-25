@@ -3143,9 +3143,6 @@ max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
-[node name="AudioListener2D" type="AudioListener2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=612860056]
-metadata/_edit_lock_ = true
-
 [node name="Animation_Runner" type="AnimationPlayer" parent="." unique_id=1090802675]
 root_node = NodePath("../Character")
 libraries/ = SubResource("AnimationLibrary_8jbc5")
