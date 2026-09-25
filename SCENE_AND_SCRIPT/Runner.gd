@@ -283,7 +283,8 @@ func _physics_process(delta: float):
 		_direction = _last_direction
 
 	var new_pos = position + _direction * _get_current_speed() * delta
-	var new_global_pos = get_parent().to_global(new_pos)
+	var parent = get_parent()
+	var new_global_pos = parent.to_global(new_pos) if parent is Node2D else new_pos
 	var new_cell = _map.get_cell_at_pos(new_global_pos)
 
 	# Turn one-way off after leaving the one-way cell. Normally one-way is
