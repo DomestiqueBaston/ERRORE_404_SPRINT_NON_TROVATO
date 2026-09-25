@@ -86,7 +86,7 @@ func _add_runner_to_viewport(viewport: SubViewport, runner: Node2D):
 	viewport.add_child(runner)
 
 func _offset_camera(offset: Vector2, camera: Camera2D):
-	create_tween().tween_property(camera, ^"offset", offset, 0.25)
+	create_tween().tween_property(camera, ^"offset", offset, 0.5)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Détection de la première action du joueur
