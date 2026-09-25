@@ -70,7 +70,8 @@ func _ready():
 
 	runner.offset_camera.connect(
 		func(offset: Vector2):
-			create_tween().tween_property(camera, ^"offset", offset, 0.5))
+			create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(
+				camera, ^"offset", offset, 0.75))
 
 	add_child(runner)
 
