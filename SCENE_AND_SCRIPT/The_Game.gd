@@ -63,17 +63,25 @@ func _ready():
 	runner4.set_process_input(false)
 
 func _add_runner_to_viewport(viewport: SubViewport, runner: Node2D):
+
+	# create a camera for this viewport only
+
 	var camera = Camera2D.new()
 	camera.process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS
 	viewport.add_child(camera)
+
+	# the camera follows the runner's global position
 
 	var remote_xform = RemoteTransform2D.new()
 	remote_xform.remote_path = camera.get_path()
 	runner.add_child(remote_xform)
 
-	# do this before adding the runner to the tree, because the intro animation
-	# starts in the runner's _ready() function
+	# add an offset to the camera depending on what the runner is doing
+
 	runner.offset_camera.connect(_offset_camera.bind(camera))
+
+	# add the runner to the viewport AFTER connecting its offset_camera()
+	# signal, because the runner's _ready() function start the intro animation
 
 	viewport.add_child(runner)
 
