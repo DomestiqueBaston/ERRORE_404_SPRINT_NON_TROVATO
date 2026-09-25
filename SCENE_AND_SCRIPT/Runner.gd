@@ -14,7 +14,6 @@ extends Node2D
 @onready var _bonus_malus_anim: AnimationPlayer = $Animation_Bonus_Malus
 @onready var _glitch_anim: AnimationPlayer = $Animation_Glitch
 @onready var _collider: Area2D = $Character/Papa_Sprite/Runner_Sprite/Collider_Area
-@onready var _camera: Camera2D = $Character/Cam
 
 @onready var _footstep1 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_01
 @onready var _footstep2 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_02
@@ -87,7 +86,6 @@ func _ready() -> void:
 	_animation.animation_finished.connect(_on_animation_finished)
 	_disappear.animation_finished.connect(_on_disappear_finished)
 	z_index = roundi(global_position.y)
-	_camera.update_aim_point(global_position)
 
 	_bonus_timer = Timer.new()
 	_bonus_timer.one_shot = true
@@ -331,9 +329,8 @@ func _physics_process(delta: float):
 			Cell.State.PYLON:
 				auto_dodge = _check_pylon(new_cell)
 
-	# Update the position of the runner and the camera, unless the runner hit
-	# something inpenetrable (a pylon or artefact), or he has not started to run
-	# yet.
+	# Update the position of the runner, unless the runner hit something
+	# inpenetrable (a pylon or artefact), or he has not started to run yet.
 
 	if not (is_dead or is_falling or auto_dodge) and _direction:
 		_set_position(new_pos, false, new_cell)
@@ -369,8 +366,8 @@ func _physics_process(delta: float):
 
 #
 # Whenever the runner's position changes, a few other things need to be done as
-# well: update his Z-index, update the current cell, remember the cell's current
-# position in case it slides, and update the camera to aim at the new position.
+# well: update his Z-index, update the current cell, and remember the cell's
+# current position in case it slides.
 #
 # Note that the Z-index is NOT updated if the runner is in the central cell and
 # the door is present. In that case only, the Z-index is set differently, in
@@ -387,7 +384,6 @@ func _set_position(pos: Vector2, is_global: bool, cell: Cell):
 	_curr_cell = cell
 	if _curr_cell:
 		_curr_cell_pos = _curr_cell.global_position
-	_camera.update_aim_point(global_position)
 
 func _get_current_speed() -> float:
 	var speed: float

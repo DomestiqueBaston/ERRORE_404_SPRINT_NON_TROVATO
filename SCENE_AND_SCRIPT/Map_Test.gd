@@ -61,6 +61,14 @@ func _ready():
 	add_child(runner)
 	runner.set_map(_map, start_cell)
 
+	var camera = Camera2D.new()
+	camera.process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS
+	add_child(camera)
+
+	var remote_xform = RemoteTransform2D.new()
+	remote_xform.remote_path = camera.get_path()
+	runner.add_child(remote_xform)
+
 func _unhandled_input(event: InputEvent) -> void:
 	# Détection de la première action du joueur
 	for action in START_ACTIONS:

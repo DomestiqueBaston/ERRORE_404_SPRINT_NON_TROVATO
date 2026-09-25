@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://7rcfji6ehwky" path="res://SCENE_AND_SCRIPT/Runner.gd" id="1_ercnf"]
 [ext_resource type="Shader" uid="uid://ck3yebjggsb1h" path="res://SHADER/Runner.gdshader" id="2_susyb"]
 [ext_resource type="Texture2D" uid="uid://pwb1j0skfyv8" path="res://IMAGE/RUNNER/MAN_B/Man_B_Sprite_Sheet.png" id="3_ercnf"]
-[ext_resource type="Script" uid="uid://qc5u6mlkikxg" path="res://SCENE_AND_SCRIPT/Cam.gd" id="5_qxubv"]
 [ext_resource type="Texture2D" uid="uid://brl52e8ox1ue8" path="res://IMAGE/RUNNER/Shadow.png" id="5_rpmb2"]
 [ext_resource type="AudioStream" uid="uid://06kaf7akc8r3" path="res://SOUND/FX/RUNNER/Foot_Step_01.ogg" id="6_38vqc"]
 [ext_resource type="AudioStream" uid="uid://bom677o0xms5i" path="res://SOUND/FX/Disappearing.ogg" id="6_n84pb"]
@@ -3136,13 +3135,6 @@ bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
 
 [node name="AudioListener2D" type="AudioListener2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=1410896159]
-metadata/_edit_lock_ = true
-
-[node name="Cam" type="Camera2D" parent="Character" unique_id=1782995018]
-position = Vector2(-480, -270)
-offset = Vector2(480, 235)
-process_callback = 0
-script = ExtResource("5_qxubv")
 metadata/_edit_lock_ = true
 
 [node name="Animation_Runner" type="AnimationPlayer" parent="." unique_id=1015872210]

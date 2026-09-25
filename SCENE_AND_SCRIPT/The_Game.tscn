@@ -2049,18 +2049,6 @@ metadata/_edit_lock_ = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1715763916]
 environment = ExtResource("2_ycojx")
 
-[node name="BG_SubViewportContainer" type="SubViewportContainer" parent="." unique_id=546695159]
-offset_right = 480.0
-offset_bottom = 270.0
-
-[node name="BG_SubViewport" type="SubViewport" parent="BG_SubViewportContainer" unique_id=469166842]
-transparent_bg = true
-handle_input_locally = false
-snap_2d_transforms_to_pixel = true
-snap_2d_vertices_to_pixel = true
-size = Vector2i(480, 270)
-render_target_update_mode = 4
-
 [node name="Runners" type="VBoxContainer" parent="." unique_id=1026385380]
 custom_minimum_size = Vector2(960, 540)
 anchors_preset = 15
