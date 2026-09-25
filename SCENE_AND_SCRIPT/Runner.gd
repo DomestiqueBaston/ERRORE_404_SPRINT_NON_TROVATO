@@ -7,6 +7,10 @@ extends Node2D
 @export var jump_speed: float = 375.0
 @export var slide_speed: float = 375.0
 
+## Signal emitted when the current animation dictates that the current camera
+## should be offset by the given amount.
+signal offset_camera(offset: Vector2)
+
 @onready var _sprite_node: Node2D = $Character/Papa_Sprite
 @onready var _sprite: Sprite2D = $Character/Papa_Sprite/Runner_Sprite
 @onready var _animation: AnimationPlayer = $Animation_Runner
@@ -83,8 +87,12 @@ var _bonus: Bonus
 var _bonus_timer: Timer
 
 func _ready() -> void:
+	_animation.animation_started.connect(_on_animation_started)
 	_animation.animation_finished.connect(_on_animation_finished)
 	_disappear.animation_finished.connect(_on_disappear_finished)
+
+	_animation.play(&"Intro")
+
 	z_index = roundi(global_position.y)
 
 	_bonus_timer = Timer.new()
@@ -493,7 +501,38 @@ func _start_falling() -> void:
 		_animation.play(&"Falling_180")
 		_sprite_node.scale.x = -1.0 if _direction.x < 0 else 1.0
 
-func _on_animation_finished(anim_name: String) -> void:
+func _on_animation_started(anim_name: StringName):
+	if anim_name == &"Intro":
+		if _start_cell:
+			var offset: Vector2
+			var uv = Map.get_cell_index(_start_cell.position)
+			if uv.x < 0:
+				if uv.y < 0:
+					# west corner
+					offset = Vector2(120, -40)
+				elif uv.y > 0:
+					# north corner
+					offset = Vector2(0, 15)
+			elif uv.x > 0:
+				if uv.y < 0:
+					# south corner
+					offset = Vector2(0, -75)
+				elif uv.y > 0:
+					# east corner
+					offset = Vector2(-120, -40)
+			offset_camera.emit(offset)
+	elif anim_name in [
+		&"Run_000",     &"Run_180",
+		&"Jump_000",    &"Jump_180",
+		&"Sliding_000", &"Sliding_180",
+		&"Start_000",   &"Start_180"
+	]:
+		var offset: Vector2
+		offset.x = -115 if _direction.x < 0 else 115
+		offset.y = -90 if _direction.y < 0 else 25
+		offset_camera.emit(offset)
+
+func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name.begins_with("Jump_"):
 		is_jumping = false
 		_jump_direction = Vector2.ZERO

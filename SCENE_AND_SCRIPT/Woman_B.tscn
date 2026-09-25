@@ -3097,7 +3097,6 @@ metadata/_edit_lock_ = true
 [node name="Animation_Runner" type="AnimationPlayer" parent="." unique_id=1090802675]
 root_node = NodePath("../Character")
 libraries/ = SubResource("AnimationLibrary_8jbc5")
-autoplay = &"Intro"
 
 [node name="Animation_Glitch" type="AnimationPlayer" parent="." unique_id=591582504]
 root_node = NodePath("../Character")

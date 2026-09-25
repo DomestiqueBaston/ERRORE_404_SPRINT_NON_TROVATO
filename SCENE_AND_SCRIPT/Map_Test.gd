@@ -58,7 +58,6 @@ func _ready():
 
 	var runner = scene.instantiate()
 	runner.position = start_pos
-	add_child(runner)
 	runner.set_map(_map, start_cell)
 
 	var camera = Camera2D.new()
@@ -68,6 +67,12 @@ func _ready():
 	var remote_xform = RemoteTransform2D.new()
 	remote_xform.remote_path = camera.get_path()
 	runner.add_child(remote_xform)
+
+	runner.offset_camera.connect(
+		func(offset: Vector2):
+			create_tween().tween_property(camera, ^"offset", offset, 0.25))
+
+	add_child(runner)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Détection de la première action du joueur

@@ -63,8 +63,6 @@ func _ready():
 	runner4.set_process_input(false)
 
 func _add_runner_to_viewport(viewport: SubViewport, runner: Node2D):
-	viewport.add_child(runner)
-
 	var camera = Camera2D.new()
 	camera.process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS
 	viewport.add_child(camera)
@@ -72,6 +70,15 @@ func _add_runner_to_viewport(viewport: SubViewport, runner: Node2D):
 	var remote_xform = RemoteTransform2D.new()
 	remote_xform.remote_path = camera.get_path()
 	runner.add_child(remote_xform)
+
+	# do this before adding the runner to the tree, because the intro animation
+	# starts in the runner's _ready() function
+	runner.offset_camera.connect(_offset_camera.bind(camera))
+
+	viewport.add_child(runner)
+
+func _offset_camera(offset: Vector2, camera: Camera2D):
+	create_tween().tween_property(camera, ^"offset", offset, 0.25)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Détection de la première action du joueur

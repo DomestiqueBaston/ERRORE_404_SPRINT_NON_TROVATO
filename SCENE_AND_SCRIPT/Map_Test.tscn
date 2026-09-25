@@ -8,6 +8,7 @@
 [node name="Map_Test" type="Node2D" unique_id=1968653440]
 y_sort_enabled = true
 script = ExtResource("1_7cuhg")
+character = 2
 metadata/_edit_lock_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1620740784]
