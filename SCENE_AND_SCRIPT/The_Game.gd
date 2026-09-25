@@ -46,27 +46,25 @@ func _ready():
 	runner4.set_map(map, cellE)
 
 	$Runners/Top_Runners/Left_Runner/Runner_SubViewport.add_child(map)
-	$Runners/Top_Runners/Left_Runner/Runner_SubViewport.add_child(runner1)
-	$Runners/Top_Runners/Left_Runner/Runner_SubViewport.add_child(runner2)
-	$Runners/Top_Runners/Left_Runner/Runner_SubViewport.add_child(runner3)
-	$Runners/Top_Runners/Left_Runner/Runner_SubViewport.add_child(runner4)
 
-	runner1.set_process_input(true)
-	runner2.set_process_input(false)
-	runner3.set_process_input(false)
-	runner4.set_process_input(false)
+	_add_runner_to_viewport($Runners/Top_Runners/Left_Runner/Runner_SubViewport, runner1)
+	_add_runner_to_viewport($Runners/Top_Runners/Right_Runner/Runner_SubViewport, runner2)
+	_add_runner_to_viewport($Runners/Bottom_Runners/Left_Runner/Runner_SubViewport, runner3)
+	_add_runner_to_viewport($Runners/Bottom_Runners/Right_Runner/Runner_SubViewport, runner4)
 
 	var world = $Runners/Top_Runners/Left_Runner/Runner_SubViewport.world_2d
 	$Runners/Top_Runners/Right_Runner/Runner_SubViewport.world_2d = world
 	$Runners/Bottom_Runners/Left_Runner/Runner_SubViewport.world_2d = world
 	$Runners/Bottom_Runners/Right_Runner/Runner_SubViewport.world_2d = world
 
-	_add_camera_to_viewport($Runners/Top_Runners/Left_Runner/Runner_SubViewport, runner1)
-	_add_camera_to_viewport($Runners/Top_Runners/Right_Runner/Runner_SubViewport, runner2)
-	_add_camera_to_viewport($Runners/Bottom_Runners/Left_Runner/Runner_SubViewport, runner3)
-	_add_camera_to_viewport($Runners/Bottom_Runners/Right_Runner/Runner_SubViewport, runner4)
+	runner1.set_process_input(true)
+	runner2.set_process_input(false)
+	runner3.set_process_input(false)
+	runner4.set_process_input(false)
 
-func _add_camera_to_viewport(viewport: SubViewport, runner: Node2D):
+func _add_runner_to_viewport(viewport: SubViewport, runner: Node2D):
+	viewport.add_child(runner)
+
 	var camera = Camera2D.new()
 	camera.process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS
 	viewport.add_child(camera)
