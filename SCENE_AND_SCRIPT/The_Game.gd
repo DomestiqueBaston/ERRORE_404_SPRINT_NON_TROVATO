@@ -81,7 +81,7 @@ func _add_runner_to_viewport(viewport: SubViewport, runner: Node2D):
 	runner.offset_camera.connect(_offset_camera.bind(camera))
 
 	# add the runner to the viewport AFTER connecting its offset_camera()
-	# signal, because the runner's _ready() function start the intro animation
+	# signal, because the runner's _ready() function emits the signal
 
 	viewport.add_child(runner)
 
