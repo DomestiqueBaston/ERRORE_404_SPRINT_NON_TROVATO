@@ -21,36 +21,28 @@ var _man_a_scene = preload("res://SCENE_AND_SCRIPT/Man_A.tscn")
 var _man_b_scene = preload("res://SCENE_AND_SCRIPT/Man_B.tscn")
 
 func _ready():
-	var sz: int = Globals.map_size
 	var map = _map_scene.instantiate()
-	map.map_size = sz
+	map.map_size = Globals.map_size
 
 	var runner1 = _woman_a_scene.instantiate()
-	var cellN = map.get_cell_at(Vector2i(-sz, sz))
-	runner1.position = cellN.position + Cell.get_start_cell_offset(Globals.Corner.N)
-	runner1.set_map(map, cellN)
-
 	var runner2 = _woman_b_scene.instantiate()
-	var cellS = map.get_cell_at(Vector2i(sz, -sz))
-	runner2.position = cellS.position + Cell.get_start_cell_offset(Globals.Corner.S)
-	runner2.set_map(map, cellS)
-
 	var runner3 = _man_a_scene.instantiate()
-	var cellW = map.get_cell_at(Vector2i(-sz, -sz))
-	runner3.position = cellW.position + Cell.get_start_cell_offset(Globals.Corner.W)
-	runner3.set_map(map, cellW)
-
 	var runner4 = _man_b_scene.instantiate()
-	var cellE = map.get_cell_at(Vector2i(sz, sz))
-	runner4.position = cellE.position + Cell.get_start_cell_offset(Globals.Corner.E)
-	runner4.set_map(map, cellE)
 
 	$Runners/Top_Runners/Left_Runner/Runner_SubViewport.add_child(map)
 
-	_add_runner_to_viewport($Runners/Top_Runners/Left_Runner/Runner_SubViewport, runner1)
-	_add_runner_to_viewport($Runners/Top_Runners/Right_Runner/Runner_SubViewport, runner2)
-	_add_runner_to_viewport($Runners/Bottom_Runners/Left_Runner/Runner_SubViewport, runner3)
-	_add_runner_to_viewport($Runners/Bottom_Runners/Right_Runner/Runner_SubViewport, runner4)
+	_add_runner_to_viewport(
+		$Runners/Top_Runners/Left_Runner/Runner_SubViewport,
+		map, Globals.Corner.N, runner1)
+	_add_runner_to_viewport(
+		$Runners/Top_Runners/Right_Runner/Runner_SubViewport,
+		map, Globals.Corner.S, runner2)
+	_add_runner_to_viewport(
+		$Runners/Bottom_Runners/Left_Runner/Runner_SubViewport,
+		map, Globals.Corner.W, runner3)
+	_add_runner_to_viewport(
+		$Runners/Bottom_Runners/Right_Runner/Runner_SubViewport,
+		map, Globals.Corner.E, runner4)
 
 	var world = $Runners/Top_Runners/Left_Runner/Runner_SubViewport.world_2d
 	$Runners/Top_Runners/Right_Runner/Runner_SubViewport.world_2d = world
@@ -62,32 +54,13 @@ func _ready():
 	runner3.set_process_input(false)
 	runner4.set_process_input(false)
 
-func _add_runner_to_viewport(viewport: SubViewport, runner: Node2D):
-
-	# create a camera for this viewport only
-
+func _add_runner_to_viewport(
+	viewport: SubViewport, map: Map, start_corner: Globals.Corner, runner: Node2D):
 	var camera = Camera2D.new()
 	camera.process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS
 	viewport.add_child(camera)
-
-	# the camera follows the runner's global position
-
-	var remote_xform = RemoteTransform2D.new()
-	remote_xform.remote_path = camera.get_path()
-	runner.add_child(remote_xform)
-
-	# add an offset to the camera depending on what the runner is doing
-
-	runner.offset_camera.connect(_offset_camera.bind(camera))
-
-	# add the runner to the viewport AFTER connecting its offset_camera()
-	# signal, because the runner's _ready() function emits the signal
-
 	viewport.add_child(runner)
-
-func _offset_camera(offset: Vector2, camera: Camera2D):
-	create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(
-		camera, ^"offset", offset, 0.75)
+	runner.set_environment(map, start_corner, camera)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Détection de la première action du joueur

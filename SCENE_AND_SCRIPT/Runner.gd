@@ -7,10 +7,6 @@ extends Node2D
 @export var jump_speed: float = 375.0
 @export var slide_speed: float = 375.0
 
-## Signal emitted when the current animation dictates that the current camera
-## should be offset by the given amount.
-signal offset_camera(offset: Vector2)
-
 @onready var _sprite_node: Node2D = $Character/Papa_Sprite
 @onready var _sprite: Sprite2D = $Character/Papa_Sprite/Runner_Sprite
 @onready var _animation: AnimationPlayer = $Animation_Runner
@@ -78,6 +74,7 @@ var _is_up_pressed: bool = false
 var _is_down_pressed: bool = false
 
 var _map: Map
+var _camera: Camera2D
 var _start_cell: Cell
 var _curr_cell: Cell
 var _curr_cell_pos: Vector2
@@ -92,19 +89,37 @@ func _ready() -> void:
 
 	z_index = roundi(global_position.y)
 
-	_set_initial_camera_offset()
-
 	_bonus_timer = Timer.new()
 	_bonus_timer.one_shot = true
 	_bonus_timer.timeout.connect(_remove_bonus)
 	add_child(_bonus_timer)
 
-func set_map(map: Map, start_cell: Cell = null):
+##
+## Sets up the runner's environment: the Map he will be running around, the
+## corner of the Map where he will be positioned initially, and the camera that
+## will track his movements.
+##
+func set_environment(map: Map, start_corner: Globals.Corner, camera: Camera2D):
 	_map = map
-	if start_cell:
-		_start_cell = start_cell
-	else:
-		_start_cell = map.get_center_cell()
+	_camera = camera
+
+	var sz = map.map_size
+	match start_corner:
+		Globals.Corner.N:
+			_start_cell = map.get_cell_at(Vector2i(-sz, sz))
+			camera.offset = Vector2(0, 15)
+		Globals.Corner.S:
+			_start_cell = map.get_cell_at(Vector2i(sz, -sz))
+			camera.offset = Vector2(0, -75)
+		Globals.Corner.W:
+			_start_cell = map.get_cell_at(Vector2i(-sz, -sz))
+			camera.offset = Vector2(120, -40)
+		Globals.Corner.E:
+			_start_cell = map.get_cell_at(Vector2i(sz, sz))
+			camera.offset = Vector2(-120, -40)
+
+	position = _start_cell.position + Cell.get_start_cell_offset(start_corner)
+	camera.global_position = global_position
 
 func _input(event: InputEvent):
 	if not event.is_action_type():
@@ -342,11 +357,14 @@ func _physics_process(delta: float):
 
 	if not (is_dead or is_falling or auto_dodge) and _direction:
 		_set_position(new_pos, false, new_cell)
-		if _direction != prev_direction:
+		if _camera and _direction != prev_direction:
 			var offset: Vector2
 			offset.x = -115 if _direction.x < 0 else 115
 			offset.y = -90 if _direction.y < 0 else 25
-			offset_camera.emit(offset)
+			create_tween() \
+				.set_trans(Tween.TRANS_SINE) \
+				.set_ease(Tween.EASE_IN_OUT) \
+				.tween_property(_camera, ^"offset", offset, 0.75)
 
 	# Add a point to the runner's wall, unless he is dead, or falling, or
 	# jumping, or sliding, or teleporting...
@@ -379,8 +397,8 @@ func _physics_process(delta: float):
 
 #
 # Whenever the runner's position changes, a few other things need to be done as
-# well: update his Z-index, update the current cell, and remember the cell's
-# current position in case it slides.
+# well: update his Z-index, update the current cell, remember the cell's
+# current position in case it slides, and update the camera position.
 #
 # Note that the Z-index is NOT updated if the runner is in the central cell and
 # the door is present. In that case only, the Z-index is set differently, in
@@ -397,6 +415,8 @@ func _set_position(pos: Vector2, is_global: bool, cell: Cell):
 	_curr_cell = cell
 	if _curr_cell:
 		_curr_cell_pos = _curr_cell.global_position
+	if _camera:
+		_camera.global_position = global_position
 
 func _get_current_speed() -> float:
 	var speed: float
@@ -505,26 +525,6 @@ func _start_falling() -> void:
 	else:
 		_animation.play(&"Falling_180")
 		_sprite_node.scale.x = -1.0 if _direction.x < 0 else 1.0
-
-func _set_initial_camera_offset():
-	if _start_cell:
-		var offset: Vector2
-		var uv = Map.get_cell_index(_start_cell.position)
-		if uv.x < 0:
-			if uv.y < 0:
-				# west corner
-				offset = Vector2(120, -40)
-			elif uv.y > 0:
-				# north corner
-				offset = Vector2(0, 15)
-		elif uv.x > 0:
-			if uv.y < 0:
-				# south corner
-				offset = Vector2(0, -75)
-			elif uv.y > 0:
-				# east corner
-				offset = Vector2(-120, -40)
-		offset_camera.emit(offset)
 
 func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name.begins_with("Jump_"):

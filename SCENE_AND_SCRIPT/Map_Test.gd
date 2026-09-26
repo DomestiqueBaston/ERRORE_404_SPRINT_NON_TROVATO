@@ -23,15 +23,13 @@ const START_ACTIONS := [
 
 @onready var _map_scene = preload("res://SCENE_AND_SCRIPT/Map.tscn")
 
-var _map: Map
 var _once := true
 var _can_restart := false
 
 func _ready():
-	var sz: int = Globals.map_size
-	_map = _map_scene.instantiate()
-	_map.map_size = sz
-	add_child(_map)
+	var map = _map_scene.instantiate()
+	map.map_size = Globals.map_size
+	add_child(map)
 
 	var scene: PackedScene
 	match character:
@@ -44,35 +42,12 @@ func _ready():
 		Character.MAN_B:
 			scene = load("res://SCENE_AND_SCRIPT/Man_B.tscn")
 
-	var start_cell: Cell
-	match start_corner:
-		Globals.Corner.N:
-			start_cell = _map.get_cell_at(Vector2i(-sz, sz))
-		Globals.Corner.S:
-			start_cell = _map.get_cell_at(Vector2i(sz, -sz))
-		Globals.Corner.W:
-			start_cell = _map.get_cell_at(Vector2i(-sz, -sz))
-		Globals.Corner.E:
-			start_cell = _map.get_cell_at(Vector2i(sz, sz))
-	var start_pos = start_cell.position + Cell.get_start_cell_offset(start_corner)
-
-	var runner = scene.instantiate()
-	runner.position = start_pos
-	runner.set_map(_map, start_cell)
-
 	var camera = Camera2D.new()
 	camera.process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS
 	add_child(camera)
 
-	var remote_xform = RemoteTransform2D.new()
-	remote_xform.remote_path = camera.get_path()
-	runner.add_child(remote_xform)
-
-	runner.offset_camera.connect(
-		func(offset: Vector2):
-			create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(
-				camera, ^"offset", offset, 0.75))
-
+	var runner = scene.instantiate()
+	runner.set_environment(map, start_corner, camera)
 	add_child(runner)
 
 func _unhandled_input(event: InputEvent) -> void:
