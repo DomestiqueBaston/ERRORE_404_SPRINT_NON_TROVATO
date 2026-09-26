@@ -12,17 +12,17 @@ Une partie oppose toujours 4 concurrents (1 joueur et 3 Bots). Les concurrents c
 - Des cases s’élèveront et/ou se baisseront également.
 - L’aire de course sera composée, au choix du joueur, de base de 9x9 à 21x21 (uniquement impaires pour avoir la case « 404 » au centre) cellules de terrain (ou plus ?).
 - Un jeu pour 1 joueur mais il y aura toujours 4 concurrents en piste. Les 3  concurrents non-humains seront pris en charge par l’IA (Bots). Il y a toujours 2 hommes et 2 femmes en course.
-- L’écran est divisé en 4 avec les vues de chaque concurrent. Le joueur sera toujours dans le quart supérieur gauche.
+- L’écran est divisé en 4 avec les vues de chaque concurrent. Le 1er joueur sera toujours dans le quart supérieur gauche. Puis à droite du 1er puis sous le 1er et enfin le dernier en bas à droite.
 - À chaque fois que le jeu va bouger une ligne/colonne ou baisser un pylône (qui n’écrase pas et laisse passer dessous) ou baisser une cellule ou lâcher un pylône ou faire disparaître une cellule, une alarme (Cell_Pylon_Alarms/ dans Sounds.tscn) se fera d’abord entendre pendant 1’’ ET jusqu’à la fin de l’animation (sauf exceptions).
 - Une cellule baissée ou disparue ou un pylône (baissé ou arrivé au sol) reste dans cette position 10 à 20’’. S’il font partie d’une ligne/colonne qui glisse pendant qu’ils sont dans l’état évoqué ici, alors ils suivent le mouvement de la ligne/colonne.
 - On ne fait pas tomber/descendre de pylône sur une cellule disparue ou descendue.
-- Dès le début, la case centrale (404) est baissée. Au dessus du vide flotte Artefact.tscn. Au bout de (Taille de la map + (2 × Difficulté)) / 10 minutes Artefact disparaît. (2 × Difficulté) secondes plus tard, la case 404 remonte et (2 × Difficulté) secondes plus tard, la porte de sortie (Door.tscn) apparaît.
+- Dès le début, la case centrale (404) est baissée. Au dessus du vide flotte Artefact.tscn. Au bout de (Taille de la map + (2 × Difficulté)) / 10 minutes Artefact disparaît. (2 × Difficulté) secondes plus tard, la case 404 remonte et (2 × Difficulté) secondes plus tard, la porte de sortie (Door.tscn) apparaît. Aléatoirement, la porte de sortie sera tournée vers la droite ou vers la gauche.
 - La case centrale 404 ne subit QUE des glissements (pas de bug, de disparition, de pylone, etc.).
 - Pour les concurrents, 4 directions de mouvement (les diagonales).
 - Les concurrents ne peuvent pas faire directement demi-tour (à cause du mur qu’ils tracent).
 - Les concurrents ne peuvent tourner qu’à 90°.
 - Les concurrents ne peuvent pas arrêter de courir !
-- Ils tracent un mur temporaire derrière eux (qui s’efface au fur et à mesure par tronçons en fonction du niveau de difficulté et de la taille de la map – voir plus loin).
+- Ils tracent un mur temporaire derrière eux (qui s’efface au fur et à mesure en fonction du niveau de difficulté et de la taille de la map – voir plus loin).
 - Un tronçon de mur est la partie du mur sur une case du terrain.
 - Le but du jeu est de tenir le plus longtemps possible et être le dernier survivant ou être le premier à passer la porte de sortie.
 
@@ -106,7 +106,7 @@ Les obstacles :
 Notes de fabrication :
 - Au lancement du jeu, la musique qui joue en boucle en permanence, c’est Intro. Jusqu’au moment dans le jeu proprement dit où le Départ est donné. À cet instant précis, on passe à Music (en boucle). Music ne s’arrête qu’en finissant la partie (soit en relançant une nouvelle partie directement soit en retournant à l’écran de Titre. Au moment de lancer à nouveau Intro, il faudra jouer une fois le son Bang tout en démarrant en même temps Intro.
 - /!\ ATTENTION /!\ On ne joue jamais Bang au lancement de Music car il est intégré dans la musique.
-- Sauf pendant la sélection de joueur, par défaut, la caméra de chaque joueur ne montre pas le joueur centré mais se décale afin d’avoir plus de visibilité devant le joueur en fonction de la direction dans laquelle il court. On utilisera systématiquement un tween d’1/4 de seconde pour déplacer la caméra. Au démarrage de la course, dès la première frame de course, la caméra rejoindra sa place avec le tween décrit précédemment.
+- Sauf pendant la sélection de joueur, par défaut, la caméra de chaque joueur ne montre pas le joueur centré mais se décale afin d’avoir plus de visibilité devant le joueur en fonction de la direction dans laquelle il court. On utilisera systématiquement un tween d’3/4 de seconde pour déplacer la caméra. Au démarrage de la course, dès la première frame de course, la caméra rejoindra sa place avec le tween décrit précédemment.
     • Position de caméra par rapport au root d’un coureur pour l’animation Intro :
         ◦ Coin nord : py +15.
         ◦ Coin Sud : py -75.
@@ -114,17 +114,14 @@ Notes de fabrication :
         ◦ Coin Est : px +120, py -40.
     • Position de caméra par rapport au root d’un concurrent pour les animations Death et Falling : par défaut.
 Pour les animations Start, Run, Slide et Jump:
-    • Position de caméra par rapport au root d’un concurrent tourné vers le sud-est : px = +115, py = +25.
-    • Position de caméra par rapport au root d’un concurrent tourné vers le sud-ouest : px = -115, py = +25.
-    • Position de caméra par rapport au root d’un concurrent tourné vers le nord-ouest : px = -115, py = -90.
-    • Position de caméra par rapport au root d’un concurrent tourné vers le nord-est : px = -115, py = -90.
+    • Position de caméra par rapport au root d’un concurrent tourné vers le sud-est : px = +100, py = +30.
+    • Position de caméra par rapport au root d’un concurrent tourné vers le sud-ouest : px = -100, py = +30.
+    • Position de caméra par rapport au root d’un concurrent tourné vers le nord-ouest : px = -100, py = -85.
+    • Position de caméra par rapport au root d’un concurrent tourné vers le nord-est : px = -10, py = -85.
 - Le mur tracé derrière un concurrent lorsqu’il se déplace est Light_Wall.tscn. À chaque entrée d’un concurrent sur une Cell ou virage, on commence le tracé d’un nouveau Light_Wall.tscn qui sera raccord avec le précédent. Lorsqu’un concurrent quitte une Cell ou fait un virage sur une Cell, on coupe le précédent Light_Wall.tscn et on en commence un autre qui sera raccord. On ne trace pas de Light_Wall.tscn lorsqu’un concurrent saute au dessus d’un trou ou passe sous un obstacle (sauf s’il saute ou glisse dans toute autre condition).
 - Au démarrage (uniquement) de chaque concurrent (lorsqu’il commence à courir), on joue l’animation Light_Wall_Animations/Appearing dans Light_Wall.tscn pour commencer son mur. On joue également Light_Wall_Sounds/Wall_Hum en boucle (jusqu’à ce que le mur complet disparaisse).
 - Le Light_Wall commence 60px et 30py derrière le coureur pour qu’il ne « tape » pas dedans avec ses pieds. À présent réglé avec un délai de 100ms.
-- Idéalement, le tracé du mur se fait au fur et à mesure de la progression du coureur mais si c’est trop galère à faire, on affichera le tronçon de mur correspondant à la trajectoire du coureur sur chaque cellule d’un coup à chaque sortie de cellule du joueur.
-- Si on choisit l’option du tracé à chaque fois qu’on quitte une cellule, alors le son des animations Appearing et Disappearing des light walls sera jouée uniquement au début du traçage du light wall
-- Cas d’un tronçon proche des coins d’une cellule : pour ne pas faire un cas particulier, même un tout petit bout de mur sur UNE cellule sera considéré comme un tronçon malgré tout et sera traité comme tel.
-- Rappel : chaque tronçon de mur ne dure qu’un certain temps (voir Options (nécessaires) dans Settings, etc.).
+- Le tracé du mur se fait au fur et à mesure de la progression du coureur.
 - À la mort d’un concurrent, lorsque son mur disparaît, joue l’animation Light_Wall_Animations/Disappearing dans Light_Wall.tscn.
 - À la fin de l’animation de mort d’un concurrent (Death) et que son mur aussi a disparu, on joue l’animation Animation_Disappearing_Death/Disappearing du concurrent afin de faire disparaître son cadavre (c’est dommage mais le laisser, ça risque de trop compliquer les choses).
 - Lorsqu’un concurrent traverse une case (donc en traçant son mur) et que la cellule bouge (glissement), alors le concurrent se décale AVEC la cellule. Et le mur qu’il trace également afin que le morceau de mur sur la cellule puisse se déplacer avec la case si celle-ci est amenée à se déplacer de nouveau.
