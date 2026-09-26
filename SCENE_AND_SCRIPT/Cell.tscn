@@ -2501,11 +2501,13 @@ bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Disappearing_Cell" type="AudioStreamPlayer2D" parent="Sound" unique_id=827325829]
+volume_db = 2.5
 max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Appearing_Cell" type="AudioStreamPlayer2D" parent="Sound" unique_id=934082188]
+volume_db = 2.5
 max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
@@ -2525,13 +2527,13 @@ metadata/_edit_lock_ = true
 
 [node name="Flashing_Cell" type="AudioStreamPlayer2D" parent="Sound" unique_id=1477597599]
 stream = ExtResource("44_fki3o")
-volume_db = -2.5
 max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
 
 [node name="Appearing_Disappearing_One_Way" type="AudioStreamPlayer2D" parent="Sound" unique_id=2105377160]
 stream = ExtResource("35_psu53")
+volume_db = 2.5
 max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true
