@@ -2533,7 +2533,7 @@ metadata/_edit_lock_ = true
 
 [node name="Appearing_Disappearing_One_Way" type="AudioStreamPlayer2D" parent="Sound" unique_id=2105377160]
 stream = ExtResource("35_psu53")
-volume_db = 2.5
+volume_db = 1.0
 max_distance = 1000.0
 bus = &"FX_WET"
 metadata/_edit_lock_ = true

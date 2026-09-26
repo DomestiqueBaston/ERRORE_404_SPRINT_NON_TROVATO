@@ -141,7 +141,7 @@ Options (nécessaires) dans Settings:
         ◦ Temps avant le déclenchement du processus d’apparition de Door.tscn : (5 + (Difficulté − 1) × 1,25 ) secondes
         ◦ Délai entre les déclenchements d’obstacles : 5.5 - (0,5 × Difficulté) secondes.
         ◦ Délai avant disparition des tronçons de mur : 3 + ((Difficulté + Taille de la map − 10) / 16) × 7 secondes après apparition.
-        ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en survivant au moins 4 minutes et 04 secondes en Difficulté 5) qui rend tous les obstacles PERMANENTS (le reste est traîté comme Difficulté 5 si rien n’est précisé !) Y COMPRIS les murs des concurrents.
+        ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en survivant au moins 4 minutes et 04 secondes en Difficulté 5) qui rend tous les obstacles PERMANENTS (le reste est traîté comme Difficulté 5 si rien n’est précisé !), Y COMPRIS les murs des concurrents.
         ◦ Modifications pour Difficulté 6 dans Settings.tscn :
             ▪ On change Hslider_Difficulty.tick = 6 (au lieu de 5) et Hslider_Difficulty.max = 6 (au lieu de 5)
             ▪ On cache les deux nodes Difficulty_1_5 et on affiche les deux nodes Difficulty_1_6
