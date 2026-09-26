@@ -359,8 +359,8 @@ func _physics_process(delta: float):
 		_set_position(new_pos, false, new_cell)
 		if _camera and _direction != prev_direction:
 			var offset: Vector2
-			offset.x = -115 if _direction.x < 0 else 115
-			offset.y = -90 if _direction.y < 0 else 25
+			offset.x = -100 if _direction.x < 0 else 100
+			offset.y = -85 if _direction.y < 0 else 30
 			create_tween() \
 				.set_trans(Tween.TRANS_SINE) \
 				.set_ease(Tween.EASE_IN_OUT) \
