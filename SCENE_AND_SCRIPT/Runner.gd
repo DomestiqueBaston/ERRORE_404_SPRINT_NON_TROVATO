@@ -371,10 +371,11 @@ func _physics_process(delta: float):
 	# Add a point to the runner's wall, unless he is dead, or falling, or
 	# jumping, or sliding, or teleporting...
 
-	if is_jumping or is_sliding or is_teleporting or is_dead or is_falling:
-		_curr_wall = null
-	elif new_cell and _direction:
+	if (new_cell and new_cell.can_take_wall() and _direction and
+		not (is_jumping or is_sliding or is_teleporting or is_dead or is_falling)):
 		_add_to_wall(new_cell, prev_direction)
+	else:
+		_curr_wall = null
 
 	# Default animation.
 

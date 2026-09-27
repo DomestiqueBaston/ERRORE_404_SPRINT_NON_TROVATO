@@ -103,6 +103,7 @@ var _state: State = State.NORMAL
 var _partner: Cell
 var _teleport_type: int
 var _walls: Array[Wall]
+var _can_take_wall: bool = true
 
 func _ready():
 	assert(_textures.size() == Decoration.keys().size())
@@ -115,6 +116,7 @@ func _notification(what: int):
 		position_changed.emit()
 
 func lower(immediate: bool = false):
+	_can_take_wall = false
 	for wall in _walls:
 		wall.disappear()
 	if immediate:
@@ -129,6 +131,7 @@ func raise():
 	# the animation will call _set_state_normal()
 	_anim_player.play("Going_Up")
 	await _anim_player.animation_finished
+	_can_take_wall = true
 
 #
 # Called by the Going_Down animation when the cell has actually begun going
@@ -144,6 +147,7 @@ func _set_state_normal():
 	_state = State.NORMAL
 
 func disappear():
+	_can_take_wall = false
 	for wall in _walls:
 		wall.disappear()
 	_anim_player.play("Disappearing")
@@ -154,6 +158,7 @@ func reappear():
 	_state = State.NORMAL
 	_anim_player.play("Appearing")
 	await _anim_player.animation_finished
+	_can_take_wall = true
 
 func start_sliding():
 	$Sound/Cell_Slide_Sounds/Sliding_Cell.play()
@@ -326,6 +331,13 @@ func _on_wall_gone(wall: Wall):
 
 func has_wall() -> bool:
 	return not _walls.is_empty()
+
+##
+## Returns false if the cell has begun to sink or to disappear,  in which case
+## walls can no longer be added to it.
+##
+func can_take_wall() -> bool:
+	return _can_take_wall
 
 ##
 ## Tells a new teleport cell which other cell it teleports to/from. This only
