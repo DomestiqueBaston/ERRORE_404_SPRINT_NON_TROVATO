@@ -146,34 +146,30 @@ Options (nécessaires) dans Settings:
             ▪ On change Hslider_Difficulty.tick = 6 (au lieu de 5) et Hslider_Difficulty.max = 6 (au lieu de 5)
             ▪ On cache les deux nodes Difficulty_1_5 et on affiche les deux nodes Difficulty_1_6
 
-Les personnalités des « IA »/Bots :
-    1. Par défaut, un Bot tendra bien évidemment à éviter les collisions et les chutes. Un Bot essayera également de sortir par la porte lorsqu’elle est présente et accessible (il peut arriver qu’elle ne le soit pas à cause des glissements de lignes/colonnes). Un bot sait toujours où se trouve la porte de sortie (une fois qu’elle est en place).
-    2. On définira des valeurs « par défaut » pour un bot afin de faire varier ces valeurs en fonction du comportement sélectionné.
+Les personnalités de base des Bots :
+    1. Par défaut, un Bot tendra bien évidemment à éviter les collisions et les chutes. Un Bot essayera également de sortir par la porte lorsqu’elle est présente et accessible (il peut arriver qu’elle ne le soit pas à cause des glissements de lignes/colonnes). Un bot sait toujours où se trouve la porte de sortie (une fois qu’elle est en place). Seuls les coureurs, light walls, colonnes, trous, pylônes, les sens unique à contre-sens et piles de la porte de sortie sont considérés comme des obstacles. Confronté à plusieurs choix face à un obstacle, il décidera aléatoirement quelle solution est choisie (par exe. : face à un trou, on tourne ou on saute ou on utilise son bonus (auto-dodge), etc.). Une cellule avec plus de 2 light walls est évitée (si possible). Un bot n’a pas de raison de changer de direction si rien ne se présente devant lui dans son champs de vision.
+    2. Pour former un bot, on combine 3 comportements choisi aléatoirement (1 dans dans chaque catégorie).
+    3. Un comportement ne sera donné qu’à 1 seul bot.
+    4. Les comportements choisis sont prioritaires par rapport à leurs versions du comportement de base (si ils existent).
+    5. On définira des valeurs « par défaut » pour un bot afin de faire varier ces valeurs en fonction du comportement sélectionné.
         ◦ Temps de réaction de base face aux obstacles et imprévus : 300ms.
-        ◦ Un bot peut enchaîner au maximum 2 actions en 150ms. Ex. : tourner 2 fois, tourner puis sauter, tourner activer un Bonus/Malus, etc.
+        ◦ Un bot peut enchaîner au maximum 2 actions en 150ms. Ex. : tourner 2 fois, tourner puis sauter, tourner activer un Bonus, etc.
         ◦ Taille du collider Vision de base : scale à 0,5 en x et y.
-        ◦ Une cellule avec plus de 2 tronçons de light wall est évitée (si possible).
         ◦ Un bot affecté par un bug graphique de sa vue caméra a un temps de réaction augmenté de 50ms.
-        ◦ Un bot n’a pas de raison de changer de direction si rien ne se présente devant lui dans son champs de vision.
-    3. Pour former un bot, on combine 3 comportements choisi aléatoirement (1 dans dans chaque catégorie).
-    4. Un comportement ne sera donné qu’à 1 seul bot.
-    5. Les comportements choisis sont prioritaires par rapport à leurs versions du comportement de base (si ils existent).
-    6. Seuls les coureurs, light walls, colonnes, trous, pylônes et piles de la porte de sortie sont considérés comme des obstacles.
-    7. Un bot conservera son bonus/malus entre 2 à 30 secondes avant de l’utiliser (sauf Automatique, bien entendu).
-    8. Les malus qui inversent les directions ou les boutons sont aussi valables pour les bots, ce qui signifie qu’ils vont toujours aller à gauche quand il veulent aller à droite (pareil pour saut/glissade). En revanche, ce malus + les comportements « de base » qui agissent sur les directions vont rendre le bot « normal » en se cumulant et c’est très bien comme ça !
+    6. Les malus qui inversent les directions ou les boutons sont aussi valables pour les bots, ce qui signifie qu’ils vont toujours aller à gauche quand il veulent aller à droite (pareil pour saut/glissade). En revanche, ce malus + les comportements « de base » qui agissent sur les directions vont rendre le bot « normal » en se cumulant (même si c’est très temporaire) et c’est très bien comme ça !
+    7. Un bot utilisera son Dash à 1 chance sur 2 après obtention et à chaque fois qu’il a fini de l’utiliser à 1 chance sur 2 également. Comportement non prioritaire par rapport au comportement d’un Bot.
 
-Comportements « de base » :
+Comportements additionnels :
 
     1. Fuyant : S’éloigne des coureurs (tout concurrent dans son détecteur plus d’1/4 seconde poussera ce bot à partir en direction opposée – sauf demi-tour).
     2. Suiveur : Essaye de suivre un coureur qui passe plus d’1/4 de seconde dans son détecteur.
-    3. Téméraire : N’évite plus les cellules sur lesquelles se trouvent plus de 2 tronçons de light walls.
+    3. Téméraire : N’évite plus les cellules sur lesquelles se trouvent plus de 2 light walls.
     4. Jusqu’au-boutiste : Ne prendra jamais la porte de sortie.
     5. Stupide : Confond les obstacles (1/50 fois saute au lieu de glisser et inversement).
     6. Bloqueur : Lorsqu’un coureur arrive en sens inverse (uniquement) dans son détecteur, tourne devant lui pour faire obstacle (avec son mur).
     7. Distrait : ne voit pas l’obstacle devant lui 1/50 fois.
     8. Dyslexique : Confond sa gauche et sa droite 1/50 fois.
-    9. Lunatique : Change de direction sans raison s’il a couru plus de 2 à 3 secondes tout droit.
-    10. Épileptique : Saute ou glisse sans raison s’il n’a rien fait de tel depuis 2 à 3 secondes.
+    9. Épileptique : Saute à 25% ou glisse à 25%, ou tourne sans raison à 50% (dont 50 % à droite et 50 % à gauche)s’il n’a rien fait de tel depuis 2 à 3 secondes.
 
 Comportements face aux Bonus/malus :
 
