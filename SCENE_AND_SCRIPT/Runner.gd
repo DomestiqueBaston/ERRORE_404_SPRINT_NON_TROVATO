@@ -94,6 +94,8 @@ func _ready() -> void:
 	_bonus_timer.timeout.connect(_remove_bonus)
 	add_child(_bonus_timer)
 
+	_collider.area_entered.connect(_on_area_entered)
+
 ##
 ## Sets up the runner's environment: the Map he will be running around, the
 ## corner of the Map where he will be positioned initially, and the camera that
@@ -185,7 +187,7 @@ func _physics_process(delta: float):
 					if not _pierce_walls_sound.playing:
 						_pierce_walls_sound.play()
 				else:
-					_die(false)
+					_die()
 				break
 
 	# Now handle the doorway and one-way signs (which are mutually exclusive:
@@ -211,7 +213,7 @@ func _physics_process(delta: float):
 			match door.get_zone_at(_collider):
 				Door.Zone.FRAME:
 					if not is_exiting:
-						_die(false)
+						_die()
 				Door.Zone.PASSAGE:
 					if not is_exiting:
 						print("we're out!")
@@ -331,7 +333,7 @@ func _physics_process(delta: float):
 			else:
 				_start_falling()
 	elif new_cell.get_artefact():
-		_die(false)
+		_die()
 	else:
 		match new_cell.get_state():
 			Cell.State.LOWERED, Cell.State.HIDDEN:
@@ -480,7 +482,7 @@ func _change_slide_direction(new_direction: Vector2):
 		_sprite_node.scale.x = -1.0 if new_direction.x < 0 else 1.0
 	_slide_direction = new_direction
 
-func _die(fast: bool) -> void:
+func _die(fast: bool = false) -> void:
 	if is_dead: return
 	is_dead = true
 
@@ -618,7 +620,7 @@ func _check_one_way(cell: Cell):
 	# if the runner is going the opposite direction, kill him
 
 	if is_equal_approx(_direction.dot(new_direction), -1.0):
-		_die(false)
+		_die()
 		return
 
 	is_one_way = true
@@ -868,3 +870,8 @@ func _add_to_wall(new_cell: Cell, prev_direction: Vector2):
 	# add the current position to the current wall
 
 	wall.add_point(global_position)
+
+func _on_area_entered(area: Area2D):
+	if area.collision_mask & Globals.RUNNER_LAYER:
+		if not (is_dead or is_falling):
+			_die()

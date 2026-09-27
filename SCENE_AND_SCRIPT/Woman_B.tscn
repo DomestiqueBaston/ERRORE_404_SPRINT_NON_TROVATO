@@ -2859,8 +2859,7 @@ offset = Vector2(7, 0)
 
 [node name="Collider_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=2058946939]
 visible = false
-collision_mask = 62
-monitorable = false
+collision_mask = 63
 metadata/_edit_lock_ = true
 
 [node name="Collider" type="CollisionShape2D" parent="Character/Papa_Sprite/Runner_Sprite/Collider_Area" unique_id=825152419]
