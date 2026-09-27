@@ -52,8 +52,7 @@ enum ObstacleType {
 	CELL_LOWER,
 	CELL_HIDE,
 	CELL_ONE_WAY,
-	CELL_TELEPORT1,
-	CELL_TELEPORT2,
+	CELL_TELEPORT,
 	PYLON_LOWER,
 	PYLON_DROP,
 	# only events above this line are generated randomly
@@ -318,9 +317,8 @@ func _stop_cell_one_way(cell: Cell):
 	await cell.stop_one_way()
 
 func _start_cell_teleport(event: ObstacleEvent):
-	var type = 1 if event.type == ObstacleType.CELL_TELEPORT1 else 2
-	event.cell.start_teleport(type)
-	await event.cell2.start_teleport(type)
+	event.cell.start_teleport()
+	await event.cell2.start_teleport()
 
 func _stop_cell_teleport(event: ObstacleEvent):
 	event.cell.stop_teleport()
@@ -434,8 +432,7 @@ func _handle_obstacle_event(event: ObstacleEvent):
 	if _slide_state != SlideState.NONE:
 		var block: bool
 		if event.type in [
-			ObstacleType.CELL_TELEPORT1,
-			ObstacleType.CELL_TELEPORT2,
+			ObstacleType.CELL_TELEPORT,
 			ObstacleType.CELL_ONE_WAY
 		]:
 			block = false
@@ -505,7 +502,7 @@ func _handle_obstacle_event(event: ObstacleEvent):
 				await _stop_cell_one_way(event.cell)
 				_available_cells.append(event.cell)
 
-		ObstacleType.CELL_TELEPORT1, ObstacleType.CELL_TELEPORT2:
+		ObstacleType.CELL_TELEPORT:
 			if not event.is_undo:
 				event.cell = _pick_random_cell()
 				if event.cell:
@@ -645,7 +642,7 @@ func _remove_obstacle(cell: Cell) -> bool:
 #
 func _on_obstacle_timer_timeout():
 	# we make CELL_ONE_WAY twice as likely to appear as the others, because the
-	# other event types are all in pairs...
+	# other event types are all in pairs (except for CELL_TELEPORT now)...
 	var type = randi() % (ObstacleType._RANDOM_ + 1)
 	if type == ObstacleType._RANDOM_:
 		type = ObstacleType.CELL_ONE_WAY
@@ -714,8 +711,7 @@ func cancel_one_way(cell: Cell):
 ## the duration of the obstacle to lapse.
 ##
 func cancel_teleport(cell: Cell):
-	var type = ObstacleType.CELL_TELEPORT1 + (cell.get_teleport_type() - 1)
-	var event = ObstacleEvent.new(type as ObstacleType)
+	var event = ObstacleEvent.new(ObstacleType.CELL_TELEPORT)
 	event.cell = cell
 	event.cell2 = cell.get_teleport_partner()
 	event.is_undo = true

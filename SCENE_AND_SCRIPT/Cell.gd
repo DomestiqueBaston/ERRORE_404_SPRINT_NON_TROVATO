@@ -101,7 +101,6 @@ var _door: Door
 var _cube: Cube
 var _state: State = State.NORMAL
 var _partner: Cell
-var _teleport_type: int
 var _walls: Array[Wall]
 var _can_take_wall: bool = true
 
@@ -191,21 +190,15 @@ func stop_one_way():
 	$Sound/Sound_For_Glitch_Only.stop()
 
 ##
-## Turns the cell into a teleport cell. The type parameter chooses between two
-## glitch types, and should be 1 or 2. Be sure to call start_teleport() for the
+## Turns the cell into a teleport cell. Be sure to call start_teleport() for the
 ## other teleport cell as well, and to call set_teleport_partner() to associate
 ## the two cells.
 ##
-func start_teleport(type: int):
-	if type == 1:
-		$Sound/Sound_For_Glitch_Only.play()
-		_glitch_anim.play("Glitch_Only_Appearing")
-	else:
-		$Sound/Sound_For_Screen_Glitch.play()
-		_glitch_anim.play("Screen_Glitch_Appearing")
+func start_teleport():
+	$Sound/Sound_For_Glitch_Only.play()
+	_glitch_anim.play("Glitch_Only_Appearing")
 	$Column/Cell_Tops/Animation_Teleport.play("Blink")
 	await _glitch_anim.animation_finished
-	_teleport_type = type
 	_state = State.TELEPORT
 
 ##
@@ -216,12 +209,8 @@ func start_teleport(type: int):
 func stop_teleport():
 	_state = State.NORMAL
 	$Column/Cell_Tops/Animation_Teleport.play("RESET")
-	if _teleport_type == 1:
-		_glitch_anim.play("Glitch_Only_Disappearing")
-		$Sound/Sound_For_Glitch_Only.stop()
-	else:
-		_glitch_anim.play("Screen_Glitch_Disappearing")
-		$Sound/Sound_For_Screen_Glitch.stop()
+	_glitch_anim.play("Glitch_Only_Disappearing")
+	$Sound/Sound_For_Glitch_Only.stop()
 	await _glitch_anim.animation_finished
 
 func get_state() -> State:
@@ -363,13 +352,6 @@ func reset_teleport_partner():
 ##
 func get_teleport_partner() -> Cell:
 	return _partner
-
-##
-## For a teleport cell, returns 1 or 2, depending on the parameter that was
-## passed to start_teleport().
-##
-func get_teleport_type() -> int:
-	return _teleport_type
 
 func get_one_way_collider() -> Area2D:
 	return _one_way_directions.get_collider()
