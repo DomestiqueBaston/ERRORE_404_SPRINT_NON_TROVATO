@@ -873,6 +873,6 @@ func _add_to_wall(new_cell: Cell, prev_direction: Vector2):
 	wall.add_point(global_position)
 
 func _on_area_entered(area: Area2D):
-	if area.collision_mask & Globals.RUNNER_LAYER:
+	if area.collision_layer & Globals.RUNNER_LAYER:
 		if not (is_dead or is_falling):
 			_die()
