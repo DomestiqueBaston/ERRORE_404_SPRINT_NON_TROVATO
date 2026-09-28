@@ -14,6 +14,11 @@ enum Corner {
 	E
 }
 
+var NORTHWEST: Vector2
+var NORTHEAST: Vector2
+var SOUTHWEST: Vector2
+var SOUTHEAST: Vector2
+
 const MASTER_BUS: int = 0
 const MUSIC_BUS: int = 5
 
@@ -32,6 +37,12 @@ var max_difficulty: int = 5
 const _settings_path = "user://settings.cfg"
 
 func _ready():
+	const _rotation: float = deg_to_rad(18.4)
+	NORTHWEST = Vector2(-1, -1).rotated(-_rotation).normalized()
+	NORTHEAST = Vector2(1, -1).rotated(_rotation).normalized()
+	SOUTHWEST = Vector2(-1, 1).rotated(_rotation).normalized()
+	SOUTHEAST = Vector2(1, 1).rotated(-_rotation).normalized()
+
 	load_settings()
 
 func _input(event):

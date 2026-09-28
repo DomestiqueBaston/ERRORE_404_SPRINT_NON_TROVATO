@@ -1,11 +1,20 @@
-extends Node2D
-
-## La Vision_Area n'est pas gérée par ce script,
-## c'est juste de la démo...
+class_name Runner extends Node2D
 
 @export var move_speed: float = 395.0
 @export var jump_speed: float = 375.0
 @export var slide_speed: float = 375.0
+
+## If non-negative, input events from other devices are ignored.
+var input_device: int = -1
+
+## Which direction the runner is moving, be it by running, jumping or sliding.
+var direction: Vector2 = Vector2.ZERO
+
+## Signal emitted when another runner becomes visible to this one.
+signal runner_seen(area: Area2D)
+
+## Signal emitted when the runner has died.
+signal died
 
 @onready var _sprite_node: Node2D = $Character/Papa_Sprite
 @onready var _sprite: Sprite2D = $Character/Papa_Sprite/Runner_Sprite
@@ -14,6 +23,7 @@ extends Node2D
 @onready var _bonus_malus_anim: AnimationPlayer = $Animation_Bonus_Malus
 @onready var _glitch_anim: AnimationPlayer = $Animation_Glitch
 @onready var _collider: Area2D = $Character/Papa_Sprite/Runner_Sprite/Collider_Area
+@onready var _vision: Area2D = $Character/Papa_Sprite/Runner_Sprite/Vision_Area
 
 @onready var _footstep1 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_01
 @onready var _footstep2 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_02
@@ -30,9 +40,6 @@ extends Node2D
 @onready var _phase_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Phase
 @onready var _no_turn_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/No_Turn
 @onready var _bonus_over_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Bonus_Malus_Over
-
-# which way the runner last moved, be it by running, jumping or sliding
-var _direction: Vector2 = Vector2.ZERO
 
 # which way the runner last indicated he WANTED to move
 var _last_direction: Vector2 = Vector2.ZERO
@@ -52,13 +59,6 @@ var is_teleporting: bool = false
 var is_one_way: bool = false
 var is_exiting: bool = false
 var is_dashing: bool = false
-
-const _rotation: float = deg_to_rad(18.4)
-
-var _northwest: Vector2 = Vector2(-1, -1).rotated(-_rotation).normalized()
-var _northeast: Vector2 = Vector2(1, -1).rotated(_rotation).normalized()
-var _southwest: Vector2 = Vector2(-1, 1).rotated(_rotation).normalized()
-var _southeast: Vector2 = Vector2(1, 1).rotated(-_rotation).normalized()
 
 # player commands that are delayed by the slow malus
 
@@ -94,7 +94,8 @@ func _ready() -> void:
 	_bonus_timer.timeout.connect(_remove_bonus)
 	add_child(_bonus_timer)
 
-	_collider.area_entered.connect(_on_area_entered)
+	_collider.area_entered.connect(_on_collider_entered)
+	_vision.area_entered.connect(_on_vision_area_entered)
 
 ##
 ## Sets up the runner's environment: the Map he will be running around, the
@@ -125,6 +126,8 @@ func set_environment(map: Map, start_corner: Globals.Corner, camera: Camera2D):
 
 func _input(event: InputEvent):
 	if not event.is_action_type():
+		return
+	if input_device >= 0 and event.device != input_device:
 		return
 	if event.is_action_pressed(&"ui_left_button"):
 		await _apply_slow_delay()
@@ -270,23 +273,23 @@ func _physics_process(delta: float):
 		elif Globals.use_diagonals_for_movement:
 			if _is_left_pressed:
 				if _is_down_pressed:
-					input_direction = _southwest
+					input_direction = Globals.SOUTHWEST
 				elif _is_up_pressed:
-					input_direction = _northwest
+					input_direction = Globals.NORTHWEST
 			elif _is_right_pressed:
 				if _is_down_pressed:
-					input_direction = _southeast
+					input_direction = Globals.SOUTHEAST
 				elif _is_up_pressed:
-					input_direction = _northeast
+					input_direction = Globals.NORTHEAST
 		else:
 			if _is_left_pressed:
-				input_direction = _northwest
+				input_direction = Globals.NORTHWEST
 			elif _is_up_pressed:
-				input_direction = _northeast
+				input_direction = Globals.NORTHEAST
 			elif _is_right_pressed:
-				input_direction = _southeast
+				input_direction = Globals.SOUTHEAST
 			elif _is_down_pressed:
-				input_direction = _southwest
+				input_direction = Globals.SOUTHWEST
 
 		if input_direction:
 			if _has_bonus(Bonus.Type.INVERT):
@@ -296,15 +299,15 @@ func _physics_process(delta: float):
 
 	_delayed_command = DelayedCmd.NONE
 
-	var prev_direction = _direction
+	var prev_direction = direction
 	if is_jumping:
-		_direction = _jump_direction
+		direction = _jump_direction
 	elif is_sliding:
-		_direction = _slide_direction
+		direction = _slide_direction
 	else:
-		_direction = _last_direction
+		direction = _last_direction
 
-	var new_pos = position + _direction * _get_current_speed() * delta
+	var new_pos = position + direction * _get_current_speed() * delta
 	var parent = get_parent()
 	var new_global_pos = parent.to_global(new_pos) if parent is Node2D else new_pos
 	var new_cell = _map.get_cell_at_pos(new_global_pos)
@@ -357,12 +360,12 @@ func _physics_process(delta: float):
 	# inpenetrable (a pylon or artefact), or he has not started to run yet.
 	# If he has changed direction, change the camera offset, too.
 
-	if not (is_dead or is_falling or auto_dodge) and _direction:
+	if not (is_dead or is_falling or auto_dodge) and direction:
 		_set_position(new_pos, false, new_cell)
-		if _camera and _direction != prev_direction:
+		if _camera and direction != prev_direction:
 			var offset: Vector2
-			offset.x = -100 if _direction.x < 0 else 100
-			offset.y = -85 if _direction.y < 0 else 30
+			offset.x = -100 if direction.x < 0 else 100
+			offset.y = -85 if direction.y < 0 else 30
 			create_tween() \
 				.set_trans(Tween.TRANS_SINE) \
 				.set_ease(Tween.EASE_IN_OUT) \
@@ -371,7 +374,7 @@ func _physics_process(delta: float):
 	# Add a point to the runner's wall, unless he is dead, or falling, or
 	# jumping, or sliding, or teleporting...
 
-	if (new_cell and new_cell.can_take_wall() and _direction and
+	if (new_cell and new_cell.can_take_wall() and direction and
 		not (is_jumping or is_sliding or is_teleporting or is_dead or is_falling)):
 		_add_to_wall(new_cell, prev_direction)
 	else:
@@ -380,7 +383,7 @@ func _physics_process(delta: float):
 	# Default animation.
 
 	if not (is_jumping or is_sliding or is_dead or is_falling):
-		if _direction == Vector2.ZERO:
+		if direction == Vector2.ZERO:
 			if _last_direction == Vector2.ZERO:
 				_animation.play(&"Intro")
 			else:
@@ -391,12 +394,12 @@ func _physics_process(delta: float):
 					_animation.play(&"Start_180")
 					_sprite_node.scale.x = -1.0 if _last_direction.x < 0 else 1.0
 		else:
-			if _direction.y < 0:
+			if direction.y < 0:
 				_animation.play(&"Run_000")
-				_sprite_node.scale.x = 1.0 if _direction.x < 0 else -1.0
+				_sprite_node.scale.x = 1.0 if direction.x < 0 else -1.0
 			else:
 				_animation.play(&"Run_180")
-				_sprite_node.scale.x = -1.0 if _direction.x < 0 else 1.0
+				_sprite_node.scale.x = -1.0 if direction.x < 0 else 1.0
 
 #
 # Whenever the runner's position changes, a few other things need to be done as
@@ -500,18 +503,20 @@ func _die(fast: bool = false) -> void:
 
 	if fast:
 		_disappear.play(&"Disappearing")
+		died.emit()
+		_collider.monitorable = false
 		for wall in _walls:
 			wall.disappear()
 	else:
 		for wall in _walls:
 			wall.backup(0.225)
 
-	if _direction.y < 0:
+	if direction.y < 0:
 		_animation.play(&"Death_000")
-		_sprite_node.scale.x = 1.0 if _direction.x < 0 else -1.0
+		_sprite_node.scale.x = 1.0 if direction.x < 0 else -1.0
 	else:
 		_animation.play(&"Death_180")
-		_sprite_node.scale.x = -1.0 if _direction.x < 0 else 1.0
+		_sprite_node.scale.x = -1.0 if direction.x < 0 else 1.0
 
 func _start_falling() -> void:
 	if is_falling or is_dead: return
@@ -522,12 +527,12 @@ func _start_falling() -> void:
 
 	z_index = RenderingServer.CANVAS_ITEM_Z_MIN
 
-	if _direction.y < 0:
+	if direction.y < 0:
 		_animation.play(&"Falling_000")
-		_sprite_node.scale.x = 1.0 if _direction.x < 0 else -1.0
+		_sprite_node.scale.x = 1.0 if direction.x < 0 else -1.0
 	else:
 		_animation.play(&"Falling_180")
-		_sprite_node.scale.x = -1.0 if _direction.x < 0 else 1.0
+		_sprite_node.scale.x = -1.0 if direction.x < 0 else 1.0
 
 func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name.begins_with("Jump_"):
@@ -541,9 +546,13 @@ func _on_animation_finished(anim_name: StringName) -> void:
 		# in which case it will have called set_physics_process(false) already
 		if is_physics_processing():
 			_disappear.play(&"Disappearing")
+			died.emit()
+			_collider.monitorable = false
 			for wall in _walls:
 				wall.disappear()
 	elif anim_name.begins_with(&"Falling_"):
+		died.emit()
+		_collider.monitorable = false
 		for wall in _walls:
 			wall.disappear()
 
@@ -551,13 +560,13 @@ func _on_animation_finished(anim_name: StringName) -> void:
 	if is_dead or is_falling:
 		return
 
-	if _direction != Vector2.ZERO:
-		if _direction.y < 0:
+	if direction != Vector2.ZERO:
+		if direction.y < 0:
 			_animation.play(&"Run_000")
-			_sprite_node.scale.x = 1.0 if _direction.x < 0 else -1.0
+			_sprite_node.scale.x = 1.0 if direction.x < 0 else -1.0
 		else:
 			_animation.play(&"Run_180")
-			_sprite_node.scale.x = -1.0 if _direction.x < 0 else 1.0
+			_sprite_node.scale.x = -1.0 if direction.x < 0 else 1.0
 	else:
 		if _last_direction == Vector2.ZERO:
 			_animation.play(&"Intro")
@@ -610,17 +619,17 @@ func _check_one_way(cell: Cell):
 	var new_direction: Vector2
 	match cell.get_one_way_direction():
 		Globals.Axis.NW:
-			new_direction = _northwest
+			new_direction = Globals.NORTHWEST
 		Globals.Axis.NE:
-			new_direction = _northeast
+			new_direction = Globals.NORTHEAST
 		Globals.Axis.SW:
-			new_direction = _southwest
+			new_direction = Globals.SOUTHWEST
 		Globals.Axis.SE:
-			new_direction = _southeast
+			new_direction = Globals.SOUTHEAST
 
 	# if the runner is going the opposite direction, kill him
 
-	if is_equal_approx(_direction.dot(new_direction), -1.0):
+	if is_equal_approx(direction.dot(new_direction), -1.0):
 		_die()
 		return
 
@@ -802,7 +811,7 @@ func play_foot_step_03():
 	_footstep3.play()
 
 func _add_to_wall(new_cell: Cell, prev_direction: Vector2):
-	var is_same_dir = (_direction == prev_direction)
+	var is_same_dir = (direction == prev_direction)
 	var wall: Wall
 
 	# add to previous wall if there is one and we have not left its cell or
@@ -872,7 +881,11 @@ func _add_to_wall(new_cell: Cell, prev_direction: Vector2):
 
 	wall.add_point(global_position)
 
-func _on_area_entered(area: Area2D):
+func _on_collider_entered(area: Area2D):
 	if area.collision_layer & Globals.RUNNER_LAYER:
 		if not (is_dead or is_falling):
 			_die()
+
+func _on_vision_area_entered(area: Area2D):
+	if area.get_parent() != _sprite:
+		runner_seen.emit(area)

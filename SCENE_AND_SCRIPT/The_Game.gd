@@ -13,6 +13,7 @@ const START_ACTIONS := [
 
 var _once := true
 var _can_restart := false
+var _bots: Array[Bot]
 
 var _map_scene = preload("res://SCENE_AND_SCRIPT/Map.tscn")
 var _woman_a_scene = preload("res://SCENE_AND_SCRIPT/Woman_A.tscn")
@@ -33,34 +34,43 @@ func _ready():
 
 	_add_runner_to_viewport(
 		$Runners/Top_Runners/Left_Runner/Runner_SubViewport,
-		map, Globals.Corner.N, runner1)
+		map, Globals.Corner.N, runner1, false)
 	_add_runner_to_viewport(
 		$Runners/Top_Runners/Right_Runner/Runner_SubViewport,
-		map, Globals.Corner.S, runner2)
+		map, Globals.Corner.S, runner2, true)
 	_add_runner_to_viewport(
 		$Runners/Bottom_Runners/Left_Runner/Runner_SubViewport,
-		map, Globals.Corner.W, runner3)
+		map, Globals.Corner.W, runner3, true)
 	_add_runner_to_viewport(
 		$Runners/Bottom_Runners/Right_Runner/Runner_SubViewport,
-		map, Globals.Corner.E, runner4)
+		map, Globals.Corner.E, runner4, true)
 
 	var world = $Runners/Top_Runners/Left_Runner/Runner_SubViewport.world_2d
 	$Runners/Top_Runners/Right_Runner/Runner_SubViewport.world_2d = world
 	$Runners/Bottom_Runners/Left_Runner/Runner_SubViewport.world_2d = world
 	$Runners/Bottom_Runners/Right_Runner/Runner_SubViewport.world_2d = world
 
-	runner1.set_process_input(true)
-	runner2.set_process_input(false)
-	runner3.set_process_input(false)
-	runner4.set_process_input(false)
+	runner1.input_device = 0  # InputEvent.DEVICE_ID_KEYBOARD
+	runner2.input_device = 1
+	runner3.input_device = 2
+	runner4.input_device = 3
 
 func _add_runner_to_viewport(
-	viewport: SubViewport, map: Map, start_corner: Globals.Corner, runner: Node2D):
+	viewport: SubViewport, map: Map, start_corner: Globals.Corner,
+	runner: Runner, make_bot: bool = false):
 	var camera = Camera2D.new()
 	camera.process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS
 	viewport.add_child(camera)
 	viewport.add_child(runner)
 	runner.set_environment(map, start_corner, camera)
+
+	if make_bot:
+		var bot = Bot.new()
+		bot.map = map
+		bot.runner = runner
+		bot.start_corner = start_corner
+		add_child(bot)
+		_bots.append(bot)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Détection de la première action du joueur
@@ -70,6 +80,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			if _once:
 				Sounds.stop_intro()
 				Sounds.play_music()
+				for bot in _bots:
+					bot.start()
 				_once = false
 			break
 
