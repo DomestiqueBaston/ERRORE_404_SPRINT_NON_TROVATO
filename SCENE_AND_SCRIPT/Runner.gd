@@ -130,7 +130,7 @@ func _input(event: InputEvent):
 
 	# If a specific input device was specified for this runner, ignore other
 	# input devices. As a special case, the keyboard is also accepted if device
-	# was 0 was specified.
+	# 0 was specified.
 
 	if input_device >= 0:
 		if input_device == 0:

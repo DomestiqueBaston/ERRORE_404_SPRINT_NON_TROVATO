@@ -119,10 +119,14 @@ func _turn():
 	var pos2 = _get_next_pos(dir2)
 	var cell1 = map.get_cell_at_pos(pos1)
 	var cell2 = map.get_cell_at_pos(pos2)
+	var ok1 = _is_cell_clear(cell1)
+	var ok2 = _is_cell_clear(cell2)
 
-	if _is_cell_clear(cell1):
+	if ok1 and ok2:
+		_send_direction_event(dir1 if randi() & 1 else dir2)
+	elif ok1:
 		_send_direction_event(dir1)
-	elif _is_cell_clear(cell2):
+	elif ok2:
 		_send_direction_event(dir2)
 
 func _send_direction_event(dir: Vector2):
