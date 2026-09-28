@@ -131,18 +131,25 @@ func _turn():
 
 func _send_direction_event(dir: Vector2):
 	if Globals.use_diagonals_for_movement:
-		_send_action_event(&"ui_right_button" if dir.x > 0 else &"ui_left_button")
-		_send_action_event(&"ui_down_button" if dir.y > 0 else &"ui_up_button")
-	elif dir.x > 0:
-		if dir.y > 0:
+		if dir.x > 0:
 			_send_action_event(&"ui_right_button")
 		else:
-			_send_action_event(&"ui_up_button")
-	else:
+			_send_action_event(&"ui_left_button")
 		if dir.y > 0:
 			_send_action_event(&"ui_down_button")
 		else:
-			_send_action_event(&"ui_left_button")
+			_send_action_event(&"ui_up_button")
+	else:
+		if dir.x > 0:
+			if dir.y > 0:
+				_send_action_event(&"ui_right_button")
+			else:
+				_send_action_event(&"ui_up_button")
+		else:
+			if dir.y > 0:
+				_send_action_event(&"ui_down_button")
+			else:
+				_send_action_event(&"ui_left_button")
 
 	_block_commands = true
 	await get_tree().create_timer(3.0/60.0, true, true).timeout
