@@ -50,7 +50,7 @@ func _ready():
 	$Runners/Bottom_Runners/Left_Runner/Runner_SubViewport.world_2d = world
 	$Runners/Bottom_Runners/Right_Runner/Runner_SubViewport.world_2d = world
 
-	runner1.input_device = 0  # InputEvent.DEVICE_ID_KEYBOARD
+	runner1.input_device = 0
 	runner2.input_device = 1
 	runner3.input_device = 2
 	runner4.input_device = 3

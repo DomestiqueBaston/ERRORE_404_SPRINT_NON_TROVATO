@@ -127,8 +127,19 @@ func set_environment(map: Map, start_corner: Globals.Corner, camera: Camera2D):
 func _input(event: InputEvent):
 	if not event.is_action_type():
 		return
-	if input_device >= 0 and event.device != input_device:
-		return
+
+	# If a specific input device was specified for this runner, ignore other
+	# input devices. As a special case, the keyboard is also accepted if device
+	# was 0 was specified.
+
+	if input_device >= 0:
+		if input_device == 0:
+			if not event.device in [0, InputEvent.DEVICE_ID_KEYBOARD]:
+				return
+		else:
+			if event.device != input_device:
+				return
+
 	if event.is_action_pressed(&"ui_left_button"):
 		await _apply_slow_delay()
 		_is_left_pressed = true
