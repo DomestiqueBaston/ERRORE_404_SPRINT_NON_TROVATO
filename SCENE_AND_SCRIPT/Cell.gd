@@ -321,6 +321,9 @@ func _on_wall_gone(wall: Wall):
 func has_wall() -> bool:
 	return not _walls.is_empty()
 
+func get_wall_count() -> int:
+	return _walls.size()
+
 ##
 ## Returns false if the cell has begun to sink or to disappear,  in which case
 ## walls can no longer be added to it.
