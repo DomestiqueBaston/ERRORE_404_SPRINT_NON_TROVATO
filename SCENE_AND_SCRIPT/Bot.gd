@@ -220,4 +220,5 @@ func _send_action_event(action: StringName):
 
 func _is_cell_clear(cell: Cell) -> bool:
 	return (cell and cell.get_state() == Cell.State.NORMAL
-			and not (cell.has_wall() or cell.get_artefact()))
+			and cell.get_wall_count() < 2
+			and not cell.get_artefact())
