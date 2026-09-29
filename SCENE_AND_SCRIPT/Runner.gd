@@ -10,9 +10,6 @@ var input_device: int = -1
 ## Which direction the runner is moving, be it by running, jumping or sliding.
 var direction: Vector2 = Vector2.ZERO
 
-## Signal emitted when another runner becomes visible to this one.
-signal runner_seen(area: Area2D)
-
 ## Signal emitted when the runner has died.
 signal died
 
@@ -96,7 +93,6 @@ func _ready() -> void:
 	add_child(_bonus_timer)
 
 	_collider.area_entered.connect(_on_collider_entered)
-	_vision.area_entered.connect(_on_vision_area_entered)
 
 ##
 ## Sets up the runner's environment: the Map he will be running around, the
@@ -898,9 +894,18 @@ func _on_collider_entered(area: Area2D):
 		if not (is_dead or is_falling):
 			_die()
 
-func _on_vision_area_entered(area: Area2D):
-	if area.get_parent() != _sprite:
-		runner_seen.emit(area)
+##
+## Returns an array of any other runners that are visible to this one, that is,
+## whose ground colliders overlap this runner's vision collider.
+##
+func get_visible_runners() -> Array[Runner]:
+	var runners: Array[Runner]
+	for area in _vision.get_overlapping_areas():
+		if area.collision_layer & Globals.RUNNER_LAYER:
+			var runner = area.get_node("../../../..")
+			if runner is Runner and runner != self:
+				runners.append(runner)
+	return runners
 
 ##
 ## Applies a scale factor to the runner's vision area collider shape, limiting

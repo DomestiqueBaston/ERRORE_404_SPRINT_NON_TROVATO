@@ -6,7 +6,7 @@ class_name Bot extends Node
 ## he dies.
 
 ## Which runner this bot controls.
-var runner: Runner: set = set_runner
+var runner: Runner
 
 ## The map the runner is navigating.
 var map: Map
@@ -15,78 +15,76 @@ var map: Map
 var start_corner: Globals.Corner
 
 ## Scale factor applied to the runner's area of vision.
-var vision_scale: float = 0.5
+const vision_scale: float = 0.5
 
-## Minimum amount of time between two actions (seconds).
-var action_time_limit: float = 0.05
+## When the bot sees an obstacle, it will take it at least this long to react.
+const min_reaction_time: float = 0.15
 
-## The bot will not take more than two actions in this amount of time (seconds).
-var two_action_time_limit: float = 0.150
+## When the bot sees an obstacle, it will react within this amount of time.
+const max_reaction_time: float = 0.25
 
-var _next_cell: Cell
-var _action_times: Array[float]
+## After taking action, the bot will wait at least thing long before taking
+## another.
+const min_move_interval: float = 0.15
+
+## When the bot makes a u-turn, this is the time interval between the two turns.
+const u_turn_interval: float = 0.1
+
+enum Move {
+	NONE,
+	NORTHWEST,
+	NORTHEAST,
+	SOUTHWEST,
+	SOUTHEAST,
+	U_TURN
+}
+
+# The next move the bot intends to make.
+var _next_move: Move = Move.NONE
+
+# In how much time the bot will make the next move.
+var _next_move_time: float
 
 func _ready():
 	set_physics_process(false)
 	runner.died.connect(func(): set_physics_process(false))
 
-#
-# Call this whenever an action is taken so we can keep track of when actions
-# were taken and thus when a new action can be taken.
-#
-func _add_action_taken():
-	while _action_times.size() > 1:
-		_action_times.pop_front()
-	_action_times.push_back(0)
-
-#
-# Returns true if the bot can take a new action now, given the time constraints.
-# The constraints are that at least action_time_limit seconds separate any two
-# actions, and that no more than two actions can be taken in a span of
-# two_action_time_limit seconds.
-#
-func _can_take_action() -> bool:
-	if _action_times.size() > 0:
-		if _action_times.back() < action_time_limit:
-			return false
-		if _action_times.size() > 1 and _action_times[-2] < two_action_time_limit:
-			return false
-	return true
-
 func _physics_process(delta: float):
 
-	# keep track of how much time has elapsed since previous actions were taken
+	# if the bot has already decided to make a move, wait for the reaction time
+	# to elapse, then do it
 
-	for t in _action_times.size():
-		_action_times[t] += delta
+	if _next_move != Move.NONE:
+		_next_move_time -= delta
+		if _next_move_time <= 0 and not (runner.is_jumping or runner.is_sliding):
+			var move = _next_move
+			_next_move = Move.NONE
+			set_physics_process(false)
+			match move:
+				Move.NORTHWEST:
+					_send_direction_event(Globals.NORTHWEST)
+				Move.NORTHEAST:
+					_send_direction_event(Globals.NORTHEAST)
+				Move.SOUTHWEST:
+					_send_direction_event(Globals.SOUTHWEST)
+				Move.SOUTHEAST:
+					_send_direction_event(Globals.SOUTHEAST)
+				Move.U_TURN:
+					var dir1 = _get_left_dir() if randi() & 1 else _get_right_dir()
+					var dir2 = -runner.direction
+					_send_direction_event(dir1)
+					await get_tree().create_timer(u_turn_interval).timeout
+					_send_direction_event(dir2)
+			await get_tree().create_timer(min_move_interval).timeout
+			set_physics_process(not (runner.is_dead or runner.is_falling))
 
-	if not _can_take_action():
-		return
+	# otherwise, check for new obstacles
 
-	var next_pos = _get_next_pos(runner.direction)
-	var next_cell = map.get_cell_at_pos(next_pos)
-
-	if _next_cell != next_cell:
-		if _next_cell:
-			var collider = _next_cell.get_node("Column/Collider_Ground")
-			if collider:
-				collider.hide()
-		_next_cell = next_cell
-		if _next_cell:
-			var collider = _next_cell.get_node("Column/Collider_Ground")
-			if collider:
-				collider.show()
-
-	if not _is_cell_clear(_next_cell):
-		_turn()
-
-func set_runner(r: Runner):
-	if runner != r:
-		if runner:
-			runner.runner_seen.disconnect(_on_runner_seen)
-		runner = r
-		if runner:
-			runner.runner_seen.connect(_on_runner_seen)
+	else:
+		var next_pos = _get_next_pos(runner.direction)
+		var next_cell = map.get_cell_at_pos(next_pos)
+		if runner.get_visible_runners() or not _is_cell_clear(next_cell):
+			_turn()
 
 ##
 ## Starts running. Be sure to set the runner and the map before calling this.
@@ -136,52 +134,69 @@ func start():
 
 	set_physics_process(true)
 
-func _on_runner_seen(_area: Area2D):
-	if _can_take_action():
-		_turn()
-
 func _get_next_pos(dir: Vector2) -> Vector2:
 	var pos = runner.global_position
 	pos.x += (0.5 if dir.x > 0 else -0.5) * Cell.width
 	pos.y += (0.5 if dir.y > 0 else -0.5) * Cell.height
 	return pos
 
-func _turn():
-	var dir1: Vector2
-	var dir2: Vector2
-
+func _get_left_dir() -> Vector2:
 	if runner.direction.x > 0:
 		if runner.direction.y > 0:
-			# going southeast
-			dir1 = Globals.NORTHEAST
-			dir2 = Globals.SOUTHWEST
+			return Globals.NORTHEAST
 		else:
-			# going northeast
-			dir1 = Globals.NORTHWEST
-			dir2 = Globals.SOUTHEAST
+			return Globals.NORTHWEST
 	else:
 		if runner.direction.y > 0:
-			# going southwest
-			dir1 = Globals.SOUTHEAST
-			dir2 = Globals.NORTHWEST
+			return Globals.SOUTHEAST
 		else:
-			# going northwest
-			dir1 = Globals.SOUTHWEST
-			dir2 = Globals.NORTHEAST
+			return Globals.SOUTHWEST
 
+func _get_right_dir() -> Vector2:
+	if runner.direction.x > 0:
+		if runner.direction.y > 0:
+			return Globals.SOUTHWEST
+		else:
+			return Globals.SOUTHEAST
+	else:
+		if runner.direction.y > 0:
+			return Globals.NORTHWEST
+		else:
+			return Globals.NORTHEAST
+
+func _turn():
+	var dir1 = _get_left_dir()
+	var dir2 = _get_right_dir()
 	var pos1 = _get_next_pos(dir1)
 	var pos2 = _get_next_pos(dir2)
 	var cell1 = map.get_cell_at_pos(pos1)
 	var cell2 = map.get_cell_at_pos(pos2)
 	var ok1 = _is_cell_clear(cell1)
 	var ok2 = _is_cell_clear(cell2)
+	var dir: Vector2
 
 	if ok1 and ok2:
-		_send_direction_event(dir1 if randi() & 1 else dir2)
+		dir = dir1 if randi() & 1 else dir2
 	elif ok1:
-		_send_direction_event(dir1)
+		dir = dir1
 	elif ok2:
-		_send_direction_event(dir2)
+		dir = dir2
+
+	if ok1 or ok2:
+		if dir.x > 0:
+			if dir.y > 0:
+				_next_move = Move.SOUTHEAST
+			else:
+				_next_move = Move.NORTHEAST
+		else:
+			if dir.y > 0:
+				_next_move = Move.SOUTHWEST
+			else:
+				_next_move = Move.NORTHWEST
+	else:
+		_next_move = Move.U_TURN
+
+	_next_move_time = randf_range(min_reaction_time, max_reaction_time)
 
 func _send_direction_event(dir: Vector2):
 	if Globals.use_diagonals_for_movement:
@@ -204,7 +219,6 @@ func _send_direction_event(dir: Vector2):
 				_send_action_event(&"ui_down_button")
 			else:
 				_send_action_event(&"ui_left_button")
-	_add_action_taken()
 
 func _send_action_event(action: StringName):
 	var event = InputEventAction.new()
@@ -213,12 +227,16 @@ func _send_action_event(action: StringName):
 	event.action = action
 	event.pressed = true
 	Input.parse_input_event(event)
+
 	await get_tree().create_timer(
 		2.0 / Engine.physics_ticks_per_second, true, true).timeout
+
+	event = event.duplicate()
 	event.pressed = false
 	Input.parse_input_event(event)
 
 func _is_cell_clear(cell: Cell) -> bool:
-	return (cell and cell.get_state() == Cell.State.NORMAL
+	return (cell
+			and cell.get_state() in [Cell.State.NORMAL, Cell.State.CUBE]
 			and cell.get_wall_count() < 2
 			and not cell.get_artefact())
