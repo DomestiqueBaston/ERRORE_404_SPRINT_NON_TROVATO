@@ -99,7 +99,7 @@ Les obstacles :
 - Toutes les X secondes (voir Options nécessaires dans Settings) un des obstacles est déclenché. 25% du temps, il s’agira d’1 glissement de Ligne/Colonne. La « quantité » de glissement des Ligne/Colonne se font aléatoirement d’1 à (longueur d’un côté au départ/3) cases (pour ne pas dire cellule qui pourrait être perturbant). On fait TOUJOURS glisser une ligne/colonne complète (« trous » inclus).
     1. Ligne/Colonne (de cellules) qui glisse – Permanent → ✔ (1’’ avant, on joue Cell_Pylon_Alarms/Cell_Slide dans Sounds.tscn ET jusqu’à la fin de l’animation)
     2. Trous (cellules qui descendent) – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
-    3. Murs des concurrents – (Durée : comme précisé plus loin) → ✔ (voir avec Geoff comment faire)
+    3. Murs des concurrents – (Durée : comme précisé plus loin) → ✔
     4. Sens unique – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔ /!\ATTENTION/!\  c’est le collider du panneau qui fait changer de direction, pas la cellule elle-même ! On fait disparaître (avec l’animation Disappearing) le Sens unique dès qu’il est déclenché par un concurrent.
     5. Colonne descendante – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
     6. Colonne écrasante – 5’’ en difficulté 1 à 20’’ en difficulté 5 → ✔
@@ -142,7 +142,7 @@ Options (nécessaires) dans Settings:
         ◦ Temps avant la disparition de l’artefact : (Taille de la map + (2 × Difficulté)) / 10 minutes.
         ◦ Temps avant le déclenchement du processus d’apparition de Door.tscn : (5 + (Difficulté − 1) × 1,25 ) secondes
         ◦ Délai entre les déclenchements d’obstacles : 5.5 - (0,5 × Difficulté) secondes.
-        ◦ Délai avant disparition des tronçons de mur : 3 + ((Difficulté + Taille de la map − 10) / 16) × 7 secondes après apparition.
+        ◦ Délai avant disparition des tronçons de mur : 3 + ((Difficulté + Taille de la map − 10) / 16) × 4 secondes après apparition.
         ◦ /!\ ATTENTION/!\ , il y a un mode de difficulté 6 « caché » (accessible en survivant au moins 4 minutes et 04 secondes en Difficulté 5) qui rend tous les obstacles PERMANENTS (le reste est traîté comme Difficulté 5 si rien n’est précisé !), Y COMPRIS les murs des concurrents.
         ◦ Modifications pour Difficulté 6 dans Settings.tscn :
             ▪ On change Hslider_Difficulty.tick = 6 (au lieu de 5) et Hslider_Difficulty.max = 6 (au lieu de 5)
