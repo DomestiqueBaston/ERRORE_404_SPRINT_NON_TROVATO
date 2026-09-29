@@ -152,7 +152,7 @@ Les personnalités de base des Bots :
     3. Un comportement ne sera donné qu’à 1 seul bot.
     4. Les comportements choisis sont prioritaires par rapport à leurs versions du comportement de base (si ils existent).
     5. On définira des valeurs « par défaut » pour un bot afin de faire varier ces valeurs en fonction du comportement sélectionné.
-        ◦ Temps de réaction de base face aux obstacles et imprévus : 300ms.
+        ◦ Temps de réaction de base face aux obstacles et imprévus : 300ms. À chaque fois, on variera de +/-10 % (et une fois fait, on revient à 300ms, c’est juste pour ne pas avoir toujours le même temps de réaction).
         ◦ Un bot peut enchaîner au maximum 2 actions en 150ms. Ex. : tourner 2 fois, tourner puis sauter, tourner activer un Bonus, etc.
         ◦ Taille du collider Vision de base : scale à 0,5 en x et y.
         ◦ Un bot affecté par un bug graphique de sa vue caméra a un temps de réaction augmenté de 50ms.
