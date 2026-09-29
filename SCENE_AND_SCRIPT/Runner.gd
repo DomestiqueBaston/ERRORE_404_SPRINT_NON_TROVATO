@@ -24,6 +24,7 @@ signal died
 @onready var _glitch_anim: AnimationPlayer = $Animation_Glitch
 @onready var _collider: Area2D = $Character/Papa_Sprite/Runner_Sprite/Collider_Area
 @onready var _vision: Area2D = $Character/Papa_Sprite/Runner_Sprite/Vision_Area
+@onready var _vision_shape: CollisionPolygon2D = $Character/Papa_Sprite/Runner_Sprite/Vision_Area/Vision
 
 @onready var _footstep1 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_01
 @onready var _footstep2 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_02
@@ -902,8 +903,8 @@ func _on_vision_area_entered(area: Area2D):
 		runner_seen.emit(area)
 
 ##
-## Applies a scale factor to the runner's vision area collider, limiting what
-## he sees if the scale factor is less than 1.
+## Applies a scale factor to the runner's vision area collider shape, limiting
+## what he sees if the scale factor is less than 1.
 ##
 func set_vision_area_scale(sc: float):
-	_vision.scale = Vector2(sc, sc)
+	_vision_shape.scale = Vector2(sc, sc)
