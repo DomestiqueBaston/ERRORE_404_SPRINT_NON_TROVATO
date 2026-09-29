@@ -3,8 +3,8 @@ Errore 404: Sprint Non Trovato! (un jeu qui bugue)
 Tentative de description du jeu plus claire :
 Une partie oppose toujours 4 concurrents (1 joueur et 3 Bots). Les concurrents courent en permanence, ne peuvent pas s'arrêter et tracent un mur temporaire derrière eux. Le terrain se transforme continuellement (glissements de portions de terrain, cellules qui s'abaissent ou disparaissent, colonnes, etc.), modifiant les trajets possibles pendant toute la course. Des Bonus/Malus apparaissent régulièrement ; chaque couleur est associée à un Bonus et à un Malus, le joueur ne sait donc jamais lequel il ramasse. Des "bugs" viennent également perturber l'affichage pendant la partie. La course prend fin lorsqu'il ne reste plus qu'un seul concurrent vivant ou lorsqu'un concurrent passe la porte de sortie que celle-ci est apparue.
 Les coureurs s’appellent :
-- Woman_A : maCHE ?
-- Woman_B : Da1 !
+- Woman_A : maCHE?
+- Woman_B : Da1!
 - Man_A : C0no
 - Man_B : Strn20
 
