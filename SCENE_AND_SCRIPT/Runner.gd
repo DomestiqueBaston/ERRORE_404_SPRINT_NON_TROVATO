@@ -900,3 +900,10 @@ func _on_collider_entered(area: Area2D):
 func _on_vision_area_entered(area: Area2D):
 	if area.get_parent() != _sprite:
 		runner_seen.emit(area)
+
+##
+## Applies a scale factor to the runner's vision area collider, limiting what
+## he sees if the scale factor is less than 1.
+##
+func set_vision_area_scale(sc: float):
+	_vision.scale = Vector2(sc, sc)

@@ -2931,7 +2931,6 @@ shape = SubResource("CapsuleShape2D_uqsxk")
 metadata/_edit_lock_ = true
 
 [node name="Vision_Area" type="Area2D" parent="Character/Papa_Sprite/Runner_Sprite" unique_id=929364484]
-visible = false
 monitorable = false
 metadata/_edit_lock_ = true
 

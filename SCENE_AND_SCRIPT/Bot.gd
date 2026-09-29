@@ -3,6 +3,7 @@ class_name Bot extends Node
 var runner: Runner: set = set_runner
 var map: Map
 var start_corner: Globals.Corner
+var vision_scale: float = 0.5
 
 var _next_cell: Cell
 var _block_commands: bool = false
@@ -41,6 +42,8 @@ func set_runner(r: Runner):
 			runner.runner_seen.connect(_on_runner_seen)
 
 func start():
+	runner.set_vision_area_scale(vision_scale)
+
 	var xsign: int
 	var ysign: int
 
