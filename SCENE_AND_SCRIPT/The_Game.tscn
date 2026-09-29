@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://qy0upqf8jc48" path="res://SCENE_AND_SCRIPT/Minimap.tscn" id="4_jtvwl"]
 [ext_resource type="PackedScene" uid="uid://3u5u3tfo43n" path="res://SCENE_AND_SCRIPT/Portraits.tscn" id="4_lqmhv"]
 [ext_resource type="Script" uid="uid://dlt25318wok6w" path="res://SCENE_AND_SCRIPT/Win.gd" id="5_4er72"]
+[ext_resource type="Texture2D" uid="uid://cutec7wipswh2" path="res://IMAGE/MISC/Title_Gradient.png" id="5_lqmhv"]
 [ext_resource type="FontFile" uid="uid://b6oxbwfgmigfj" path="res://RESOURCE/OCRA.ttf" id="6_0v8rs"]
 [ext_resource type="Texture2D" uid="uid://bg8x247cwwks8" path="res://IMAGE/MISC/BSOD.png" id="7_hqhym"]
 [ext_resource type="Texture2D" uid="uid://ysvcu3wtt5ts" path="res://IMAGE/MISC/BSOD_.png" id="8_ftnwh"]
@@ -2645,6 +2646,236 @@ position = Vector2(480, 0)
 points = PackedVector2Array(0, 0, 0, 540)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Player_Names" type="Control" parent="Frames/Black_Frames" unique_id=1820968849]
+anchors_preset = 0
+metadata/_edit_lock_ = true
+
+[node name="Player_1" type="Control" parent="Frames/Black_Frames/Player_Names" unique_id=1086197377]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 7.0
+offset_right = 132.0
+offset_bottom = 31.0
+metadata/_edit_lock_ = true
+
+[node name="1" type="Label" parent="Frames/Black_Frames/Player_Names/Player_1" unique_id=411057359]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529, 0.68498176, 0.97, 0.49803922)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 15
+theme_override_fonts/font = ExtResource("3_ycojx")
+theme_override_font_sizes/font_size = 10
+text = "_b4sTa"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Cache" type="Label" parent="Frames/Black_Frames/Player_Names/Player_1" unique_id=553934173]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("3_ycojx")
+theme_override_font_sizes/font_size = 10
+text = "_b4sTa"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Gradient" type="Sprite2D" parent="Frames/Black_Frames/Player_Names/Player_1/Cache" unique_id=31619473]
+self_modulate = Color(0.969, 1.215, 1.892, 0.863)
+position = Vector2(60, 29)
+scale = Vector2(0.15, 0.17)
+texture = ExtResource("5_lqmhv")
+metadata/_edit_lock_ = true
+
+[node name="Player_2" type="Control" parent="Frames/Black_Frames/Player_Names" unique_id=2065760392]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 829.0
+offset_right = 954.0
+offset_bottom = 31.0
+metadata/_edit_lock_ = true
+
+[node name="2" type="Label" parent="Frames/Black_Frames/Player_Names/Player_2" unique_id=778116393]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529, 0.68498176, 0.97, 0.49803922)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 15
+theme_override_fonts/font = ExtResource("3_ycojx")
+theme_override_font_sizes/font_size = 10
+text = "dA1!"
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Cache" type="Label" parent="Frames/Black_Frames/Player_Names/Player_2" unique_id=568857492]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("3_ycojx")
+theme_override_font_sizes/font_size = 10
+text = "dA1!"
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Gradient" type="Sprite2D" parent="Frames/Black_Frames/Player_Names/Player_2/Cache" unique_id=933130307]
+self_modulate = Color(0.969, 1.215, 1.892, 0.863)
+position = Vector2(65, 29)
+scale = Vector2(0.15, 0.17)
+texture = ExtResource("5_lqmhv")
+metadata/_edit_lock_ = true
+
+[node name="Player_3" type="Control" parent="Frames/Black_Frames/Player_Names" unique_id=1644401008]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 7.0
+offset_top = 509.0
+offset_right = 132.0
+offset_bottom = 540.0
+metadata/_edit_lock_ = true
+
+[node name="3" type="Label" parent="Frames/Black_Frames/Player_Names/Player_3" unique_id=459048866]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529, 0.68498176, 0.97, 0.49803922)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 15
+theme_override_fonts/font = ExtResource("3_ycojx")
+theme_override_font_sizes/font_size = 10
+text = "cOnØ"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Cache" type="Label" parent="Frames/Black_Frames/Player_Names/Player_3" unique_id=1495228091]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("3_ycojx")
+theme_override_font_sizes/font_size = 10
+text = "cOnØ"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Gradient" type="Sprite2D" parent="Frames/Black_Frames/Player_Names/Player_3/Cache" unique_id=1642180688]
+self_modulate = Color(0.969, 1.215, 1.892, 0.863)
+position = Vector2(60, 29)
+scale = Vector2(0.15, 0.17)
+texture = ExtResource("5_lqmhv")
+metadata/_edit_lock_ = true
+
+[node name="Player_4" type="Control" parent="Frames/Black_Frames/Player_Names" unique_id=918620054]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 829.0
+offset_top = 509.0
+offset_right = 954.0
+offset_bottom = 540.0
+metadata/_edit_lock_ = true
+
+[node name="4" type="Label" parent="Frames/Black_Frames/Player_Names/Player_4" unique_id=55553071]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_colors/font_shadow_color = Color(0.5529, 0.68498176, 0.97, 0.49803922)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 15
+theme_override_fonts/font = ExtResource("3_ycojx")
+theme_override_font_sizes/font_size = 10
+text = "sTrn2Ø!"
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Cache" type="Label" parent="Frames/Black_Frames/Player_Names/Player_4" unique_id=33317138]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("3_ycojx")
+theme_override_font_sizes/font_size = 10
+text = "sTrn2Ø!"
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Gradient" type="Sprite2D" parent="Frames/Black_Frames/Player_Names/Player_4/Cache" unique_id=51358320]
+self_modulate = Color(0.969, 1.215, 1.892, 0.863)
+position = Vector2(65, 29)
+scale = Vector2(0.15, 0.17)
+texture = ExtResource("5_lqmhv")
 metadata/_edit_lock_ = true
 
 [node name="Player_Selection" type="Control" parent="Frames" unique_id=1669580988]
