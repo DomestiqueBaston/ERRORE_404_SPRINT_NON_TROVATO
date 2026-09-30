@@ -23,15 +23,23 @@ const min_reaction_time: float = 0.1
 ## When the bot sees an obstacle, it will react within this amount of time.
 const max_reaction_time: float = 0.2
 
-## After taking action, the bot will wait at least thing long before taking
+## After taking an action, the bot will wait at least this long before taking
 ## another.
 const min_move_interval: float = 0.1
 
-## When the bot makes a u-turn, this is the time interval between the two turns.
-const u_turn_interval: float = 0.1
-
 ## How long before reaching a hole or a pylon the runner should jump or slide.
-const jump_slide_runup_time: float = 0.05
+const jump_slide_runup_time: float = 0.07
+
+#
+# Object used to evaluate the runner's options in _react().
+#
+class RunnerAction:
+	# direction to move in
+	var dir: Vector2
+	# neighboring cell in that direction, if any
+	var cell: Cell
+	# priority compared to other options: see _evaluate_move()
+	var priority: int
 
 func _ready():
 	set_physics_process(false)
@@ -41,24 +49,11 @@ func _physics_process(_delta: float):
 	var next_pos = _get_next_pos(runner.direction)
 	var next_cell = map.get_cell_at_pos(next_pos)
 	if runner.get_visible_runners() or not _is_cell_clear(next_cell):
-		var t = randf_range(min_reaction_time, max_reaction_time)
 		set_physics_process(false)
-		await get_tree().create_timer(t).timeout
-		_turn()
+		var reaction_time = randf_range(min_reaction_time, max_reaction_time)
+		await get_tree().create_timer(reaction_time).timeout
+		await _react()
 		set_physics_process(not (runner.is_dead or runner.is_falling))
-
-#
-# Given a point outside the current cell, in the direction the runner is moving,
-# returns how long in seconds it will take the runner to get from his current
-# position to the border of the current cell.
-#
-func _get_time_to_cell_border(next_pos: Vector2) -> float:
-	if runner.current_cell:
-		var pt = runner.current_cell.get_exit_point(
-			runner.global_position, next_pos)
-		if pt != null:
-			return runner.global_position.distance_to(pt) / runner.get_current_speed()
-	return 0
 
 ##
 ## Starts running. Be sure to set the runner and the map before calling this.
@@ -112,12 +107,175 @@ func start():
 
 	set_physics_process(true)
 
-func _get_next_pos(dir: Vector2) -> Vector2:
-	var pos = runner.global_position
+#
+# Makes the runner change direction, jump and/or slide in response to the
+# obstacles surrounding him.
+#
+func _react():
+	var other_runners = runner.get_visible_runners()
+	var options: Array[RunnerAction]
+
+	# continue straight on?
+
+	var forward = runner.direction
+	var pos = _get_next_pos(forward)
+	var cell = map.get_cell_at_pos(pos)
+	var priority = _evaluate_move(forward, pos, cell, other_runners)
+	_add_option_maybe(options, forward, cell, priority)
+
+	# turn left?
+
+	var left = _get_left_dir()
+	pos = _get_next_pos(left)
+	cell = map.get_cell_at_pos(pos)
+	priority = _evaluate_move(left, pos, cell, other_runners)
+	_add_option_maybe(options, left, cell, priority)
+
+	# turn right?
+
+	var right = _get_right_dir()
+	pos = _get_next_pos(right)
+	cell = map.get_cell_at_pos(pos)
+	priority = _evaluate_move(right, pos, cell, other_runners)
+	_add_option_maybe(options, right, cell, priority)
+
+	# if there is nowhere to go, turn either left or right, which may later
+	# result in a u-turn
+
+	if options.is_empty():
+		_send_direction_event(left if randi() & 1 else right)
+		return
+
+	# if there is more than one way to go, pick one at random, jumping or
+	# sliding as needed
+
+	var option = options.pick_random()
+	var jump_or_slide: StringName
+
+	if option.cell == null or option.cell.get_state() in [
+		Cell.State.LOWERED, Cell.State.HIDDEN
+	]:
+		jump_or_slide = &"jump"
+	elif option.cell.get_state() == Cell.State.PYLON:
+		jump_or_slide = &"slide"
+
+	if option.dir != runner.direction:
+		_send_direction_event(option.dir)
+
+	if jump_or_slide:
+		var next_pos = _get_next_pos(option.dir)
+		var time = _get_time_to_cell_border(next_pos) - jump_slide_runup_time
+		await get_tree().create_timer(maxf(time, min_move_interval)).timeout
+		if jump_or_slide == &"jump":
+			_send_action_event(&"ui_a_button")
+		else:
+			_send_action_event(&"ui_b_button")
+
+#
+# Adds a new RunnerAction to the options array, if priority > 0 and >= the
+# priority of the options already in the array. If priority > the priority of
+# the existing options, they are replaced.
+#
+func _add_option_maybe(
+	options: Array[RunnerAction], dir: Vector2, cell: Cell, priority: int):
+	if priority == 0:
+		return
+
+	if not options.is_empty():
+		if options[0].priority > priority:
+			return
+		if options[0].priority < priority:
+			options.clear()
+
+	var option = RunnerAction.new()
+	option.dir = dir
+	option.cell = cell
+	option.priority = priority
+	options.push_back(option)
+
+#
+# Evaluates a potential move in the given direction from the runner's current
+# position. The pos parameter is a point in the neighboring cell (if there is
+# one) in that direction, and the cell parameter is that cell.
+#
+# Possible return values are:
+#
+# 0: The destination contains an unavoidable obstacle, such as a dropped pylon
+# or an artefact.
+#
+# 1: The destination contains another runner, one or more walls, or an obstacle
+# that may be OK, such as a one-way sign or a teleport.
+#
+# 2: The destination contains a hole that can be jumped over, or a pylon that
+# can be slid under, or no obstacles at all.
+#
+func _evaluate_move(
+	dir: Vector2, pos: Vector2, cell: Cell, other_runners: Array[Runner]
+) -> int:
+
+	if cell == null:
+		return 2 if _can_jump_or_slide_over(pos, dir) else 0
+
+	if cell.get_artefact():
+		return 0
+
+	var is_crowded = false
+	for other in other_runners:
+		if other.get_current_cell() == cell:
+			is_crowded = true
+			break
+
+	if _is_cell_clear(cell):
+		return 1 if is_crowded else 2
+
+	match cell.get_state():
+		Cell.State.LOWERED, Cell.State.HIDDEN:
+			return 2 if _can_jump_or_slide_over(pos, dir) else 0
+		Cell.State.TELEPORT, Cell.State.ONE_WAY:
+			return 1
+		Cell.State.PYLON:
+			match cell.get_pylon().get_state():
+				Pylon.State.RAISED:
+					return 1 if is_crowded else 2
+				Pylon.State.LOWERED:
+					if _can_jump_or_slide_over(pos, dir):
+						return 1 if is_crowded else 2
+
+	return 0
+
+#
+# Given a location and a direction of movement, returns true if the next cell
+# over from that location is safe to jump or slide to.
+#
+func _can_jump_or_slide_over(pos: Vector2, dir: Vector2) -> bool:
+	var next_pos = _get_next_pos(dir, pos)
+	var next_cell = map.get_cell_at_pos(next_pos)
+	return _is_cell_clear(next_cell)
+
+#
+# Given a point outside the current cell, returns how long it will take the
+# runner to get from his current position to the border of the current cell.
+#
+func _get_time_to_cell_border(next_pos: Vector2) -> float:
+	if runner.get_current_cell():
+		var pt = runner.get_current_cell().get_exit_point(
+			runner.global_position, next_pos)
+		if pt != null:
+			return runner.global_position.distance_to(pt) / runner.get_current_speed()
+	return 0
+
+#
+# Given a direction of movement and a location (which defaults to the runner's
+# current position), returns the location one cell further in that direction.
+#
+func _get_next_pos(dir: Vector2, pos: Vector2 = runner.global_position) -> Vector2:
 	pos.x += (0.5 if dir.x > 0 else -0.5) * Cell.width
 	pos.y += (0.5 if dir.y > 0 else -0.5) * Cell.height
 	return pos
 
+#
+# Returns a vector pointing to the left of the runner's current direction.
+#
 func _get_left_dir() -> Vector2:
 	if runner.direction.x > 0:
 		if runner.direction.y > 0:
@@ -130,6 +288,9 @@ func _get_left_dir() -> Vector2:
 		else:
 			return Globals.SOUTHWEST
 
+#
+# Returns a vector pointing to the right of the runner's current direction.
+#
 func _get_right_dir() -> Vector2:
 	if runner.direction.x > 0:
 		if runner.direction.y > 0:
@@ -141,40 +302,6 @@ func _get_right_dir() -> Vector2:
 			return Globals.NORTHWEST
 		else:
 			return Globals.NORTHEAST
-
-func _turn():
-	var dir1 = _get_left_dir()
-	var dir2 = _get_right_dir()
-	var pos1 = _get_next_pos(dir1)
-	var pos2 = _get_next_pos(dir2)
-	var cell1 = map.get_cell_at_pos(pos1)
-	var cell2 = map.get_cell_at_pos(pos2)
-	var ok1 = _is_cell_clear(cell1)
-	var ok2 = _is_cell_clear(cell2)
-	var dir: Vector2
-
-	if ok1 and ok2:
-		dir = dir1 if randi() & 1 else dir2
-	elif ok1:
-		dir = dir1
-	elif ok2:
-		dir = dir2
-
-	if ok1 or ok2:
-		if dir.x > 0:
-			if dir.y > 0:
-				_send_direction_event(Globals.SOUTHEAST)
-			else:
-				_send_direction_event(Globals.NORTHEAST)
-		else:
-			if dir.y > 0:
-				_send_direction_event(Globals.SOUTHWEST)
-			else:
-				_send_direction_event(Globals.NORTHWEST)
-	else:
-		_send_direction_event(dir1 if randi() & 1 else dir2)
-		await get_tree().create_timer(u_turn_interval).timeout
-		_send_direction_event(-runner.direction)
 
 func _send_direction_event(dir: Vector2):
 	if Globals.use_diagonals_for_movement:
