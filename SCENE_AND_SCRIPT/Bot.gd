@@ -18,17 +18,20 @@ var start_corner: Globals.Corner
 const vision_scale: float = 0.5
 
 ## When the bot sees an obstacle, it will take it at least this long to react.
-const min_reaction_time: float = 0.15
+const min_reaction_time: float = 0.1
 
 ## When the bot sees an obstacle, it will react within this amount of time.
-const max_reaction_time: float = 0.25
+const max_reaction_time: float = 0.2
 
 ## After taking action, the bot will wait at least thing long before taking
 ## another.
-const min_move_interval: float = 0.15
+const min_move_interval: float = 0.1
 
 ## When the bot makes a u-turn, this is the time interval between the two turns.
 const u_turn_interval: float = 0.1
+
+## How long before reaching a hole or a pylon the runner should jump or slide.
+const jump_slide_runup_time: float = 0.05
 
 enum Move {
 	NONE,
@@ -36,7 +39,9 @@ enum Move {
 	NORTHEAST,
 	SOUTHWEST,
 	SOUTHEAST,
-	U_TURN
+	U_TURN,
+	JUMP,
+	SLIDE
 }
 
 # The next move the bot intends to make.
@@ -75,6 +80,10 @@ func _physics_process(delta: float):
 					_send_direction_event(dir1)
 					await get_tree().create_timer(u_turn_interval).timeout
 					_send_direction_event(dir2)
+				Move.JUMP:
+					_send_action_event(&"ui_a_button")
+				Move.SLIDE:
+					_send_action_event(&"ui_b_button")
 			await get_tree().create_timer(min_move_interval).timeout
 			set_physics_process(not (runner.is_dead or runner.is_falling))
 
@@ -85,6 +94,19 @@ func _physics_process(delta: float):
 		var next_cell = map.get_cell_at_pos(next_pos)
 		if runner.get_visible_runners() or not _is_cell_clear(next_cell):
 			_turn()
+
+#
+# Given a point outside the current cell, in the direction the runner is moving,
+# returns how long in seconds it will take the runner to get from his current
+# position to the border of the current cell.
+#
+func _get_time_to_cell_border(next_pos: Vector2) -> float:
+	if runner.current_cell:
+		var pt = runner.current_cell.get_exit_point(
+			runner.global_position, next_pos)
+		if pt:
+			return runner.global_position.distance_to(pt) / runner.move_speed
+	return 0
 
 ##
 ## Starts running. Be sure to set the runner and the map before calling this.
@@ -116,11 +138,15 @@ func start():
 	var uv2 = Vector2i(xsign * sz, ysign * (sz-1))
 	var cell1 = map.get_cell_at(uv1)
 	var cell2 = map.get_cell_at(uv2)
+	var ok1 = _is_cell_clear(cell1)
+	var ok2 = _is_cell_clear(cell2)
 	var delta: Vector2i
 
-	if _is_cell_clear(cell1):
+	if ok1 and ok2:
+		delta = (uv1 if randi() & 1 else uv2) - here
+	elif ok1:
 		delta = uv1 - here
-	elif _is_cell_clear(cell2):
+	else:
 		delta = uv2 - here
 
 	if delta.x > 0:
