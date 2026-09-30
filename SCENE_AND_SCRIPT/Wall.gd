@@ -215,4 +215,4 @@ static func get_wall_from_collider(collider: Area2D) -> Wall:
 ## global difficulty level and map size.
 ##
 static func get_duration() -> float:
-	return 3 + 7 * (Globals.difficulty + (2 * Globals.map_size + 1) - 10) / 16.0
+	return 3 + 4 * (Globals.difficulty + (2 * Globals.map_size + 1) - 10) / 16.0
