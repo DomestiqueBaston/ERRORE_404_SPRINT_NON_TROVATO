@@ -910,9 +910,9 @@ func _on_collider_entered(area: Area2D):
 func get_visible_runners() -> Array[Runner]:
 	var runners: Array[Runner]
 	for area in _vision.get_overlapping_areas():
-		if area.collision_layer & Globals.RUNNER_LAYER:
+		if area != _collider and (area.collision_layer & Globals.RUNNER_LAYER):
 			var runner = area.get_node("../../../..")
-			if runner is Runner and runner != self:
+			if runner is Runner:
 				runners.append(runner)
 	return runners
 
