@@ -315,7 +315,7 @@ func _physics_process(delta: float):
 	else:
 		direction = _last_direction
 
-	var new_pos = position + direction * _get_current_speed() * delta
+	var new_pos = position + direction * get_current_speed() * delta
 	var parent = get_parent()
 	var new_global_pos = parent.to_global(new_pos) if parent is Node2D else new_pos
 	var new_cell = _map.get_cell_at_pos(new_global_pos)
@@ -377,7 +377,7 @@ func _physics_process(delta: float):
 			create_tween() \
 				.set_trans(Tween.TRANS_SINE) \
 				.set_ease(Tween.EASE_IN_OUT) \
-				.tween_property(_camera, ^"offset", offset, 0.75)
+				.tween_property(_camera, ^"offset", offset, 0.666)
 
 	# Add a point to the runner's wall, unless he is dead, or falling, or
 	# jumping, or sliding, or teleporting...
@@ -432,7 +432,16 @@ func _set_position(pos: Vector2, is_global: bool, cell: Cell):
 	if _camera:
 		_camera.global_position = global_position
 
-func _get_current_speed() -> float:
+##
+## Returns the cell where the runner is currently located, if known.
+##
+func get_current_cell() -> Cell:
+	return _curr_cell
+
+##
+## Returns the speed at which the runner is currently moving, in units/second.
+##
+func get_current_speed() -> float:
 	var speed: float
 	if is_jumping and _animation.current_animation.begins_with("Jump_"):
 		var progress = (_animation.current_animation_position /
