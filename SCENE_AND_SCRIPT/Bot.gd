@@ -33,67 +33,19 @@ const u_turn_interval: float = 0.1
 ## How long before reaching a hole or a pylon the runner should jump or slide.
 const jump_slide_runup_time: float = 0.05
 
-enum Move {
-	NONE,
-	NORTHWEST,
-	NORTHEAST,
-	SOUTHWEST,
-	SOUTHEAST,
-	U_TURN,
-	JUMP,
-	SLIDE
-}
-
-# The next move the bot intends to make.
-var _next_move: Move = Move.NONE
-
-# In how much time the bot will make the next move.
-var _next_move_time: float
-
 func _ready():
 	set_physics_process(false)
 	runner.died.connect(func(): set_physics_process(false))
 
-func _physics_process(delta: float):
-
-	# if the bot has already decided to make a move, wait for the reaction time
-	# to elapse, then do it
-
-	if _next_move != Move.NONE:
-		_next_move_time -= delta
-		if _next_move_time <= 0 and not (runner.is_jumping or runner.is_sliding):
-			var move = _next_move
-			_next_move = Move.NONE
-			set_physics_process(false)
-			match move:
-				Move.NORTHWEST:
-					_send_direction_event(Globals.NORTHWEST)
-				Move.NORTHEAST:
-					_send_direction_event(Globals.NORTHEAST)
-				Move.SOUTHWEST:
-					_send_direction_event(Globals.SOUTHWEST)
-				Move.SOUTHEAST:
-					_send_direction_event(Globals.SOUTHEAST)
-				Move.U_TURN:
-					var dir1 = _get_left_dir() if randi() & 1 else _get_right_dir()
-					var dir2 = -runner.direction
-					_send_direction_event(dir1)
-					await get_tree().create_timer(u_turn_interval).timeout
-					_send_direction_event(dir2)
-				Move.JUMP:
-					_send_action_event(&"ui_a_button")
-				Move.SLIDE:
-					_send_action_event(&"ui_b_button")
-			await get_tree().create_timer(min_move_interval).timeout
-			set_physics_process(not (runner.is_dead or runner.is_falling))
-
-	# otherwise, check for new obstacles
-
-	else:
-		var next_pos = _get_next_pos(runner.direction)
-		var next_cell = map.get_cell_at_pos(next_pos)
-		if runner.get_visible_runners() or not _is_cell_clear(next_cell):
-			_turn()
+func _physics_process(_delta: float):
+	var next_pos = _get_next_pos(runner.direction)
+	var next_cell = map.get_cell_at_pos(next_pos)
+	if runner.get_visible_runners() or not _is_cell_clear(next_cell):
+		var t = randf_range(min_reaction_time, max_reaction_time)
+		set_physics_process(false)
+		await get_tree().create_timer(t).timeout
+		_turn()
+		set_physics_process(not (runner.is_dead or runner.is_falling))
 
 #
 # Given a point outside the current cell, in the direction the runner is moving,
@@ -104,8 +56,8 @@ func _get_time_to_cell_border(next_pos: Vector2) -> float:
 	if runner.current_cell:
 		var pt = runner.current_cell.get_exit_point(
 			runner.global_position, next_pos)
-		if pt:
-			return runner.global_position.distance_to(pt) / runner.move_speed
+		if pt != null:
+			return runner.global_position.distance_to(pt) / runner.get_current_speed()
 	return 0
 
 ##
@@ -211,18 +163,18 @@ func _turn():
 	if ok1 or ok2:
 		if dir.x > 0:
 			if dir.y > 0:
-				_next_move = Move.SOUTHEAST
+				_send_direction_event(Globals.SOUTHEAST)
 			else:
-				_next_move = Move.NORTHEAST
+				_send_direction_event(Globals.NORTHEAST)
 		else:
 			if dir.y > 0:
-				_next_move = Move.SOUTHWEST
+				_send_direction_event(Globals.SOUTHWEST)
 			else:
-				_next_move = Move.NORTHWEST
+				_send_direction_event(Globals.NORTHWEST)
 	else:
-		_next_move = Move.U_TURN
-
-	_next_move_time = randf_range(min_reaction_time, max_reaction_time)
+		_send_direction_event(dir1 if randi() & 1 else dir2)
+		await get_tree().create_timer(u_turn_interval).timeout
+		_send_direction_event(-runner.direction)
 
 func _send_direction_event(dir: Vector2):
 	if Globals.use_diagonals_for_movement:
