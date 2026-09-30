@@ -2940,7 +2940,7 @@ scale = Vector2(0.15, 0.17)
 texture = ExtResource("5_lqmhv")
 metadata/_edit_lock_ = true
 
-[node name="Animation_Names" type="AnimationPlayer" parent="Frames/Black_Frames_And_Numbers/Screen_Numbers" unique_id=1214003390]
+[node name="Animation_Numbers" type="AnimationPlayer" parent="Frames/Black_Frames_And_Numbers/Screen_Numbers" unique_id=1214003390]
 libraries/ = SubResource("AnimationLibrary_ftnwh")
 
 [node name="Player_Selection" type="Control" parent="Frames" unique_id=1669580988]
