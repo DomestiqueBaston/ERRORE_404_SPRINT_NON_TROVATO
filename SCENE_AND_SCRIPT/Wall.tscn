@@ -162,6 +162,7 @@ metadata/_edit_lock_ = true
 
 [node name="Wall_Hum" type="AudioStreamPlayer2D" parent="Sounds" unique_id=506467748]
 stream = ExtResource("6_o83og")
+volume_db = -2.5
 max_distance = 1000.0
 bus = &"FX_DRY"
 parameters/looping = true
