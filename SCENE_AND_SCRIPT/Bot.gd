@@ -48,7 +48,9 @@ func _ready():
 func _physics_process(_delta: float):
 	var next_pos = _get_next_pos(runner.direction)
 	var next_cell = map.get_cell_at_pos(next_pos)
-	if runner.get_visible_runners() or not _is_cell_clear(next_cell):
+	if (not _is_cell_clear(next_cell)
+		or runner.get_visible_runners()
+		or _check_for_walls(next_pos, next_cell)):
 		set_physics_process(false)
 		var reaction_time = randf_range(min_reaction_time, max_reaction_time)
 		await get_tree().create_timer(reaction_time).timeout
@@ -195,50 +197,53 @@ func _add_option_maybe(
 
 #
 # Evaluates a potential move in the given direction from the runner's current
-# position. The pos parameter is a point in the neighboring cell (if there is
-# one) in that direction, and the cell parameter is that cell.
+# position. The next_pos parameter is a point in the neighboring cell in that
+# direction, if there is one (next_cell).
 #
 # Possible return values are:
 #
 # 0: The destination contains an unavoidable obstacle, such as a dropped pylon
-# or an artefact.
+# or an artefact, or the runner's path is blocked by a wall.
 #
-# 1: The destination contains another runner, one or more walls, or an obstacle
-# that may be OK, such as a one-way sign or a teleport.
+# 1: The destination contains another runner, or an obstacle that may be OK,
+# such as a one-way sign or a teleport.
 #
 # 2: The destination contains a hole that can be jumped over, or a pylon that
 # can be slid under, or no obstacles at all.
 #
 func _evaluate_move(
-	dir: Vector2, pos: Vector2, cell: Cell, other_runners: Array[Runner]
-) -> int:
+	dir: Vector2, next_pos: Vector2, next_cell: Cell,
+	other_runners: Array[Runner]) -> int:
 
-	if cell == null:
-		return 2 if _can_jump_or_slide_over(pos, dir) else 0
+	if _check_for_walls(next_pos, next_cell):
+		return 0
 
-	if cell.get_artefact():
+	if next_cell == null:
+		return 2 if _can_jump_or_slide_over(next_pos, dir) else 0
+
+	if next_cell.get_artefact():
 		return 0
 
 	var is_crowded = false
 	for other in other_runners:
-		if other.get_current_cell() == cell:
+		if other.get_current_cell() == next_cell:
 			is_crowded = true
 			break
 
-	if _is_cell_clear(cell):
+	if _is_cell_clear(next_cell):
 		return 1 if is_crowded else 2
 
-	match cell.get_state():
+	match next_cell.get_state():
 		Cell.State.LOWERED, Cell.State.HIDDEN:
-			return 2 if _can_jump_or_slide_over(pos, dir) else 0
+			return 2 if _can_jump_or_slide_over(next_pos, dir) else 0
 		Cell.State.TELEPORT, Cell.State.ONE_WAY:
 			return 1
 		Cell.State.PYLON:
-			match cell.get_pylon().get_state():
+			match next_cell.get_pylon().get_state():
 				Pylon.State.RAISED:
 					return 1 if is_crowded else 2
 				Pylon.State.LOWERED:
-					if _can_jump_or_slide_over(pos, dir):
+					if _can_jump_or_slide_over(next_pos, dir):
 						return 1 if is_crowded else 2
 
 	return 0
@@ -340,8 +345,31 @@ func _send_action_event(action: StringName):
 	event.pressed = false
 	Input.parse_input_event(event)
 
+#
+# Performs a quick check for whether the given cell is clear of obvious
+# obstacles, and returns true if none are seen. It does NOT check for other
+# runners or for walls. Returns false if cell is null.
+#
 func _is_cell_clear(cell: Cell) -> bool:
 	return (cell
 			and cell.get_state() in [Cell.State.NORMAL, Cell.State.CUBE]
-			and cell.get_wall_count() < 2
 			and not cell.get_artefact())
+
+#
+# Check for walls blocking the runner's path, that is, walls that intersect a
+# line segment connecting his current position to next_pos, which is itself
+# located on next_cell (which may be null). Returns true if one or more walls
+# are in the runner's path.
+#
+func _check_for_walls(next_pos: Vector2, next_cell: Cell) -> bool:
+	for cell in [runner.get_current_cell(), next_cell]:
+		if cell == null:
+			continue
+		for wall in cell.get_walls():
+			if not wall.has_points():
+				continue
+			if Geometry2D.segment_intersects_segment(
+				runner.global_position, next_pos,
+				wall.get_start_point(), wall.get_end_point()) != null:
+				return true
+	return false

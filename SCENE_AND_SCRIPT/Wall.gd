@@ -67,6 +67,35 @@ func get_last_point():
 	else:
 		return null
 
+##
+## Returns true if at least two points in the wall are visible, meaning the
+## wall is visible.
+##
+func has_points() -> bool:
+	return _collider_shape.shape != null
+
+##
+## Returns the first visible point in the wall, in global coordinates, or null
+## if the wall does not have two or more visible points.
+##
+func get_start_point():
+	var segment: SegmentShape2D = _collider_shape.shape
+	if segment:
+		return cell.to_global(segment.a)
+	else:
+		return null
+
+##
+## Returns the last visible point in the wall, in global coordinates, or null
+## if the wall does not have two or more visible points.
+##
+func get_end_point():
+	var segment: SegmentShape2D = _collider_shape.shape
+	if segment:
+		return cell.to_global(segment.b)
+	else:
+		return null
+
 func _update_mesh(delta: float):
 
 	# update times for all points
