@@ -17,9 +17,6 @@ var _cell_scene := preload("res://SCENE_AND_SCRIPT/Cell.tscn")
 const _cell_step_x = 0.5 * Cell.width
 const _cell_step_y = 0.5 * Cell.height
 
-# The X coordinate of the rightmost cell (the eastern corner).
-var _xmax: float
-
 # The "404" cell at the center of the map (which may not actually be at the
 # center if rows or columns have been sliding around).
 var _center_cell: Cell
@@ -60,6 +57,19 @@ enum ObstacleType {
 	REMOVE_ARTEFACT
 }
 
+# Make sure this contains a percentage for each random obstacle type and that
+# they add up to 100.
+const _obstacle_probabilities: Array[float] = [
+	12.5, # ROW_SLIDE
+	12.5, # COLUMN_SLIDE
+	15.0, # CELL_LOWER
+	10.0, # CELL_HIDE
+	12.5, # CELL_ONE_WAY
+	15.0, # CELL_TELEPORT
+	12.5, # PYLON_LOWER
+	10.0, # PYLON_DROP
+]
+
 class ObstacleEvent extends RefCounted:
 	var type: ObstacleType
 	# false when putting an obstacle in place, true when removing it afterward
@@ -88,6 +98,9 @@ var _obstacle_timer: Timer
 var _cube_timer: Timer
 
 func _ready():
+	# ensure there is exactly one probability percentage per obstacle type
+	assert(_obstacle_probabilities.size() == ObstacleType._RANDOM_)
+
 	_build_map()
 
 	if Engine.is_editor_hint():
@@ -158,9 +171,7 @@ func _build_map():
 	_add_cell(parent, Vector2i(-map_size, map_size), Cell.Decoration.N)
 	_add_cell(parent, Vector2i(map_size, -map_size), Cell.Decoration.S)
 	_add_cell(parent, Vector2i(-map_size, -map_size), Cell.Decoration.W)
-	var east_corner: Cell = \
-		_add_cell(parent, Vector2i(map_size, map_size), Cell.Decoration.E)
-	_xmax = east_corner.position.x
+	_add_cell(parent, Vector2i(map_size, map_size), Cell.Decoration.E)
 
 	# edges
 
@@ -641,11 +652,16 @@ func _remove_obstacle(cell: Cell) -> bool:
 # Generates a new obstacle when the timer goes off.
 #
 func _on_obstacle_timer_timeout():
-	# we make CELL_ONE_WAY twice as likely to appear as the others, because the
-	# other event types are all in pairs (except for CELL_TELEPORT now)...
-	var type = randi() % (ObstacleType._RANDOM_ + 1)
-	if type == ObstacleType._RANDOM_:
-		type = ObstacleType.CELL_ONE_WAY
+	var type = 0
+	var f = 100.0 * randf()
+	var sum = 0.0
+
+	while type < _obstacle_probabilities.size() - 1:
+		sum += _obstacle_probabilities[type]
+		if f < sum:
+			break
+		type += 1
+
 	var event = ObstacleEvent.new(type as ObstacleType)
 	_handle_obstacle_event(event)
 
