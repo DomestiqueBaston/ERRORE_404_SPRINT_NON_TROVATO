@@ -41,21 +41,34 @@ class RunnerAction:
 	# priority compared to other options: see _evaluate_move()
 	var priority: int
 
+# Encourage the runner to turn if he runs in a straight line for this long.
+var _max_straight_time: float
+
+# Seconds left before encouraging the runner to turn.
+var _turn_timer: float
+
 func _ready():
 	set_physics_process(false)
 	runner.died.connect(func(): set_physics_process(false))
 
-func _physics_process(_delta: float):
+func _physics_process(delta: float):
+	_turn_timer -= delta
+
 	var next_pos = _get_next_pos(runner.direction)
 	var next_cell = map.get_cell_at_pos(next_pos)
-	if (not _is_cell_clear(next_cell)
+	var obstacle = (
+		not _is_cell_clear(next_cell)
 		or runner.get_visible_runners()
-		or _check_for_walls(next_pos, next_cell)):
+		or _check_for_walls(next_pos, next_cell))
+
+	if obstacle or _turn_timer <= 0.0:
 		set_physics_process(false)
-		var reaction_time = randf_range(min_reaction_time, max_reaction_time)
-		await get_tree().create_timer(reaction_time).timeout
-		await _react()
+		if obstacle:
+			var reaction_time = randf_range(min_reaction_time, max_reaction_time)
+			await get_tree().create_timer(reaction_time).timeout
+		await _react(obstacle)
 		set_physics_process(not (runner.is_dead or runner.is_falling))
+		_turn_timer = _max_straight_time
 
 ##
 ## Starts running. Be sure to set the runner and the map before calling this.
@@ -63,6 +76,9 @@ func _physics_process(_delta: float):
 ##
 func start():
 	runner.set_vision_area_scale(vision_scale)
+
+	_max_straight_time = 1.0 + (2 * map.map_size + 1) / 6.0
+	_turn_timer = _max_straight_time
 
 	var xsign: int
 	var ysign: int
@@ -111,19 +127,24 @@ func start():
 
 #
 # Makes the runner change direction, jump and/or slide in response to the
-# obstacles surrounding him.
+# obstacles surrounding him. If avoiding_obstacle is false, the runner turns if
+# he can, but not if that means potentially killing himself.
 #
-func _react():
+func _react(avoiding_obstacle: bool):
 	var other_runners = runner.get_visible_runners()
 	var options: Array[RunnerAction]
+	var pos: Vector2
+	var cell: Cell
+	var priority: int
 
 	# continue straight on?
 
-	var forward = runner.direction
-	var pos = _get_next_pos(forward)
-	var cell = map.get_cell_at_pos(pos)
-	var priority = _evaluate_move(forward, pos, cell, other_runners)
-	_add_option_maybe(options, forward, cell, priority)
+	if avoiding_obstacle:
+		var forward = runner.direction
+		pos = _get_next_pos(forward)
+		cell = map.get_cell_at_pos(pos)
+		priority = _evaluate_move(forward, pos, cell, other_runners)
+		_add_option_maybe(options, forward, cell, priority)
 
 	# turn left?
 
@@ -145,7 +166,8 @@ func _react():
 	# result in a u-turn
 
 	if options.is_empty():
-		_send_direction_event(left if randi() & 1 else right)
+		if avoiding_obstacle:
+			_send_direction_event(left if randi() & 1 else right)
 		return
 
 	# if there is more than one way to go, pick one at random, jumping or
