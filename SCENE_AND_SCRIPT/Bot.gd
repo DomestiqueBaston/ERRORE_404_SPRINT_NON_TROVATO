@@ -41,19 +41,34 @@ class RunnerAction:
 	# priority compared to other options: see _evaluate_move()
 	var priority: int
 
+# Encourage the runner to turn if he runs in a straight line for this long.
+var _max_straight_time: float
+
+# Seconds left before encouraging the runner to turn.
+var _turn_timer: float
+
 func _ready():
 	set_physics_process(false)
 	runner.died.connect(func(): set_physics_process(false))
 
-func _physics_process(_delta: float):
+func _physics_process(delta: float):
+	_turn_timer -= delta
+
 	var next_pos = _get_next_pos(runner.direction)
 	var next_cell = map.get_cell_at_pos(next_pos)
-	if runner.get_visible_runners() or not _is_cell_clear(next_cell):
+	var obstacle = (
+		not _is_cell_clear(next_cell)
+		or runner.get_visible_runners()
+		or _check_for_walls(next_pos, next_cell))
+
+	if obstacle or _turn_timer <= 0.0:
 		set_physics_process(false)
-		var reaction_time = randf_range(min_reaction_time, max_reaction_time)
-		await get_tree().create_timer(reaction_time).timeout
-		await _react()
+		if obstacle:
+			var reaction_time = randf_range(min_reaction_time, max_reaction_time)
+			await get_tree().create_timer(reaction_time).timeout
+		await _react(obstacle)
 		set_physics_process(not (runner.is_dead or runner.is_falling))
+		_turn_timer = _max_straight_time
 
 ##
 ## Starts running. Be sure to set the runner and the map before calling this.
@@ -61,6 +76,9 @@ func _physics_process(_delta: float):
 ##
 func start():
 	runner.set_vision_area_scale(vision_scale)
+
+	_max_straight_time = 1.0 + (2 * map.map_size + 1) / 6.0
+	_turn_timer = _max_straight_time
 
 	var xsign: int
 	var ysign: int
@@ -109,19 +127,24 @@ func start():
 
 #
 # Makes the runner change direction, jump and/or slide in response to the
-# obstacles surrounding him.
+# obstacles surrounding him. If avoiding_obstacle is false, the runner turns if
+# he can, but not if that means potentially killing himself.
 #
-func _react():
+func _react(avoiding_obstacle: bool):
 	var other_runners = runner.get_visible_runners()
 	var options: Array[RunnerAction]
+	var pos: Vector2
+	var cell: Cell
+	var priority: int
 
 	# continue straight on?
 
-	var forward = runner.direction
-	var pos = _get_next_pos(forward)
-	var cell = map.get_cell_at_pos(pos)
-	var priority = _evaluate_move(forward, pos, cell, other_runners)
-	_add_option_maybe(options, forward, cell, priority)
+	if avoiding_obstacle:
+		var forward = runner.direction
+		pos = _get_next_pos(forward)
+		cell = map.get_cell_at_pos(pos)
+		priority = _evaluate_move(forward, pos, cell, other_runners)
+		_add_option_maybe(options, forward, cell, priority)
 
 	# turn left?
 
@@ -143,7 +166,8 @@ func _react():
 	# result in a u-turn
 
 	if options.is_empty():
-		_send_direction_event(left if randi() & 1 else right)
+		if avoiding_obstacle:
+			_send_direction_event(left if randi() & 1 else right)
 		return
 
 	# if there is more than one way to go, pick one at random, jumping or
@@ -195,50 +219,53 @@ func _add_option_maybe(
 
 #
 # Evaluates a potential move in the given direction from the runner's current
-# position. The pos parameter is a point in the neighboring cell (if there is
-# one) in that direction, and the cell parameter is that cell.
+# position. The next_pos parameter is a point in the neighboring cell in that
+# direction, if there is one (next_cell).
 #
 # Possible return values are:
 #
 # 0: The destination contains an unavoidable obstacle, such as a dropped pylon
-# or an artefact.
+# or an artefact, or the runner's path is blocked by a wall.
 #
-# 1: The destination contains another runner, one or more walls, or an obstacle
-# that may be OK, such as a one-way sign or a teleport.
+# 1: The destination contains another runner, or an obstacle that may be OK,
+# such as a one-way sign or a teleport.
 #
 # 2: The destination contains a hole that can be jumped over, or a pylon that
 # can be slid under, or no obstacles at all.
 #
 func _evaluate_move(
-	dir: Vector2, pos: Vector2, cell: Cell, other_runners: Array[Runner]
-) -> int:
+	dir: Vector2, next_pos: Vector2, next_cell: Cell,
+	other_runners: Array[Runner]) -> int:
 
-	if cell == null:
-		return 2 if _can_jump_or_slide_over(pos, dir) else 0
+	if _check_for_walls(next_pos, next_cell):
+		return 0
 
-	if cell.get_artefact():
+	if next_cell == null:
+		return 2 if _can_jump_or_slide_over(next_pos, dir) else 0
+
+	if next_cell.get_artefact():
 		return 0
 
 	var is_crowded = false
 	for other in other_runners:
-		if other.get_current_cell() == cell:
+		if other.get_current_cell() == next_cell:
 			is_crowded = true
 			break
 
-	if _is_cell_clear(cell):
+	if _is_cell_clear(next_cell):
 		return 1 if is_crowded else 2
 
-	match cell.get_state():
+	match next_cell.get_state():
 		Cell.State.LOWERED, Cell.State.HIDDEN:
-			return 2 if _can_jump_or_slide_over(pos, dir) else 0
+			return 2 if _can_jump_or_slide_over(next_pos, dir) else 0
 		Cell.State.TELEPORT, Cell.State.ONE_WAY:
 			return 1
 		Cell.State.PYLON:
-			match cell.get_pylon().get_state():
+			match next_cell.get_pylon().get_state():
 				Pylon.State.RAISED:
 					return 1 if is_crowded else 2
 				Pylon.State.LOWERED:
-					if _can_jump_or_slide_over(pos, dir):
+					if _can_jump_or_slide_over(next_pos, dir):
 						return 1 if is_crowded else 2
 
 	return 0
@@ -340,8 +367,31 @@ func _send_action_event(action: StringName):
 	event.pressed = false
 	Input.parse_input_event(event)
 
+#
+# Performs a quick check for whether the given cell is clear of obvious
+# obstacles, and returns true if none are seen. It does NOT check for other
+# runners or for walls. Returns false if cell is null.
+#
 func _is_cell_clear(cell: Cell) -> bool:
 	return (cell
 			and cell.get_state() in [Cell.State.NORMAL, Cell.State.CUBE]
-			and cell.get_wall_count() < 2
 			and not cell.get_artefact())
+
+#
+# Check for walls blocking the runner's path, that is, walls that intersect a
+# line segment connecting his current position to next_pos, which is itself
+# located on next_cell (which may be null). Returns true if one or more walls
+# are in the runner's path.
+#
+func _check_for_walls(next_pos: Vector2, next_cell: Cell) -> bool:
+	for cell in [runner.get_current_cell(), next_cell]:
+		if cell == null:
+			continue
+		for wall in cell.get_walls():
+			if not wall.has_points():
+				continue
+			if Geometry2D.segment_intersects_segment(
+				runner.global_position, next_pos,
+				wall.get_start_point(), wall.get_end_point()) != null:
+				return true
+	return false
