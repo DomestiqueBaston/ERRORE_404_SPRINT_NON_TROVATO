@@ -126,7 +126,7 @@ shader_type canvas_item;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 // 🎛️ Réglages généraux
-uniform float saturation : hint_range(0.0, 10.0) = 5.0;
+uniform float saturation : hint_range(0.0, 10.0) = 1.25;
 uniform float value : hint_range(0.0, 2.0) = 1.0;
 uniform float alpha : hint_range(0.0, 1.0) = 1.0;
 
@@ -140,7 +140,7 @@ uniform float max_hue_shift_deg : hint_range(0.0, 360.0) = 180.0;
 
 // 👁️ Dédoublement horizontal (en pixels écran)
 uniform float min_double_offset_px : hint_range(0.0, 20.0) = 1.5;
-uniform float max_double_offset_px : hint_range(0.0, 50.0) = 3.5;
+uniform float max_double_offset_px : hint_range(0.0, 50.0) = 7.5;
 uniform float double_strength : hint_range(0.0, 1.0) = 0.4;
 
 // --------------------
@@ -231,7 +231,7 @@ code = "shader_type canvas_item;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 // Timing
-uniform float change_interval : hint_range(0.1, 30.0) = 0.75; // X
+uniform float change_interval : hint_range(0.1, 30.0) = 0.56; // X
 
 // Blur range
 uniform int blur_min : hint_range(0, 8) = 2;
@@ -460,7 +460,7 @@ shader_parameter/pixel_factor = 5
 code = "shader_type canvas_item;
 
 uniform sampler2D existing_screen_texture : hint_screen_texture, filter_linear_mipmap;
-uniform float speed = 2.0;
+uniform float speed = 1.9;
 
 float rand(float x) {
     return fract(sin(x * 12.9898) * 43758.5453);
@@ -492,7 +492,7 @@ uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_n
 // 震动参数 (Shake parameters)
 uniform float hit_effect : hint_range(0, 1) = 1.0;
 uniform float shake_intensity = 4.5;
-uniform float time_offset = 0.0;
+uniform float time_offset = 3.142;
 
 float rand(vec2 co) {
     return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453);
@@ -538,12 +538,12 @@ shader_type canvas_item;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 // 🎛️ Réglages généraux
-uniform float saturation : hint_range(0.0, 10.0) = 5.0;
+uniform float saturation : hint_range(0.0, 10.0) = 1.25;
 uniform float value : hint_range(0.0, 2.0) = 1.0;
 uniform float alpha : hint_range(0.0, 1.0) = 1.0;
 
 // ⏱️ Timing
-uniform float interval : hint_range(0.1, 30.0) = 0.25;   // X
+uniform float interval : hint_range(0.1, 30.0) = 0.24;   // X
 uniform float duration : hint_range(0.0, 30.0) = 0.75;   // Y
 
 // 🎨 Hue shift aléatoire
@@ -552,7 +552,7 @@ uniform float max_hue_shift_deg : hint_range(0.0, 360.0) = 180.0;
 
 // 👁️ Dédoublement horizontal (en pixels écran)
 uniform float min_double_offset_px : hint_range(0.0, 20.0) = 1.5;
-uniform float max_double_offset_px : hint_range(0.0, 50.0) = 3.5;
+uniform float max_double_offset_px : hint_range(0.0, 50.0) = 7.5;
 uniform float double_strength : hint_range(0.0, 1.0) = 0.4;
 
 // --------------------
@@ -643,7 +643,7 @@ code = "shader_type canvas_item;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 // Timing
-uniform float change_interval : hint_range(0.1, 30.0) = 0.75; // X
+uniform float change_interval : hint_range(0.1, 30.0) = 0.5; // X
 
 // Blur range
 uniform int blur_min : hint_range(0, 8) = 2;
@@ -859,7 +859,7 @@ shader_parameter/pixel_factor = 5
 code = "shader_type canvas_item;
 
 uniform sampler2D existing_screen_texture : hint_screen_texture, filter_linear_mipmap;
-uniform float speed = 2.0;
+uniform float speed = 2.1;
 
 float rand(float x) {
     return fract(sin(x * 12.9898) * 43758.5453);
@@ -891,7 +891,7 @@ uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_n
 // 震动参数 (Shake parameters)
 uniform float hit_effect : hint_range(0, 1) = 1.0;
 uniform float shake_intensity = 4.5;
-uniform float time_offset = 0.0;
+uniform float time_offset = 9.425;
 
 float rand(vec2 co) {
     return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453);
@@ -937,12 +937,12 @@ shader_type canvas_item;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 // 🎛️ Réglages généraux
-uniform float saturation : hint_range(0.0, 10.0) = 5.0;
+uniform float saturation : hint_range(0.0, 10.0) = 1.25;
 uniform float value : hint_range(0.0, 2.0) = 1.0;
 uniform float alpha : hint_range(0.0, 1.0) = 1.0;
 
 // ⏱️ Timing
-uniform float interval : hint_range(0.1, 30.0) = 0.25;   // X
+uniform float interval : hint_range(0.1, 30.0) = 0.23;   // X
 uniform float duration : hint_range(0.0, 30.0) = 0.75;   // Y
 
 // 🎨 Hue shift aléatoire
@@ -951,7 +951,7 @@ uniform float max_hue_shift_deg : hint_range(0.0, 360.0) = 180.0;
 
 // 👁️ Dédoublement horizontal (en pixels écran)
 uniform float min_double_offset_px : hint_range(0.0, 20.0) = 1.5;
-uniform float max_double_offset_px : hint_range(0.0, 50.0) = 3.5;
+uniform float max_double_offset_px : hint_range(0.0, 50.0) = 7.5;
 uniform float double_strength : hint_range(0.0, 1.0) = 0.4;
 
 // --------------------
@@ -1042,7 +1042,7 @@ code = "shader_type canvas_item;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 // Timing
-uniform float change_interval : hint_range(0.1, 30.0) = 0.75; // X
+uniform float change_interval : hint_range(0.1, 30.0) = 0.57; // X
 
 // Blur range
 uniform int blur_min : hint_range(0, 8) = 2;
@@ -1271,7 +1271,7 @@ shader_parameter/pixel_factor = 5
 code = "shader_type canvas_item;
 
 uniform sampler2D existing_screen_texture : hint_screen_texture, filter_linear_mipmap;
-uniform float speed = 2.0;
+uniform float speed = 2.2;
 
 float rand(float x) {
     return fract(sin(x * 12.9898) * 43758.5453);
@@ -1303,7 +1303,7 @@ uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_n
 // 震动参数 (Shake parameters)
 uniform float hit_effect : hint_range(0, 1) = 1.0;
 uniform float shake_intensity = 4.5;
-uniform float time_offset = 0.0;
+uniform float time_offset = 15.708;
 
 float rand(vec2 co) {
     return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453);
@@ -1349,12 +1349,12 @@ shader_type canvas_item;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 // 🎛️ Réglages généraux
-uniform float saturation : hint_range(0.0, 10.0) = 5.0;
+uniform float saturation : hint_range(0.0, 10.0) = 1.25;
 uniform float value : hint_range(0.0, 2.0) = 1.0;
 uniform float alpha : hint_range(0.0, 1.0) = 1.0;
 
 // ⏱️ Timing
-uniform float interval : hint_range(0.1, 30.0) = 0.25;   // X
+uniform float interval : hint_range(0.1, 30.0) = 0.26;   // X
 uniform float duration : hint_range(0.0, 30.0) = 0.75;   // Y
 
 // 🎨 Hue shift aléatoire
@@ -1363,7 +1363,7 @@ uniform float max_hue_shift_deg : hint_range(0.0, 360.0) = 180.0;
 
 // 👁️ Dédoublement horizontal (en pixels écran)
 uniform float min_double_offset_px : hint_range(0.0, 20.0) = 1.5;
-uniform float max_double_offset_px : hint_range(0.0, 50.0) = 3.5;
+uniform float max_double_offset_px : hint_range(0.0, 50.0) = 7.5;
 uniform float double_strength : hint_range(0.0, 1.0) = 0.4;
 
 // --------------------
@@ -1454,7 +1454,7 @@ code = "shader_type canvas_item;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 // Timing
-uniform float change_interval : hint_range(0.1, 30.0) = 0.75; // X
+uniform float change_interval : hint_range(0.1, 30.0) = 0.46; // X
 
 // Blur range
 uniform int blur_min : hint_range(0, 8) = 2;
