@@ -79,6 +79,13 @@ func _ready():
 			add_child(bot)
 			_bots.append(bot)
 
+	# useless alarms
+
+	var alarm_timer = Timer.new()
+	alarm_timer.timeout.connect(_on_alarm_timeout)
+	add_child(alarm_timer)
+	alarm_timer.start(10)
+
 func _unhandled_input(event: InputEvent) -> void:
 	# Détection de la première action du joueur
 	for action in START_ACTIONS:
@@ -146,3 +153,10 @@ func _on_bug_enabled(bug: Globals.Bug, runner: Runner, enable: bool):
 
 	if color_rect:
 		color_rect.visible = enable
+
+func _on_alarm_timeout():
+	match randi() % 20:
+		0:
+			Sounds.play_useless_alarm1()
+		1:
+			Sounds.play_useless_alarm2()
