@@ -1,111 +1,16 @@
 [gd_scene format=3 uid="uid://qy0upqf8jc48"]
 
 [ext_resource type="Theme" uid="uid://ckfheu8oauxys" path="res://RESOURCE/Minimap_Theme.tres" id="1_cvrb2"]
-[ext_resource type="Texture2D" uid="uid://bi2ahovq5m34u" path="res://IMAGE/RUNNER/Minimap_Locator.png" id="2_yojes"]
+[ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="2_yojes"]
+[ext_resource type="Texture2D" uid="uid://cutec7wipswh2" path="res://IMAGE/MISC/Title_Gradient.png" id="3_41jol"]
 
 [sub_resource type="Animation" id="Animation_ycojx"]
 resource_name = "Blink"
 length = 0.4
 loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 0.33333328, 0.39999998),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 0.8784314)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Runner_2:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.23333333, 0.29999995, 0.36666662, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 0.8784314), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Runner_3:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.2666666, 0.3333333, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 0.8784314), Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Runner_4:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.23333327, 0.29999995, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 0.8784314), Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_lqmhv"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Runner_2:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Runner_3:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Runner_4:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4er72"]
 _data = {
@@ -157,24 +62,200 @@ offset_right = 141.0
 offset_bottom = 141.0
 metadata/_edit_lock_ = true
 
-[node name="Player" type="Sprite2D" parent="Minimap_Container/Runners" unique_id=1597771050]
-self_modulate = Color(0.2383388, 0.27373868, 0.37943554, 1)
-texture = ExtResource("2_yojes")
+[node name="Player_1" type="Control" parent="Minimap_Container/Runners" unique_id=2057605252]
+anchors_preset = 0
+rotation = -0.7853982
+
+[node name="1" type="Label" parent="Minimap_Container/Runners/Player_1" unique_id=829540991]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_yojes")
+theme_override_font_sizes/font_size = 10
+text = "1"
+vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Runner_2" type="Sprite2D" parent="Minimap_Container/Runners" unique_id=2081800141]
-position = Vector2(0, 132)
-texture = ExtResource("2_yojes")
+[node name="Cache" type="Label" parent="Minimap_Container/Runners/Player_1" unique_id=861984231]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("2_yojes")
+theme_override_font_sizes/font_size = 10
+text = "1"
+vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Runner_3" type="Sprite2D" parent="Minimap_Container/Runners" unique_id=1997539310]
-position = Vector2(132, 0)
-texture = ExtResource("2_yojes")
+[node name="Gradient" type="Sprite2D" parent="Minimap_Container/Runners/Player_1/Cache" unique_id=186735484]
+self_modulate = Color(0.969, 1.215, 1.892, 0.863)
+position = Vector2(60, 29)
+scale = Vector2(0.15, 0.17)
+texture = ExtResource("3_41jol")
 metadata/_edit_lock_ = true
 
-[node name="Runner_4" type="Sprite2D" parent="Minimap_Container/Runners" unique_id=340894933]
-position = Vector2(132, 132)
-texture = ExtResource("2_yojes")
+[node name="Player_2" type="Control" parent="Minimap_Container/Runners" unique_id=597111408]
+anchors_preset = 0
+offset_left = 132.0
+offset_right = 132.0
+rotation = -0.7853982
+
+[node name="2" type="Label" parent="Minimap_Container/Runners/Player_2" unique_id=1537651552]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_yojes")
+theme_override_font_sizes/font_size = 10
+text = "2"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Cache" type="Label" parent="Minimap_Container/Runners/Player_2" unique_id=996856391]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("2_yojes")
+theme_override_font_sizes/font_size = 10
+text = "2"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Gradient" type="Sprite2D" parent="Minimap_Container/Runners/Player_2/Cache" unique_id=319716546]
+self_modulate = Color(0.969, 1.215, 1.892, 0.863)
+position = Vector2(60, 29)
+scale = Vector2(0.15, 0.17)
+texture = ExtResource("3_41jol")
+metadata/_edit_lock_ = true
+
+[node name="Player_3" type="Control" parent="Minimap_Container/Runners" unique_id=225530864]
+anchors_preset = 0
+offset_top = 132.0
+offset_bottom = 132.0
+rotation = -0.7853982
+
+[node name="3" type="Label" parent="Minimap_Container/Runners/Player_3" unique_id=1714679900]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_yojes")
+theme_override_font_sizes/font_size = 10
+text = "3"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Cache" type="Label" parent="Minimap_Container/Runners/Player_3" unique_id=1098362925]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("2_yojes")
+theme_override_font_sizes/font_size = 10
+text = "3"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Gradient" type="Sprite2D" parent="Minimap_Container/Runners/Player_3/Cache" unique_id=646694297]
+self_modulate = Color(0.969, 1.215, 1.892, 0.863)
+position = Vector2(60, 29)
+scale = Vector2(0.15, 0.17)
+texture = ExtResource("3_41jol")
+metadata/_edit_lock_ = true
+
+[node name="Player_4" type="Control" parent="Minimap_Container/Runners" unique_id=1879694912]
+anchors_preset = 0
+offset_left = 132.0
+offset_top = 132.0
+offset_right = 132.0
+offset_bottom = 132.0
+rotation = -0.7853982
+
+[node name="4" type="Label" parent="Minimap_Container/Runners/Player_4" unique_id=218513271]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_yojes")
+theme_override_font_sizes/font_size = 10
+text = "4"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Cache" type="Label" parent="Minimap_Container/Runners/Player_4" unique_id=626424970]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
+theme_override_fonts/font = ExtResource("2_yojes")
+theme_override_font_sizes/font_size = 10
+text = "4"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Gradient" type="Sprite2D" parent="Minimap_Container/Runners/Player_4/Cache" unique_id=1874639641]
+self_modulate = Color(0.969, 1.215, 1.892, 0.863)
+position = Vector2(60, 29)
+scale = Vector2(0.15, 0.17)
+texture = ExtResource("3_41jol")
 metadata/_edit_lock_ = true
 
 [node name="Runners_Blink" type="AnimationPlayer" parent="Minimap_Container/Runners" unique_id=966142218]
