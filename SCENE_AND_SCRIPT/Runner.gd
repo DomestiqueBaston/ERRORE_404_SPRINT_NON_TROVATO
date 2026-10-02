@@ -31,20 +31,38 @@ signal bonus_found(runner: Runner, bonus: Bonus)
 @onready var _footstep3 = $Character/Papa_Sprite/Runner_Sprite/Sound/Foot_Step_03
 
 @onready var _teleport_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Teleport
-@onready var _invincible_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Invincible
-@onready var _dash_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Dash
-@onready var _pierce_walls_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Pierce_Walls
-@onready var _virus_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Virus
-@onready var _auto_dodge_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Auto_Dodge
-@onready var _vanish_walls_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Vanish_Walls
-@onready var _invert_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Invert
-@onready var _slow_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Slow
-@onready var _extend_walls_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Extend_Walls
-@onready var _anti_dash_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Anti_Dash
-@onready var _phase_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Phase
-@onready var _anti_virus_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Anti_Virus
-@onready var _no_turn_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/No_Turn
 @onready var _bonus_over_sound = $Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Bonus_Malus_Over
+
+@onready var _bonus_sounds = {
+	Bonus.Type.INVINCIBLE:
+		$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Invincible,
+	Bonus.Type.DASH:
+		$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Dash,
+	Bonus.Type.PIERCE_WALLS:
+		$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Pierce_Walls,
+	Bonus.Type.VIRUS:
+		$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Virus,
+	Bonus.Type.AUTO_DODGE:
+		$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Auto_Dodge,
+	Bonus.Type.DEBUG:
+		$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Debug,
+	Bonus.Type.VANISH_WALLS:
+		$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Vanish_Walls,
+	Bonus.Type.INVERT:
+		$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Invert,
+	Bonus.Type.SLOW:
+		$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Slow,
+	Bonus.Type.EXTEND_WALLS:
+		$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Extend_Walls,
+	Bonus.Type.ANTI_DASH:
+		$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Anti_Dash,
+	Bonus.Type.PHASE:
+		$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Phase,
+	Bonus.Type.ANTI_VIRUS:
+		$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/Anti_Virus,
+	Bonus.Type.NO_TURN:
+		$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/No_Turn
+}
 
 # which way the runner last indicated he WANTED to move
 var _last_direction: Vector2 = Vector2.ZERO
@@ -203,8 +221,8 @@ func _physics_process(delta: float):
 		for area in _collider.get_overlapping_areas():
 			if area.collision_layer & Globals.WALL_LAYER:
 				if _has_bonus(Bonus.Type.PIERCE_WALLS):
-					if not _pierce_walls_sound.playing:
-						_pierce_walls_sound.play()
+					if not _bonus_sounds[Bonus.Type.PIERCE_WALLS].playing:
+						_bonus_sounds[Bonus.Type.PIERCE_WALLS].play()
 				else:
 					_die()
 				break
@@ -347,8 +365,8 @@ func _physics_process(delta: float):
 			if _has_bonus(Bonus.Type.AUTO_DODGE):
 				auto_dodge = true
 				_play_jump_animation()
-				if not _auto_dodge_sound.playing:
-					_auto_dodge_sound.play()
+				if not _bonus_sounds[Bonus.Type.AUTO_DODGE].playing:
+					_bonus_sounds[Bonus.Type.AUTO_DODGE].play()
 			else:
 				_start_falling()
 	elif new_cell.get_artefact():
@@ -360,8 +378,8 @@ func _physics_process(delta: float):
 					if _has_bonus(Bonus.Type.AUTO_DODGE):
 						auto_dodge = true
 						_play_jump_animation()
-						if not _auto_dodge_sound.playing:
-							_auto_dodge_sound.play()
+						if not _bonus_sounds[Bonus.Type.AUTO_DODGE].playing:
+							_bonus_sounds[Bonus.Type.AUTO_DODGE].play()
 					else:
 						_start_falling()
 			Cell.State.TELEPORT:
@@ -683,8 +701,8 @@ func _check_pylon(cell: Cell) -> bool:
 			if not is_sliding:
 				if _has_bonus(Bonus.Type.AUTO_DODGE):
 					_play_slide_animation()
-					if not _auto_dodge_sound.playing:
-						_auto_dodge_sound.play()
+					if not _bonus_sounds[Bonus.Type.AUTO_DODGE].playing:
+						_bonus_sounds[Bonus.Type.AUTO_DODGE].play()
 					return true
 				_die(cell == _curr_cell)
 		Pylon.State.DROPPED:
@@ -714,31 +732,25 @@ func apply_bonus(new_bonus: Bonus):
 		# the invincible bonus cancels out a new malus
 
 		if old_bonus_type == Bonus.Type.INVINCIBLE and not new_bonus.is_bonus():
-			_invincible_sound.play()
+			_bonus_sounds[old_bonus_type].play()
 
-		# the virus bonus sends a new malus to somebody else
-
-		elif old_bonus_type == Bonus.Type.VIRUS and not new_bonus.is_bonus():
-			_virus_sound.play()
-			bonus_found.emit(self, new_bonus)
-
+		# the virus bonus sends a new malus to somebody else;
 		# the anti-virus malus sends a new bonus to somebody else
 
-		elif old_bonus_type == Bonus.Type.ANTI_VIRUS and new_bonus.is_bonus():
-			_anti_virus_sound.play()
+		elif ((old_bonus_type == Bonus.Type.VIRUS and not new_bonus.is_bonus()) or
+			  (old_bonus_type == Bonus.Type.ANTI_VIRUS and new_bonus.is_bonus())):
+			_bonus_sounds[old_bonus_type].play()
 			bonus_found.emit(self, new_bonus)
 
-		# these are handled by The Game, not by the runner
+		# VANISH_WALLS and EXTEND_WALLS are handled by The Game, not the runner
 
-		elif new_bonus.type == Bonus.Type.VANISH_WALLS:
-			_vanish_walls_sound.play()
+		elif new_bonus.type in [
+			Bonus.Type.VANISH_WALLS, Bonus.Type.EXTEND_WALLS
+		]:
+			_bonus_sounds[new_bonus.type].play()
 			bonus_found.emit(self, new_bonus)
 
-		elif new_bonus.type == Bonus.Type.EXTEND_WALLS:
-			_extend_walls_sound.play()
-			bonus_found.emit(self, new_bonus)
-
-		# otherwise activate the bonus/malus right away
+		# all other cases: activate the bonus/malus
 
 		else:
 			_bonus = new_bonus
@@ -756,26 +768,15 @@ func _activate_bonus():
 
 	# sound effect
 
+	_bonus_sounds[_bonus.type].play()
+
+	# bonus-specific behavior
+
 	match _bonus.type:
-		Bonus.Type.INVINCIBLE:
-			_invincible_sound.play()
-		Bonus.Type.DASH:
-			_dash_sound.play()
-		Bonus.Type.PIERCE_WALLS:
-			_pierce_walls_sound.play()
-		Bonus.Type.AUTO_DODGE:
-			_auto_dodge_sound.play()
-		Bonus.Type.INVERT:
-			_invert_sound.play()
-		Bonus.Type.SLOW:
-			_slow_sound.play()
 		Bonus.Type.ANTI_DASH:
 			_start_anti_dash()
 		Bonus.Type.PHASE:
-			_phase_sound.play()
 			_glitch_anim.play(&"Glitch")
-		Bonus.Type.NO_TURN:
-			_no_turn_sound.play()
 
 	# positive duration => bonus will be removed after the time elapses
 	# otherwise => bonus is removed as soon as the runner stops blinking
@@ -791,8 +792,8 @@ func _activate_bonus():
 func _start_dash():
 	if is_dashing or is_jumping or is_falling:
 		return
-	if not _dash_sound.playing:
-		_dash_sound.play()
+	if not _bonus_sounds[Bonus.Type.DASH].playing:
+		_bonus_sounds[Bonus.Type.DASH].play()
 	_animation.speed_scale = 1.66
 	is_dashing = true
 	get_tree().create_timer(0.5).timeout.connect(_stop_dash)
@@ -802,7 +803,6 @@ func _stop_dash():
 	is_dashing = false
 
 func _start_anti_dash():
-	_anti_dash_sound.play()
 	create_tween().tween_property(_animation, "speed_scale", 0.85, 0.5)
 
 func _stop_anti_dash():
