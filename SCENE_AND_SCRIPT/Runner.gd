@@ -1030,7 +1030,6 @@ func _on_bug_timer_timeout():
 	if not _has_bonus(Bonus.Type.DEBUG) and randi() % 5 == 0:
 		_curr_bug = randi_range(1, Globals.Bug.size() - 1) as Globals.Bug
 		print("%s: %s bug" % [name, Globals.Bug.keys()[_curr_bug].capitalize()])
-		Sounds.play_bug_sound()
 		if _curr_bug == Globals.Bug.CAMERA_OFFSET:
 			if _camera:
 				_camera.offset = Vector2(0, 0)
@@ -1045,7 +1044,6 @@ func _on_bug_timer_timeout():
 #
 func _reset_bug():
 	if _curr_bug != Globals.Bug.NONE:
-		Sounds.stop_bug_sound()
 		if _curr_bug != Globals.Bug.CAMERA_OFFSET:
 			stop_bug.emit(_curr_bug)
 		_curr_bug = Globals.Bug.NONE
