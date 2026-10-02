@@ -30,9 +30,9 @@ Les coureurs s’appellent :
 
 Un runner bugué :
 -  Chaque vue de concurrent a un timer de bug indépendant des autres vues.
-- Les bugs durent de 5’’ en difficulté 1 à 20’’ en difficulté 5.
+- Les bugs durent de 3’’ en difficulté 1 à 10’’ en difficulté 5.
 - Après chaque bug, on attend 10’’ en difficulté 1 à  5’’ en difficulté 5 avant d’avoir 1/5 chance d’en déclencher un nouveau. Ainsi on n’a jamais 2 bugs simultanés dans une vue caméra.
-- Au lancement des bugs, on joue le son Frames/Bug_Sound (dans The_Game.tscn) et on le coupe à la fin du bug. Pas d’intro/outro, effets directs !
+- Au lancement des bugs, on joue le son Bug_Sound (dans The_Game.tscn) et on le coupe à la fin du bug. Pas d’intro/outro, effets directs !
     1. L’image globale se décale dans la vue du joueur (la caméra se centre sur le joueur – voir Notes de fabrication plus bas) → Ça se fait : ✔
     2. La palette de couleurs change → ✔
     3. Image floue → Ça se fait : ✔
