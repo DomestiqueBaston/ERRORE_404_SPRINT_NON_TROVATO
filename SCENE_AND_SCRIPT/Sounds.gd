@@ -63,3 +63,9 @@ func stop_pylon_down():
 
 func play_pylon_crunch():
 	$Cell_Pylon_Alarms/Pylon_Crunch.play()
+
+func play_bug_sound():
+	$Misc/Bug_Sound.play()
+
+func stop_bug_sound():
+	$Misc/Bug_Sound.stop()

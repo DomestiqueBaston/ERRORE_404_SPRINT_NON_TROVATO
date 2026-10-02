@@ -14,6 +14,17 @@ enum Corner {
 	E
 }
 
+enum Bug {
+	NONE,
+	CAMERA_OFFSET,
+	CHANGE_COLORS,
+	BLUR,
+	SHAKE,
+	INVERT_COLORS,
+	PIXELATE,
+	JPEG
+}
+
 var NORTHWEST: Vector2
 var NORTHEAST: Vector2
 var SOUTHWEST: Vector2

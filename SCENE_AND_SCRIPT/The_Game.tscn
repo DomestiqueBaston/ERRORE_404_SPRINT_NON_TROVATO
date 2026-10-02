@@ -18,7 +18,6 @@
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="13_v00p7"]
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="14_ip038"]
 [ext_resource type="AudioStream" uid="uid://bvu0qgcdq4x2w" path="res://SOUND/FX/Short_Beep_High.ogg" id="15_2yj21"]
-[ext_resource type="AudioStream" uid="uid://ec0m1xfy6c32" path="res://SOUND/FX/Digital_Glitch_C.ogg" id="16_2n0iy"]
 [ext_resource type="AudioStream" uid="uid://bg1810o3k0s8b" path="res://SOUND/FX/Disconnection.ogg" id="17_gwksd"]
 [ext_resource type="AudioStream" uid="uid://dsr0lb7uc7k7s" path="res://SOUND/FX/Crackling_Noise_C.ogg" id="21_4er72"]
 
@@ -3104,12 +3103,6 @@ bus = &"FX_DRY"
 stream = ExtResource("15_2yj21")
 volume_db = -15.0
 bus = &"FX_WET"
-
-[node name="Bug_Sound" type="AudioStreamPlayer" parent="Sounds" unique_id=1587456204]
-stream = ExtResource("16_2n0iy")
-volume_db = -7.5
-bus = &"FX_DRY"
-parameters/looping = true
 
 [node name="Disconnection" type="AudioStreamPlayer" parent="Sounds" unique_id=1183246873]
 stream = ExtResource("17_gwksd")

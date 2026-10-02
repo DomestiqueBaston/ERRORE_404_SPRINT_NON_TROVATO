@@ -53,7 +53,9 @@ func _ready():
 
 		var runner = _runner_scenes[i].instantiate()
 		runner.input_device = i
-		runner.bonus_found.connect(_on_bonus_found)
+		runner.bonus_found.connect(_on_bonus_found.bind(runner))
+		runner.start_bug.connect(_on_bug_enabled.bind(runner, true))
+		runner.stop_bug.connect(_on_bug_enabled.bind(runner, false))
 		_runners.append(runner)
 
 		# all viewports share the same 2D world
@@ -97,7 +99,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		Sounds.play_intro()
 		get_tree().reload_current_scene()
 
-func _on_bonus_found(runner: Runner, bonus: Bonus):
+func _on_bonus_found(bonus: Bonus, runner: Runner):
 	match bonus.type:
 		Bonus.Type.VANISH_WALLS:
 			for r in _runners:
@@ -109,6 +111,38 @@ func _on_bonus_found(runner: Runner, bonus: Bonus):
 					r.extend_walls()
 		_:
 			var candidates = _runners.duplicate()
-			candidates.erase(runner)
-			var other_runner = candidates.pick_random()
-			other_runner.apply_bonus(bonus)
+			while not candidates.is_empty():
+				var other_runner = candidates.pick_random()
+				if other_runner != runner and other_runner.is_alive():
+					other_runner.apply_bonus(bonus)
+					break
+
+func _on_bug_enabled(bug: Globals.Bug, runner: Runner, enable: bool):
+	var bugs_node: Node
+
+	for i in _runners.size():
+		if _runners[i] == runner:
+			bugs_node = $Frames.get_node("Bugs_0%d" % (i+1))
+			break
+
+	if bugs_node == null:
+		return
+
+	var color_rect: ColorRect
+
+	match bug:
+		Globals.Bug.CHANGE_COLORS:
+			color_rect = bugs_node.get_node(^"Change_Colors")
+		Globals.Bug.BLUR:
+			color_rect = bugs_node.get_node(^"Blur_Glitches")
+		Globals.Bug.SHAKE:
+			color_rect = bugs_node.get_node(^"Shake")
+		Globals.Bug.INVERT_COLORS:
+			color_rect = bugs_node.get_node(^"Invert_Colors")
+		Globals.Bug.PIXELATE:
+			color_rect = bugs_node.get_node(^"Pixelate")
+		Globals.Bug.JPEG:
+			color_rect = bugs_node.get_node(^"Jpeg")
+
+	if color_rect:
+		color_rect.visible = enable

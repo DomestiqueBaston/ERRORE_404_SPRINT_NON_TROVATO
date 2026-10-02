@@ -14,7 +14,13 @@ var direction: Vector2 = Vector2.ZERO
 signal died
 
 ## Signal emitted when the runner grabs a bonus which affects other runners.
-signal bonus_found(runner: Runner, bonus: Bonus)
+signal bonus_found(bonus: Bonus)
+
+## Signal emitted when a visual bug is triggered for the runner.
+signal start_bug(bug: Globals.Bug)
+
+## Signal emitted when a visual bug is turned off for the runner.
+signal stop_bug(bug: Globals.Bug)
 
 @onready var _sprite_node: Node2D = $Character/Papa_Sprite
 @onready var _sprite: Sprite2D = $Character/Papa_Sprite/Runner_Sprite
@@ -106,6 +112,8 @@ var _are_walls_vanishing: bool = false
 var _curr_wall: Wall
 var _bonus: Bonus
 var _bonus_timer: Timer
+var _curr_bug: Globals.Bug = Globals.Bug.NONE
+var _bug_timer: Timer
 
 func _ready() -> void:
 	_animation.animation_finished.connect(_on_animation_finished)
@@ -117,6 +125,12 @@ func _ready() -> void:
 	_bonus_timer.one_shot = true
 	_bonus_timer.timeout.connect(_remove_bonus)
 	add_child(_bonus_timer)
+
+	_bug_timer = Timer.new()
+	_bug_timer.one_shot = true
+	_bug_timer.timeout.connect(_on_bug_timer_timeout)
+	add_child(_bug_timer)
+	_bug_timer.start(_get_bug_frequency())
 
 	_collider.area_entered.connect(_on_collider_entered)
 
@@ -253,7 +267,7 @@ func _physics_process(delta: float):
 						_die()
 				Door.Zone.PASSAGE:
 					if not is_exiting:
-						print("we're out!")
+						print("%s is out!" % name)
 						is_exiting = true
 					z_index = door.z_index + Door.Depth.MIDDLE
 				Door.Zone.BACK:
@@ -328,7 +342,7 @@ func _physics_process(delta: float):
 		if input_direction:
 			if _has_bonus(Bonus.Type.INVERT):
 				input_direction *= -1
-			if is_valid_direction(input_direction):
+			if _is_valid_direction(input_direction):
 				_last_direction = input_direction
 
 	_delayed_command = DelayedCmd.NONE
@@ -396,7 +410,8 @@ func _physics_process(delta: float):
 
 	if not (is_dead or is_falling or auto_dodge) and direction:
 		_set_position(new_pos, false, new_cell)
-		if _camera and direction != prev_direction:
+		if (_camera and direction != prev_direction
+			and _curr_bug != Globals.Bug.CAMERA_OFFSET):
 			var offset: Vector2
 			offset.x = -100 if direction.x < 0 else 100
 			offset.y = -85 if direction.y < 0 else 30
@@ -464,6 +479,12 @@ func _set_position(pos: Vector2, is_global: bool, cell: Cell):
 ##
 func get_current_cell() -> Cell:
 	return _curr_cell
+
+##
+## Returns true if the runner is still alive and running.
+##
+func is_alive() -> bool:
+	return not (is_dead or is_falling)
 
 ##
 ## Returns the speed at which the runner is currently moving, in units/second.
@@ -624,7 +645,7 @@ func _on_animation_finished(anim_name: StringName) -> void:
 func _on_disappear_finished(_anim_name: String):
 	set_physics_process(false)
 
-func is_valid_direction(new_direction: Vector2) -> bool:
+func _is_valid_direction(new_direction: Vector2) -> bool:
 	if _last_direction == Vector2.ZERO:
 		return true
 	return not is_zero_approx(_last_direction.dot(new_direction) + 1.0)
@@ -712,7 +733,8 @@ func _check_pylon(cell: Cell) -> bool:
 func _check_cube(cell: Cell):
 	var cube: Cube = cell.get_cube()
 	if cube and cube.check_for_overlap(_collider):
-		print("%s: %s" % [name, Bonus.Type.keys()[cube.bonus_type].capitalize()])
+		print("%s: %s bonus/malus" % [
+			name, Bonus.Type.keys()[cube.bonus_type].capitalize()])
 		var new_bonus = cube.get_bonus()
 		cell.remove_cube()
 		apply_bonus(new_bonus)
@@ -740,7 +762,7 @@ func apply_bonus(new_bonus: Bonus):
 		elif ((old_bonus_type == Bonus.Type.VIRUS and not new_bonus.is_bonus()) or
 			  (old_bonus_type == Bonus.Type.ANTI_VIRUS and new_bonus.is_bonus())):
 			_bonus_sounds[old_bonus_type].play()
-			bonus_found.emit(self, new_bonus)
+			bonus_found.emit(new_bonus)
 
 		# VANISH_WALLS and EXTEND_WALLS are handled by The Game, not the runner
 
@@ -748,7 +770,7 @@ func apply_bonus(new_bonus: Bonus):
 			Bonus.Type.VANISH_WALLS, Bonus.Type.EXTEND_WALLS
 		]:
 			_bonus_sounds[new_bonus.type].play()
-			bonus_found.emit(self, new_bonus)
+			bonus_found.emit(new_bonus)
 
 		# all other cases: activate the bonus/malus
 
@@ -773,6 +795,8 @@ func _activate_bonus():
 	# bonus-specific behavior
 
 	match _bonus.type:
+		Bonus.Type.DEBUG:
+			_reset_bug()
 		Bonus.Type.ANTI_DASH:
 			_start_anti_dash()
 		Bonus.Type.PHASE:
@@ -979,3 +1003,51 @@ func vanish_walls():
 func extend_walls():
 	for wall in _walls:
 		wall.extend()
+
+#
+# Frequency at which we decide whether to trigger a bug.
+#
+func _get_bug_frequency() -> float:
+	# 5-10 seconds, inversely proportional to difficulty
+	return 10 - 5 * (mini(5, Globals.difficulty) - 1) / 4.0
+
+#
+# How long a bug lasts.
+#
+func _get_bug_duration() -> float:
+	# 3-10 seconds, proportional to difficulty
+	return 3 + 7 * (mini(5, Globals.difficulty) - 1) / 4.0
+
+#
+# Called when the bug timer times out, either because it's time to stop the
+# current bug or because it may be time to trigger a new one.
+#
+func _on_bug_timer_timeout():
+	if _curr_bug != Globals.Bug.NONE:
+		_reset_bug()
+		return
+
+	if not _has_bonus(Bonus.Type.DEBUG) and randi() % 5 == 0:
+		_curr_bug = randi_range(1, Globals.Bug.size() - 1) as Globals.Bug
+		print("%s: %s bug" % [name, Globals.Bug.keys()[_curr_bug].capitalize()])
+		Sounds.play_bug_sound()
+		if _curr_bug == Globals.Bug.CAMERA_OFFSET:
+			if _camera:
+				_camera.offset = Vector2(0, 0)
+		else:
+			start_bug.emit(_curr_bug)
+		_bug_timer.start(_get_bug_duration())
+	elif not (is_dead or is_falling):
+		_bug_timer.start(_get_bug_frequency())
+
+#
+# Stops the bug that is currently running, if there is one.
+#
+func _reset_bug():
+	if _curr_bug != Globals.Bug.NONE:
+		Sounds.stop_bug_sound()
+		if _curr_bug != Globals.Bug.CAMERA_OFFSET:
+			stop_bug.emit(_curr_bug)
+		_curr_bug = Globals.Bug.NONE
+		if not (is_dead or is_falling):
+			_bug_timer.start(_get_bug_frequency())

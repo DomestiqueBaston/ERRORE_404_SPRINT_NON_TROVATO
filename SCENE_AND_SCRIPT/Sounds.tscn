@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://b2k8b5f0m5fty" path="res://SOUND/FX/Crunch.ogg" id="16_sbfjp"]
 [ext_resource type="AudioStream" uid="uid://k8hyf5t6sryn" path="res://SOUND/FX/Glitchy_Sound_D.ogg" id="18_ke38t"]
 [ext_resource type="AudioStream" uid="uid://b6ijgf7grh6oy" path="res://SOUND/FX/Glitchy_Sound_A.ogg" id="19_knc1o"]
+[ext_resource type="AudioStream" uid="uid://ec0m1xfy6c32" path="res://SOUND/FX/Digital_Glitch_C.ogg" id="21_cwlm1"]
 
 [sub_resource type="Animation" id="Animation_rwgee"]
 resource_name = "Pitch_Down"
@@ -219,3 +220,9 @@ bus = &"FX_WET"
 stream = ExtResource("19_knc1o")
 volume_db = -7.5
 bus = &"FX_WET"
+
+[node name="Bug_Sound" type="AudioStreamPlayer" parent="Misc" unique_id=17184243]
+stream = ExtResource("21_cwlm1")
+volume_db = -7.5
+bus = &"FX_DRY"
+parameters/looping = true
