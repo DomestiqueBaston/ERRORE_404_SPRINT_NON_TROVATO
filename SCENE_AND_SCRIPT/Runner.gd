@@ -1008,15 +1008,15 @@ func extend_walls():
 # Frequency at which we decide whether to trigger a bug.
 #
 func _get_bug_frequency() -> float:
-	# 5-10 seconds, inversely proportional to difficulty
-	return 10 - 5 * (mini(5, Globals.difficulty) - 1) / 4.0
+	# 2.5-5 seconds, inversely proportional to difficulty
+	return 5 - 2.5 * (mini(5, Globals.difficulty) - 1) / 4.0
 
 #
 # How long a bug lasts.
 #
 func _get_bug_duration() -> float:
-	# 3-10 seconds, proportional to difficulty
-	return 3 + 7 * (mini(5, Globals.difficulty) - 1) / 4.0
+	# 1.5-5 seconds, proportional to difficulty
+	return 1.5 + 3.5 * (mini(5, Globals.difficulty) - 1) / 4.0
 
 #
 # Called when the bug timer times out, either because it's time to stop the
