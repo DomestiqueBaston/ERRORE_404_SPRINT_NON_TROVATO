@@ -867,7 +867,7 @@ func _get_outline_color() -> Color:
 			Bonus.Type.PIERCE_WALLS, Bonus.Type.PHASE:
 				return Color(0.378, 0.378, 0.86)
 			Bonus.Type.VIRUS, Bonus.Type.ANTI_VIRUS:
-				return Color(0.625, 0.29, 0.88)
+				return Color(0.713, 0.29, 0.88)
 			Bonus.Type.AUTO_DODGE, Bonus.Type.NO_TURN:
 				return Color(0.83, 0.83, 0.0)
 			Bonus.Type.DEBUG, Bonus.Type.SLOW:
