@@ -4,4 +4,4 @@ A 2D runner where the environment constantly shifts. You race on a grid, with ro
 
 Survive the longest or reach the exit before others. Collect bonuses/maluses while avoiding traps.
 
-1 vs 3 player game.
+4 players (humans and/or bots).
