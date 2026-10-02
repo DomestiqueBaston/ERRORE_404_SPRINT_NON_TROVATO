@@ -159,7 +159,7 @@ Les personnalités de base des Bots :
         ◦ Taille du collider Vision de base : scale à 0,5 en x et y.
         ◦ Un bot affecté par un bug graphique de sa vue caméra a un temps de réaction augmenté de 50ms.
     6. Les malus qui inversent les directions ou les boutons sont aussi valables pour les bots, ce qui signifie qu’ils vont toujours aller à gauche quand il veulent aller à droite (pareil pour saut/glissade). En revanche, ce malus + les comportements « de base » qui agissent sur les directions vont rendre le bot « normal » en se cumulant (même si c’est très temporaire) et c’est très bien comme ça !
-    7. Un bot utilisera son Dash à 1 chance sur 2 après obtention et à chaque fois qu’il a fini de l’utiliser à 1 chance sur 2 également. Comportement non prioritaire par rapport au comportement d’un Bot.
+    7. Un bot utilisera son Dash à 1 chance sur 2 après obtention et à chaque fois qu’il a fini de l’utiliser à 1 chance sur 2 également.
 
 Comportements additionnels :
 
@@ -167,11 +167,10 @@ Comportements additionnels :
     2. Suiveur : Essaye de suivre un coureur qui passe plus d’1/4 de seconde dans son détecteur.
     3. Téméraire : N’évite plus les cellules sur lesquelles se trouvent plus de 2 light walls.
     4. Jusqu’au-boutiste : Ne prendra jamais la porte de sortie.
-    5. Stupide : Confond les obstacles (1/50 fois saute au lieu de glisser et inversement).
-    6. Bloqueur : Lorsqu’un coureur arrive en sens inverse (uniquement) dans son détecteur, tourne devant lui pour faire obstacle (avec son mur).
-    7. Distrait : ne voit pas l’obstacle devant lui 1/50 fois.
-    8. Dyslexique : Confond sa gauche et sa droite 1/50 fois.
-    9. Épileptique : Saute à 25% ou glisse à 25%, ou tourne sans raison à 50% (dont 50 % à droite et 50 % à gauche)s’il n’a rien fait de tel depuis 2 à 3 secondes.
+    5. Stupide : Confond les obstacles (1/25 fois saute au lieu de glisser et inversement).
+    6. Distrait : ne voit pas l’obstacle devant lui 1/50 fois.
+    7. Dyslexique : Confond sa gauche et sa droite 1/25 fois.
+    8. Épileptique : Saute à 25% ou glisse à 25%, ou tourne sans raison à 50% (dont 50 % à droite et 50 % à gauche)s’il n’a rien fait de tel depuis 1,5 à 2,5 secondes.
 
 Comportements face aux Bonus/malus :
 
@@ -180,7 +179,7 @@ Comportements face aux Bonus/malus :
     3. Méfiant : Évite les bonus/malus (il peut arriver qu’il en ramasse un si l’éviter signifie mourir).
     4. Monomaniaque : ne vise que les bonus/malus d’une couleur (choisie aléatoirement) dans son détecteur.
     5. Hésitant : Priorise le ramassage ou non d’un bonus dans son détecteur aléatoirement (à 50%).
-    6. Compulsif : utilise toujours son bonus/malus dans les 0 à 5 secondes qui suivent son ramassage.
+    6. Compulsif : utilise toujours son bonus/malus toutes les 0,75 secondes (uniquement Dash). L’e but est de laisser au bot l’opportunité de tourner si besoin avant de « re-dasher ».
     7. Conservateur : Ne ramasse un bonus/malus que s’il n’en a pas déjà un.
 
 Comportements de réaction et perception :
