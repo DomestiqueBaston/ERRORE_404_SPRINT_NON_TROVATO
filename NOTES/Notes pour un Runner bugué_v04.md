@@ -116,20 +116,21 @@ Notes de fabrication :
         ◦ Coin Est : px +120, py -40.
     • Position de caméra par rapport au root d’un concurrent pour les animations Death et Falling : par défaut.
 Pour les animations Start, Run, Slide et Jump:
-    • Position de caméra par rapport au root d’un concurrent tourné vers le sud-est : px = +100, py = +30.
-    • Position de caméra par rapport au root d’un concurrent tourné vers le sud-ouest : px = -100, py = +30.
-    • Position de caméra par rapport au root d’un concurrent tourné vers le nord-ouest : px = -100, py = -85.
-    • Position de caméra par rapport au root d’un concurrent tourné vers le nord-est : px = -10, py = -85.
-- Le mur tracé derrière un concurrent lorsqu’il se déplace est Light_Wall.tscn. À chaque entrée d’un concurrent sur une Cell ou virage, on commence le tracé d’un nouveau Light_Wall.tscn qui sera raccord avec le précédent. Lorsqu’un concurrent quitte une Cell ou fait un virage sur une Cell, on coupe le précédent Light_Wall.tscn et on en commence un autre qui sera raccord. On ne trace pas de Light_Wall.tscn lorsqu’un concurrent saute au dessus d’un trou ou passe sous un obstacle (sauf s’il saute ou glisse dans toute autre condition).
-- Au démarrage (uniquement) de chaque concurrent (lorsqu’il commence à courir), on joue l’animation Light_Wall_Animations/Appearing dans Light_Wall.tscn pour commencer son mur. On joue également Light_Wall_Sounds/Wall_Hum en boucle (jusqu’à ce que le mur complet disparaisse).
+        ◦ Position de caméra par rapport au root d’un concurrent tourné vers le sud-est : px = +100, py = +30.
+        ◦ Position de caméra par rapport au root d’un concurrent tourné vers le sud-ouest : px = -100, py = +30.
+        ◦ Position de caméra par rapport au root d’un concurrent tourné vers le nord-ouest : px = -100, py = -85.
+        ◦ Position de caméra par rapport au root d’un concurrent tourné vers le nord-est : px = -10, py = -85.
+    • Position de caméra par rapport au root d’un concurrent pour le bug qui décalle la caméra : px = 0, py = -28.
+- Le mur tracé derrière un concurrent lorsqu’il se déplace est Wall.tscn. À chaque entrée d’un concurrent sur une Cell ou virage, on commence le tracé d’un nouveau Wall.tscn qui sera raccord avec le précédent. Lorsqu’un concurrent quitte une Cell ou fait un virage sur une Cell, on coupe le précédent Wall.tscn et on en commence un autre qui sera raccord. On ne trace pas de Wall.tscn lorsqu’un concurrent saute au dessus d’un trou ou passe sous un obstacle (sauf s’il saute ou glisse dans toute autre condition).
+- Au démarrage (uniquement) de chaque concurrent (lorsqu’il commence à courir), on joue l’animation Light_Wall_Animations/Appearing dans Wall.tscn pour commencer son mur. On joue également Light_Wall_Sounds/Wall_Hum en boucle (jusqu’à ce que le mur complet disparaisse).
 - Le Light_Wall commence 60px et 30py derrière le coureur pour qu’il ne « tape » pas dedans avec ses pieds. À présent réglé avec un délai de 100ms.
 - Le tracé du mur se fait au fur et à mesure de la progression du coureur.
-- À la mort d’un concurrent, lorsque son mur disparaît, joue l’animation Light_Wall_Animations/Disappearing dans Light_Wall.tscn.
+- À la mort d’un concurrent, lorsque son mur disparaît, joue l’animation Light_Wall_Animations/Disappearing dans Wall.tscn.
 - À la fin de l’animation de mort d’un concurrent (Death) et que son mur aussi a disparu, on joue l’animation Animation_Disappearing_Death/Disappearing du concurrent afin de faire disparaître son cadavre (c’est dommage mais le laisser, ça risque de trop compliquer les choses).
 - Lorsqu’un concurrent traverse une case (donc en traçant son mur) et que la cellule bouge (glissement), alors le concurrent se décale AVEC la cellule. Et le mur qu’il trace également afin que le morceau de mur sur la cellule puisse se déplacer avec la case si celle-ci est amenée à se déplacer de nouveau.
 - Cas particuliers de mort de concurrent : il existe une animation alternative, un AnimationPlayer avec une animation « toute bête » pour ces cas-là (Animation_Disappearing_Death/Disappearing). Si par exemple se présente un cas avec deux colonnes baissées et que le concurrent veut passer dessous à vitesse normale, il ne pourra pas (distance trop grande pour un slide), mourra donc et on utilisera cette animation. Écrasé par une colonne, ce sera pareil ! Etc.
 - Un concurrent ne peut pas courir sur un autre cadavre → Mort (animation Death).
-- À la mort d’un concurrent, ce qui reste de son mur disparaît (on joue l’animation de disparition du mur dès la première frame de l’animation de mort du concurrent)! Pour cela on jouera l’animation Light_Wall_Animations/Disappearing dans Light_Wall.tscn.
+- À la mort d’un concurrent, ce qui reste de son mur disparaît (on joue l’animation de disparition du mur dès la première frame de l’animation de mort du concurrent)! Pour cela on jouera l’animation Light_Wall_Animations/Disappearing dans Wall.tscn.
 - Seule l’animation de course peut être interrompue (pour changer de direction, sauter, etc.) par le joueur. Toutes les autres doivent finir avant d’enchaîner sur autre chose (on parle toujours d’interruption par le joueur, cela ne concerne pas sa mort, par exemple). Par défaut, à la fin d’une animation d’interruption (saut, glissade, etc.), on retourne toujours à la course.
 - Passer sur un sens unique qui forcerait à partir un sens inverse fait mourir.
 - A propos de spatialisation du son à plus de 2 joueurs humains, mon prendra soin de placer l’AudioListener2D au milieu des joueurs humains. Lorsqu’un joueur humain mourra, le déplacement de l’AudioListener2D à sa nouvelle position se fera à l’aide d’un Tween d’1/2 seconde.
