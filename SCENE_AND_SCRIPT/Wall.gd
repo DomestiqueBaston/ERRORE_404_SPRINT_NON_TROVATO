@@ -227,9 +227,18 @@ func appear():
 ## signal, when the animation finishes.
 ##
 func disappear():
-	_animation.play(&"Disappearing")
-	await _animation.animation_finished
-	remove()
+	if _animation.assigned_animation != &"Disappearing":
+		_animation.play(&"Disappearing")
+		await _animation.animation_finished
+		remove()
+
+##
+## Extends the lifetime of those points that are already visible.
+##
+func extend():
+	for i in _times.size():
+		if _times[i] >= 0.0:
+			_times[i] *= 0.333
 
 ##
 ## Given the collider from a wall, returns the Wall itself. Returns null if the

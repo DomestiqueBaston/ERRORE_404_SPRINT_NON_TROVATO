@@ -13,47 +13,46 @@ const START_ACTIONS := [
 
 var _once := true
 var _can_restart := false
+var _runners: Array[Runner]
 var _bots: Array[Bot]
 
 var _map_scene = preload("res://SCENE_AND_SCRIPT/Map.tscn")
-var _woman_a_scene = preload("res://SCENE_AND_SCRIPT/Woman_A.tscn")
-var _woman_b_scene = preload("res://SCENE_AND_SCRIPT/Woman_B.tscn")
-var _man_a_scene = preload("res://SCENE_AND_SCRIPT/Man_A.tscn")
-var _man_b_scene = preload("res://SCENE_AND_SCRIPT/Man_B.tscn")
+var _runner_scenes = [
+	preload("res://SCENE_AND_SCRIPT/Woman_A.tscn"),
+	preload("res://SCENE_AND_SCRIPT/Woman_B.tscn"),
+	preload("res://SCENE_AND_SCRIPT/Man_A.tscn"),
+	preload("res://SCENE_AND_SCRIPT/Man_B.tscn")
+]
 
 func _ready():
 	var map = _map_scene.instantiate()
 	map.map_size = Globals.map_size
 
-	var runner1 = _woman_a_scene.instantiate()
-	var runner2 = _woman_b_scene.instantiate()
-	var runner3 = _man_a_scene.instantiate()
-	var runner4 = _man_b_scene.instantiate()
+	for i in _runner_scenes.size():
+		var runner = _runner_scenes[i].instantiate()
+		runner.input_device = i
+		runner.bonus_found.connect(_on_bonus_found)
+		_runners.append(runner)
 
 	$Runners/Top_Runners/Left_Runner/Runner_SubViewport.add_child(map)
 
 	_add_runner_to_viewport(
 		$Runners/Top_Runners/Left_Runner/Runner_SubViewport,
-		map, Globals.Corner.N, runner1, false)
+		map, Globals.Corner.N, _runners[0], false)
 	_add_runner_to_viewport(
 		$Runners/Top_Runners/Right_Runner/Runner_SubViewport,
-		map, Globals.Corner.S, runner2, true)
+		map, Globals.Corner.S, _runners[1], true)
 	_add_runner_to_viewport(
 		$Runners/Bottom_Runners/Left_Runner/Runner_SubViewport,
-		map, Globals.Corner.W, runner3, true)
+		map, Globals.Corner.W, _runners[2], true)
 	_add_runner_to_viewport(
 		$Runners/Bottom_Runners/Right_Runner/Runner_SubViewport,
-		map, Globals.Corner.E, runner4, true)
+		map, Globals.Corner.E, _runners[3], true)
 
 	var world = $Runners/Top_Runners/Left_Runner/Runner_SubViewport.world_2d
 	$Runners/Top_Runners/Right_Runner/Runner_SubViewport.world_2d = world
 	$Runners/Bottom_Runners/Left_Runner/Runner_SubViewport.world_2d = world
 	$Runners/Bottom_Runners/Right_Runner/Runner_SubViewport.world_2d = world
-
-	runner1.input_device = 0
-	runner2.input_device = 1
-	runner3.input_device = 2
-	runner4.input_device = 3
 
 func _add_runner_to_viewport(
 	viewport: SubViewport, map: Map, start_corner: Globals.Corner,
@@ -91,3 +90,19 @@ func _unhandled_input(event: InputEvent) -> void:
 		Sounds.play_bang()
 		Sounds.play_intro()
 		get_tree().reload_current_scene()
+
+func _on_bonus_found(runner: Runner, bonus: Bonus):
+	match bonus.type:
+		Bonus.Type.VANISH_WALLS:
+			for r in _runners:
+				if r != runner:
+					r.vanish_walls()
+		Bonus.Type.EXTEND_WALLS:
+			for r in _runners:
+				if r != runner:
+					r.extend_walls()
+		_:
+			var candidates = _runners.duplicate()
+			candidates.erase(runner)
+			var other_runner = candidates.pick_random()
+			other_runner.apply_bonus(bonus)

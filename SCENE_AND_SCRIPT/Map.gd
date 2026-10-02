@@ -117,19 +117,9 @@ func _ready():
 	_center_cell.lower(true)
 	_center_cell.add_artefact()
 
-	# all supported bonus/malus types are available initially
+	# all bonus/malus types are available initially
 
-	_available_bonuses = [
-		Bonus.Type.INVINCIBLE,
-		Bonus.Type.DASH,
-		Bonus.Type.PIERCE_WALLS,
-		Bonus.Type.AUTO_DODGE,
-		Bonus.Type.INVERT,
-		Bonus.Type.SLOW,
-		Bonus.Type.ANTI_DASH,
-		Bonus.Type.PHASE,
-		Bonus.Type.NO_TURN
-	]
+	_available_bonuses.assign(Bonus.Type.values())
 
 	# start timers to generate obstacles and bonus/malus cubes
 
