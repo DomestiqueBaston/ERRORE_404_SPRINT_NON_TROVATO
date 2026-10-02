@@ -21,7 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://bg1810o3k0s8b" path="res://SOUND/FX/Disconnection.ogg" id="17_gwksd"]
 [ext_resource type="AudioStream" uid="uid://dsr0lb7uc7k7s" path="res://SOUND/FX/Crackling_Noise_C.ogg" id="21_4er72"]
 
-[sub_resource type="Shader" id="Shader_4dsww"]
+[sub_resource type="Shader" id="Shader_lqmhv"]
 code = "shader_type canvas_item;
 
 uniform int pixel_factor : hint_range(1, 10) = 5;
@@ -41,10 +41,10 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xyrw2"]
-shader = SubResource("Shader_4dsww")
+shader = SubResource("Shader_lqmhv")
 shader_parameter/pixel_factor = 5
 
-[sub_resource type="Shader" id="Shader_1luj4"]
+[sub_resource type="Shader" id="Shader_4er72"]
 code = "shader_type canvas_item;
 
 uniform sampler2D existing_screen_texture : hint_screen_texture, filter_linear_mipmap;
@@ -68,10 +68,10 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_foedy"]
-shader = SubResource("Shader_1luj4")
-shader_parameter/speed = 1.0
+shader = SubResource("Shader_4er72")
+shader_parameter/speed = 2.0
 
-[sub_resource type="Shader" id="Shader_8mbax"]
+[sub_resource type="Shader" id="Shader_0v8rs"]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -113,12 +113,12 @@ void fragment() {
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2mvkq"]
-shader = SubResource("Shader_8mbax")
+shader = SubResource("Shader_0v8rs")
 shader_parameter/hit_effect = 1.0
 shader_parameter/shake_intensity = 4.5
 shader_parameter/time_offset = 0.0
 
-[sub_resource type="Shader" id="Shader_qkdav"]
+[sub_resource type="Shader" id="Shader_hqhym"]
 code = "// Luan Ha Trong 2025 //
 
 shader_type canvas_item;
@@ -213,8 +213,8 @@ void fragment() {
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2g7lv"]
-shader = SubResource("Shader_qkdav")
-shader_parameter/saturation = 5.0
+shader = SubResource("Shader_hqhym")
+shader_parameter/saturation = 1.250000059375
 shader_parameter/value = 1.0
 shader_parameter/alpha = 1.0
 shader_parameter/interval = 0.25000000861512
@@ -222,10 +222,10 @@ shader_parameter/duration = 0.750000035625
 shader_parameter/min_hue_shift_deg = 60.00000285
 shader_parameter/max_hue_shift_deg = 180.00000855
 shader_parameter/min_double_offset_px = 1.5
-shader_parameter/max_double_offset_px = 3.5
+shader_parameter/max_double_offset_px = 7.50000035625
 shader_parameter/double_strength = 0.400000019
 
-[sub_resource type="Shader" id="Shader_1y105"]
+[sub_resource type="Shader" id="Shader_ftnwh"]
 code = "shader_type canvas_item;
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
@@ -283,13 +283,13 @@ void fragment() {
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4tcjb"]
-shader = SubResource("Shader_1y105")
-shader_parameter/change_interval = 0.76000003284012
+shader = SubResource("Shader_ftnwh")
+shader_parameter/change_interval = 0.56000002334012
 shader_parameter/blur_min = 2
 shader_parameter/blur_max = 8
 shader_parameter/blur_strength = 1.0
 
-[sub_resource type="Shader" id="Shader_w61ia"]
+[sub_resource type="Shader" id="Shader_mybf8"]
 code = "shader_type canvas_item;
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
@@ -416,7 +416,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mbxwg"]
-shader = SubResource("Shader_w61ia")
+shader = SubResource("Shader_mybf8")
 shader_parameter/quality = 25
 shader_parameter/block_size = 12
 
@@ -481,7 +481,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qowxl"]
 shader = SubResource("Shader_rlifm")
-shader_parameter/speed = 0.9
+shader_parameter/speed = 1.9
 
 [sub_resource type="Shader" id="Shader_g5vlg"]
 code = "shader_type canvas_item;
@@ -626,7 +626,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6uege"]
 shader = SubResource("Shader_h7oyp")
-shader_parameter/saturation = 5.0
+shader_parameter/saturation = 1.250000059375
 shader_parameter/value = 1.0
 shader_parameter/alpha = 1.0
 shader_parameter/interval = 0.24000000814012
@@ -634,7 +634,7 @@ shader_parameter/duration = 0.750000035625
 shader_parameter/min_hue_shift_deg = 60.00000285
 shader_parameter/max_hue_shift_deg = 180.00000855
 shader_parameter/min_double_offset_px = 1.5
-shader_parameter/max_double_offset_px = 3.5
+shader_parameter/max_double_offset_px = 7.50000035625
 shader_parameter/double_strength = 0.400000019
 
 [sub_resource type="Shader" id="Shader_v7qv0"]
@@ -696,7 +696,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xsqhu"]
 shader = SubResource("Shader_v7qv0")
-shader_parameter/change_interval = 0.75
+shader_parameter/change_interval = 0.50000002049012
 shader_parameter/blur_min = 2
 shader_parameter/blur_max = 8
 shader_parameter/blur_strength = 1.0
@@ -880,7 +880,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8g7vx"]
 shader = SubResource("Shader_mhpl2")
-shader_parameter/speed = 1.1
+shader_parameter/speed = 2.1
 
 [sub_resource type="Shader" id="Shader_hkilf"]
 code = "shader_type canvas_item;
@@ -1025,7 +1025,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mgfmm"]
 shader = SubResource("Shader_wr05d")
-shader_parameter/saturation = 5.0
+shader_parameter/saturation = 1.250000059375
 shader_parameter/value = 1.0
 shader_parameter/alpha = 1.0
 shader_parameter/interval = 0.23000000766512
@@ -1033,7 +1033,7 @@ shader_parameter/duration = 0.750000035625
 shader_parameter/min_hue_shift_deg = 60.00000285
 shader_parameter/max_hue_shift_deg = 180.00000855
 shader_parameter/min_double_offset_px = 1.5
-shader_parameter/max_double_offset_px = 3.5
+shader_parameter/max_double_offset_px = 7.50000035625
 shader_parameter/double_strength = 0.400000019
 
 [sub_resource type="Shader" id="Shader_iicvj"]
@@ -1095,7 +1095,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hl866"]
 shader = SubResource("Shader_iicvj")
-shader_parameter/change_interval = 0.77000003331512
+shader_parameter/change_interval = 0.5700000238151199
 shader_parameter/blur_min = 2
 shader_parameter/blur_max = 8
 shader_parameter/blur_strength = 1.0
@@ -1292,7 +1292,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wgvd2"]
 shader = SubResource("Shader_hihx7")
-shader_parameter/speed = 1.2
+shader_parameter/speed = 2.2
 
 [sub_resource type="Shader" id="Shader_8pwh4"]
 code = "shader_type canvas_item;
@@ -1437,7 +1437,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y6w2y"]
 shader = SubResource("Shader_veqeh")
-shader_parameter/saturation = 5.0
+shader_parameter/saturation = 1.250000059375
 shader_parameter/value = 1.0
 shader_parameter/alpha = 1.0
 shader_parameter/interval = 0.26000000909012
@@ -1445,7 +1445,7 @@ shader_parameter/duration = 0.750000035625
 shader_parameter/min_hue_shift_deg = 60.00000285
 shader_parameter/max_hue_shift_deg = 180.00000855
 shader_parameter/min_double_offset_px = 1.5
-shader_parameter/max_double_offset_px = 3.5
+shader_parameter/max_double_offset_px = 7.50000035625
 shader_parameter/double_strength = 0.400000019
 
 [sub_resource type="Shader" id="Shader_1kbyd"]
@@ -1507,7 +1507,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7t2yn"]
 shader = SubResource("Shader_1kbyd")
-shader_parameter/change_interval = 0.74000003189012
+shader_parameter/change_interval = 0.46000001859012
 shader_parameter/blur_min = 2
 shader_parameter/blur_max = 8
 shader_parameter/blur_strength = 1.0
