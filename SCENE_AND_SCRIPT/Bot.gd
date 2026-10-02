@@ -47,6 +47,12 @@ var _max_straight_time: float
 # Seconds left before encouraging the runner to turn.
 var _turn_timer: float
 
+@warning_ignore("shadowed_variable")
+func _init(runner: Runner, map: Map, start_corner: Globals.Corner):
+	self.runner = runner
+	self.map = map
+	self.start_corner = start_corner
+
 func _ready():
 	set_physics_process(false)
 	runner.died.connect(func(): set_physics_process(false))
