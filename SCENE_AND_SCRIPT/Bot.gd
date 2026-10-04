@@ -234,7 +234,7 @@ func _add_option_maybe(
 # or an artefact, or the runner's path is blocked by a wall.
 #
 # 1: The destination contains another runner, or an obstacle that may be OK,
-# such as a one-way sign or a teleport.
+# such as a one-way sign (that is not pointing the wrong way) or a teleport.
 #
 # 2: The destination contains a hole that can be jumped over, or a pylon that
 # can be slid under, or no obstacles at all.
@@ -264,8 +264,10 @@ func _evaluate_move(
 	match next_cell.get_state():
 		Cell.State.LOWERED, Cell.State.HIDDEN:
 			return 2 if _can_jump_or_slide_over(next_pos, dir) else 0
-		Cell.State.TELEPORT, Cell.State.ONE_WAY:
+		Cell.State.TELEPORT:
 			return 1
+		Cell.State.ONE_WAY:
+			return 0 if _is_one_way_lethal(dir, next_cell) else 1
 		Cell.State.PYLON:
 			match next_cell.get_pylon().get_state():
 				Pylon.State.RAISED:
@@ -296,6 +298,22 @@ func _get_time_to_cell_border(next_pos: Vector2) -> float:
 		if pt != null:
 			return runner.global_position.distance_to(pt) / runner.get_current_speed()
 	return 0
+
+#
+# Given a direction of movement and a cell containing a one-way obstacle,
+# returns true if the one-way sign is pointing in the opposite direction.
+#
+func _is_one_way_lethal(dir: Vector2, cell: Cell) -> bool:
+	match cell.get_one_way_direction():
+		Globals.Axis.NW:
+			return dir.x > 0 and dir.y > 0
+		Globals.Axis.NE:
+			return dir.x < 0 and dir.y > 0
+		Globals.Axis.SW:
+			return dir.x > 0 and dir.y < 0
+		Globals.Axis.SE:
+			return dir.x < 0 and dir.y < 0
+	return true
 
 #
 # Given a direction of movement and a location (which defaults to the runner's
