@@ -503,6 +503,12 @@ func get_current_speed() -> float:
 		speed = move_speed
 	return speed * _animation.speed_scale
 
+##
+## Returns the visual bug currently affecting the runner, if any.
+##
+func get_current_bug() -> Globals.Bug:
+	return _curr_bug
+
 func _play_jump_animation() -> void:
 	if _last_direction == Vector2.ZERO or is_dead or is_falling: return
 	is_jumping = true

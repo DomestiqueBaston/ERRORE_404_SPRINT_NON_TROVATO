@@ -71,6 +71,8 @@ func _physics_process(delta: float):
 		set_physics_process(false)
 		if obstacle:
 			var reaction_time = randf_range(min_reaction_time, max_reaction_time)
+			if not runner.get_current_bug() != Globals.Bug.NONE:
+				reaction_time += 0.05
 			await get_tree().create_timer(reaction_time).timeout
 		await _react(obstacle)
 		set_physics_process(not (runner.is_dead or runner.is_falling))
