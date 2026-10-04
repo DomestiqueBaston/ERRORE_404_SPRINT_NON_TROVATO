@@ -271,9 +271,11 @@ func remove_artefact():
 func get_artefact() -> Artefact:
 	return _artefact
 
-func add_door():
+func add_door(flip: bool):
 	if _door == null:
 		_door = _door_scene.instantiate()
+		if flip:
+			_door.scale.x = -1
 		add_child(_door)
 		_door.cell = self
 
@@ -291,7 +293,7 @@ func add_cube(type: Bonus.Type):
 		_state = State.CUBE
 
 func remove_cube():
-	if _cube:
+	if _cube and _state == State.CUBE:
 		_state = State.NORMAL
 		await _cube.disappear()
 		remove_child(_cube)

@@ -700,7 +700,7 @@ func _remove_artefact():
 	await get_tree().create_timer(pause_length).timeout
 	await _center_cell.raise()
 	await get_tree().create_timer(pause_length).timeout
-	_center_cell.add_door()
+	_center_cell.add_door(randi() & 1)
 
 ##
 ## Removes a one-way obstacle immediately, rather than waiting for the duration
