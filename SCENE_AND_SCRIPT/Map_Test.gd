@@ -9,6 +9,7 @@ enum Character {
 
 @export var character: Character = Character.WOMAN_A
 @export var start_corner: Globals.Corner
+@export var is_bot: bool = false
 
 const START_ACTIONS := [
 	"ui_a_button",
@@ -25,6 +26,7 @@ const START_ACTIONS := [
 
 var _once := true
 var _can_restart := false
+var _bot: Bot
 
 func _ready():
 	var map = _map_scene.instantiate()
@@ -50,6 +52,10 @@ func _ready():
 	runner.set_environment(map, start_corner, camera)
 	add_child(runner)
 
+	if is_bot:
+		_bot = Bot.new(runner, map, start_corner)
+		add_child(_bot)
+
 func _unhandled_input(event: InputEvent) -> void:
 	# Détection de la première action du joueur
 	for action in START_ACTIONS:
@@ -58,6 +64,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			if _once:
 				Sounds.stop_intro()
 				Sounds.play_music()
+				if _bot:
+					_bot.start()
 				_once = false
 			break
 
