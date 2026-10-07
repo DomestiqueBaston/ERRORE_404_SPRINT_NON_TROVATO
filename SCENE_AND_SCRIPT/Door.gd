@@ -36,13 +36,14 @@ func _ready():
 	$Door_Front.z_index = Depth.FRONT_DOOR
 
 func get_zone_at(collider: Area2D) -> Zone:
-	for zone in collider.get_overlapping_areas():
+	var zones = collider.get_overlapping_areas()
+	if _passage in zones:
+		return Zone.PASSAGE
+	for zone in zones:
 		if zone.collision_layer & Globals.DOOR_LAYER:
 			match zone:
 				_frame_left, _frame_right:
 					return Zone.FRAME
-				_passage:
-					return Zone.PASSAGE
 				_back:
 					return Zone.BACK
 				_middle:
