@@ -24,6 +24,15 @@ enum Depth {
 	FRONT
 }
 
+##
+## Enum indicating whether the passageway through the door is on the southwest-
+## northeast axis (the default) or the northwest-southeast axis.
+##
+enum Axis {
+	SW_NE,
+	NW_SE
+}	
+
 @onready var _frame_left: Area2D = $Leg_G
 @onready var _frame_right: Area2D = $Leg_D
 @onready var _passage: Area2D = $Door
@@ -51,3 +60,9 @@ func get_zone_at(collider: Area2D) -> Zone:
 				_front:
 					return Zone.FRONT
 	return Zone.MIDDLE
+
+func set_orientation(axis: Axis):
+	scale.x = 1 if axis == Axis.SW_NE else -1
+
+func get_orientation() -> Axis:
+	return Axis.SW_NE if scale.x > 0 else Axis.NW_SE

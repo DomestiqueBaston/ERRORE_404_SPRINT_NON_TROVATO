@@ -51,6 +51,7 @@ enum State {
 
 const width: float = 236.0
 const height: float = width * 0.5
+const side_length = sqrt(0.25 * (width * width + height * height))
 
 ## Signal emitted whenever the cell's global position has changed.
 signal position_changed
@@ -274,8 +275,7 @@ func get_artefact() -> Artefact:
 func add_door(flip: bool):
 	if _door == null:
 		_door = _door_scene.instantiate()
-		if flip:
-			_door.scale.x = -1
+		_door.set_orientation(Door.Axis.NW_SE if flip else Door.Axis.SW_NE)
 		add_child(_door)
 		_door.cell = self
 
@@ -447,3 +447,14 @@ func get_exit_point(pt1: Vector2, pt2: Vector2):
 		return ret
 
 	return null
+
+##
+## Given a point in local coordinates within the cell, returns the "local UV"
+## coordinates of the point, where the UV coordinates of the leftmost corner
+## are [0, 0], the coordinates of the bottommost corner are [1, 0], and the
+## coordinates of the topmost corner are [0, 1].
+##
+func get_local_uv(pos: Vector2) -> Vector2:
+	var u = 0.5 + pos.x / width + pos.y / height
+	var v = 0.5 + pos.x / width - pos.y / height
+	return Vector2(u, v)

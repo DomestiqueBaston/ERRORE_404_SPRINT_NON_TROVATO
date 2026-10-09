@@ -83,3 +83,34 @@ func load_settings():
 		difficulty = config.get_value("settings", "difficulty", 3)
 		AudioServer.set_bus_volume_db(MASTER_BUS, config.get_value("settings", "master_db", 0.0))
 		AudioServer.set_bus_volume_db(MUSIC_BUS, config.get_value("settings", "music_db", -7.5))
+
+func axis_to_dir(axis: Globals.Axis) -> Vector2:
+	match axis:
+		Axis.NW:
+			return NORTHWEST
+		Axis.NE:
+			return NORTHEAST
+		Axis.SW:
+			return SOUTHWEST
+		Axis.SE:
+			return SOUTHEAST
+	return Vector2.ZERO
+
+func dir_to_axis(dir: Vector2) -> Axis:
+	if dir.x > 0:
+		if dir.y > 0:
+			return Axis.SE
+		else:
+			return Axis.NE
+	else:
+		if dir.y > 0:
+			return Axis.SW
+		else:
+			return Axis.NW
+
+##
+## Returns true if the two given directions are the same. It is assumed that
+## they are each one of the four possible directions for runners.
+##
+func compare_directions(dir1: Vector2, dir2: Vector2) -> bool:
+	return dir_to_axis(dir1) == dir_to_axis(dir2)

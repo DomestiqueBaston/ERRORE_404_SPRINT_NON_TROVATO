@@ -47,6 +47,9 @@ var _max_straight_time: float
 # Seconds left before encouraging the runner to turn.
 var _turn_timer: float
 
+# Cell containing the exit door.
+var _door_cell: Cell
+
 @warning_ignore("shadowed_variable")
 func _init(runner: Runner, map: Map, start_corner: Globals.Corner):
 	self.runner = runner
@@ -56,9 +59,18 @@ func _init(runner: Runner, map: Map, start_corner: Globals.Corner):
 func _ready():
 	set_physics_process(false)
 	runner.died.connect(func(): set_physics_process(false))
+	runner.escaped.connect(func(): set_physics_process(false))
+	map.door_opened.connect(func(): _door_cell = map.get_center_cell())
 
 func _physics_process(delta: float):
 	_turn_timer -= delta
+
+	# don't try to change direction while navigating the doorway, or jumping or
+	# sliding
+
+	if ((_door_cell and _door_cell == runner.get_current_cell())
+		or runner.is_jumping or runner.is_sliding):
+		return
 
 	var next_pos = _get_next_pos(runner.direction)
 	var next_cell = map.get_cell_at_pos(next_pos)
@@ -67,16 +79,17 @@ func _physics_process(delta: float):
 		or runner.get_visible_runners()
 		or _check_for_walls(next_pos, next_cell))
 
-	if obstacle or _turn_timer <= 0.0:
+	if obstacle or _door_cell or _turn_timer <= 0.0:
 		set_physics_process(false)
 		if obstacle:
 			var reaction_time = randf_range(min_reaction_time, max_reaction_time)
 			if not runner.get_current_bug() != Globals.Bug.NONE:
 				reaction_time += 0.05
 			await get_tree().create_timer(reaction_time).timeout
-		await _react(obstacle)
-		set_physics_process(not (runner.is_dead or runner.is_falling))
-		_turn_timer = _max_straight_time
+		await _react()
+		if runner.is_alive():
+			set_physics_process(true)
+			_turn_timer = _max_straight_time
 
 ##
 ## Starts running. Be sure to set the runner and the map before calling this.
@@ -135,10 +148,9 @@ func start():
 
 #
 # Makes the runner change direction, jump and/or slide in response to the
-# obstacles surrounding him. If avoiding_obstacle is false, the runner turns if
-# he can, but not if that means potentially killing himself.
+# obstacles surrounding him.
 #
-func _react(avoiding_obstacle: bool):
+func _react():
 	var other_runners = runner.get_visible_runners()
 	var options: Array[RunnerAction]
 	var pos: Vector2
@@ -147,12 +159,11 @@ func _react(avoiding_obstacle: bool):
 
 	# continue straight on?
 
-	if avoiding_obstacle:
-		var forward = runner.direction
-		pos = _get_next_pos(forward)
-		cell = map.get_cell_at_pos(pos)
-		priority = _evaluate_move(forward, pos, cell, other_runners)
-		_add_option_maybe(options, forward, cell, priority)
+	var forward = runner.direction
+	pos = _get_next_pos(forward)
+	cell = map.get_cell_at_pos(pos)
+	priority = _evaluate_move(forward, pos, cell, other_runners)
+	_add_option_maybe(options, forward, cell, priority)
 
 	# turn left?
 
@@ -170,20 +181,27 @@ func _react(avoiding_obstacle: bool):
 	priority = _evaluate_move(right, pos, cell, other_runners)
 	_add_option_maybe(options, right, cell, priority)
 
-	# if there is nowhere to go, turn either left or right, which may later
-	# result in a u-turn
+	# if there is nowhere to go, turn either left or right, which may then lead
+	# to a u-turn
 
 	if options.is_empty():
-		if avoiding_obstacle:
-			_send_direction_event(left if randi() & 1 else right)
+		_send_direction_event(left if randi() & 1 else right)
 		return
 
-	# if there is more than one way to go, pick one at random, jumping or
-	# sliding as needed
+	# if the exit door is there, move in the direction of the door, if
+	# possible, otherwise pick an option at random
 
-	var option = options.pick_random()
+	var option: RunnerAction = null
+	if _door_cell:
+		option = await _pick_best_way_to_door(options)
+	elif _turn_timer <= 0.0:
+		option = _pick_left_or_right(options)
+	if option == null:
+		option = options.pick_random()
+
+	# jump or slide, if necessary, to avoid the obstacle in the next cell
+
 	var jump_or_slide: StringName
-
 	if option.cell == null or option.cell.get_state() in [
 		Cell.State.LOWERED, Cell.State.HIDDEN
 	]:
@@ -191,17 +209,19 @@ func _react(avoiding_obstacle: bool):
 	elif option.cell.get_state() == Cell.State.PYLON:
 		jump_or_slide = &"slide"
 
+	# finally, do it: change direction, if necessary, then jump or slide, maybe
+
 	if option.dir != runner.direction:
 		_send_direction_event(option.dir)
+		await get_tree().create_timer(min_move_interval).timeout
 
 	if jump_or_slide:
-		var next_pos = _get_next_pos(option.dir)
-		var time = _get_time_to_cell_border(next_pos) - jump_slide_runup_time
-		await get_tree().create_timer(maxf(time, min_move_interval)).timeout
+		var time = _get_time_to_cell_border(option.dir) - jump_slide_runup_time
 		if jump_or_slide == &"jump":
 			_send_action_event(&"ui_a_button")
 		else:
 			_send_action_event(&"ui_b_button")
+		await get_tree().create_timer(maxf(time, min_move_interval)).timeout
 
 #
 # Adds a new RunnerAction to the options array, if priority > 0 and >= the
@@ -226,6 +246,133 @@ func _add_option_maybe(
 	options.push_back(option)
 
 #
+# Given one or more options, pick one at random which is NOT to go straight, or
+# null if that is the only option.
+#
+func _pick_left_or_right(options: Array[RunnerAction]):
+	var candidates = options.duplicate()
+	while not candidates.is_empty():
+		var which = randi() % candidates.size()
+		if Globals.compare_directions(candidates[which].dir, runner.direction):
+			candidates.remove_at(which)
+		else:
+			return candidates[which]
+	return null
+
+#
+# Given one or more options, once the exit door has appeared, pick one that
+# best takes the runner in the direction of the door, if possible, or null if
+# not.
+#
+# Note that this function may wait until the runner reaches the middle of the
+# cell, or even turn first to position the runner in the cell, so make sure to
+# await its finish.
+#
+func _pick_best_way_to_door(options: Array[RunnerAction]):
+	if not (_door_cell and runner.get_current_cell()):
+		return null
+
+	var option: RunnerAction = null
+	var curr_cell = runner.get_current_cell()
+	var door_uv = Map.get_cell_index(_door_cell.global_position)
+	var runner_uv = Map.get_cell_index(curr_cell.global_position)
+
+	# aim for a cell next to the central cell, in the axis of the passageway;
+	# once we get there, aim for the central cell itself
+
+	var target_uv = door_uv
+	var target_coord: StringName
+	var door_axis = _door_cell.get_door().get_orientation()
+
+	if door_axis == Door.Axis.SW_NE:
+		target_coord = &"x"
+		target_uv.y += 1 if target_uv.y < runner_uv.y else -1
+	else:
+		target_coord = &"y"
+		target_uv.x += 1 if target_uv.x < runner_uv.x else -1
+
+	if runner_uv == target_uv or runner_uv == door_uv:
+		target_uv = door_uv
+
+	# TODO: if the target cell contains an obstacle, abort!
+
+	# which is the best direction to approach the target?
+
+	var preferred_dir: Vector2
+
+	# we are already in the central cell: just keep going straight
+
+	if runner_uv == door_uv:
+		preferred_dir = runner.direction
+
+	# we have already reached the row or column in the axis of the passageway:
+	# aim now for the door itself
+
+	elif runner_uv[target_coord] == target_uv[target_coord]:
+		if door_axis == Door.Axis.SW_NE:
+			if target_uv.y > runner_uv.y:
+				preferred_dir = Globals.NORTHEAST
+			else:
+				preferred_dir = Globals.SOUTHWEST
+		else:
+			if target_uv.x > runner_uv.x:
+				preferred_dir = Globals.SOUTHEAST
+			else:
+				preferred_dir = Globals.NORTHWEST
+
+	# otherwise: aim first for the row or column in the axis of the passageway
+
+	elif runner_uv[target_coord] < target_uv[target_coord]:
+		if door_axis == Door.Axis.SW_NE:
+			preferred_dir = Globals.SOUTHEAST
+		else:
+			preferred_dir = Globals.NORTHEAST
+	else:
+		if door_axis == Door.Axis.SW_NE:
+			preferred_dir = Globals.NORTHWEST
+		else:
+			preferred_dir = Globals.SOUTHWEST
+
+	# is going in that direction an option? if not, abort
+
+	for opt in options:
+		if Globals.compare_directions(opt.dir, preferred_dir):
+			option = opt
+			break
+
+	if option == null:
+		return null
+
+	# if we are already going in the right direction, but we are not in the
+	# middle of the cell, turn left or right toward the middle, then turn again
+
+	if Globals.compare_directions(option.dir, runner.direction):
+		var left = _get_left_dir()
+		var progress = _get_progress_within_cell(left)
+		if progress < 0.3:
+			if not _check_for_walls(_get_next_pos(left), null):
+				_send_direction_event(left)
+				var t = (Cell.side_length * (0.5 - progress)) / runner.get_current_speed()
+				await get_tree().create_timer(t).timeout
+		elif progress > 0.7:
+			var right = -left
+			if not _check_for_walls(_get_next_pos(right), null):
+				_send_direction_event(right)
+				var t = (Cell.side_length * (1.0 - progress)) / runner.get_current_speed()
+				await get_tree().create_timer(t).timeout
+
+	# if we are NOT going in the preferred direction, change direction once we
+	# reach the center of the cell
+
+	else:
+		var progress = _get_progress_within_cell(runner.direction)
+		if progress < 0.3:
+			var t = Cell.side_length * (0.5 - progress) / runner.get_current_speed()
+			await get_tree().create_timer(t).timeout
+
+	return option
+
+#
 # Evaluates a potential move in the given direction from the runner's current
 # position. The next_pos parameter is a point in the neighboring cell in that
 # direction, if there is one (next_cell).
@@ -245,14 +392,22 @@ func _evaluate_move(
 	dir: Vector2, next_pos: Vector2, next_cell: Cell,
 	other_runners: Array[Runner]) -> int:
 
+	# is the runner headed for a wall?
+
 	if _check_for_walls(next_pos, next_cell):
 		return 0
+
+	# is the runner headed for a hole in the map?
 
 	if next_cell == null:
 		return 2 if _can_jump_or_slide_over(next_pos, dir) else 0
 
-	if next_cell.get_artefact():
-		return 0
+	# special case for navigating the exit door
+
+	if next_cell.get_door():
+		return 2 if _is_parallel_to_door_axis(dir) else 0
+
+	# is the runner headed toward another runner?
 
 	var is_crowded = false
 	for other in other_runners:
@@ -260,8 +415,12 @@ func _evaluate_move(
 			is_crowded = true
 			break
 
+	# no obstacles in the next cell: we're done
+
 	if _is_cell_clear(next_cell):
 		return 1 if is_crowded else 2
+
+	# otherwise it depends on what obstacle the cell contains
 
 	match next_cell.get_state():
 		Cell.State.LOWERED, Cell.State.HIDDEN:
@@ -290,15 +449,31 @@ func _can_jump_or_slide_over(pos: Vector2, dir: Vector2) -> bool:
 	return _is_cell_clear(next_cell)
 
 #
-# Given a point outside the current cell, returns how long it will take the
-# runner to get from his current position to the border of the current cell.
+# Given a direction of movement, returns how long it will take the runner to
+# get from his current position to the border of the current cell.
 #
-func _get_time_to_cell_border(next_pos: Vector2) -> float:
-	if runner.get_current_cell():
-		var pt = runner.get_current_cell().get_exit_point(
-			runner.global_position, next_pos)
-		if pt != null:
-			return runner.global_position.distance_to(pt) / runner.get_current_speed()
+func _get_time_to_cell_border(dir: Vector2) -> float:
+	var progress = _get_progress_within_cell(dir)
+	return Cell.side_length * (1.0 - progress) / runner.get_current_speed()
+
+#
+# Given a direction of movement, and the runner's current position and cell,
+# returns a value between 0 and 1 indicating his position within that cell. A
+# value close to 0 indicates that he has most of the cell in front of him; a
+# value close to 1 indicates that he will soon exit the cell.
+#
+func _get_progress_within_cell(dir: Vector2) -> float:
+	var cell = runner.get_current_cell()
+	var uv = cell.get_local_uv(cell.to_local(runner.global_position))
+	match Globals.dir_to_axis(dir):
+		Globals.Axis.NW:
+			return 1.0 - uv.x
+		Globals.Axis.NE:
+			return uv.y
+		Globals.Axis.SW:
+			return 1.0 - uv.y
+		Globals.Axis.SE:
+			return uv.x
 	return 0
 
 #
@@ -306,15 +481,16 @@ func _get_time_to_cell_border(next_pos: Vector2) -> float:
 # returns true if the one-way sign is pointing in the opposite direction.
 #
 func _is_one_way_lethal(dir: Vector2, cell: Cell) -> bool:
+	var runner_axis = Globals.dir_to_axis(dir)
 	match cell.get_one_way_direction():
 		Globals.Axis.NW:
-			return dir.x > 0 and dir.y > 0
+			return runner_axis == Globals.Axis.SE
 		Globals.Axis.NE:
-			return dir.x < 0 and dir.y > 0
+			return runner_axis == Globals.Axis.SW
 		Globals.Axis.SW:
-			return dir.x > 0 and dir.y < 0
+			return runner_axis == Globals.Axis.NE
 		Globals.Axis.SE:
-			return dir.x < 0 and dir.y < 0
+			return runner_axis == Globals.Axis.NW
 	return true
 
 #
@@ -402,6 +578,20 @@ func _is_cell_clear(cell: Cell) -> bool:
 	return (cell
 			and cell.get_state() in [Cell.State.NORMAL, Cell.State.CUBE]
 			and not cell.get_artefact())
+
+#
+# Returns true if the given direction vector is parallel to the exit door
+# passageway, false if it is perpendicular.
+#
+func _is_parallel_to_door_axis(dir: Vector2) -> bool:
+	if _door_cell:
+		var runner_axis = Globals.dir_to_axis(dir)
+		match _door_cell.get_door().get_orientation():
+			Door.Axis.SW_NE:
+				return runner_axis in [Globals.Axis.NE, Globals.Axis.SW]
+			Door.Axis.NW_SE:
+				return runner_axis in [Globals.Axis.NW, Globals.Axis.SE]
+	return true
 
 #
 # Check for walls blocking the runner's path, that is, walls that intersect a

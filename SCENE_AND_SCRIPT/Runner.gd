@@ -13,6 +13,9 @@ var direction: Vector2 = Vector2.ZERO
 ## Signal emitted when the runner has died.
 signal died
 
+## Signal emitted when the runner has escaped through the exit door.
+signal escaped
+
 ## Signal emitted when the runner grabs a bonus which affects other runners.
 signal bonus_found(bonus: Bonus)
 
@@ -25,7 +28,7 @@ signal stop_bug(bug: Globals.Bug)
 @onready var _sprite_node: Node2D = $Character/Papa_Sprite
 @onready var _sprite: Sprite2D = $Character/Papa_Sprite/Runner_Sprite
 @onready var _animation: AnimationPlayer = $Animation_Runner
-@onready var _disappear: AnimationPlayer = $Animation_Disappearing_Death
+@onready var _disappear_anim: AnimationPlayer = $Animation_Disappearing_Death
 @onready var _bonus_malus_anim: AnimationPlayer = $Animation_Bonus_Malus
 @onready var _glitch_anim: AnimationPlayer = $Animation_Glitch
 @onready var _collider: Area2D = $Character/Papa_Sprite/Runner_Sprite/Collider_Area
@@ -117,7 +120,7 @@ var _bug_timer: Timer
 
 func _ready() -> void:
 	_animation.animation_finished.connect(_on_animation_finished)
-	_disappear.animation_finished.connect(_on_disappear_finished)
+	_disappear_anim.animation_finished.connect(_on_disappear_finished)
 
 	z_index = roundi(global_position.y)
 
@@ -267,8 +270,13 @@ func _physics_process(delta: float):
 						_die()
 				Door.Zone.PASSAGE:
 					if not is_exiting:
-						print("%s is out!" % name)
 						is_exiting = true
+						print("%s is out!" % name)
+						escaped.emit()
+						set_process_input(false)
+						_bonus_malus_anim.play(&"Bonus_Malus")
+						await _bonus_malus_anim.animation_finished
+						_disappear()
 					z_index = door.z_index + Door.Depth.MIDDLE
 				Door.Zone.BACK:
 					z_index = door.z_index + Door.Depth.BACK
@@ -283,7 +291,6 @@ func _physics_process(delta: float):
 
 		else:
 			z_index = roundi(global_position.y)
-			is_exiting = false
 			if _curr_cell:
 				match _curr_cell.get_state():
 					Cell.State.ONE_WAY:
@@ -425,7 +432,7 @@ func _physics_process(delta: float):
 
 	if (new_cell and new_cell.can_take_wall() and direction and
 		not (is_jumping or is_sliding or is_teleporting
-			 or is_dead or is_falling or _are_walls_vanishing)):
+			 or is_dead or is_falling or is_exiting or _are_walls_vanishing)):
 		_add_to_wall(new_cell, prev_direction)
 	else:
 		_curr_wall = null
@@ -484,7 +491,7 @@ func get_current_cell() -> Cell:
 ## Returns true if the runner is still alive and running.
 ##
 func is_alive() -> bool:
-	return not (is_dead or is_falling)
+	return not (is_dead or is_falling or is_exiting)
 
 ##
 ## Returns the speed at which the runner is currently moving, in units/second.
@@ -573,11 +580,8 @@ func _die(fast: bool = false) -> void:
 	# disappeared, that is, when the Disappearing animation has finished.
 
 	if fast:
-		_disappear.play(&"Disappearing")
+		_disappear()
 		died.emit()
-		_collider.monitorable = false
-		for wall in _walls:
-			wall.disappear()
 	else:
 		for wall in _walls:
 			wall.backup(0.225)
@@ -605,6 +609,13 @@ func _start_falling() -> void:
 		_animation.play(&"Falling_180")
 		_sprite_node.scale.x = -1.0 if direction.x < 0 else 1.0
 
+func _disappear():
+	_disappear_anim.play(&"Disappearing")
+	_collider.monitorable = false
+	for wall in _walls:
+		wall.disappear()
+	set_process_input(false)
+
 func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name.begins_with("Jump_"):
 		is_jumping = false
@@ -616,16 +627,11 @@ func _on_animation_finished(anim_name: StringName) -> void:
 		# if _die(true) was called, then Disappearing has already been played,
 		# in which case it will have called set_physics_process(false) already
 		if is_physics_processing():
-			_disappear.play(&"Disappearing")
+			_disappear()
 			died.emit()
-			_collider.monitorable = false
-			for wall in _walls:
-				wall.disappear()
 	elif anim_name.begins_with(&"Falling_"):
+		_disappear()
 		died.emit()
-		_collider.monitorable = false
-		for wall in _walls:
-			wall.disappear()
 
 	# Rien à faire si mort ou en chute (on reste sur l’animation)
 	if is_dead or is_falling:
@@ -651,6 +657,11 @@ func _on_animation_finished(anim_name: StringName) -> void:
 func _on_disappear_finished(_anim_name: String):
 	set_physics_process(false)
 
+#
+# Returns true if the runner can run in the given direction, that is, if it is
+# not opposite to the direction he is running now (the runner can only turn
+# left or right).
+#
 func _is_valid_direction(new_direction: Vector2) -> bool:
 	if _last_direction == Vector2.ZERO:
 		return true

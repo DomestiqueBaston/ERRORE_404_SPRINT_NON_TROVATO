@@ -12,6 +12,9 @@ class_name Map extends Node2D
 ## seconds.
 @export var slide_time: float = 9
 
+## Signal emitted when the exit door has appeared.
+signal door_opened
+
 var _cell_scene := preload("res://SCENE_AND_SCRIPT/Cell.tscn")
 
 const _cell_step_x = 0.5 * Cell.width
@@ -701,6 +704,7 @@ func _remove_artefact():
 	await _center_cell.raise()
 	await get_tree().create_timer(pause_length).timeout
 	_center_cell.add_door(randi() & 1)
+	door_opened.emit()
 
 ##
 ## Removes a one-way obstacle immediately, rather than waiting for the duration
