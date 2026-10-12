@@ -61,7 +61,17 @@ void fragment() {
     float enabled = step(0.5, rand(t));
 
     if (enabled > 0.5) {
-        color = vec3(1.0) - color;
+        // luminosity eval
+        float luminance = dot(color, vec3(0.5, 0.5, 0.0));
+
+        // Invert luminosity
+        float inverted_luminance = 1.0 - luminance;
+
+        // apply correction
+        color += vec3(inverted_luminance - luminance);
+
+        // Keep rgb values
+        color = clamp(color, 0.0, 1.0);
     }
 
     COLOR.rgb = color;
@@ -117,113 +127,6 @@ shader = SubResource("Shader_0v8rs")
 shader_parameter/hit_effect = 1.0
 shader_parameter/shake_intensity = 4.5
 shader_parameter/time_offset = 0.0
-
-[sub_resource type="Shader" id="Shader_hqhym"]
-code = "// Luan Ha Trong 2025 //
-
-shader_type canvas_item;
-
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
-
-// 🎛️ Réglages généraux
-uniform float saturation : hint_range(0.0, 10.0) = 1.25;
-uniform float value : hint_range(0.0, 2.0) = 1.0;
-uniform float alpha : hint_range(0.0, 1.0) = 1.0;
-
-// ⏱️ Timing
-uniform float interval : hint_range(0.1, 30.0) = 0.25;   // X
-uniform float duration : hint_range(0.0, 30.0) = 0.75;   // Y
-
-// 🎨 Hue shift aléatoire
-uniform float min_hue_shift_deg : hint_range(0.0, 180.0) = 60.0;
-uniform float max_hue_shift_deg : hint_range(0.0, 360.0) = 180.0;
-
-// 👁️ Dédoublement horizontal (en pixels écran)
-uniform float min_double_offset_px : hint_range(0.0, 20.0) = 1.5;
-uniform float max_double_offset_px : hint_range(0.0, 50.0) = 7.5;
-uniform float double_strength : hint_range(0.0, 1.0) = 0.4;
-
-// --------------------
-// Utils HSV
-// --------------------
-vec3 rgb2hsv(vec3 c) {
-    vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
-    vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
-    vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
-    float d = q.x - min(q.w, q.y);
-    float e = 1.0e-10;
-    return vec3(
-        abs(q.z + (q.w - q.y) / (6.0 * d + e)),
-        d / (q.x + e),
-        q.x
-    );
-}
-
-vec3 hsv2rgb(vec3 c) {
-    vec3 rgb = clamp(
-        abs(mod(c.x * 6.0 + vec3(0.0, 4.0, 2.0), 6.0) - 3.0) - 1.0,
-        0.0,
-        1.0
-    );
-    return c.z * mix(vec3(1.0), rgb, c.y);
-}
-
-// Hash pseudo-aléatoire stable
-float hash(float n) {
-    return fract(sin(n) * 43758.5453123);
-}
-
-// --------------------
-// Fragment
-// --------------------
-void fragment() {
-    // ⏲️ Cycle temporel
-    float cycle = floor(TIME / interval);
-    float t = mod(TIME, interval);
-    float active = step(t, duration);
-
-    // 🎲 Random stable par cycle
-    float rnd = hash(cycle);
-    float sign = step(0.5, hash(cycle + 19.3)) * 2.0 - 1.0;
-
-    // --- DÉDOUBLEMENT HORIZONTAL ---
-    float offset_px = mix(min_double_offset_px, max_double_offset_px, rnd) * sign;
-    vec2 offset_uv = vec2(offset_px, 0.0) * SCREEN_PIXEL_SIZE * active;
-
-    vec4 base_col = texture(SCREEN_TEXTURE, SCREEN_UV);
-    vec4 double_col = texture(SCREEN_TEXTURE, SCREEN_UV + offset_uv);
-
-    vec4 col = mix(base_col, double_col, double_strength * active);
-
-    // --- HUE SHIFT ---
-    vec3 hsv = rgb2hsv(col.rgb);
-
-    float hue_deg = mix(min_hue_shift_deg, max_hue_shift_deg, rnd);
-    float hue_shift = (hue_deg * sign / 360.0) * active;
-
-    hsv.x = mod(hsv.x + hue_shift, 1.0);
-    hsv.y *= saturation;
-    hsv.z *= value;
-
-    col.rgb = hsv2rgb(hsv);
-    col.a *= alpha;
-
-    COLOR = col;
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2g7lv"]
-shader = SubResource("Shader_hqhym")
-shader_parameter/saturation = 1.250000059375
-shader_parameter/value = 1.0
-shader_parameter/alpha = 1.0
-shader_parameter/interval = 0.25000000861512
-shader_parameter/duration = 0.750000035625
-shader_parameter/min_hue_shift_deg = 60.00000285
-shader_parameter/max_hue_shift_deg = 180.00000855
-shader_parameter/min_double_offset_px = 1.5
-shader_parameter/max_double_offset_px = 7.50000035625
-shader_parameter/double_strength = 0.400000019
 
 [sub_resource type="Shader" id="Shader_ftnwh"]
 code = "shader_type canvas_item;
@@ -473,7 +376,17 @@ void fragment() {
     float enabled = step(0.5, rand(t));
 
     if (enabled > 0.5) {
-        color = vec3(1.0) - color;
+        // luminosity eval
+        float luminance = dot(color, vec3(0.5, 0.5, 0.0));
+
+        // Invert luminosity
+        float inverted_luminance = 1.0 - luminance;
+
+        // apply correction
+        color += vec3(inverted_luminance - luminance);
+
+        // Keep rgb values
+        color = clamp(color, 0.0, 1.0);
     }
 
     COLOR.rgb = color;
@@ -529,113 +442,6 @@ shader = SubResource("Shader_g5vlg")
 shader_parameter/hit_effect = 1.0
 shader_parameter/shake_intensity = 4.5
 shader_parameter/time_offset = 3.142
-
-[sub_resource type="Shader" id="Shader_h7oyp"]
-code = "// Luan Ha Trong 2025 //
-
-shader_type canvas_item;
-
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
-
-// 🎛️ Réglages généraux
-uniform float saturation : hint_range(0.0, 10.0) = 1.25;
-uniform float value : hint_range(0.0, 2.0) = 1.0;
-uniform float alpha : hint_range(0.0, 1.0) = 1.0;
-
-// ⏱️ Timing
-uniform float interval : hint_range(0.1, 30.0) = 0.24;   // X
-uniform float duration : hint_range(0.0, 30.0) = 0.75;   // Y
-
-// 🎨 Hue shift aléatoire
-uniform float min_hue_shift_deg : hint_range(0.0, 180.0) = 60.0;
-uniform float max_hue_shift_deg : hint_range(0.0, 360.0) = 180.0;
-
-// 👁️ Dédoublement horizontal (en pixels écran)
-uniform float min_double_offset_px : hint_range(0.0, 20.0) = 1.5;
-uniform float max_double_offset_px : hint_range(0.0, 50.0) = 7.5;
-uniform float double_strength : hint_range(0.0, 1.0) = 0.4;
-
-// --------------------
-// Utils HSV
-// --------------------
-vec3 rgb2hsv(vec3 c) {
-    vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
-    vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
-    vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
-    float d = q.x - min(q.w, q.y);
-    float e = 1.0e-10;
-    return vec3(
-        abs(q.z + (q.w - q.y) / (6.0 * d + e)),
-        d / (q.x + e),
-        q.x
-    );
-}
-
-vec3 hsv2rgb(vec3 c) {
-    vec3 rgb = clamp(
-        abs(mod(c.x * 6.0 + vec3(0.0, 4.0, 2.0), 6.0) - 3.0) - 1.0,
-        0.0,
-        1.0
-    );
-    return c.z * mix(vec3(1.0), rgb, c.y);
-}
-
-// Hash pseudo-aléatoire stable
-float hash(float n) {
-    return fract(sin(n) * 43758.5453123);
-}
-
-// --------------------
-// Fragment
-// --------------------
-void fragment() {
-    // ⏲️ Cycle temporel
-    float cycle = floor(TIME / interval);
-    float t = mod(TIME, interval);
-    float active = step(t, duration);
-
-    // 🎲 Random stable par cycle
-    float rnd = hash(cycle);
-    float sign = step(0.5, hash(cycle + 19.3)) * 2.0 - 1.0;
-
-    // --- DÉDOUBLEMENT HORIZONTAL ---
-    float offset_px = mix(min_double_offset_px, max_double_offset_px, rnd) * sign;
-    vec2 offset_uv = vec2(offset_px, 0.0) * SCREEN_PIXEL_SIZE * active;
-
-    vec4 base_col = texture(SCREEN_TEXTURE, SCREEN_UV);
-    vec4 double_col = texture(SCREEN_TEXTURE, SCREEN_UV + offset_uv);
-
-    vec4 col = mix(base_col, double_col, double_strength * active);
-
-    // --- HUE SHIFT ---
-    vec3 hsv = rgb2hsv(col.rgb);
-
-    float hue_deg = mix(min_hue_shift_deg, max_hue_shift_deg, rnd);
-    float hue_shift = (hue_deg * sign / 360.0) * active;
-
-    hsv.x = mod(hsv.x + hue_shift, 1.0);
-    hsv.y *= saturation;
-    hsv.z *= value;
-
-    col.rgb = hsv2rgb(hsv);
-    col.a *= alpha;
-
-    COLOR = col;
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6uege"]
-shader = SubResource("Shader_h7oyp")
-shader_parameter/saturation = 1.250000059375
-shader_parameter/value = 1.0
-shader_parameter/alpha = 1.0
-shader_parameter/interval = 0.24000000814012
-shader_parameter/duration = 0.750000035625
-shader_parameter/min_hue_shift_deg = 60.00000285
-shader_parameter/max_hue_shift_deg = 180.00000855
-shader_parameter/min_double_offset_px = 1.5
-shader_parameter/max_double_offset_px = 7.50000035625
-shader_parameter/double_strength = 0.400000019
 
 [sub_resource type="Shader" id="Shader_v7qv0"]
 code = "shader_type canvas_item;
@@ -872,7 +678,17 @@ void fragment() {
     float enabled = step(0.5, rand(t));
 
     if (enabled > 0.5) {
-        color = vec3(1.0) - color;
+        // luminosity eval
+        float luminance = dot(color, vec3(0.5, 0.5, 0.0));
+
+        // Invert luminosity
+        float inverted_luminance = 1.0 - luminance;
+
+        // apply correction
+        color += vec3(inverted_luminance - luminance);
+
+        // Keep rgb values
+        color = clamp(color, 0.0, 1.0);
     }
 
     COLOR.rgb = color;
@@ -928,113 +744,6 @@ shader = SubResource("Shader_hkilf")
 shader_parameter/hit_effect = 1.0
 shader_parameter/shake_intensity = 4.5
 shader_parameter/time_offset = 9.425
-
-[sub_resource type="Shader" id="Shader_wr05d"]
-code = "// Luan Ha Trong 2025 //
-
-shader_type canvas_item;
-
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
-
-// 🎛️ Réglages généraux
-uniform float saturation : hint_range(0.0, 10.0) = 1.25;
-uniform float value : hint_range(0.0, 2.0) = 1.0;
-uniform float alpha : hint_range(0.0, 1.0) = 1.0;
-
-// ⏱️ Timing
-uniform float interval : hint_range(0.1, 30.0) = 0.23;   // X
-uniform float duration : hint_range(0.0, 30.0) = 0.75;   // Y
-
-// 🎨 Hue shift aléatoire
-uniform float min_hue_shift_deg : hint_range(0.0, 180.0) = 60.0;
-uniform float max_hue_shift_deg : hint_range(0.0, 360.0) = 180.0;
-
-// 👁️ Dédoublement horizontal (en pixels écran)
-uniform float min_double_offset_px : hint_range(0.0, 20.0) = 1.5;
-uniform float max_double_offset_px : hint_range(0.0, 50.0) = 7.5;
-uniform float double_strength : hint_range(0.0, 1.0) = 0.4;
-
-// --------------------
-// Utils HSV
-// --------------------
-vec3 rgb2hsv(vec3 c) {
-    vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
-    vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
-    vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
-    float d = q.x - min(q.w, q.y);
-    float e = 1.0e-10;
-    return vec3(
-        abs(q.z + (q.w - q.y) / (6.0 * d + e)),
-        d / (q.x + e),
-        q.x
-    );
-}
-
-vec3 hsv2rgb(vec3 c) {
-    vec3 rgb = clamp(
-        abs(mod(c.x * 6.0 + vec3(0.0, 4.0, 2.0), 6.0) - 3.0) - 1.0,
-        0.0,
-        1.0
-    );
-    return c.z * mix(vec3(1.0), rgb, c.y);
-}
-
-// Hash pseudo-aléatoire stable
-float hash(float n) {
-    return fract(sin(n) * 43758.5453123);
-}
-
-// --------------------
-// Fragment
-// --------------------
-void fragment() {
-    // ⏲️ Cycle temporel
-    float cycle = floor(TIME / interval);
-    float t = mod(TIME, interval);
-    float active = step(t, duration);
-
-    // 🎲 Random stable par cycle
-    float rnd = hash(cycle);
-    float sign = step(0.5, hash(cycle + 19.3)) * 2.0 - 1.0;
-
-    // --- DÉDOUBLEMENT HORIZONTAL ---
-    float offset_px = mix(min_double_offset_px, max_double_offset_px, rnd) * sign;
-    vec2 offset_uv = vec2(offset_px, 0.0) * SCREEN_PIXEL_SIZE * active;
-
-    vec4 base_col = texture(SCREEN_TEXTURE, SCREEN_UV);
-    vec4 double_col = texture(SCREEN_TEXTURE, SCREEN_UV + offset_uv);
-
-    vec4 col = mix(base_col, double_col, double_strength * active);
-
-    // --- HUE SHIFT ---
-    vec3 hsv = rgb2hsv(col.rgb);
-
-    float hue_deg = mix(min_hue_shift_deg, max_hue_shift_deg, rnd);
-    float hue_shift = (hue_deg * sign / 360.0) * active;
-
-    hsv.x = mod(hsv.x + hue_shift, 1.0);
-    hsv.y *= saturation;
-    hsv.z *= value;
-
-    col.rgb = hsv2rgb(hsv);
-    col.a *= alpha;
-
-    COLOR = col;
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mgfmm"]
-shader = SubResource("Shader_wr05d")
-shader_parameter/saturation = 1.250000059375
-shader_parameter/value = 1.0
-shader_parameter/alpha = 1.0
-shader_parameter/interval = 0.23000000766512
-shader_parameter/duration = 0.750000035625
-shader_parameter/min_hue_shift_deg = 60.00000285
-shader_parameter/max_hue_shift_deg = 180.00000855
-shader_parameter/min_double_offset_px = 1.5
-shader_parameter/max_double_offset_px = 7.50000035625
-shader_parameter/double_strength = 0.400000019
 
 [sub_resource type="Shader" id="Shader_iicvj"]
 code = "shader_type canvas_item;
@@ -1284,7 +993,17 @@ void fragment() {
     float enabled = step(0.5, rand(t));
 
     if (enabled > 0.5) {
-        color = vec3(1.0) - color;
+        // luminosity eval
+        float luminance = dot(color, vec3(0.5, 0.5, 0.0));
+
+        // Invert luminosity
+        float inverted_luminance = 1.0 - luminance;
+
+        // apply correction
+        color += vec3(inverted_luminance - luminance);
+
+        // Keep rgb values
+        color = clamp(color, 0.0, 1.0);
     }
 
     COLOR.rgb = color;
@@ -1340,113 +1059,6 @@ shader = SubResource("Shader_8pwh4")
 shader_parameter/hit_effect = 1.0
 shader_parameter/shake_intensity = 4.5
 shader_parameter/time_offset = 15.708
-
-[sub_resource type="Shader" id="Shader_veqeh"]
-code = "// Luan Ha Trong 2025 //
-
-shader_type canvas_item;
-
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
-
-// 🎛️ Réglages généraux
-uniform float saturation : hint_range(0.0, 10.0) = 1.25;
-uniform float value : hint_range(0.0, 2.0) = 1.0;
-uniform float alpha : hint_range(0.0, 1.0) = 1.0;
-
-// ⏱️ Timing
-uniform float interval : hint_range(0.1, 30.0) = 0.26;   // X
-uniform float duration : hint_range(0.0, 30.0) = 0.75;   // Y
-
-// 🎨 Hue shift aléatoire
-uniform float min_hue_shift_deg : hint_range(0.0, 180.0) = 60.0;
-uniform float max_hue_shift_deg : hint_range(0.0, 360.0) = 180.0;
-
-// 👁️ Dédoublement horizontal (en pixels écran)
-uniform float min_double_offset_px : hint_range(0.0, 20.0) = 1.5;
-uniform float max_double_offset_px : hint_range(0.0, 50.0) = 7.5;
-uniform float double_strength : hint_range(0.0, 1.0) = 0.4;
-
-// --------------------
-// Utils HSV
-// --------------------
-vec3 rgb2hsv(vec3 c) {
-    vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
-    vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
-    vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
-    float d = q.x - min(q.w, q.y);
-    float e = 1.0e-10;
-    return vec3(
-        abs(q.z + (q.w - q.y) / (6.0 * d + e)),
-        d / (q.x + e),
-        q.x
-    );
-}
-
-vec3 hsv2rgb(vec3 c) {
-    vec3 rgb = clamp(
-        abs(mod(c.x * 6.0 + vec3(0.0, 4.0, 2.0), 6.0) - 3.0) - 1.0,
-        0.0,
-        1.0
-    );
-    return c.z * mix(vec3(1.0), rgb, c.y);
-}
-
-// Hash pseudo-aléatoire stable
-float hash(float n) {
-    return fract(sin(n) * 43758.5453123);
-}
-
-// --------------------
-// Fragment
-// --------------------
-void fragment() {
-    // ⏲️ Cycle temporel
-    float cycle = floor(TIME / interval);
-    float t = mod(TIME, interval);
-    float active = step(t, duration);
-
-    // 🎲 Random stable par cycle
-    float rnd = hash(cycle);
-    float sign = step(0.5, hash(cycle + 19.3)) * 2.0 - 1.0;
-
-    // --- DÉDOUBLEMENT HORIZONTAL ---
-    float offset_px = mix(min_double_offset_px, max_double_offset_px, rnd) * sign;
-    vec2 offset_uv = vec2(offset_px, 0.0) * SCREEN_PIXEL_SIZE * active;
-
-    vec4 base_col = texture(SCREEN_TEXTURE, SCREEN_UV);
-    vec4 double_col = texture(SCREEN_TEXTURE, SCREEN_UV + offset_uv);
-
-    vec4 col = mix(base_col, double_col, double_strength * active);
-
-    // --- HUE SHIFT ---
-    vec3 hsv = rgb2hsv(col.rgb);
-
-    float hue_deg = mix(min_hue_shift_deg, max_hue_shift_deg, rnd);
-    float hue_shift = (hue_deg * sign / 360.0) * active;
-
-    hsv.x = mod(hsv.x + hue_shift, 1.0);
-    hsv.y *= saturation;
-    hsv.z *= value;
-
-    col.rgb = hsv2rgb(hsv);
-    col.a *= alpha;
-
-    COLOR = col;
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y6w2y"]
-shader = SubResource("Shader_veqeh")
-shader_parameter/saturation = 1.250000059375
-shader_parameter/value = 1.0
-shader_parameter/alpha = 1.0
-shader_parameter/interval = 0.26000000909012
-shader_parameter/duration = 0.750000035625
-shader_parameter/min_hue_shift_deg = 60.00000285
-shader_parameter/max_hue_shift_deg = 180.00000855
-shader_parameter/min_double_offset_px = 1.5
-shader_parameter/max_double_offset_px = 7.50000035625
-shader_parameter/double_strength = 0.400000019
 
 [sub_resource type="Shader" id="Shader_1kbyd"]
 code = "shader_type canvas_item;
@@ -2309,17 +1921,6 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="Change_Colors" type="ColorRect" parent="Frames/Bugs_01" unique_id=1515843141]
-visible = false
-material = SubResource("ShaderMaterial_2g7lv")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
 [node name="Blur_Glitches" type="ColorRect" parent="Frames/Bugs_01" unique_id=783236352]
 visible = false
 material = SubResource("ShaderMaterial_4tcjb")
@@ -2410,17 +2011,6 @@ metadata/_edit_lock_ = true
 [node name="Shake" type="ColorRect" parent="Frames/Bugs_02" unique_id=2109544769]
 visible = false
 material = SubResource("ShaderMaterial_dl0pu")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Change_Colors" type="ColorRect" parent="Frames/Bugs_02" unique_id=1501500301]
-visible = false
-material = SubResource("ShaderMaterial_6uege")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2527,17 +2117,6 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="Change_Colors" type="ColorRect" parent="Frames/Bugs_03" unique_id=482928370]
-visible = false
-material = SubResource("ShaderMaterial_mgfmm")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
 [node name="Blur_Glitches" type="ColorRect" parent="Frames/Bugs_03" unique_id=233957310]
 visible = false
 material = SubResource("ShaderMaterial_hl866")
@@ -2622,17 +2201,6 @@ metadata/_edit_lock_ = true
 [node name="Shake" type="ColorRect" parent="Frames/Bugs_04" unique_id=189136468]
 visible = false
 material = SubResource("ShaderMaterial_on78k")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="Change_Colors" type="ColorRect" parent="Frames/Bugs_04" unique_id=1825280049]
-visible = false
-material = SubResource("ShaderMaterial_y6w2y")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

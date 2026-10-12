@@ -29,7 +29,7 @@
 [ext_resource type="Shader" uid="uid://bw1rtxnpr4o0b" path="res://SHADER/Pixelisation.gdshader" id="26_qp1y0"]
 [ext_resource type="Shader" uid="uid://cw8pro7ug7hfy" path="res://SHADER/Shake.gdshader" id="27_5t0h1"]
 [ext_resource type="PackedScene" uid="uid://p751chhvtga6" path="res://SCENE_AND_SCRIPT/Man_A.tscn" id="27_ftky1"]
-[ext_resource type="Shader" uid="uid://djvm4hdir6bn0" path="res://SHADER/Invert_Colors.gdshader" id="27_myj71"]
+[ext_resource type="Shader" uid="uid://djvm4hdir6bn0" path="res://TRASH/Invert_Colors.gdshader" id="27_myj71"]
 [ext_resource type="PackedScene" uid="uid://briu2vy1xb35c" path="res://SCENE_AND_SCRIPT/Man_B.tscn" id="28_fe2l5"]
 [ext_resource type="Shader" uid="uid://dlwdh275codsc" path="res://SHADER/Change_Colors.gdshader" id="28_myj71"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="31_nkbw3"]

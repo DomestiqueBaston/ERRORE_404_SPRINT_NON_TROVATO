@@ -17,7 +17,6 @@ enum Corner {
 enum Bug {
 	NONE,
 	CAMERA_OFFSET,
-	CHANGE_COLORS,
 	BLUR,
 	SHAKE,
 	INVERT_COLORS,

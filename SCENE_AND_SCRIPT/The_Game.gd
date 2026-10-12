@@ -138,8 +138,6 @@ func _on_bug_enabled(bug: Globals.Bug, runner: Runner, enable: bool):
 	var color_rect: ColorRect
 
 	match bug:
-		Globals.Bug.CHANGE_COLORS:
-			color_rect = bugs_node.get_node(^"Change_Colors")
 		Globals.Bug.BLUR:
 			color_rect = bugs_node.get_node(^"Blur_Glitches")
 		Globals.Bug.SHAKE:
