@@ -61,7 +61,7 @@ Les bonus et malus en jeu (Cube.tscn) :
 
 Les bonus (applications activables) :
     1. Invulnérabilité – Rouge (annule le prochain malus récolté ou renvoyé par le malus Virus) – dure : (11 – difficulté)’’ → ✔ Invincible – 
-    2. Dash – Vert (course uniquement – durée du dash : 1/2’’ et dure ((6 – difficulté) + 2)’’ – ne peut pas être interrompu ET virage impossible !) : 66% plus rapide (animation aussi). → ✔ Dash
+    2. Dash – Vert (course uniquement – durée du dash : 1/2’’ toutes les 1/2’’ et dure en tout ((6 – difficulté) + 2)’’ – un dash ne peut pas être interrompu ET virage impossible mais entre les dashes on peut) : 66% plus rapide (animation aussi). → ✔ Dash
     3. Passe-muraille – Bleu (uniquement les light walls) – dure : ((6 – difficulté) + 2)’’ → ✔ Through – 
     4. Virus – Violet (envoie automatiquement le prochain malus récolté à un adversaire aléatoire) – dure : (11 – difficulté)’’  → ✔ Virus – 
     5. Auto-dodge – Jaune (les obstacles et trous évitables par glissement ou saut (pas en tournant) sont évités automatiquement si le joueur ne le fait pas) – dure : ((6 – difficulté) + 2)’’→ ✔ Auto_Dodge – 
@@ -164,24 +164,21 @@ Les personnalités de base des Bots :
 
 Comportements additionnels :
 
-    1. Fuyant : S’éloigne des coureurs (tout concurrent dans son détecteur plus d’1/4 seconde poussera ce bot à partir en direction opposée – sauf demi-tour).
-    2. Suiveur : Essaye de suivre un coureur qui passe plus d’1/4 de seconde dans son détecteur.
-    3. Téméraire : N’évite plus les cellules sur lesquelles se trouvent plus de 2 light walls.
-    4. Jusqu’au-boutiste : Ne prendra jamais la porte de sortie.
-    5. Stupide : Confond les obstacles (1/25 fois saute au lieu de glisser et inversement).
-    6. Distrait : ne voit pas l’obstacle devant lui 1/50 fois.
-    7. Dyslexique : Confond sa gauche et sa droite 1/25 fois.
-    8. Épileptique : Saute à 25% ou glisse à 25%, ou tourne sans raison à 50% (dont 50 % à droite et 50 % à gauche)s’il n’a rien fait de tel depuis 1,5 à 2,5 secondes.
+    1. Normal : On ne change rien.
+    2. Jusqu’au-boutiste : Ne prendra jamais la porte de sortie.
+    3. Stupide : Confond les obstacles (1/25 fois saute au lieu de glisser et inversement).
+    4. Distrait : ne voit pas l’obstacle devant lui 1/50 fois.
+    5. Dyslexique : Confond sa gauche et sa droite 1/25 fois.
+    6. Épileptique : Saute à 25% ou glisse à 25%, ou tourne sans raison à 50% (dont 50 % à droite et 50 % à gauche)s’il n’a rien fait de tel depuis 1 à 1,5 secondes.
 
 Comportements face aux Bonus/malus :
 
     1. Cupide : Fonce sur les bonus/malus dès qu’il en voit un accessible (qu’il en ait déjà un ou pas) dans son détecteur.
-    2. Sélectif : Ne vise que les bonus/malus à 1 cellule max. de lui dans son détecteur.
+    2. Normal : On ne change rien.
     3. Méfiant : Évite les bonus/malus (il peut arriver qu’il en ramasse un si l’éviter signifie mourir).
     4. Monomaniaque : ne vise que les bonus/malus d’une couleur (choisie aléatoirement) dans son détecteur.
     5. Hésitant : Priorise le ramassage ou non d’un bonus dans son détecteur aléatoirement (à 50%).
-    6. Compulsif : utilise toujours son bonus/malus toutes les 0,75 secondes (uniquement Dash). L’e but est de laisser au bot l’opportunité de tourner si besoin avant de « re-dasher ».
-    7. Conservateur : Ne ramasse un bonus/malus que s’il n’en a pas déjà un.
+    6. Conservateur : Ne ramasse un bonus/malus que s’il n’en a pas déjà un.
 
 Comportements de réaction et perception :
 
