@@ -150,19 +150,24 @@ func set_environment(map: Map, start_corner: Globals.Corner, camera: Camera2D):
 	match start_corner:
 		Globals.Corner.N:
 			_start_cell = map.get_cell_at(Vector2i(-sz, sz))
-			camera.offset = Vector2(0, 15)
+			if camera:
+				camera.offset = Vector2(0, 15)
 		Globals.Corner.S:
 			_start_cell = map.get_cell_at(Vector2i(sz, -sz))
-			camera.offset = Vector2(0, -75)
+			if camera:
+				camera.offset = Vector2(0, -75)
 		Globals.Corner.W:
 			_start_cell = map.get_cell_at(Vector2i(-sz, -sz))
-			camera.offset = Vector2(120, -40)
+			if camera:
+				camera.offset = Vector2(120, -40)
 		Globals.Corner.E:
 			_start_cell = map.get_cell_at(Vector2i(sz, sz))
-			camera.offset = Vector2(-120, -40)
+			if camera:
+				camera.offset = Vector2(-120, -40)
 
 	position = _start_cell.position + Cell.get_start_cell_offset(start_corner)
-	camera.global_position = global_position
+	if camera:
+		camera.global_position = global_position
 
 func _input(event: InputEvent):
 	if not event.is_action_type():

@@ -44,12 +44,8 @@ func _ready():
 		Character.MAN_B:
 			scene = load("res://SCENE_AND_SCRIPT/Man_B.tscn")
 
-	var camera = Camera2D.new()
-	camera.process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS
-	add_child(camera)
-
 	var runner = scene.instantiate()
-	runner.set_environment(map, start_corner, camera)
+	runner.set_environment(map, start_corner, $Camera)
 	add_child(runner)
 
 	if is_bot:

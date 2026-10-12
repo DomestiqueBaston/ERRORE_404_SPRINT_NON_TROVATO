@@ -14,18 +14,31 @@ var map: Map
 ## Which corner of the map the runner starts from.
 var start_corner: Globals.Corner
 
+##
+## Traits affecting how well the bot sees and how quickly it reacts.
+##
+enum SensoryTrait {
+	VISIONARY,
+	MYOPIC,
+	REACTIVE,
+	SLOW,
+	CLUMSY,
+	DEXTEROUS,
+	NORMAL
+}
+
 ## Scale factor applied to the runner's area of vision.
-const vision_scale: float = 0.5
+var vision_scale: float = 0.5
 
 ## When the bot sees an obstacle, it will take it at least this long to react.
-const min_reaction_time: float = 0.1
+var min_reaction_time: float = 0.1
 
 ## When the bot sees an obstacle, it will react within this amount of time.
-const max_reaction_time: float = 0.2
+var max_reaction_time: float = 0.2
 
 ## After taking an action, the bot will wait at least this long before taking
 ## another.
-const min_move_interval: float = 0.1
+var min_move_interval: float = 0.1
 
 ## How long before reaching a hole or a pylon the runner should jump or slide.
 const jump_slide_runup_time: float = 0.07
@@ -620,3 +633,25 @@ func _check_for_walls(next_pos: Vector2, next_cell: Cell) -> bool:
 				wall.get_start_point(), wall.get_end_point()) != null:
 				return true
 	return false
+
+##
+## Applies the given sensory trait to the bot. Note that the effects are
+## cumulative, if you call this function more than once, which you probably do
+## not want to do.
+##
+func apply_sensory_trait(st: SensoryTrait):
+	match st:
+		SensoryTrait.VISIONARY:
+			vision_scale *= 1.5
+		SensoryTrait.MYOPIC:
+			vision_scale *= 0.667
+		SensoryTrait.REACTIVE:
+			min_reaction_time -= 0.05
+			max_reaction_time -= 0.05
+		SensoryTrait.SLOW:
+			min_reaction_time += 0.05
+			max_reaction_time += 0.05
+		SensoryTrait.CLUMSY:
+			min_move_interval += 0.05
+		SensoryTrait.DEXTEROUS:
+			min_move_interval -= 0.05
