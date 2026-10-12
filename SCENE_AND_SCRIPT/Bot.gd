@@ -15,17 +15,31 @@ var map: Map
 var start_corner: Globals.Corner
 
 ##
+## Traits affecting the bot's behavior.
+##
+enum BehaviorTrait {
+	NORMAL,
+	EXTREMIST,
+	STUPID,
+	DISTRACTED,
+	DYSLEXIC,
+	EPILEPTIC
+}
+
+##
 ## Traits affecting how well the bot sees and how quickly it reacts.
 ##
 enum SensoryTrait {
+	NORMAL,
 	VISIONARY,
 	MYOPIC,
 	REACTIVE,
 	SLOW,
 	CLUMSY,
-	DEXTEROUS,
-	NORMAL
+	DEXTEROUS
 }
+
+var behavior: BehaviorTrait = BehaviorTrait.NORMAL
 
 ## Scale factor applied to the runner's area of vision.
 var vision_scale: float = 0.5
@@ -73,7 +87,10 @@ func _ready():
 	set_physics_process(false)
 	runner.died.connect(func(): set_physics_process(false))
 	runner.escaped.connect(func(): set_physics_process(false))
-	map.door_opened.connect(func(): _door_cell = map.get_center_cell())
+	map.door_opened.connect(
+		func():
+			if behavior != BehaviorTrait.EXTREMIST:
+				_door_cell = map.get_center_cell())
 
 func _physics_process(delta: float):
 	_turn_timer -= delta
@@ -91,6 +108,25 @@ func _physics_process(delta: float):
 		not _is_cell_clear(next_cell)
 		or runner.get_visible_runners()
 		or _check_for_walls(next_pos, next_cell))
+
+	# special case for distracted bots: sometimes they don't see the obstacle
+
+	if obstacle and behavior == BehaviorTrait.DISTRACTED and randi() % 50 == 0:
+		obstacle = false
+
+	# special case for epileptic bots: half the time they jump or slide for no
+	# reason, rather than turning left or right for no reason
+
+	if not obstacle and behavior == BehaviorTrait.EPILEPTIC and _turn_timer <= 0:
+		var r = randi() % 4
+		if r < 2:
+			set_physics_process(false)
+			_send_action_event(&"ui_a_button" if r == 0 else &"ui_b_button")
+			await get_tree().create_timer(min_move_interval).timeout
+			if runner.is_alive():
+				set_physics_process(true)
+				_reset_turn_timer()
+			return
 
 	if obstacle or _door_cell or _turn_timer <= 0.0:
 		set_physics_process(false)
@@ -160,7 +196,10 @@ func start():
 	set_physics_process(true)
 
 func _reset_turn_timer():
-	_turn_timer = randf_range(0.667, 1.333) * _max_straight_time
+	if behavior == BehaviorTrait.EPILEPTIC:
+		_turn_timer = randf_range(1, 1.5)
+	else:
+		_turn_timer = randf_range(0.667, 1.333) * _max_straight_time
 
 #
 # Makes the runner change direction, jump and/or slide in response to the
@@ -172,10 +211,13 @@ func _react():
 	var pos: Vector2
 	var cell: Cell
 	var priority: int
+	var forward = runner.direction
+	var left = _get_left_dir()
+	var right = _get_right_dir()
+	var dyslexic = (behavior == BehaviorTrait.DYSLEXIC and randi() % 25 == 0)
 
 	# continue straight on?
 
-	var forward = runner.direction
 	pos = _get_next_pos(forward)
 	cell = map.get_cell_at_pos(pos)
 	priority = _evaluate_move(forward, pos, cell, other_runners)
@@ -183,19 +225,19 @@ func _react():
 
 	# turn left?
 
-	var left = _get_left_dir()
 	pos = _get_next_pos(left)
 	cell = map.get_cell_at_pos(pos)
 	priority = _evaluate_move(left, pos, cell, other_runners)
-	_add_option_maybe(options, left, cell, priority)
+	if _add_option_maybe(options, left, cell, priority) and dyslexic:
+		options.back().dir = right
 
 	# turn right?
 
-	var right = _get_right_dir()
 	pos = _get_next_pos(right)
 	cell = map.get_cell_at_pos(pos)
 	priority = _evaluate_move(right, pos, cell, other_runners)
-	_add_option_maybe(options, right, cell, priority)
+	if _add_option_maybe(options, right, cell, priority) and dyslexic:
+		options.back().dir = left
 
 	# if there is nowhere to go, turn either left or right, which may then lead
 	# to a u-turn
@@ -238,8 +280,10 @@ func _react():
 		await get_tree().create_timer(min_move_interval).timeout
 
 	if jump_or_slide:
+		var swap = (behavior == BehaviorTrait.STUPID and randi() % 25 == 0)
 		var time = _get_time_to_cell_border(option.dir) - jump_slide_runup_time
-		if jump_or_slide == &"jump":
+		if ((jump_or_slide == &"jump" and not swap) or
+			(jump_or_slide == &"slide" and swap)):
 			_send_action_event(&"ui_a_button")
 		else:
 			_send_action_event(&"ui_b_button")
@@ -250,14 +294,16 @@ func _react():
 # priority of the options already in the array. If priority > the priority of
 # the existing options, they are replaced.
 #
+# Returns true if option was added to the array.
+#
 func _add_option_maybe(
-	options: Array[RunnerAction], dir: Vector2, cell: Cell, priority: int):
+	options: Array[RunnerAction], dir: Vector2, cell: Cell, priority: int) -> bool:
 	if priority == 0:
-		return
+		return false
 
 	if not options.is_empty():
 		if options[0].priority > priority:
-			return
+			return false
 		if options[0].priority < priority:
 			options.clear()
 
@@ -266,6 +312,7 @@ func _add_option_maybe(
 	option.cell = cell
 	option.priority = priority
 	options.push_back(option)
+	return true
 
 #
 # Given one or more options, pick one at random which is NOT to go straight, or
