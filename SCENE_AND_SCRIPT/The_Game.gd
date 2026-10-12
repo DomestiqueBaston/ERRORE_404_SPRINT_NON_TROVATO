@@ -47,6 +47,10 @@ func _ready():
 	map.map_size = Globals.map_size
 	_viewports[0].add_child(map)
 
+	# create runners and the bots that control them
+
+	var sensory_traits = Bot.SensoryTrait.values().duplicate()
+
 	for i in 4:
 
 		# create a runner
@@ -76,6 +80,9 @@ func _ready():
 
 		if i > 0:
 			var bot = Bot.new(runner, map, _runner_corners[i])
+			var st = sensory_traits.pop_at(randi() % sensory_traits.size())
+			bot.apply_sensory_trait(st)
+			print("%s is %s" % [runner.name, Bot.SensoryTrait.keys()[st].capitalize()])
 			add_child(bot)
 			_bots.append(bot)
 
