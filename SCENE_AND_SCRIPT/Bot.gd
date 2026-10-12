@@ -89,7 +89,7 @@ func _physics_process(delta: float):
 		await _react()
 		if runner.is_alive():
 			set_physics_process(true)
-			_turn_timer = _max_straight_time
+			_reset_turn_timer()
 
 ##
 ## Starts running. Be sure to set the runner and the map before calling this.
@@ -99,7 +99,7 @@ func start():
 	runner.set_vision_area_scale(vision_scale)
 
 	_max_straight_time = 1.0 + (2 * map.map_size + 1) / 6.0
-	_turn_timer = _max_straight_time
+	_reset_turn_timer()
 
 	var xsign: int
 	var ysign: int
@@ -146,6 +146,9 @@ func start():
 
 	set_physics_process(true)
 
+func _reset_turn_timer():
+	_turn_timer = randf_range(0.667, 1.333) * _max_straight_time
+
 #
 # Makes the runner change direction, jump and/or slide in response to the
 # obstacles surrounding him.
@@ -191,12 +194,18 @@ func _react():
 	# if the exit door is there, move in the direction of the door, if
 	# possible, otherwise pick an option at random
 
-	var option: RunnerAction = null
+	var option: RunnerAction
 	if _door_cell:
 		option = await _pick_best_way_to_door(options)
+		# can't reach the door? just keep going straight
+		if option == null:
+			option = options.front()
 	elif _turn_timer <= 0.0:
 		option = _pick_left_or_right(options)
-	if option == null:
+		# can't turn? just keep going straight
+		if option == null:
+			option = options.front()
+	else:
 		option = options.pick_random()
 
 	# jump or slide, if necessary, to avoid the obstacle in the next cell
