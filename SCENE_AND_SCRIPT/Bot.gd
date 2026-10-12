@@ -55,7 +55,7 @@ var max_reaction_time: float = 0.2
 var min_move_interval: float = 0.1
 
 ## How long before reaching a hole or a pylon the runner should jump or slide.
-const jump_slide_runup_time: float = 0.07
+const jump_slide_runup_time: float = 0.05
 
 #
 # Object used to evaluate the runner's options in _react().
@@ -492,12 +492,18 @@ func _evaluate_move(
 	# otherwise it depends on what obstacle the cell contains
 
 	match next_cell.get_state():
-		Cell.State.LOWERED, Cell.State.HIDDEN:
-			return 2 if _can_jump_or_slide_over(next_pos, dir) else 0
+		Cell.State.LOWERED:
+			if (next_cell.get_artefact() == null and
+				_can_jump_or_slide_over(next_pos, dir)):
+				return 2
+		Cell.State.HIDDEN:
+			if _can_jump_or_slide_over(next_pos, dir):
+				return 2
 		Cell.State.TELEPORT:
 			return 1
 		Cell.State.ONE_WAY:
-			return 0 if _is_one_way_lethal(dir, next_cell) else 1
+			if not _is_one_way_lethal(dir, next_cell):
+				return 1
 		Cell.State.PYLON:
 			match next_cell.get_pylon().get_state():
 				Pylon.State.RAISED:
