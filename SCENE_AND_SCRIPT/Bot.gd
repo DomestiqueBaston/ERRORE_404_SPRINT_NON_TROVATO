@@ -119,10 +119,17 @@ func _physics_process(delta: float):
 	if obstacle and behavior == BehaviorTrait.DISTRACTED and randi() % 50 == 0:
 		obstacle = false
 
+	# no obstacle: look for cubes that the bot is interested in
+
+	var cube_option: RunnerAction
+	if not obstacle:
+		cube_option = _look_for_neighboring_cube(next_cell, other_runners)
+
 	# special case for epileptic bots: half the time they jump or slide for no
 	# reason, rather than turning left or right for no reason
 
-	if not obstacle and behavior == BehaviorTrait.EPILEPTIC and _turn_timer <= 0:
+	if (not (obstacle or cube_option) and behavior == BehaviorTrait.EPILEPTIC
+		and _turn_timer <= 0):
 		var r = randi() % 4
 		if r < 2:
 			set_physics_process(false)
@@ -135,15 +142,18 @@ func _physics_process(delta: float):
 	# if something has gotten our attention, turn off physics processing while
 	# we handle it, then turn it back on if the runner is still alive
 
-	if obstacle or _door_cell or _turn_timer <= 0.0:
+	if obstacle or cube_option or _door_cell or _turn_timer <= 0.0:
 		set_physics_process(false)
-		if obstacle:
+		if obstacle or cube_option:
 			var reaction_time = randf_range(min_reaction_time, max_reaction_time)
 			if not runner.get_current_bug() != Globals.Bug.NONE:
 				reaction_time += 0.05
 			reaction_time = maxf(reaction_time, _move_timer)
 			await get_tree().create_timer(reaction_time).timeout
-		await _react(other_runners)
+		if cube_option:
+			await _aim_for_cube(cube_option.dir, cube_option.cell)
+		else:
+			await _react(other_runners)
 		if runner.is_alive():
 			set_physics_process(true)
 			_reset_turn_timer()
@@ -694,6 +704,109 @@ func _check_for_walls(next_pos: Vector2, next_cell: Cell) -> bool:
 				runner.global_position, next_pos,
 				wall.get_start_point(), wall.get_end_point()) != null:
 				return true
+	return false
+
+#
+# Looks for cubes in the cells ahead of the runner and to his left and right.
+# If any are found, and are of interest to the runner, and are accessible to
+# the runner, the appropriate actions are returned.
+#
+func _look_for_neighboring_cube(
+	forward_cell: Cell, other_runners: Array[Runner]) -> RunnerAction:
+	var cube_options: Array[RunnerAction]
+
+	# check for a cube straight ahead (and assume the caller has already
+	# determined that there are no obstacles)
+
+	if forward_cell:
+		var cube = forward_cell.get_cube()
+		if cube and _wants_bonus(cube.get_bonus()):
+			var option = RunnerAction.new()
+			option.cell = forward_cell
+			option.dir = runner.direction
+			cube_options.append(option)
+
+	# check for cubes and obstacles to the left and right
+
+	for dir in [_get_left_dir(), _get_right_dir()]:
+		var next_pos = _get_next_pos(dir)
+		var next_cell = map.get_cell_at_pos(next_pos)
+		if next_cell:
+			var cube = next_cell.get_cube()
+			if (cube and _wants_bonus(cube.get_bonus()) and
+				_evaluate_move(dir, next_pos, next_cell, other_runners) == 2):
+				var option = RunnerAction.new()
+				option.cell = next_cell
+				option.dir = dir
+				cube_options.append(option)
+
+	return cube_options.pick_random() if cube_options else null
+
+#
+# Aim for the cube which is found in the neighboring cell in the given
+# direction.
+#
+func _aim_for_cube(dir: Vector2, cube_cell: Cell):
+	var cube = cube_cell.get_cube()
+	if cube == null:
+		return
+
+	var cube_uv = cube_cell.get_local_uv(cube.position)
+	var curr_cell = runner.get_current_cell()
+	var local_pos = curr_cell.to_local(runner.global_position)
+	var runner_uv = curr_cell.get_local_uv(local_pos)
+
+	# if the cube is in the direction we are moving already, turn left then
+	# right, or right then left, to line up with the cube
+
+	if Globals.compare_directions(dir, runner.direction):
+		var tmpdir: Vector2
+		var delta: float
+		match Globals.dir_to_axis(runner.direction):
+			Globals.Axis.NW, Globals.Axis.SE:
+				delta = cube_uv.y - runner_uv.y
+				if delta >= 0:
+					tmpdir = Globals.NORTHEAST
+				else:
+					delta *= -1
+					tmpdir = Globals.SOUTHWEST
+			Globals.Axis.NE, Globals.Axis.SW:
+				delta = cube_uv.x - runner_uv.x
+				if delta >= 0:
+					tmpdir = Globals.SOUTHWEST
+				else:
+					delta *= -1
+					tmpdir = Globals.NORTHWEST
+		if delta > 0.1:
+			_send_direction_event(tmpdir)
+			var t = Cell.side_length * delta / runner.get_current_speed()
+			await get_tree().create_timer(t).timeout
+			_send_direction_event(dir)
+
+	# otherwise, wait until we reach the level of the cube before turning left
+	# or right
+
+	else:
+		var delta: float
+		match Globals.dir_to_axis(runner.direction):
+			Globals.Axis.NW:
+				delta = runner_uv.x - cube_uv.x
+			Globals.Axis.NE:
+				delta = cube_uv.y - runner_uv.y
+			Globals.Axis.SW:
+				delta = runner_uv.y - cube_uv.y
+			Globals.Axis.SE:
+				delta = cube_uv.x - runner_uv.x
+		if delta > 0:
+			var t = Cell.side_length * delta / runner.get_current_speed()
+			await get_tree().create_timer(t).timeout
+		_send_direction_event(dir)
+
+#
+# Returns true if the runner is interested in the given bonus/malus.
+#
+func _wants_bonus(_bonus: Bonus) -> bool:
+	# TODO
 	return false
 
 ##
