@@ -55,7 +55,7 @@ var max_reaction_time: float = 0.2
 var min_move_interval: float = 0.1
 
 ## How long before reaching a hole or a pylon the runner should jump or slide.
-const jump_slide_runup_time: float = 0.05
+const jump_slide_runup_time: float = 0.07
 
 #
 # Object used to evaluate the runner's options in _react().
@@ -70,6 +70,9 @@ class RunnerAction:
 
 # Encourage the runner to turn if he runs in a straight line for this long.
 var _max_straight_time: float
+
+# Seconds left before the runner is allowed to move again.
+var _move_timer: float
 
 # Seconds left before encouraging the runner to turn.
 var _turn_timer: float
@@ -93,6 +96,7 @@ func _ready():
 				_door_cell = map.get_center_cell())
 
 func _physics_process(delta: float):
+	_move_timer -= delta
 	_turn_timer -= delta
 
 	# don't try to change direction while navigating the doorway, or jumping or
@@ -104,9 +108,10 @@ func _physics_process(delta: float):
 
 	var next_pos = _get_next_pos(runner.direction)
 	var next_cell = map.get_cell_at_pos(next_pos)
+	var other_runners = runner.get_visible_runners()
 	var obstacle = (
 		not _is_cell_clear(next_cell)
-		or runner.get_visible_runners()
+		or other_runners
 		or _check_for_walls(next_pos, next_cell))
 
 	# special case for distracted bots: sometimes they don't see the obstacle
@@ -122,11 +127,13 @@ func _physics_process(delta: float):
 		if r < 2:
 			set_physics_process(false)
 			_send_action_event(&"ui_a_button" if r == 0 else &"ui_b_button")
-			await get_tree().create_timer(min_move_interval).timeout
 			if runner.is_alive():
 				set_physics_process(true)
 				_reset_turn_timer()
 			return
+
+	# if something has gotten our attention, turn off physics processing while
+	# we handle it, then turn it back on if the runner is still alive
 
 	if obstacle or _door_cell or _turn_timer <= 0.0:
 		set_physics_process(false)
@@ -134,8 +141,9 @@ func _physics_process(delta: float):
 			var reaction_time = randf_range(min_reaction_time, max_reaction_time)
 			if not runner.get_current_bug() != Globals.Bug.NONE:
 				reaction_time += 0.05
+			reaction_time = maxf(reaction_time, _move_timer)
 			await get_tree().create_timer(reaction_time).timeout
-		await _react()
+		await _react(other_runners)
 		if runner.is_alive():
 			set_physics_process(true)
 			_reset_turn_timer()
@@ -205,8 +213,7 @@ func _reset_turn_timer():
 # Makes the runner change direction, jump and/or slide in response to the
 # obstacles surrounding him.
 #
-func _react():
-	var other_runners = runner.get_visible_runners()
+func _react(other_runners: Array[Runner]):
 	var options: Array[RunnerAction]
 	var pos: Vector2
 	var cell: Cell
@@ -277,17 +284,17 @@ func _react():
 
 	if option.dir != runner.direction:
 		_send_direction_event(option.dir)
-		await get_tree().create_timer(min_move_interval).timeout
 
 	if jump_or_slide:
 		var swap = (behavior == BehaviorTrait.STUPID and randi() % 25 == 0)
 		var time = _get_time_to_cell_border(option.dir) - jump_slide_runup_time
+		if time > 0:
+			await get_tree().create_timer(time).timeout
 		if ((jump_or_slide == &"jump" and not swap) or
 			(jump_or_slide == &"slide" and swap)):
 			_send_action_event(&"ui_a_button")
 		else:
 			_send_action_event(&"ui_b_button")
-		await get_tree().create_timer(maxf(time, min_move_interval)).timeout
 
 #
 # Adds a new RunnerAction to the options array, if priority > 0 and >= the
@@ -630,6 +637,8 @@ func _send_direction_event(dir: Vector2):
 				_send_action_event(&"ui_left_button")
 
 func _send_action_event(action: StringName):
+	_move_timer = min_move_interval
+
 	var event = InputEventAction.new()
 	if runner.input_device >= 0:
 		event.device = runner.input_device
