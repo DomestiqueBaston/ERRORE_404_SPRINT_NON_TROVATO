@@ -50,6 +50,7 @@ func _ready():
 	# create runners and the bots that control them
 
 	var behavior_traits = Bot.BehaviorTrait.values().duplicate()
+	var bonus_traits = Bot.BonusTrait.values().duplicate()
 	var sensory_traits = Bot.SensoryTrait.values().duplicate()
 
 	for i in 4:
@@ -81,11 +82,15 @@ func _ready():
 
 		if i > 0:
 			var bot = Bot.new(runner, map, _runner_corners[i])
-			var bt = behavior_traits.pop_at(randi() % behavior_traits.size())
 			var st = sensory_traits.pop_at(randi() % sensory_traits.size())
+			var bt = behavior_traits.pop_at(randi() % behavior_traits.size())
+			var bmt = bonus_traits.pop_at(randi() % bonus_traits.size())
 			if bt != Bot.BehaviorTrait.NORMAL:
 				bot.behavior = bt
 				print("%s is %s" % [runner.name, Bot.BehaviorTrait.keys()[bt].capitalize()])
+			if bmt != Bot.BonusTrait.NORMAL:
+				bot.bonus_behavior = bmt
+				print("%s is %s" % [runner.name, Bot.BonusTrait.keys()[bmt].capitalize()])
 			if st != Bot.SensoryTrait.NORMAL:
 				bot.apply_sensory_trait(st)
 				print("%s is %s" % [runner.name, Bot.SensoryTrait.keys()[st].capitalize()])

@@ -39,7 +39,17 @@ enum SensoryTrait {
 	DEXTEROUS
 }
 
+enum BonusTrait {
+	NORMAL,
+	GREEDY,
+	SUSPICIOUS,
+	MONOMANIAC,
+	HESITANT,
+	CONSERVATIVE
+}
+
 var behavior: BehaviorTrait = BehaviorTrait.NORMAL
+var bonus_behavior: BonusTrait = BonusTrait.NORMAL
 
 ## Scale factor applied to the runner's area of vision.
 var vision_scale: float = 0.5
@@ -80,6 +90,9 @@ var _turn_timer: float
 # Cell containing the exit door.
 var _door_cell: Cell
 
+# Color of the bonus/malus this bot is interested in (if MONOMANIAC).
+var _favorite_color: Color
+
 @warning_ignore("shadowed_variable")
 func _init(runner: Runner, map: Map, start_corner: Globals.Corner):
 	self.runner = runner
@@ -94,6 +107,7 @@ func _ready():
 		func():
 			if behavior != BehaviorTrait.EXTREMIST:
 				_door_cell = map.get_center_cell())
+	_favorite_color = Bonus.get_type_color(Bonus.Type.values().pick_random())
 
 func _physics_process(delta: float):
 	_move_timer -= delta
@@ -123,7 +137,10 @@ func _physics_process(delta: float):
 
 	var cube_option: RunnerAction
 	if not obstacle:
-		cube_option = _look_for_neighboring_cube(next_cell, other_runners)
+		if bonus_behavior == BonusTrait.SUSPICIOUS:
+			obstacle = next_cell and next_cell.get_cube()
+		else:
+			cube_option = _look_for_neighboring_cube(next_cell, other_runners)
 
 	# special case for epileptic bots: half the time they jump or slide for no
 	# reason, rather than turning left or right for no reason
@@ -504,7 +521,11 @@ func _evaluate_move(
 	# no obstacles in the next cell: we're done
 
 	if _is_cell_clear(next_cell):
-		return 1 if is_crowded else 2
+		if is_crowded or (
+			next_cell.get_cube() and bonus_behavior == BonusTrait.SUSPICIOUS):
+			return 1
+		else:
+			return 2
 
 	# otherwise it depends on what obstacle the cell contains
 
@@ -805,9 +826,18 @@ func _aim_for_cube(dir: Vector2, cube_cell: Cell):
 #
 # Returns true if the runner is interested in the given bonus/malus.
 #
-func _wants_bonus(_bonus: Bonus) -> bool:
-	# TODO
-	return false
+func _wants_bonus(bonus: Bonus) -> bool:
+	match bonus_behavior:
+		BonusTrait.GREEDY:
+			return true
+		BonusTrait.MONOMANIAC:
+			return bonus.get_color() == _favorite_color
+		BonusTrait.HESITANT:
+			return randi() & 1 == 1
+		BonusTrait.CONSERVATIVE:
+			return not runner.has_bonus()
+		_:
+			return false
 
 ##
 ## Applies the given sensory trait to the bot. Note that the effects are

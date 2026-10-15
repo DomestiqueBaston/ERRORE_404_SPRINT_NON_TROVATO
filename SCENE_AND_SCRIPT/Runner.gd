@@ -854,6 +854,9 @@ func _start_anti_dash():
 func _stop_anti_dash():
 	_animation.speed_scale = 1
 
+func has_bonus():
+	return _bonus != null
+
 func _has_bonus(type: Bonus.Type) -> bool:
 	return _bonus and _bonus.type == type
 

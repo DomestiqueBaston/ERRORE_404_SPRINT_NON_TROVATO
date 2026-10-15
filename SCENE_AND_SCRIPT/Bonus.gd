@@ -66,3 +66,31 @@ func get_duration() -> float:
 			return Globals.difficulty
 		_:
 			return 0
+
+##
+## Returns the color associated with the bonus/malus.
+##
+func get_color() -> Color:
+	return get_type_color(type)
+
+##
+## Returns the color associated with the bonus/malus type.
+##
+static func get_type_color(t: Type) -> Color:
+	match t:
+		Type.INVINCIBLE, Type.INVERT:
+			return Color.RED
+		Type.DASH, Type.ANTI_DASH:
+			return Color.GREEN
+		Type.PIERCE_WALLS, Type.PHASE:
+			return Color.BLUE
+		Type.VIRUS, Type.ANTI_VIRUS:
+			return Color.PURPLE
+		Type.AUTO_DODGE, Type.NO_TURN:
+			return Color.YELLOW
+		Type.DEBUG, Type.SLOW:
+			return Color.GRAY
+		Type.VANISH_WALLS, Type.EXTEND_WALLS:
+			return Color.WHITE
+		_:
+			return Color.BLACK
