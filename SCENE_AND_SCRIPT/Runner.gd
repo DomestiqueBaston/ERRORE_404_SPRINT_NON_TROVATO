@@ -1033,8 +1033,8 @@ func extend_walls():
 # Frequency at which we decide whether to trigger a bug.
 #
 func _get_bug_frequency() -> float:
-	# 0.625-1.25 seconds, inversely proportional to difficulty
-	return 1.25 - 0.625 * (mini(5, Globals.difficulty) - 1) / 4.0
+	# 1.25-2.5 seconds, inversely proportional to difficulty
+	return 2.5 - 1.25 * (mini(5, Globals.difficulty) - 1) / 4.0
 
 #
 # How long a bug lasts.
