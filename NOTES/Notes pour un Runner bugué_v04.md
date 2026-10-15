@@ -18,7 +18,7 @@ Les coureurs s’appellent :
 - À chaque fois que le jeu va bouger une ligne/colonne ou baisser un pylône (qui n’écrase pas et laisse passer dessous) ou baisser une cellule ou lâcher un pylône ou faire disparaître une cellule, une alarme (Cell_Pylon_Alarms/ dans Sounds.tscn) se fera d’abord entendre pendant 1’’ ET jusqu’à la fin de l’animation (sauf exceptions).
 - Une cellule baissée ou disparue ou un pylône (baissé ou arrivé au sol) reste dans cette position 10 à 20’’. S’il font partie d’une ligne/colonne qui glisse pendant qu’ils sont dans l’état évoqué ici, alors ils suivent le mouvement de la ligne/colonne.
 - On ne fait pas tomber/descendre de pylône sur une cellule disparue ou descendue.
-- Dès le début, la case centrale (404) est baissée. Au dessus du vide flotte Artefact.tscn. Au bout de (Taille de la map + (2 × Difficulté)) / 10 minutes Artefact disparaît. (2 × Difficulté) secondes plus tard, la case 404 remonte et (2 × Difficulté) secondes plus tard, la porte de sortie (Door.tscn) apparaît. Aléatoirement, la porte de sortie sera tournée vers la droite ou vers la gauche.
+- Dès le début, la case centrale (404) est baissée. Au dessus du vide flotte Artefact.tscn. Au bout de (Taille de la map + Difficulté) / 10 minutes Artefact disparaît. (2 × Difficulté) secondes plus tard, la case 404 remonte et (2 × Difficulté) secondes plus tard, la porte de sortie (Door.tscn) apparaît. Aléatoirement, la porte de sortie sera tournée vers la droite ou vers la gauche.
 - La case centrale 404 ne subit QUE des glissements (pas de bug, de disparition, de pylone, etc.).
 - Pour les concurrents, 4 directions de mouvement (les diagonales).
 - Les concurrents ne peuvent pas faire directement demi-tour (à cause du mur qu’ils tracent).
@@ -157,7 +157,7 @@ Les personnalités de base des Bots :
     5. On définira des valeurs « par défaut » pour un bot afin de faire varier ces valeurs en fonction du comportement sélectionné.
         ◦ Temps de réaction de base face aux obstacles et imprévus : 300ms. À chaque fois, on variera de +/-10 % (et une fois fait, on revient à 300ms, c’est juste pour ne pas avoir toujours le même temps de réaction).
         ◦ Un bot peut enchaîner au maximum 2 actions en 150ms. Ex. : tourner 2 fois, tourner puis sauter, tourner activer un Bonus, etc.
-        ◦ Taille du collider Vision de base : scale à 0,5 en x et y.
+        ◦ Taille du collider Vision de base : scale à 0,75 en x et y.
         ◦ Un bot affecté par un bug graphique de sa vue caméra a un temps de réaction augmenté de 50ms.
     6. Les malus qui inversent les directions ou les boutons sont aussi valables pour les bots, ce qui signifie qu’ils vont toujours aller à gauche quand il veulent aller à droite (pareil pour saut/glissade). En revanche, ce malus + les comportements « de base » qui agissent sur les directions vont rendre le bot « normal » en se cumulant (même si c’est très temporaire) et c’est très bien comme ça !
     7. Un bot utilisera son Dash à 1 chance sur 2 après obtention et à chaque fois qu’il a fini de l’utiliser à 1 chance sur 2 également.
@@ -182,8 +182,8 @@ Comportements face aux Bonus/malus :
 
 Comportements de réaction et perception :
 
-    1. Anticipatif : Voit plus loin. On augmente la taille du collider Vision à scale 0,75.
-    2. Inconscient : Voit moins loin. On réduit la taille du collider Vision à scale 0,333.
+    1. Anticipatif : Voit plus loin. On augmente la taille du collider Vision à scale 1,0.
+    2. Inconscient : Voit moins loin. On réduit la taille du collider Vision à scale 0,5.
     3. Vif : Temps de réaction réduit de 50ms.
     4. Lent : Temps de réaction augmenté de 50ms.
     5. Empoté : On ajoute 50ms à sa limite d’enchaînement d’actions.
