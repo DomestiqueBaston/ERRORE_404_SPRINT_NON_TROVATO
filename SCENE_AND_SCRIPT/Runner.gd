@@ -224,6 +224,8 @@ func _apply_slow_delay():
 		await get_tree().create_timer(0.15).timeout
 
 func _physics_process(delta: float):
+	if _map == null:
+		return
 
 	# Anything that relies on collision detection is done first, before updating
 	# the runner's position, because the physics server has already performed
