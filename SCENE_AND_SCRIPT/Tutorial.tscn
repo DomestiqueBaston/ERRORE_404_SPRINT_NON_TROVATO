@@ -18,19 +18,11 @@
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ua4dd"]
-content_margin_top = 4.0
-content_margin_bottom = 4.0
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oycs5"]
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1xoj5"]
-content_margin_top = 4.0
-content_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ckudt"]
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 
@@ -136,19 +128,19 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Masks/Minimap/Settings_Gradients/L1_Color:color")
+tracks/7/path = NodePath("Full_Screen:text")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.20000002, 0.4666667, 0.6666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.79607844, 0.3137255, 0.1882353, 0.627451), Color(0.79607844, 0.3137255, 0.1882353, 0.627451), Color(0.8, 0.31360003, 0.19200002, 0), Color(0.8, 0.31360003, 0.19200002, 0)]
+"times": PackedFloat32Array(0, 0.16666667, 0.3333333, 0.5, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": ["Schermo intero attivo / disattivo: [ \\ };", "Schermo intero attivo / disattivo: [ —  };", "Schermo intero attivo / disattivo: [ / };", "Schermo intero attivo / disattivo: [ | };", "Schermo intero attivo / disattivo: [ \\ };"]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Full_Screen:text")
+tracks/8/path = NodePath("Masks/Full_Screen:text")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -160,38 +152,14 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Masks/Full_Screen:text")
+tracks/9/path = NodePath("Masks/Full_Screen/Settings_Gradients/Full_Screen_Button_Color:color")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.3333333, 0.5, 0.6666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": ["Schermo intero attivo / disattivo: [ \\ };", "Schermo intero attivo / disattivo: [ —  };", "Schermo intero attivo / disattivo: [ / };", "Schermo intero attivo / disattivo: [ | };", "Schermo intero attivo / disattivo: [ \\ };"]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Masks/Full_Screen/Settings_Gradients/Full_Screen_Button_Color:color")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
 "times": PackedFloat32Array(0, 0.20000002, 0.4666667, 0.6666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(0.4392157, 0.79607844, 0.0627451, 0.5019608), Color(0.4392157, 0.79607844, 0.0627451, 0.5019608), Color(0.44426665, 0.8, 0.06399999, 0), Color(0.44426665, 0.8, 0.06399999, 0)]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Masks/Minimap/Settings_Gradients/R1_Color:color")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.20000002, 0.4666667, 0.6666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.79607844, 0.3137255, 0.1882353, 0.627451), Color(0.79607844, 0.3137255, 0.1882353, 0.627451), Color(0.8, 0.31360003, 0.19200002, 0), Color(0.8, 0.31360003, 0.19200002, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_oycs5"]
@@ -273,19 +241,19 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Masks/Minimap/Settings_Gradients/L1_Color:color")
+tracks/6/path = NodePath("Full_Screen:text")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.79607844, 0.3137255, 0.1882353, 0.627451)]
+"update": 1,
+"values": ["Schermo intero attivo / disattivo: [ \\ };"]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Full_Screen:text")
+tracks/7/path = NodePath("Masks/Full_Screen:text")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -297,38 +265,14 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Masks/Full_Screen:text")
+tracks/8/path = NodePath("Masks/Full_Screen/Settings_Gradients/Full_Screen_Button_Color:color")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["Schermo intero attivo / disattivo: [ \\ };"]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Masks/Full_Screen/Settings_Gradients/Full_Screen_Button_Color:color")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.4392157, 0.79607844, 0.0627451, 0.5019608)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Masks/Minimap/Settings_Gradients/R1_Color:color")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.79607844, 0.3137255, 0.1882353, 0.627451)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fhuq5"]
@@ -567,9 +511,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -480.0
-offset_top = 186.0
+offset_top = 201.0
 offset_right = 480.0
-offset_bottom = 233.0
+offset_bottom = 248.0
 grow_horizontal = 2
 pivot_offset = Vector2(627, 139)
 theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
@@ -589,43 +533,15 @@ autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Minimap" type="RichTextLabel" parent="Info" unique_id=1465521334]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -480.0
-offset_top = 243.0
-offset_right = 480.0
-offset_bottom = 290.0
-grow_horizontal = 2
-pivot_offset = Vector2(678, 62)
-theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
-theme_override_colors/font_shadow_color = Color(0.5529412, 0.6862745, 0.96862745, 0.49803922)
-theme_override_constants/shadow_outline_size = 20
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 0
-theme_override_constants/outline_size = 10
-theme_override_fonts/normal_font = ExtResource("3_r1b17")
-theme_override_font_sizes/normal_font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ua4dd")
-bbcode_enabled = true
-text = "Minimappa: tieni premuto [L1] o [R1]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-metadata/_edit_lock_ = true
-
 [node name="Full_Screen" type="RichTextLabel" parent="Info" unique_id=1941660201]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -480.0
-offset_top = 302.0
+offset_top = 283.0
 offset_right = 480.0
-offset_bottom = 349.0
+offset_bottom = 330.0
 grow_horizontal = 2
 pivot_offset = Vector2(527, 222)
 theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
@@ -764,9 +680,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -392.5
-offset_top = 190.0
+offset_top = 205.0
 offset_right = 390.5
-offset_bottom = 229.0
+offset_bottom = 244.0
 grow_horizontal = 2
 pivot_offset = Vector2(523, 139)
 mouse_filter = 2
@@ -810,62 +726,6 @@ offset_bottom = 320.0
 color = Color(0.4392157, 0.79607844, 0.0627451, 0.5019608)
 metadata/_edit_lock_ = true
 
-[node name="Minimap" type="RichTextLabel" parent="Info/Masks" unique_id=689012432]
-clip_children = 2
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -418.5
-offset_top = 243.0
-offset_right = 416.5
-offset_bottom = 290.0
-grow_horizontal = 2
-pivot_offset = Vector2(574, 62)
-mouse_filter = 2
-theme_override_colors/default_color = Color(0.6784314, 0.6666667, 0.8627451, 1)
-theme_override_fonts/normal_font = ExtResource("3_r1b17")
-theme_override_font_sizes/normal_font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ckudt")
-bbcode_enabled = true
-text = "Minimappa: tieni premuto [L1] o [R1]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="Settings_Gradients" type="TextureRect" parent="Info/Masks/Minimap" unique_id=1348024624]
-self_modulate = Color(0.9693625, 1.2154553, 1.8922116, 0.8627451)
-layout_mode = 0
-offset_left = -2.0
-offset_top = -279.0
-offset_right = 958.0
-offset_bottom = 261.0
-mouse_filter = 2
-texture = ExtResource("4_fps83")
-metadata/_edit_lock_ = true
-
-[node name="L1_Color" type="ColorRect" parent="Info/Masks/Minimap/Settings_Gradients" unique_id=1494302455]
-layout_mode = 0
-offset_left = 597.5
-offset_top = 280.0
-offset_right = 657.5
-offset_bottom = 323.0
-pivot_offset = Vector2(-102, 103)
-color = Color(0.79607844, 0.3137255, 0.1882353, 0.627451)
-metadata/_edit_lock_ = true
-
-[node name="R1_Color" type="ColorRect" parent="Info/Masks/Minimap/Settings_Gradients" unique_id=934551010]
-layout_mode = 0
-offset_left = 712.5
-offset_top = 280.0
-offset_right = 775.5
-offset_bottom = 323.0
-pivot_offset = Vector2(-102, 103)
-color = Color(0.79607844, 0.3137255, 0.1882353, 0.627451)
-metadata/_edit_lock_ = true
-
 [node name="Full_Screen" type="RichTextLabel" parent="Info/Masks" unique_id=2118871520]
 clip_children = 2
 layout_mode = 1
@@ -873,9 +733,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -380.5
-offset_top = 302.0
+offset_top = 283.0
 offset_right = 379.5
-offset_bottom = 349.0
+offset_bottom = 330.0
 grow_horizontal = 2
 pivot_offset = Vector2(527, 222)
 mouse_filter = 2

@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://dw00m18igqp7t" path="res://RESOURCE/Gradient_BG_Cam.tres" id="2_jtvwl"]
 [ext_resource type="Environment" uid="uid://dx0qy3vs32lrg" path="res://RESOURCE/Game_Environment.tres" id="2_ycojx"]
 [ext_resource type="FontFile" uid="uid://cla67u4xaf1rp" path="res://RESOURCE/Conthrax-SemiBold.otf" id="3_ycojx"]
-[ext_resource type="PackedScene" uid="uid://qy0upqf8jc48" path="res://SCENE_AND_SCRIPT/Minimap.tscn" id="4_jtvwl"]
 [ext_resource type="PackedScene" uid="uid://3u5u3tfo43n" path="res://SCENE_AND_SCRIPT/Portraits.tscn" id="4_lqmhv"]
 [ext_resource type="Script" uid="uid://dlt25318wok6w" path="res://SCENE_AND_SCRIPT/Win.gd" id="5_4er72"]
 [ext_resource type="Texture2D" uid="uid://cutec7wipswh2" path="res://IMAGE/MISC/Title_Gradient.png" id="5_lqmhv"]
@@ -2539,9 +2538,6 @@ offset_right = 0.0
 layout_mode = 0
 offset_left = 480.0
 offset_top = 270.0
-
-[node name="Minimap" parent="Frames" unique_id=922617094 instance=ExtResource("4_jtvwl")]
-visible = false
 
 [node name="Quit_Button" parent="Frames" unique_id=1295710875 instance=ExtResource("9_mybf8")]
 offset_left = 435.0
