@@ -81,11 +81,14 @@ class RunnerAction:
 # Encourage the runner to turn if he runs in a straight line for this long.
 var _max_straight_time: float
 
+# Seconds left before encouraging the runner to turn.
+var _turn_timer: float
+
 # Seconds left before the runner is allowed to move again.
 var _move_timer: float
 
-# Seconds left before encouraging the runner to turn.
-var _turn_timer: float
+# If true, the runner has nowhere to go but can wait a little longer.
+var _is_hesitating: bool = false
 
 # Cell containing the exit door.
 var _door_cell: Cell
@@ -101,13 +104,16 @@ func _init(runner: Runner, map: Map, start_corner: Globals.Corner):
 
 func _ready():
 	set_physics_process(false)
-	runner.died.connect(func(): set_physics_process(false))
-	runner.escaped.connect(func(): set_physics_process(false))
+	runner.input_ignored.connect(stop)
 	map.door_opened.connect(
 		func():
 			if behavior != BehaviorTrait.EXTREMIST:
 				_door_cell = map.get_center_cell())
 	_favorite_color = Bonus.get_type_color(Bonus.Type.values().pick_random())
+
+func stop():
+	#print("STOP")
+	set_physics_process(false)
 
 func _physics_process(delta: float):
 	_move_timer -= delta
@@ -126,7 +132,7 @@ func _physics_process(delta: float):
 	var obstacle = (
 		not _is_cell_clear(next_cell)
 		or other_runners
-		or _check_for_walls(next_pos, next_cell))
+		or _check_for_walls(runner.direction, 1) < 0.5)
 
 	# special case for distracted bots: sometimes they don't see the obstacle
 
@@ -162,11 +168,16 @@ func _physics_process(delta: float):
 	if obstacle or cube_option or _door_cell or _turn_timer <= 0.0:
 		set_physics_process(false)
 		if obstacle or cube_option:
-			var reaction_time = randf_range(min_reaction_time, max_reaction_time)
-			if not runner.get_current_bug() != Globals.Bug.NONE:
-				reaction_time += 0.05
+			var reaction_time
+			if _is_hesitating:
+				reaction_time = 0.0
+			else:
+				reaction_time = randf_range(min_reaction_time, max_reaction_time)
+				if not runner.get_current_bug() != Globals.Bug.NONE:
+					reaction_time += 0.05
 			reaction_time = maxf(reaction_time, _move_timer)
-			await get_tree().create_timer(reaction_time).timeout
+			if reaction_time > 0:
+				await get_tree().create_timer(reaction_time).timeout
 		if cube_option:
 			await _aim_for_cube(cube_option.dir, cube_option.cell)
 		else:
@@ -234,7 +245,7 @@ func _reset_turn_timer():
 	if behavior == BehaviorTrait.EPILEPTIC:
 		_turn_timer = randf_range(1, 1.5)
 	else:
-		_turn_timer = randf_range(0.667, 1.333) * _max_straight_time
+		_turn_timer = randf_range(0.5, 1.5) * _max_straight_time
 
 #
 # Makes the runner change direction, jump and/or slide in response to the
@@ -273,27 +284,71 @@ func _react(other_runners: Array[Runner]):
 	if _add_option_maybe(options, right, cell, priority) and dyslexic:
 		options.back().dir = left
 
-	# if there is nowhere to go, turn either left or right, which may then lead
-	# to a u-turn
+	# if there is nowhere to go, and we are nearing the cell border, turn
+	# either left or right, which may then lead to a u-turn
 
 	if options.is_empty():
-		_send_direction_event(left if randi() & 1 else right)
+		#print("no options!")
+		var progress = _get_progress_within_cell(forward)
+		if progress < 0.8:
+			_is_hesitating = true
+		else:
+			progress = _get_progress_within_cell(left)
+			_send_direction_event(left if progress < 0.5 else right)
 		return
 
-	# if the exit door is there, move in the direction of the door, if
-	# possible, otherwise pick an option at random
+	# for debugging only: list the options found
+
+	#for i in options.size():
+		#var opt = options[i]
+		#var axis = Globals.dir_to_axis(opt.dir)
+		#var dirname = Globals.Axis.keys()[axis]
+		#if opt.cell:
+			#var uv = Map.get_cell_index(opt.cell.global_position)
+			#print("option %d, priority %d: dir %s to cell at %s" % [
+				#i+1, opt.priority, dirname, uv])
+		#else:
+			#print("option %d, priority %d: dir %s to empty cell" % [
+				#i+1, opt.priority, dirname])
+
+	# if we got this far: pick the most appropriate option
 
 	var option: RunnerAction
+
+	# if the exit door has appeared, move in the direction of the door
+
 	if _door_cell:
 		option = await _pick_best_way_to_door(options)
 		# can't reach the door? just keep going straight
 		if option == null:
 			option = options.front()
+
+	# if there is only one option, don't think about it anymore, just do it
+
+	elif options.size() == 1:
+		option = options.front()
+
+	# if there are other runners around, prefer a right turn
+
+	elif other_runners:
+		for opt in options:
+			if Globals.compare_directions(opt.dir, right):
+				option = opt
+				break
+		# can't turn right? turning left is the last resort
+		if option == null:
+			option = options.front()
+
+	# if the turn timer has elapsed, turn either left or right, if convenient
+
 	elif _turn_timer <= 0.0:
 		option = _pick_left_or_right(options)
 		# can't turn? just keep going straight
 		if option == null:
 			option = options.front()
+
+	# otherwise: just pick an option at random
+
 	else:
 		option = options.pick_random()
 
@@ -303,20 +358,32 @@ func _react(other_runners: Array[Runner]):
 	if option.cell == null or option.cell.get_state() in [
 		Cell.State.LOWERED, Cell.State.HIDDEN
 	]:
+		#if option.cell:
+			#print("jump over lowered or hidden cell")
+		#else:
+			#print("jump over empty cell")
 		jump_or_slide = &"jump"
 	elif option.cell.get_state() == Cell.State.PYLON:
+		#print("slide under pylon")
 		jump_or_slide = &"slide"
 
 	# finally, do it: change direction, if necessary, then jump or slide, maybe
 
+	var change_dir: bool
 	if option.dir != runner.direction:
+		#print("move ", Globals.Axis.keys()[Globals.dir_to_axis(option.dir)])
+		change_dir = true
 		_send_direction_event(option.dir)
+	else:
+		#print("don't move ", Globals.Axis.keys()[Globals.dir_to_axis(option.dir)])
+		change_dir = false
 
 	if jump_or_slide:
 		var swap = (behavior == BehaviorTrait.STUPID and randi() % 25 == 0)
 		var time = _get_time_to_cell_border(option.dir) - jump_slide_runup_time
-		if time > 0:
-			await get_tree().create_timer(time).timeout
+		# wait at least a tick, so that the direction command is heard first
+		var tmin = 1.0 / Engine.physics_ticks_per_second if change_dir else 0.0
+		await get_tree().create_timer(maxf(time, tmin)).timeout
 		if ((jump_or_slide == &"jump" and not swap) or
 			(jump_or_slide == &"slide" and swap)):
 			_send_action_event(&"ui_a_button")
@@ -453,13 +520,13 @@ func _pick_best_way_to_door(options: Array[RunnerAction]):
 		var left = _get_left_dir()
 		var progress = _get_progress_within_cell(left)
 		if progress < 0.3:
-			if not _check_for_walls(_get_next_pos(left), null):
+			if _check_for_walls(left, 0) > 1.0 - progress:
 				_send_direction_event(left)
 				var t = (Cell.side_length * (0.5 - progress)) / runner.get_current_speed()
 				await get_tree().create_timer(t).timeout
 		elif progress > 0.7:
 			var right = -left
-			if not _check_for_walls(_get_next_pos(right), null):
+			if _check_for_walls(right, 0) > progress:
 				_send_direction_event(right)
 				var t = (Cell.side_length * (1.0 - progress)) / runner.get_current_speed()
 				await get_tree().create_timer(t).timeout
@@ -497,13 +564,19 @@ func _evaluate_move(
 
 	# is the runner headed for a wall?
 
-	if _check_for_walls(next_pos, next_cell):
+	const wall_lookahead = 3
+	var wall_dist = _check_for_walls(dir, wall_lookahead)
+	if wall_dist < 1.0:
 		return 0
 
 	# is the runner headed for a hole in the map?
 
 	if next_cell == null:
-		return 2 if _can_jump_or_slide_over(next_pos, dir) else 0
+		if not _can_jump_or_slide_over(next_pos, dir):
+			return 0
+		if wall_dist < wall_lookahead:
+			return 1
+		return 2
 
 	# special case for navigating the exit door
 
@@ -521,8 +594,8 @@ func _evaluate_move(
 	# no obstacles in the next cell: we're done
 
 	if _is_cell_clear(next_cell):
-		if is_crowded or (
-			next_cell.get_cube() and bonus_behavior == BonusTrait.SUSPICIOUS):
+		if (is_crowded or wall_dist < wall_lookahead or
+			(next_cell.get_cube() and bonus_behavior == BonusTrait.SUSPICIOUS)):
 			return 1
 		else:
 			return 2
@@ -533,10 +606,10 @@ func _evaluate_move(
 		Cell.State.LOWERED:
 			if (next_cell.get_artefact() == null and
 				_can_jump_or_slide_over(next_pos, dir)):
-				return 2
+				return 1 if wall_dist < wall_lookahead else 2
 		Cell.State.HIDDEN:
 			if _can_jump_or_slide_over(next_pos, dir):
-				return 2
+				return 1 if wall_dist < wall_lookahead else 2
 		Cell.State.TELEPORT:
 			return 1
 		Cell.State.ONE_WAY:
@@ -545,10 +618,10 @@ func _evaluate_move(
 		Cell.State.PYLON:
 			match next_cell.get_pylon().get_state():
 				Pylon.State.RAISED:
-					return 1 if is_crowded else 2
+					return 1 if is_crowded or wall_dist < wall_lookahead else 2
 				Pylon.State.LOWERED:
 					if _can_jump_or_slide_over(next_pos, dir):
-						return 1 if is_crowded else 2
+						return 1 if is_crowded or wall_dist < wall_lookahead else 2
 
 	return 0
 
@@ -577,16 +650,17 @@ func _get_time_to_cell_border(dir: Vector2) -> float:
 #
 func _get_progress_within_cell(dir: Vector2) -> float:
 	var cell = runner.get_current_cell()
-	var uv = cell.get_local_uv(cell.to_local(runner.global_position))
-	match Globals.dir_to_axis(dir):
-		Globals.Axis.NW:
-			return 1.0 - uv.x
-		Globals.Axis.NE:
-			return uv.y
-		Globals.Axis.SW:
-			return 1.0 - uv.y
-		Globals.Axis.SE:
-			return uv.x
+	if cell:
+		var uv = cell.get_local_uv(cell.to_local(runner.global_position))
+		match Globals.dir_to_axis(dir):
+			Globals.Axis.NW:
+				return 1.0 - uv.x
+			Globals.Axis.NE:
+				return uv.y
+			Globals.Axis.SW:
+				return 1.0 - uv.y
+			Globals.Axis.SE:
+				return uv.x
 	return 0
 
 #
@@ -669,20 +743,20 @@ func _send_direction_event(dir: Vector2):
 
 func _send_action_event(action: StringName):
 	_move_timer = min_move_interval
+	_is_hesitating = false
 
-	var event = InputEventAction.new()
+	var event1 = InputEventAction.new()
 	if runner.input_device >= 0:
-		event.device = runner.input_device
-	event.action = action
-	event.pressed = true
-	Input.parse_input_event(event)
+		event1.device = runner.input_device
+	event1.action = action
+	event1.pressed = true
 
-	await get_tree().create_timer(
-		2.0 / Engine.physics_ticks_per_second, true, true).timeout
+	var event2 = event1.duplicate()
+	event2.pressed = false
 
-	event = event.duplicate()
-	event.pressed = false
-	Input.parse_input_event(event)
+	Input.parse_input_event(event1)
+	await get_tree().create_timer(3.0 / Engine.physics_ticks_per_second).timeout
+	Input.parse_input_event(event2)
 
 #
 # Performs a quick check for whether the given cell is clear of obvious
@@ -709,23 +783,37 @@ func _is_parallel_to_door_axis(dir: Vector2) -> bool:
 	return true
 
 #
-# Check for walls blocking the runner's path, that is, walls that intersect a
-# line segment connecting his current position to next_pos, which is itself
-# located on next_cell (which may be null). Returns true if one or more walls
-# are in the runner's path.
+# Check for walls blocking the runner's path, that is, a line extending from
+# his current position in the given direction. The parameter max_cell_dist
+# determines how far the function looks ahead: 0 looks at walls in the current
+# cell only, 1 also looks at the neighboring cell, and so on. Returns the
+# distance in cells to the nearest wall found, or a huge value if no walls were
+# found.
 #
-func _check_for_walls(next_pos: Vector2, next_cell: Cell) -> bool:
-	for cell in [runner.get_current_cell(), next_cell]:
-		if cell == null:
-			continue
-		for wall in cell.get_walls():
-			if not wall.has_points():
-				continue
-			if Geometry2D.segment_intersects_segment(
-				runner.global_position, next_pos,
-				wall.get_start_point(), wall.get_end_point()) != null:
-				return true
-	return false
+func _check_for_walls(dir: Vector2, max_cell_dist: int = 0) -> float:
+	var p1: Vector2 = runner.global_position
+	var p2: Vector2 = p1 + dir * ((2 * map.map_size + 1) * Cell.side_length)
+	var pos: Vector2 = runner.global_position
+	var cell: Cell
+	for i in max_cell_dist + 1:
+		if i == 0:
+			cell = runner.get_current_cell()
+		else:
+			cell = map.get_cell_at_pos(pos)
+		if cell:
+			for wall in cell.get_walls():
+				if not wall.has_points():
+					continue
+				var intersection = Geometry2D.segment_intersects_segment(
+					p1, p2, wall.get_start_point(), wall.get_end_point())
+				if intersection != null:
+					var dist = runner.global_position.distance_to(intersection)
+					dist /= Cell.side_length
+					#var dirname = Globals.Axis.keys()[Globals.dir_to_axis(dir)]
+					#print("wall at dist ", dist, ", dir ", dirname)
+					return dist
+		pos = _get_next_pos(dir, pos)
+	return INF
 
 #
 # Looks for cubes in the cells ahead of the runner and to his left and right.

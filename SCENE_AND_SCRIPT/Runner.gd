@@ -16,6 +16,10 @@ signal died
 ## Signal emitted when the runner has escaped through the exit door.
 signal escaped
 
+## Signal emitted when the runner is no longer listening to user input, e.g.
+## because he is dying, falling or escaping.
+signal input_ignored
+
 ## Signal emitted when the runner grabs a bonus which affects other runners.
 signal bonus_found(bonus: Bonus)
 
@@ -280,6 +284,7 @@ func _physics_process(delta: float):
 						is_exiting = true
 						print("%s is out!" % name)
 						escaped.emit()
+						input_ignored.emit()
 						set_process_input(false)
 						_bonus_malus_anim.play(&"Bonus_Malus")
 						await _bonus_malus_anim.animation_finished
@@ -575,6 +580,7 @@ func _die(fast: bool = false) -> void:
 	if is_dead: return
 	is_dead = true
 
+	input_ignored.emit()
 	set_process_input(false)
 
 	# If fast is true, the Death and Disappearing animations are played at the
@@ -604,6 +610,7 @@ func _start_falling() -> void:
 	if is_falling or is_dead: return
 	is_falling = true
 
+	input_ignored.emit()
 	set_physics_process(false)
 	set_process_input(false)
 
@@ -621,7 +628,9 @@ func _disappear():
 	_collider.monitorable = false
 	for wall in _walls:
 		wall.disappear()
-	set_process_input(false)
+	if is_processing_input():
+		input_ignored.emit()
+		set_process_input(false)
 
 func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name.begins_with("Jump_"):
