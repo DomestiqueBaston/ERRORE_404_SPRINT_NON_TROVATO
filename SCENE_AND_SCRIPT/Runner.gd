@@ -94,7 +94,6 @@ var is_falling: bool = false
 var is_teleporting: bool = false
 var is_one_way: bool = false
 var is_exiting: bool = false
-var is_dashing: bool = false
 
 # player commands that are delayed by the slow malus
 
@@ -219,9 +218,6 @@ func _input(event: InputEvent):
 	elif event.is_action_pressed(&"ui_b_button"):
 		await _apply_slow_delay()
 		_delayed_command = DelayedCmd.SLIDE
-	elif event.is_action_pressed(&"ui_x_button"):
-		if _has_bonus(Bonus.Type.DASH):
-			_start_dash()
 
 func _apply_slow_delay():
 	if _has_bonus(Bonus.Type.SLOW):
@@ -329,7 +325,7 @@ func _physics_process(delta: float):
 	# position WITHOUT collision detection, so it immediately reflects the new
 	# position; there is no need to wait for the next physics tick.
 
-	if not (is_jumping or is_sliding or is_one_way or is_dashing
+	if not (is_jumping or is_sliding or is_one_way
 			or _has_bonus(Bonus.Type.NO_TURN)):
 		var input_direction := Vector2.ZERO
 
@@ -828,6 +824,8 @@ func _activate_bonus():
 	# bonus-specific behavior
 
 	match _bonus.type:
+		Bonus.Type.DASH:
+			_start_dash()
 		Bonus.Type.DEBUG:
 			_reset_bug()
 		Bonus.Type.ANTI_DASH:
@@ -847,17 +845,10 @@ func _activate_bonus():
 		_remove_bonus()
 
 func _start_dash():
-	if is_dashing or is_jumping or is_falling:
-		return
-	if not _bonus_sounds[Bonus.Type.DASH].playing:
-		_bonus_sounds[Bonus.Type.DASH].play()
-	_animation.speed_scale = 1.66
-	is_dashing = true
-	get_tree().create_timer(0.5).timeout.connect(_stop_dash)
+	create_tween().tween_property(_animation, "speed_scale", 1.15, 0.5)
 
 func _stop_dash():
 	_animation.speed_scale = 1
-	is_dashing = false
 
 func _start_anti_dash():
 	create_tween().tween_property(_animation, "speed_scale", 0.85, 0.5)
