@@ -52,7 +52,7 @@ var behavior: BehaviorTrait = BehaviorTrait.NORMAL
 var bonus_behavior: BonusTrait = BonusTrait.NORMAL
 
 ## Scale factor applied to the runner's area of vision.
-var vision_scale: float = 0.5
+var vision_scale: float = 0.75
 
 ## When the bot sees an obstacle, it will take it at least this long to react.
 var min_reaction_time: float = 0.1
@@ -935,7 +935,7 @@ func _wants_bonus(bonus: Bonus) -> bool:
 func apply_sensory_trait(st: SensoryTrait):
 	match st:
 		SensoryTrait.VISIONARY:
-			vision_scale *= 1.5
+			vision_scale *= 1.333
 		SensoryTrait.MYOPIC:
 			vision_scale *= 0.667
 		SensoryTrait.REACTIVE:

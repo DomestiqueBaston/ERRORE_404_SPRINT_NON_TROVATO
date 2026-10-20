@@ -142,7 +142,7 @@ func _ready():
 
 	# and a timer to remove the center artefact and make the exit door appear
 
-	var center_time = 6 * (map_side + 2 * Globals.difficulty)
+	var center_time = 6 * (map_side + Globals.difficulty)
 	var center_timer = get_tree().create_timer(center_time)
 	center_timer.timeout.connect(_on_center_timer_timeout)
 
