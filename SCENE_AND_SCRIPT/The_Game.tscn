@@ -196,7 +196,7 @@ code = "shader_type canvas_item;
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
 uniform int quality : hint_range(1, 100) = 25;
-uniform int block_size : hint_range(2, 64, 2) = 12;
+uniform int block_size : hint_range(2, 64, 2) = 18;
 
 // colorspace conversions
 vec3 rgb_to_ycbcr(vec3 c) {
@@ -320,7 +320,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mbxwg"]
 shader = SubResource("Shader_mybf8")
 shader_parameter/quality = 25
-shader_parameter/block_size = 12
+shader_parameter/block_size = 18
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1b6uy"]
 bg_color = Color(1, 1, 1, 1)
@@ -511,7 +511,7 @@ code = "shader_type canvas_item;
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
 uniform int quality : hint_range(1, 100) = 25;
-uniform int block_size : hint_range(2, 64, 2) = 12;
+uniform int block_size : hint_range(2, 64, 2) = 18;
 
 // colorspace conversions
 vec3 rgb_to_ycbcr(vec3 c) {
@@ -635,7 +635,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5bg7p"]
 shader = SubResource("Shader_7bkog")
 shader_parameter/quality = 25
-shader_parameter/block_size = 14
+shader_parameter/block_size = 18
 
 [sub_resource type="Shader" id="Shader_woavr"]
 code = "shader_type canvas_item;
@@ -813,7 +813,7 @@ code = "shader_type canvas_item;
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
 uniform int quality : hint_range(1, 100) = 25;
-uniform int block_size : hint_range(2, 64, 2) = 12;
+uniform int block_size : hint_range(2, 64, 2) = 18;
 
 // colorspace conversions
 vec3 rgb_to_ycbcr(vec3 c) {
@@ -937,7 +937,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_voslq"]
 shader = SubResource("Shader_bq80o")
 shader_parameter/quality = 25
-shader_parameter/block_size = 10
+shader_parameter/block_size = 18
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbhvp"]
 bg_color = Color(1, 1, 1, 1)
@@ -1128,7 +1128,7 @@ code = "shader_type canvas_item;
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
 uniform int quality : hint_range(1, 100) = 25;
-uniform int block_size : hint_range(2, 64, 2) = 12;
+uniform int block_size : hint_range(2, 64, 2) = 18;
 
 // colorspace conversions
 vec3 rgb_to_ycbcr(vec3 c) {
@@ -1252,7 +1252,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i7jc3"]
 shader = SubResource("Shader_x53gy")
 shader_parameter/quality = 25
-shader_parameter/block_size = 12
+shader_parameter/block_size = 18
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0uhhv"]
 bg_color = Color(1, 1, 1, 1)
