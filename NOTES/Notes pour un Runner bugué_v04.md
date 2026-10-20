@@ -61,7 +61,7 @@ Les bonus et malus en jeu (Cube.tscn) :
 
 Les bonus (applications activables) :
     1. Invulnérabilité – Rouge (annule le prochain malus récolté ou renvoyé par le malus Virus) – dure : (11 – difficulté)’’ → ✔ Invincible – 
-    2. Dash – Vert (course uniquement – durée du dash : 1/2’’ toutes les 1/2’’ et dure en tout ((6 – difficulté) + 2)’’ – un dash ne peut pas être interrompu ET virage impossible mais entre les dashes on peut) : 66% plus rapide (animation aussi). → ✔ Dash
+    2. Course, saut et glissade : 15% plus rapide (animation aussi et le tout avec un tween d’1/2 seconde) – Vert – dure : ((2 × difficulté) + 3)’’ → ✔ Dash
     3. Passe-muraille – Bleu (uniquement les light walls) – dure : ((6 – difficulté) + 2)’’ → ✔ Through – 
     4. Virus – Violet (envoie automatiquement le prochain malus récolté à un adversaire aléatoire) – dure : (11 – difficulté)’’  → ✔ Virus – 
     5. Auto-dodge – Jaune (les obstacles et trous évitables par glissement ou saut (pas en tournant) sont évités automatiquement si le joueur ne le fait pas) – dure : ((6 – difficulté) + 2)’’→ ✔ Auto_Dodge – 
