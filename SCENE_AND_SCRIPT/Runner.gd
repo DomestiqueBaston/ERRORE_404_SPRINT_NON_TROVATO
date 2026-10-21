@@ -440,9 +440,8 @@ func _physics_process(delta: float):
 	# Add a point to the runner's wall, unless he is dead, or falling, or
 	# jumping, or sliding, or teleporting...
 
-	if (new_cell and new_cell.can_take_wall() and direction and
-		not (is_jumping or is_sliding or is_teleporting
-			 or is_dead or is_falling or is_exiting or _are_walls_vanishing)):
+	if (new_cell and new_cell.can_take_wall() and is_alive() and direction and
+		not (is_jumping or is_sliding or is_teleporting or _are_walls_vanishing)):
 		_add_to_wall(new_cell, prev_direction)
 	else:
 		_curr_wall = null
@@ -871,7 +870,7 @@ func _remove_bonus(with_sound_effect: bool = true):
 	var bonus_type = _bonus.type
 	_bonus = null
 
-	if not (is_dead or is_falling):
+	if is_alive():
 		match bonus_type:
 			Bonus.Type.DASH:
 				_stop_dash()
@@ -990,7 +989,7 @@ func _add_to_wall(new_cell: Cell, prev_direction: Vector2):
 
 func _on_collider_entered(area: Area2D):
 	if area.collision_layer & Globals.RUNNER_LAYER:
-		if not (is_dead or is_falling):
+		if is_alive():
 			_die()
 
 ##
@@ -1064,7 +1063,7 @@ func _on_bug_timer_timeout():
 		else:
 			start_bug.emit(_curr_bug)
 		_bug_timer.start(_get_bug_duration())
-	elif not (is_dead or is_falling):
+	elif is_alive():
 		_bug_timer.start(_get_bug_frequency())
 
 #
@@ -1075,7 +1074,7 @@ func _reset_bug():
 		if _curr_bug != Globals.Bug.CAMERA_OFFSET:
 			stop_bug.emit(_curr_bug)
 		_curr_bug = Globals.Bug.NONE
-		if not (is_dead or is_falling):
+		if is_alive():
 			_bug_timer.start(_get_bug_frequency())
 
 ##
