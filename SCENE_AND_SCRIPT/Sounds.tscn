@@ -175,6 +175,7 @@ bus = &"FX_DRY"
 
 [node name="Disappearing" type="AudioStreamPlayer" parent="UI_Sounds" unique_id=392836956]
 stream = ExtResource("13_cwlm1")
+volume_db = 3.5
 bus = &"FX_DRY"
 
 [node name="Cell_Pylon_Alarms" type="Node" parent="." unique_id=56068673]
