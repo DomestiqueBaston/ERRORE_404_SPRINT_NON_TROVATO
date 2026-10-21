@@ -124,9 +124,11 @@ var _bug_timer: Timer
 func _ready() -> void:
 	_animation.animation_finished.connect(_on_animation_finished)
 	_disappear_anim.animation_finished.connect(_on_disappear_finished)
-
 	z_index = roundi(global_position.y)
+	_collider.area_entered.connect(_on_collider_entered)
+	set_process_input(false)
 
+func start():
 	_bonus_timer = Timer.new()
 	_bonus_timer.one_shot = true
 	_bonus_timer.timeout.connect(_remove_bonus)
@@ -138,7 +140,7 @@ func _ready() -> void:
 	add_child(_bug_timer)
 	_bug_timer.start(_get_bug_frequency())
 
-	_collider.area_entered.connect(_on_collider_entered)
+	set_process_input(true)
 
 ##
 ## Sets up the runner's environment: the Map he will be running around, the
@@ -1075,3 +1077,10 @@ func _reset_bug():
 		_curr_bug = Globals.Bug.NONE
 		if not (is_dead or is_falling):
 			_bug_timer.start(_get_bug_frequency())
+
+##
+## Causes the runner to blink briefly. Use await to wait until it has finished.
+##
+func blink():
+	_bonus_malus_anim.play(&"Bonus_Malus")
+	await _bonus_malus_anim.animation_finished

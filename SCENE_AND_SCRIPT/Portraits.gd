@@ -1,91 +1,61 @@
-extends Node
+extends Control
 
-@onready var anim_player: AnimationPlayer = $Animation_Portraits
+@onready var _arrow_anim: AnimationPlayer = $Animation_Arrows
+@onready var _player_anim: AnimationPlayer = $Animation_Portraits
 
-var characters := [
-	"Woman_A",
-	"Man_A",
-	"Woman_B",
-    "Man_B"
-]
+var _current_index: int = 0
+var _is_animating: bool = false
 
-var current_index: int = 0
-var is_animating: bool = false
+func start(char_index: int = 0):
+	_arrow_anim.play(&"Blink")
+	set_character_index(char_index)
 
+func stop():
+	_arrow_anim.stop()
 
-func _ready():
-	self.visible = false
-	current_index = 0
-	self.visibility_changed.connect(_on_visibility_changed)
+func set_character_index(char_index: int):
+	if _current_index != char_index:
+		_current_index = char_index
+		_player_anim.play(Globals.runner_scene_names[char_index] + "_From_Left")
 
-func _on_visibility_changed():
-	if self.visible:
-		$Animation_Arrows.play("Blink")
+func get_character_index() -> int:
+	return _current_index
+
+func scroll(incr: int) -> bool:
+	if _is_animating:
+		return false
+
+	_is_animating = true
+
+	var char_count = Globals.runner_scene_names.size()
+	var old_index = _current_index
+	var new_index = _current_index + incr
+	if new_index < 0:
+		new_index += char_count
+	elif new_index >= char_count:
+		new_index -= char_count
+
+	var old_char = Globals.runner_scene_names[old_index]
+	var new_char = Globals.runner_scene_names[new_index]
+
+	old_char += "_To_Right" if incr > 0 else "_To_Left"
+	new_char += "_From_Left" if incr > 0 else "_From_Right"
+
+	await _play_sequence(old_char, new_char)
+
+	_is_animating = false
+	_current_index = new_index
+	return true
+
+func _play_sequence(anim_out: StringName, anim_in: StringName):
+	if _player_anim.has_animation(anim_out):
+		_player_anim.play(anim_out)
+		await _player_anim.animation_finished
 	else:
-		$Animation_Arrows.stop()
+		print("Animation missing:", anim_out)
 
-func _unhandled_input(event: InputEvent) -> void:
-	if not self.visible or is_animating:
-		return
-
-	if event.is_action_pressed("ui_right_button"):
-		select_right()
-
-	elif event.is_action_pressed("ui_left_button"):
-		select_left()
-
-
-func select_right():
-	if is_animating:
-		return
-
-	is_animating = true
-
-	var old_index = current_index
-	var new_index = (current_index + 1) % characters.size()
-	current_index = new_index
-
-	var old_char = characters[old_index]
-	var new_char = characters[new_index]
-
-	await play_sequence(
-		old_char + "_To_Right",
-		new_char + "_From_Left"
-	)
-
-	is_animating = false
-
-
-func select_left():
-	if is_animating:
-		return
-
-	is_animating = true
-
-	var old_index = current_index
-	var new_index = (current_index - 1 + characters.size()) % characters.size()
-	current_index = new_index
-
-	var old_char = characters[old_index]
-	var new_char = characters[new_index]
-
-	await play_sequence(
-		old_char + "_To_Left",
-		new_char + "_From_Right"
-	)
-
-	is_animating = false
-
-
-func play_sequence(anim_out: String, anim_in: String) -> void:
-	if anim_player.has_animation(anim_out):
-		anim_player.play(anim_out)
-		await anim_player.animation_finished
+	if _player_anim.has_animation(anim_in):
+		_player_anim.play(anim_in)
+		await _player_anim.animation_finished
 	else:
-		print("Animation manquante:", anim_out)
-
-	if anim_player.has_animation(anim_in):
-		anim_player.play(anim_in)
-		await anim_player.animation_finished
-	else:
-		print("Animation manquante:", anim_in)
+		print("Animation missing:", anim_in)

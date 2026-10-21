@@ -11,28 +11,25 @@ const START_ACTIONS := [
 	"ui_down_button",
 ]
 
+var _viewport_runners: Array[int]
+var _choosing_players: bool = false
 var _once := true
 var _can_restart := false
+var _map: Map
 var _runners: Array[Runner]
+var _cameras: Array[Camera2D]
 var _bots: Array[Bot]
 
 var _map_scene = preload("res://SCENE_AND_SCRIPT/Map.tscn")
 
-var _runner_scenes = [
-	preload("res://SCENE_AND_SCRIPT/Woman_A.tscn"),
-	preload("res://SCENE_AND_SCRIPT/Woman_B.tscn"),
-	preload("res://SCENE_AND_SCRIPT/Man_A.tscn"),
-	preload("res://SCENE_AND_SCRIPT/Man_B.tscn")
-]
-
-var _runner_corners = [
+var _runner_corners: Array[Globals.Corner] = [
 	Globals.Corner.N,
 	Globals.Corner.S,
 	Globals.Corner.W,
 	Globals.Corner.E
 ]
 
-@onready var _viewports = [
+@onready var _viewports: Array[SubViewport] = [
 	$Runners/Top_Runners/Left_Runner/Runner_SubViewport,
 	$Runners/Top_Runners/Right_Runner/Runner_SubViewport,
 	$Runners/Bottom_Runners/Left_Runner/Runner_SubViewport,
@@ -43,22 +40,20 @@ func _ready():
 
 	# create the map, which will be shared by all viewports
 
-	var map = _map_scene.instantiate()
-	map.map_size = Globals.map_size
-	_viewports[0].add_child(map)
+	_map = _map_scene.instantiate()
+	_map.map_size = Globals.map_size
+	_viewports[0].add_child(_map)
 
-	# create runners and the bots that control them
+	# create runners and their cameras
 
-	var behavior_traits = Bot.BehaviorTrait.values().duplicate()
-	var bonus_traits = Bot.BonusTrait.values().duplicate()
-	var sensory_traits = Bot.SensoryTrait.values().duplicate()
+	_viewport_runners.resize(4)
 
 	for i in 4:
 
 		# create a runner
 
-		var runner = _runner_scenes[i].instantiate()
-		runner.input_device = i
+		var scene = "res://SCENE_AND_SCRIPT/%s.tscn" % Globals.runner_scene_names[i]
+		var runner = load(scene).instantiate()
 		runner.bonus_found.connect(_on_bonus_found.bind(runner))
 		runner.start_bug.connect(_on_bug_enabled.bind(runner, true))
 		runner.stop_bug.connect(_on_bug_enabled.bind(runner, false))
@@ -76,26 +71,63 @@ func _ready():
 		camera.process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS
 		_viewports[i].add_child(runner)
 		_viewports[i].add_child(camera)
-		runner.set_environment(map, _runner_corners[i], camera)
+		runner.set_environment(_map, _runner_corners[i], camera)
+		_cameras.append(camera)
 
-		# create bots for all runners except the first
+		# by default, runner i is assigned to viewport i
 
-		if i > 0:
-			var bot = Bot.new(runner, map, _runner_corners[i])
-			var st = sensory_traits.pop_at(randi() % sensory_traits.size())
-			var bt = behavior_traits.pop_at(randi() % behavior_traits.size())
-			var bmt = bonus_traits.pop_at(randi() % bonus_traits.size())
-			if bt != Bot.BehaviorTrait.NORMAL:
-				bot.behavior = bt
-				print("%s is %s" % [runner.name, Bot.BehaviorTrait.keys()[bt].capitalize()])
-			if bmt != Bot.BonusTrait.NORMAL:
-				bot.bonus_behavior = bmt
-				print("%s is %s" % [runner.name, Bot.BonusTrait.keys()[bmt].capitalize()])
-			if st != Bot.SensoryTrait.NORMAL:
-				bot.apply_sensory_trait(st)
-				print("%s is %s" % [runner.name, Bot.SensoryTrait.keys()[st].capitalize()])
-			add_child(bot)
-			_bots.append(bot)
+		_viewport_runners[i] = i
+
+	# choose which runner the player will control
+
+	_choosing_players = true
+	$Frames/Player_Selection/Portraits_Top_Left.show()
+	$Frames/Player_Selection/Portraits_Top_Left.start()
+	$Frames/Player_Selection.show()
+
+func _start_race():
+	_choosing_players = false
+
+	# hide the player selection UI
+
+	$Frames/Player_Selection.hide()
+	$Frames/Player_Selection/Portraits_Top_Left.stop()
+
+	# assign input devices to runners: input device 0 for viewport 0, etc., and
+	# start up the map and runners (timers, input handling, etc.)
+
+	for i in 4:
+		var runner_index = _viewport_runners[i]
+		var runner = _runners[runner_index]
+		runner.input_device = i
+		runner.start()
+
+	_map.start()
+
+	# create bots for runners in all viewports except the first
+
+	var behavior_traits = Bot.BehaviorTrait.values().duplicate()
+	var bonus_traits = Bot.BonusTrait.values().duplicate()
+	var sensory_traits = Bot.SensoryTrait.values().duplicate()
+
+	for i in range(1, 4):
+		var runner_index = _viewport_runners[i]
+		var runner = _runners[runner_index]
+		var bot = Bot.new(runner, _map, _runner_corners[i])
+		var st = sensory_traits.pop_at(randi() % sensory_traits.size())
+		var bt = behavior_traits.pop_at(randi() % behavior_traits.size())
+		var bmt = bonus_traits.pop_at(randi() % bonus_traits.size())
+		if bt != Bot.BehaviorTrait.NORMAL:
+			bot.behavior = bt
+			print("%s is %s" % [runner.name, Bot.BehaviorTrait.keys()[bt].capitalize()])
+		if bmt != Bot.BonusTrait.NORMAL:
+			bot.bonus_behavior = bmt
+			print("%s is %s" % [runner.name, Bot.BonusTrait.keys()[bmt].capitalize()])
+		if st != Bot.SensoryTrait.NORMAL:
+			bot.apply_sensory_trait(st)
+			print("%s is %s" % [runner.name, Bot.SensoryTrait.keys()[st].capitalize()])
+		add_child(bot)
+		_bots.append(bot)
 
 	# useless alarms
 
@@ -104,7 +136,61 @@ func _ready():
 	add_child(alarm_timer)
 	alarm_timer.start(10)
 
-func _unhandled_input(event: InputEvent) -> void:
+func _scroll_portrait(incr: int):
+	var portrait = $Frames/Player_Selection/Portraits_Top_Left
+	if not await portrait.scroll(incr):
+		return
+
+	var selected_runner = portrait.get_character_index()
+	Sounds.play_disappearing()
+
+	# remove all characters from viewports
+
+	for i in 4:
+		var runner_index = _viewport_runners[i]
+		var runner = _runners[runner_index]
+		if i < 4:
+			runner.blink()
+		else:
+			await runner.blink()
+
+	for i in 4:
+		var runner_index = _viewport_runners[i]
+		var runner = _runners[runner_index]
+		_viewports[i].remove_child(runner)
+
+	# put the newly selected character in the first viewport
+
+	var player: Runner = _runners[selected_runner]
+	_viewports[0].add_child(player)
+	_viewport_runners[0] = selected_runner
+	player.set_environment(_map, _runner_corners[0], _cameras[0])
+
+	# assign other characters to other viewports at random
+
+	var runner_indices: Array[int]
+	for i in range(1, 4):
+		runner_indices.push_back((selected_runner + i) % 4)
+
+	for i in range(1, 4):
+		var runner_index = runner_indices.pop_at(randi() % runner_indices.size())
+		var runner = _runners[runner_index]
+		_viewports[i].add_child(runner)
+		_viewport_runners[i] = runner_index
+		runner.set_environment(_map, _runner_corners[i], _cameras[i])
+		runner.blink()
+
+func _input(event: InputEvent):
+	if _choosing_players:
+		if event.is_action_pressed(&"ui_left_button"):
+			_scroll_portrait(-1)
+		elif event.is_action_pressed(&"ui_right_button"):
+			_scroll_portrait(1)
+		elif event.is_action_pressed(&"ui_a_button"):
+			_start_race()
+		# TODO: handle quit button action
+		return
+
 	# Détection de la première action du joueur
 	for action in START_ACTIONS:
 		if event.is_action_pressed(action):

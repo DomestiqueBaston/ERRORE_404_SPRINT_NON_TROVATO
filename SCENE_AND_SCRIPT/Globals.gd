@@ -39,6 +39,13 @@ const DOOR_LAYER: int = 0x08
 const ONE_WAY_LAYER: int = 0x10
 const CUBE_LAYER: int = 0x20
 
+const runner_scene_names: Array[String] = [
+	"Woman_A",
+	"Man_A",
+	"Woman_B",
+	"Man_B"
+]
+
 var use_diagonals_for_movement: bool = true
 var map_size: int = 7
 var difficulty: int = 3

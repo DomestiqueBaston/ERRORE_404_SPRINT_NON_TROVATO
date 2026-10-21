@@ -6,10 +6,10 @@ class_name Bot extends Node
 ## he dies.
 
 ## Which runner this bot controls.
-var runner: Runner
+var runner: Runner: set = set_runner
 
 ## The map the runner is navigating.
-var map: Map
+var map: Map: set = set_map
 
 ## Which corner of the map the runner starts from.
 var start_corner: Globals.Corner
@@ -104,12 +104,25 @@ func _init(runner: Runner, map: Map, start_corner: Globals.Corner):
 
 func _ready():
 	set_physics_process(false)
-	runner.input_ignored.connect(stop)
-	map.door_opened.connect(
-		func():
-			if behavior != BehaviorTrait.EXTREMIST:
-				_door_cell = map.get_center_cell())
 	_favorite_color = Bonus.get_type_color(Bonus.Type.values().pick_random())
+
+func set_runner(r: Runner):
+	if runner:
+		runner.input_ignored.disconnect(stop)
+	runner = r
+	if runner:
+		runner.input_ignored.connect(stop)
+
+func set_map(m: Map):
+	if map:
+		map.door_opened.disconnect(_on_door_opened)
+	map = m
+	if map:
+		map.door_opened.connect(_on_door_opened)
+
+func _on_door_opened():
+	if behavior != BehaviorTrait.EXTREMIST:
+		_door_cell = map.get_center_cell()
 
 func stop():
 	#print("STOP")

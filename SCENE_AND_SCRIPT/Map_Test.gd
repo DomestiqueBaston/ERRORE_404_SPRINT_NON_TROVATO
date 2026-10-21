@@ -52,6 +52,9 @@ func _ready():
 		_bot = Bot.new(runner, map, start_corner)
 		add_child(_bot)
 
+	map.start()
+	runner.start()
+
 func _unhandled_input(event: InputEvent) -> void:
 	# Détection de la première action du joueur
 	for action in START_ACTIONS:

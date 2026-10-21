@@ -75,3 +75,6 @@ func play_bug_sound():
 
 func stop_bug_sound():
 	$Misc/Bug_Sound.stop()
+
+func play_disappearing():
+	$UI_Sounds/Disappearing.play()

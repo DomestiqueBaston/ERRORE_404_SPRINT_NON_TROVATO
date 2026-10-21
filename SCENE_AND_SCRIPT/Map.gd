@@ -124,6 +124,7 @@ func _ready():
 
 	_available_bonuses.assign(Bonus.Type.values())
 
+func start():
 	# start timers to generate obstacles and bonus/malus cubes
 
 	var map_side = 2 * Globals.map_size + 1

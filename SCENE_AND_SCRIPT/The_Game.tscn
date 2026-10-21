@@ -2520,21 +2520,25 @@ grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [node name="Portraits_Top_Left" parent="Frames/Player_Selection" unique_id=2050210296 instance=ExtResource("4_lqmhv")]
+visible = false
 layout_mode = 0
 offset_right = 0.0
 offset_bottom = 0.0
 
 [node name="Portraits_Top_Right" parent="Frames/Player_Selection" unique_id=1679374543 instance=ExtResource("4_lqmhv")]
+visible = false
 layout_mode = 0
 offset_left = 480.0
 offset_bottom = 0.0
 
 [node name="Portraits_Bottom_Left" parent="Frames/Player_Selection" unique_id=147213332 instance=ExtResource("4_lqmhv")]
+visible = false
 layout_mode = 0
 offset_top = 270.0
 offset_right = 0.0
 
 [node name="Portraits_Bottom_Right" parent="Frames/Player_Selection" unique_id=1938864700 instance=ExtResource("4_lqmhv")]
+visible = false
 layout_mode = 0
 offset_left = 480.0
 offset_top = 270.0
