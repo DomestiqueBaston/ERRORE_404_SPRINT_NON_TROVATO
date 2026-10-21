@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://v25jstm0b3b7" path="res://SOUND/FX/Bar_full.ogg" id="7_ecwke"]
 [ext_resource type="AudioStream" uid="uid://bes5a835nqime" path="res://SOUND/FX/Woosh.ogg" id="9_20up4"]
 [ext_resource type="AudioStream" uid="uid://vldsf8ak3y4t" path="res://SOUND/FX/Alarm.ogg" id="10_uopt1"]
-[ext_resource type="AudioStream" uid="uid://cfsh2qsksocsg" path="res://SOUND/FX/Minimap_Alarm.ogg" id="13_r6lsn"]
+[ext_resource type="AudioStream" uid="uid://bom677o0xms5i" path="res://SOUND/FX/Disappearing.ogg" id="13_cwlm1"]
 [ext_resource type="AudioStream" uid="uid://o0i0pyhy8xon" path="res://SOUND/FX/Glitchy_Sound_E.ogg" id="14_jeqsl"]
 [ext_resource type="AudioStream" uid="uid://d2vhvgdpp71gm" path="res://SOUND/FX/Siren.ogg" id="14_qilh6"]
 [ext_resource type="AudioStream" uid="uid://1u5cnl60ptxf" path="res://SOUND/FX/Glitchy_Sound_F.ogg" id="15_aehec"]
@@ -173,10 +173,9 @@ stream = ExtResource("9_20up4")
 volume_db = -7.5
 bus = &"FX_DRY"
 
-[node name="Minimap_Alarm" type="AudioStreamPlayer" parent="UI_Sounds" unique_id=392836956]
-stream = ExtResource("13_r6lsn")
+[node name="Disappearing" type="AudioStreamPlayer" parent="UI_Sounds" unique_id=392836956]
+stream = ExtResource("13_cwlm1")
 bus = &"FX_DRY"
-parameters/looping = true
 
 [node name="Cell_Pylon_Alarms" type="Node" parent="." unique_id=56068673]
 
