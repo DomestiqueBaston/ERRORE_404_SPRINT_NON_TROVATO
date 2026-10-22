@@ -29,12 +29,7 @@ func scroll(incr: int) -> bool:
 
 	var char_count = Globals.runner_scene_names.size()
 	var old_index = _current_index
-	var new_index = _current_index + incr
-	if new_index < 0:
-		new_index += char_count
-	elif new_index >= char_count:
-		new_index -= char_count
-
+	var new_index = posmod(_current_index + incr, char_count)
 	var old_char = Globals.runner_scene_names[old_index]
 	var new_char = Globals.runner_scene_names[new_index]
 
