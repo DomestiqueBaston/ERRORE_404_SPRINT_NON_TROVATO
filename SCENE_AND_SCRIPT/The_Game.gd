@@ -187,8 +187,11 @@ func _input(event: InputEvent):
 		elif event.is_action_pressed(&"ui_right_button"):
 			_scroll_portrait(1)
 		elif event.is_action_pressed(&"ui_a_button"):
+			Sounds.play_validation()
 			_start_race()
-		# TODO: handle quit button action
+		elif event.is_action_pressed(&"ui_b_button"):
+			Sounds.play_cancel()
+			get_tree().change_scene_to_file("res://SCENE_AND_SCRIPT/Menu.tscn")
 		return
 
 	# Détection de la première action du joueur
@@ -204,7 +207,7 @@ func _input(event: InputEvent):
 			break
 
 	# Redémarrage de la scène (pour test)
-	if _can_restart and event.is_action_pressed("ui_tab_button"):
+	if _can_restart and event.is_action_pressed(&"ui_tab_button"):
 		Sounds.stop_all()
 		Sounds.play_bang()
 		Sounds.play_intro()
