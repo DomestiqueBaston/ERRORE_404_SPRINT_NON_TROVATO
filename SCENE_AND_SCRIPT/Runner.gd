@@ -1093,8 +1093,8 @@ func set_wall_probes_enabled(enabled: bool):
 
 ##
 ## Checks for walls blocking the runner's path, that is, a line extending from
-## his current position in the given direction. Returns the# distance in cells
-## to the nearest wall found, or a huge value if no walls were found.
+## his current position in the given direction. Returns the distance in cells
+## to the nearest wall found, or INF if no walls were found.
 ##
 ## Note that this will only work if the wall probes have been enabled by calling
 ## set_wall_probes_enabled(true).
