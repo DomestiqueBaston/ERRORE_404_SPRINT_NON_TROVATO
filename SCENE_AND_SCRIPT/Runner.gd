@@ -110,6 +110,7 @@ var _is_down_pressed: bool = false
 
 var _map: Map
 var _camera: Camera2D
+var _start_corner: Globals.Corner
 var _start_cell: Cell
 var _curr_cell: Cell
 var _curr_cell_pos: Vector2
@@ -140,6 +141,29 @@ func start():
 	add_child(_bug_timer)
 	_bug_timer.start(_get_bug_frequency())
 
+	var maybe: bool = randi() & 1
+	match _start_corner:
+		Globals.Corner.N:
+			_animation.play(&"Start_180")
+			_sprite_node.scale.x = 1.0 if maybe else -1.0
+		Globals.Corner.S:
+			_animation.play(&"Start_000")
+			_sprite_node.scale.x = 1.0 if maybe else -1.0
+		Globals.Corner.W:
+			if maybe:
+				_animation.play(&"Start_000")
+				_sprite_node.scale.x = -1.0
+			else:
+				_animation.play(&"Start_180")
+				_sprite_node.scale.x = 1.0
+		Globals.Corner.E:
+			if maybe:
+				_animation.play(&"Start_000")
+				_sprite_node.scale.x = 1.0
+			else:
+				_animation.play(&"Start_180")
+				_sprite_node.scale.x = -1.0
+
 	set_process_input(true)
 
 ##
@@ -150,6 +174,7 @@ func start():
 func set_environment(map: Map, start_corner: Globals.Corner, camera: Camera2D):
 	_map = map
 	_camera = camera
+	_start_corner = start_corner
 
 	var sz = map.map_size
 	match start_corner:
@@ -421,11 +446,16 @@ func _physics_process(delta: float):
 			Cell.State.PYLON:
 				auto_dodge = _check_pylon(new_cell)
 
+	# If the runner hasn't moved yet, we're done.
+
+	if direction == Vector2.ZERO:
+		return
+
 	# Update the position of the runner, unless the runner hit something
 	# inpenetrable (a pylon or artefact), or he has not started to run yet.
 	# If he has changed direction, change the camera offset, too.
 
-	if not (is_dead or is_falling or auto_dodge) and direction:
+	if not (is_dead or is_falling or auto_dodge):
 		_set_position(new_pos, false, new_cell)
 		if (_camera and direction != prev_direction
 			and _curr_bug != Globals.Bug.CAMERA_OFFSET):
@@ -440,7 +470,7 @@ func _physics_process(delta: float):
 	# Add a point to the runner's wall, unless he is dead, or falling, or
 	# jumping, or sliding, or teleporting...
 
-	if (new_cell and new_cell.can_take_wall() and is_alive() and direction and
+	if (new_cell and new_cell.can_take_wall() and is_alive() and
 		not (is_jumping or is_sliding or is_teleporting or _are_walls_vanishing)):
 		_add_to_wall(new_cell, prev_direction)
 	else:
@@ -449,23 +479,12 @@ func _physics_process(delta: float):
 	# Default animation.
 
 	if not (is_jumping or is_sliding or is_dead or is_falling):
-		if direction == Vector2.ZERO:
-			if _last_direction == Vector2.ZERO:
-				_animation.play(&"Intro")
-			else:
-				if _last_direction.y < 0:
-					_animation.play(&"Start_000")
-					_sprite_node.scale.x = 1.0 if _last_direction.x < 0 else -1.0
-				else:
-					_animation.play(&"Start_180")
-					_sprite_node.scale.x = -1.0 if _last_direction.x < 0 else 1.0
+		if direction.y < 0.0:
+			_animation.play(&"Run_000")
+			_sprite_node.scale.x = 1.0 if direction.x < 0 else -1.0
 		else:
-			if direction.y < 0:
-				_animation.play(&"Run_000")
-				_sprite_node.scale.x = 1.0 if direction.x < 0 else -1.0
-			else:
-				_animation.play(&"Run_180")
-				_sprite_node.scale.x = -1.0 if direction.x < 0 else 1.0
+			_animation.play(&"Run_180")
+			_sprite_node.scale.x = -1.0 if direction.x < 0 else 1.0
 
 #
 # Whenever the runner's position changes, a few other things need to be done as
@@ -646,26 +665,13 @@ func _on_animation_finished(anim_name: StringName) -> void:
 		_disappear()
 		died.emit()
 
-	# Rien à faire si mort ou en chute (on reste sur l’animation)
-	if is_dead or is_falling:
-		return
-
-	if direction != Vector2.ZERO:
-		if direction.y < 0:
+	if not (is_dead or is_falling):
+		if direction.y < 0.0:
 			_animation.play(&"Run_000")
 			_sprite_node.scale.x = 1.0 if direction.x < 0 else -1.0
 		else:
 			_animation.play(&"Run_180")
 			_sprite_node.scale.x = -1.0 if direction.x < 0 else 1.0
-	else:
-		if _last_direction == Vector2.ZERO:
-			_animation.play(&"Intro")
-		elif _last_direction.y < 0:
-			_animation.play(&"Start_000")
-			_sprite_node.scale.x = 1.0 if _last_direction.x < 0 else -1.0
-		else:
-			_animation.play(&"Start_180")
-			_sprite_node.scale.x = -1.0 if _last_direction.x < 0 else 1.0
 
 func _on_disappear_finished(_anim_name: String):
 	set_physics_process(false)
