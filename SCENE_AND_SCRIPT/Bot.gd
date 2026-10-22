@@ -109,9 +109,11 @@ func _ready():
 func set_runner(r: Runner):
 	if runner:
 		runner.input_ignored.disconnect(stop)
+		runner.set_wall_probes_enabled(false)
 	runner = r
 	if runner:
 		runner.input_ignored.connect(stop)
+		runner.set_wall_probes_enabled(true)
 
 func set_map(m: Map):
 	if map:
@@ -145,7 +147,7 @@ func _physics_process(delta: float):
 	var obstacle = (
 		not _is_cell_clear(next_cell)
 		or other_runners
-		or _check_for_walls(runner.direction, 1) < 0.5)
+		or runner.check_for_walls(runner.direction) < 1.0)
 
 	# special case for distracted bots: sometimes they don't see the obstacle
 
@@ -533,13 +535,13 @@ func _pick_best_way_to_door(options: Array[RunnerAction]):
 		var left = _get_left_dir()
 		var progress = _get_progress_within_cell(left)
 		if progress < 0.3:
-			if _check_for_walls(left, 0) > 1.0 - progress:
+			if runner.check_for_walls(left) > 1.0 - progress:
 				_send_direction_event(left)
 				var t = (Cell.side_length * (0.5 - progress)) / runner.get_current_speed()
 				await get_tree().create_timer(t).timeout
 		elif progress > 0.7:
 			var right = -left
-			if _check_for_walls(right, 0) > progress:
+			if runner.check_for_walls(right) > progress:
 				_send_direction_event(right)
 				var t = (Cell.side_length * (1.0 - progress)) / runner.get_current_speed()
 				await get_tree().create_timer(t).timeout
@@ -577,8 +579,7 @@ func _evaluate_move(
 
 	# is the runner headed for a wall?
 
-	const wall_lookahead = 3
-	var wall_dist = _check_for_walls(dir, wall_lookahead)
+	var wall_dist = runner.check_for_walls(dir)
 	if wall_dist < 1.0:
 		return 0
 
@@ -587,7 +588,7 @@ func _evaluate_move(
 	if next_cell == null:
 		if not _can_jump_or_slide_over(next_pos, dir):
 			return 0
-		if wall_dist < wall_lookahead:
+		if wall_dist < INF:
 			return 1
 		return 2
 
@@ -607,7 +608,7 @@ func _evaluate_move(
 	# no obstacles in the next cell: we're done
 
 	if _is_cell_clear(next_cell):
-		if (is_crowded or wall_dist < wall_lookahead or
+		if (is_crowded or wall_dist < INF or
 			(next_cell.get_cube() and bonus_behavior == BonusTrait.SUSPICIOUS)):
 			return 1
 		else:
@@ -619,10 +620,10 @@ func _evaluate_move(
 		Cell.State.LOWERED:
 			if (next_cell.get_artefact() == null and
 				_can_jump_or_slide_over(next_pos, dir)):
-				return 1 if wall_dist < wall_lookahead else 2
+				return 1 if wall_dist < INF else 2
 		Cell.State.HIDDEN:
 			if _can_jump_or_slide_over(next_pos, dir):
-				return 1 if wall_dist < wall_lookahead else 2
+				return 1 if wall_dist < INF else 2
 		Cell.State.TELEPORT:
 			return 1
 		Cell.State.ONE_WAY:
@@ -631,10 +632,10 @@ func _evaluate_move(
 		Cell.State.PYLON:
 			match next_cell.get_pylon().get_state():
 				Pylon.State.RAISED:
-					return 1 if is_crowded or wall_dist < wall_lookahead else 2
+					return 1 if is_crowded or wall_dist < INF else 2
 				Pylon.State.LOWERED:
 					if _can_jump_or_slide_over(next_pos, dir):
-						return 1 if is_crowded or wall_dist < wall_lookahead else 2
+						return 1 if is_crowded or wall_dist < INF else 2
 
 	return 0
 
@@ -794,39 +795,6 @@ func _is_parallel_to_door_axis(dir: Vector2) -> bool:
 			Door.Axis.NW_SE:
 				return runner_axis in [Globals.Axis.NW, Globals.Axis.SE]
 	return true
-
-#
-# Check for walls blocking the runner's path, that is, a line extending from
-# his current position in the given direction. The parameter max_cell_dist
-# determines how far the function looks ahead: 0 looks at walls in the current
-# cell only, 1 also looks at the neighboring cell, and so on. Returns the
-# distance in cells to the nearest wall found, or a huge value if no walls were
-# found.
-#
-func _check_for_walls(dir: Vector2, max_cell_dist: int = 0) -> float:
-	var p1: Vector2 = runner.global_position
-	var p2: Vector2 = p1 + dir * ((2 * map.map_size + 1) * Cell.side_length)
-	var pos: Vector2 = runner.global_position
-	var cell: Cell
-	for i in max_cell_dist + 1:
-		if i == 0:
-			cell = runner.get_current_cell()
-		else:
-			cell = map.get_cell_at_pos(pos)
-		if cell:
-			for wall in cell.get_walls():
-				if not wall.has_points():
-					continue
-				var intersection = Geometry2D.segment_intersects_segment(
-					p1, p2, wall.get_start_point(), wall.get_end_point())
-				if intersection != null:
-					var dist = runner.global_position.distance_to(intersection)
-					dist /= Cell.side_length
-					#var dirname = Globals.Axis.keys()[Globals.dir_to_axis(dir)]
-					#print("wall at dist ", dist, ", dir ", dirname)
-					return dist
-		pos = _get_next_pos(dir, pos)
-	return INF
 
 #
 # Looks for cubes in the cells ahead of the runner and to his left and right.

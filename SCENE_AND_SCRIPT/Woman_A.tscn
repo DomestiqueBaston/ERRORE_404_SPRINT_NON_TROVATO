@@ -30,6 +30,7 @@
 [ext_resource type="AudioStream" uid="uid://cktcpy2nxvdj8" path="res://SOUND/FX/Crackling_Noise_K.ogg" id="22_1yje6"]
 [ext_resource type="AudioStream" uid="uid://533g3ysiqkaf" path="res://SOUND/FX/RUNNER/No_Turn.ogg" id="22_mxkjo"]
 [ext_resource type="AudioStream" uid="uid://dm0ju1rel0bjy" path="res://SOUND/FX/RUNNER/Bonus_Malus_Over.ogg" id="23_mxkjo"]
+[ext_resource type="PackedScene" uid="uid://cxhxkvfl11ys1" path="res://SCENE_AND_SCRIPT/Wall_Probes.tscn" id="25_woapq"]
 [ext_resource type="AudioStream" uid="uid://5vrom7uim4ag" path="res://SOUND/FX/Alert.ogg" id="27_uqsxk"]
 [ext_resource type="AudioStream" uid="uid://dn68ist7fukqi" path="res://SOUND/FX/RUNNER/Disappearing_Death.ogg" id="28_eam2g"]
 [ext_resource type="AudioStream" uid="uid://boubqyiskws1h" path="res://SOUND/FX/RUNNER/Anti_Dash.ogg" id="29_eam2g"]
@@ -3227,6 +3228,8 @@ volume_db = 7.0
 max_distance = 1000.0
 bus = &"BONUS_MALUS"
 metadata/_edit_lock_ = true
+
+[node name="Wall_Probes" parent="Character" unique_id=1367067138 instance=ExtResource("25_woapq")]
 
 [node name="Animation_Runner" type="AnimationPlayer" parent="." unique_id=1090802675]
 root_node = NodePath("../Character")

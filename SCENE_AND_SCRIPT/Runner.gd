@@ -1083,3 +1083,21 @@ func _reset_bug():
 func blink():
 	_bonus_malus_anim.play(&"Bonus_Malus")
 	await _bonus_malus_anim.animation_finished
+
+##
+## Enables the runner's wall probes: colliders that make it possible to scan for
+## walls by calling check_for_walls(). By default, the probes are disabled.
+##
+func set_wall_probes_enabled(enabled: bool):
+	$Character/Wall_Probes.set_enabled(enabled)
+
+##
+## Checks for walls blocking the runner's path, that is, a line extending from
+## his current position in the given direction. Returns the# distance in cells
+## to the nearest wall found, or a huge value if no walls were found.
+##
+## Note that this will only work if the wall probes have been enabled by calling
+## set_wall_probes_enabled(true).
+##
+func check_for_walls(dir: Vector2) -> float:
+	return $Character/Wall_Probes.check_for_walls(dir)

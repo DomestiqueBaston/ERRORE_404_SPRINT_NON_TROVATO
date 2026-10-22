@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cxhxkvfl11ys1"]
+
+[ext_resource type="Script" uid="uid://dppt2co5p0g5j" path="res://SCENE_AND_SCRIPT/Wall_Probes.gd" id="1_almeu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4rd1b"]
+size = Vector2(354, 15)
+
+[node name="Wall_Probes" type="Node2D" unique_id=1367067138]
+script = ExtResource("1_almeu")
+
+[node name="NW" type="Area2D" parent="." unique_id=542037085]
+visible = false
+rotation = 0.46425757
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NW" unique_id=1613903615]
+position = Vector2(-177, 0)
+shape = SubResource("RectangleShape2D_4rd1b")
+
+[node name="NE" type="Area2D" parent="." unique_id=1837683314]
+visible = false
+rotation = -0.46425757
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NE" unique_id=321058536]
+position = Vector2(177, 0)
+shape = SubResource("RectangleShape2D_4rd1b")
+
+[node name="SW" type="Area2D" parent="." unique_id=973425578]
+visible = false
+rotation = -0.46425757
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SW" unique_id=826825924]
+position = Vector2(-177, 0)
+shape = SubResource("RectangleShape2D_4rd1b")
+
+[node name="SE" type="Area2D" parent="." unique_id=1690078165]
+visible = false
+rotation = 0.46425757
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SE" unique_id=2119738370]
+position = Vector2(177, 0)
+shape = SubResource("RectangleShape2D_4rd1b")
