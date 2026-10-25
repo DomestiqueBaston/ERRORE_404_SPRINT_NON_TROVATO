@@ -35,7 +35,7 @@ func check_for_walls(dir: Vector2) -> float:
 		var dist2 = INF
 		for area in collisions:
 			var wall = Wall.get_wall_from_collider(area)
-			if wall:
+			if wall and wall.has_points():
 				var pt = Geometry2D.get_closest_point_to_segment(
 					global_position, wall.get_start_point(), wall.get_end_point())
 				dist2 = minf(dist2, global_position.distance_squared_to(pt))
