@@ -161,6 +161,10 @@ func _start_race():
 	add_child(alarm_timer)
 	alarm_timer.start(10)
 
+	# hide runner numbers
+
+	$Frames/Black_Frames_And_Numbers/Screen_Numbers/Animation_Numbers.play(&"Flashing")
+
 #
 # Fetches the viewport where the runner selection UI has been opened for the
 # given input device. If none is found, the runner selection UI is opened in
