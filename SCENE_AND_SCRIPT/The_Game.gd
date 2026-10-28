@@ -11,13 +11,27 @@ const START_ACTIONS := [
 	"ui_down_button",
 ]
 
-var _viewport_runners: Array[int]
-var _choosing_players: bool = false
+enum PortraitStatus {
+	# runner selection UI is not open or was cancelled
+	NONE,
+	# runner selection UI is open
+	OPEN,
+	# runner selection has been confirmed
+	CONFIRMED
+}
+
+class ViewportState:
+	var camera: Camera2D = null
+	var runner_index: int = -1
+	var runner_status: PortraitStatus = PortraitStatus.NONE
+	var input_device: int = -1
+
+var _viewport_states: Array[ViewportState]
+var _selecting_runners: bool = false
 var _once := true
 var _can_restart := false
 var _map: Map
 var _runners: Array[Runner]
-var _cameras: Array[Camera2D]
 var _bots: Array[Bot]
 
 var _map_scene = preload("res://SCENE_AND_SCRIPT/Map.tscn")
@@ -36,6 +50,15 @@ var _runner_corners: Array[Globals.Corner] = [
 	$Runners/Bottom_Runners/Right_Runner/Runner_SubViewport
 ]
 
+@onready var _portraits: Array[Portraits] = [
+	$Frames/Player_Selection/Portraits_Top_Left,
+	$Frames/Player_Selection/Portraits_Top_Right,
+	$Frames/Player_Selection/Portraits_Bottom_Left,
+	$Frames/Player_Selection/Portraits_Bottom_Right
+]
+
+@onready var _portrait_root: Control = $Frames/Player_Selection
+
 func _ready():
 
 	# create the map, which will be shared by all viewports
@@ -46,7 +69,7 @@ func _ready():
 
 	# create runners and their cameras
 
-	_viewport_runners.resize(4)
+	_viewport_states.resize(4)
 
 	for i in 4:
 
@@ -72,47 +95,49 @@ func _ready():
 		_viewports[i].add_child(runner)
 		_viewports[i].add_child(camera)
 		runner.set_environment(_map, _runner_corners[i], camera)
-		_cameras.append(camera)
 
 		# by default, runner i is assigned to viewport i
 
-		_viewport_runners[i] = i
+		var state = ViewportState.new()
+		state.runner_index = i
+		state.runner_status = PortraitStatus.NONE
+		state.camera = camera
+		_viewport_states[i] = state
 
-	# choose which runner the player will control
 
-	_choosing_players = true
-	$Frames/Player_Selection/Portraits_Top_Left.show()
-	$Frames/Player_Selection/Portraits_Top_Left.start()
-	$Frames/Player_Selection.show()
+	# choose which runner the player will control; initially, runner portraits
+	# are displayed only for a single player, in the top left viewport
+
+	_selecting_runners = true
+	_get_portrait(0)
+	_portrait_root.show()
 
 func _start_race():
-	_choosing_players = false
+	_portrait_root.hide()
+	_selecting_runners = false
 
-	# hide the player selection UI
-
-	$Frames/Player_Selection.hide()
-	$Frames/Player_Selection/Portraits_Top_Left.stop()
-
-	# assign input devices to runners: input device 0 for viewport 0, etc., and
-	# start up the map and runners (timers, input handling, etc.)
+	# assign input devices to runners and start up the runners and the map
+	# (timers, input handling, etc.)
 
 	for i in 4:
-		var runner_index = _viewport_runners[i]
+		var runner_index = _viewport_states[i].runner_index
 		var runner = _runners[runner_index]
 		runner.input_device = i
 		runner.start()
 
 	_map.start()
 
-	# create bots for runners in all viewports except the first
+	# create bots for any runners that require them
 
 	var behavior_traits = Bot.BehaviorTrait.values().duplicate()
 	var bonus_traits = Bot.BonusTrait.values().duplicate()
 	var sensory_traits = Bot.SensoryTrait.values().duplicate()
 
-	for i in range(1, 4):
-		var runner_index = _viewport_runners[i]
-		var runner = _runners[runner_index]
+	for i in 4:
+		var state: ViewportState = _viewport_states[i]
+		if state.runner_status == PortraitStatus.CONFIRMED:
+			continue
+		var runner = _runners[state.runner_index]
 		var bot = Bot.new(runner, _map, _runner_corners[i])
 		var st = sensory_traits.pop_at(randi() % sensory_traits.size())
 		var bt = behavior_traits.pop_at(randi() % behavior_traits.size())
@@ -136,82 +161,234 @@ func _start_race():
 	add_child(alarm_timer)
 	alarm_timer.start(10)
 
-func _scroll_portrait(incr: int):
-	var portrait = $Frames/Player_Selection/Portraits_Top_Left
-	if not await portrait.scroll(incr):
+#
+# Fetches the viewport where the runner selection UI has been opened for the
+# given input device. If none is found, the runner selection UI is opened in
+# the next available viewport. Returns the viewport index in either case.
+#
+func _get_portrait(input_device: int) -> int:
+
+	# if runner selection has already been opened and not cancelled for this
+	# input device, return the corresponding viewport
+
+	for i in 4:
+		var state: ViewportState = _viewport_states[i]
+		if (state.runner_status != PortraitStatus.NONE
+			and state.input_device == input_device):
+			return i
+
+	# otherwise, open runner selection in the next available viewport
+
+	for i in 4:
+		var state: ViewportState = _viewport_states[i]
+		if state.runner_status == PortraitStatus.NONE:
+			state.runner_status = PortraitStatus.OPEN
+			state.input_device = input_device
+			_portraits[i].start(state.runner_index)
+			_portraits[i].show()
+			return i
+
+	return -1
+
+#
+# Closes the runner selection UI in the given viewport when the player
+# validates (confirm true) or cancels (confirm false). Returns false if the
+# given viewport index is invalid or the viewport does not contain an open
+# runner selection UI.
+#
+func _close_portrait(viewport_index: int, confirm: bool) -> bool:
+	if viewport_index < 0 or viewport_index >= 4:
+		return false
+
+	var state: ViewportState = _viewport_states[viewport_index]
+	if state.runner_status != PortraitStatus.OPEN:
+		return false
+
+	if confirm:
+		state.runner_status = PortraitStatus.CONFIRMED
+		for i in 4:
+			_portraits[i].disable_character(state.runner_index)
+	else:
+		state.runner_status = PortraitStatus.NONE
+
+	_portraits[viewport_index].stop()
+	_portraits[viewport_index].hide()
+	return true
+
+#
+# Scrolls to the previous (-1) or next (1) runner in the runner selection UI
+# that has been opened in the given viewport.
+#
+func _scroll_portrait(viewport_index: int, incr: int):
+	if viewport_index < 0 or viewport_index >= 4:
+		return
+	var state: ViewportState = _viewport_states[viewport_index]
+	if state.runner_status != PortraitStatus.OPEN:
 		return
 
+	# scroll the runner selection UI and see which has been selected
+
+	var portrait = _portraits[viewport_index]
+	if not await portrait.scroll(incr):
+		return
 	var selected_runner = portrait.get_character_index()
 	Sounds.play_disappearing()
 
-	# remove all characters from viewports
+	# remove unconfirmed characters from viewports
+
+	var available_runners: Array[int] = [0, 1, 2, 3]
+	var last_runner: Runner = null
 
 	for i in 4:
-		var runner_index = _viewport_runners[i]
-		var runner = _runners[runner_index]
-		if i < 4:
-			runner.blink()
+		state = _viewport_states[i]
+		if state.runner_status == PortraitStatus.CONFIRMED:
+			available_runners.erase(state.runner_index)
 		else:
-			await runner.blink()
+			if last_runner:
+				last_runner.blink()
+			last_runner = _runners[state.runner_index]
+
+	if last_runner:
+		await last_runner.blink()
+		last_runner = null
 
 	for i in 4:
-		var runner_index = _viewport_runners[i]
-		var runner = _runners[runner_index]
-		_viewports[i].remove_child(runner)
+		state = _viewport_states[i]
+		if state.runner_status != PortraitStatus.CONFIRMED:
+			var runner = _runners[state.runner_index]
+			_viewports[i].remove_child(runner)
 
-	# put the newly selected character in the first viewport
+	# put the newly selected character in the appropriate viewport
 
+	state = _viewport_states[viewport_index]
 	var player: Runner = _runners[selected_runner]
-	_viewports[0].add_child(player)
-	_viewport_runners[0] = selected_runner
-	player.set_environment(_map, _runner_corners[0], _cameras[0])
+	_viewports[viewport_index].add_child(player)
+	state.runner_index = selected_runner
+	available_runners.erase(selected_runner)
+	player.set_environment(_map, _runner_corners[viewport_index], state.camera)
 
 	# assign other characters to other viewports at random
 
-	var runner_indices: Array[int]
-	for i in range(1, 4):
-		runner_indices.push_back((selected_runner + i) % 4)
+	for i in 4:
+	
+		# ignore the viewport where the player just selected a runner, and
+		# viewports where the runner has already been confirmed
+	
+		if i == viewport_index:
+			continue
+		state = _viewport_states[i]
+		if state.runner_status == PortraitStatus.CONFIRMED:
+			continue
 
-	for i in range(1, 4):
-		var runner_index = runner_indices.pop_at(randi() % runner_indices.size())
+		# if a player is selecting a runner in this viewport, keep the same
+		# runner if possible, otherwise choose a runner at random
+
+		var runner_index
+		if (state.runner_status == PortraitStatus.OPEN
+			and state.runner_index in available_runners):
+			runner_index = state.runner_index
+			available_runners.erase(state.runner_index)
+		else:
+			runner_index = available_runners.pop_at(randi() % available_runners.size())
+
+		# assign the runner to the viewport, and to the player selection UI if
+		# open
+
 		var runner = _runners[runner_index]
 		_viewports[i].add_child(runner)
-		_viewport_runners[i] = runner_index
-		runner.set_environment(_map, _runner_corners[i], _cameras[i])
+		state.runner_index = runner_index
+		runner.set_environment(_map, _runner_corners[i], state.camera)
 		runner.blink()
+		if state.runner_status == PortraitStatus.OPEN:
+			_portraits[i].set_character_index(runner_index)
 
 func _input(event: InputEvent):
-	if _choosing_players:
-		if event.is_action_pressed(&"ui_left_button"):
-			_scroll_portrait(-1)
-		elif event.is_action_pressed(&"ui_right_button"):
-			_scroll_portrait(1)
-		elif event.is_action_pressed(&"ui_a_button"):
-			Sounds.play_validation()
-			_start_race()
-		elif event.is_action_pressed(&"ui_b_button"):
-			Sounds.play_cancel()
-			get_tree().change_scene_to_file("res://SCENE_AND_SCRIPT/Menu.tscn")
+	if not event.is_action_type():
 		return
 
-	# Détection de la première action du joueur
-	for action in START_ACTIONS:
-		if event.is_action_pressed(action):
-			_can_restart = true
-			if _once:
-				Sounds.stop_intro()
-				Sounds.play_music()
-				for bot in _bots:
-					bot.start()
-				_once = false
-			break
+	# input handling while runners are being selected
 
-	# Redémarrage de la scène (pour test)
-	if _can_restart and event.is_action_pressed(&"ui_tab_button"):
-		Sounds.stop_all()
-		Sounds.play_bang()
-		Sounds.play_intro()
-		get_tree().reload_current_scene()
+	if _selecting_runners:
+
+		# which input device triggered the event? the runner selection UI is
+		# opened in the next available viewport whenever a new device is
+		# detected
+
+		var input_device = 0
+		const MULTI_DEVICE_TEST = false
+		if MULTI_DEVICE_TEST:
+			if event is InputEventWithModifiers and event.shift_pressed:
+				input_device = 1
+		else:
+			if event.device != InputEvent.DEVICE_ID_KEYBOARD:
+				input_device = event.device
+
+		# scroll runners left
+
+		if event.is_action_pressed(&"ui_left_button"):
+			var viewport_index = _get_portrait(input_device)
+			_scroll_portrait(viewport_index, -1)
+
+		# scroll runners right
+
+		elif event.is_action_pressed(&"ui_right_button"):
+			var viewport_index = _get_portrait(input_device)
+			_scroll_portrait(viewport_index, 1)
+
+		# confirm runner selection and maybe start the race
+
+		elif event.is_action_pressed(&"ui_a_button"):
+			var viewport_index = _get_portrait(input_device)
+			if _close_portrait(viewport_index, true):
+				Sounds.play_validation()
+				var open_count = 0
+				var confirmed_count = 0
+				for state in _viewport_states:
+					match state.runner_status:
+						PortraitStatus.OPEN:
+							open_count += 1
+						PortraitStatus.CONFIRMED:
+							confirmed_count += 1
+				if open_count == 0 and confirmed_count > 0:
+					_start_race()
+
+		# cancel player selection and maybe go back to the menu scene
+
+		elif event.is_action_pressed(&"ui_b_button"):
+			var viewport_index = _get_portrait(input_device)
+			if _close_portrait(viewport_index, false):
+				Sounds.play_cancel()
+				var open_count = 0
+				for state in _viewport_states:
+					if state.runner_status == PortraitStatus.OPEN:
+						open_count += 1
+				if open_count == 0:
+					get_tree().change_scene_to_file("res://SCENE_AND_SCRIPT/Menu.tscn")
+
+	# input handling for the actual race...
+
+	else:
+
+		# start running when a player does anything
+
+		for action in START_ACTIONS:
+			if event.is_action_pressed(action):
+				_can_restart = true
+				if _once:
+					Sounds.stop_intro()
+					Sounds.play_music()
+					for bot in _bots:
+						bot.start()
+					_once = false
+				break
+
+		# reload the scene (for testing only)
+
+		if _can_restart and event.is_action_pressed(&"ui_tab_button"):
+			Sounds.stop_all()
+			Sounds.play_bang()
+			Sounds.play_intro()
+			get_tree().reload_current_scene()
 
 func _on_bonus_found(bonus: Bonus, runner: Runner):
 	match bonus.type:
