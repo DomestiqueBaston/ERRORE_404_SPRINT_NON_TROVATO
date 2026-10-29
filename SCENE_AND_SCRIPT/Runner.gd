@@ -127,9 +127,7 @@ func _ready() -> void:
 	_disappear_anim.animation_finished.connect(_on_disappear_finished)
 	z_index = roundi(global_position.y)
 	_collider.area_entered.connect(_on_collider_entered)
-	set_process_input(false)
 
-func start():
 	_bonus_timer = Timer.new()
 	_bonus_timer.one_shot = true
 	_bonus_timer.timeout.connect(_remove_bonus)
@@ -139,8 +137,10 @@ func start():
 	_bug_timer.one_shot = true
 	_bug_timer.timeout.connect(_on_bug_timer_timeout)
 	add_child(_bug_timer)
-	_bug_timer.start(_get_bug_frequency())
 
+	set_process_input(false)
+
+func get_set():
 	var maybe: bool = randi() & 1
 	match _start_corner:
 		Globals.Corner.N:
@@ -164,6 +164,8 @@ func start():
 				_animation.play(&"Start_180")
 				_sprite_node.scale.x = -1.0
 
+func go():
+	_bug_timer.start(_get_bug_frequency())
 	set_process_input(true)
 
 ##

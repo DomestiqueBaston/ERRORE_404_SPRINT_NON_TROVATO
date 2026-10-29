@@ -202,11 +202,15 @@ func _physics_process(delta: float):
 			_reset_turn_timer()
 
 ##
-## Starts running. Be sure to set the runner and the map before calling this.
-## The bot takes control of the runner until he dies.
+## Starts running, after an optional delay (in seconds). Be sure to set the
+## runner and the map before calling this. The bot takes control of the runner
+## until he dies.
 ##
-func start():
+func start(delay: float = 0):
 	runner.set_vision_area_scale(vision_scale)
+
+	if delay > 0:
+		await get_tree().create_timer(delay).timeout
 
 	_max_straight_time = 1.0 + (2 * map.map_size + 1) / 6.0
 	_reset_turn_timer()

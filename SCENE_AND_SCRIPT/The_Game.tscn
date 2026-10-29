@@ -2550,7 +2550,6 @@ offset_right = 525.0
 offset_bottom = 315.0
 
 [node name="Start_Button" parent="Frames" unique_id=1285019870 instance=ExtResource("10_5ark0")]
-visible = false
 offset_left = 430.0
 offset_top = 220.0
 offset_right = 530.0

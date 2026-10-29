@@ -14,7 +14,9 @@ func play_menu_navigation():
 	$UI_Sounds/Menu_Navigation.play()
 	
 func play_three_two_one():
-	$UI_Sounds/Three_Two_One.play()
+	var sound = $UI_Sounds/Three_Two_One
+	sound.play()
+	await sound.finished
 	
 func play_go():
 	$UI_Sounds/Go.play()

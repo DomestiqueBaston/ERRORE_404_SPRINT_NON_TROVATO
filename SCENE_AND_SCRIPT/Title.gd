@@ -9,7 +9,7 @@ var _is_quit_button_visible: bool = false
 func _ready():
 	$Graphics/Info_Overlay.hide()
 	$Graphics/BackBufferCopy_Reflection.show()
-	$Quit_Button.quit_button_toggled.connect(_on_quit_button_toggled)
+	$Quit_Button.button_toggled.connect(_on_quit_button_toggled)
 
 func _input(event):
 	if event.is_action_pressed("ui_a_button"):

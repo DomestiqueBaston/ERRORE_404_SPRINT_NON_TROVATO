@@ -1,16 +1,5 @@
 extends Node2D
 
-const START_ACTIONS := [
-	"ui_a_button",
-	"ui_b_button",
-	"ui_x_button",
-	"ui_y_button",
-	"ui_left_button",
-	"ui_right_button",
-	"ui_up_button",
-	"ui_down_button",
-]
-
 enum PortraitStatus {
 	# runner selection UI is not open or was cancelled
 	NONE,
@@ -26,10 +15,14 @@ class ViewportState:
 	var runner_status: PortraitStatus = PortraitStatus.NONE
 	var input_device: int = -1
 
+enum GameStatus {
+	RUNNER_SELECTION,
+	START_BUTTON,
+	RACING
+}
+
 var _viewport_states: Array[ViewportState]
-var _selecting_runners: bool = false
-var _once := true
-var _can_restart := false
+var _game_status: GameStatus = GameStatus.RUNNER_SELECTION
 var _map: Map
 var _runners: Array[Runner]
 var _bots: Array[Bot]
@@ -58,6 +51,7 @@ var _runner_corners: Array[Globals.Corner] = [
 ]
 
 @onready var _portrait_root: Control = $Frames/Player_Selection
+@onready var _start_button: PrettyButton = $Frames/Start_Button
 
 func _ready():
 
@@ -108,24 +102,20 @@ func _ready():
 	# choose which runner the player will control; initially, runner portraits
 	# are displayed only for a single player, in the top left viewport
 
-	_selecting_runners = true
 	_get_portrait(0)
 	_portrait_root.show()
 
-func _start_race():
+func _get_set():
 	_portrait_root.hide()
-	_selecting_runners = false
+	_game_status = GameStatus.START_BUTTON
 
-	# assign input devices to runners and start up the runners and the map
-	# (timers, input handling, etc.)
+	# assign input devices to runners and put them in their starting positions
 
 	for i in 4:
 		var runner_index = _viewport_states[i].runner_index
 		var runner = _runners[runner_index]
 		runner.input_device = i
-		runner.start()
-
-	_map.start()
+		runner.get_set()
 
 	# create bots for any runners that require them
 
@@ -154,16 +144,42 @@ func _start_race():
 		add_child(bot)
 		_bots.append(bot)
 
-	# useless alarms
+	# display the start button and wait for somebody to press it
+
+	_start_button.done.connect(_on_start)
+	_start_button.start()
+
+func _on_start():
+	_start_button.stop()
+
+	# start sequence effects
+
+	$Frames/Black_Frames_And_Numbers/Screen_Numbers/Animation_Numbers.play(&"Flashing")
+	await get_tree().create_timer(0.5).timeout
+	await Sounds.play_three_two_one()
+	Sounds.stop_intro()
+	Sounds.play_music()
+
+	_game_status = GameStatus.RACING
+
+	# useless alarm sounds
 
 	var alarm_timer = Timer.new()
 	alarm_timer.timeout.connect(_on_alarm_timeout)
 	add_child(alarm_timer)
 	alarm_timer.start(10)
 
-	# hide runner numbers
+	# the map starts creating obstacles, bonus/malus cubes, etc.
 
-	$Frames/Black_Frames_And_Numbers/Screen_Numbers/Animation_Numbers.play(&"Flashing")
+	_map.start()
+
+	# the runners can start running
+
+	for runner in _runners:
+		runner.go()
+
+	for bot in _bots:
+		bot.start(0.5 * randf())
 
 #
 # Fetches the viewport where the runner selection UI has been opened for the
@@ -312,7 +328,7 @@ func _input(event: InputEvent):
 
 	# input handling while runners are being selected
 
-	if _selecting_runners:
+	if _game_status == GameStatus.RUNNER_SELECTION:
 
 		# which input device triggered the event? the runner selection UI is
 		# opened in the next available viewport whenever a new device is
@@ -354,7 +370,7 @@ func _input(event: InputEvent):
 						PortraitStatus.CONFIRMED:
 							confirmed_count += 1
 				if open_count == 0 and confirmed_count > 0:
-					_start_race()
+					_get_set()
 
 		# cancel player selection and maybe go back to the menu scene
 
@@ -371,24 +387,11 @@ func _input(event: InputEvent):
 
 	# input handling for the actual race...
 
-	else:
-
-		# start running when a player does anything
-
-		for action in START_ACTIONS:
-			if event.is_action_pressed(action):
-				_can_restart = true
-				if _once:
-					Sounds.stop_intro()
-					Sounds.play_music()
-					for bot in _bots:
-						bot.start()
-					_once = false
-				break
+	elif _game_status == GameStatus.RACING:
 
 		# reload the scene (for testing only)
 
-		if _can_restart and event.is_action_pressed(&"ui_tab_button"):
+		if _game_status == GameStatus.RACING and event.is_action_pressed(&"ui_tab_button"):
 			Sounds.stop_all()
 			Sounds.play_bang()
 			Sounds.play_intro()
