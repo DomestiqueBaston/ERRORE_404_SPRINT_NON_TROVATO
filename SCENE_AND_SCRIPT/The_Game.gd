@@ -159,6 +159,7 @@ func _on_start():
 	await Sounds.play_three_two_one()
 	Sounds.stop_intro()
 	Sounds.play_music()
+	Sounds.play_go()
 
 	_game_status = GameStatus.RACING
 
