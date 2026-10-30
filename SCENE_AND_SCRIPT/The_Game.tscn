@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bg8x247cwwks8" path="res://IMAGE/MISC/BSOD.png" id="7_hqhym"]
 [ext_resource type="Texture2D" uid="uid://ysvcu3wtt5ts" path="res://IMAGE/MISC/BSOD_.png" id="8_ftnwh"]
 [ext_resource type="PackedScene" uid="uid://bs6lfs8h7kibb" path="res://SCENE_AND_SCRIPT/Quit_Button.tscn" id="9_mybf8"]
-[ext_resource type="PackedScene" uid="uid://bdkdfkk4qjapg" path="res://SCENE_AND_SCRIPT/Start_Button.tscn" id="10_5ark0"]
 [ext_resource type="AudioStream" uid="uid://pbns42nc8phb" path="res://SOUND/FX/Crackling_Noise_D.ogg" id="11_wsfg0"]
 [ext_resource type="AudioStream" uid="uid://cvgaul6skmor6" path="res://SOUND/FX/Crackling_Noise_E.ogg" id="12_trlmj"]
 [ext_resource type="AudioStream" uid="uid://byi0kx1t5j4ya" path="res://SOUND/FX/Crackling_Noise_I.ogg" id="13_v00p7"]
@@ -2548,12 +2547,6 @@ offset_left = 435.0
 offset_top = 225.0
 offset_right = 525.0
 offset_bottom = 315.0
-
-[node name="Start_Button" parent="Frames" unique_id=1285019870 instance=ExtResource("10_5ark0")]
-offset_left = 430.0
-offset_top = 220.0
-offset_right = 530.0
-offset_bottom = 320.0
 
 [node name="Info_Win_Lose_Overlay" type="Control" parent="Frames" unique_id=880103768]
 visible = false

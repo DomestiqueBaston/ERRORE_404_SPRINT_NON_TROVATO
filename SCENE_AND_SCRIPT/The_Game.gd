@@ -17,7 +17,6 @@ class ViewportState:
 
 enum GameStatus {
 	RUNNER_SELECTION,
-	START_BUTTON,
 	RACING
 }
 
@@ -51,7 +50,6 @@ var _runner_corners: Array[Globals.Corner] = [
 ]
 
 @onready var _portrait_root: Control = $Frames/Player_Selection
-@onready var _start_button: PrettyButton = $Frames/Start_Button
 
 func _ready():
 
@@ -105,9 +103,8 @@ func _ready():
 	_get_portrait(0)
 	_portrait_root.show()
 
-func _get_set():
+func _start_race():
 	_portrait_root.hide()
-	_game_status = GameStatus.START_BUTTON
 
 	# assign input devices to runners and put them in their starting positions
 
@@ -143,14 +140,6 @@ func _get_set():
 			print("%s is %s" % [runner.name, Bot.SensoryTrait.keys()[st].capitalize()])
 		add_child(bot)
 		_bots.append(bot)
-
-	# display the start button and wait for somebody to press it
-
-	_start_button.done.connect(_on_start)
-	_start_button.start()
-
-func _on_start():
-	_start_button.stop()
 
 	# start sequence effects
 
@@ -371,7 +360,7 @@ func _input(event: InputEvent):
 						PortraitStatus.CONFIRMED:
 							confirmed_count += 1
 				if open_count == 0 and confirmed_count > 0:
-					_get_set()
+					_start_race()
 
 		# cancel player selection and maybe go back to the menu scene
 
