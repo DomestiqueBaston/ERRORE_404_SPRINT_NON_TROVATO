@@ -14,7 +14,7 @@ mouse_filter = 2
 script = ExtResource("1_u8v7o")
 button_action = &"ui_a_button"
 initial_press_duration = 0.0
-fill_duration = 0.333
+fill_duration = 0.5
 pause_duration = 0.167
 metadata/_edit_lock_ = true
 
