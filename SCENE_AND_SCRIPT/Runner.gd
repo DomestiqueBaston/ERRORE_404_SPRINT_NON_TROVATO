@@ -77,14 +77,17 @@ signal stop_bug(bug: Globals.Bug)
 		$Character/Papa_Sprite/Runner_Sprite/Sound/Bonus_Malus/No_Turn
 }
 
+# which way the runner is facing initially
+var _start_direction: Vector2
+
 # which way the runner last indicated he WANTED to move
-var _last_direction: Vector2 = Vector2.ZERO
+var _last_direction: Vector2
 
 # if the runner is mid-jump, which way he is jumping
-var _jump_direction: Vector2 = Vector2.ZERO
+var _jump_direction: Vector2
 
 # if the runner is mid-slide, which way he is sliding
-var _slide_direction: Vector2 = Vector2.ZERO
+var _slide_direction: Vector2
 
 # États
 var is_jumping: bool = false
@@ -145,28 +148,50 @@ func get_set():
 	match _start_corner:
 		Globals.Corner.N:
 			_animation.play(&"Start_180")
-			_sprite_node.scale.x = 1.0 if maybe else -1.0
+			if maybe:
+				_sprite_node.scale.x = 1.0
+				_start_direction = Globals.SOUTHEAST
+			else:
+				_sprite_node.scale.x = -1.0
+				_start_direction = Globals.SOUTHWEST
 		Globals.Corner.S:
 			_animation.play(&"Start_000")
-			_sprite_node.scale.x = 1.0 if maybe else -1.0
+			if maybe:
+				_sprite_node.scale.x = 1.0
+				_start_direction = Globals.NORTHWEST
+			else:
+				_sprite_node.scale.x = -1.0
+				_start_direction = Globals.NORTHEAST
 		Globals.Corner.W:
 			if maybe:
 				_animation.play(&"Start_000")
 				_sprite_node.scale.x = -1.0
+				_start_direction = Globals.NORTHEAST
 			else:
 				_animation.play(&"Start_180")
 				_sprite_node.scale.x = 1.0
+				_start_direction = Globals.SOUTHEAST
 		Globals.Corner.E:
 			if maybe:
 				_animation.play(&"Start_000")
 				_sprite_node.scale.x = 1.0
+				_start_direction = Globals.NORTHWEST
 			else:
 				_animation.play(&"Start_180")
 				_sprite_node.scale.x = -1.0
+				_start_direction = Globals.SOUTHWEST
 
 func go():
 	_bug_timer.start(_get_bug_frequency())
 	set_process_input(true)
+
+	# force the runner to start if he doesn't start on his own (note that, if
+	# the runner is controlled by a Bot, it may not start for up to 0.5 seconds,
+	# so we wait just a little bit longer)
+
+	await get_tree().create_timer(0.51).timeout
+	if direction == Vector2.ZERO:
+		_last_direction = _start_direction
 
 ##
 ## Sets up the runner's environment: the Map he will be running around, the
