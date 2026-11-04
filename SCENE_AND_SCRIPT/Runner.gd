@@ -332,7 +332,6 @@ func _physics_process(delta: float):
 				Door.Zone.PASSAGE:
 					if not is_exiting:
 						is_exiting = true
-						print("%s is out!" % name)
 						escaped.emit()
 						input_ignored.emit()
 						set_process_input(false)

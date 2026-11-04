@@ -9,23 +9,33 @@ enum PortraitStatus {
 	CONFIRMED
 }
 
+enum RunnerStatus {
+	RUNNING,
+	DEAD,
+	ESCAPED
+}
+
 class ViewportState:
 	var camera: Camera2D = null
 	var runner_index: int = -1
-	var runner_status: PortraitStatus = PortraitStatus.NONE
+	var portrait_status: PortraitStatus = PortraitStatus.NONE
+	var runner_status: RunnerStatus = RunnerStatus.RUNNING
 	var input_device: int = -1
+	var bot: Bot = null
 
 enum GameStatus {
 	RUNNER_SELECTION,
-	RACING
+	RACING,
+	GAME_OVER
 }
 
 var _viewport_states: Array[ViewportState]
 var _game_status: GameStatus = GameStatus.RUNNER_SELECTION
 var _map: Map
 var _runners: Array[Runner]
-var _bots: Array[Bot]
+var _alarm_timer: Timer
 
+var _menu_scene_file = "res://SCENE_AND_SCRIPT/Menu.tscn"
 var _map_scene = preload("res://SCENE_AND_SCRIPT/Map.tscn")
 
 var _runner_corners: Array[Globals.Corner] = [
@@ -92,7 +102,7 @@ func _ready():
 
 		var state = ViewportState.new()
 		state.runner_index = i
-		state.runner_status = PortraitStatus.NONE
+		state.portrait_status = PortraitStatus.NONE
 		state.camera = camera
 		_viewport_states[i] = state
 
@@ -111,6 +121,8 @@ func _start_race():
 	for i in 4:
 		var runner_index = _viewport_states[i].runner_index
 		var runner = _runners[runner_index]
+		runner.died.connect(_on_runner_died.bind(i))
+		runner.escaped.connect(_on_runner_escaped.bind(i))
 		runner.input_device = i
 		runner.get_set()
 
@@ -122,7 +134,7 @@ func _start_race():
 
 	for i in 4:
 		var state: ViewportState = _viewport_states[i]
-		if state.runner_status == PortraitStatus.CONFIRMED:
+		if state.portrait_status == PortraitStatus.CONFIRMED:
 			continue
 		var runner = _runners[state.runner_index]
 		var bot = Bot.new(runner, _map, _runner_corners[i])
@@ -131,15 +143,15 @@ func _start_race():
 		var bmt = bonus_traits.pop_at(randi() % bonus_traits.size())
 		if bt != Bot.BehaviorTrait.NORMAL:
 			bot.behavior = bt
-			print("%s is %s" % [runner.name, Bot.BehaviorTrait.keys()[bt].capitalize()])
+			#print("%s is %s" % [runner.name, Bot.BehaviorTrait.keys()[bt].capitalize()])
 		if bmt != Bot.BonusTrait.NORMAL:
 			bot.bonus_behavior = bmt
-			print("%s is %s" % [runner.name, Bot.BonusTrait.keys()[bmt].capitalize()])
+			#print("%s is %s" % [runner.name, Bot.BonusTrait.keys()[bmt].capitalize()])
 		if st != Bot.SensoryTrait.NORMAL:
 			bot.apply_sensory_trait(st)
-			print("%s is %s" % [runner.name, Bot.SensoryTrait.keys()[st].capitalize()])
+			#print("%s is %s" % [runner.name, Bot.SensoryTrait.keys()[st].capitalize()])
 		add_child(bot)
-		_bots.append(bot)
+		state.bot = bot
 
 	# start sequence effects
 
@@ -154,22 +166,21 @@ func _start_race():
 
 	# useless alarm sounds
 
-	var alarm_timer = Timer.new()
-	alarm_timer.timeout.connect(_on_alarm_timeout)
-	add_child(alarm_timer)
-	alarm_timer.start(10)
+	_alarm_timer = Timer.new()
+	_alarm_timer.timeout.connect(_on_alarm_timeout)
+	add_child(_alarm_timer)
+	_alarm_timer.start(10)
 
 	# the map starts creating obstacles, bonus/malus cubes, etc.
 
 	_map.start()
 
-	# the runners can start running
+	# runners start running, bots start controlling them
 
-	for runner in _runners:
-		runner.go()
-
-	for bot in _bots:
-		bot.start(0.5 * randf())
+	for state: ViewportState in _viewport_states:
+		_runners[state.runner_index].go()
+		if state.bot:
+			state.bot.start(0.5 * randf())
 
 #
 # Fetches the viewport where the runner selection UI has been opened for the
@@ -183,7 +194,7 @@ func _get_portrait(input_device: int) -> int:
 
 	for i in 4:
 		var state: ViewportState = _viewport_states[i]
-		if (state.runner_status != PortraitStatus.NONE
+		if (state.portrait_status != PortraitStatus.NONE
 			and state.input_device == input_device):
 			return i
 
@@ -191,8 +202,8 @@ func _get_portrait(input_device: int) -> int:
 
 	for i in 4:
 		var state: ViewportState = _viewport_states[i]
-		if state.runner_status == PortraitStatus.NONE:
-			state.runner_status = PortraitStatus.OPEN
+		if state.portrait_status == PortraitStatus.NONE:
+			state.portrait_status = PortraitStatus.OPEN
 			state.input_device = input_device
 			_portraits[i].start(state.runner_index)
 			_portraits[i].show()
@@ -211,15 +222,15 @@ func _close_portrait(viewport_index: int, confirm: bool) -> bool:
 		return false
 
 	var state: ViewportState = _viewport_states[viewport_index]
-	if state.runner_status != PortraitStatus.OPEN:
+	if state.portrait_status != PortraitStatus.OPEN:
 		return false
 
 	if confirm:
-		state.runner_status = PortraitStatus.CONFIRMED
+		state.portrait_status = PortraitStatus.CONFIRMED
 		for i in 4:
 			_portraits[i].disable_character(state.runner_index)
 	else:
-		state.runner_status = PortraitStatus.NONE
+		state.portrait_status = PortraitStatus.NONE
 
 	_portraits[viewport_index].stop()
 	_portraits[viewport_index].hide()
@@ -233,7 +244,7 @@ func _scroll_portrait(viewport_index: int, incr: int):
 	if viewport_index < 0 or viewport_index >= 4:
 		return
 	var state: ViewportState = _viewport_states[viewport_index]
-	if state.runner_status != PortraitStatus.OPEN:
+	if state.portrait_status != PortraitStatus.OPEN:
 		return
 
 	# scroll the runner selection UI and see which has been selected
@@ -251,7 +262,7 @@ func _scroll_portrait(viewport_index: int, incr: int):
 
 	for i in 4:
 		state = _viewport_states[i]
-		if state.runner_status == PortraitStatus.CONFIRMED:
+		if state.portrait_status == PortraitStatus.CONFIRMED:
 			available_runners.erase(state.runner_index)
 		else:
 			if last_runner:
@@ -264,7 +275,7 @@ func _scroll_portrait(viewport_index: int, incr: int):
 
 	for i in 4:
 		state = _viewport_states[i]
-		if state.runner_status != PortraitStatus.CONFIRMED:
+		if state.portrait_status != PortraitStatus.CONFIRMED:
 			var runner = _runners[state.runner_index]
 			_viewports[i].remove_child(runner)
 
@@ -287,14 +298,14 @@ func _scroll_portrait(viewport_index: int, incr: int):
 		if i == viewport_index:
 			continue
 		state = _viewport_states[i]
-		if state.runner_status == PortraitStatus.CONFIRMED:
+		if state.portrait_status == PortraitStatus.CONFIRMED:
 			continue
 
 		# if a player is selecting a runner in this viewport, keep the same
 		# runner if possible, otherwise choose a runner at random
 
 		var runner_index
-		if (state.runner_status == PortraitStatus.OPEN
+		if (state.portrait_status == PortraitStatus.OPEN
 			and state.runner_index in available_runners):
 			runner_index = state.runner_index
 			available_runners.erase(state.runner_index)
@@ -309,7 +320,7 @@ func _scroll_portrait(viewport_index: int, incr: int):
 		state.runner_index = runner_index
 		runner.set_environment(_map, _runner_corners[i], state.camera)
 		runner.blink()
-		if state.runner_status == PortraitStatus.OPEN:
+		if state.portrait_status == PortraitStatus.OPEN:
 			_portraits[i].set_character_index(runner_index)
 
 func _input(event: InputEvent):
@@ -354,7 +365,7 @@ func _input(event: InputEvent):
 				var open_count = 0
 				var confirmed_count = 0
 				for state in _viewport_states:
-					match state.runner_status:
+					match state.portrait_status:
 						PortraitStatus.OPEN:
 							open_count += 1
 						PortraitStatus.CONFIRMED:
@@ -370,12 +381,12 @@ func _input(event: InputEvent):
 				Sounds.play_cancel()
 				var open_count = 0
 				for state in _viewport_states:
-					if state.runner_status == PortraitStatus.OPEN:
+					if state.portrait_status == PortraitStatus.OPEN:
 						open_count += 1
 				if open_count == 0:
-					get_tree().change_scene_to_file("res://SCENE_AND_SCRIPT/Menu.tscn")
+					get_tree().change_scene_to_file(_menu_scene_file)
 
-	# input handling for the actual race...
+	# input handling for the actual race
 
 	elif _game_status == GameStatus.RACING:
 
@@ -386,6 +397,23 @@ func _input(event: InputEvent):
 			Sounds.play_bang()
 			Sounds.play_intro()
 			get_tree().reload_current_scene()
+
+	# input handling when the game has ended
+
+	elif _game_status == GameStatus.GAME_OVER:
+
+		# start over
+
+		if event.is_action_pressed(&"ui_a_button"):
+			Sounds.stop_all()
+			Sounds.play_bang()
+			Sounds.play_intro()
+			get_tree().reload_current_scene()
+
+		# go back to the main menu
+
+		elif event.is_action_pressed(&"ui_b_button"):
+			get_tree().change_scene_to_file(_menu_scene_file)
 
 func _on_bonus_found(bonus: Bonus, runner: Runner):
 	match bonus.type:
@@ -439,3 +467,67 @@ func _on_alarm_timeout():
 			Sounds.play_useless_alarm1()
 		1:
 			Sounds.play_useless_alarm2()
+
+#
+# Counts the runners that have not yet died or escaped, and returns an array of
+# two values: the number of humans running, and the number of bots running.
+#
+func _get_live_runner_counts():
+	var human_count = 0
+	var bot_count = 0
+	for state: ViewportState in _viewport_states:
+		if state.runner_status == RunnerStatus.RUNNING:
+			if state.bot:
+				bot_count += 1
+			else:
+				human_count += 1
+	return [human_count, bot_count]
+
+func _on_runner_died(viewport_index: int):
+	var state: ViewportState = _viewport_states[viewport_index]
+	state.runner_status = RunnerStatus.DEAD
+	var runner_counts = _get_live_runner_counts()
+	var human_count = runner_counts[0]
+	var bot_count = runner_counts[1]
+	if human_count == 0:
+		_game_over(false)
+	elif human_count == 1 and bot_count == 0:
+		_game_over(true)
+	else:
+		_show_death(viewport_index)
+
+func _on_runner_escaped(viewport_index: int):
+	var state: ViewportState = _viewport_states[viewport_index]
+	state.runner_status = RunnerStatus.ESCAPED
+	_game_over(state.bot == null)
+
+func _show_death(viewport_index: int):
+	var death = get_node("Frames/Bugs_0%d/Death" % (viewport_index + 1))
+	death.show()
+	$Frames/Animation_Overlays.play(&"Blink")
+
+func _hide_deaths():
+	for i in 4:
+		var death = get_node("Frames/Bugs_0%d/Death" % (i + 1))
+		death.hide()
+	$Frames/Animation_Overlays.play(&"RESET")
+
+func _game_over(victory: bool):
+	for state: ViewportState in _viewport_states:
+		var runner: Runner = _runners[state.runner_index]
+		if state.bot:
+			state.bot.queue_free()
+		runner.queue_free()
+	_map.queue_free()
+	_alarm_timer.stop()
+	_hide_deaths()
+	Sounds.stop_all()
+	if victory:
+		var win = $Frames/Info_Win_Lose_Overlay/Win
+		win.start()
+		win.show()
+		Sounds.play_victory_sound()
+	else:
+		$Frames/Info_Win_Lose_Overlay/Lose.show()
+		$Sounds/Disconnection.play()
+	_game_status = GameStatus.GAME_OVER

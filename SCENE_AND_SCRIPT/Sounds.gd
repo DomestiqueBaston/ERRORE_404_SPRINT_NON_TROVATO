@@ -80,3 +80,6 @@ func stop_bug_sound():
 
 func play_disappearing():
 	$UI_Sounds/Disappearing.play()
+
+func play_victory_sound():
+	$Music/Music_Win_Animation.play(&"Pitch_Down")
