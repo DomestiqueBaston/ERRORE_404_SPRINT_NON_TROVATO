@@ -515,6 +515,7 @@ func _hide_deaths():
 	$Frames/Animation_Overlays.play(&"RESET")
 
 func _game_over(victory: bool):
+	$Frames/Quit_Button.stop()
 	for state: ViewportState in _viewport_states:
 		var runner: Runner = _runners[state.runner_index]
 		if state.bot:
