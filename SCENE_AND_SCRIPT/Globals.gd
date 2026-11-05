@@ -80,6 +80,7 @@ func save_settings():
 	config.set_value("settings", "master_db", AudioServer.get_bus_volume_db(MASTER_BUS))
 	config.set_value("settings", "music_db", AudioServer.get_bus_volume_db(MUSIC_BUS))
 	config.save(_settings_path)
+	MapBuilder.update_map_size()
 
 func load_settings():
 	var config = ConfigFile.new()
@@ -89,6 +90,7 @@ func load_settings():
 		difficulty = config.get_value("settings", "difficulty", 3)
 		AudioServer.set_bus_volume_db(MASTER_BUS, config.get_value("settings", "master_db", 0.0))
 		AudioServer.set_bus_volume_db(MUSIC_BUS, config.get_value("settings", "music_db", -7.5))
+	MapBuilder.update_map_size()
 
 func axis_to_dir(axis: Globals.Axis) -> Vector2:
 	match axis:

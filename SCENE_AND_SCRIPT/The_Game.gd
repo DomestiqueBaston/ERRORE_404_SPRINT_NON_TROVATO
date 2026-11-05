@@ -38,7 +38,6 @@ var _alarm_timer: Timer
 var _audio_listener: AudioListener2D
 
 var _menu_scene_file = "res://SCENE_AND_SCRIPT/Menu.tscn"
-var _map_scene = preload("res://SCENE_AND_SCRIPT/Map.tscn")
 
 var _runner_corners: Array[Globals.Corner] = [
 	Globals.Corner.N,
@@ -67,8 +66,7 @@ func _ready():
 
 	# create the map, which will be shared by all viewports
 
-	_map = _map_scene.instantiate()
-	_map.map_size = Globals.map_size
+	_map = MapBuilder.take_map()
 	_viewports[0].add_child(_map)
 
 	# create runners and their cameras

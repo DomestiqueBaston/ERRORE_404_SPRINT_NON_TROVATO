@@ -6,7 +6,8 @@ class_name Map extends Node2D
 	set(size):
 		if map_size != size:
 			map_size = size
-			_build_map()
+			if _cells:
+				rebuild_map()
 
 ## How long it takes for a row or column to slide a distance of one cell, in
 ## seconds.
@@ -20,12 +21,12 @@ var _cell_scene := preload("res://SCENE_AND_SCRIPT/Cell.tscn")
 const _cell_step_x = 0.5 * Cell.width
 const _cell_step_y = 0.5 * Cell.height
 
+# All cells in the map, with their current locations (except while sliding).
+var _cells: Dictionary[Vector2i, Cell]
+
 # The "404" cell at the center of the map (which may not actually be at the
 # center if rows or columns have been sliding around).
 var _center_cell: Cell
-
-# All cells in the map, with their current locations (except while sliding).
-var _cells: Dictionary[Vector2i, Cell]
 
 # Cells that are available to be turned into obstacles (not the "center" cell
 # or cells that are already obstacles).
@@ -104,7 +105,7 @@ func _ready():
 	# ensure there is exactly one probability percentage per obstacle type
 	assert(_obstacle_probabilities.size() == ObstacleType._RANDOM_)
 
-	_build_map()
+	build_map()
 
 	if Engine.is_editor_hint():
 		return
@@ -147,32 +148,42 @@ func start():
 	var center_timer = get_tree().create_timer(center_time)
 	center_timer.timeout.connect(_on_center_timer_timeout)
 
-func _build_map():
-	var parent: Node2D = self
+##
+## Repopulates the map, clearing it first if necessary.
+##
+func rebuild_map():
+	if _cells:
+		for cell in _cells.values():
+			remove_child(cell)
+			cell.queue_free()
+		_cells.clear()
+	build_map()
 
-	for cell in _cells.values():
-		parent.remove_child(cell)
-		cell.queue_free()
-
-	_cells.clear()
+##
+## Populates the map with NxN cells, where N = 2 * map_size + 1. Does nothing
+## if the map has already been populated. See also rebuild_map().
+##
+func build_map():
+	if _cells:
+		return
 
 	# center
 
-	_center_cell = _add_cell(parent, Vector2i(0, 0), Cell.Decoration.CENTER)
+	_center_cell = _add_cell(Vector2i(0, 0), Cell.Decoration.CENTER)
 
 	# corners
 
-	_add_cell(parent, Vector2i(-map_size, map_size), Cell.Decoration.N)
-	_add_cell(parent, Vector2i(map_size, -map_size), Cell.Decoration.S)
-	_add_cell(parent, Vector2i(-map_size, -map_size), Cell.Decoration.W)
-	_add_cell(parent, Vector2i(map_size, map_size), Cell.Decoration.E)
+	_add_cell(Vector2i(-map_size, map_size), Cell.Decoration.N)
+	_add_cell(Vector2i(map_size, -map_size), Cell.Decoration.S)
+	_add_cell(Vector2i(-map_size, -map_size), Cell.Decoration.W)
+	_add_cell(Vector2i(map_size, map_size), Cell.Decoration.E)
 
 	# edges
 
-	_build_edge(parent, Globals.Axis.NW)
-	_build_edge(parent, Globals.Axis.NE)
-	_build_edge(parent, Globals.Axis.SW)
-	_build_edge(parent, Globals.Axis.SE)
+	_build_edge(Globals.Axis.NW)
+	_build_edge(Globals.Axis.NE)
+	_build_edge(Globals.Axis.SW)
+	_build_edge(Globals.Axis.SE)
 
 	# interior
 
@@ -195,9 +206,9 @@ func _build_map():
 				decos[x].append(candidates.pick_random())
 				var uv = Vector2i(-map_size + x+1, -map_size + y+1)
 				var deco = Cell.Decoration.OTHER1 + decos[x][y]
-				_add_cell(parent, uv, deco as Cell.Decoration)
+				_add_cell(uv, deco as Cell.Decoration)
 
-func _build_edge(parent: Node2D, edge: Globals.Axis):
+func _build_edge(edge: Globals.Axis):
 	var uv0: Vector2i
 	var uvd: Vector2i
 	var deco1: Cell.Decoration
@@ -227,17 +238,17 @@ func _build_edge(parent: Node2D, edge: Globals.Axis):
 		var uv: Vector2i = uv0 + i * uvd
 		var deco = deco1 + deco_offset
 		deco_offset = (deco_offset + randi_range(1, 2)) % 3
-		_add_cell(parent, uv, deco as Cell.Decoration)
+		_add_cell(uv, deco as Cell.Decoration)
 
 #
 # Creates a new cell at the given position and with the given decoration.
 #
-func _add_cell(parent: Node2D, uv: Vector2i, deco: Cell.Decoration) -> Cell:
+func _add_cell(uv: Vector2i, deco: Cell.Decoration) -> Cell:
 	var cell: Cell = _cell_scene.instantiate()
 	cell.position = get_cell_pos(uv)
 	cell.decoration = deco
 	cell.z_index = RenderingServer.CANVAS_ITEM_Z_MIN
-	parent.add_child(cell)
+	add_child(cell)
 	_cells[uv] = cell
 	return cell
 
