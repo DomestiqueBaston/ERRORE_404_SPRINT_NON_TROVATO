@@ -1,8 +1,14 @@
 extends Node
 
-func stop_all():
-	for sound in find_children("*", "AudioStreamPlayer"):
-		sound.stop()
+@onready var _music: AudioStreamPlayer = $Music/Music
+@onready var _victory_anim: AnimationPlayer = $Music/Music_Win_Animation
+
+func stop_all(music_too: bool = true):
+	for sound: AudioStreamPlayer in find_children("*", "AudioStreamPlayer"):
+		if music_too or sound != _music:
+			sound.stop()
+	if _victory_anim.is_playing():
+		_victory_anim.play(&"RESET")
 
 func play_validation():
 	$UI_Sounds/Validation.play()
@@ -31,10 +37,10 @@ func play_bang():
 	$Music/Bang.play()
 
 func play_music():
-	$Music/Music.play()
+	_music.play()
 
 func stop_music():
-	$Music/Music.stop()
+	_music.stop()
 
 func play_intro():
 	$Music/Intro.play()
@@ -82,4 +88,4 @@ func play_disappearing():
 	$UI_Sounds/Disappearing.play()
 
 func play_victory_sound():
-	$Music/Music_Win_Animation.play(&"Pitch_Down")
+	_victory_anim.play(&"Pitch_Down")

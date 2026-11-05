@@ -413,6 +413,8 @@ func _input(event: InputEvent):
 		# go back to the main menu
 
 		elif event.is_action_pressed(&"ui_b_button"):
+			Sounds.stop_all()
+			Sounds.play_intro()
 			get_tree().change_scene_to_file(_menu_scene_file)
 
 func _on_bonus_found(bonus: Bonus, runner: Runner):
@@ -521,7 +523,7 @@ func _game_over(victory: bool):
 	_map.queue_free()
 	_alarm_timer.stop()
 	_hide_deaths()
-	Sounds.stop_all()
+	Sounds.stop_all(not victory)
 	if victory:
 		var win = $Frames/Info_Win_Lose_Overlay/Win
 		win.start()
