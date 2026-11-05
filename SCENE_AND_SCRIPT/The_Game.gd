@@ -22,6 +22,7 @@ class ViewportState:
 	var runner_status: RunnerStatus = RunnerStatus.RUNNING
 	var input_device: int = -1
 	var bot: Bot = null
+	var audio_weight: float = 0.0
 
 enum GameStatus {
 	RUNNER_SELECTION,
@@ -34,6 +35,7 @@ var _game_status: GameStatus = GameStatus.RUNNER_SELECTION
 var _map: Map
 var _runners: Array[Runner]
 var _alarm_timer: Timer
+var _audio_listener: AudioListener2D
 
 var _menu_scene_file = "res://SCENE_AND_SCRIPT/Menu.tscn"
 var _map_scene = preload("res://SCENE_AND_SCRIPT/Map.tscn")
@@ -106,6 +108,13 @@ func _ready():
 		state.camera = camera
 		_viewport_states[i] = state
 
+	# the _physics_process() function will ensure, once the race starts, that
+	# the AudioListener2D is placed at the barycenter of the live, non-bot
+	# runners; it should therefore be called AFTER the runners' physics
+	# functions
+
+	process_physics_priority = 1
+	set_physics_process(false)
 
 	# choose which runner the player will control; initially, runner portraits
 	# are displayed only for a single player, in the top left viewport
@@ -135,23 +144,36 @@ func _start_race():
 	for i in 4:
 		var state: ViewportState = _viewport_states[i]
 		if state.portrait_status == PortraitStatus.CONFIRMED:
+			state.audio_weight = 1.0
 			continue
 		var runner = _runners[state.runner_index]
 		var bot = Bot.new(runner, _map, _runner_corners[i])
+
+		# we want bots' physics functions to run AFTER their runners' functions,
+		# because they react to the runner's position and direction of movement
+
+		bot.process_physics_priority = 1
+
+		# apply randomly picked personality traits to bots
+
 		var st = sensory_traits.pop_at(randi() % sensory_traits.size())
 		var bt = behavior_traits.pop_at(randi() % behavior_traits.size())
 		var bmt = bonus_traits.pop_at(randi() % bonus_traits.size())
 		if bt != Bot.BehaviorTrait.NORMAL:
 			bot.behavior = bt
-			#print("%s is %s" % [runner.name, Bot.BehaviorTrait.keys()[bt].capitalize()])
 		if bmt != Bot.BonusTrait.NORMAL:
 			bot.bonus_behavior = bmt
-			#print("%s is %s" % [runner.name, Bot.BonusTrait.keys()[bmt].capitalize()])
 		if st != Bot.SensoryTrait.NORMAL:
 			bot.apply_sensory_trait(st)
-			#print("%s is %s" % [runner.name, Bot.SensoryTrait.keys()[st].capitalize()])
+
 		add_child(bot)
 		state.bot = bot
+
+	# add an AudioListener2D and start updating its position
+
+	_audio_listener = AudioListener2D.new()
+	_viewports[0].add_child(_audio_listener)
+	set_physics_process(true)
 
 	# start sequence effects
 
@@ -181,6 +203,27 @@ func _start_race():
 		_runners[state.runner_index].go()
 		if state.bot:
 			state.bot.start(0.5 * randf())
+
+#
+# Sets the position of the AudioListener2D to the barycenter of the non-bot
+# runners. Note that this node's physics_process_priority is set so that this
+# function is called AFTER the runners' positions have been updated. Note also
+# that each non-bot runner's position is given a weight for this computation:
+# 1 while the runner is alive, 0 if he has died, or somewhere inbetween if the
+# runner is dying.
+#
+func _physics_process(_delta: float):
+	var pos = Vector2.ZERO
+	var weight = 0.0
+
+	for state: ViewportState in _viewport_states:
+		if state.audio_weight > 0.0:
+			var runner: Runner = _runners[state.runner_index]
+			pos += runner.position * state.audio_weight
+			weight += state.audio_weight
+
+	if weight > 0.0:
+		_audio_listener.position = pos / weight
 
 #
 # Fetches the viewport where the runner selection UI has been opened for the
@@ -484,6 +527,8 @@ func _on_runner_died(viewport_index: int):
 	elif human_count == 1 and bot_count == 0:
 		_game_over(true)
 	else:
+		if state.bot == null:
+			create_tween().tween_property(state, ^"audio_weight", 0.0, 0.5)
 		_show_death(viewport_index)
 
 func _on_runner_escaped(viewport_index: int):
@@ -503,6 +548,7 @@ func _hide_deaths():
 	$Frames/Animation_Overlays.play(&"RESET")
 
 func _game_over(victory: bool):
+	set_physics_process(false)
 	$Frames/Quit_Button.stop()
 	for state: ViewportState in _viewport_states:
 		var runner: Runner = _runners[state.runner_index]
