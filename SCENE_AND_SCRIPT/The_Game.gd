@@ -386,18 +386,6 @@ func _input(event: InputEvent):
 				if open_count == 0:
 					get_tree().change_scene_to_file(_menu_scene_file)
 
-	# input handling for the actual race
-
-	elif _game_status == GameStatus.RACING:
-
-		# reload the scene (for testing only)
-
-		if _game_status == GameStatus.RACING and event.is_action_pressed(&"ui_tab_button"):
-			Sounds.stop_all()
-			Sounds.play_bang()
-			Sounds.play_intro()
-			get_tree().reload_current_scene()
-
 	# input handling when the game has ended
 
 	elif _game_status == GameStatus.GAME_OVER:
