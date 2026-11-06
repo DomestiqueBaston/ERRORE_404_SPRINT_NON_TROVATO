@@ -32,6 +32,7 @@ enum GameStatus {
 
 var _viewport_states: Array[ViewportState]
 var _game_status: GameStatus = GameStatus.RUNNER_SELECTION
+var _is_portrait_busy: bool = false
 var _map: Map
 var _runners: Array[Runner]
 var _alarm_timer: Timer
@@ -371,61 +372,65 @@ func _input(event: InputEvent):
 	# input handling while runners are being selected
 
 	if _game_status == GameStatus.RUNNER_SELECTION:
+		if not _is_portrait_busy:
+			_is_portrait_busy = true
 
-		# which input device triggered the event? the runner selection UI is
-		# opened in the next available viewport whenever a new device is
-		# detected
+			# which input device triggered the event? the runner selection UI is
+			# opened in the next available viewport whenever a new device is
+			# detected
 
-		var input_device = 0
-		const MULTI_DEVICE_TEST = false
-		if MULTI_DEVICE_TEST:
-			if event is InputEventWithModifiers and event.shift_pressed:
-				input_device = 1
-		else:
-			if event.device != InputEvent.DEVICE_ID_KEYBOARD:
-				input_device = event.device
+			var input_device = 0
+			const MULTI_DEVICE_TEST = false
+			if MULTI_DEVICE_TEST:
+				if event is InputEventWithModifiers and event.shift_pressed:
+					input_device = 1
+			else:
+				if event.device != InputEvent.DEVICE_ID_KEYBOARD:
+					input_device = event.device
 
-		# scroll runners left
+			# scroll runners left
 
-		if event.is_action_pressed(&"ui_left_button"):
-			var viewport_index = _get_portrait(input_device)
-			_scroll_portrait(viewport_index, -1)
+			if event.is_action_pressed(&"ui_left_button"):
+				var viewport_index = _get_portrait(input_device)
+				await _scroll_portrait(viewport_index, -1)
 
-		# scroll runners right
+			# scroll runners right
 
-		elif event.is_action_pressed(&"ui_right_button"):
-			var viewport_index = _get_portrait(input_device)
-			_scroll_portrait(viewport_index, 1)
+			elif event.is_action_pressed(&"ui_right_button"):
+				var viewport_index = _get_portrait(input_device)
+				await _scroll_portrait(viewport_index, 1)
 
-		# confirm runner selection and maybe start the race
+			# confirm runner selection and maybe start the race
 
-		elif event.is_action_pressed(&"ui_a_button"):
-			var viewport_index = _get_portrait(input_device)
-			if _close_portrait(viewport_index, true):
-				Sounds.play_validation()
-				var open_count = 0
-				var confirmed_count = 0
-				for state in _viewport_states:
-					match state.portrait_status:
-						PortraitStatus.OPEN:
+			elif event.is_action_pressed(&"ui_a_button"):
+				var viewport_index = _get_portrait(input_device)
+				if _close_portrait(viewport_index, true):
+					Sounds.play_validation()
+					var open_count = 0
+					var confirmed_count = 0
+					for state in _viewport_states:
+						match state.portrait_status:
+							PortraitStatus.OPEN:
+								open_count += 1
+							PortraitStatus.CONFIRMED:
+								confirmed_count += 1
+					if open_count == 0 and confirmed_count > 0:
+						_start_race()
+
+			# cancel player selection and maybe go back to the menu scene
+
+			elif event.is_action_pressed(&"ui_b_button"):
+				var viewport_index = _get_portrait(input_device)
+				if _close_portrait(viewport_index, false):
+					Sounds.play_cancel()
+					var open_count = 0
+					for state in _viewport_states:
+						if state.portrait_status == PortraitStatus.OPEN:
 							open_count += 1
-						PortraitStatus.CONFIRMED:
-							confirmed_count += 1
-				if open_count == 0 and confirmed_count > 0:
-					_start_race()
+					if open_count == 0:
+						get_tree().change_scene_to_file(_menu_scene_file)
 
-		# cancel player selection and maybe go back to the menu scene
-
-		elif event.is_action_pressed(&"ui_b_button"):
-			var viewport_index = _get_portrait(input_device)
-			if _close_portrait(viewport_index, false):
-				Sounds.play_cancel()
-				var open_count = 0
-				for state in _viewport_states:
-					if state.portrait_status == PortraitStatus.OPEN:
-						open_count += 1
-				if open_count == 0:
-					get_tree().change_scene_to_file(_menu_scene_file)
+			_is_portrait_busy = false
 
 	# input handling when the game has ended
 
