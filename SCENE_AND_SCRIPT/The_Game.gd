@@ -126,17 +126,23 @@ func _start_race():
 	_game_status = GameStatus.STARTING
 	_portrait_root.hide()
 
-	# assign input devices to runners and put them in their starting positions
+	# assign input devices used by human runners, and put all runners in their
+	# starting positions
+
+	var bot_input_devices = [0, 1, 2, 3]
 
 	for i in 4:
-		var runner_index = _viewport_states[i].runner_index
-		var runner = _runners[runner_index]
+		var state: ViewportState = _viewport_states[i]
+		var runner: Runner = _runners[state.runner_index]
 		runner.died.connect(_on_runner_died.bind(i))
 		runner.escaped.connect(_on_runner_escaped.bind(i))
-		runner.input_device = i
+		if state.portrait_status == PortraitStatus.CONFIRMED:
+			runner.input_device = state.input_device
+			bot_input_devices.erase(state.input_device)
 		runner.get_set()
 
-	# create bots for any runners that require them
+	# create bots for any runners that require them, assigning them input
+	# device numbers that are not used by humans
 
 	var behavior_traits = Bot.BehaviorTrait.values().duplicate()
 	var bonus_traits = Bot.BonusTrait.values().duplicate()
@@ -148,6 +154,7 @@ func _start_race():
 			state.audio_weight = 1.0
 			continue
 		var runner = _runners[state.runner_index]
+		runner.input_device = bot_input_devices.pop_front()
 		var bot = Bot.new(runner, _map, _runner_corners[i])
 
 		# we want bots' physics functions to run AFTER their runners' functions,
