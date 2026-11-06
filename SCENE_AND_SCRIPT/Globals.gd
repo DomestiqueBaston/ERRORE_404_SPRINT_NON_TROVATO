@@ -62,6 +62,8 @@ func _ready():
 
 	load_settings()
 
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
 func _input(event):
 	if event.is_action_pressed("ui_fullscreen"):
 		var mode := DisplayServer.window_get_mode()
