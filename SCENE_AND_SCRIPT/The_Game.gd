@@ -26,6 +26,7 @@ class ViewportState:
 
 enum GameStatus {
 	RUNNER_SELECTION,
+	STARTING,
 	RACING,
 	GAME_OVER
 }
@@ -122,6 +123,7 @@ func _ready():
 	_portrait_root.show()
 
 func _start_race():
+	_game_status = GameStatus.STARTING
 	_portrait_root.hide()
 
 	# assign input devices to runners and put them in their starting positions
