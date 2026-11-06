@@ -7,8 +7,7 @@ func stop_all(music_too: bool = true):
 	for sound: AudioStreamPlayer in find_children("*", "AudioStreamPlayer"):
 		if music_too or sound != _music:
 			sound.stop()
-	if _victory_anim.is_playing():
-		_victory_anim.play(&"RESET")
+	stop_victory_sound()
 
 func play_validation():
 	$UI_Sounds/Validation.play()
@@ -89,3 +88,6 @@ func play_disappearing():
 
 func play_victory_sound():
 	_victory_anim.play(&"Pitch_Down")
+
+func stop_victory_sound():
+	_victory_anim.play(&"RESET")
