@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.itch.domestique_baston.errore_404_sprint_non_trovato</id>
+
+  <name>Errore 404: Sprint Non Trovato!</name>
+  <summary>A glitchy, chaotic survival runner inspired by Tron (1982) and Cube (1997)</summary>
+
+  <metadata_license>CC-BY-SA-4.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <content_rating type="oars-1.0" />
+
+  <developer id="io.itch.domestique_baston">
+    <name>Domestique Baston</name>
+  </developer>
+
+  <url type="homepage">https://domestique-baston.itch.io/errore-404-sprint-not-found</url>
+
+  <releases>
+    <release version="1.0" date="2026-11-12"/>
+  </releases>
+
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>gamepad</control>
+  </supports>
+
+  <description>
+    <p>
+      Four racers. One constantly shifting arena. No stopping, no turning back! Everything moves and changes. Nothing stays the same for long so hold on tight and keep running, jumping and sliding, because the MCP won't go easy on you!
+    </p>
+    <p>
+      Survive long enough to reach the exit door (if you make it that far)!
+    </p>
+    <p>
+      D.B.
+    </p>
+    <p>
+      P.S.: By the way, the game is in Italian, but you don't really need to understand the language!
+    </p>
+  </description>
+
+  <launchable type="desktop-id">io.itch.domestique_baston.errore_404_sprint_non_trovato.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <image>http://www.ferdiferdi.com/DomestiqueBaston/404/02.png</image>
+    </screenshot>
+    <screenshot>
+      <image>http://www.ferdiferdi.com/DomestiqueBaston/404/03.png</image>
+    </screenshot>
+    <screenshot>
+      <image>http://www.ferdiferdi.com/DomestiqueBaston/404/04.png</image>
+    </screenshot>
+    <screenshot>
+      <image>http://www.ferdiferdi.com/DomestiqueBaston/404/05.png</image>
+    </screenshot>
+  </screenshots>
+</component>

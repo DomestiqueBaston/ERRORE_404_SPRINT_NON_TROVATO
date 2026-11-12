@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Errore 404: Sprint Non Trovato!
+Comment=A glitchy, chaotic survival runner inspired by Tron (1982) and Cube (1997)
+Categories=Game;ActionGame;
+Icon=io.itch.domestique_baston.errore_404_sprint_non_trovato
+Exec=godot-runner
+Terminal=false
